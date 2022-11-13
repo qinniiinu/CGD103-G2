@@ -1,3 +1,5 @@
+一堆問題 && sass沒建不要clone
+
 # cgd103_g2
 
 ## Project setup
