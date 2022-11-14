@@ -1,8 +1,26 @@
-body {
-    font-size: 20px;
-    color: aqua;
-  .wrapper {
-      width: 1200px;
-      margin:  0 auto;
-  }
- }
+@import 'reset';
+@import 'variable';
+@import 'mixin';
+
+$main_color:#495BFF;
+$second_color :rgba($main-color,10%);
+$third_color :#fff;
+
+$bg_white:#fff;
+
+a{
+    text-decoration: none;
+    color : #222;
+}
+
+body{
+    color: $main_color;
+}
+*{
+    vertical-align: middle;
+
+}
+
+
+
+@import 'layout/nav.scss';
