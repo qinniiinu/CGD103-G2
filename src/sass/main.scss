@@ -1,26 +1,38 @@
-@import 'reset';
-@import 'variable';
-@import 'mixin';
+@import "reset";
+@import "variable";
+@import "mixin";
 
-$main_color:#495BFF;
-$second_color :rgba($main-color,10%);
-$third_color :#fff;
+$main_color: #495bff;
+$second_color: rgba($main-color, 10%);
+$third_color: #fff;
 
-$bg_white:#fff;
+$bg_white: #fff;
+$bg_violet: #eceeff;
 
-a{
+$font_size_s: 12px;
+$font_size_m: $font_size_s * 1.2;
+$font_size_l: $font_size_s * 1.5;
+$font_size_xl: $font_size_s * 2;
+
+$font_size_title_s: 18px;
+$font_size_title_m: $font_size_title_s * 1.2;
+$font_size_title_l: $font_size_title_s * 1.5;
+$font_size_title_xl: $font_size_title_s * 2;
+
+$line: 2px;
+$nav_height: 80px;
+
+a {
     text-decoration: none;
-    color : #222;
+    color: #222;
 }
 
-body{
+body {
     color: $main_color;
 }
-*{
+* {
     vertical-align: middle;
-
 }
 
-
-
-@import 'layout/nav.scss';
+@import "layout/nav";
+@import "layout/footer";

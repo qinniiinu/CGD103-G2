@@ -98,6 +98,7 @@ exports.re = cssname;
 
 //sass => css
 const sass = require('gulp-sass')(require('sass'));
+// const sass = (require('sass'));
 
 
 function styleSass() {
@@ -109,6 +110,17 @@ function styleSass() {
 
 exports.style = styleSass;
 
+//gulp-sourcemaps
+const sourcemaps = require('gulp-sourcemaps');
+
+function styleSassmap() {
+    return src('src/sass/*.scss')
+        .pipe(sourcemaps.init())
+        // .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+        .pipe(sass.sync().on('error', sass.logError))
+        .pipe(sourcemaps.write('./'))
+        .pipe(dest('./dist/css'));
+}
 
 
 // html layout
@@ -130,7 +142,8 @@ exports.h = html;
 
 function watchfile(){
    watch(['src/*.html' , 'src/layout/*.html'], html)
-   watch(['src/sass/*.scss' , 'src/sass/**/*.scss'] , styleSass)
+   watch(['src/sass/*.scss' , 'src/sass/**/*.scss'] , styleSassmap)
+
 }
 
 
