@@ -1,43 +1,96 @@
 $footer_box_height: 50px;
 $null: null;
+$padding: 20px;
+$max_width: 1200px;
 footer {
     border: $line solid $main-color;
+    text-align: center;
 
     ul.main {
         border-bottom: $line solid $main-color;
-
-        .main_list {
-            .bg_tag {
-                position: absolute;
-                z-index: -1;
-                color: $bg_violet;
-                font-size: $font_size_xl;
-                font-family: Livvic;
-            }
+        .container {
+            width: 100%;
             & + * {
                 border-top: $line solid $main-color;
             }
-            .sub {
-                li {
-                    @include s() {
-                        height: 0;
-                        overflow: hidden;
+            .main_list {
+                max-width: $max_width;
+                width: 100%;
+                margin: auto;
+                @include m() {
+                    display: flex;
+                }
+                .bg_tag {
+                    position: absolute;
+                    z-index: -1;
+                    color: $bg_violet;
+                    font-size: $font_size_xl;
+                    font-family: $second_font;
+                }
+
+                .sub {
+                    @include m() {
+                        width: 75%;
+                        // outline: 1px solid red;
+                    }
+                    li {
+                        @include s() {
+                            height: 0;
+                            overflow: hidden;
+                        }
                     }
                 }
-            }
-            .main_list_box {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                height: ($footer_box_height - $line);
+                .main_list_box {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    height: ($footer_box_height - $line * 2);
+                    padding: 10px;
+                    box-sizing: border-box;
 
-                .name {
-                    font-weight: 600;
+                    @include m() {
+                        width: 25%;
+                    }
+
+                    &:focus + .sub > li {
+                        @include s() {
+                            height: $footer_box_height;
+                        }
+                    }
+
+                    .name {
+                        font-weight: 600;
+                    }
+                    .icon {
+                        @include m() {
+                            display: none;
+                        }
+                    }
                 }
-
-                &:focus + .sub > li {
-                    @include s() {
-                        height: $footer_box_height;
+                .sub {
+                    @include m() {
+                        display: flex;
+                        align-items: center;
+                    }
+                    li {
+                        @include m() {
+                            width: 33.3333333%;
+                        }
+                        a {
+                            @include s() {
+                                display: block;
+                                line-height: $footer_box_height;
+                                color: $third_color;
+                                background-color: $main_color;
+                                text-align: center;
+                            }
+                            @include m() {
+                                display: block;
+                                line-height: $footer_box_height;
+                                color: $main-color;
+                                text-align: left;
+                            }
+                        }
                     }
                 }
             }

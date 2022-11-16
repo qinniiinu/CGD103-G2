@@ -9,6 +9,9 @@ $third_color: #fff;
 $bg_white: #fff;
 $bg_violet: #eceeff;
 
+$main_font: "Inter", sans-serif;
+$second_font: "Livvic", sans-serif;
+
 $font_size_s: 12px;
 $font_size_m: $font_size_s * 1.2;
 $font_size_l: $font_size_s * 1.5;
@@ -24,11 +27,14 @@ $nav_height: 80px;
 
 a {
     text-decoration: none;
-    color: #222;
+    color: $main_color;
 }
 
 body {
     color: $main_color;
+    @include s() {
+        font-size: 14px;
+    }
 }
 * {
     vertical-align: middle;
