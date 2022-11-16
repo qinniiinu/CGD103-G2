@@ -24,134 +24,137 @@
         }
     }
 }
-
 div.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: $bg_white;
-    color: $main_color;
-    position: sticky;
-    top: 0;
-    @include m() {
-        height: $nav_height;
-        outline: 1px solid red;
-    }
-
-    .logo {
-        img {
-            vertical-align: top;
-        }
-    }
-
-    .hb {
-        @include s() {
-            width: 40px;
-            height: 40px;
-            position: relative;
-        }
+    .container {
+        max-width: $max_width;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $bg_white;
+        color: $main_color;
+        position: sticky;
+        top: 0;
         @include m() {
-            display: none;
+            height: $nav_height;
+            outline: 1px solid red;
         }
-        span {
-            width: 32px;
-            height: 2px;
-            background-color: $main_color;
-            position: absolute;
-            left: 0;
-            right: 0;
-            margin: auto;
-            transform: rotate(0deg);
-            opacity: 1;
 
-            &:nth-child(1) {
-                top: 7px;
-            }
-            &:nth-child(2) {
-                top: 19px;
-            }
-            &:nth-child(3) {
-                top: 31px;
+        .logo {
+            img {
+                vertical-align: top;
             }
         }
-    }
 
-    .main_nav_icon {
-        @include s() {
-            text-align: right;
-            flex-grow: 1;
-        }
-    }
-
-    .main_nav {
-        @include s() {
-            position: absolute;
-            width: 100%;
-            left: -100%;
-            top: 100%;
-            opacity: 0;
-            transition: opacity 1s 0s, left 0s 1s;
-            background: $bg-white;
-        }
-
-        @include m() {
-            display: flex;
-            width: fit-content;
-            flex-grow: 1;
-            justify-content: flex-end;
-        }
-
-        ul.main {
-            .main_list {
+        .hb {
+            @include s() {
+                width: 40px;
+                height: 40px;
                 position: relative;
-                @include m() {
-                    display: inline-block;
+            }
+            @include m() {
+                display: none;
+            }
+            span {
+                width: 32px;
+                height: 2px;
+                background-color: $main_color;
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: auto;
+                transform: rotate(0deg);
+                opacity: 1;
 
-                    &:hover > ul.sub {
-                        display: block;
-                    }
-
-                    &:hover > a {
-                        border: $line solid $main_color;
-                    }
+                &:nth-child(1) {
+                    top: 7px;
                 }
-                a {
-                    display: block;
-
-                    @include s() {
-                        display: block;
-                        padding: 20px;
-                        color: $third_color;
-                        background-color: $main_color;
-                        text-align: center;
-                        margin: 5px;
-                    }
-
-                    @include m() {
-                        color: $main_color;
-                        width: 100px;
-                        text-align: center;
-                        line-height: ($nav_height - $line);
-                        border: $line solid transparent;
-                    }
+                &:nth-child(2) {
+                    top: 19px;
                 }
-                .sub {
-                    position: absolute;
+                &:nth-child(3) {
+                    top: 31px;
+                }
+            }
+        }
 
-                    @include s() {
-                        display: none;
-                    }
+        .main_nav_icon {
+            @include s() {
+                text-align: right;
+                flex-grow: 1;
+            }
+        }
+
+        .main_nav {
+            @include s() {
+                position: absolute;
+                width: 100%;
+                left: -100%;
+                top: 100%;
+                opacity: 0;
+                transition: opacity 1s 0s, left 0s 1s;
+                background: $bg-white;
+            }
+
+            @include m() {
+                display: flex;
+                width: fit-content;
+                flex-grow: 1;
+                justify-content: flex-end;
+            }
+
+            ul.main {
+                .main_list {
+                    position: relative;
                     @include m() {
-                        display: none;
+                        display: inline-block;
+
+                        &:hover > ul.sub {
+                            display: block;
+                        }
+
+                        &:hover > a {
+                            border: $line solid $main_color;
+                        }
                     }
-                    li {
-                        a {
+                    a {
+                        display: block;
+
+                        @include s() {
+                            display: block;
+                            padding: 20px;
                             color: $third_color;
                             background-color: $main_color;
                             text-align: center;
-                            border: $line solid $main_color;
-                            &:hover {
-                                border: $line solid $third_color;
+                            margin: 5px;
+                        }
+
+                        @include m() {
+                            color: $main_color;
+                            width: 100px;
+                            text-align: center;
+                            line-height: ($nav_height - $line);
+                            border: $line solid transparent;
+                        }
+                    }
+                    .sub {
+                        position: absolute;
+
+                        @include s() {
+                            display: none;
+                        }
+                        @include m() {
+                            display: none;
+                        }
+                        li {
+                            a {
+                                color: $third_color;
+                                background-color: $main_color;
+                                text-align: center;
+                                border: $line solid $main_color;
+                                &:hover {
+                                    border: $line solid $third_color;
+                                }
                             }
                         }
                     }
@@ -160,7 +163,6 @@ div.header {
         }
     }
 }
-
 @keyframes no1 {
     0% {
         top: 7px;
