@@ -25,6 +25,9 @@
     }
 }
 div.header {
+    outline: 1px solid red;
+    background-color: $bg_white;
+
     .container {
         max-width: $max_width;
         margin: auto;
@@ -40,10 +43,8 @@ div.header {
             outline: 1px solid red;
         }
 
-        .logo {
-            img {
-                vertical-align: top;
-            }
+        .logo > img {
+            vertical-align: top;
         }
 
         .hb {
@@ -81,6 +82,7 @@ div.header {
         .main_nav_icon {
             @include s() {
                 text-align: right;
+                outline: 1px solid red;
                 flex-grow: 1;
             }
         }
@@ -103,59 +105,58 @@ div.header {
                 justify-content: flex-end;
             }
 
-            ul.main {
-                .main_list {
-                    position: relative;
-                    @include m() {
-                        display: inline-block;
+            ul.main .main_list {
+                position: relative;
+                @include m() {
+                    display: inline-block;
 
-                        &:hover > ul.sub {
-                            display: block;
-                        }
-
-                        &:hover > a {
-                            border: $line solid $main_color;
-                        }
-                    }
-                    a {
+                    &:hover > ul.sub {
                         display: block;
-
-                        @include s() {
-                            display: block;
-                            padding: 20px;
-                            color: $third_color;
-                            background-color: $main_color;
-                            text-align: center;
-                            margin: 5px;
-                        }
-
-                        @include m() {
-                            color: $main_color;
-                            width: 100px;
-                            text-align: center;
-                            line-height: ($nav_height - $line);
-                            border: $line solid transparent;
-                        }
                     }
-                    .sub {
-                        position: absolute;
 
-                        @include s() {
-                            display: none;
-                        }
-                        @include m() {
-                            display: none;
-                        }
-                        li {
-                            a {
-                                color: $third_color;
-                                background-color: $main_color;
-                                text-align: center;
-                                border: $line solid $main_color;
-                                &:hover {
-                                    border: $line solid $third_color;
-                                }
-                            }
+                    &:hover > a {
+                        border: $line solid $main_color;
+                        font-weight: 600;
+                    }
+                }
+                a {
+                    font-size: $nav_fsize;
+                    display: block;
+
+                    @include s() {
+                        padding: 20px;
+                        color: $third_color;
+                        background-color: $main_color;
+                        text-align: center;
+                        margin: 5px;
+                    }
+
+                    @include m() {
+                        color: $main_color;
+                        width: 125px - $line * 2;
+                        text-align: center;
+                        line-height: ($nav_height - $line * 2);
+                        border: $line solid transparent;
+                    }
+                }
+                .sub {
+                    position: absolute;
+
+                    @include s() {
+                        display: none;
+                    }
+                    @include m() {
+                        display: none;
+                    }
+
+                    a {
+                        color: $third_color;
+                        background-color: $main_color;
+                        text-align: center;
+                        border: $line solid $main_color;
+                        &:hover {
+                            border: $line solid $third_color;
+                            font-weight: 600;
                         }
                     }
                 }

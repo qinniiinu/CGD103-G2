@@ -1,7 +1,3 @@
-$footer_box_height: 50px;
-$null: null;
-$padding: 20px;
-$max_width: 1200px;
 footer {
     border: $line solid $main-color;
     text-align: center;
@@ -24,22 +20,15 @@ footer {
                     position: absolute;
                     z-index: -1;
                     color: $bg_violet;
-                    font-size: $font_size_xl;
-                    font-family: $second_font;
+                    @include font_set($second_font, $null, 900, italic);
+                    @include s() {
+                        font-size: 56px;
+                    }
+                    @include m() {
+                        font-size: 96px;
+                    }
                 }
 
-                .sub {
-                    @include m() {
-                        width: 75%;
-                        // outline: 1px solid red;
-                    }
-                    li {
-                        @include s() {
-                            height: 0;
-                            overflow: hidden;
-                        }
-                    }
-                }
                 .main_list_box {
                     display: flex;
                     justify-content: space-between;
@@ -47,6 +36,7 @@ footer {
                     height: ($footer_box_height - $line * 2);
                     padding: 10px;
                     box-sizing: border-box;
+                    outline: 1px solid red;
 
                     @include m() {
                         width: 25%;
@@ -55,11 +45,18 @@ footer {
                     &:focus + .sub > li {
                         @include s() {
                             height: $footer_box_height;
+                            transition: all 0.5s;
                         }
                     }
 
                     .name {
-                        font-weight: 600;
+                        @include font_set($main_font, $null, 600, $null);
+                        @include s() {
+                            font-size: 24px;
+                        }
+                        @include m() {
+                            font-size: 40px;
+                        }
                     }
                     .icon {
                         @include m() {
@@ -69,12 +66,19 @@ footer {
                 }
                 .sub {
                     @include m() {
+                        width: 75%;
+
                         display: flex;
                         align-items: center;
                     }
                     li {
+                        @include s() {
+                            height: 0;
+                            overflow: hidden;
+                        }
                         @include m() {
                             width: 33.3333333%;
+                            text-align: left;
                         }
                         a {
                             @include s() {
@@ -85,15 +89,51 @@ footer {
                                 text-align: center;
                             }
                             @include m() {
-                                display: block;
-                                line-height: $footer_box_height;
+                                display: inline-block;
+                                width: 160px;
+                                line-height: 60px;
+                                margin: auto;
                                 color: $main-color;
-                                text-align: left;
+                                text-align: center;
+                                &:hover {
+                                    background-color: $main_color;
+                                    color: $third_color;
+                                    font-weight: 600;
+                                }
                             }
                         }
                     }
                 }
             }
+        }
+    }
+    .copyright {
+        display: flex;
+        align-items: center;
+        background-color: $main_color;
+
+        @include s() {
+            height: 110px;
+            box-sizing: border-box;
+        }
+        @include m() {
+            height: 110px;
+            box-sizing: border-box;
+        }
+        p {
+            @include s() {
+                font-size: 14px;
+            }
+            @include s() {
+                font-size: 16px;
+            }
+
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+            font-family: $four_font;
+            line-height: 24px;
+            color: $third_color;
         }
     }
 }
