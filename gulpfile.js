@@ -19,48 +19,50 @@ const rename = require("gulp-rename");
 
 //壓縮css
 const cleanCSS = require("gulp-clean-css");
-function cssminify() {
-	return src("src/*.css")
+function cssminify_F() {
+	return src("src/front-end/*.css")
 		.pipe(cleanCSS())
 		.pipe(
 			rename({
 				extname: ".min.css",
 			})
 		)
-		.pipe(dest("dist/css"));
+		.pipe(dest("dist/front-end/css"));
 }
 
 //壓縮 js //醜化JS，壓縮JS
 const uglify = require("gulp-uglify");
-function js() {
-	return src("src/js/*.js").pipe(dest("dist/js"));
+function js_F() {
+	return src("src/front-end/js/*.js").pipe(dest("dist/front-end/js"));
 }
 
 //醜化JS，壓縮JS
-function minijs() {
-	return src("src/js/*.js").pipe(uglify()).pipe(dest("dist/js"));
+function minijs_F() {
+	return src("src/front-end/js/*.js")
+		.pipe(uglify())
+		.pipe(dest("dist/front-end/js"));
 }
 
 // //====== 同時壓縮 css js ======
 // exports.combine = parallel(js, cssminify)
 
 // rename 改檔名
-function cssname() {
-	return src("src/*.css")
+function cssname_F() {
+	return src("src/front-end/*.css")
 		.pipe(
 			rename({
 				extname: ".min.css",
 			})
 		)
-		.pipe(dest("dist/css"));
+		.pipe(dest("dist/front-end/css"));
 }
 
 //sass 轉 css + 壓縮css
 const sass = require("gulp-sass")(require("sass"));
 const autoprefixer = require("gulp-autoprefixer");
 
-function styleSass() {
-	return src("src/sass/*.scss")
+function styleSass_F() {
+	return src("src/front-end/sass/*.scss")
 		.pipe(sass.sync().on("error", sass.logError))
 		.pipe(
 			autoprefixer({
@@ -68,62 +70,153 @@ function styleSass() {
 			})
 		)
 		.pipe(cleanCSS())
-		.pipe(dest("./dist/css"));
+		.pipe(dest("./dist/front-end/css"));
 }
 
 ////sass 轉 css+ map
 const sourcemaps = require("gulp-sourcemaps");
 
-function styleSassmap() {
+function styleSassmap_F() {
 	return (
-		src("src/sass/*.scss")
+		src("src/front-end/sass/*.scss")
 			.pipe(sourcemaps.init())
 			// .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
 			.pipe(sass.sync().on("error", sass.logError))
 			.pipe(sourcemaps.write("./"))
-			.pipe(dest("./dist/css"))
+			.pipe(dest("./dist/front-end/css"))
 	);
 }
 
 // html layout
 const fileinclude = require("gulp-file-include");
-function html() {
-	return src("src/*.html")
+function html_F() {
+	return src("src/front-end/*.html")
 		.pipe(
 			fileinclude({
 				prefix: "@@",
 				basepath: "@file",
 			})
 		)
-		.pipe(dest("dist"));
+		.pipe(dest("dist/front-end/"));
 }
 
 //壓縮圖片
 const imagemin = require("gulp-imagemin");
-function min_images() {
-	return src(["src/images/*.*", "src/images/**/*.*"])
+function min_images_F() {
+	return src(["src/front-end/images/*.*", "src/front-end/images/**/*.*"])
 		.pipe(imagemin())
-		.pipe(dest("dist/images"));
+		.pipe(dest("dist/front-end/images"));
 }
 
 //圖片搬家
-function img() {
-	return src(["src/images/*.*", "src/images/**/*.*"]).pipe(
-		dest("dist/images")
-	);
+function img_F() {
+	return src([
+		"src/front-end/images/*.*",
+		"src/front-end/images/**/*.*",
+	]).pipe(dest("dist/front-end/images"));
 }
 
 // js 打包 es6 -> es5
 const babel = require("gulp-babel");
-function babel5() {
-	return src("src/js/*.js")
+function babel5_F() {
+	return src("src/front-end/js/*.js")
 		.pipe(
 			babel({
 				presets: ["@babel/env"],
 			})
 		)
 		.pipe(uglify())
-		.pipe(dest("dist/js"));
+		.pipe(dest("dist/front-end/js"));
+}
+
+//back-end
+
+//壓縮css
+function cssminify_B() {
+	return src("src/back-end/*.css")
+		.pipe(cleanCSS())
+		.pipe(
+			rename({
+				extname: ".min.css",
+			})
+		)
+		.pipe(dest("dist/back-end/css"));
+}
+
+//壓縮 js //醜化JS，壓縮JS
+function js_B() {
+	return src("src/back-end/js/*.js").pipe(dest("dist/back-end/js"));
+}
+
+//醜化JS，壓縮JS
+function minijs_B() {
+	return src("src/back-end/js/*.js")
+		.pipe(uglify())
+		.pipe(dest("dist/back-end/js"));
+}
+
+//sass 轉 css + 壓縮css
+function styleSass_B() {
+	return src("src/back-end/sass/*.scss")
+		.pipe(sass.sync().on("error", sass.logError))
+		.pipe(
+			autoprefixer({
+				cascade: false,
+			})
+		)
+		.pipe(cleanCSS())
+		.pipe(dest("./dist/back-end/css"));
+}
+
+////sass 轉 css+ map
+
+function styleSassmap_B() {
+	return (
+		src("src/back-end/sass/*.scss")
+			.pipe(sourcemaps.init())
+			// .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+			.pipe(sass.sync().on("error", sass.logError))
+			.pipe(sourcemaps.write("./"))
+			.pipe(dest("./dist/back-end/css"))
+	);
+}
+
+// html layout
+function html_B() {
+	return src("src/back-end/*.html")
+		.pipe(
+			fileinclude({
+				prefix: "@@",
+				basepath: "@file",
+			})
+		)
+		.pipe(dest("dist/back-end/"));
+}
+
+//壓縮圖片
+function min_images_B() {
+	return src(["src/back-end/images/*.*", "src/back-end/images/**/*.*"])
+		.pipe(imagemin())
+		.pipe(dest("dist/back-end/images"));
+}
+
+//圖片搬家
+function img_B() {
+	return src(["src/back-end/images/*.*", "src/back-end/images/**/*.*"]).pipe(
+		dest("dist/back-end/images")
+	);
+}
+
+// js 打包 es6 -> es5
+function babel5_B() {
+	return src("src/back-end/js/*.js")
+		.pipe(
+			babel({
+				presets: ["@babel/env"],
+			})
+		)
+		.pipe(uglify())
+		.pipe(dest("dist/back-end/js"));
 }
 
 //刪除檔案
@@ -136,6 +229,10 @@ function clear() {
 const browserSync = require("browser-sync");
 const reload = browserSync.reload;
 
+function index() {
+	return src("src/*.html").pipe(dest("dist"));
+}
+
 function browser(done) {
 	browserSync.init({
 		server: {
@@ -144,22 +241,78 @@ function browser(done) {
 		},
 		port: 3000,
 	});
-	watch(["src/*.html", "src/layout/*.html", "src/layout/**/*.html"], html).on(
+	watch("src/*.html", index).on("change", reload);
+	watch(
+		[
+			"src/front-end/*.html",
+			"src/front-end/layout/*.html",
+			"src/front-end/layout/**/*.html",
+		],
+		html_F
+	).on("change", reload);
+	watch(
+		["src/front-end/sass/*.scss", "src/front-end/sass/**/*.scss"],
+		styleSassmap_F
+	).on("change", reload);
+	watch(
+		["src/front-end/images/*.*", "src/front-end/images/**/*.*"],
+		img_F
+	).on("change", reload);
+	watch(["src/front-end/js/*.js", "src/front-end/js/**/*.js"], js_F).on(
 		"change",
 		reload
 	);
-	watch(["src/sass/*.scss", "src/sass/**/*.scss"], styleSassmap).on(
+	watch(
+		[
+			"src/back-end/*.html",
+			"src/back-end/layout/*.html",
+			"src/back-end/layout/**/*.html",
+		],
+		html_B
+	).on("change", reload);
+	watch(
+		["src/back-end/sass/*.scss", "src/back-end/sass/**/*.scss"],
+		styleSassmap_B
+	).on("change", reload);
+	watch(["src/back-end/images/*.*", "src/back-end/images/**/*.*"], img_B).on(
 		"change",
 		reload
 	);
-	watch(["src/images/*.*", "src/images/**/*.*"], img).on("change", reload);
-	watch(["src/js/*.js", "src/js/**/*.js"], js).on("change", reload);
+	watch(["src/back-end/js/*.js", "src/back-end/js/**/*.js"], js_B).on(
+		"change",
+		reload
+	);
 	done();
 }
 
 exports.XXX = clear;
 //開發用
-exports.develop = series(parallel(html, styleSassmap, img, js), browser);
+exports.develop = series(
+	index,
+	parallel(
+		html_F,
+		styleSassmap_F,
+		img_F,
+		js_F,
+		html_B,
+		styleSassmap_B,
+		img_B,
+		js_B
+	),
+	browser
+);
 
-//上線用
-exports.online = series(clear, parallel(html, styleSass, min_images, babel5));
+//上線用//沒有index
+exports.online = series(
+	clear,
+	parallel(
+		html_F,
+		styleSass_F,
+		min_images_F,
+		babel5_F,
+		html_B,
+		styleSass_B,
+		min_images_B,
+		babel5_B
+	)
+);
