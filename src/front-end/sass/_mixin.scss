@@ -1,0 +1,41 @@
+@mixin s() {
+	@media screen and (max-width: 767px) {
+		@content;
+	}
+}
+@mixin m() {
+	@media screen and (min-width: 768px) {
+		@content;
+	}
+}
+
+@mixin l() {
+	@media screen and (min-width: 1024px) {
+		@content;
+	}
+}
+@mixin xl() {
+	@media screen and (min-width: 1200px) {
+		@content;
+	}
+}
+
+@mixin color_set($color, $bg_color) {
+	color: $color;
+	background-color: $bg_color;
+}
+@mixin font_set(
+	$font,
+	$size,
+	$weight: $null,
+	$style: normal,
+	$color: $null,
+	$bg_color: $null
+) {
+	font-family: $font;
+	font-size: $size;
+	font-weight: $weight;
+	font-style: $style;
+	color: $color;
+	background-color: $bg_color;
+}

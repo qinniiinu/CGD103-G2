@@ -1,0 +1,54 @@
+@import "reset";
+@import "variable";
+@import "mixin";
+
+$null: null;
+
+$main_color: #495bff;
+$second_color: #eceeff;
+$third_color: #fff;
+
+$bg_white: #fff;
+$bg_violet: #eceeff;
+
+$main_font: "Noto Sans TC", sans-serif;
+$second_font: "Livvic", sans-serif;
+$third_font: "Poppins", sans-serif;
+$four_font: "Balsamiq Sans", cursive;
+
+// $font_size_s: 12px;
+// $font_size_m: $font_size_s * 1.2;
+// $font_size_l: $font_size_s * 1.5;
+// $font_size_xl: $font_size_s * 2;
+
+// $font_size_title_s: 18px;
+// $font_size_title_m: $font_size_title_s * 1.2;
+// $font_size_title_l: $font_size_title_s * 1.5;
+// $font_size_title_xl: $font_size_title_s * 2;
+
+$line: 2px;
+$nav_height: 80px;
+$nav_fsize: 18px;
+$tag_fsize: 56px;
+$footer_box_height: 95px;
+$padding: 20px;
+$max_width: 1200px;
+
+a {
+	text-decoration: none;
+	color: $main_color;
+}
+
+body {
+	font-family: "Noto Sans TC", sans-serif;
+	color: $main_color;
+	background-color: $bg_white;
+}
+
+.left_right {
+	display: flex;
+}
+
+@import "layout/nav";
+@import "layout/footer";
+@import "layout/member_side_menu";
