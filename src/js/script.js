@@ -12,3 +12,7 @@ let j = 10;
 let k = 10;
 let l = 10;
 let m = 10;
+
+window.addEventListener("load", function () {
+	alert("TEST");
+});
