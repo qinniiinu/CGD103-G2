@@ -32,15 +32,13 @@ function cssminify() {
 
 //壓縮 js //醜化JS，壓縮JS
 const uglify = require("gulp-uglify");
+function js() {
+	return src("src/js/*.js").pipe(dest("dist/js"));
+}
+
+//醜化JS，壓縮JS
 function minijs() {
-	return src("src/js/*.js")
-		.pipe(uglify())
-		.pipe(
-			rename({
-				extname: ".min.js",
-			})
-		)
-		.pipe(dest("dist/js"));
+	return src("src/js/*.js").pipe(uglify()).pipe(dest("dist/js"));
 }
 
 // //====== 同時壓縮 css js ======
@@ -57,7 +55,7 @@ function cssname() {
 		.pipe(dest("dist/css"));
 }
 
-//sass 轉 css
+//sass 轉 css + 壓縮css
 const sass = require("gulp-sass")(require("sass"));
 const autoprefixer = require("gulp-autoprefixer");
 
@@ -69,6 +67,7 @@ function styleSass() {
 				cascade: false,
 			})
 		)
+		.pipe(cleanCSS())
 		.pipe(dest("./dist/css"));
 }
 
@@ -154,13 +153,13 @@ function browser(done) {
 		reload
 	);
 	watch(["src/images/*.*", "src/images/**/*.*"], img).on("change", reload);
-	watch(["src/js/*.js", "src/js/**/*.js"], minijs).on("change", reload);
+	watch(["src/js/*.js", "src/js/**/*.js"], js).on("change", reload);
 	done();
 }
 
 exports.XXX = clear;
 //開發用
-exports.develop = series(parallel(html, styleSassmap, img, minijs), browser);
+exports.develop = series(parallel(html, styleSassmap, img, js), browser);
 
 //上線用
 exports.online = series(clear, parallel(html, styleSass, min_images, babel5));
