@@ -35,18 +35,18 @@ $padding: 20px;
 $max_width: 1200px;
 
 a {
-    text-decoration: none;
-    color: $main_color;
+	text-decoration: none;
+	color: $main_color;
 }
 
 body {
-    font-family: "Noto Sans TC", sans-serif;
-    color: $main_color;
-    background-color: $bg_white;
+	font-family: "Noto Sans TC", sans-serif;
+	color: $main_color;
+	background-color: $bg_white;
 }
 
 .left_right {
-    display: flex;
+	display: flex;
 }
 
 @import "layout/nav";

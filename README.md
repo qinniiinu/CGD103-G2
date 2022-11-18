@@ -1,4 +1,4 @@
-一堆問題 && sass沒建不要clone
+sass 處理好了
 
 # cgd103_g2
 
