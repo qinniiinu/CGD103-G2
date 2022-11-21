@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	@@include('layout/meta.html',{ 'title' : 'urStyle:back-end' })
+	@@include('layout/meta.html',{ 'title' : '商品管理' })
 	<!-- vue -->
 	<script src="https://unpkg.com/vue@next"></script>
 	<!-- jq -->
@@ -11,170 +11,12 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Livvic:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-	<style>
-		*{
-			font-family: 'Livvic', sans-serif;
-			box-sizing: border-box;
-			margin: 0;
-			padding: 0;
-		}
-		body{
-			background-color: #495BFF10;
-		}
-		h2{
-			font-weight: 600;
-			color: #495BFF;
-			padding: 10px;
-		}
-		.filter_box select, .filter_box button{
-			margin: 0 5px ;
-		}
-		.product_img img{
-			width: 100px; /* 商品圖 */
-		}
-		.shop_table{
-			background-color: #fff;
-			border-radius: 10px;
-			overflow: hidden;
-			margin-top: 50px;
-		}
-		thead{
-			background-color: #495BFF;
-			color: #fff;
-		}
-		thead tr th{
-			 font-weight: 600; /* 表頭 */
-		}
-		.item{
-			cursor: pointer;
-		}
-		/* ----- lightbox ----- */
-		#lightbox{
-			position: fixed;
-			z-index: 10;
-			top: 0;
-			width: 100%;
-			height: 100%;
-			background-color: #00000080;
-			display: none;
-		}
-		#lightbox.active{
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-		#edit_box{
-			width: 640px;
-			min-height: 300px;
-			background-color: #fff;
-			padding: 20px;
-			border-radius: 10px;
-			background-color: #fff;
-			box-shadow: #00000010 0 0 20px 0px;
-		}
-		.form_item, .sub_form_item{
-			display: flex;
-			align-items: flex-start;
-			margin-bottom: 10px;
-		}
-		.form_item label,.sub_form_item label{
-			width: 100px;
-			/* border: 1px red solid; */
-			font-size: 20px;
-			font-weight: 900;
-			color: #495BFF;
-			line-height: 45px;
-		}
-		.form_item input{
-			width: calc(100% - 100px);
-			font-size: 16px;
-			border: 1px #495BFF solid;
-			height: 45px;
-		}
-		.form_item select{
-			padding: 5px 0;
-			margin-right: 5px;
-			width: 80px;
-			border: 1px #495BFF solid;
-		}
-		.sub_form_item .option{ /* 子項目 */
-			position: relative;
-			display: flex;
-			justify-content: space-between;
-			/* border: 1px red solid; */
-			width: 100%;
-		}
-		.sub_form_item .option input:nth-child(1){ /* 檔案 */
-			width: 200px;
-			padding: 5px 0;
-			
-		}
-		.sub_form_item .option input:nth-child(2){ /* 顏色 */
-			width: 80px;
-			/* padding: 3px 0; */
-			font-size: 16px;
-			outline: none;
-			height: 45px;
-			border: 1px #495BFF solid;
-		}
-	
-		select { /* 尺寸和狀態 */
-			width: 80px;
-			font-size: 16px;
-			border: 1px #495BFF solid;
-			height: 45px;
-		}
-		button{
-			min-width: 70px;
-			outline: none;
-			border: none;
-			background-color: #495BFF;
-			color: #fff;
-			height: 45px;
-			padding: 0px 10px;
-		}
-		.confirm_box{
-			margin-top: 20px;
-			text-align: center;
-		}
-		.confirm_box button{
-			margin: 0 5px;
-		}
-		input{
-			outline: none;
-		}
-		input:focus, select:focus{
-			border:3px solid #495BFF;
-			
-		}
-		#tag{
-			width: 100px;
-		}
-		#tag_box{
-			border: 1px #495BFF solid;
-			min-height: 45px;
-			width: calc(100% - 205px);
-			margin-left: 5px;
-			position: relative;
-			display: flex;
-			justify-content: flex-start;
-			flex-wrap: wrap;
-			align-items: center;
-		}
-		#tag_box span{
-			background-color: #495BFF;
-			padding: 3px 6px;
-			color: #fff;
-			margin: 5px;
-			cursor: pointer;
-		}
-		#tag_box span span{
-			font-size: 12px;
-		}
-	</style>
+	 <!-- icon -->
+	 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/fontawesome.min.css">
 </head>
 
-<body id="app">
+<body id="app" class="back_end_shop">
+	<!-- 新增編輯商品燈箱區 -->
 	<div id="lightbox">
 		<div id="edit_box">
 			<div class="form_item">
@@ -182,7 +24,7 @@
 				<input type="text" id="title">
 			</div>
 			<div class="form_item">
-				<label for="">種類</label>
+				<label>種類</label>
 				<select>
 					<option>男裝</option>
 					<option>女裝</option>
@@ -205,7 +47,8 @@
 				<label for="price">售價</label>
 				<input type="number" id="price">
 			</div>
-			<div class="form_item">
+			<!-- Hashtag -->
+			<div class="form_item"> 
 				<label for="tag">Hashtag</label>
 				<input type="text" id="tag" v-model.trim="tag_name" @keydown.enter="addTo">
 				<div id="tag_box">
@@ -245,13 +88,16 @@
 			</div>
 		</div>
 	</div>
+	<!-- 新增編輯商品燈箱區 end -->
+	<!-- 側邊欄 -->
 	<div class="container-fluid overflow-hidden">
 		<div class="row g-5">
 			@@include('layout/aside.html')
+			<!-- 側邊欄 end -->
 			<div class="col-9">
 				<h2>商品管理</h2>
+				<!-- 上方篩選區 -->
 				<div class="filter_box">
-					<button id="create">新增</button>
 					<select>
 						<option>男裝</option>
 						<option>女裝</option>
@@ -269,7 +115,16 @@
 						<option>外套</option>
 						<option>背心</option>
 					</select>
+					
+					<input type="text" placeholder="Search">
+					<button class="search">search</button>
+					<button id="create">新增</button>
+					
+					
+					
 				</div>
+				<!-- 上方篩選區 end -->
+				<!-- 商品列表 -->
 				<table class="table shop_table">
 					<thead>
 						<tr>
@@ -286,19 +141,36 @@
 					</thead>
 					<tbody>
 						<tr v-for="(item,index) in product" class="item" :key="item.id">
-							<th scope="row">{{item.id}}</th>
-							<td class="product_img"><img :src="item.image" :alt="item.description"></td>
-							<td>{{item.title}}</td>
-							<td>{{item.type}}</td>
-							<td>{{item.color}}</td>
-							<td>{{item.size}}</td>
-							<td>{{item.price}}</td>
-							<td>{{item.state}}</td>
-							<td>{{item.tag}}</td>
+							<th scope="row">{{item.id}}</th> <!-- 編號 -->
+							<td class="product_img"><img :src="item.image" :alt="item.description"></td> <!-- 商品圖 -->
+							<td>{{item.title}}</td> <!-- 品名 -->
+							<td>{{item.type}}</td>   <!-- 類型 -->
+							<td>{{item.color}}</td> <!-- 顏色 -->
+							<td>{{item.size}}</td> <!-- 尺寸 -->
+							<td>{{item.price}}</td> <!-- 價格 -->
+							<td>{{item.state}}</td> <!-- 狀態 -->
+							<td>{{item.tag}}</td> <!-- hashtag -->
 						</tr>
-
 					</tbody>
 				</table>
+				<!-- 商品列表 end -->
+				<!-- 頁碼 -->
+				<nav aria-label="...">
+					<ul class="pagination">
+					  <li class="page-item disabled">
+						<span class="page-link">Previous</span>
+					  </li>
+					  <li class="page-item"><a class="page-link" href="#">1</a></li>
+					  <li class="page-item active" aria-current="page">
+						<span class="page-link">2</span>
+					  </li>
+					  <li class="page-item"><a class="page-link" href="#">3</a></li>
+					  <li class="page-item">
+						<a class="page-link" href="#">Next</a>
+					  </li>
+					</ul>
+				  </nav>
+				  <!-- 頁碼 end -->
 			</div>
 		</div>
 	</div>
@@ -306,9 +178,9 @@
 		Vue.createApp({
 			data() {
 				return {
-					tag_name:'',
-                  	tags:[],
-					product: [
+					tag_name:'', //hashtag
+                  	tags:[],  //hashtag 陣列
+					product: [ //產品資訊
 						{
 							id: 1,
 							image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
@@ -407,14 +279,6 @@
 		$(document).on('click', '.remove_sub_item' ,function() {
 			$(this).parent().parent().remove();
 		})
-
-
-
-
-
-
-
-
 	</script>
 </body>
 
