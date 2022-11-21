@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	@@include('layout/meta.html',{ 'title' : '員工管理' })
+	<!-- vue -->
+	<script src="https://unpkg.com/vue@next"></script>
+	<!-- jq -->
+	<script src="https://code.jquery.com/jquery-3.6.1.js" ></script>
+	<!-- font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Livvic:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+	 <!-- icon -->
+	 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/fontawesome.min.css">
+</head>
+
+<body id="app" class="back_end_employee">
+	<!-- 新增編輯員工燈箱區 -->
+	<div id="lightbox">
+		<div id="edit_box">
+			<div class="form_item">
+				<label for="title">員工ID</label>
+				<input type="text" id="title">
+			</div>
+			<div class="form_item">
+				<label for="title">員工姓名</label>
+				<input type="text" id="title">
+			</div>
+			<div class="form_item">
+				<label for="title">員工身分</label>
+				<input type="text" id="title">
+			</div>
+			<div class="confirm_box">
+				<button>新增</button>
+				<button id="cancel">取消</button>
+			</div>
+		</div>
+	</div>
+	<!-- 新增編輯員工燈箱區 end -->
+	<!-- 側邊欄 -->
+	<div class="container-fluid overflow-hidden">
+		<div class="row g-5">
+			@@include('layout/aside.html')
+			<!-- 側邊欄 end -->
+			<div class="col-9">
+				<h2>員工管理</h2>
+				<!-- 上方篩選區 -->
+				<div class="filter_box">
+					<button>全部</button>
+					<button>造型師</button>
+					<button>員工</button>
+					<input type="text" placeholder="Search">
+					<button class="search">search</button>
+                    <button id="create">新增員工</button>
+				</div>
+				<!-- 上方篩選區 end -->
+				<!-- 員工列表 -->
+				<table class="table employee_table">
+					<thead>
+						<tr>
+							<th scope="col">員工編號</th>
+							<th scope="col">姓名</th>
+							<th scope="col">職稱</th>
+							<th scope="col">帳號狀態</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="(item,index) in employee" class="item" :key="item.id">
+							<th scope="row">{{item.emp_id}}</th> <!-- 員工編號 -->
+							<td>{{item.emp_name}}</td> <!-- 姓名 -->
+							<td>{{item.emp_job}}</td>   <!-- 職稱 -->
+							<td>{{item.emp_state}}</td> <!-- 帳號狀態 -->
+						</tr>
+					</tbody>
+				</table>
+				<!-- 員工列表 end -->
+				<!-- 頁碼 -->
+				<nav aria-label="...">
+					<ul class="pagination">
+					  <li class="page-item disabled">
+						<span class="page-link">Previous</span>
+					  </li>
+					  <li class="page-item"><a class="page-link" href="#">1</a></li>
+					  <li class="page-item active" aria-current="page">
+						<span class="page-link">2</span>
+					  </li>
+					  <li class="page-item"><a class="page-link" href="#">3</a></li>
+					  <li class="page-item">
+						<a class="page-link" href="#">Next</a>
+					  </li>
+					</ul>
+				  </nav>
+				  <!-- 頁碼 end -->
+			</div>
+		</div>
+	</div>
+	<script>
+		Vue.createApp({
+			data() {
+				return {
+					employee: [ //員工資訊
+						{
+							emp_id:1,
+                            emp_name:'jason',
+                            emp_job:'造型師',
+                            emp_state:'正常',
+						},
+						{
+							emp_id:2,
+                            emp_name:'jason',
+                            emp_job:'造型師',
+                            emp_state:'正常',
+						},
+						{
+							emp_id:3,
+                            emp_name:'jason',
+                            emp_job:'造型師',
+                            emp_state:'正常',
+						},
+					],	
+				}
+				},
+			}).mount('#app')
+
+		// --- 燈箱 ---
+		let lightbox = document.querySelector('#lightbox') // 燈箱
+		let cancel = document.getElementById("cancel"); // 關閉燈箱按鈕
+		let create = document.getElementById("create"); // 新增按鈕
+		const items = document.querySelectorAll('.item'); // 員工個人資料項目
+		items.forEach(item => {	//點擊員工個人資料項目開燈箱
+			item.addEventListener('click', e =>{
+				lightbox.classList.add('active');
+			})
+		})
+        create.addEventListener('click', function(){ // 點擊新增開燈箱
+			lightbox.classList.add('active');
+		})
+		cancel.addEventListener('click',function(){ // 點擊取消關燈箱
+			lightbox.classList.remove('active');
+		})
+
+	</script>
+</body>
+
+</html>
