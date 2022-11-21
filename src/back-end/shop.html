@@ -1,1 +1,421 @@
-shop
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	@@include('layout/meta.html',{ 'title' : 'urStyle:back-end' })
+	<!-- vue -->
+	<script src="https://unpkg.com/vue@next"></script>
+	<!-- jq -->
+	<!-- <script src="./js/jquery-3.6.1.js"></script> -->
+	<script src="https://code.jquery.com/jquery-3.6.1.js" ></script>
+	<!-- font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Livvic:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+	<style>
+		*{
+			font-family: 'Livvic', sans-serif;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			background-color: #495BFF10;
+		}
+		h2{
+			font-weight: 600;
+			color: #495BFF;
+			padding: 10px;
+		}
+		.filter_box select, .filter_box button{
+			margin: 0 5px ;
+		}
+		.product_img img{
+			width: 100px; /* 商品圖 */
+		}
+		.shop_table{
+			background-color: #fff;
+			border-radius: 10px;
+			overflow: hidden;
+			margin-top: 50px;
+		}
+		thead{
+			background-color: #495BFF;
+			color: #fff;
+		}
+		thead tr th{
+			 font-weight: 600; /* 表頭 */
+		}
+		.item{
+			cursor: pointer;
+		}
+		/* ----- lightbox ----- */
+		#lightbox{
+			position: fixed;
+			z-index: 10;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-color: #00000080;
+			display: none;
+		}
+		#lightbox.active{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		#edit_box{
+			width: 640px;
+			min-height: 300px;
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 10px;
+			background-color: #fff;
+			box-shadow: #00000010 0 0 20px 0px;
+		}
+		.form_item, .sub_form_item{
+			display: flex;
+			align-items: flex-start;
+			margin-bottom: 10px;
+		}
+		.form_item label,.sub_form_item label{
+			width: 100px;
+			/* border: 1px red solid; */
+			font-size: 20px;
+			font-weight: 900;
+			color: #495BFF;
+			line-height: 45px;
+		}
+		.form_item input{
+			width: calc(100% - 100px);
+			font-size: 16px;
+			border: 1px #495BFF solid;
+			height: 45px;
+		}
+		.form_item select{
+			padding: 5px 0;
+			margin-right: 5px;
+			width: 80px;
+			border: 1px #495BFF solid;
+		}
+		.sub_form_item .option{ /* 子項目 */
+			position: relative;
+			display: flex;
+			justify-content: space-between;
+			/* border: 1px red solid; */
+			width: 100%;
+		}
+		.sub_form_item .option input:nth-child(1){ /* 檔案 */
+			width: 200px;
+			padding: 5px 0;
+			
+		}
+		.sub_form_item .option input:nth-child(2){ /* 顏色 */
+			width: 80px;
+			/* padding: 3px 0; */
+			font-size: 16px;
+			outline: none;
+			height: 45px;
+			border: 1px #495BFF solid;
+		}
+	
+		select { /* 尺寸和狀態 */
+			width: 80px;
+			font-size: 16px;
+			border: 1px #495BFF solid;
+			height: 45px;
+		}
+		button{
+			min-width: 70px;
+			outline: none;
+			border: none;
+			background-color: #495BFF;
+			color: #fff;
+			height: 45px;
+			padding: 0px 10px;
+		}
+		.confirm_box{
+			margin-top: 20px;
+			text-align: center;
+		}
+		.confirm_box button{
+			margin: 0 5px;
+		}
+		input{
+			outline: none;
+		}
+		input:focus, select:focus{
+			border:3px solid #495BFF;
+			
+		}
+		#tag{
+			width: 100px;
+		}
+		#tag_box{
+			border: 1px #495BFF solid;
+			min-height: 45px;
+			width: calc(100% - 205px);
+			margin-left: 5px;
+			position: relative;
+			display: flex;
+			justify-content: flex-start;
+			flex-wrap: wrap;
+			align-items: center;
+		}
+		#tag_box span{
+			background-color: #495BFF;
+			padding: 3px 6px;
+			color: #fff;
+			margin: 5px;
+			cursor: pointer;
+		}
+		#tag_box span span{
+			font-size: 12px;
+		}
+	</style>
+</head>
+
+<body id="app">
+	<div id="lightbox">
+		<div id="edit_box">
+			<div class="form_item">
+				<label for="title">品名</label>
+				<input type="text" id="title">
+			</div>
+			<div class="form_item">
+				<label for="">種類</label>
+				<select>
+					<option>男裝</option>
+					<option>女裝</option>
+				</select>
+				<select>
+					<option>上身</option>
+					<option>下身</option>
+					<option>套裝</option>
+					<option>鞋款</option>
+					<option>配件</option>
+				</select>
+				<select>
+					<option>短袖</option>
+					<option>長袖</option>
+					<option>外套</option>
+					<option>背心</option>
+				</select>
+			</div>
+			<div class="form_item">
+				<label for="price">售價</label>
+				<input type="number" id="price">
+			</div>
+			<div class="form_item">
+				<label for="tag">Hashtag</label>
+				<input type="text" id="tag" v-model.trim="tag_name" @keydown.enter="addTo">
+				<div id="tag_box">
+					<span v-for="(tag,index) in tags" :key="tag" @click="removeTo(index)">#{{tag}} <span>x</span></span>
+				</div>
+			</div>
+			<div class="form_item">
+				<label>子項目</label>
+				<button id="add_sub_item" onclick="add_item()">新增</button>
+			</div>
+			<div class="wrap" id="wrap">
+				<div class="sub_form_item">
+					<div class="option">
+						<input type="file">
+						<input type="text" placeholder="顏色">
+						<select class="size">
+							<option>XXL</option>
+							<option>XL</option>
+							<option>L</option>
+							<option>M</option>
+							<option>S</option>
+							<option>XS</option>
+						</select>
+						<select>
+							<option>上架</option>
+							<option>下架</option>
+						</select>
+						<button class="remove_sub_item">刪除</button>
+					</div>
+				</div>
+			</div>
+			
+			<div class="confirm_box">
+				<button>新增</button>
+				<button>修改確定</button>
+				<button id="cancel">取消</button>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid overflow-hidden">
+		<div class="row g-5">
+			@@include('layout/aside.html')
+			<div class="col-9">
+				<h2>商品管理</h2>
+				<div class="filter_box">
+					<button id="create">新增</button>
+					<select>
+						<option>男裝</option>
+						<option>女裝</option>
+					</select>
+					<select>
+						<option>上身</option>
+						<option>下身</option>
+						<option>套裝</option>
+						<option>鞋款</option>
+						<option>配件</option>
+					</select>
+					<select>
+						<option>短袖</option>
+						<option>長袖</option>
+						<option>外套</option>
+						<option>背心</option>
+					</select>
+				</div>
+				<table class="table shop_table">
+					<thead>
+						<tr>
+							<th scope="col">編號</th>
+							<th scope="col">商品圖</th>
+							<th scope="col">品名</th>
+							<th scope="col">種類</th>
+							<th scope="col">顏色</th>
+							<th scope="col">尺寸</th>
+							<th scope="col">售價</th>
+							<th scope="col">狀態</th>
+							<th scope="col">#Hashtag</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="(item,index) in product" class="item" :key="item.id">
+							<th scope="row">{{item.id}}</th>
+							<td class="product_img"><img :src="item.image" :alt="item.description"></td>
+							<td>{{item.title}}</td>
+							<td>{{item.type}}</td>
+							<td>{{item.color}}</td>
+							<td>{{item.size}}</td>
+							<td>{{item.price}}</td>
+							<td>{{item.state}}</td>
+							<td>{{item.tag}}</td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script>
+		Vue.createApp({
+			data() {
+				return {
+					tag_name:'',
+                  	tags:[],
+					product: [
+						{
+							id: 1,
+							image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+							title: "UNISEX 環保刷毛帽T",
+							type:"上身",
+							color:"黑",
+							size:"XL",
+							price: 1980,
+							description: "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+							category: "men's clothing",
+							state:"上架",
+							tag:"毛衣",
+						},
+						{
+							id: 2,
+							image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+							title: "UNISEX 環保刷毛帽T",
+							type:"上身",
+							color:"黑",
+							size:"XL",
+							price: 1980,
+							description: "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+							category: "men's clothing",
+							state:"上架",
+							tag:"毛衣",
+						},
+						{
+							id: 3,
+							image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+							title: "UNISEX 環保刷毛帽T",
+							type:"上身",
+							color:"黑",
+							size:"XL",
+							price: 1980,
+							description: "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+							category: "men's clothing",
+							state:"上架",
+							tag:"毛衣",
+						},
+						
+					],	
+				}
+				},
+				methods:{
+					addTo(){
+                    this.tags.push(this.tag_name);
+                    this.tag_name='';
+                },
+					removeTo(index){
+						this.tags.splice(index,1)
+					},
+				}
+			}).mount('#app')
+
+		// --- 燈箱 ---
+		let lightbox = document.querySelector('#lightbox') // 燈箱
+		let cancel = document.getElementById("cancel"); // 關閉燈箱按鈕
+		let create = document.getElementById("create"); // 新增按鈕
+		const items = document.querySelectorAll('.item'); // 商品項目
+		items.forEach(item => {	//點擊商品項目開燈箱
+			item.addEventListener('click', e =>{
+				lightbox.classList.add('active');
+			})
+		})
+		create.addEventListener('click', function(){ // 點擊新增開燈箱
+			lightbox.classList.add('active');
+		})
+		cancel.addEventListener('click',function(){ // 點擊取消關燈箱
+			lightbox.classList.remove('active');
+		})
+
+		// --- 新增子項目 ---
+		function add_item(){
+			$('#wrap').append(`
+				<div class="sub_form_item">
+					<div class="option">
+						<input type="file">
+						<input type="text" placeholder="顏色">
+						<select class="size">
+							<option>XXL</option>
+							<option>XL</option>
+							<option>L</option>
+							<option>M</option>
+							<option>S</option>
+							<option>XS</option>
+						</select>
+						<select>
+							<option>上架</option>
+							<option>下架</option>
+						</select>
+						<button class="remove_sub_item">刪除</button>
+					</div>
+				</div>`)
+		}
+		// --- 刪除子項目 ---
+		$(document).on('click', '.remove_sub_item' ,function() {
+			$(this).parent().parent().remove();
+		})
+
+
+
+
+
+
+
+
+	</script>
+</body>
+
+</html>
