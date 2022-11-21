@@ -1,0 +1,187 @@
+.back_end_shop{
+    box-sizing: border-box;
+    i{
+        font-family: 'Times New Roman', Times, serif;
+    }
+    background-color: #495bff10;
+    	select { 
+			width: 80px;
+			font-size: 16px;
+			border: 1px $main_color solid;
+			height: 45px;
+		}
+        button{
+			min-width: 70px;
+			outline: none;
+			border: none;
+			background-color: $main_color;
+			color: #fff;
+			height: 45px;
+			padding: 0px 10px;
+		}
+        input:not(input[type="file"]){
+			outline: none;
+            border: 1px $main_color solid;
+		}
+    #lightbox{
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #00000080;
+        display: none;
+        #edit_box{
+			width: 640px;
+			min-height: 300px;
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 10px;
+			background-color: #fff;
+			box-shadow: #00000010 0 0 20px 0px;
+            .form_item{
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 10px;
+                label{
+                    width: 100px;
+                    font-size: 20px;
+                    font-weight: 900;
+                    color: $main_color;
+                    line-height: 45px;
+                }
+                input{
+                    width: calc(100% - 100px);
+                    font-size: 16px;
+                    height: 45px;
+                }
+                select{
+                    padding: 5px 0;
+                    margin-right: 5px;
+                    width: 80px;
+                    border: 1px $main_color solid;
+                }
+                #tag{
+                    width: 100px;
+                }
+                #tag_box{
+                    border: 1px $main_color solid;
+                    min-height: 45px;
+                    width: calc(100% - 205px);
+                    margin-left: 5px;
+                    position: relative;
+                    display: flex;
+                    justify-content: flex-start;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    span{
+                        background-color: $main_color;
+                        padding: 3px 6px;
+                        color: #fff;
+                        margin: 5px;
+                        cursor: pointer;
+                        span{
+                            font-size: 12px;
+                        }
+                    }
+                }
+
+            }
+		}
+    }
+    #lightbox.active{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .wrap{
+        .sub_form_item{
+            display: flex;
+			align-items: flex-start;
+			margin-bottom: 10px;
+            label{
+                width: 100px;
+                font-size: 20px;
+                font-weight: 900;
+                color: $main_color;
+                line-height: 45px;
+            }
+            .option{  // 子項目
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                input:nth-child(1){  // 檔案 
+                    width: 200px;
+                    padding: 5px 0;
+                }
+                input:nth-child(2){  // 顏色
+                    width: 80px;
+                    font-size: 16px;
+                    outline: none;
+                    height: 45px;
+                    border: 1px $main_color solid;
+                }
+
+            }
+        }
+    }
+    .confirm_box{
+        margin-top: 20px;
+		text-align: center;
+        button{
+            margin: 0 5px;
+        }
+    }
+    // 商品列表-上方篩選區
+        .filter_box{
+            display: flex;
+            align-items: stretch;
+            position: relative;
+            select,button{
+                margin: 0 5px ;
+            }
+            #create{
+                margin-left: auto;
+            }
+            .search{
+                margin: 0;
+            }
+            
+        }
+    h2{
+        font-weight: 600;
+        color: $main_color;
+        padding: 10px;
+    }
+    // 商品列表
+    .shop_table{
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 50px;
+        .filter_box select, .filter_box button{
+			margin: 0 5px ;
+		}
+        thead{
+			background-color: $main_color;
+			color: #fff;
+            tr{
+                th{
+                    font-weight: 600; // 表頭 
+               }
+            } 
+		}
+        tbody{
+            .item{
+                cursor: pointer;
+                .product_img{
+                    img{
+                        width: 100px; // 商品圖
+                    }
+                }
+
+            }
+        }
+    }
+}
