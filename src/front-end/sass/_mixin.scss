@@ -1,5 +1,11 @@
+@mixin xs() {
+	@media screen and (max-width: 389px) {
+		@content;
+	}
+}
+
 @mixin s() {
-	@media screen and (max-width: 767px) {
+	@media screen and (min-width: 390px) {
 		@content;
 	}
 }
