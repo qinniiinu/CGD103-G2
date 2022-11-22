@@ -1,10 +1,7 @@
 <template>
-	<div class="about">
-		<h1>This is an about page</h1>
-	</div>
+	<div>訂閱頁面</div>
 	<Footer></Footer>
 </template>
-
 <script>
 import Footer from "@/components/Footer.vue";
 
