@@ -1,5 +1,5 @@
 <template>
-	<div class="product">
+	<div class="shop">
 		<h1>This is an about page</h1>
 	</div>
 	<Footer></Footer>
@@ -9,7 +9,7 @@
 import Footer from "@/components/Footer.vue";
 
 export default {
-	name: "product",
+	name: "About",
 	components: {
 		Footer,
 	},
