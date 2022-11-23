@@ -27,7 +27,7 @@
 						</ul>
 					</li>
 					<li class="main_list">
-						<router-link to="/">逛商品</router-link>
+						<router-link to="/product">逛商品</router-link>
 						<ul class="sub">
 							<li><router-link to="/">商品列表</router-link></li>
 							<li>
@@ -60,7 +60,9 @@
 					</li>
 				</ul>
 			</nav>
-			<div class="main_nav_icon">我是ICON</div>
+			<div class="main_nav_icon">
+				<router-link to="/test">測試按鈕</router-link>
+			</div>
 			<!-- 漢堡 -->
 			<label for="menu-switch" class="hb">
 				<span></span>
