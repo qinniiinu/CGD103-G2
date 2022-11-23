@@ -29,7 +29,12 @@ const routes = [
 	{
 		path: "/product",
 		name: "product",
-		component: () => import("../views/Product.vue"),
+		component: () => import("../views/ProductView.vue"),
+	},
+	{
+		path: "/test",
+		name: "test",
+		component: () => import("../views/TestView.vue"),
 	},
 	{
 		path: "/mulstyle",
