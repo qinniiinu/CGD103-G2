@@ -1,6 +1,6 @@
 <template>
-	<div class="product">
-		<h1>This is an about page</h1>
+	<div class="about">
+		<h1>This is a商品 page</h1>
 	</div>
 	<Footer></Footer>
 </template>
@@ -9,7 +9,7 @@
 import Footer from "@/components/Footer.vue";
 
 export default {
-	name: "product",
+	name: "About",
 	components: {
 		Footer,
 	},

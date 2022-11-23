@@ -1,6 +1,6 @@
 <template>
-	<div class="shop">
-		<h1>This is an about page</h1>
+	<div class="about">
+		<h1>This is a商品 page</h1>
 	</div>
 	<Footer></Footer>
 </template>

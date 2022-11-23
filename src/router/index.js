@@ -35,6 +35,11 @@ const routes = [
 		name: "ootd",
 		component: () => import("../views/OotdView.vue"),
 	},
+	{
+		path: "/product",
+		name: "product",
+		component: () => import("../views/Product.vue"),
+	},
 ];
 
 const router = createRouter({
