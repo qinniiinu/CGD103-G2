@@ -93,7 +93,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../sass/main";
+@import "@/assets/sass/main";
 footer {
 	border: $line solid $main-color;
 	text-align: center;
