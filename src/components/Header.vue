@@ -27,7 +27,7 @@
 						</ul>
 					</li>
 					<li class="main_list">
-						<router-link to="/">逛商品</router-link>
+						<router-link to="/product">逛商品</router-link>
 						<ul class="sub">
 							<li><router-link to="/">商品列表</router-link></li>
 							<li>
