@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<h1>ConsultIntroView</h1>
-	</div>
+        <h1>ConsultIntroView</h1>
+    </div>
 	<Footer></Footer>
 </template>
 <script>
