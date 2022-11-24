@@ -2,7 +2,7 @@
 	<div>
 		<footer>
 			<ul class="main">
-				<div class="container">
+				<div class="main_list_outside">
 					<li class="main_list">
 						<div class="main_list_box" tabindex="0">
 							<p class="bg_tag">#STYLE</p>
@@ -16,7 +16,7 @@
 						</ul>
 					</li>
 				</div>
-				<div class="container">
+				<div class="main_list_outside">
 					<li class="main_list">
 						<div class="main_list_box" tabindex="0">
 							<p class="bg_tag">#PRODUCT</p>
@@ -30,7 +30,7 @@
 						</ul>
 					</li>
 				</div>
-				<div class="container">
+				<div class="main_list_outside">
 					<li class="main_list">
 						<div class="main_list_box" tabindex="0">
 							<p class="bg_tag">#OOTD</p>
@@ -43,7 +43,7 @@
 						</ul>
 					</li>
 				</div>
-				<div class="container">
+				<div class="main_list_outside">
 					<li class="main_list">
 						<div class="main_list_box" tabindex="0">
 							<p class="bg_tag">#PREMIUM</p>
@@ -56,7 +56,7 @@
 						</ul>
 					</li>
 				</div>
-				<div class="container">
+				<div class="main_list_outside">
 					<li class="main_list">
 						<div class="main_list_box" tabindex="0">
 							<p class="bg_tag">#ABOUT</p>
@@ -100,7 +100,7 @@ footer {
 
 	ul.main {
 		border-bottom: $line solid $main-color;
-		.container {
+		.main_list_outside {
 			width: 100%;
 			& + * {
 				border-top: $line solid $main-color;
