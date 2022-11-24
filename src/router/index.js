@@ -138,6 +138,8 @@ const routes = [
 		component: () => import("../views/back_end/ClientMgmtView.vue"),
 	},
 	// ------------後台區 end------------
+
+	// ----------myaccount START----------
 	{
 		path: "/BodyType",
 		name: "BodyType",
@@ -159,6 +161,11 @@ const routes = [
 		component: () => import("../views/myaccount/MemMaintainView.vue"),
 	},
 	{
+		path: "/MyPage",
+		name: "MyPage",
+		component: () => import("../views/myaccount/MyPageView.vue"),
+	},
+	{
 		path: "/OrderDetails",
 		name: "OrderDetails",
 		component: () => import("../views/myaccount/OrderDetailsView.vue"),
@@ -168,6 +175,7 @@ const routes = [
 		name: "Subscription",
 		component: () => import("../views/myaccount/SubscriptionView.vue"),
 	},
+	// ----------myaccount END----------
 	{
 		path: "/Confirm",
 		name: "Confirm",
