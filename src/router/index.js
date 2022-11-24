@@ -37,9 +37,9 @@ const routes = [
 		component: () => import("../views/TestView.vue"),
 	},
 	{
-		path: "/mulstyle",
-		name: "mulstyle",
-		component: () => import("../views/MulStyle.vue"),
+		path: "/mulstyleview",
+		name: "mulstyleview",
+		component: () => import("../views/MulStyleView.vue"),
 	},
 ];
 
