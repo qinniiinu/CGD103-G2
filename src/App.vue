@@ -60,7 +60,9 @@
 					</li>
 				</ul>
 			</nav>
-			<div class="main_nav_icon">我是ICON</div>
+			<div class="main_nav_icon">
+				<router-link to="/test">測試按鈕</router-link>
+			</div>
 			<!-- 漢堡 -->
 			<label for="menu-switch" class="hb">
 				<span></span>
