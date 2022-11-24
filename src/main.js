@@ -23,8 +23,14 @@ import {
 /* add icons to the library */
 library.add(faUserSecret, faCartShopping, faUser);
 
+
+// import Vue from 'vue';
+// import VueCarousel from 'vue-carousel';
+
+
 createApp(App)
 	.use(store)
 	.use(router)
+	// .use(VueCarousel)
 	.component("font-awesome-icon", FontAwesomeIcon)
 	.mount("#app");
