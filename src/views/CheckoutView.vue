@@ -1,12 +1,15 @@
 <template>
-	<div>訂閱頁面</div>
+	<div class="checkout">
+		<h1>This is a商品 page</h1>
+	</div>
 	<Footer></Footer>
 </template>
+
 <script>
 import Footer from "@/components/Footer.vue";
 
 export default {
-	name: "About",
+	name: "Product",
 	components: {
 		Footer,
 	},
