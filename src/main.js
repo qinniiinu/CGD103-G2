@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 /* import specific icons */
 import {
+<<<<<<< HEAD
 	faUserSecret,
 	faCartShopping,
 	faUser,
@@ -24,9 +25,20 @@ import {
 /* add icons to the library */
 library.add(faUserSecret, faCartShopping, faUser,faHeart
 	);
+=======
+    faUserSecret,
+    faCartShopping,
+    faUser,
+    faStar,
+    faBook,
+} from "@fortawesome/free-solid-svg-icons";
+
+/* add icons to the library */
+library.add(faUserSecret, faCartShopping, faUser, faStar, faBook);
+>>>>>>> develop
 
 createApp(App)
-	.use(store)
-	.use(router)
-	.component("font-awesome-icon", FontAwesomeIcon)
-	.mount("#app");
+    .use(store)
+    .use(router)
+    .component("font-awesome-icon", FontAwesomeIcon)
+    .mount("#app");
