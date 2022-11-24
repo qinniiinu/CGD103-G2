@@ -16,7 +16,6 @@ const routes = [
 		// component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
 		component: () => import("../views/AboutView.vue"),
 	},
-
 	{
 		path: "/subscription",
 		name: "subscription",
@@ -31,6 +30,16 @@ const routes = [
 		path: "/product",
 		name: "product",
 		component: () => import("../views/ProductView.vue"),
+	},
+	{
+		path: "/test",
+		name: "test",
+		component: () => import("../views/TestView.vue"),
+	},
+	{
+		path: "/mulstyle",
+		name: "mulstyle",
+		component: () => import("../views/MulStyle.vue"),
 	},
 ];
 
