@@ -81,6 +81,7 @@ const routes = [
 		name: "weeklywear",
 		component: () => import("../views/WeeklyWearView.vue"),
 	},
+	// ------------後台區------------
 	{
 		path: "/OperationMgnt",
 		name: "OperationMgnt",
@@ -90,6 +91,11 @@ const routes = [
 		path: "/MemberMgmt",
 		name: "MemberMgmt",
 		component: () => import("../views/back_end/MemberMgmtView.vue"),
+	},
+	{
+		path: "/CommodityMgnt",
+		name: "CommodityMgnt",
+		component: () => import("../views/back_end/CommodityMgntView.vue"),
 	},
 	{
 		path: "/SubscriptionMgmt",
@@ -131,6 +137,7 @@ const routes = [
 		name: "ClientMgmt",
 		component: () => import("../views/back_end/ClientMgmtView.vue"),
 	},
+	// ------------後台區 end------------
 	{
 		path: "/BodyType",
 		name: "BodyType",
