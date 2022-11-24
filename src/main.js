@@ -5,7 +5,7 @@ import store from "./store";
 
 // import "sass/main.scss";
 import "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 // import "@/assets/sass/main.scss";
 // import "bootstrap/sass/bootstrap.scss";
 
