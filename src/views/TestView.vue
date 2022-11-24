@@ -1,10 +1,10 @@
 <template>
 	<!-- 會員 container -->
-	<div class="mem-container">
+	<div class="mem_container">
 		<!-- 側邊攔 -->
 		<SideMenu></SideMenu>
 		<!-- 右側資料 -->
-		<div class="mem-data">
+		<div class="mem_data">
 			<h1>This is測試 page</h1>
 			<font-awesome-icon icon="fa-duotone fa-plane" />
 			<font-awesome-icon icon="fa-solid fa-star" />
@@ -35,12 +35,12 @@ export default {
 </script>
 
 <style lang="scss">
- @import "../assets/sass/main.scss";
-    .mem-container{
+ @import "@/assets/sass/main.scss";
+    .mem_container{
 		display: flex;
 		width: 100vw ;
 		margin: auto;	
-		.mem-data{
+		.mem_data{
 		flex-grow: 1;
 		}
 	}
