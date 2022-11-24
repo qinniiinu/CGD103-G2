@@ -122,6 +122,7 @@
 
 		.container {
 			max-width: $max_width;
+			height: $nav_height;
 			margin: auto;
 			display: flex;
 			justify-content: space-between;
@@ -131,7 +132,7 @@
 			position: sticky;
 			top: 0;
 			@include m() {
-				height: $nav_height;
+
 				outline: 1px solid red;
 			}
 
@@ -143,7 +144,16 @@
 					vertical-align: top;
 				}
 			}
+			svg{
+				width: 30px;
+				@include m() {
+					width: 50px;
 
+				}
+				height: 20px;
+				padding: 5px;
+			}
+			
 			.hb {
 				@include s() {
 					width: 40px;
