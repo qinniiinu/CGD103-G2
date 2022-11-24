@@ -1,10 +1,16 @@
 <template>
-        <body id="app" class="back_end_member">
+    <head>
+    <!-- CSS only -->
+    <!-- bootstrap的cdn要看畫面在打開，推上去要關掉。 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> 
+    </head>
+    <body id="app" class="back_end_member">
     <!-- 側邊欄 -->
     <div class="container-fluid overflow-hidden">
         <div class="row g-5">
-            <!-- ***放aside模板**** -->
-            <!-- 側邊欄 end -->
+            <!-- aside模板 -->
+            <Aside/>
+            <!-- aside模板 end -->
             <div class="col-9">
                 <h2>會員管理</h2>
                 <!-- 上方篩選區 -->
@@ -63,10 +69,11 @@
     
 </template>
 <script>
+import Aside from '@/components/back_end/Aside.vue'; //引入aside
     export default {
 	name: "MemberMgmt",
      components: {
-    //放aside 模板
+        Aside,
   },
   data() {
     return {
@@ -160,31 +167,21 @@
                 tel:"0912312312",
                 style:"極簡",
                 type: "沙漏",
-            },
-            
-            
-            
+            },        
         ],	
     }
     },
-    methods:{
-    }
-
 };
 </script>
 <style lang="scss">
- @import "../../assets/sass/main.scss";
-    $main_color: #495bff;
+$main_color: #495bff;
 .back_end_member{
     box-sizing: border-box;
     background-color: #495bff10;
-     // 商品列表-上方篩選區
+     // 會員列表-上方篩選區
      .filter_box{
         display: flex;
         align-items: stretch;
-        select,button{
-            margin: 0 5px ;
-        }
     }
     button{
         min-width: 70px;
