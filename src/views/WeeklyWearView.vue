@@ -1,6 +1,6 @@
 <template>
 	<div class="weeklywear">
-		<h1>This is a商品 page</h1>
+		<h1>This iWeeklyWearage</h1>
 	</div>
 	<Footer></Footer>
 </template>

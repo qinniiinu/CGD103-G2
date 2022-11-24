@@ -19,21 +19,21 @@
 			<nav class="main_nav">
 				<ul class="main">
 					<li class="main_list">
-						<router-link to="/">找風格</router-link>
+						<router-link to="/MulStyles">找風格</router-link>
 						<ul class="sub">
-							<li><router-link to="/">風格穿搭</router-link></li>
-							<li><router-link to="/">風格測驗</router-link></li>
-							<li><router-link to="/">風格諮詢</router-link></li>
+							<li><router-link to="/Wearing">風格穿搭</router-link></li>
+							<li><router-link to="/Quiz">風格測驗</router-link></li>
+							<li><router-link to="/ConsultIntro">風格諮詢</router-link></li>
 						</ul>
 					</li>
 					<li class="main_list">
 						<router-link to="/product">逛商品</router-link>
 						<ul class="sub">
-							<li><router-link to="/">商品列表</router-link></li>
+							<li><router-link to="/ProductList">商品列表</router-link></li>
 							<li>
-								<router-link to="/">線上試衣間</router-link>
+								<router-link to="/FittingRoom">線上試衣間</router-link>
 							</li>
-							<li><router-link to="/">一周穿搭</router-link></li>
+							<li><router-link to="/WeeklyWear">一周穿搭</router-link></li>
 						</ul>
 					</li>
 					<li class="main_list">
@@ -46,7 +46,7 @@
 					<li class="main_list">
 						<router-link to="/subscription">訂閱服務</router-link>
 						<ul class="sub">
-							<li><router-link to="/">服務選擇</router-link></li>
+							<li><router-link to="/subscription">服務選擇</router-link></li>
 							<li><router-link to="/">服務說明</router-link></li>
 						</ul>
 					</li>
@@ -61,10 +61,10 @@
 				</ul>
 			</nav>
 			<div class="main_nav_icon">
-				<router-link to="/test">
+				<router-link to="/Cart">
 					<font-awesome-icon icon="fa-solid fa-cart-shopping" />
 				</router-link>
-				<router-link to="/test">
+				<router-link to="/login">
 					<font-awesome-icon icon="fa-solid fa-user"/>
 				</router-link>
 			</div>

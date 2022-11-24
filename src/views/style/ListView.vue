@@ -1,15 +1,14 @@
 <template>
-	<div class="fittingroom">
-		<h1>This is fittingroom page</h1>
-	</div>
+	<div>
+        <h1>ListView</h1>
+    </div>
 	<Footer></Footer>
 </template>
-
 <script>
 import Footer from "@/components/Footer.vue";
 
 export default {
-	name: "Product",
+	name: "List",
 	components: {
 		Footer,
 	},

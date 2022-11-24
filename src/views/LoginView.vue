@@ -1,6 +1,6 @@
 <template>
 	<div class="login">
-		<h1>This is a商品 page</h1>
+		<h1>This i登入</h1>
 	</div>
 	<Footer></Footer>
 </template>
