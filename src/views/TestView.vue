@@ -2,6 +2,7 @@
 	<div class="">
 		<h1>This is測試 page</h1>
 		<button @click="action" class="btn btn-info">bootstrap測試</button>
+		<font-awesome-icon icon="fa-solid fa-heart" />
 	</div>
 	<Footer></Footer>
 </template>
