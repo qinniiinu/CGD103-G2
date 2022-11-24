@@ -1,7 +1,7 @@
 @import "reset";
 @import "variable";
 @import "mixin";
-@import "node_modules/bootstrap/scss/bootstrap";
+
 $null: null;
 
 $main_color: #495bff;
@@ -33,18 +33,50 @@ $tag_fsize: 56px;
 $footer_box_height: 95px;
 $padding: 20px;
 $max_width: 1200px;
-
-a {
+a{
 	text-decoration: none;
-	color: $main_color;
 }
-
-body {
-	font-family: "Noto Sans TC", sans-serif;
-	color: $main_color;
-	background-color: $bg_white;
-}
-
-.left_right {
-	display: flex;
+.outfit-title{
+	color: #000;
+	h2{
+		margin-bottom: 10px;
+	}
+	padding: 15px 0px;
+	border: 1px solid #000;
+	width: 80%;
+	max-width: 390px;
+	@include m{
+		max-width: 1200px;
+	}
+	margin: auto;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 600;
+	.outfit-item{
+		position: relative;
+		display: inline-block;
+		font-size: 14px;
+		font-weight: 400;
+		padding: 5px 20px;
+		a{
+			color: #000;
+		}
+	}
+	.outfit-item a::after {
+		content: '';
+		position: absolute;
+		width: 70px;
+		transform: scaleX(0);
+		height: 5px;
+		bottom: 0;
+		left: 17.5px;
+		background-color: $main_color;
+		transform-origin: bottom right;
+		transition: transform 0.25s ease-out;
+	  }
+	  
+	  .outfit-item a:hover::after {
+		transform: scaleX(1);
+		transform-origin: bottom left;
+	  }
 }
