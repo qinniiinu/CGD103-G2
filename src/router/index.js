@@ -19,7 +19,7 @@ const routes = [
 	{
 		path: "/subscription",
 		name: "subscription",
-		component: () => import("../views/Subscription.vue"),
+		component: () => import("../views/SubscriptionView.vue"),
 	},
 	{
 		path: "/ootd",
@@ -39,7 +39,47 @@ const routes = [
 	{
 		path: "/mulstyle",
 		name: "mulstyle",
-		component: () => import("../views/MulStyle.vue"),
+		component: () => import("../views/MulStyleView.vue"),
+	},
+	{
+		path: "/cart",
+		name: "cart",
+		component: () => import("../views/CartView.vue"),
+	},
+	{
+		path: "/checkout",
+		name: "checkout",
+		component: () => import("../views/CheckoutView.vue"),
+	},
+	{
+		path: "/fittingroom",
+		name: "fittingroom",
+		component: () => import("../views/FittingRoomView.vue"),
+	},
+	{
+		path: "/login",
+		name: "login",
+		component: () => import("../views/LoginView.vue"),
+	},
+	{
+		path: "/productdetails",
+		name: "productdetails",
+		component: () => import("../views/ProductDetailsView.vue"),
+	},
+	{
+		path: "/productlist",
+		name: "productlist",
+		component: () => import("../views/ProductListView.vue"),
+	},
+	{
+		path: "/subscription",
+		name: "subscription",
+		component: () => import("../views/SubscriptionView.vue"),
+	},
+	{
+		path: "/weeklywear",
+		name: "weeklywear",
+		component: () => import("../views/WeeklyWearView.vue"),
 	},
 	{
 		path: "/OperationMgnt",
