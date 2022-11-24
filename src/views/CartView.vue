@@ -1,6 +1,6 @@
 <template>
 	<div class="cart">
-		<h1>This is a商品 page</h1>
+		<h1>This is購物車 page</h1>
 	</div>
 	<Footer></Footer>
 </template>
