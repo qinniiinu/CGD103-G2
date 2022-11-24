@@ -46,7 +46,7 @@
 					<li class="main_list">
 						<router-link to="/subscription">訂閱服務</router-link>
 						<ul class="sub">
-							<li><router-link to="/">服務選擇</router-link></li>
+							<li><router-link to="/subscription">服務選擇</router-link></li>
 							<li><router-link to="/">服務說明</router-link></li>
 						</ul>
 					</li>
@@ -61,10 +61,10 @@
 				</ul>
 			</nav>
 			<div class="main_nav_icon">
-				<router-link to="/test">
+				<router-link to="/Cart">
 					<font-awesome-icon icon="fa-solid fa-cart-shopping" />
 				</router-link>
-				<router-link to="/test">
+				<router-link to="/login">
 					<font-awesome-icon icon="fa-solid fa-user"/>
 				</router-link>
 			</div>
