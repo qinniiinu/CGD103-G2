@@ -1,6 +1,7 @@
 @import "reset";
 @import "variable";
 @import "mixin";
+// import AccountCircleIcon from 'node_modules/@mui/icons-material/AccountCircle';
 @import "node_modules/bootstrap/scss/bootstrap";
 $null: null;
 
@@ -27,8 +28,8 @@ $four_font: "Balsamiq Sans", cursive;
 // $font_size_title_xl: $font_size_title_s * 2;
 
 $line: 2px;
-$nav_height: 80px;
-$nav_fsize: 18px;
+$nav_height:60px;
+$nav_fsize: 16px;
 $tag_fsize: 56px;
 $footer_box_height: 95px;
 $padding: 20px;

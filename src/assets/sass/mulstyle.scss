@@ -46,7 +46,7 @@ a{
 	width: 80%;
 	max-width: 390px;
 	@include m{
-		max-width: 1200px;
+		max-width: 960px;
 	}
 	margin: auto;
 	text-align: center;
@@ -72,7 +72,7 @@ a{
 		left: 17.5px;
 		background-color: $main_color;
 		transform-origin: bottom right;
-		transition: transform 0.25s ease-out;
+		transition: transform 0.2s ease-out;
 	  }
 	  
 	  .outfit-item a:hover::after {
