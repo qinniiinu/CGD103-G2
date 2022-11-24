@@ -1,12 +1,11 @@
 .member_side_menu {
 	background-color: $second_color;
-	width: 30%;
-	max-width: 360px;
+	width: 390px;
 	margin-right: auto;
-	height: 100%;
+	height:auto;
 
 	.member {
-		// margin-top: 200px;
+		margin: 20px 10px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -28,12 +27,12 @@
 			.name {
 				font-weight: 700;
 				font-size: 40px;
-				line-height: 50px;
+				// line-height: 50px;
 			}
 			.level {
 				font-weight: 400;
 				font-size: 20px;
-				line-height: 25px;
+				// line-height: 30px;
 			}
 		}
 	}
@@ -41,23 +40,20 @@
 		display: block;
 		font-family: $main_font;
 		font-size: 26px;
-		line-height: 33px;
+		font-weight: 500;
+		line-height: 70px;
 		text-align: center;
 		.side_menu_tag {
 			font-family: $second_font;
-			vertical-align: auto;
+			vertical-align: sub;
 			font-weight: 900;
 			font-size: 36px;
 			line-height: 45px;
+			margin-right: 10px;
 			opacity: 0;
-			.show {
-				opacity: 1;
-			}
+		}
+		.show {
+			opacity: 1;
 		}
 	}
-}
-.main-content{
-	width: 70%;
-	max-width: 840px;
-	margin-left: auto;
 }
