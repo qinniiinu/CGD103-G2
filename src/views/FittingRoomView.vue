@@ -1,6 +1,6 @@
 <template>
 	<div class="fittingroom">
-		<h1>This is a商品 page</h1>
+		<h1>This is fittingroom page</h1>
 	</div>
 	<Footer></Footer>
 </template>

@@ -37,9 +37,9 @@ const routes = [
 		component: () => import("../views/TestView.vue"),
 	},
 	{
-		path: "/mulstyle",
-		name: "mulstyle",
-		component: () => import("../views/MulStyleView.vue"),
+		path: "/MulStylesView",
+		name: "MulStylesView",
+		component: () => import("../views/style/MulStylesView.vue"),
 	},
 	{
 		path: "/cart",
@@ -130,6 +130,76 @@ const routes = [
 		path: "/ClientMgmt",
 		name: "ClientMgmt",
 		component: () => import("../views/back_end/ClientMgmtView.vue"),
+	},
+	{
+		path: "/BodyType",
+		name: "BodyType",
+		component: () => import("../views/myaccount/BodyTypeView.vue"),
+	},
+	{
+		path: "/Consultation",
+		name: "Consultation",
+		component: () => import("../views/myaccount/ConsultationView.vue"),
+	},
+	{
+		path: "/Favorites",
+		name: "Favorites",
+		component: () => import("../views/myaccount/FavoritesView.vue"),
+	},
+	{
+		path: "/MemMaintain",
+		name: "MemMaintain",
+		component: () => import("../views/myaccount/MemMaintainView.vue"),
+	},
+	{
+		path: "/OrderDetails",
+		name: "OrderDetails",
+		component: () => import("../views/myaccount/OrderDetailsView.vue"),
+	},
+	{
+		path: "/Subscription",
+		name: "Subscription",
+		component: () => import("../views/myaccount/SubscriptionView.vue"),
+	},
+	{
+		path: "/Confirm",
+		name: "Confirm",
+		component: () => import("../views/style/ConfirmView.vue"),
+	},
+	{
+		path: "/Consultating",
+		name: "Consultating",
+		component: () => import("../views/style/ConsultatingView.vue"),
+	},
+	{
+		path: "/ConsultIntro",
+		name: "ConsultIntro",
+		component: () => import("../views/style/ConsultIntroView.vue"),
+	},
+	{
+		path: "/List",
+		name: "List",
+		component: () => import("../views/style/ListView.vue"),
+	},
+	{
+		path: "/MulStyles",
+		name: "MulStyles",
+		component: () => import("../views/style/MulStylesView.vue"),
+	},
+	{
+		path: "/Quiz",
+		name: "Quiz",
+		component: () => import("../views/style/QuizView.vue"),
+	},
+	{
+		path: "/Set",
+		name: "Set",
+		component: () => import("../views/style/SetView.vue"),
+	},
+	{
+		path: "/Wearing",
+		name: "Wearing",
+		component: () => import("../views/style/WearingView.vue"),
 	},
 ];
 
