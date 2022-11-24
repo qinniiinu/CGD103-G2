@@ -1,5 +1,6 @@
 <template>
 	<div>OOTD</div>
+	<h1 class="test">測試</h1>
 	<Footer></Footer>
 </template>
 <script>
@@ -12,3 +13,8 @@ export default {
 	},
 };
 </script>
+<style lang="scss">
+.test {
+	color: $main_color;
+}
+</style>
