@@ -1,5 +1,5 @@
 <template>
-    <body id="app" class="back_end_member">
+        <body id="app" class="back_end_member">
     <!-- 側邊欄 -->
     <div class="container-fluid overflow-hidden">
         <div class="row g-5">
@@ -60,17 +60,15 @@
         </div>
     </div>
 </body>
-        
-
+    
 </template>
 <script>
-export default {
-  name: 'MemberView',
-  components: {
+    export default {
+	name: "MemberMgmt",
+     components: {
     //放aside 模板
   },
-
-data() {
+  data() {
     return {
         member: [ //會員資訊
             {
@@ -171,66 +169,65 @@ data() {
     },
     methods:{
     }
-}
 
+};
 </script>
-<style lang="scss" >
+<style lang="scss">
  @import "../../assets/sass/main.scss";
-//     $main_color: #495bff;
-// .back_end_member{
-//     box-sizing: border-box;
-//     background-color: #495bff10;
-//      // 商品列表-上方篩選區
-//      .filter_box{
-//         display: flex;
-//         align-items: stretch;
-//         select,button{
-//             margin: 0 5px ;
-//         }
-//     }
-//     button{
-//         min-width: 70px;
-//         outline: none;
-//         border: none;
-//         background-color: $main_color;
-//         color: #fff;
-//         height: 45px;
-//         padding: 0px 10px;
-//     }
-//     input{
-//         outline: none;
-//         border: 1px $main_color solid;
-//     }
-//     h2{
-//         font-weight: 600;
-//         color: $main_color;
-//         padding: 10px;
-//     }
-//      // 會員列表
-//      .member_table{
-//         background-color: #fff;
-//         border-radius: 10px;
-//         overflow: hidden;
-//         margin-top: 50px;
-//         .filter_box select, .filter_box button{
-// 			margin: 0 5px ;
-// 		}
-//         thead{
-// 			background-color: $main_color;
-// 			color: #fff;
-//             tr{
-//                 th{
-//                     font-weight: 600; // 表頭 
-//                }
-//             } 
-// 		}
-//         tbody{
-//             .item{
-//                 cursor: pointer;
-//             }
-//         }
-//     }
-// }
-
-
- </style>
+    $main_color: #495bff;
+.back_end_member{
+    box-sizing: border-box;
+    background-color: #495bff10;
+     // 商品列表-上方篩選區
+     .filter_box{
+        display: flex;
+        align-items: stretch;
+        select,button{
+            margin: 0 5px ;
+        }
+    }
+    button{
+        min-width: 70px;
+        outline: none;
+        border: none;
+        background-color: $main_color;
+        color: #fff;
+        height: 45px;
+        padding: 0px 10px;
+    }
+    input{
+        outline: none;
+        border: 1px $main_color solid;
+    }
+    h2{
+        font-weight: 600;
+        color: $main_color;
+        padding: 10px;
+    }
+     // 會員列表
+     .member_table{
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 50px;
+        .filter_box select, .filter_box button{
+			margin: 0 5px ;
+		}
+        thead{
+			background-color: $main_color;
+			color: #fff;
+            tr{
+                th{
+                    font-weight: 600; // 表頭 
+               }
+            } 
+		}
+        tbody{
+            .item{
+                cursor: pointer;
+            }
+        }
+    }
+}
+    
+</style>
