@@ -1,5 +1,6 @@
 <template>
-	<div class="">
+	<SideMenu></SideMenu>
+	<div class="main-content">
 		<h1>This is測試 page</h1>
 		<button @click="action" class="btn btn-info">bootstrap測試</button>
 	</div>
@@ -8,11 +9,12 @@
 
 <script>
 import Footer from "@/components/Footer.vue";
+import SideMenu from "@/components/SideMenu.vue";
 
 export default {
 	name: "Test",
 	components: {
-		Footer,
+		Footer,SideMenu
 	},
 	methods: {
 		action() {
