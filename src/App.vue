@@ -150,6 +150,7 @@
 					width: 50px;
 
 				}
+				color: $main_color;
 				height: 20px;
 				padding: 5px;
 			}
@@ -257,6 +258,7 @@
 						}
 
 						a {
+							text-decoration: none;
 							color: $third_color;
 							background-color: $main_color;
 							text-align: center;

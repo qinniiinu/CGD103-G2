@@ -2,6 +2,7 @@
 	<div class="home">
 		<img alt="Vue logo" src="../assets/logo.png" />
 		<!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
+		<button @click="action" class="btn btn-info">bootstrap測試</button>
 	</div>
 	<Footer></Footer>
 </template>
