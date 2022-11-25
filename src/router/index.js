@@ -186,11 +186,11 @@ const routes = [
 		name: "Consultating",
 		component: () => import("../views/style/ConsultatingView.vue"),
 	},
-	// {
-	// 	path: "/testtest",
-	// 	name: "testtest",
-	// 	component: () => import("../views/style/testtestView.vue"),
-	// },
+	{
+		path: "/Chat",
+		name: "Chat",
+		component: () => import("../views/style/ChatView.vue"),
+	},
 	{
 		path: "/List",
 		name: "List",
