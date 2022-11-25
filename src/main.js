@@ -22,6 +22,7 @@ import {
 	faBook,
 	faHeart,
 	faFeather,
+    faCoffee,
 } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
@@ -32,7 +33,8 @@ library.add(
 	faStar,
 	faHeart,
 	faBook,
-	faFeather
+	faFeather,
+	faCoffee
 );
 
 // import Vue from 'vue';
