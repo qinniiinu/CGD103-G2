@@ -8,7 +8,7 @@
 import Footer from "@/components/Footer.vue";
 
 export default {
-	name: "Subscription",
+	name: "subscription",
 	components: {
 		Footer,
 	},
