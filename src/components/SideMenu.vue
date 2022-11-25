@@ -15,14 +15,13 @@
             <a href=""><span class="side_menu_tag">#</span>我的風格</a>
             <a href=""><span class="side_menu_tag">#</span>風格諮詢</a>
             <a href=""><span class="side_menu_tag">#</span>訂閱服務</a>
-            <a href=""><span class="side_menu_tag">#</span>訂單紀錄</a>
         </nav>
     </aside>
 
 </template>
 <script>
 export default {
-	name: "Footer",
+	name: "SideMenu",
 	props: {
 		// msg: String
 	},

@@ -81,6 +81,7 @@ const routes = [
 		name: "weeklywear",
 		component: () => import("../views/WeeklyWearView.vue"),
 	},
+	// ------------後台區------------
 	{
 		path: "/OperationMgnt",
 		name: "OperationMgnt",
@@ -90,6 +91,11 @@ const routes = [
 		path: "/MemberMgmt",
 		name: "MemberMgmt",
 		component: () => import("../views/back_end/MemberMgmtView.vue"),
+	},
+	{
+		path: "/CommodityMgnt",
+		name: "CommodityMgnt",
+		component: () => import("../views/back_end/CommodityMgntView.vue"),
 	},
 	{
 		path: "/SubscriptionMgmt",
@@ -131,6 +137,9 @@ const routes = [
 		name: "ClientMgmt",
 		component: () => import("../views/back_end/ClientMgmtView.vue"),
 	},
+	// ------------後台區 end------------
+
+	// ----------myaccount START----------
 	{
 		path: "/BodyType",
 		name: "BodyType",
@@ -152,15 +161,26 @@ const routes = [
 		component: () => import("../views/myaccount/MemMaintainView.vue"),
 	},
 	{
+		path: "/MyPage",
+		name: "MyPage",
+		component: () => import("../views/myaccount/MyPageView.vue"),
+	},
+	{
 		path: "/OrderDetails",
 		name: "OrderDetails",
 		component: () => import("../views/myaccount/OrderDetailsView.vue"),
+	},
+	{
+		path: "/OrderHistory",
+		name: "OrderHistory",
+		component: () => import("../views/myaccount/OrderHistoryView.vue"),
 	},
 	{
 		path: "/Subscription",
 		name: "Subscription",
 		component: () => import("../views/myaccount/SubscriptionView.vue"),
 	},
+	// ----------myaccount END----------
 	{
 		path: "/Confirm",
 		name: "Confirm",
@@ -172,9 +192,9 @@ const routes = [
 		component: () => import("../views/style/ConsultatingView.vue"),
 	},
 	{
-		path: "/ConsultIntro",
-		name: "ConsultIntro",
-		component: () => import("../views/style/ConsultIntroView.vue"),
+		path: "/Chat",
+		name: "Chat",
+		component: () => import("../views/style/ChatView.vue"),
 	},
 	{
 		path: "/List",
@@ -201,7 +221,9 @@ const routes = [
 		name: "Wearing",
 		component: () => import("../views/style/WearingView.vue"),
 	},
+
 ];
+
 
 const router = createRouter({
 	history: createWebHistory(process.env.BASE_URL),
