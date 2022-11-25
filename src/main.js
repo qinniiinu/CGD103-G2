@@ -26,6 +26,11 @@ import {
 /* add icons to the library */
 library.add(faUserSecret, faCartShopping, faUser, faStar,faHeart, faBook);
 
+
+// import Vue from 'vue';
+// import VueCarousel from 'vue-carousel';
+
+
 createApp(App)
     .use(store)
     .use(router)

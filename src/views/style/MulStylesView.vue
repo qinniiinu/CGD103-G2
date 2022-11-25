@@ -1,16 +1,285 @@
 <template>
-	<div>
-        <h1>MulStylesView</h1>
-    </div>
+
+	<div class="mulstyle">
+		<img alt="Vue logo" src="../../assets/logo.png" />
+	
+		<ul class="outfit-title">
+			<h2>穿搭情境</h2>
+			<li class="outfit-item">
+				<a href="">#上班穿搭</a>
+			</li>
+			<li class="outfit-item">
+				<a href="">#開會穿搭</a>
+			</li>
+			<li class="outfit-item">
+				<a href="">#海邊穿搭</a>
+			</li>
+			<li class="outfit-item">
+				<a href="">#約會穿搭</a>
+			</li>
+			<li class="outfit-item">
+				<a href="">#旅行穿搭</a>
+			</li>
+			<li class="outfit-item">
+				<a href="">#面試穿搭</a>
+			</li>
+			<li class="outfit-item">
+				<a href="">#上課穿搭</a>
+			</li>
+			<li class="outfit-item">
+				<a href="">#趴踢穿搭</a>
+			</li>
+			<li class="outfit-item">
+				<a href="">#宴會穿搭</a>
+			</li>
+		</ul>
+		<swiper
+		:modules="modules"
+		:slides-per-view="1"
+		:space-between="50"
+		navigation
+		:pagination="{ clickable: true }"
+		@swiper="onSwiper"
+		@slideChange="onSlideChange"
+		>
+			<swiper-slide class="slide">
+				<div class="container">
+					<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-1.jpg" alt="">
+							</a>
+							
+						</div>
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-2.jpg" alt="">
+							</a>	
+						</div>
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-3.jpg" alt="">
+							</a>
+						</div>
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-4.jpg" alt="">
+							</a>
+						</div>
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-5.jpg" alt="">
+							</a>
+						</div>
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-6.jpg" alt="">
+							</a>
+						</div>
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-7.jpg" alt="">
+							</a>
+						</div>
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-8.jpg" alt="">
+							</a>
+						</div>
+					</div>
+		 		</div>
+			</swiper-slide>
+			<swiper-slide class="slide">
+				<div class="container">
+					<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-5.jpg" alt="">
+							</a>
+						</div>
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-5.jpg" alt="">
+							</a>
+						</div>
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-5.jpg" alt="">
+							</a>
+						</div>
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-5.jpg" alt="">
+							</a>
+						</div>
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-5.jpg" alt="">
+							</a>
+						</div>
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-5.jpg" alt="">
+							</a>
+						</div>
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-5.jpg" alt="">
+							</a>
+						</div>
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-5.jpg" alt="">
+							</a>
+						</div>
+					</div>
+		 		</div>
+			</swiper-slide>
+			<swiper-slide class="slide">
+				<div class="container">
+					<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-9.jpg" alt="">
+							</a>
+							
+						</div>
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-9.jpg" alt="">
+							</a>
+						</div>
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-9.jpg" alt="">
+							</a>
+						</div>
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-9.jpg" alt="">
+							</a>
+						</div>
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-9.jpg" alt="">
+							</a>
+						</div>
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-9.jpg" alt="">
+							</a>
+						</div>
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-9.jpg" alt="">
+							</a>
+						</div>
+						<div class="col">
+							<a href="#">
+								<img src="../../../public/look-9.jpg" alt="">
+							</a>
+						</div>
+					</div>
+		 		</div>
+			</swiper-slide>
+			
+		</swiper>
+
+<!-- 
+		  <div class="container">
+				<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+					<div class="col">
+						<img src="../assets/look-1.jpg" alt="">
+					</div>
+					<div class="col">
+						<img src="../assets/look-2.jpg" alt="">
+					</div>
+					<div class="col">
+						<img src="../assets/look-3.jpg" alt="">
+					</div>
+					<div class="col">
+						<img src="../assets/look-4.jpg" alt="">
+					</div>
+					<div class="col">
+						<img src="../assets/look-5.jpg" alt="">
+					</div>
+					<div class="col">
+						<img src="../assets/look-6.jpg" alt="">
+					</div>
+					<div class="col">
+						<img src="../assets/look-7.jpg" alt="">
+					</div>
+					<div class="col">
+						<img src="../assets/look-8.jpg" alt="">
+					</div>
+				</div>
+		  </div>
+		 
+		<img alt="Vue logo" src="../assets/logo.png" /> -->
+	
+
+	</div>
 	<Footer></Footer>
 </template>
+
 <script>
+// @ is an alias to /src
 import Footer from "@/components/Footer.vue";
+import Header from "@/components/Header.vue";
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+// import 'swiper/css/scrollbar';
 
 export default {
-	name: "MulStyles",
+	name: "MulStyle",
+
 	components: {
 		Footer,
+		Header, 
+		Swiper,
+      	SwiperSlide,
 	},
+	setup() {
+      const onSwiper = (swiper) => {
+        console.log(swiper);
+      };
+      const onSlideChange = () => {
+        console.log('slide change');
+      };
+      return {
+        onSwiper,
+        onSlideChange,
+		modules: [Navigation, Pagination, Scrollbar, A11y],
+      };
+    },
 };
 </script>
+<style lang="scss">
+	@import "@/assets/sass/mulstyle";
+	@import "@/assets/sass/grid";
+
+	.col{
+		margin: 10px 0px;
+		img{
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+	.container{
+		width: 100%;
+		max-width: 390px;
+		@include m{
+			max-width: 960px;
+		}
+		.row{
+			margin: 10px;
+		}
+	}
+	.slide{
+		margin-bottom: 20px;
+	}
+</style>
