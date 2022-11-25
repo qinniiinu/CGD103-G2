@@ -21,10 +21,11 @@ import {
     faStar,
     faBook,
 	faHeart,
+    faCoffee,
 } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
-library.add(faUserSecret, faCartShopping, faUser, faStar,faHeart, faBook);
+library.add(faUserSecret, faCartShopping, faUser, faStar,faHeart, faBook,faCoffee);
 
 
 // import Vue from 'vue';
