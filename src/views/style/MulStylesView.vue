@@ -33,160 +33,13 @@
 				<a href="">#宴會穿搭</a>
 			</li>
 		</ul>
-		<swiper
-		:modules="modules"
-		:slides-per-view="1"
-		:space-between="50"
-		navigation
-		:pagination="{ clickable: true }"
-		@swiper="onSwiper"
-		@slideChange="onSlideChange"
-		>
-			<swiper-slide class="slide">
-				<div class="container">
-					<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-1.jpg" alt="">
-							</a>
-							
-						</div>
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-2.jpg" alt="">
-							</a>	
-						</div>
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-3.jpg" alt="">
-							</a>
-						</div>
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-4.jpg" alt="">
-							</a>
-						</div>
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-5.jpg" alt="">
-							</a>
-						</div>
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-6.jpg" alt="">
-							</a>
-						</div>
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-7.jpg" alt="">
-							</a>
-						</div>
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-8.jpg" alt="">
-							</a>
-						</div>
-					</div>
-		 		</div>
-			</swiper-slide>
-			<swiper-slide class="slide">
-				<div class="container">
-					<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-5.jpg" alt="">
-							</a>
-						</div>
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-5.jpg" alt="">
-							</a>
-						</div>
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-5.jpg" alt="">
-							</a>
-						</div>
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-5.jpg" alt="">
-							</a>
-						</div>
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-5.jpg" alt="">
-							</a>
-						</div>
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-5.jpg" alt="">
-							</a>
-						</div>
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-5.jpg" alt="">
-							</a>
-						</div>
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-5.jpg" alt="">
-							</a>
-						</div>
-					</div>
-		 		</div>
-			</swiper-slide>
-			<swiper-slide class="slide">
-				<div class="container">
-					<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-9.jpg" alt="">
-							</a>
-							
-						</div>
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-9.jpg" alt="">
-							</a>
-						</div>
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-9.jpg" alt="">
-							</a>
-						</div>
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-9.jpg" alt="">
-							</a>
-						</div>
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-9.jpg" alt="">
-							</a>
-						</div>
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-9.jpg" alt="">
-							</a>
-						</div>
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-9.jpg" alt="">
-							</a>
-						</div>
-						<div class="col">
-							<a href="#">
-								<img src="../../../public/look-9.jpg" alt="">
-							</a>
-						</div>
-					</div>
-		 		</div>
-			</swiper-slide>
-			
-		</swiper>
+		<img src="../../../public/look-1.jpg" alt="">
+		<div class="page" v-for="i of imgs" :key="i">
+			<img :src="i" alt="">
+		</div>
 
-<!-- 
-		  <div class="container">
+
+		  <!-- <div class="container" >
 				<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
 					<div class="col">
 						<img src="../assets/look-1.jpg" alt="">
@@ -213,11 +66,14 @@
 						<img src="../assets/look-8.jpg" alt="">
 					</div>
 				</div>
+		  </div> -->
+
+		  <!-- <div class="Pagination" v-for="item in page.length">
+			{{}}
 		  </div>
 		 
-		<img alt="Vue logo" src="../assets/logo.png" /> -->
+		<img alt="Vue logo" src="../assets/logo.png" />  -->
 	
-
 	</div>
 	<Footer></Footer>
 </template>
@@ -226,12 +82,12 @@
 // @ is an alias to /src
 import Footer from "@/components/Footer.vue";
 import Header from "@/components/Header.vue";
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-// import 'swiper/css/scrollbar';
+import img1 from '../../../public/look-1.jpg';
+import img2 from '../../../public/look-2.jpg';
+import img3 from '../../../public/look-3.jpg';
+import img4 from '../../../public/look-4.jpg';
+
+
 
 export default {
 	name: "MulStyle",
@@ -239,22 +95,20 @@ export default {
 	components: {
 		Footer,
 		Header, 
-		Swiper,
-      	SwiperSlide,
 	},
-	setup() {
-      const onSwiper = (swiper) => {
-        console.log(swiper);
-      };
-      const onSlideChange = () => {
-        console.log('slide change');
-      };
-      return {
-        onSwiper,
-        onSlideChange,
-		modules: [Navigation, Pagination, Scrollbar, A11y],
-      };
-    },
+	
+  	data() {
+    	return {
+			imgs:[
+				img1,
+				img2,
+				img3,
+				img4,
+			]
+    	} 
+  	}
+
+
 };
 </script>
 <style lang="scss">
@@ -271,8 +125,13 @@ export default {
 	}
 	.container{
 		width: 100%;
-		max-width: 390px;
+		max-width: 312px;
 		@include m{
+			width: 80%;
+			max-width: 819px;
+		}
+		@include xl{
+
 			max-width: 960px;
 		}
 		.row{
@@ -280,6 +139,35 @@ export default {
 		}
 	}
 	.slide{
+
 		margin-bottom: 20px;
+	}
+	.swiper-button-prev {
+		left: 1rem;
+		@include m{
+			left: 3rem
+		}
+		@include l(){
+			left: 4rem
+		}
+		@include xl(){
+			left: 5rem
+		}
+		right: auto;
+	}
+	.swiper-button-next {
+		right: 1rem;
+		@include m{
+
+			right:3rem;
+		}
+		@include l(){
+			right: 4rem;
+		}
+		@include xl(){
+			right: 5rem;
+		}
+
+    	left: auto;
 	}
 </style>
