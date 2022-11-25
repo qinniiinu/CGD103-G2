@@ -1,6 +1,6 @@
 <template>
 	<div>
-        <h1>ConsultIntroView</h1>
+        <h1>ChatView</h1>
     </div>
 	<Footer></Footer>
 </template>
@@ -8,7 +8,7 @@
 import Footer from "@/components/Footer.vue";
 
 export default {
-	name: "ConsultIntro",
+	name: "Chat",
 	components: {
 		Footer,
 	},
