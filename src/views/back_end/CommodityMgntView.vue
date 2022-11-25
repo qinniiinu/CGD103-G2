@@ -132,7 +132,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(item, index) in product" class="item" :key="item.id">
+                            <tr v-for="(item) in product" class="item" :key="item.id">
                                 <th scope="row">{{ item.id }}</th> <!-- 編號 -->
                                 <td class="product_img"><img :src="item.image" :alt="item.description"></td>
                                 <!-- 商品圖 -->
