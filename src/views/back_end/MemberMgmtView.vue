@@ -1,10 +1,8 @@
 <template>
-    <head>
     <!-- CSS only -->
     <!-- bootstrap的cdn要看畫面在打開，推上去要關掉。 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> 
-    </head>
-    <body id="app" class="back_end_member">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">  -->
+    <body class="back_end_member">
     <!-- 側邊欄 -->
     <div class="container-fluid overflow-hidden">
         <div class="row g-5">
@@ -174,7 +172,6 @@ import Aside from '@/components/back_end/Aside.vue'; //引入aside
 };
 </script>
 <style lang="scss">
-$main_color: #495bff;
 .back_end_member{
     box-sizing: border-box;
     background-color: #495bff10;
