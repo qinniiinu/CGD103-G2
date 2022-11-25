@@ -186,11 +186,11 @@ const routes = [
 		name: "Consultating",
 		component: () => import("../views/style/ConsultatingView.vue"),
 	},
-	{
-		path: "/ConsultIntro",
-		name: "ConsultIntro",
-		component: () => import("../views/style/ConsultIntroView.vue"),
-	},
+	// {
+	// 	path: "/testtest",
+	// 	name: "testtest",
+	// 	component: () => import("../views/style/testtestView.vue"),
+	// },
 	{
 		path: "/List",
 		name: "List",
