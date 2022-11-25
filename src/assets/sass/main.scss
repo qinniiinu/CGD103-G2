@@ -5,6 +5,8 @@
 // @import "node_modules/bootstrap/scss/bootstrap";
 $null: null;
 
+
+// 顏色
 $main_color: #495bff;
 $second_color: #eceeff;
 $third_color: #fff;
@@ -12,6 +14,18 @@ $third_color: #fff;
 $bg_white: #fff;
 $bg_violet: #eceeff;
 
+
+// $main:#495BFF;
+$secondary:#EBEBEB;
+$bg_blue:#ECEEFF;
+$bg_gray:#F1F1F1;
+$title_color:#292929;
+$text_color:#444444;
+
+
+
+
+// 字型
 $main_font: "Noto Sans TC", sans-serif;
 $second_font: "Livvic", sans-serif;
 $third_font: "Poppins", sans-serif;
@@ -33,6 +47,9 @@ $tag_fsize: 56px;
 $footer_box_height: 95px;
 $padding: 20px;
 $max_width: 1200px;
+
+
+
 
 a {
 	text-decoration: none;
