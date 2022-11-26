@@ -15,24 +15,33 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 /* import specific icons */
 import {
-    faUserSecret,
-    faCartShopping,
-    faUser,
-    faStar,
-    faBook,
+	faUserSecret,
+	faCartShopping,
+	faUser,
+	faStar,
+	faBook,
 	faHeart,
+	faFeather,
+    faCoffee,
 } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
-library.add(faUserSecret, faCartShopping, faUser, faStar,faHeart, faBook);
-
+library.add(
+	faUserSecret,
+	faCartShopping,
+	faUser,
+	faStar,
+	faHeart,
+	faBook,
+	faFeather,
+	faCoffee
+);
 
 // import Vue from 'vue';
 // import VueCarousel from 'vue-carousel';
 
-
 createApp(App)
-    .use(store)
-    .use(router)
-    .component("font-awesome-icon", FontAwesomeIcon)
-    .mount("#app");
+	.use(store)
+	.use(router)
+	.component("font-awesome-icon", FontAwesomeIcon)
+	.mount("#app");

@@ -1,13 +1,10 @@
 <template>
-
-    <head>
         <!-- CSS only -->
-        <!-- bootstrap的cdn要看畫面在打開，推上去要關掉。-->
-        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
-    </head>
+        <!-- bootstrap的cdn要看畫面在打開，之後要關掉。-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
-    <body id="app" class="back_end_employee">
+    <div class="back_end_employee">
         <!-- 新增編輯員工燈箱區 -->
         <div id="lightbox">
             <div id="edit_box">
@@ -88,7 +85,7 @@
                 </div>
             </div>
         </div>
-    </body>
+    </div>
 </template>
 <script>
 import Aside from '@/components/back_end/Aside.vue'; //引入aside
