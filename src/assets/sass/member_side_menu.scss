@@ -1,17 +1,24 @@
+// MemberSideMenu.Vue
 .member_side_menu {
-	background-color: $second_color;
-	width: 20%;
-	margin-right: auto;
-	height:auto;
-
+    background-color: $main_color;
+    width: 23%;
+    min-width: max-content;
+	padding-bottom: $padding;
+    height: auto;
+	@include s() {
+		display: none;
+	}
 	.member {
-		margin: 20px 10px;
+		width: 100%;
+		padding: 20px;
 		display: flex;
 		justify-content: center;
-		align-items: center;
-		gap: 10px;
+		box-sizing: border-box;
+		// text-align: end;
+		gap: 40px;
 		.mug_shot {
-			width: 107px;
+			width: 80px;
+			min-width: 50px;
 			aspect-ratio: 1 /1;
 			border-radius: 50%;
 			overflow: hidden;
@@ -21,39 +28,90 @@
 				object-position: center;
 			}
 		}
-		.word {
+		// 名字 + 會員等級
+		.name_level {
 			font-family: $second_font;
-
+			color: white;
+			text-align: end;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
 			.name {
 				font-weight: 700;
-				font-size: 40px;
-				// line-height: 50px;
+				font-size: 24px;
 			}
 			.level {
 				font-weight: 400;
-				font-size: 20px;
-				// line-height: 30px;
+				font-size: 14px;
+			}
+			.level_up {
+				font-family: $main_font;
+				font-weight: 400;
+				font-size: 14px;
+				color: white;
 			}
 		}
 	}
-	nav > a {
-		display: block;
-		font-family: $main_font;
-		font-size: 26px;
-		font-weight: 500;
-		line-height: 70px;
-		text-align: center;
-		.side_menu_tag {
-			font-family: $second_font;
-			vertical-align: sub;
-			font-weight: 900;
-			font-size: 36px;
-			line-height: 45px;
-			margin-right: 10px;
-			opacity: 0;
+	.side_menu{
+		width: 100%;
+		color: white;
+		.side_menu_title{
+			font-family: $main_font;
+			font-size: 18px;
+			font-weight: 500;
+			line-height: 50px;
+			display: block;
+			text-align: start;
+			padding-left: 50%
 		}
-		.show {
-			opacity: 1;
+		nav{
+			padding-right: 15%;
+			> a {
+				display: block;
+				text-align: end;
+				font-weight: 300;
+				color: white;
+				line-height: 45px;
+				// 當前頁面 # 標籤
+				.side_menu_tag {
+					font-family: $second_font;
+					font-size: 20px;
+					font-weight: 700;
+					margin-right: 20px;
+					vertical-align: middle;
+					opacity: 0;
+				}
+				.show{
+					opacity: 1;
+				}
+				&:hover{
+					.side_menu_tag{
+						opacity: 1;
+					}
+				}
+			}
+		} 
+	}
+}
+
+// MemberSideMenu 共用 scss
+.mem_container{
+	display: flex;
+	width: 100% ;
+	flex-wrap: wrap;
+	.mem_data{
+	flex: 1;
+	margin:50px 50px 150px 50px;
+		.title{
+			font-size: 24px;
+			color: #292929;
+			padding-bottom:$padding;
+		}
+		.data{
+			width: 100%;
+			min-height: max-content;
+			padding: $padding;
+			// border: solid sienna 1px;
 		}
 	}
 }
