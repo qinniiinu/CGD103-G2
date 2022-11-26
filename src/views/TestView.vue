@@ -2,7 +2,7 @@
 	<!-- 會員 container -->
 	<div class="mem_container">
 		<!-- 側邊攔 -->
-		<SideMenu></SideMenu>
+		<!-- <SideMenu></SideMenu> -->
 		<!-- 右側資料 -->
 		<div class="mem_data">
 			<h1>This is測試 page</h1>
@@ -19,13 +19,13 @@
 
 <script>
 import Footer from "@/components/Footer.vue";
-import SideMenu from "@/components/SideMenu.vue";
+// import SideMenu from "@/components/SideMenu.vue";
 
 export default {
 	name: "Test",
 	components: {
 		Footer,
-		SideMenu,
+		// SideMenu,
 	},
 	methods: {
 		action() {
