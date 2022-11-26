@@ -38,7 +38,7 @@ export default {
  @import "@/assets/sass/main.scss";
     .mem_container{
 		display: flex;
-		width: 100vw ;
+		width: 100% ;
 		margin: auto;	
 		.mem_data{
 		flex-grow: 1;
