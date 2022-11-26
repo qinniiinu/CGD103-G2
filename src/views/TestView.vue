@@ -24,7 +24,8 @@ import SideMenu from "@/components/SideMenu.vue";
 export default {
 	name: "Test",
 	components: {
-		Footer,SideMenu
+		Footer,
+		SideMenu,
 	},
 	methods: {
 		action() {
@@ -34,16 +35,13 @@ export default {
 };
 </script>
 
-<style lang="scss">
- @import "@/assets/sass/main.scss";
-    .mem_container{
-		display: flex;
-		width: 100% ;
-		margin: auto;	
-		.mem_data{
+<style lang="scss" scoped>
+.mem_container {
+	display: flex;
+	width: 100%;
+	margin: auto;
+	.mem_data {
 		flex-grow: 1;
-		}
 	}
-
-
+}
 </style>

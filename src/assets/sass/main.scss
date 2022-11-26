@@ -5,6 +5,7 @@
 // @import "node_modules/bootstrap/scss/bootstrap";
 $null: null;
 
+// 顏色
 $main_color: #495bff;
 $second_color: #eceeff;
 $third_color: #fff;
@@ -12,10 +13,18 @@ $third_color: #fff;
 $bg_white: #fff;
 $bg_violet: #eceeff;
 
+// $main:#495BFF;
+$secondary: #ebebeb;
+$bg_blue: #eceeff;
+$bg_gray: #f1f1f1;
+$title_color: #292929;
+$text_color: #444444;
+
+// 字型
 $main_font: "Noto Sans TC", sans-serif;
-$second_font: "Livvic", sans-serif;
+$second_font: "Poppins", sans-serif;
 $third_font: "Poppins", sans-serif;
-$four_font: "Balsamiq Sans", cursive;
+$four_font: "Poppins", sans-serif;
 // $font_size_s: 12px;
 // $font_size_m: $font_size_s * 1.2;
 // $font_size_l: $font_size_s * 1.5;
@@ -27,7 +36,7 @@ $four_font: "Balsamiq Sans", cursive;
 // $font_size_title_xl: $font_size_title_s * 2;
 
 $line: 2px;
-$nav_height:60px;
+$nav_height: 60px;
 $nav_fsize: 16px;
 $tag_fsize: 56px;
 $footer_box_height: 95px;

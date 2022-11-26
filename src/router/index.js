@@ -171,6 +171,11 @@ const routes = [
 		component: () => import("../views/myaccount/OrderDetailsView.vue"),
 	},
 	{
+		path: "/OrderHistory",
+		name: "OrderHistory",
+		component: () => import("../views/myaccount/OrderHistoryView.vue"),
+	},
+	{
 		path: "/Subscription",
 		name: "Subscription",
 		component: () => import("../views/myaccount/SubscriptionView.vue"),
@@ -216,7 +221,9 @@ const routes = [
 		name: "Wearing",
 		component: () => import("../views/style/WearingView.vue"),
 	},
+
 ];
+
 
 const router = createRouter({
 	history: createWebHistory(process.env.BASE_URL),
