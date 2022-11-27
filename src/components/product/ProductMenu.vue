@@ -14,7 +14,7 @@
                 <div class="clothingList">鞋款</div>
                 <div class="clothingList">配件</div>
             </div>
-            <div class="clothingList_item_boxOutside" :class="{ show: open }">
+            <div :class="{ clothingList_item_boxOutside: true, show: open }">
                 <ul class="clothingList_item_box" id="top">
                     <li class="clothingList_item">短袖</li>
                     <li class="clothingList_item">長袖</li>
