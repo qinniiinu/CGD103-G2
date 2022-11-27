@@ -18,7 +18,7 @@
 import Footer from "@/components/Footer.vue";
 import MemberSideMenu from "@/components/MemberSideMenu.vue";
 export default {
-	name: "SubscriptionView",
+	name: "MemSubscriptionView",
 	components: {
         Footer,
 		MemberSideMenu

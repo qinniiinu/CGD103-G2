@@ -176,9 +176,9 @@ const routes = [
 		component: () => import("../views/myaccount/OrderHistoryView.vue"),
 	},
 	{
-		path: "/Subscription",
-		name: "Subscription",
-		component: () => import("../views/myaccount/SubscriptionView.vue"),
+		path: "/memSubscription",
+		name: "memSubscription",
+		component: () => import("../views/myaccount/MemSubscriptionView.vue"),
 	},
 	// ----------myaccount END----------
 	{
