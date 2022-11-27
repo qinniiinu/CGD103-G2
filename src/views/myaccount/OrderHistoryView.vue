@@ -1,39 +1,32 @@
 <template>
-
-	<div class="Ord-history-container">
-		<!-- <SideMenu></SideMenu> -->
-		<h2>#訂單記錄</h2>
-
+	<!-- 會員 container -->
+	<div class="mem_container">
+		<!-- 側邊欄組件 -->
+		<MemberSideMenu></MemberSideMenu>
+		<!-- 右側會員資料-->
+		<div class="mem_data">
+			<p class="title">訂單紀錄</p>
+			<div class="data">
+				<!-- 這裡開始寫 -->
+			</div>
+		</div>
 	</div>
 	<Footer></Footer>
 </template>
 
 <script>
 import Footer from "@/components/Footer.vue";
-import Heaader from "@/components/Header.vue";
-// import SideMenu from "@/components/SideMenu.vue";
-
+import MemberSideMenu from "@/components/MemberSideMenu.vue";
 export default {
-	name: "OrderHistory",
+	name: "OrderDetails",
 	components: {
-		Footer,
-		Heaader,
-		// SideMenu,
+        Footer,
+		MemberSideMenu
 	},
 };
 </script>
 
-
-<style lang="scss">
-@import "@/assets/sass/main";
-// @import "@/assets/sass/member_side_menu";
-
-
-.Ord-history-container{
-	display: flex;
-	
-}
-
-
+<style lang="scss" scoped>
+@import "@/assets/sass/member_side_menu";
 
 </style>
