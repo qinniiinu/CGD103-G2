@@ -23,6 +23,7 @@ import {
 	faHeart,
 	faFeather,
     faCoffee,
+	faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
@@ -34,7 +35,8 @@ library.add(
 	faHeart,
 	faBook,
 	faFeather,
-	faCoffee
+	faCoffee,
+	faMagnifyingGlass,
 );
 
 // import Vue from 'vue';
