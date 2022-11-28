@@ -25,6 +25,11 @@ import {
 	faCoffee,
 	faMagnifyingGlass,
 	faBars,
+	faList,
+	faClipboard,
+
+
+
 } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
@@ -39,6 +44,8 @@ library.add(
 	faCoffee,
 	faMagnifyingGlass,
 	faBars,
+	faList,
+	faClipboard,
 );
 
 // import Vue from 'vue';
