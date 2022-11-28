@@ -171,6 +171,16 @@ const routes = [
 		component: () => import("../views/myaccount/OrderHistoryView.vue"),
 	},
 	{
+		path: "/OrderHistoryPhoto",
+		name: "OrderHistoryPhoto",
+		component: () => import("../views/myaccount/OrderHistoryPhotoView.vue"),
+	},
+	{
+		path: "/OrderHistoryDetail",
+		name: "OrderHistoryDetail",
+		component: () => import("../views/myaccount/OrderHistoryDetailView.vue"),
+	},
+	{
 		path: "/memSubscription",
 		name: "memSubscription",
 		component: () => import("../views/myaccount/MemSubscriptionView.vue"),

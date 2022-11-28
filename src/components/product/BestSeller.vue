@@ -70,6 +70,9 @@ export default {
 .swiper {
     max-width: $max-width;
     margin: auto;
+    @include m() {
+        display: none;
+    }
 }
 img {
     width: 100%;

@@ -34,7 +34,7 @@
 					<li class="main_list">
 						<div class="main_list_box" tabindex="0">
 							<p class="bg_tag">#OOTD</p>
-							<p class="name">風格動態牆</p>
+							<p class="name">風格牆</p>
 							<div class="icon"><font-awesome-icon icon="fa-solid fa-plus" /></div>
 						</div>
 						<ul class="sub">
@@ -47,12 +47,12 @@
 					<li class="main_list">
 						<div class="main_list_box" tabindex="0">
 							<p class="bg_tag">#PREMIUM</p>
-							<p class="name">訂閱服務</p>
+							<p class="name">穿搭訂閱</p>
 							<div class="icon"><font-awesome-icon icon="fa-solid fa-plus" /></div>
 						</div>
 						<ul class="sub">
-							<li><a href="#">服務選擇</a></li>
-							<li><a href="#">服務說明</a></li>
+							<li><a href="#">訂閱選擇</a></li>
+							<li><a href="#">訂閱說明</a></li>
 						</ul>
 					</li>
 				</div>
