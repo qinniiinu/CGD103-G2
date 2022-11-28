@@ -43,17 +43,17 @@ a{
 		transition: transform 0.2s ease-out;
 		
 	  }
-	  .active{
-		position: absolute;
-		width: 70px;
-
-		height: 5px;
-
-
-		background-color: $main_color;
-	  }
+// 	  .active{
+// 		position: absolute;
+// 		width: 70px;
+// 
+// 		height: 5px;
+// 
+// 
+// 		background-color: $main_color;
+// 	  }
 	  
-	  .outfit-item:hover::after {
+	  .outfit-item.active::after {
 		transform: scaleX(1);
 		transform-origin: bottom left;
 	  }

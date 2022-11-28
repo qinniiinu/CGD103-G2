@@ -8,7 +8,7 @@
 			<!-- <li  :class="['outfit-item', { active: currentTag === tag }]" v-for="tag of tags" :key="tag" @click="currentTag = tag">
 				{{tag}}
 			</li> -->
-			<li :class="['outfit-item', { active: currentTag === tag }]" v-for="(tag,index) of tags" :key="tag" @click="tagtest(index)">
+			<li :class="['outfit-item', { active: currentTag === tag }]" v-for="(tag,index) of tags" :key="index" @click="currentTag = tag">
 				{{tag}}
 			</li>
 		</ul>
@@ -121,15 +121,15 @@ export default {
 				{src:'/look-9.jpg'},
 				{src:'/look-9.jpg'}],
 			],
-			showimgs:[{src:'/look-1.jpg'},
-				{src:'/look-1.jpg'},
-				{src:'/look-1.jpg'},
-				{src:'/look-1.jpg'},
-				{src:'/look-1.jpg'},
-				{src:'/look-1.jpg'},
-				{src:'/look-1.jpg'},
-				{src:'/look-1.jpg'},]
-			,
+			// showimgs:[{src:'/look-1.jpg'},
+			// 	{src:'/look-1.jpg'},
+			// 	{src:'/look-1.jpg'},
+			// 	{src:'/look-1.jpg'},
+			// 	{src:'/look-1.jpg'},
+			// 	{src:'/look-1.jpg'},
+			// 	{src:'/look-1.jpg'},
+			// 	{src:'/look-1.jpg'},]
+			// ,
 			tags:[
 				'#上班穿搭',
 				'#開會穿搭',
@@ -141,14 +141,24 @@ export default {
 				'#趴踢穿搭',
 				'#宴會穿搭',
 			],
-			// currentTag:'#上班穿搭',
+			currentTag:'#上班穿搭',
 
     	} 
   	},
+	computed: {
+		showimgs() {
+			const index = this.tags.indexOf(this.currentTag);
+			if (index > -1) {
+				return this.imgs[index];
+			}
+			return this.imgs[0];
+			// return this.imgs.filter(item => item.cat === this.currentTag)
+		},
+	},
 	methods:{
 		tagtest(index){
 			this.showimgs=this.imgs[index];
-			console.log(this.tag.style.property )
+			// console.log(this.tag.style.property )
 			// console.log(this.showimgs);
 		}
 	}
