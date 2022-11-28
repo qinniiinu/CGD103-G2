@@ -24,6 +24,7 @@ import {
 	faFeather,
     faCoffee,
 	faMagnifyingGlass,
+	faCheck
 } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
@@ -37,6 +38,7 @@ library.add(
 	faFeather,
 	faCoffee,
 	faMagnifyingGlass,
+	faCheck
 );
 
 // import Vue from 'vue';
