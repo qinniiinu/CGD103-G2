@@ -16,11 +16,11 @@ const routes = [
 		// component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
 		component: () => import("../views/AboutView.vue"),
 	},
-	{
-		path: "/subscription",
-		name: "subscription",
-		component: () => import("../views/SubscriptionView.vue"),
-	},
+	// {
+	// 	path: "/subscription",
+	// 	name: "subscription",
+	// 	component: () => import("../views/SubscriptionView.vue"),
+	// },
 	{
 		path: "/ootd",
 		name: "ootd",
@@ -71,11 +71,11 @@ const routes = [
 		name: "productlist",
 		component: () => import("../views/ProductListView.vue"),
 	},
-	{
-		path: "/subscription",
-		name: "subscription",
-		component: () => import("../views/SubscriptionView.vue"),
-	},
+	// {
+	// 	path: "/subscription",
+	// 	name: "subscription",
+	// 	component: () => import("../views/SubscriptionView.vue"),
+	// },
 	{
 		path: "/weeklywear",
 		name: "weeklywear",
