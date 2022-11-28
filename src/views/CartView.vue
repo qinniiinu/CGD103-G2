@@ -38,6 +38,7 @@
 						<p>尺寸</p>
 						<p>數量</p>
 						<p>單價</p>
+						<p>總價</p>
 					</ul>
 					<ul class="order-wrap">
 						<li class="order-item" v-for="item in order" :key="item.id">
@@ -49,11 +50,12 @@
 							<button @click="reduceCount(index,item)">-</button>
 							<p>{{item.count}}</p>
 							<button @click="addCount(index,item)">+</button>
-							<p>{{item.price}}</p>
+							<p>{{item.price}}元</p>
+							<p>{{item.price*item.count}}元</p>
 						</li>
 					</ul>
 					<!-- 總價 -->
-						<p>總價: {{total}}元</p>
+						
 				</div>
 			</div>
 		</div>
@@ -199,7 +201,7 @@ h2{
 		margin:auto;
 		.product{
 			display: flex;
-			gap: 8%;
+			gap: 6%;
 			:nth-child(2){
 				padding:0px 8%;
 			}
@@ -210,7 +212,7 @@ h2{
 			.order-item{
 				display: flex;
 				margin-bottom: 10px;
-				gap: 6%;
+				gap: 4%;
 				button{
 						width: 20px;
 						height: 20px;
