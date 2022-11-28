@@ -1,42 +1,45 @@
 <template>
     <div>
         <div class="productMenu">
-            <ul class="menOrWomen">
-                <li @click="openBox(open)">全部</li>
-                <li @click="openBox(open)">女裝</li>
-                <li @click="openBox(open)">男裝</li>
+            <ul class="menOrWomen" @click="openMain = !openMain">
+                <li>全部</li>
+                <li>女裝</li>
+                <li>男裝</li>
             </ul>
-            {{ open }}
-            <div class="colthingList_box">
-                <div class="clothingList">上身</div>
-                <div class="clothingList">下身</div>
-                <div class="clothingList">套裝</div>
-                <div class="clothingList">鞋款</div>
-                <div class="clothingList">配件</div>
+            <div
+                class="colthingList_box"
+                v-show="openMain"
+                @click="openSub = !openSub"
+            >
+                <div class="clothingList" @click="open1 = !open1">上身</div>
+                <div class="clothingList" @click="open2 = !open2">下身</div>
+                <div class="clothingList" @click="open3 = !open3">套裝</div>
+                <div class="clothingList" @click="open4 = !open4">鞋款</div>
+                <div class="clothingList" @click="open5 = !open5">配件</div>
             </div>
-            <div :class="{ clothingList_item_boxOutside: true, show: open }">
-                <ul class="clothingList_item_box" id="top">
+            <div class="clothingList_item_boxOutside" v-show="openSub">
+                <ul class="clothingList_item_box" id="top" v-show="open1">
                     <li class="clothingList_item">短袖</li>
                     <li class="clothingList_item">長袖</li>
                     <li class="clothingList_item">外套</li>
                     <li class="clothingList_item">背心</li>
                 </ul>
-                <ul class="clothingList_item_box" id="down">
+                <ul class="clothingList_item_box" id="down" v-show="open2">
                     <li class="clothingList_item">長褲</li>
                     <li class="clothingList_item">短褲</li>
                     <li class="clothingList_item">裙子</li>
                 </ul>
-                <ul class="clothingList_item_box" id="top_down">
+                <ul class="clothingList_item_box" id="top_down" v-show="open3">
                     <li class="clothingList_item">洋裝</li>
                     <li class="clothingList_item">連身褲裝</li>
                     <li class="clothingList_item">兩件式</li>
                 </ul>
-                <ul class="clothingList_item_box" id="shoes">
+                <ul class="clothingList_item_box" id="shoes" v-show="open4">
                     <li class="clothingList_item">休閒鞋</li>
                     <li class="clothingList_item">跟鞋</li>
                     <li class="clothingList_item">運動鞋</li>
                 </ul>
-                <ul class="clothingList_item_box" id="others">
+                <ul class="clothingList_item_box" id="others" v-show="open5">
                     <li class="clothingList_item">包款</li>
                     <li class="clothingList_item">圍巾手套</li>
                     <li class="clothingList_item">帽子</li>
@@ -51,20 +54,23 @@
 <script>
 export default {
     data() {
-        return {};
+        return {
+            openMain: false,
+            openSub: false,
+            open1: false,
+            open2: false,
+            open3: false,
+            open4: false,
+            open5: false,
+        };
     },
     props: {
         name: {
-            open: Boolean,
+            // : { Boolean, default:  },
         },
     },
-    methods: {
-        openBox(x) {
-            console.log(123);
-            console.log(this.x);
-            this.x = this.x == true ? false : true;
-            console.log(this.x);
-        },
+    computed: {
+        open1() {},
     },
 };
 </script>
@@ -75,9 +81,7 @@ $menOrWomen_m: 60px;
     @content;
     border: $line solid red;
 }
-.show {
-    display: block !important;
-}
+
 .productMenu {
     width: 100%;
     max-width: 1200px;
@@ -101,8 +105,9 @@ $menOrWomen_m: 60px;
     }
     .colthingList_box {
         line-height: 30px;
-        display: none;
         color: $title_color;
+        display: flex;
+
         div.clothingList {
             border: $line solid $title_color;
             border-top-width: 0;
@@ -115,8 +120,6 @@ $menOrWomen_m: 60px;
         }
     }
     .clothingList_item_boxOutside {
-        display: none;
-
         line-height: 25px;
         border: $line solid $title_color;
         border-top-width: 0;
