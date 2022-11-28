@@ -25,6 +25,7 @@ import {
 	faCoffee,
 	faMagnifyingGlass,
 	faBars,
+	faCheck,
 	faList,
 	faClipboard,
 
@@ -44,6 +45,7 @@ library.add(
 	faCoffee,
 	faMagnifyingGlass,
 	faBars,
+	faCheck,
 	faList,
 	faClipboard,
 );
