@@ -212,6 +212,22 @@ const routes = [
 		component: () => import("../views/style/QuizView.vue"),
 	},
 	{
+		path: "/QuizResult",//測驗結果
+		name: "QuizResult",
+		component: () => import("../views/style/quiz/QuizResultView.vue"),
+		children: [{ //測驗結果1
+			name: 'QuizResult1',
+			path: 'QuizResult1',
+			component: () => import("../views/style/quiz/QuizResult1View.vue"),
+		  },
+		  {
+			name: 'QuizResult2',//測驗結果2
+			path: 'QuizResult2',
+			component: () => import("../views/style/quiz/QuizResult2View.vue"),
+		  },
+		]
+	},
+	{
 		path: "/Set",
 		name: "Set",
 		component: () => import("../views/style/SetView.vue"),
