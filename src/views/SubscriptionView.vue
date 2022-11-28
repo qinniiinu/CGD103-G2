@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
 	<div class="subscription">
 		<div class="wrap">
 			<div class="left">
@@ -58,27 +57,14 @@
 		<div class="intro-wrap">
 		</div>
 	</div>
-=======
-    <div class="subscription">
-        <h1>This is 訂閱page</h1>
-    </div>
-    <Footer></Footer>
->>>>>>> mine
 </template>
 
 <script>
 
 export default {
-<<<<<<< HEAD
 	name: "Product",
 	components: {
 	},
-=======
-    name: "Product",
-    components: {
-        Footer,
-    },
->>>>>>> mine
 };
 </script>
 <style lang="scss" scoped>
