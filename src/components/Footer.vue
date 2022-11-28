@@ -84,118 +84,119 @@
 	</div>
 </template>
 <script>
-export default {
-	name: "Footer",
-	props: {
-		// msg: String
-	},
-};
+	export default {
+		name: "Footer",
+		props: {
+			// msg: String
+		},
+	};
 </script>
 
 <style lang="scss">
-@import "@/assets/sass/main";
-footer {
-	border: $line solid $main-color;
-	text-align: center;
+	@import "@/assets/sass/main";
+	footer {
+		border: $line solid $main-color;
+		text-align: center;
 
-	ul.main {
-		border-bottom: $line solid $main-color;
-		.main_list_outside {
-			width: 100%;
-			& + * {
-				border-top: $line solid $main-color;
-			}
-			.main_list {
-				max-width: $max_width;
+		ul.main {
+			border-bottom: $line solid $main-color;
+			.main_list_outside {
 				width: 100%;
-				margin: auto;
-				@include m() {
-					display: flex;
+				& + * {
+					border-top: $line solid $main-color;
 				}
-				.bg_tag {
-					position: absolute;
-					z-index: -1;
-					color: $bg_violet;
-					@include font_set($second_font, $null, 900, italic);
-					@include s() {
-						font-size: 56px;
-					}
+				.main_list {
+					max-width: $max_width;
+					width: 100%;
+					margin: auto;
 					@include m() {
-						font-size: 96px;
-					}
-				}
-
-				.main_list_box {
-					display: flex;
-					justify-content: space-between;
-					align-items: center;
-					height: ($footer_box_height - $line * 2);
-					padding: 10px;
-					box-sizing: border-box;
-					outline: 1px solid red;
-
-					@include m() {
-						width: 25%;
-					}
-
-					&:focus + .sub > li {
-						@include s() {
-							height: $footer_box_height;
-							transition: all 0.5s;
-						}
-					}
-
-					.name {
-						@include font_set($main_font, $null, 600, $null);
-						@include s() {
-							font-size: 24px;
-						}
-						@include m() {
-							font-size: 40px;
-						}
-					}
-					.icon {
-						@include m() {
-							display: none;
-						}
-					}
-				}
-				.sub {
-					@include m() {
-						width: 75%;
-
 						display: flex;
-						align-items: center;
 					}
-					li {
+					.bg_tag {
+						position: absolute;
+						z-index: -1;
+						color: $bg_violet;
+						@include font_set($second_font, $null, 900, italic);
 						@include s() {
-							height: 0;
-							overflow: hidden;
-							transition: all 0.5s;
+							font-size: 56px;
 						}
 						@include m() {
-							width: 33.3333333%;
-							text-align: left;
+							font-size: 96px;
 						}
-						a {
+					}
+
+					.main_list_box {
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						height: ($footer_box_height - $line * 2);
+						padding: 10px;
+						box-sizing: border-box;
+						outline: 1px solid red;
+
+						@include m() {
+							width: 25%;
+						}
+
+						&:focus + .sub > li {
 							@include s() {
-								display: block;
-								line-height: $footer_box_height;
-								color: $third_color;
-								background-color: $main_color;
-								text-align: center;
+								height: $footer_box_height;
+								transition: all 0.5s;
+							}
+						}
+
+						.name {
+							@include font_set($main_font, $null, 600, $null);
+							@include s() {
+								font-size: 24px;
 							}
 							@include m() {
-								display: inline-block;
-								width: 160px;
-								line-height: 60px;
-								margin: auto;
-								color: $main-color;
-								text-align: center;
-								&:hover {
-									background-color: $main_color;
+								font-size: 40px;
+							}
+						}
+						.icon {
+							@include m() {
+								display: none;
+							}
+						}
+					}
+					.sub {
+						@include m() {
+							width: 75%;
+
+							display: flex;
+							align-items: center;
+						}
+						li {
+							@include s() {
+								height: 0;
+								overflow: hidden;
+								transition: all 0.5s;
+							}
+							@include m() {
+								width: 33.3333333%;
+								text-align: left;
+							}
+							a {
+								@include s() {
+									display: block;
+									line-height: $footer_box_height;
 									color: $third_color;
-									font-weight: 600;
+									background-color: $main_color;
+									text-align: center;
+								}
+								@include m() {
+									display: inline-block;
+									width: 160px;
+									line-height: 60px;
+									margin: auto;
+									color: $main-color;
+									text-align: center;
+									&:hover {
+										background-color: $main_color;
+										color: $third_color;
+										font-weight: 600;
+									}
 								}
 							}
 						}
@@ -203,35 +204,34 @@ footer {
 				}
 			}
 		}
-	}
-	.copyright {
-		display: flex;
-		align-items: center;
-		background-color: $main_color;
+		.copyright {
+			display: flex;
+			align-items: center;
+			background-color: $main_color;
 
-		@include s() {
-			height: 110px;
-			box-sizing: border-box;
-		}
-		@include m() {
-			height: 110px;
-			box-sizing: border-box;
-		}
-		p {
 			@include s() {
-				font-size: 14px;
+				height: 110px;
+				box-sizing: border-box;
 			}
-			@include s() {
-				font-size: 16px;
+			@include m() {
+				height: 110px;
+				box-sizing: border-box;
 			}
+			p {
+				@include s() {
+					font-size: 14px;
+				}
+				@include s() {
+					font-size: 16px;
+				}
 
-			max-width: 1200px;
-			margin: auto;
-			text-align: center;
-			font-family: $four_font;
-			line-height: 24px;
-			color: $third_color;
+				max-width: 1200px;
+				margin: auto;
+				text-align: center;
+				font-family: $four_font;
+				line-height: 24px;
+				color: $third_color;
+			}
 		}
 	}
-}
 </style>
