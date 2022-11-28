@@ -25,11 +25,12 @@ a{
 		font-size: 14px;
 		font-weight: 400;
 		padding: 5px 20px;
+		
 		a{
 			color: #000;
 		}
 	}
-	.outfit-item a::after {
+	.outfit-item::after {
 		content: '';
 		position: absolute;
 		width: 70px;
@@ -40,9 +41,19 @@ a{
 		background-color: $main_color;
 		transform-origin: bottom right;
 		transition: transform 0.2s ease-out;
+		
+	  }
+	  .active{
+		position: absolute;
+		width: 70px;
+
+		height: 5px;
+
+
+		background-color: $main_color;
 	  }
 	  
-	  .outfit-item a:hover::after {
+	  .outfit-item:hover::after {
 		transform: scaleX(1);
 		transform-origin: bottom left;
 	  }
