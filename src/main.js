@@ -24,6 +24,7 @@ import {
 	faFeather,
 	faCoffee,
 	faMagnifyingGlass,
+	faCheck,
 	faBars,
 	faPlus,
 } from "@fortawesome/free-solid-svg-icons";
@@ -39,6 +40,7 @@ library.add(
 	faFeather,
 	faCoffee,
 	faMagnifyingGlass,
+	faCheck,
 	faBars,
 	faPlus,
 );
