@@ -39,7 +39,7 @@ $line: 2px;
 $nav_height: 60px;
 $nav_fsize: 16px;
 $tag_fsize: 56px;
-$footer_box_height: 95px;
+$footer_box_height: 60px;
 $padding: 20px;
 $max_width: 1200px;
 
@@ -49,7 +49,7 @@ a {
 }
 
 body {
-	font-family: "Noto Sans TC", sans-serif;
+	font-family: $main_font;
 	color: $main_color;
 	background-color: $bg_white;
 }

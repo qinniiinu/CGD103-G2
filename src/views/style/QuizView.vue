@@ -11,17 +11,14 @@
 		</div>
 		<Button content="測驗去"/>
 	</section>
-	<Footer></Footer>
 </template>
 <script>
-import Footer from "@/components/Footer.vue";
 import StyleCard from "@/components/StyleCard.vue";
 import Button from "@/components/Button.vue";
 
 export default {
 	name: "Quiz",
 	components: {
-		Footer,
 		StyleCard,
 		Button,
 	},
