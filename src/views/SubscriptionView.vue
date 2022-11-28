@@ -98,7 +98,7 @@ export default {
 			height: 600px;
 			// margin: auto;
 			.left{
-			width: 700px;
+			width: 400px;
 			height: auto;
 			}
 			.right{
@@ -113,7 +113,6 @@ export default {
 					font-weight: normal;
 					margin-top: 20px;
 					line-height: 20px;
-
 				}
 			}
 		}
@@ -148,10 +147,6 @@ export default {
 				padding: 30px 15px;
 				color: $main_color;
 				.card-content{
-					text-decoration: none;
-					-webkit-transform:none;
-					-moz-transform:none;
-					-o-transform:none;
 					display: flex;
 					flex-direction: column;
 					gap: 10px;
