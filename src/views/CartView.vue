@@ -37,7 +37,8 @@ export default {
 	methods:{
 		getResource(){
 			this.load=true;
-			fetch('https://fakestoreapi.com/products').then(res=>res.json())
+			fetch('https://fakestoreapi.com/products')
+			.then(res=>res.json())
 			.then(json=>{
 				this.source=json
 				for(let item in this.product){
