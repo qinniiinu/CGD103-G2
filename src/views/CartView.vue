@@ -156,6 +156,7 @@ export default {
 				this.order[prodIndex]['count']-=1
 			}else{
 				this.order.splice(prodIndex,1)
+				alert("確定要刪除此產品嗎?")
 			}
 			// this.setStorage()
 		}
