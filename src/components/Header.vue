@@ -1,293 +1,317 @@
 <template>
-	<!-- <nav>
-<router-link to="/">Home</router-link> |
-		<router-link to="/about">About</router-link> 
-	
-  </nav> -->
+ 
+    <input type="checkbox" name="" id="menu-switch" />
+    <header>
+        <div class="header_box">
+            <!-- logo -->
+            <div class="logo">
+                <router-link to="/"
+                    ><img src="@/assets/logo.png"
+                /></router-link>
+            </div>
+            <!-- 選單 -->
+            <nav class="main_nav">
+                <ul class="main">
+                    <li class="main_list">
+                        <router-link to="/MulStyles">找風格</router-link>
+                        <ul class="sub">
+                            <li><router-link to="/Wearing">風格穿搭</router-link></li>
+                            <li><router-link to="/Quiz">風格測驗</router-link></li>
+                            <li><router-link to="/ConsultIntro">風格諮詢</router-link></li>
+                        </ul>
+                    </li>
+                    <li class="main_list">
+                        <router-link to="/product">逛商品</router-link>
+                        <ul class="sub">
+                            <li><router-link to="/ProductList">商品列表</router-link></li>
+                            <li>
+                                <router-link to="/FittingRoom">線上試衣間</router-link>
+                            </li>
+                            <li><router-link to="/WeeklyWear">一周穿搭</router-link></li>
+                        </ul>
+                    </li>
+                    <li class="main_list">
+                        <router-link to="/ootd">風格動態牆</router-link>
+                        <ul class="sub">
+                            <li><router-link to="/">OOTD</router-link></li>
+                            <li><router-link to="/">我的OOTD</router-link></li>
+                        </ul>
+                    </li>
+                    <li class="main_list">
+                        <router-link to="/subscription">訂閱服務</router-link>
+                        <ul class="sub">
+                            <li><router-link to="/subscription">服務選擇</router-link></li>
+                            <li><router-link to="/">服務說明</router-link></li>
+                        </ul>
+                    </li>
+                    <li class="main_list">
+                        <router-link to="/about">關於我們</router-link>
+                        <ul class="sub">
+                            <li><router-link to="/">品牌精神</router-link></li>
+                            <li><router-link to="/">廠商洽談</router-link></li>
+                            <li><router-link to="/">FAQ</router-link></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="main_nav_icon">
+                <router-link to="/Cart">
+                    <font-awesome-icon icon="fa-solid fa-cart-shopping" />
+                </router-link>
+                <router-link to="/login">
+                    <font-awesome-icon icon="fa-solid fa-user"/>
+                </router-link>
+            </div>
+            <!-- 漢堡 -->
+            <label for="menu-switch" class="hb">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+        </div>
+    </header>
 
-	<!--nav-->
-	<input type="checkbox" name="" id="menu-switch" />
-	<div class="header">
-		<div class="container">
-			<!-- logo -->
-			<div class="logo">
-				<router-link to="/"
-					><img src="@/assets/logo.png"
-				/></router-link>
-			</div>
-			<!-- 選單 -->
-			<nav class="main_nav">
-				<ul class="main">
-					<li class="main_list">
-						<router-link to="/">找風格</router-link>
-						<ul class="sub">
-							<li><router-link to="/">風格穿搭</router-link></li>
-							<li><router-link to="/">風格測驗</router-link></li>
-							<li><router-link to="/">風格諮詢</router-link></li>
-						</ul>
-					</li>
-					<li class="main_list">
-						<router-link to="/product">逛商品</router-link>
-						<ul class="sub">
-							<li><router-link to="/">商品列表</router-link></li>
-							<li>
-								<router-link to="/">線上試衣間</router-link>
-							</li>
-							<li><router-link to="/">一周穿搭</router-link></li>
-						</ul>
-					</li>
-					<li class="main_list">
-						<router-link to="/ootd">風格動態牆</router-link>
-						<ul class="sub">
-							<li><router-link to="/">OOTD</router-link></li>
-							<li><router-link to="/">我的OOTD</router-link></li>
-						</ul>
-					</li>
-					<li class="main_list">
-						<router-link to="/subscription">訂閱服務</router-link>
-						<ul class="sub">
-							<li><router-link to="/">服務選擇</router-link></li>
-							<li><router-link to="/">服務說明</router-link></li>
-						</ul>
-					</li>
-					<li class="main_list">
-						<router-link to="/about">關於我們</router-link>
-						<ul class="sub">
-							<li><router-link to="/">品牌精神</router-link></li>
-							<li><router-link to="/">廠商洽談</router-link></li>
-							<li><router-link to="/">FAQ</router-link></li>
-						</ul>
-					</li>
-				</ul>
-			</nav>
-			<div class="main_nav_icon">我是ICON</div>
-			<!-- 漢堡 -->
-			<label for="menu-switch" class="hb">
-				<span></span>
-				<span></span>
-				<span></span>
-			</label>
-		</div>
-	</div>
-
-	<router-view />
 </template>
+<script>
 
+
+
+
+
+</script>
 <style lang="scss">
-@import "@/assets/sass/main";
 
-#menu-switch {
-	display: none;
+    @import "@/assets/sass/main";
 
-	&:checked + div.header {
-		.main_nav {
-			/* display: block; */
-			left: 0;
-			opacity: 1;
-			transition: opacity 0.5s 0.5s;
-		}
+    #menu-switch {
+        display: none;
 
-		.hb {
-			span:nth-child(1) {
-				animation: no1 0.5s 0.5s forwards;
-			}
+        &:checked + header {
+            .main_nav {
+                /* display: block; */
+                left: 0;
+                opacity: 1;
+                transition: opacity 0.5s 0.5s;
+            }
 
-			span:nth-child(2) {
-				animation: no2 0.5s 0s forwards;
-			}
+            .hb {
+                span:nth-child(1) {
+                    animation: no1 0.5s 0.5s forwards;
+                }
 
-			span:nth-child(3) {
-				animation: no3 0.5s 0.5s forwards;
-			}
-		}
-	}
-}
-div.header {
-	outline: 1px solid red;
-	background-color: $bg_white;
+                span:nth-child(2) {
+                    animation: no2 0.5s 0s forwards;
+                }
 
-	.container {
-		max-width: $max_width;
-		margin: auto;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		background-color: $bg_white;
-		color: $main_color;
-		position: sticky;
-		top: 0;
-		@include m() {
-			height: $nav_height;
-			outline: 1px solid red;
-		}
+                span:nth-child(3) {
+                    animation: no3 0.5s 0.5s forwards;
+                }
+            }
+        }
+    }
+    header {
+        background-color: $bg_white;
 
-		.logo {
-			height: 50px;
-			img {
-				width: 100%;
-				height: 100%;
-				vertical-align: top;
-			}
-		}
+        .header_box {
+            max-width: $max_width;
+            height: $nav_height;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: $bg_white;
+            color: $main_color;
+            position: sticky;
+            top: 0;
 
-		.hb {
-			@include s() {
-				width: 40px;
-				height: 40px;
-				position: relative;
-			}
-			@include m() {
-				display: none;
-			}
-			span {
-				width: 32px;
-				height: 2px;
-				background-color: $main_color;
-				position: absolute;
-				left: 0;
-				right: 0;
-				margin: auto;
-				transform: rotate(0deg);
-				opacity: 1;
 
-				&:nth-child(1) {
-					top: 7px;
-				}
-				&:nth-child(2) {
-					top: 19px;
-				}
-				&:nth-child(3) {
-					top: 31px;
-				}
-			}
-		}
+            .logo {
+				margin-left: 10px;
+                height: 40px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    vertical-align: top;
+                }
+            }
+            svg{
+                width: 30px;
+                @include m() {
+                    width: 50px;
 
-		.main_nav_icon {
-			@include s() {
-				text-align: right;
-				outline: 1px solid red;
-				flex-grow: 1;
-			}
-		}
+                }
+                color: $main_color;
+                height: 20px;
+                padding: 5px;
+            }
+            
+            .hb {
+				margin:0 10px;
+                @include s() {
+                    width: 28px;
+                    height: 40px;
+                    position: relative;
+                }
+                @include m() {
+                    display: none;
+                }
+                span {
+                    width: 28px;
+                    height: 2px;
+                    background-color: $main_color;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    transform: rotate(0deg);
+                    opacity: 1;
 
-		.main_nav {
-			@include s() {
-				position: absolute;
-				width: 100%;
-				left: -100%;
-				top: 100%;
-				opacity: 0;
-				transition: opacity 0.5s 0s, left 0s 0.5s;
-				background: $bg-white;
-			}
+                    &:nth-child(1) {
+                        top: 10px;
+                    }
+                    &:nth-child(2) {
+                        top: 20px;
+                    }
+                    &:nth-child(3) {
+                        top: 30px;
+                    }
+                }
+            }
 
-			@include m() {
-				display: flex;
-				width: fit-content;
-				flex-grow: 1;
-				justify-content: flex-end;
-			}
+            .main_nav_icon {
+                @include s() {
+                    text-align: right;
+                    // outline: 1px solid red;
+                    flex-grow: 1;
+                }
+            }
 
-			ul.main .main_list {
-				position: relative;
-				@include m() {
-					display: inline-block;
+            .main_nav {
+                @include s() {
+                    position: absolute;
+                    width: 100%;
+                    left: -100%;
+                    top: 100%;
+                    opacity: 0;
+                    transition: opacity 0.5s 0s, left 0s 0.5s;
+                    background: $bg-white;
+                }
 
-					&:hover > ul.sub {
-						display: block;
-					}
+                @include m() {
+                    display: flex;
+                    width: fit-content;
+                    flex-grow: 1;
+                    justify-content: flex-end;
+                }
 
-					&:hover > a {
-						border: $line solid $main_color;
-						font-weight: 600;
-					}
-				}
-				a {
-					font-size: $nav_fsize;
-					display: block;
+                ul.main .main_list {
+                    position: relative;
+                    @include m() {
+                        display: inline-block;
 
-					@include s() {
-						padding: 20px;
-						color: $third_color;
-						background-color: $main_color;
-						text-align: center;
-						margin: 5px;
-					}
+                        &:hover > ul.sub {
+                            display: block;
+                        }
 
-					@include m() {
-						color: $main_color;
-						width: 125px - $line * 2;
-						text-align: center;
-						line-height: ($nav_height - $line * 2);
-						border: $line solid transparent;
-					}
-				}
-				.sub {
-					position: absolute;
+                        &:hover > a {
+                            border: $line solid $main_color;
+                            font-weight: 600;
+                        }
+                    }
+                    a {
+                        font-size: $nav_fsize;
+                        display: block;
 
-					@include s() {
-						display: none;
-					}
-					@include m() {
-						display: none;
-					}
+                        @include s() {
+                            padding: 20px;
+                            color: $third_color;
+                            background-color: $main_color;
+                            text-align: center;
+                            // margin: 5px;
+							border-bottom: 2px solid $second_color;
+                        }
 
-					a {
-						color: $third_color;
-						background-color: $main_color;
-						text-align: center;
-						border: $line solid $main_color;
-						&:hover {
-							border: $line solid $third_color;
-							font-weight: 600;
-						}
-					}
-				}
-			}
-		}
-	}
-}
-@keyframes no1 {
-	0% {
-		top: 7px;
-		transform: rotate(0deg);
-	}
+                        @include m() {
+                            color: $main_color;
+                            width: 110px - $line * 2;
+                            text-align: center;
+                            line-height: ($nav_height - $line * 2);
+                            border: $line solid transparent;
+							letter-spacing:1px;
+                        }
+                    }
+                    .sub {
+                        position: absolute;
 
-	50% {
-		top: 19px;
-		transform: rotate(0deg);
-	}
+                        @include s() {
+                            display: none;
+                        }
+                        @include m() {
+                            display: none;
+                        }
 
-	100% {
-		top: 19px;
-		transform: rotate(405deg);
-	}
-}
+                        a {
+                            text-decoration: none;
+                            color: $third_color;
+                            background-color: $main_color;
+                            text-align: center;
+							font-weight: 400;
+							
+                            border: $line solid $main_color;
+                            &:hover {
+								background-color: #ECEEFF;
+                                border: $line solid #ECEEFF;
+                                font-weight: 500;
+								color: $main_color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @keyframes no1 {
+        0% {
+            top: 10px;
+            transform: rotate(0deg);
+        }
 
-@keyframes no2 {
-	0% {
-		opacity: 1;
-	}
+        50% {
+            top: 20px;
+            transform: rotate(0deg);
+        }
 
-	100% {
-		opacity: 0;
-	}
-}
+        100% {
+            top: 20px;
+            transform: rotate(45deg);
+        }
+    }
 
-@keyframes no3 {
-	0% {
-		top: 31px;
-		transform: rotate(0deg);
-	}
+    @keyframes no2 {
+        0% {
+            opacity: 1;
+        }
 
-	50% {
-		top: 19px;
-		transform: rotate(0deg);
-	}
+        100% {
+            opacity: 0;
+        }
+    }
 
-	100% {
-		top: 19px;
-		transform: rotate(675deg);
-	}
-}
+    @keyframes no3 {
+        0% {
+            top: 30px;
+            transform: rotate(0deg);
+        }
+
+        50% {
+            top: 20px;
+            transform: rotate(0deg);
+        }
+
+        100% {
+            top: 20px;
+            transform: rotate(-45deg);
+        }
+    }
 </style>
+
