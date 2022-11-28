@@ -1,20 +1,17 @@
 <template>
 	<div class="home">
-		<img alt="Vue logo" src="../assets/logo.png" />
-		<!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
-		<button @click="action" class="btn btn-info">bootstrap測試</button>
+
 	</div>
-	<Footer></Footer>
+
 </template>
 
 <script>
-// @ is an alias to /src
-import Footer from "@/components/Footer.vue";
+	export default {
+		name: "HomeView",
+		components: {
 
-export default {
-	name: "HomeView",
-	components: {
-		Footer,
-	},
-};
+		},
+	};
 </script>
+<style>
+</style>

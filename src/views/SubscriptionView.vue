@@ -211,7 +211,6 @@ export default {
 				}
 			}
 		}
-		
 	}
 	.sub-intro{
 		// width: 100vw;
