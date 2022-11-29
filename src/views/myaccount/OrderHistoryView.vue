@@ -6,7 +6,6 @@
 		<!-- 右側會員資料-->
 		<div class="mem_data">
 			<p class="title">#訂單紀錄</p>
-			<router-view/>
 			<div class="data">
 				<div class="Ordh_container"><!-- 訂單紀錄容器盒 -->
 					<div class="ord_condition_box"><!-- 右上角功能盒 -->
@@ -242,14 +241,17 @@
 
 import Button from "@/components/Button.vue";
 import MemberSideMenu from "@/components/MemberSideMenu.vue";
+
 export default {
 	name: "OrderHistory",
-	components: {
-    
+	components: {    
 		MemberSideMenu,
 		Button
 	},
 };
+
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -259,18 +261,20 @@ export default {
 .Ordh_container{
 	width: 100%;
 	outline: solid 1px gray;
-}
-
-.ord_condition_box{
+	.ord_condition_box{
 	width: 100%;
 	display: flex;
 	justify-content: right;
-}
+	}
 
+}
 
 .ord_sel{
 	margin: 10px;
 }
+
+
+
 .ham{
 	cursor: pointer;
 	margin: 10px;
@@ -304,7 +308,7 @@ export default {
 	outline: solid 1px gray;
 	margin-bottom: 20px;
 	&:hover{
-            background-color:#adb2df;
+            background-color:$bg_violet;
             color: $main_color ;
             cursor: pointer;
         }
@@ -325,7 +329,7 @@ export default {
 	justify-content: space-around;
 }
 .order_title{
-	color:rgb(195, 195, 195);
+	color:$bg_violet;
 	@include font_set($second_font, $null, 900, italic);
 	@include s() {
 	font-size: 56px;
