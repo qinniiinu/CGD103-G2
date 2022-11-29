@@ -53,7 +53,7 @@
 		</div>
 		 
 
-		<div class="kol_stylelist">
+		<div class="kol_stylist">
 			<div class="kol_pic">
 				<img src="../../../public/stylist-kol.jpg" alt="">
 			</div>
@@ -63,24 +63,24 @@
 				</div>
 			</div>
 		</div>
-		<h2>
-			精選造型師
-		</h2>
-		<StylelistLook scardP="/stylist-1.jpg'" stylelistName="Kevin" stylelistInfo="擅長時尚風格,用前衛的單品,搭配出衝突的美感"></StylelistLook>
-		<StylelistLook scardP="/stylist-2.jpg'" stylelistName="Molly" stylelistInfo="擅長極簡風格,用簡單的單品,搭配出不一樣的風格"></StylelistLook>
+		<div class="stylist_title">
+			<h2>精選造型師</h2>
+		</div>
+		<StylistLook scardP="./stylist-1.jpg" stylistName="Kevin" stylistInfo="擅長時尚風格,用前衛的單品,搭配出衝突的美感"></StylistLook>
+		<StylistLook scardP="./stylist-2.jpg" stylistName="Molly" stylistInfo="擅長極簡風格,用簡單的單品,搭配出不一樣的風格"></StylistLook>
 	</div>
 
 </template>
 
 <script>
-import StylelistLook from "@/components/StylelistLook.vue"; 
+import StylistLook from "@/components/StylistLook.vue"; 
 
 
 export default {
 	name: "MulStyle",
 
 	components: {
-		StylelistLook,
+		StylistLook,
 	},
 	
   	data() {
@@ -438,7 +438,7 @@ export default {
 		transform-origin: bottom left;
 	  }
 	}
-	.kol_stylelist{
+	.kol_stylist{
 		display: flex;
 		width: 100%;
 		max-width: 390px;
@@ -476,5 +476,22 @@ export default {
 			}
 			
 		}
+	
 	}
+	.stylist_title{
+		h2{
+			color: $title_color;
+			font-size: 32px;
+			font-weight: 700;
+			text-align: center;
+			padding: 50px 0px 20px;
+		}
+		
+			margin: 30px auto;
+			margin-bottom:20px ;
+			width: 100%;;
+			max-width: 1200px;
+			
+		}
+
 </style>
