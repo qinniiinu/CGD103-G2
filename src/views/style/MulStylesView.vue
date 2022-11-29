@@ -4,8 +4,10 @@
 		<div class="mulstyle_cover">
 			<div :class="['cover_pic', { main:currentPic === coverPic}]" v-for="(coverPic,index) of coverPics" :key="index" @click="currentPic = coverPic">
 				<img :src="coverPic.src">
+				<Button class="cover_btn" content="查看更多"></Button>
 			</div>
 		</div>
+		<!-- <Button content="查看更多"></Button> -->
 	
 		<div class="textLoop_animate">
 			<div class="logo_texts" >
@@ -56,6 +58,8 @@
 		<div class="kol_stylist">
 			<div class="kol_pic">
 				<img src="../../../public/stylist-kol.jpg" alt="">
+				<h3>Josh Dion</h3>
+				<p>擅長時尚風格,用前衛的單品,搭配出衝突的美感</p>
 			</div>
 			<div class="kol_look">
 				<div class="kol_look_pic" v-for="kolPic of kolPics" :key="kolPic">
@@ -67,6 +71,7 @@
 			<h2>精選造型師</h2>
 		</div>
 		<StylistLook scardP="./stylist-1.jpg" stylistName="Kevin" stylistInfo="擅長時尚風格,用前衛的單品,搭配出衝突的美感"></StylistLook>
+
 		<StylistLook scardP="./stylist-2.jpg" stylistName="Molly" stylistInfo="擅長極簡風格,用簡單的單品,搭配出不一樣的風格"></StylistLook>
 	</div>
 
@@ -74,13 +79,14 @@
 
 <script>
 import StylistLook from "@/components/StylistLook.vue"; 
-
+import Button from "@/components/Button.vue"; 
 
 export default {
 	name: "MulStyle",
 
 	components: {
 		StylistLook,
+		Button,
 	},
 	
   	data() {
@@ -247,21 +253,23 @@ export default {
 
 
 
-	
+	.cover_btn{
+		position:absolute;
+		bottom: 20px;
+		left: 0;
+		right: 0;
+		margin: auto;
+		display:none;
+	}
 	.mulstyle_cover{
 		display: flex;
 		width: 100%;
-		max-width: 312px;
+		// max-width: 390px;
 		margin:20px auto;
 		height: 500px;
 	
 		
-		@include m{
-			max-width: 768px;
-		}
-		@include l{
-			max-width: 1024px;
-		}
+
 		@include xl{
 			max-width: 1200px;
 		}
@@ -288,9 +296,14 @@ export default {
 	
 		.main{
 			flex-grow: 6;
+			position: relative;
+			.cover_btn{
+				display:block;
+			}
 		}
 
 	}
+
 	.textLoop_animate {
 		display: flex;
 		flex-wrap: nowrap;
@@ -320,16 +333,16 @@ export default {
 	.mulstyle_list{
 		display: flex;
 		width: 100%;
-		max-width: 312px;
+		// max-width: 312px;
 		margin:30px auto;
 		height: 250px;
 		margin-bottom:50px ;
 		@include m{
-			max-width: 768px;
+
 			height: 350px;
 		}
 		@include l{
-			max-width: 1024px;
+
 			height: 390px;
 		}
 		@include xl{
@@ -440,23 +453,46 @@ export default {
 	}
 	.kol_stylist{
 		display: flex;
-		width: 100%;
+		flex-direction: column;
+		width: 80%;
 		max-width: 390px;
 		margin: 30px auto;
+		@include m{
+			flex-direction: row;
+			max-width: 1200px;
+			max-height:690px ;
+		}
 		.kol_pic{
-			width: 50%;
+			position: relative;
+			width: 100%;
+			h3{
+				position:absolute;
+				font-weight: 900;
+				font-size: 32px;
+				bottom:60px;
+				color: $second_color;
+				left: 20px;
+			}
+			p{
+				color: $second_color;
+				position:absolute;
+				font-size: 14px;
+				left: 20px;
+				bottom:30px;
+			}
 			img{
 				width: 100%;
 				height: 100%;
+
 				object-fit: cover;
-				object-position: center;
+				object-position: top;
 			}
 		}
 		@include m{
-			max-width: 768px;
+			// max-width: 768px;
 		}
 		@include l{
-			max-width: 1024px;
+			// max-width: 1024px;
 		}
 		@include xl{
 			max-width: 1200px;
@@ -464,14 +500,16 @@ export default {
 		.kol_look{
 			display: flex;
 			flex-wrap: wrap;
-			width: 50%;
+			width: 100%;
+			max-height:690px ;
 			.kol_look_pic{
 				width: 50%;
+				max-height: 345px;
 				img{
 				width: 100%;
 				height: 100%;
 				object-fit: cover;
-				object-position: center;
+				object-position: top;
 			}
 			}
 			
@@ -484,13 +522,14 @@ export default {
 			font-size: 32px;
 			font-weight: 700;
 			text-align: center;
-			padding: 50px 0px 20px;
+			// padding: 50px 0px 20px;
 		}
 		
-			margin: 30px auto;
-			margin-bottom:20px ;
+			margin: 50px auto 20px;
+			// margin-bottom:20px ;
 			width: 100%;;
 			max-width: 1200px;
+    		// margin-top: 50px;
 			
 		}
 
