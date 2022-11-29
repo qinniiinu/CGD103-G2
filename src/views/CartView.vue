@@ -20,7 +20,6 @@
 						<p>{{item.price}}元</p>
 						<div class="count">
 							<button @click="reduceCount(index,item)">-</button>
-							<input type="number" min="0" v-model="count[index]">
 							<button @click="addCount(index,item)">+</button>
 						</div>
 					</div>
