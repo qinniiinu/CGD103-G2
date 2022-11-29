@@ -38,27 +38,55 @@
 				</div>
 			</div>
 		</div>
-		
+
+		<div class="textLoop_animate">
+			<div class="logo_texts" >
+				{{logoText}}{{logoText}}{{logoText}}{{logoText}}
+			</div>
+			<div class="logo_texts" >
+				{{logoText}}{{logoText}}{{logoText}}{{logoText}}
+				
+			</div>
+			<div class="logo_texts" >
+				{{logoText}}{{logoText}}{{logoText}}{{logoText}}
+			</div>
+		</div>
 		 
 
-	
+		<div class="kol_stylelist">
+			<div class="kol_pic">
+				<img src="../../../public/stylist-kol.jpg" alt="">
+			</div>
+			<div class="kol_look">
+				<div class="kol_look_pic" v-for="kolPic of kolPics" :key="kolPic">
+					<img :src="kolPic.src" alt="">
+				</div>
+			</div>
+		</div>
+		<h2>
+			精選造型師
+		</h2>
+		<StylelistLook scardP="/stylist-1.jpg'" stylelistName="Kevin" stylelistInfo="擅長時尚風格,用前衛的單品,搭配出衝突的美感"></StylelistLook>
+		<StylelistLook scardP="/stylist-2.jpg'" stylelistName="Molly" stylelistInfo="擅長極簡風格,用簡單的單品,搭配出不一樣的風格"></StylelistLook>
 	</div>
 
 </template>
 
 <script>
+import StylelistLook from "@/components/StylelistLook.vue"; 
+
 
 export default {
 	name: "MulStyle",
 
 	components: {
-
+		StylelistLook,
 	},
 	
   	data() {
     	return {
 			logoText:'RE:Outfit  ',
-			intervalId: null,
+		
 			coverPics:[
 				{src:'./cover_img2.JPG'},
 				{src:'./cover_img1.JPG'},
@@ -180,9 +208,18 @@ export default {
 			],
 			currentTag:'#上班穿搭',
 			currentPic: [{src:'./cover_img2.JPG'}],
-
+			kolPics:[
+				{src:'./stylelist-look1.webp'},
+				{src:'./stylelist-look2.webp'},
+				{src:'./stylelist-look3.webp'},
+				{src:'./stylelist-look4.webp'},
+			],
     	} 
   	},
+	mounted () {
+		this.currentPic=this.coverPics[0] 
+	},
+
 	computed: {
 		showimgs() {
 			const index = this.tags.indexOf(this.currentTag);
@@ -200,7 +237,7 @@ export default {
 		},
 		
 	}
-
+	
 
 };
 </script>
@@ -213,7 +250,7 @@ export default {
 	
 	.mulstyle_cover{
 		display: flex;
-		width: 80%;
+		width: 100%;
 		max-width: 312px;
 		margin:20px auto;
 		height: 500px;
@@ -222,8 +259,11 @@ export default {
 		@include m{
 			max-width: 768px;
 		}
+		@include l{
+			max-width: 1024px;
+		}
 		@include xl{
-			max-width: 960px;
+			max-width: 1200px;
 		}
 		
 		.cover_pic{
@@ -279,7 +319,7 @@ export default {
 	}
 	.mulstyle_list{
 		display: flex;
-		width: 80%;
+		width: 100%;
 		max-width: 312px;
 		margin:30px auto;
 		height: 250px;
@@ -288,8 +328,12 @@ export default {
 			max-width: 768px;
 			height: 350px;
 		}
+		@include l{
+			max-width: 1024px;
+			height: 390px;
+		}
 		@include xl{
-			max-width: 960px;
+			max-width: 1200px;
 			height: 400px;
 		}
 		.style_pic{
@@ -317,6 +361,7 @@ export default {
 		}
 	}
 	.container{
+		margin-bottom: 10px;
 		width: 80%;
 		max-width: 312px;
 		@include m{
@@ -331,13 +376,11 @@ export default {
 	}
 
 
-
-
-
 	a{
 		text-decoration: none;
 	}
 	.outfit_title{
+		margin-top:15px ;
 		color: #000;
 		h2{
 			margin-bottom: 10px;
@@ -394,6 +437,44 @@ export default {
 		transform: scaleX(1);
 		transform-origin: bottom left;
 	  }
-}
-
+	}
+	.kol_stylelist{
+		display: flex;
+		width: 100%;
+		max-width: 390px;
+		margin: 30px auto;
+		.kol_pic{
+			width: 50%;
+			img{
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
+			}
+		}
+		@include m{
+			max-width: 768px;
+		}
+		@include l{
+			max-width: 1024px;
+		}
+		@include xl{
+			max-width: 1200px;
+		}
+		.kol_look{
+			display: flex;
+			flex-wrap: wrap;
+			width: 50%;
+			.kol_look_pic{
+				width: 50%;
+				img{
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
+			}
+			}
+			
+		}
+	}
 </style>
