@@ -139,7 +139,7 @@ export default {
 .ord_detail_container{
 	width: 80%;
 	margin: 30px;
-	background-color: #adb2df;
+	background-color:$bg_violet;
 	padding: 30px;
 }
 
@@ -175,7 +175,7 @@ p{
 .ord_recipt{
 	width: 80%;
 	margin: 30px;
-	background-color: #adb2df;
+	background-color: $bg_violet;
 	padding: 30px;
 }
 
@@ -218,7 +218,7 @@ li{
 .ord_msg{
 	width: 80%;
 	margin: 30px;
-	background-color: #adb2df;
+	background-color:$bg_violet;
 	padding: 30px;
 
 }
