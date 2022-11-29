@@ -31,27 +31,22 @@
 const productside = [
     {
         name: "上衣",
-        children: ["短袖", "長袖", "外套", "背心"],
         isOpen: false,
     },
     {
         name: "下身",
-        children: ["長褲", "短褲", "裙子"],
         isOpen: false,
     },
     {
         name: "套裝",
-        children: ["洋裝", "連身褲裝", "兩件式"],
         isOpen: false,
     },
     {
         name: "鞋款",
-        children: ["休閒鞋", "跟鞋", "運動鞋"],
         isOpen: false,
     },
     {
         name: "配件",
-        children: ["包包", "圍巾手套", "帽子", "皮帶", "配件", "襪子"],
         isOpen: false,
     },
 ];
