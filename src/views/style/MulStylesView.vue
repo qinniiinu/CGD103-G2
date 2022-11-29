@@ -2,7 +2,7 @@
 
 	<div class="mulstyles">
 		<div class="mulstyle_cover">
-			<div :class="['cover_pic', { main:currentPic === coverPic}]" v-for="(coverPic,index) of coverPics" :key="index" @click="mainCover(index)">
+			<div :class="['cover_pic', { main:currentPic === coverPic}]" v-for="(coverPic,index) of coverPics" :key="index" @click="currentPic = coverPic">
 				<img :src="coverPic.src">
 			</div>
 		</div>
@@ -179,7 +179,7 @@ export default {
 				'#宴會穿搭',
 			],
 			currentTag:'#上班穿搭',
-			currentPic:'',
+			currentPic: [{src:'./cover_img2.JPG'}],
 
     	} 
   	},
@@ -192,14 +192,13 @@ export default {
 			return this.imgs[0];
 			// return this.imgs.filter(item => item.cat === this.currentTag)
 		},
+		
 	},
 	methods:{
 		tagtest(index){
 			this.showimgs=this.imgs[index];
 		},
-		mainCover(index){
-			this.currentPic = this.coverPic[index]		
-		}
+		
 	}
 
 
@@ -218,7 +217,7 @@ export default {
 		max-width: 312px;
 		margin:20px auto;
 		height: 500px;
-		
+	
 		
 		@include m{
 			max-width: 768px;
@@ -226,19 +225,29 @@ export default {
 		@include xl{
 			max-width: 960px;
 		}
+		
 		.cover_pic{
 			overflow: hidden;
+			width: 0;
+			flex-grow: 1;
 			img{
-				width: 80%;
-				@include m{
-					width: 100%;
-				}
+				// width: 80%;
+				// @include m{
+				// 	width: 100%;
+				// }
 				width: 100%;
 				height: 100%;
 				object-fit: cover;
 				object-position: center;
 			}
 			
+		}
+		// .cover_pic:first-child{
+		// 	flex-grow: 6;	
+		// }
+	
+		.main{
+			flex-grow: 6;
 		}
 
 	}
