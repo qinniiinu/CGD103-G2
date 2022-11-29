@@ -17,7 +17,7 @@
                         <ul class="sub">
                             <li><router-link to="/Wearing">風格穿搭</router-link></li>
                             <li><router-link to="/Quiz">風格測驗</router-link></li>
-                            <li><router-link to="/ConsultIntro">風格諮詢</router-link></li>
+                            <li><router-link to="/Chat">風格諮詢</router-link></li>
                         </ul>
                     </li>
                     <li class="main_list">
@@ -123,7 +123,7 @@
             color: $main_color;
             position: sticky;
             top: 0;
-
+            z-index: 100;
 
             .logo {
 				margin-left: 10px;
