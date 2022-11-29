@@ -24,38 +24,48 @@
 						</div>
 					</div>
 				</div>
-				
 			</div>
 			<div class="cart">
 				<div class="cart-wrap">
 					<h2>購物車</h2>
-					<ul class="product">
-						<p>產品編號</p>
-						<p>產品圖</p>
-						<p>名稱</p>
-						<p>顏色</p>
-						<p>尺寸</p>
-						<p>數量</p>
-						<p>單價</p>
-						<p>總價</p>
+					<ul class="cart-title">
+						<div>產品</div>
+						<div>名稱</div>
+						<div>顏色</div>
+						<div>尺寸</div>
+						<div>數量</div>
+						<div>單價</div>
+						<div>總價</div>
 					</ul>
-					<ul class="order-wrap">
-						<li class="order-item" v-for="item in order" :key="item.id">
-							<p>{{item.id}}</p>
-							<img :src="item.image" v-bind:alt="item.title">
-							<p>{{item.title}}</p>
-							<p>{{item.color}}</p>
-							<p>{{item.size}}</p>
-							<button @click="reduceCount(index,item)">-</button>
-							<p>{{item.count}}</p>
-							<button @click="addCount(index,item)">+</button>
-							<p>{{item.price}}元</p>
-							<p>{{item.price*item.count}}元</p>
-							<button @click="dele(index,item)">X</button>
+					<ul v-if="order.length>0" class="order-list">
+						<li class="item" v-for="item in order" :key="item.id">
+							<div><img :src="item.image" v-bind:alt="item.title"></div>
+							<div>{{item.title}}</div>
+							<div>{{item.color}}</div>
+							<div>{{item.size}}</div>
+							<div>
+								<button @click="reduceCount(index,item)">-</button>
+								<span>{{item.count}}</span>
+								<button @click="addCount(index,item)">+</button>
+							</div>
+							<div>${{item.price}}元</div>
+							<div>${{item.price*item.count}}元</div>
+							<button @click="dele(index,item)">x</button>
 						</li>
+						<div class="detail">
+							<div>共 {{order.length}} 件商品</div>
+							<div>{{memLevel}} 會員等級折扣: -${{parseInt(total*discount)}}</div>
+							<div>總計: ${{aftertotal}}元</div>
+						</div>
+						<div class="payment">
+							<button>繼續逛逛</button>
+							<button>去付款</button>
+						</div>
 					</ul>
-					<!-- 總價 -->
-						總計: {{total}}元
+					<ul v-else class="none-list">
+						<li>目前尚無商品</li>
+						<button>去逛逛</button>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -76,6 +86,8 @@ export default {
 			order:[],
 			min:0,
 			max:0,
+			memLevel:'BASIC',
+			discount:0.05,
 			product:[
 			//產品資訊
 			{
@@ -84,7 +96,7 @@ export default {
 			title: "Newbalance鞋",
 			color: "灰色",
 			size: "23cm",
-			price: 2990,
+			price: 7990,
 			},
 			{
 			id: 2,
@@ -105,11 +117,24 @@ export default {
 		total(index,item){
 			if(this.product.length>0){
 				let total=0
-				console.log(total);
+				
 				for(const index in this.order){
 					total+=this.order[index]['count']*this.order[index]['price']
 				}
+				console.log(total);
 				return parseInt(total)
+			}else{
+				return 0
+			}
+		},
+		aftertotal(index,item){
+			if(this.order.length>0){
+				let aftertotal=0
+				for(const index in this.order){
+					aftertotal+=(this.order[index]['count']*this.order[index]['price'])*0.95
+				}
+				console.log(aftertotal);
+				return parseInt(aftertotal);
 			}else{
 				return 0
 			}
@@ -179,7 +204,9 @@ export default {
 h2{
 	font-size: 24px;
 	color: black;
-	margin: 10px;
+	margin:10px 0;
+	border: 1px solid $title_color;
+	padding: 10px 20px;
 }
 .productContainer{
 	width:1200px;
@@ -204,34 +231,118 @@ h2{
 }
 .cart{
 	width: 1200px;
+	min-height: 500px;
 	margin:auto;
 	.cart-wrap{
-		width: 800px;
-		margin:auto;
-		.product{
+		width: 940px;
+		margin: auto;
+		padding: 10px 20px;
+		.cart-title{
+			color: $title_color;
 			display: flex;
-			gap: 6%;
-			:nth-child(2){
-				padding:0px 8%;
+			padding: 10px 20px;
+			:nth-child(1){
+				width:200px;
 			}
+			:nth-child(2){
+				width: 140px;
+			}
+			:nth-child(3){
+				width:100px;
+			}
+			:nth-child(4),:nth-child(5),:nth-child(6),:nth-child(7){
+				width:120px;
 			}
 		}
-		.order-wrap{
-			margin: 20px;
-			.order-item{
-				display: flex;
-				margin-bottom: 10px;
-				gap: 4%;
-				button{
-						width: 20px;
-						height: 20px;
-					}
+	}
+	.order-list{
+		margin: auto;
+		padding: 10px 20px;
+		.item{
+			color: $text_color;
+			display: flex;
+			align-items:center;
+			margin-top: 20px;
+			padding-bottom: 15px;
+			border-bottom: 1px solid $text_color;
+			:first-child{
+				width: 200px;
 				img{
-					padding:0px 5%;
-					width: 150px;
+					width:150px;
+					height:150px;
+				}
+			}
+			:nth-child(5){
+				width:120px;
+				span{
+					padding: 0 10px;
+				}
+				button{
+					font-size: 16px;
+					background: none;
+					border: none;
+					width: 20px;
+					height: 20px;
+				}
+			}
+			:nth-child(2){
+				width:140px;
+			}
+			:nth-child(3){
+				width:100px;
+			}
+			:nth-child(4),:nth-child(6),:nth-child(7){
+				width:120px;
+			}
+			:last-child{
+				font-size: 16px;
+				height: 20px;
+				width:20px;
+				background: none;
+				border:none;
+			}
+		}
+		.detail{
+			text-align: right;
+			margin-top: 20px;
+			div{
+				margin-bottom: 10px;
+			}
+		}
+		.payment{
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 200px;
+			button{
+				background: $main_color;
+				color: white;
+				padding: 8px 12px;
+				border: 1px solid $main_color;
+				&:hover{
+					background-color: white;
+					color:$main_color;
 				}
 			}
 		}
+	}
+	.none-list{
+		height: 200px;
+		border-bottom: 1px solid $text_color;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 5%;
+		button{
+			background: $main_color;
+			color: white;
+			padding: 8px 12px;
+			border: 1px solid $main_color;
+			&:hover{
+				background-color: white;
+				color:$main_color;
+			}
+		}
+	}
 }
 
 	
