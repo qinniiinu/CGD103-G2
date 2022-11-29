@@ -28,6 +28,7 @@ import {
 	faCheck,
 	faList,
 	faClipboard,
+	faPlus,
 
 
 
@@ -48,6 +49,7 @@ library.add(
 	faCheck,
 	faList,
 	faClipboard,
+	faPlus,
 );
 
 // import Vue from 'vue';
