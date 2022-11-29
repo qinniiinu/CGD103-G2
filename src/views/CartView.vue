@@ -20,7 +20,6 @@
 						<p>{{item.price}}元</p>
 						<div class="count">
 							<button @click="reduceCount(index,item)">-</button>
-							<input type="number" min="0" v-model="count[index]">
 							<button @click="addCount(index,item)">+</button>
 						</div>
 					</div>
@@ -52,10 +51,11 @@
 							<button @click="addCount(index,item)">+</button>
 							<p>{{item.price}}元</p>
 							<p>{{item.price*item.count}}元</p>
+							<button @click="dele(index,item)">X</button>
 						</li>
 					</ul>
 					<!-- 總價 -->
-						
+						總計: {{total}}元
 				</div>
 			</div>
 		</div>
@@ -102,11 +102,12 @@ export default {
 		// this.getResource()
 	},
 	computed:{
-		total(){
+		total(index,item){
 			if(this.product.length>0){
 				let total=0
-				for(const index in this.product){
-					total+=this.count[index]*this.product[index]['price']
+				console.log(total);
+				for(const index in this.order){
+					total+=this.order[index]['count']*this.order[index]['price']
 				}
 				return parseInt(total)
 			}else{
@@ -127,6 +128,7 @@ export default {
 		// 	})
 		// }
 		addCount(index,item){
+			console.log(item)
 			this.count[index]+=1
 			const prodIndex=this.order.findIndex(orderItem=>{
 				return orderItem.id===item.id
@@ -161,8 +163,15 @@ export default {
 				alert("確定要刪除此產品嗎?")
 			}
 			// this.setStorage()
+		},
+		dele(index,item){
+			const prodIndex=this.order.findIndex(orderItem=>{
+				return orderItem.id===item.id
+			})
+			if(prodIndex<0) return;
+			this.order.splice(prodIndex,1)
+			alert("確定要刪除此產品嗎?")
 		}
-		
 	}
 };
 </script>
