@@ -13,9 +13,9 @@
             <nav class="main_nav">
                 <ul class="main">
                     <li class="main_list">
-                        <router-link to="/MulStyles">找風格</router-link>
+                        <router-link to="/FindStyle">找風格</router-link>
                         <ul class="sub">
-                            <li><router-link to="/Wearing">風格穿搭</router-link></li>
+                            <li><router-link to="/MulStyles">風格穿搭</router-link></li>
                             <li><router-link to="/Quiz">風格測驗</router-link></li>
                             <li><router-link to="/Chat">風格諮詢</router-link></li>
                         </ul>
