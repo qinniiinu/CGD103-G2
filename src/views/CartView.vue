@@ -55,7 +55,7 @@
 						</li>
 					</ul>
 					<!-- 總價 -->
-						
+						總計: {{total}}元
 				</div>
 			</div>
 		</div>
@@ -102,11 +102,12 @@ export default {
 		// this.getResource()
 	},
 	computed:{
-		total(){
+		total(index,item){
 			if(this.product.length>0){
 				let total=0
-				for(const index in this.product){
-					total+=this.count[index]*this.product[index]['price']
+				console.log(total);
+				for(const index in this.order){
+					total+=this.order[index]['count']*this.order[index]['price']
 				}
 				return parseInt(total)
 			}else{
