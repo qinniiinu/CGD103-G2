@@ -1,13 +1,13 @@
 <template> 
-<div class="stylelist-card">
-    <div class="stylelist-card-info">
+<div class="stylist-card">
+    <div class="stylist-card-info">
         <div class="card-info-pic">
-            <img src="scardP" alt="">
+            <img :src="scardP" alt="">
         </div>
-        <h3 >{{stylelistName}}</h3>
-        <p>{{stylelistInfo}}</p>
+        <h3 >{{stylistName}}</h3>
+        <p>{{stylistInfo}}</p>
     </div>
-    <div class="stylelist-card-look">
+    <div class="stylist-card-look">
         <div class="look-item" v-for="lookItem of lookItems" :key="lookItem">
             <img :src="lookItem.src" alt="">
         </div>
@@ -22,21 +22,21 @@
 
 <script>
 export default {
-	name: "Stylelist",
+	name: "StylistLook",
 
     components: {
 
 	},
 
     props:{
-        stylelistName:String,
-        stylelistInfo:String,
+        stylistName:String,
+        stylistInfo:String,
+        scardP:String,
     },
 
     data() {
     	return {
-            scardP:[{},
-                    {src:'./cover_img2.JPG'},],
+         
             lookItems:[{src:'./cover_img1.JPG'},
                 [{src:'./cover_img1.JPG'}],
                 [{src:'./cover_img1.JPG'}],
@@ -62,16 +62,17 @@ export default {
 
 
 <style lang="scss" scoped>
-.stylelist-card{
+
+.stylist-card{
     display: flex;
     width: 100%;
     margin: auto;
     max-width: 1200px;
-    .stylelist-card-info{
-        width: 30%;
+    .stylist-card-info{
+        width: 25%;
     };
-    .stylelist-card-look{
-        width: 70%;
+    .stylist-card-look{
+        width: 75%;
         display: flex;
         img{
             width: 100%;
@@ -82,12 +83,14 @@ export default {
 
 }
    .card-info-pic{
-    width: 50px;
-    height: 50px;
+    width:150px;
+    height:150px;
+
     img{
+        border-radius: 500px;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: top;
     }
    }
 
