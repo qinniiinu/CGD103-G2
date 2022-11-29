@@ -51,6 +51,7 @@
 							<button @click="addCount(index,item)">+</button>
 							<p>{{item.price}}元</p>
 							<p>{{item.price*item.count}}元</p>
+							<button @click="dele(index,item)">X</button>
 						</li>
 					</ul>
 					<!-- 總價 -->
@@ -126,6 +127,7 @@ export default {
 		// 	})
 		// }
 		addCount(index,item){
+			console.log(item)
 			this.count[index]+=1
 			const prodIndex=this.order.findIndex(orderItem=>{
 				return orderItem.id===item.id
@@ -160,8 +162,15 @@ export default {
 				alert("確定要刪除此產品嗎?")
 			}
 			// this.setStorage()
+		},
+		dele(index,item){
+			const prodIndex=this.order.findIndex(orderItem=>{
+				return orderItem.id===item.id
+			})
+			if(prodIndex<0) return;
+			this.order.splice(prodIndex,1)
+			alert("確定要刪除此產品嗎?")
 		}
-		
 	}
 };
 </script>
