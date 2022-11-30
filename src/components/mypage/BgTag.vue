@@ -1,5 +1,5 @@
 <template>
-    <p class="bg_tag">#{{tagName}}
+    <p class="bg_tag">#{{Bgtag}}
     </p>
 </template> 
 
@@ -7,7 +7,7 @@
 <script>
 export default {
     props: {
-        tagName: String,
+        Bgtag:Array,String
     }
 }
 </script>
@@ -15,9 +15,7 @@ export default {
 
 <style lang="scss" scoped>
 .bg_tag {
-    position: absolute;
     z-index: -1;
-    right: 10px;
     color: $bg_violet;
     @include font_set($second_font, $null, 900, italic);
     @include s() {
