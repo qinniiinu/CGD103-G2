@@ -13,11 +13,11 @@
             <nav class="main_nav">
                 <ul class="main">
                     <li class="main_list">
-                        <router-link to="/MulStyles">找風格</router-link>
+                        <router-link to="/FindStyle">找風格</router-link>
                         <ul class="sub">
-                            <li><router-link to="/Wearing">風格穿搭</router-link></li>
+                            <li><router-link to="/MulStyles">風格穿搭</router-link></li>
                             <li><router-link to="/Quiz">風格測驗</router-link></li>
-                            <li><router-link to="/ConsultIntro">風格諮詢</router-link></li>
+                            <li><router-link to="/Chat">風格諮詢</router-link></li>
                         </ul>
                     </li>
                     <li class="main_list">
@@ -31,17 +31,17 @@
                         </ul>
                     </li>
                     <li class="main_list">
-                        <router-link to="/ootd">風格動態牆</router-link>
+                        <router-link to="/ootd">風格牆</router-link>
                         <ul class="sub">
                             <li><router-link to="/">OOTD</router-link></li>
                             <li><router-link to="/">我的OOTD</router-link></li>
                         </ul>
                     </li>
                     <li class="main_list">
-                        <router-link to="/subscription">訂閱服務</router-link>
+                        <router-link to="/subscription">穿搭訂閱</router-link>
                         <ul class="sub">
-                            <li><router-link to="/subscription">服務選擇</router-link></li>
-                            <li><router-link to="/">服務說明</router-link></li>
+                            <li><router-link to="/subscription">訂閱選擇</router-link></li>
+                            <li><router-link to="/">訂閱說明</router-link></li>
                         </ul>
                     </li>
                     <li class="main_list">
@@ -123,7 +123,7 @@
             color: $main_color;
             position: sticky;
             top: 0;
-
+            z-index: 100;
 
             .logo {
 				margin-left: 10px;

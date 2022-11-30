@@ -53,18 +53,11 @@
 			</div>
 		</section>
 	</div>
-	<Footer></Footer>
+	
 </template>
 
 <script>
-import Footer from "@/components/Footer.vue";
 
-export default {
-	name: "Product",
-	components: {
-		Footer,
-	},
-};
 </script>
 <style lang="scss" scoped>
 	@import "@/assets/sass/main.scss";
