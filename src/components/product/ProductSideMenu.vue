@@ -1,19 +1,38 @@
  <template >
+    <input type="checkbox" value="1" v-model="main" />
+    <input type="checkbox" value="2" v-model="main" />
     <div class="outside">
         <p class="block">服飾總覽</p>
         <div class="ProductSideMenu">
-            <div v-for="(item, index) in main_list" :key="index" class="main">
-                <div class="left_right" @click="item.isOpen = !item.isOpen">
-                    <p>{{ item.name }}</p>
-                    <font-awesome-icon icon="fa-solid fa-plus" />
+            <div v-for="item in main_list" :key="item.id" class="main">
+                <div class="left_right">
+                    <p>{{ item.sex }}</p>
+                    <p><font-awesome-icon icon="fa-solid fa-plus" /></p>
+                    <input type="checkbox" :value="item.sex" v-model="main" />
                 </div>
                 <div
                     class="sub_list"
-                    v-show="item.isOpen"
-                    v-for="(item2, index) in item.children"
+                    v-for="(item2, index) in item.list"
                     :key="index"
+                    v-show="find(item.sex) == item.sex"
                 >
-                    <p>{{ item2 }}</p>
+                    <div class="left_right">
+                        <p>{{ item2.name }}</p>
+                        <p><font-awesome-icon icon="fa-solid fa-plus" /></p>
+                        <input
+                            type="checkbox"
+                            :value="item2.name"
+                            v-model="sub[index]"
+                        />
+                    </div>
+                    <div
+                        class="sub_list"
+                        v-for="(item3, index) in item2.sub_list"
+                        :key="index"
+                        v-show="findSub(item2.name) == item2.name"
+                    >
+                        <p>{{ item3 }}</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -30,24 +49,50 @@
 <script>
 const productside = [
     {
-        name: "上衣",
-        isOpen: false,
+        sex: "女",
+        list: [
+            {
+                id: "top",
+                name: "上身",
+                sub_list: ["短袖", "長袖", "外套"],
+            },
+            {
+                id: "down",
+                name: "下身",
+                sub_list: ["短褲", "長褲", "裙子"],
+            },
+            {
+                id: "shoes",
+                name: "鞋款",
+                sub_list: ["皮鞋", "運動鞋", "跟鞋"],
+            },
+            {
+                id: "others",
+                name: "配件",
+                sub_list: ["包款", "配件"],
+            },
+        ],
     },
     {
-        name: "下身",
-        isOpen: false,
-    },
-    {
-        name: "套裝",
-        isOpen: false,
-    },
-    {
-        name: "鞋款",
-        isOpen: false,
-    },
-    {
-        name: "配件",
-        isOpen: false,
+        sex: "男",
+        list: [
+            {
+                name: "上身",
+                sub_list: ["短袖", "長袖", "外套"],
+            },
+            {
+                name: "下身",
+                sub_list: ["短褲", "長褲"],
+            },
+            {
+                name: "鞋款",
+                sub_list: ["皮鞋", "運動鞋"],
+            },
+            {
+                name: "配件",
+                sub_list: ["包款", "配件"],
+            },
+        ],
     },
 ];
 export default {
@@ -55,8 +100,19 @@ export default {
     data() {
         return {
             main_list: productside,
-            isOpen: false,
+            main: [],
+            sub: [],
         };
+    },
+    methods: {
+        find(X) {
+            // console.log(X);
+            return this.main.find((e) => e == X);
+        },
+        findSub(X) {
+            // console.log(this.sub);
+            // return this.sub.find((e) => e == X);
+        },
     },
 };
 </script>
