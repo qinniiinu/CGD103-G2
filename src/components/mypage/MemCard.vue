@@ -7,12 +7,8 @@
             <div class="title">
                 {{ title }}
             </div>
-            <div class="type">
-                # {{ type }}
-            </div>
-            <div class="eg_type">
-                #{{ egtype }}
-            </div>
+            <!-- 英文 hashtag -->
+            <slot></slot><!-- ?? -->
             <a href="#" class="more">
                 <span class="text">查看更多</span>
                 <font-awesome-icon icon="fa-solid fa-angle-right"/>
@@ -23,13 +19,26 @@
 
 
 <script>
+import BgTag from "@/components/mypage/BgTag.vue";
+import TypeTag from "@/components/mypage/TypeTag.vue";
+
 export default {
     props: {
         title: String,
         type: String,
-        egtype: String
-    }
-}
+        // egtype: String
+    },
+    components: {
+		BgTag,
+        TypeTag
+	},
+    data() {
+        return {
+
+        }
+    },
+}        
+// console.log(tagName);
 </script>
 
 
@@ -38,6 +47,7 @@ export default {
 	border: 1px solid black;
 	padding: $padding;
     display: flex;
+    position: relative;
     .pic{
         width: 300px;
         height: 300px;
@@ -50,19 +60,21 @@ export default {
     }
     .text{
     margin-left: $padding;
+    display: flex;
+    flex-direction: column;
         .title{
-            display: flex;
+            display: block;
         }
         .type{
-            display: flex;
-
+            display: block;
         }
-        .eg_type{
-            display: flex;
-
+        .bgtag{ //<!-- ?? -->
+            display:block;
+            position: absolute;
+            right: $padding;
         }
         .more{
-            display: inline;
+            display: flex;
         }
     }
 }
