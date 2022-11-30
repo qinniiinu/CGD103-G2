@@ -225,13 +225,18 @@ const routes = [
 			name: 'QuizResult1',
 			path: 'QuizResult1',
 			component: () => import("../views/style/quiz/QuizResult1View.vue"),
-		  },
-		  {
+		},
+		{
 			name: 'QuizResult2',//測驗結果2
 			path: 'QuizResult2',
 			component: () => import("../views/style/quiz/QuizResult2View.vue"),
-		  },
+		},
 		]
+	},
+	{
+		path: "/QuestionBox",
+		name: "QuestionBox",
+		component: () => import("../views/style/quiz/QuestionBoxView.vue"),
 	},
 	{
 		path: "/Set",
