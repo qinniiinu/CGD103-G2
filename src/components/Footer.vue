@@ -7,7 +7,7 @@
 						<div class="main_list_box" tabindex="0">
 							<p class="bg_tag">#STYLE</p>
 							<p class="name">找風格</p>
-							<div class="icon">我是icon</div>
+							<div class="icon"><font-awesome-icon icon="fa-solid fa-plus" /></div>
 						</div>
 						<ul class="sub">
 							<li><a href="#">風格穿搭</a></li>
@@ -21,7 +21,7 @@
 						<div class="main_list_box" tabindex="0">
 							<p class="bg_tag">#PRODUCT</p>
 							<p class="name">逛商品</p>
-							<div class="icon">我是icon</div>
+							<div class="icon"><font-awesome-icon icon="fa-solid fa-plus" /></div>
 						</div>
 						<ul class="sub">
 							<li><a href="#">商品列表</a></li>
@@ -34,8 +34,8 @@
 					<li class="main_list">
 						<div class="main_list_box" tabindex="0">
 							<p class="bg_tag">#OOTD</p>
-							<p class="name">風格動態牆</p>
-							<div class="icon">我是icon</div>
+							<p class="name">風格牆</p>
+							<div class="icon"><font-awesome-icon icon="fa-solid fa-plus" /></div>
 						</div>
 						<ul class="sub">
 							<li><a href="#">OOTD</a></li>
@@ -47,21 +47,21 @@
 					<li class="main_list">
 						<div class="main_list_box" tabindex="0">
 							<p class="bg_tag">#PREMIUM</p>
-							<p class="name">訂閱服務</p>
-							<div class="icon">我是icon</div>
+							<p class="name">穿搭訂閱</p>
+							<div class="icon"><font-awesome-icon icon="fa-solid fa-plus" /></div>
 						</div>
 						<ul class="sub">
-							<li><a href="#">服務選擇</a></li>
-							<li><a href="#">服務說明</a></li>
+							<li><a href="#">訂閱選擇</a></li>
+							<li><a href="#">訂閱說明</a></li>
 						</ul>
 					</li>
 				</div>
 				<div class="main_list_outside">
 					<li class="main_list">
-						<div class="main_list_box" tabindex="0">
+						<div class="main_list_box last-box" tabindex="0">
 							<p class="bg_tag">#ABOUT</p>
 							<p class="name">關於我們</p>
-							<div class="icon">我是icon</div>
+							<div class="icon"><font-awesome-icon icon="fa-solid fa-plus" /></div>
 						</div>
 						<ul class="sub">
 							<li><a href="#">品牌精神</a></li>
@@ -73,11 +73,10 @@
 			</ul>
 			<div class="copyright">
 				<p>
-					Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-					Quae sed nemo inventore omnis, aspernatur placeat
-					exercitationem voluptates ex blanditiis repellat in, totam,
-					delectus tenetur. Magni dolores exercitationem placeat
-					quaerat sit.
+					本網站為緯育TibaMe_前端設計工程師班第79期學員專題成果作品,本平台僅供學
+					習、展示之用。若有抵觸有關著作權,或有第三人主張侵害智慧財產權等情事,均
+					由學員負法律上責任,緯育公司概不負責。若有侵權疑慮,您可以私訊[緯育
+					TibaMe],後續會由專人協助處理。
 				</p>
 			</div>
 		</footer>
@@ -99,29 +98,31 @@
 		text-align: center;
 
 		ul.main {
-			border-bottom: $line solid $main-color;
+
 			.main_list_outside {
 				width: 100%;
-				& + * {
-					border-top: $line solid $main-color;
-				}
+
+				border-top: $line solid $main-color;
+
 				.main_list {
 					max-width: $max_width;
 					width: 100%;
 					margin: auto;
+					position: relative;
 					@include m() {
 						display: flex;
 					}
 					.bg_tag {
 						position: absolute;
 						z-index: -1;
+						right: 10px;
 						color: $bg_violet;
 						@include font_set($second_font, $null, 900, italic);
 						@include s() {
 							font-size: 56px;
 						}
 						@include m() {
-							font-size: 96px;
+							font-size: 72px;
 						}
 					}
 
@@ -132,7 +133,7 @@
 						height: ($footer_box_height - $line * 2);
 						padding: 10px;
 						box-sizing: border-box;
-						outline: 1px solid red;
+						// outline: 1px solid red;
 
 						@include m() {
 							width: 25%;
@@ -142,7 +143,15 @@
 							@include s() {
 								height: $footer_box_height;
 								transition: all 0.5s;
+								
 							}
+						}
+
+						&:focus .icon{
+
+							transform: rotate(-45deg);
+							transition: transform 0.3s 0s;
+							
 						}
 
 						.name {
@@ -155,15 +164,20 @@
 							}
 						}
 						.icon {
+							transform: rotate(0deg);
+							transition: transform 0.3s 0s;
+						
+								
+							
 							@include m() {
 								display: none;
 							}
 						}
+
 					}
 					.sub {
 						@include m() {
 							width: 75%;
-
 							display: flex;
 							align-items: center;
 						}
@@ -181,8 +195,8 @@
 								@include s() {
 									display: block;
 									line-height: $footer_box_height;
-									color: $third_color;
-									background-color: $main_color;
+									color: $main_color;
+									background-color:$second_color;
 									text-align: center;
 								}
 								@include m() {
@@ -207,29 +221,24 @@
 		.copyright {
 			display: flex;
 			align-items: center;
-			background-color: $main_color;
-
+			background-color: $text_color;
+			height: fit-content;
 			@include s() {
-				height: 110px;
+				
 				box-sizing: border-box;
 			}
 			@include m() {
-				height: 110px;
+
 				box-sizing: border-box;
 			}
 			p {
-				@include s() {
-					font-size: 14px;
-				}
-				@include s() {
-					font-size: 16px;
-				}
-
+				padding: 10px 20px;
+				font-size: 12px;
 				max-width: 1200px;
 				margin: auto;
 				text-align: center;
 				font-family: $four_font;
-				line-height: 24px;
+				line-height: 16px;
 				color: $third_color;
 			}
 		}
