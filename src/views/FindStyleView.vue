@@ -53,7 +53,7 @@
 
 	<div class="our_stylist">
 		<h2>#Our Stylist</h2>
-		<h2>#Our Stylist</h2>
+		<h2 class="sec-h2">#Our Stylist</h2>
 		<div class="our_stylist_main">
 			<div class="our_stylist_pic" v-for="stylistPic of stylistPics" :key="stylistPic">
 				<img :src="stylistPic.src" alt="">
@@ -62,10 +62,12 @@
 		<div class="stylist_content">
 			<p>
 				更深入了解 
+				<br>
 				制定個人穿搭攻略
+				<br>
 				預約我們的風格團隊
 			</p>
-			<Button></Button>
+			<Button content="諮詢造型師"></Button>
 		</div>
 
 	</div>
@@ -90,12 +92,12 @@ export default {
     	return {
 			logoText:'RE:Outfit  ',
 			stylistPics:[
-				{src:'./stylist-3.jpg'},
+				{src:'./stylist-8.jpg'},
 				{src:'./stylist-4.jpg'},
 				{src:'./stylist-5.jpg'},
 				{src:'./stylist-6.jpg'},
 				{src:'./stylist-7.jpg'},
-				{src:'./stylist-8.jpg'},
+				{src:'./stylist-3.jpg'},
 			]
 		}
 	}
@@ -242,31 +244,59 @@ export default {
 		flex-direction: column;
 		margin: auto;
 		position: relative;
+		margin-bottom: 50px;
+		
+		@include m{
+			flex-direction: row;
+			width: 85%;
+			margin: auto;
+			margin-bottom: 80px;
+		}
 		h2{
 			position:absolute;
-			top: 0;
+			top: 12%;
 			left: 0;
 			right: 0;
-			bottom: 35%;
+			// bottom: 0;
 			margin: auto;
 			font-weight: 900;
-			font-size: 32px;
+			font-size: 48px;
 			font-style: italic;
 			width: fit-content ;
 			height: fit-content;
+
+			@include m{
+				left: -35%;
+				top: 0;
+				bottom: 0;
+			}
 		
 		}
 
-		:nth-child(2){
-			bottom: 0;
-			top:28.5%;
+		.sec-h2{
+			// bottom: 0;
+			top: 70%;
+
+			@include m{
+				display: none;
+			}
+			
 		}
 
 		.our_stylist_main{
 			display: flex;
 			flex-wrap:wrap;
+			@include m{
+				width: 70%;
+				gap: 10px;
+			}
+			
 			
 			.our_stylist_pic{
+				@include m{
+					width: 31.5%;
+
+				}
 				width: 50%;
 				img{
 					width: 100%;
@@ -277,6 +307,36 @@ export default {
 			}
 		}
 		.stylist_content{
+		
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			@include m{
+					width: 30%;
+					flex-direction: column;
+					justify-content: center;
+					gap: 20px;
+			}
+			p{
+				@include m{
+					font-size: 18px;
+					line-height: 36px;
+				}
+				@include l{
+					font-size: 24px;
+					line-height: 40px;
+				}
+				font-size: 24px;
+				font-weight: 700;
+				color:$title-color ;
+				display: inline-block;
+				line-height: 40px;
+				margin: 10px;
+			}
+			Button{
+				height: 60px;
+				line-height: 30px;
+			}
 
 		}
 	}

@@ -2,7 +2,7 @@
 	<div>
         <h1>ChatView</h1>
     </div>
-	<Footer></Footer>
+
 </template>
 <script>
 import Footer from "@/components/Footer.vue";
