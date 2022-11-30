@@ -67,7 +67,8 @@ export default {
 			font-size: 48px;
 		}
 		p{
-			font-size: 22px;
+			font-size: 18px;
+			line-height: 27px;
 		}
 		.wrap{
 			padding: 50px 0;
