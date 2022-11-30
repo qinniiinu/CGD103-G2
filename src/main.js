@@ -29,6 +29,7 @@ import {
 	faList,
 	faClipboard,
 	faPlus,
+	faAngleRight,
 
 
 
@@ -50,6 +51,8 @@ library.add(
 	faList,
 	faClipboard,
 	faPlus,
+	faAngleRight,
+
 );
 
 // import Vue from 'vue';
