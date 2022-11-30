@@ -9,31 +9,48 @@
 			<div class="data">
 				<!-- 這裡開始寫 -->
 				<div class="box">
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, et, quas harum molestiae perspiciatis eius doloribus minima dignissimos natus, ab quod distinctio. Accusantium, vel laboriosam ex similique optio explicabo dolores.
-					</p>
+					<MemCard title="我的身型" type="沙漏型"></MemCard>
+					<MemCard title="我的風格" type=""></MemCard>
 				</div>
 			</div>
 		</div>
 	</div>
-	<Footer></Footer>
 </template>
 
 <script>
-import Footer from "@/components/Footer.vue";
 import MemberSideMenu from "@/components/MemberSideMenu.vue";
+import MemCard from "@/components/mypage/MemCard.vue";
 export default {
 	name: "MyPage",
 	components: {
-        Footer,
-		MemberSideMenu
+		MemberSideMenu,
+		MemCard
+	},
+
+	data() {
+		return {
+			Bodytype:[
+				{
+					id:1,
+					name:'沙漏型',
+				},
+				{
+					id:2,
+					name:'三角型',
+				},
+				
+			],
+
+			egtype:[
+
+			]
+
+		}
 	},
 };
-
+			console.log(type);
 </script>
 <style lang="scss" scoped>
 @import "@/assets/sass/member_side_menu";
-.box{
-	border: 1px solid black;
-	padding: $padding;
-}
+
 </style>
