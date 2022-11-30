@@ -28,7 +28,7 @@
 
 <script>
 export default {
-	name: "SideMenu",
+	name: "MemberSideMenu",
 	props: {
 		// msg: String
 	},
