@@ -1,11 +1,11 @@
 <template>
     <div class="product_card">
         <div class="box">
-            <img src="https://fakeimg.pl/300x200/200" />
+            <img :src="require(`@/assets/product/${imgURL}`)" />
             <font-awesome-icon icon="fa-solid fa-heart" class="icon" />
         </div>
-        <p class="title">UNISEX 環保刷毛帽T</p>
-        <p class="price">NT$ 1,980</p>
+        <p class="title">{{ title }}</p>
+        <p class="price">NT${{ price }}</p>
     </div>
 </template>
 <style lang="scss" scoped>
@@ -38,4 +38,11 @@
 </style>
 
 <script>
+export default {
+    props: {
+        title: String,
+        price: String,
+        imgURL: String,
+    },
+};
 </script>
