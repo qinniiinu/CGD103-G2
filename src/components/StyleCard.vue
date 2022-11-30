@@ -59,7 +59,6 @@ export default {
             font-weight: 600;
             color: $title_color;
             text-align: center;
-            padding: 10px 0;
         }
 
         margin-bottom: 5px;

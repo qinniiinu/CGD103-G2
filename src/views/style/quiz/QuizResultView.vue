@@ -6,6 +6,7 @@
 	</section>
 </template>
 <script>
+import Footer from "@/components/Footer.vue";
 import StyleCard1 from "@/components/StyleCard1.vue";
 import Button from "@/components/Button.vue";
 
