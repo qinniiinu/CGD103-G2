@@ -1,22 +1,5 @@
 <template>
 	<div class="checkout">
-		<div class="list">
-			<h2>購物車</h2>
-			<div class="items">
-				<div class="item" v-for="(item,index) in product" :key="item.id">
-					<!-- 產品圖 -->
-					<img :src="item.image" v-bind:alt="item.title">
-					<!-- 產品名稱 -->
-					<p>{{item.title}}</p>
-					<!-- 產品顏色 -->
-					<p>{{item.color}}</p>
-					<!-- 產品尺寸 -->
-					<p>{{item.size}}</p>
-					<!-- 產品單價 -->
-					<p>{{item.price}}元</p>
-				</div>
-			</div>
-		</div>
 		<div class="paydetails">
 			<h2>結帳</h2>
 			<div class="paytetails-wrap">
@@ -61,6 +44,32 @@
 			</div>
 			<button>完成訂購</button>
 		</div>
+		<div class="list">
+			<h2>購物車</h2>
+			<div class="items">
+				<div class="item" v-for="(item,index) in product" :key="item.id">
+					<div class="product">
+						<img :src="item.image" v-bind:alt="item.title">
+						<div class="prod-detail">
+							<p>{{item.title}}</p>
+							<div class="spec">
+								<p>{{item.color}}</p>
+								<p>{{item.size}}</p>
+								<p>${{item.price}}元</p>
+							</div>
+						</div>
+					</div>
+					<div class="count">
+						<p>x1</p>
+					</div>
+				</div>
+			</div>
+			<div class="detail">
+				<div>共 {{product.length}} 件商品</div>
+				<div>{{memLevel}} 會員等級折扣: -429$</div>
+				<div>總計: $8151元</div>
+			</div>
+		</div>	
 	</div>
 </template>
 
@@ -148,7 +157,6 @@ export default {
 					color:$main_color;
 				}
 			}
-			
 			.paytetails-wrap{
 				display: flex;
 				flex-direction: column;
@@ -172,21 +180,54 @@ export default {
 		}
 		.list{
 			width: 100%;
-			height: 400px;
-			.items{
+			display: flex;
+			flex-direction: column;
+			.detail{
 				display: flex;
 				flex-direction: column;
+				gap: 5px;
+				align-self: flex-end;
+				text-align: right;
+			}
+			.items{
+				margin:20px 0;
+				display: flex;
+				flex-direction: column;
+				border-top: 1px solid $text_color;
+				border-bottom: 1px solid $text_color;
 				.item{
-				width: auto;
-				// display: flex;
-				// justify-content: flex-start;
-				img{
-					width: 150px;
-					height: 150px;
-				}
+					display: flex;
+					gap:5px;
+					justify-content: space-between;
+					align-items: center;
+					padding: 15px;
+					border-bottom: 1px solid $text_color;
+					&:last-child{
+						border: none;
+					}
+					.product{
+						display: flex;
+						gap: 10px;
+						img{
+							width: 150px;
+							height: 150px;
+						}
+						.prod-detail{
+							display: flex;
+							flex-direction: column;
+							gap:10px;
+							width:200px;
+							.spec{
+								display: flex;
+								justify-content: space-between;
+							}
+							:last-child{
+								text-align: right;
+							}
+						}
+					}
 				}
 			}
 		}
-		
 	}
 </style>
