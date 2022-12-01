@@ -104,7 +104,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
+	@import "@/assets/sass/main";
 .cover_Pic{
 	width: 100%;
 	// margin-top:60px ;
