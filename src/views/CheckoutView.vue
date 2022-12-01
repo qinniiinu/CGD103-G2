@@ -46,7 +46,8 @@
 		</div>
 		<div class="list">
 			<h2>購物車</h2>
-			<div class="items">
+			<div class="list-wrap">
+				<div class="items">
 				<div class="item" v-for="(item,index) in product" :key="item.id">
 					<div class="product">
 						<img :src="item.image" v-bind:alt="item.title">
@@ -63,11 +64,12 @@
 						<p>x1</p>
 					</div>
 				</div>
-			</div>
-			<div class="detail">
-				<div>共 {{product.length}} 件商品</div>
-				<div>{{memLevel}} 會員等級折扣: -429$</div>
-				<div>總計: $8151元</div>
+				</div>
+				<div class="detail">
+					<div>共 {{product.length}} 件商品</div>
+					<div>{{memLevel}} 會員等級折扣: -429$</div>
+					<div>總計: $8151元</div>
+				</div>
 			</div>
 		</div>	
 	</div>
@@ -131,15 +133,15 @@ export default {
 		margin-bottom: 20px;
 	}
 	input{
-		
 		height: 15px;
 	}
 	.checkout{
 		width: 1200px;
-		height: 1000px;
-		margin: auto;
+		height: 900px;
 		display: flex;
-		flex-direction: center;
+		justify-content: center;
+		margin: auto;
+		margin-top: 25px;
 		gap: 5%;
 		.paydetails{
 			display: flex;
@@ -189,40 +191,46 @@ export default {
 				align-self: flex-end;
 				text-align: right;
 			}
-			.items{
-				margin:20px 0;
+			.list-wrap{
 				display: flex;
 				flex-direction: column;
-				border-top: 1px solid $text_color;
-				border-bottom: 1px solid $text_color;
-				.item{
+				.items{
+					height:450px;
+					overflow-y: scroll;
+					margin:20px 0;
 					display: flex;
-					gap:5px;
-					justify-content: space-between;
-					align-items: center;
-					padding: 15px;
+					flex-direction: column;
+					border-top: 1px solid $text_color;
 					border-bottom: 1px solid $text_color;
-					&:last-child{
-						border: none;
-					}
-					.product{
+					.item{
 						display: flex;
-						gap: 10px;
-						img{
-							width: 150px;
-							height: 150px;
+						gap:5px;
+						justify-content: space-between;
+						align-items: center;
+						padding: 15px;
+						border-bottom: 1px solid $text_color;
+						&:last-child{
+							border: none;
 						}
-						.prod-detail{
+						.product{
 							display: flex;
-							flex-direction: column;
-							gap:10px;
-							width:200px;
-							.spec{
-								display: flex;
-								justify-content: space-between;
+							gap: 10px;
+							img{
+								width: 150px;
+								height: 150px;
 							}
-							:last-child{
-								text-align: right;
+							.prod-detail{
+								display: flex;
+								flex-direction: column;
+								gap:10px;
+								width:200px;
+								.spec{
+									display: flex;
+									justify-content: space-between;
+								}
+								:last-child{
+									text-align: right;
+								}
 							}
 						}
 					}
