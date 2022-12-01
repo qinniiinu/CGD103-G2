@@ -74,7 +74,7 @@
 
 		<StylistLook scardP="./stylist-2.jpg" stylistName="Molly" stylistInfo="擅長極簡風格,用簡單的單品,搭配出不一樣的風格"></StylistLook>
 	</div>
-
+	
 </template>
 
 <script>
@@ -531,6 +531,6 @@ export default {
 			max-width: 1200px;
     		// margin-top: 50px;
 			
-		}
+	}
 
 </style>
