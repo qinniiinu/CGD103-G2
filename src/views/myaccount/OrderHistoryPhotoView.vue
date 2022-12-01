@@ -24,72 +24,31 @@
 					</div>
 					
 					<div class="ord_history_box"><!-- 訂單記錄表單盒 -->
-					<li  class="item_num" ><!-- 訂單記錄列 -->
+					
+					
+						<li v-for="item in product" :key="item.id" class="item_num" >
 						<div class="item_num_row">
-							<div class="item_num_title">訂單編號： {{ord_num}}</div>
-							<h2>{{ord_condtion}}</h2>
+							<div class="item_num_title">訂單編號： {{item.ord_num}}</div>
+							<h2>{{item.ord_condtion}}</h2>
 						</div>
 
 						<div class="page_photo">
 							<div class="page_photo_box">
 								<div class="item_page_photo">
-								<img :src="img_link" alt="">
+								<img :src="item.img_link" alt="">
 							</div>
 							<div class="item_page_photo">
-								<img :src="img_link" alt="">
+								<img :src="item.img_link" alt="">
 							</div>
 							</div>
 							
 							<div class="item_money">
-								<p>共{{item_product}}件商品</p>
-								<h2>訂單金額 ${{sum_price}}</h2>
+								<p>共{{item.item_product}}件商品</p>
+								<h2>訂單金額 ${{item.sum_price}}</h2>
 							</div>
 						</div>
 					</li>
-					<li  class="item_num" ><!-- 訂單記錄列 -->
-						<div class="item_num_row">
-							<div class="item_num_title">訂單編號： {{ord_num}}</div>
-							<h2>{{ord_condtion}}</h2>
-						</div>
-
-						<div class="page_photo">
-							<div class="page_photo_box">
-								<div class="item_page_photo">
-								<img :src="img_link" alt="">
-							</div>
-							<div class="item_page_photo">
-								<img :src="img_link" alt="">
-							</div>
-							</div>
-							
-							<div class="item_money">
-								<p>共{{item_product}}件商品</p>
-								<h2>訂單金額 ${{sum_price}}</h2>
-							</div>
-						</div>
-					</li>
-					<li  class="item_num" ><!-- 訂單記錄列 -->
-						<div class="item_num_row">
-							<div class="item_num_title">訂單編號： {{ord_num}}</div>
-							<h2>{{ord_condtion}}</h2>
-						</div>
-
-						<div class="page_photo">
-							<div class="page_photo_box">
-								<div class="item_page_photo">
-								<img :src="img_link" alt="">
-							</div>
-							<div class="item_page_photo">
-								<img :src="img_link" alt="">
-							</div>
-							</div>
-							
-							<div class="item_money">
-								<p>共{{item_product}}件商品</p>
-								<h2>訂單金額 ${{sum_price}}</h2>
-							</div>
-						</div>
-					</li>
+					
 					
 					</div>
 
@@ -125,11 +84,34 @@ export default {
 	},
 	data() {
 		return {
-			ord_num:1201201,
-			ord_condtion:"已出貨",
-			img_link:"./style1.png",
-			item_product:2,
-			sum_price:8888,
+			product:[
+				{
+					id:1,
+					ord_num:1201201,
+			        ord_condtion:"已出貨",
+					img_link:"./style1.png",
+					item_product:2,
+			        sum_price:8888,
+				},
+				{
+					id:2,
+					ord_num:1201201,
+			        ord_condtion:"已出貨",
+					img_link:"./style1.png",
+					item_product:2,
+			        sum_price:8888,
+				},
+				{
+					id:3,
+					ord_num:1201201,
+			        ord_condtion:"已出貨",
+					img_link:"./style1.png",
+					item_product:2,
+			        sum_price:8888,
+				},
+			],
+		
+		
 
 		}
 	},
