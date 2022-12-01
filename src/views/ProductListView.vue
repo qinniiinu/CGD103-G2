@@ -18,6 +18,7 @@ export default {
     data() {
         return {
             fakeproduct: [],
+            
         };
     },
     methods: {
@@ -37,7 +38,14 @@ export default {
 </script>
 <template>
     <div class="product_list">
+        <router-link to="/productDetails"
+            ><button>產品內頁</button></router-link
+        >
         <ProductMenu />
+        <div class="left_right bestseller_box">
+            <img src="@/assets/product/bestseller_01.jpg" alt="" />
+            <img src="@/assets/product/bestseller_02.jpg" alt="" />
+        </div>
         <BestSeller />
         <div class="divider"></div>
         <div class="leftright">
@@ -65,8 +73,16 @@ export default {
 .product_list {
     max-width: $max-width;
     margin: auto;
-    .hashtag {
-        border: $line solid red;
+
+    .bestseller_box {
+        @include s() {
+            display: none;
+        }
+        @include m() {
+            & > img {
+                width: 50%;
+            }
+        }
     }
     .divider {
         width: 80%;
