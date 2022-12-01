@@ -1,16 +1,332 @@
 <template>
-	<div>
-        <h1>ChatView</h1>
-    </div>
-	<Footer></Footer>
+	<div class="chat_cover">
+		<img src="chat-cover.png" alt="">
+	</div>
+	<section>
+		<div class="trouble_part">
+			<h2>
+				你也有相同困擾嗎
+			</h2>
+			<div class="trouble_item" v-for="trouble of troubles" :key="trouble">
+				<p>{{trouble}}</p>
+			</div>
+		</div>
+
+	</section>
+	<section>
+		<div class="consult_part">
+			<h2>
+				風格諮詢
+			</h2>
+			<div class="consult_item"  v-for="(consultPic,index) in consultPics" :key="index">
+				<img :src="consultPic.src" alt="">
+				<div class="consult_content">
+					<h3 class="consult_title" >
+						{{consultTitle[index]}}
+					</h3>
+					<p class="consult_text">
+						{{consultText[index]}}
+					</p>
+					<div class="consult_tag">
+						<p >
+							{{consultTag[index]}}
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+	<section>
+		<h2 class="our_stylist_h2">
+			我們的造型師
+		</h2>
+		<div class="our_stylist">
+			
+			<h2>#Our Stylist</h2>
+			<h2 class="sec-h2">#Our Stylist</h2>
+			<div class="our_stylist_main">
+			<div class="our_stylist_pic" v-for="stylistPic of stylistPics" :key="stylistPic">
+				<img :src="stylistPic.src" alt="">
+			</div>
+		</div>
+	</div>
+	</section>
+	<div class="last_content">
+		<h2>
+			讓穿搭成為生活樂趣
+		</h2>
+		<p>
+			風格造型師來帶領你，學習穿搭技巧、儀態調整，也重新認識自己，找出適合自己的穿搭風格！
+		</p>
+		<Button content="諮詢造型師"></Button>
+	</div>
 </template>
 <script>
 import Footer from "@/components/Footer.vue";
+import Button from "@/components/Button.vue";
 
 export default {
 	name: "Chat",
 	components: {
 		Footer,
+		Button,
 	},
+	data() {
+    	return {
+			troubles:[
+				'想嘗試更多風格',
+				'不了解自己適合什麼',
+				'對自己的穿搭沒自信',
+				'想把單品穿搭成多組合',
+				'不想思考每天要穿什麼',
+				'想學穿搭不知道怎麼開始',
+				'不確定特定場合怎麼穿搭',
+				'想要更多靈感',
+			],
+			consultPics:[
+				{src:'/trouble_pic1.jpg'},
+				{src:'/trouble_pic2.jpg'},
+				{src:'/trouble_pic3.jpg'},
+				{src:'/trouble_pic4.jpg'},
+			],
+			consultText:[
+				'建立基本風格確實需要勇氣，同時也要對現今的自己有正確的接納與理解。除了自己的風格，也必須認識其他的品味。',
+				'當個人對服裝的喜好傾向與適合風格變得一致，衣服才能穿得長久，自然不會浪費，選購服裝時最好從版型及剪裁著手，先判斷這兩項元素是否適合自己；只要沒有問題，再確認材質是否得宜、顏色是否相襯即可。',
+				'我們雖然有必要建立基本風格，但無需誤以為現在的風格就代表全世界。除了自己的風格，也必須認識其他的品味，如此一來，當人生出現變化時，這些知識將有助於我們快速地重建嶄新的風格。',
+				'如何才能培養出鑑賞好物的能力？唯一的方法就是鍛鍊自己的五感，讓自己處於能帶來正面影響的環境，懂得鑑賞好物，身邊就不會再出現廉價的劣質品。',
+			],
+			consultTitle:[
+				'認識自己，了解喜好',
+				'什麼才叫做適合?',
+				'建立自己風格',
+				'日常練習',
+			],
+			stylistPics:[
+				{src:'./stylist-8.jpg'},
+				{src:'./stylist-4.jpg'},
+				{src:'./stylist-5.jpg'},
+				{src:'./stylist-6.jpg'},
+				{src:'./stylist-7.jpg'},
+				{src:'./stylist-3.jpg'},
+			],
+			consultTag:[
+				'SELF-RECOGNITION',
+				'SUIT YOURSELF',
+				'CREATE YOUR OWN STYLE',
+				'DAILY OUTFITS',
+			]
+		}
+	}
 };
 </script>
+<style lang="scss" scoped>
+	@import "@/assets/sass/main";
+
+	.chat_cover{
+		width: 100%;
+		height: 100vh;
+		img{
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+	.trouble_part{
+		
+		h2{
+			font-size:32px ;
+			color: $title_color ;
+			font-weight: 700;
+			margin: 50px 0;
+			text-align: center;
+		}
+		.trouble_item{
+			p{
+				// color: $text_color ;
+				font-size: 18px;
+				padding: 20px;
+				border-radius:50% ;
+				border: 2px solid $main_color;
+				width: fit-content;
+			}
+		}
+	}
+	.consult_part{
+	
+		background-color: $second_color;
+		h2{
+			font-size:32px ;
+			color: $title_color ;
+			font-weight: 700;
+			margin: 50px 0;
+			text-align: center;
+			padding-top: 30px;
+		}
+		.consult_item:nth-child(2n-1){
+			.consult_content{
+				
+				order:-1;
+				h3{
+					text-align: end;
+				}
+				p{
+					text-align: end;
+				}
+				.consult_tag{
+					// color:transparent;
+					// -webkit-text-stroke: 2px $main_color;;
+					// font-size: 48px;
+					font-weight: 900;
+					text-align: center;
+				}
+			}
+		}	
+		.consult_item:last-child{
+			padding-bottom: 50px;
+		}		
+		.consult_item{
+			width: 80%;
+			margin: 50px auto;
+			max-width: 1200px;
+			display: flex;
+			gap: 20px;
+			img{
+				width: 45%;
+			}
+			.consult_content{
+				width: 55%;
+				display: flex;
+				flex-direction: column;
+
+				h3{
+					font-size:24px ;
+					font-weight: 700;
+					color: $title_color;
+					line-height: 46px;
+					flex-grow:1 ;
+
+				}
+				p{
+					font-size: 16px;
+					color:$text_color;
+					line-height: 24px;
+					flex-grow:1 ;
+				}
+				.consult_tag{
+					display: flex;
+					flex-grow:8;
+					align-items: center;
+					p{
+						display: block;
+						color:transparent;
+						-webkit-text-stroke: 2px $main_color;;
+						font-size: 48px;
+						font-weight: 900;
+						text-align: center;
+						width: fit-content;
+						margin: auto;
+					}
+					// line-height: 96px;
+				}
+			}
+		}
+		
+	}
+	.our_stylist_h2{
+			font-size:32px ;
+			color: $title_color ;
+			font-weight: 700;
+			line-height: 32px;
+			text-align: center;
+			margin-bottom: 30px;
+		}
+	.our_stylist{
+		display: flex;
+		flex-direction: column;
+		margin: auto;
+		position: relative;
+		margin-bottom: 30px;
+		
+		
+		@include m{
+			flex-direction: row;
+			width: 85%;
+			margin: auto;
+			margin-bottom: 30px;
+		}
+		h2{
+			position:absolute;
+			top: 12%;
+			left: 0;
+			right: 0;
+			// bottom: 0;
+			margin: auto;
+			font-weight: 900;
+			font-size: 48px;
+			font-style: italic;
+			width: fit-content ;
+			height: fit-content;
+
+			@include m{
+				left: 0;
+				top: 0;
+				bottom: 0;
+			}
+		
+		}
+
+		.sec-h2{
+			// bottom: 0;
+			top: 70%;
+
+			@include m{
+				display: none;
+			}
+			
+		}
+
+		.our_stylist_main{
+			display: flex;
+			flex-wrap:wrap;
+			@include m{
+				width: 100%;
+				// gap: 10px;
+			}
+			
+			
+			.our_stylist_pic{
+				@include m{
+					width: 33%;
+
+				}
+				width: 50%;
+				img{
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					object-position: center;
+				}
+			}
+		}
+	}
+	.last_content{
+		margin: 50px 0;
+		h2{
+			font-size:32px ;
+			color: $title_color ;
+			font-weight: 700;
+			line-height: 64px;
+		}
+		p{
+			font-size: 16px;
+			color:$text_color;
+			line-height: 30px;
+		}
+		Button{
+			margin-top:50px ;
+		}
+		text-align: center;
+	}
+	
+</style>

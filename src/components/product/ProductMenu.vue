@@ -14,11 +14,10 @@
                 <li>男裝</li>
             </ul>
             <div class="colthingList_box" v-show="openMain">
-                <div class="clothingList"><label for="b1">上身</label></div>
-                <div class="clothingList"><label for="b2">下身</label></div>
-                <div class="clothingList"><label for="b3">套裝</label></div>
-                <div class="clothingList"><label for="b4">鞋款</label></div>
-                <div class="clothingList"><label for="b5">配件</label></div>
+                <label for="b1"><div class="clothingList">上身</div></label>
+                <label for="b2"><div class="clothingList">下身</div></label>
+                <label for="b4"><div class="clothingList">鞋款</div></label>
+                <label for="b5"><div class="clothingList">配件</div></label>
             </div>
             <div class="clothingList_item_boxOutside">
                 <ul
@@ -29,7 +28,6 @@
                     <li class="clothingList_item">短袖</li>
                     <li class="clothingList_item">長袖</li>
                     <li class="clothingList_item">外套</li>
-                    <li class="clothingList_item">背心</li>
                 </ul>
                 <ul
                     class="clothingList_item_box"
@@ -39,15 +37,6 @@
                     <li class="clothingList_item">長褲</li>
                     <li class="clothingList_item">短褲</li>
                     <li class="clothingList_item">裙子</li>
-                </ul>
-                <ul
-                    class="clothingList_item_box"
-                    id="top_down"
-                    v-show="picked == 'b3'"
-                >
-                    <li class="clothingList_item">洋裝</li>
-                    <li class="clothingList_item">連身褲裝</li>
-                    <li class="clothingList_item">兩件式</li>
                 </ul>
                 <ul
                     class="clothingList_item_box"
@@ -64,11 +53,7 @@
                     v-show="picked == 'b5'"
                 >
                     <li class="clothingList_item">包款</li>
-                    <li class="clothingList_item">圍巾手套</li>
-                    <li class="clothingList_item">帽子</li>
-                    <li class="clothingList_item">皮帶</li>
                     <li class="clothingList_item">配件</li>
-                    <li class="clothingList_item">襪子</li>
                 </ul>
             </div>
         </div>
@@ -130,16 +115,19 @@ input {
         line-height: 30px;
         color: $title_color;
         display: flex;
-
-        div.clothingList {
+        label {
+            display: inline-block;
+            width: 25%;
             border: $line solid $title_color;
             border-top-width: 0;
             box-sizing: border-box;
-            text-align: center;
-            width: 20%;
-        }
-        div.clothingList + div.clothingList {
             border-left-width: 0;
+            &:first-child {
+                border-left: $line solid $title_color;
+            }
+            div.clothingList {
+                text-align: center;
+            }
         }
     }
     .clothingList_item_boxOutside {
@@ -156,10 +144,14 @@ input {
             .clothingList_item {
                 text-align: center;
                 display: inline-block;
+                box-sizing: border-box;
+                & + .clothingList_item {
+                    border-left: $line solid $title_color;
+                }
             }
         }
         #top > .clothingList_item {
-            width: 25%;
+            width: 33.333333%;
         }
         #down > .clothingList_item,
         #top_down > .clothingList_item,
@@ -167,7 +159,7 @@ input {
             width: 33.333333%;
         }
         #others > .clothingList_item {
-            width: (100% / 6);
+            width: (100% / 2);
         }
     }
 }
