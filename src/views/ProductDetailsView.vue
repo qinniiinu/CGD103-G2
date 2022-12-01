@@ -2,45 +2,66 @@
 const testproduct = {
     product_id: "1",
     product_name: "上衣A ",
-    hashtag: "",
+    hashtag: "#AAA,#BBB,#CCC,#DDD",
     unit_price: "996",
     product_state: "1",
     product_maintype: "上衣",
     product_type: "",
-    product_pic: "test_01_1.jpg,test_01_2.jpg",
+    product_pic: "test_01_1.jpg,test_01_2.jpg,test_01_3.jpg,test_01_2.jpg",
     style_type: "typeA,typeB",
     body_type: "",
     product_gender: "F",
-    product_color: "#000000",
+    product_color: "black,red",
     product_size: "XS,S,M,L,XL",
 };
 import ProductMenu from "@/components/product/ProductMenu.vue";
 import ProductCard from "@/components/product/ProductCard.vue";
 import HashTag from "@/components/product/HashTag.vue";
-import Button from "@/components/Button.vue";
 export default {
     name: "Product",
     components: {
         ProductMenu,
         ProductCard,
         HashTag,
-        Button,
     },
     data() {
         return {
-            fakeproduct: [],
             product_details: testproduct,
             picList: testproduct.product_pic.split(","),
-            number: 0,
-            bigPicture: testproduct.product_pic.split(",")[0],
+            color: testproduct.product_color.split(","),
             size: testproduct.product_size.split(","),
+            hashTag: testproduct.hashtag.split(","),
+            bigPicture: testproduct.product_pic.split(",")[0],
+            pickedColor: "",
+            pickedSize: "",
+            colorClick: [false, false],
+            number: 1,
+            cartList: [],
         };
     },
     computed: {},
     methods: {
+        check(x) {
+            if (this.pickedColor == "") {
+                this.colorClick[x] = true;
+            } else {
+                this.colorClick.forEach((element) => {
+                    return element == true ? false : true;
+                });
+            }
+        },
         changeBicPicture(X) {
             console.log(X);
             this.bigPicture = X;
+        },
+        addCart() {
+            // `["product_id":"${this.product_details.product_id}","color":"${this.pickedColor}","size:"${this.pickedSize}","number":"${this.number}"]`
+        },
+        reduce() {
+            this.number = this.number > 1 ? this.number - 1 : 1;
+        },
+        plus() {
+            this.number++;
         },
     },
     // methods: {
@@ -83,43 +104,68 @@ export default {
                     <p class="price">NT${{ product_details.unit_price }}</p>
                     <div class="cellflex">
                         <div class="color_box">
-                            <p class="color">顏色</p>
-                            <div
-                                class="circle"
-                                :style="{ background: product_color }"
-                            ></div>
+                            <p class="color">顏色{{ pickedColor }}</p>
+                            <label
+                                for="e"
+                                v-for="(e, i) in color"
+                                :key="i"
+                                @click="check(i)"
+                            >
+                                <div
+                                    class="circle"
+                                    :style="{ background: e }"
+                                    :class="{
+                                        circleoutline: colorClick[i],
+                                    }"
+                                >
+                                    <input
+                                        type="radio"
+                                        :id="e"
+                                        :value="e"
+                                        v-model="pickedColor"
+                                    />
+                                </div>
+                            </label>
                         </div>
                         <div class="size_box">
                             <p class="size">尺寸</p>
-                            <label for=""
-                                ><i
-                                    v-for="(e, i) in size"
-                                    :key="i"
-                                    @click="sizeClick(e)"
-                                >
-                                    <input type="radio" :id="e" />{{ e }}</i
-                                ></label
+                            <i v-for="(e, i) in size" :key="i">
+                                <label :for="e">
+                                    <input
+                                        type="radio"
+                                        :id="e"
+                                        :value="e"
+                                        v-model="pickedSize"
+                                    />{{ e }}
+                                </label></i
                             >
                         </div>
                     </div>
                     <div class="number_box">
                         <p class="number">數量</p>
                         <p class="number">
-                            <input type="button" name="mines" value="-" />
+                            <button name="mines" value="-" @click="reduce()">
+                                <font-awesome-icon icon="fa-solid fa-minus" />
+                            </button>
                             <span>{{ number }}</span>
-                            <input type="button" name="plus" value="+" />
+                            <button name="plus" value="+" @click="plus()">
+                                <font-awesome-icon icon="fa-solid fa-plus" />
+                            </button>
                         </p>
                     </div>
                     <div class="shop_buttonBox">
-                        <button>加入購物車</button>
-                        <button>直接購買</button>
+                        <button class="btn_s" @click="addCart">
+                            加入購物車
+                        </button>
+                        <button class="btn_l">直接購買</button>
                     </div>
                 </div>
 
-                <HashTag></HashTag>
+                <i v-for="(e, i) in hashTag" :key="i">{{ e }}</i>
             </div>
         </div>
     </div>
+
     <div class="dressingGuide">
         <h2>穿搭指南</h2>
         <div class="leftright">
@@ -174,11 +220,13 @@ export default {
             }
             .leftDown {
                 display: flex;
-                justify-content: space-between;
-                border: 1px solid red;
+                justify-content: flex-start;
                 width: 100%;
                 .smallPic {
-                    width: 20%;
+                    width: 25%;
+                    padding: -10px;
+                    margin: 10px;
+                    box-sizing: border-box;
                     aspect-ratio: 1/1;
                     img {
                         width: 100%;
@@ -220,6 +268,9 @@ export default {
                 }
             }
             .cellflex {
+                input {
+                    display: none;
+                }
                 @include s() {
                     display: flex;
                     gap: 20px;
@@ -241,37 +292,58 @@ export default {
                     font-size: 18px;
                 }
             }
-            .circle {
-                aspect-ratio: 1 /1;
-                border-radius: 50%;
-                margin: 10px;
-                background-color: #003;
-                display: inline-block;
-                @include s() {
-                    width: 20px;
+            .color_box {
+                padding: 25px 0;
+
+                label {
+                    display: inline-block;
+                    .circle {
+                        aspect-ratio: 1 /1;
+                        border-radius: 50%;
+                        margin: 10px;
+                        background-color: #003;
+
+                        @include s() {
+                            width: 20px;
+                        }
+                        @include m() {
+                            width: 24px;
+                        }
+                    }
+                    .circleoutline {
+                        border: $line solid green;
+                    }
                 }
-                @include m() {
-                    width: 24px;
+            }
+            .size_box {
+                padding: 25px 0;
+                i {
+                    display: inline-block;
+                    border: $line solid $title_color;
+                    width: 20px;
+                    text-align: center;
+                    margin: 10px;
+                    color: $title_color;
+                    padding: 5px;
+                    @include s() {
+                    }
                 }
             }
             .number_box {
                 padding: 25px 0;
-            }
-            .size {
-                @include s() {
+                button {
+                    display: inline-block;
+                    width: 30px;
+                    line-height: 20px;
+                    font-size: 18px;
+                    background-color: $main_color;
+                    color: #fff;
+                    margin: 10px;
+                    padding: 5px;
+                    border-width: 0;
                 }
-                @include m() {
-                }
             }
-            i {
-                display: inline-block;
-                border: $line solid $title_color;
-                width: 20px;
 
-                margin: 5px;
-                text-align: center;
-                color: $title_color;
-            }
             .shop_buttonBox {
                 @include s() {
                 }

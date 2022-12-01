@@ -30,6 +30,7 @@ import {
 	faClipboard,
 	faPlus,
 	faAngleRight,
+	faMinus
 
 
 
@@ -52,6 +53,7 @@ library.add(
 	faClipboard,
 	faPlus,
 	faAngleRight,
+	faMinus
 
 );
 
