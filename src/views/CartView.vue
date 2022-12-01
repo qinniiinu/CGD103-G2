@@ -315,9 +315,10 @@ h2{
 		.detail{
 			text-align: right;
 			margin-top: 20px;
-			div{
-				margin-bottom: 10px;
-			}
+			display: flex;
+			flex-direction: column;
+			gap:10px;
+			margin-bottom: 20px;
 		}
 		.payment{
 			display: flex;
