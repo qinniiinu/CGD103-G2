@@ -65,13 +65,22 @@
 <script>
 import Footer from "@/components/Footer.vue";
 import Button from "@/components/Button.vue";
+import { gsap } from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 export default {
 	name: "Chat",
 	components: {
 		Footer,
 		Button,
+		gsap,
+		ScrollTrigger,
+
 	},
+
+	
+
 	data() {
     	return {
 			troubles:[
@@ -79,10 +88,14 @@ export default {
 				'不了解自己適合什麼',
 				'對自己的穿搭沒自信',
 				'想把單品穿搭成多組合',
+				'不敢嘗試新風格',
 				'不想思考每天要穿什麼',
 				'想學穿搭不知道怎麼開始',
 				'不確定特定場合怎麼穿搭',
-				'想要更多靈感',
+				'買不到適合自己的衣服',
+				'想要更多穿搭靈感',
+				'很怕穿不適合的衣服',
+				'不知道要買什麼衣服',
 			],
 			consultPics:[
 				{src:'/trouble_pic1.jpg'},
@@ -117,8 +130,146 @@ export default {
 				'DAILY OUTFITS',
 			]
 		}
-	}
+	},
+	mounted(){
+	
+
+		gsap.to('.trouble_item:nth-child(2)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(2)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		})
+		
+		gsap.to('.trouble_item:nth-child(3)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(3)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		})
+		gsap.to('.trouble_item:nth-child(4)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(4)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		})
+		gsap.to('.trouble_item:nth-child(5)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(5)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		})
+		gsap.to('.trouble_item:nth-child(6)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(6)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		}),
+		gsap.to('.trouble_item:nth-child(7)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(7)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		})
+		gsap.to('.trouble_item:nth-child(8)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(8)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		}),
+		gsap.to('.trouble_item:nth-child(9)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(9)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		})
+		gsap.to('.trouble_item:nth-child(10)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(6)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		})
+		gsap.to('.trouble_item:nth-child(11)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(5)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		})
+		gsap.to('.trouble_item:nth-child(12)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(4)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		})
+		gsap.to('.trouble_item:nth-child(13)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(3)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		})
+	},
 };
+
 </script>
 <style lang="scss" scoped>
 	@import "@/assets/sass/main";
@@ -133,24 +284,136 @@ export default {
 		}
 	}
 	.trouble_part{
-		
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-evenly;
+		@include m{
+			display: block;
+			position: relative;
+			height: 85vh;
+		}
+		height: 100vh;
 		h2{
 			font-size:32px ;
 			color: $title_color ;
 			font-weight: 700;
-			margin: 50px 0;
+			margin: 50px ;
 			text-align: center;
 		}
 		.trouble_item{
-			p{
+			
+				transform: scale(0);
 				// color: $text_color ;
-				font-size: 18px;
+				font-size: 16px;
 				padding: 20px;
 				border-radius:50% ;
 				border: 2px solid $main_color;
 				width: fit-content;
+				font-weight: 700;
+				@include m{
+					display:block;
+					position:absolute;
+					padding: 30px;
+					font-size: 18px;
+				}
+		
+		}
+		
+		.trouble_item:nth-child(2) {
+			
+			@include m{
+				top: 23%;
+				left: 10%;
 			}
 		}
+		.trouble_item:nth-child(3){
+			
+			@include m{
+				top: 15%;
+				left: 30%;
+			}
+		}
+		.trouble_item:nth-child(4){
+			
+			@include m{
+				top: 20%;
+				left: 50%;
+			}
+		}
+		.trouble_item:nth-child(5){
+			top:40% ;
+			left:60% ;
+			@include m{
+				top: 12%;
+				left: 80%;
+			}
+		}
+		.trouble_item:nth-child(6){
+			top:80% ;
+			left:0 ;
+			@include m{
+				top: 55%;
+				left: 3%;
+			}
+		}
+		.trouble_item:nth-child(7){
+			top:80% ;
+			left:0 ;
+			@include m{
+				top: 40%;
+				left: 23%;
+			}
+		}
+		.trouble_item:nth-child(8){
+			
+			@include m{
+			top: 55%;
+			left: 45%;
+			}
+		}
+		.trouble_item:nth-child(9){
+			
+			@include m{
+			top: 35%;
+			left: 70%;
+			}
+		}
+		.trouble_item:nth-child(10){
+			top:80% ;
+			left:0 ;
+			@include m{
+				top: 80%;
+				left: 8%;
+			}
+			
+		}
+		.trouble_item:nth-child(11){
+		
+			@include m{
+			top: 70%;
+			left: 28%;
+			}
+		}
+		.trouble_item:nth-child(12){
+			
+			@include m{
+			top: 85%;
+			left: 58%;
+			}
+		}
+		.trouble_item:nth-child(13){
+			
+			@include m{
+			top: 65%;
+			left: 77%;
+			}
+		}
+		.trouble_item:nth-child(3n) {
+			background-color: $main_color;
+			color:$second_color;
+		}
+
 	}
 	.consult_part{
 	
@@ -165,14 +428,16 @@ export default {
 		}
 		.consult_item:nth-child(2n-1){
 			.consult_content{
-				
-				order:-1;
-				h3{
+				@include m{
+					order:-1;
+					h3{
 					text-align: end;
 				}
 				p{
 					text-align: end;
 				}
+				}
+				
 				.consult_tag{
 					// color:transparent;
 					// -webkit-text-stroke: 2px $main_color;;
@@ -190,12 +455,25 @@ export default {
 			margin: 50px auto;
 			max-width: 1200px;
 			display: flex;
+			align-items: center;
+			flex-direction: column;
+			@include m{
+				flex-direction: row;
+			}
 			gap: 20px;
 			img{
-				width: 45%;
+				width: 80%;
+				@include m{
+					width: 45%;
+				}
+				
 			}
 			.consult_content{
-				width: 55%;
+
+				@include m{
+					width: 55%;
+				}
+				width: 80%;
 				display: flex;
 				flex-direction: column;
 
@@ -221,11 +499,23 @@ export default {
 						display: block;
 						color:transparent;
 						-webkit-text-stroke: 2px $main_color;;
-						font-size: 48px;
+						font-size: 40px;
+						line-height: 60px;
+						@include m{
+							font-size: 46px;
+							line-height: 70px;
+							text-align: center;
+						}
+						@include l{
+							font-size: 56px;
+							line-height: 81px;
+							text-align: center;
+						}
 						font-weight: 900;
-						text-align: center;
+						text-align: start;
 						width: fit-content;
 						margin: auto;
+						text-shadow: 5px 4px #fff;
 					}
 					// line-height: 96px;
 				}
