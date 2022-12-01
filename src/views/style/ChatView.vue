@@ -65,13 +65,22 @@
 <script>
 import Footer from "@/components/Footer.vue";
 import Button from "@/components/Button.vue";
+import { gsap } from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 export default {
 	name: "Chat",
 	components: {
 		Footer,
 		Button,
+		gsap,
+		ScrollTrigger,
+
 	},
+
+	
+
 	data() {
     	return {
 			troubles:[
@@ -121,8 +130,146 @@ export default {
 				'DAILY OUTFITS',
 			]
 		}
-	}
+	},
+	mounted(){
+	
+
+		gsap.to('.trouble_item:nth-child(2)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(2)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		})
+		
+		gsap.to('.trouble_item:nth-child(3)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(3)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		})
+		gsap.to('.trouble_item:nth-child(4)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(4)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		})
+		gsap.to('.trouble_item:nth-child(5)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(5)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		})
+		gsap.to('.trouble_item:nth-child(6)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(6)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		}),
+		gsap.to('.trouble_item:nth-child(7)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(7)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		})
+		gsap.to('.trouble_item:nth-child(8)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(8)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		}),
+		gsap.to('.trouble_item:nth-child(9)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(9)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		})
+		gsap.to('.trouble_item:nth-child(10)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(6)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		})
+		gsap.to('.trouble_item:nth-child(11)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(5)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		})
+		gsap.to('.trouble_item:nth-child(12)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(4)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		})
+		gsap.to('.trouble_item:nth-child(13)',{
+			scale:1,
+			scrollTrigger: {
+			trigger: '.trouble_item:nth-child(3)', 
+			start: "top bottom ",  
+			end: "bottom center", 
+			
+			scrub: true, 
+			markers:false,
+			} 
+		})
+	},
 };
+
 </script>
 <style lang="scss" scoped>
 	@import "@/assets/sass/main";
@@ -144,7 +291,7 @@ export default {
 		@include m{
 			display: block;
 			position: relative;
-			height: 80vh;
+			height: 85vh;
 		}
 		height: 100vh;
 		h2{
@@ -156,7 +303,7 @@ export default {
 		}
 		.trouble_item{
 			
-				
+				transform: scale(0);
 				// color: $text_color ;
 				font-size: 16px;
 				padding: 20px;
