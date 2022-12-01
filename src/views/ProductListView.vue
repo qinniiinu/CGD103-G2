@@ -15,6 +15,24 @@ export default {
         ProductSideMenu,
         HashTag,
     },
+    data() {
+        return {
+            fakeproduct: [],
+        };
+    },
+    methods: {
+        getResource() {
+            fetch("data/fakeproduct.json")
+                .then((res) => res.json())
+                .then((json) => (this.fakeproduct = json));
+        },
+        cut(x) {
+            return x.split(",")[0];
+        },
+    },
+    created() {
+        this.getResource();
+    },
 };
 </script>
 <template>
@@ -22,17 +40,22 @@ export default {
         <ProductMenu />
         <BestSeller />
         <div class="divider"></div>
-        <SearchBar />
         <div class="leftright">
             <div class="Sidebar">
                 <ProductSideMenu></ProductSideMenu>
                 <HashTag></HashTag>
             </div>
-            <div class="productCard_box">
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
+            <div>
+                <SearchBar />
+                <div class="productCard_box">
+                    <ProductCard
+                        :title="e.product_name"
+                        :price="e.unit_price"
+                        :imgURL="cut(e.product_pic)"
+                        v-for="e in fakeproduct"
+                        :key="e.product_id"
+                    />
+                </div>
             </div>
         </div>
     </div>
