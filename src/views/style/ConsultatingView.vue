@@ -1,6 +1,6 @@
 <template>
 	<div class="step">
-		<p v-for="step of steps" :key="step">
+		<p :class="['step-item', {stepPosition:setStep === step}]" v-for="(step,index) of steps" :key="index">
 			{{step}}
 		</p>
 	</div>
@@ -10,7 +10,7 @@
 			<p>選擇想諮詢的問題，至多三項</p>
 		</div>
 		<div class="consultqa-btn">
-			<div class="consultqa-btn-item" v-for="(qaBtn,index) of qaBtns" :key="index">
+			<div :class="['consultqa-btn-item',{checked:checkBtn}]" v-for="(qaBtn,index) of qaBtns" :key="index" @click="checkBtn==qaBtn">
 				<p>{{qaBtn}}</p>
 			</div>
 		</div>
@@ -23,7 +23,8 @@
 			<textarea class="consultqa-textarea">
 
 			</textarea>
-			<Button content="下一步"></Button>
+			<Button content="下一步" @click="changeStep()"></Button>
+			
 		</div>
 	</div>
 
@@ -52,8 +53,19 @@ export default {
 				'不確定特定場合怎麼穿搭',
 				'想嘗試更多風格',
 			],
+			setStep:'',
+			checkBtn:'',
+		}
+	},
+	mounted () {
+		this.setStep=this.steps[0] 
+	},
+	methods:{
+		changeStep(){
+			this.setStep=this.steps[2] 
 		}
 	}
+
 };
 </script>
 <style lang="scss" scoped>
@@ -65,10 +77,11 @@ export default {
 
 			padding: 20px;
 			border-radius: 50%;
-			background-color:$main_color;
-			color: $second_color;
+			background-color:transparent;
+			color: $main_color;
 			font-weight: 700;
 			font-size: 24px;
+			border: 2px solid $main_color;
 		}
 		p:nth-child(2n){
 			border-radius: 0%;
@@ -76,6 +89,15 @@ export default {
 			color: $main_color;
 			font-size: 20px;
 			font-weight: 400;
+			border: 0px;
+		}
+		.stepPosition{
+			// padding: 20px;
+			// border-radius: 50%;
+			background-color:$main_color;
+			color: $second_color;
+			// font-weight: 700;
+			// font-size: 24px;
 		}
 	}
 	.consultqa{
@@ -100,8 +122,9 @@ export default {
 			flex-wrap: wrap;
 			justify-content: space-evenly;
 			margin:50px auto;
+			
 			.consultqa-btn-item{
-				p{
+				
 					padding: 20px 10px;
 					border: 2px solid $main-color;
 					font-size:18px ;
@@ -111,7 +134,11 @@ export default {
 					display: inline-block;
 					margin:20px 10px;
 					border-radius: 5px;
-				}
+				
+			}
+			.checked{
+				background-color: $main_color;
+				color: $second_color;
 			}
 		}
 		.consultqa-input{
