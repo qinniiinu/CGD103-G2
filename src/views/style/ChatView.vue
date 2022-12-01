@@ -226,6 +226,7 @@ export default {
 						text-align: center;
 						width: fit-content;
 						margin: auto;
+						line-height: 96px;
 					}
 					// line-height: 96px;
 				}
