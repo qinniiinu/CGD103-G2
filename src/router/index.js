@@ -48,6 +48,11 @@ const routes = [
 		component: () => import("../views/CheckoutView.vue"),
 	},
 	{
+		path: "/checkout1",
+		name: "checkout1",
+		component: () => import("../views/Checkout1View.vue"),
+	},
+	{
 		path: "/fittingroom",
 		name: "fittingroom",
 		component: () => import("../views/FittingRoomView.vue"),
@@ -77,63 +82,7 @@ const routes = [
 		name: "weeklywear",
 		component: () => import("../views/WeeklyWearView.vue"),
 	},
-	// ------------後台區------------
-	{
-		path: "/OperationMgnt",
-		name: "OperationMgnt",
-		component: () => import("../views/back_end/OperationMgmtView.vue"),
-	},
-	{
-		path: "/MemberMgmt",
-		name: "MemberMgmt",
-		component: () => import("../views/back_end/MemberMgmtView.vue"),
-	},
-	{
-		path: "/CommodityMgnt",
-		name: "CommodityMgnt",
-		component: () => import("../views/back_end/CommodityMgntView.vue"),
-	},
-	{
-		path: "/SubscriptionMgmt",
-		name: "SubscriptionMgmt",
-		component: () => import("../views/back_end/SubscriptionMgmtView.vue"),
-	},
-	{
-		path: "/StylistMgmt",
-		name: "StylistMgmt",
-		component: () => import("../views/back_end/StylistMgmtView.vue"),
-	},
-	{
-		path: "/OneweekDressing",
-		name: "OneweekDressing",
-		component: () => import("../views/back_end/OneweekDressingMgntView.vue"),
-	},
-	{
-		path: "/ClothingMatchMgnt",
-		name: "ClothingMatchMgnt",
-		component: () => import("../views/back_end/ClothingMatchMgntView.vue"),
-	},
-	{
-		path: "/OrderMgnt",
-		name: "OrderMgnt",
-		component: () => import("../views/back_end/OrderMgntView.vue"),
-	},
-	{
-		path: "/AppointmentMgnt",
-		name: "AppointmentMgnt",
-		component: () => import("../views/back_end/AppointmentMgntView.vue"),
-	},
-	{
-		path: "/StaffMgnt",
-		name: "StaffMgnt",
-		component: () => import("../views/back_end/StaffMgntView.vue"),
-	},
-	{
-		path: "/ClientMgmt",
-		name: "ClientMgmt",
-		component: () => import("../views/back_end/ClientMgmtView.vue"),
-	},
-	// ------------後台區 end------------
+	
 
 	// ----------myaccount START----------
 	{
