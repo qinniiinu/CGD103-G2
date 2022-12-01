@@ -1,5 +1,22 @@
 <template>
 	<div class="checkout">
+		<div class="list">
+			<h2>購物車</h2>
+			<div class="items">
+				<div class="item" v-for="(item,index) in product" :key="item.id">
+					<!-- 產品圖 -->
+					<img :src="item.image" v-bind:alt="item.title">
+					<!-- 產品名稱 -->
+					<p>{{item.title}}</p>
+					<!-- 產品顏色 -->
+					<p>{{item.color}}</p>
+					<!-- 產品尺寸 -->
+					<p>{{item.size}}</p>
+					<!-- 產品單價 -->
+					<p>{{item.price}}元</p>
+				</div>
+			</div>
+		</div>
 		<div class="paydetails">
 			<h2>結帳</h2>
 			<div class="paytetails-wrap">
@@ -25,14 +42,14 @@
 				<div class="receiver">
 					<h4>收件人資訊</h4>
 					<p>姓名</p>
-					<input class="mem_name" type="text">
+					<input class="mem_name" type="text" v-model="mem_name1">
 					<p>連絡電話</p>
-					<input class="phone" type="text">
+					<input class="phone" type="text" v-model="phone1">
 					<p>電子信箱</p>
-					<input class="email" type="text">
+					<input class="email" type="text" v-model="mem_mail1">
 					<p>配送地址</p>
-					<input class="receive-address">
-					<label class="same" for="same"><input type="checkbox" id="same" >同購買人資訊</label>
+					<input class="receive-address" v-model="address1">
+					<label class="same" for="same"><input type="checkbox" id="same" name="same"  @click="check()">同購買人資訊</label>
 				</div>
 				<div class="payment">
 					<h4>付款方式</h4>
@@ -44,39 +61,13 @@
 			</div>
 			<button>完成訂購</button>
 		</div>
-		<div class="list">
-			<h2>購物車</h2>
-			<div class="items">
-				<div class="item" v-for="(item,index) in product" :key="item.id">
-					<div class="product">
-						<img :src="item.image" v-bind:alt="item.title">
-						<div class="prod-detail">
-							<p>{{item.title}}</p>
-							<div class="spec">
-								<p>{{item.color}}</p>
-								<p>{{item.size}}</p>
-								<p>${{item.price}}元</p>
-							</div>
-						</div>
-					</div>
-					<div class="count">
-						<p>x1</p>
-					</div>
-				</div>
-			</div>
-			<div class="detail">
-				<div>共 {{product.length}} 件商品</div>
-				<div>{{memLevel}} 會員等級折扣: -429$</div>
-				<div>總計: $8151元</div>
-			</div>
-		</div>	
 	</div>
 </template>
 
 <script>
 
 export default {
-	name: "Product",
+	name: "checkout1",
 	components: {
 	},
 	data(){
@@ -112,7 +103,12 @@ export default {
 			mem_name:"王小明",
 			phone:"0912345678",
 			mem_mail:"bj4@gmail.com",
-			address:"320桃園市中壢區復興路46號9樓"
+			address:"320桃園市中壢區復興路46號9樓",
+			// 收件人資訊
+			mem_name1:"",
+			phone1:"",
+			mem_mail1:"",
+			address1:""
 		}
 	},
 	created(){
@@ -120,7 +116,13 @@ export default {
 	computed:{
 	},
 	methods:{
-		
+		check(){
+			this.mem_name1 = this.mem_name;
+			this.phone1 = this.phone;
+			this.mem_mail1 = this.mem_mail;
+			this.address1 = this.address;
+			console.log("mem_name1",this.mem_name1);
+		}
 	}
 };
 </script>
@@ -157,6 +159,7 @@ export default {
 					color:$main_color;
 				}
 			}
+			
 			.paytetails-wrap{
 				display: flex;
 				flex-direction: column;
@@ -180,54 +183,21 @@ export default {
 		}
 		.list{
 			width: 100%;
-			display: flex;
-			flex-direction: column;
-			.detail{
-				display: flex;
-				flex-direction: column;
-				gap: 5px;
-				align-self: flex-end;
-				text-align: right;
-			}
+			height: 400px;
 			.items{
-				margin:20px 0;
 				display: flex;
 				flex-direction: column;
-				border-top: 1px solid $text_color;
-				border-bottom: 1px solid $text_color;
 				.item{
-					display: flex;
-					gap:5px;
-					justify-content: space-between;
-					align-items: center;
-					padding: 15px;
-					border-bottom: 1px solid $text_color;
-					&:last-child{
-						border: none;
-					}
-					.product{
-						display: flex;
-						gap: 10px;
-						img{
-							width: 150px;
-							height: 150px;
-						}
-						.prod-detail{
-							display: flex;
-							flex-direction: column;
-							gap:10px;
-							width:200px;
-							.spec{
-								display: flex;
-								justify-content: space-between;
-							}
-							:last-child{
-								text-align: right;
-							}
-						}
-					}
+				width: auto;
+				// display: flex;
+				// justify-content: flex-start;
+				img{
+					width: 150px;
+					height: 150px;
+				}
 				}
 			}
 		}
+		
 	}
 </style>
