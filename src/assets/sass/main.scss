@@ -57,3 +57,58 @@ body {
 .left_right {
 	display: flex;
 }
+
+.btn_s {
+	border: $line solid $main_color;
+	color: white;
+	background-color: $main_color ;
+	box-sizing: border-box;
+
+	@include s() {
+		font-size: 18PX;
+		width: 120px;
+		height: 50px;
+	}
+
+	@include m() {
+		width: 150px;
+		line-height: 60px;
+		font-size: 18px;
+		cursor: pointer;
+
+		&:hover {
+			background-color: #ECEEFF;
+			color: $main_color ;
+			border: 1px solid $main_color;
+			cursor: pointer;
+		}
+	}
+}
+
+
+.btn_l {
+	border: $line solid $main_color;
+	color: $main_color;
+	background-color: $bg_white ;
+	box-sizing: border-box;
+
+	@include s() {
+		font-size: 18PX;
+		width: 120px;
+		height: 50px;
+	}
+
+	@include m() {
+		width: 150px;
+		line-height: 60px;
+		font-size: 18px;
+		cursor: pointer;
+
+		&:hover {
+			background-color: #ECEEFF;
+			color: $main_color ;
+			border: $line solid $main_color;
+			cursor: pointer;
+		}
+	}
+}

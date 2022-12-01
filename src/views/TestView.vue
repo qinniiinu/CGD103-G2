@@ -1,47 +1,40 @@
 <template>
-	<!-- 會員 container -->
-	<div class="mem_container">
-		<!-- 側邊攔 -->
-		<!-- <SideMenu></SideMenu> -->
-		<!-- 右側資料 -->
-		<div class="mem_data">
-			<h1>This is測試 page</h1>
-			<font-awesome-icon icon="fa-duotone fa-plane" />
-			<font-awesome-icon icon="fa-solid fa-star" />
-			<font-awesome-icon icon="fa-solid fa-book" />
-			<button @click="action" class="btn btn-info">bootstrap測試</button>
-			<font-awesome-icon icon="fa-solid fa-heart" />
-			<div class="box"></div>
-		</div>
-	</div>
-	<Footer></Footer>
+    <!-- 會員 container -->
+    <div class="mem_container">
+        <!-- 側邊攔 -->
+        <!-- <SideMenu></SideMenu> -->
+        <!-- 右側資料 -->
+        <div class="mem_data">
+            <h1>This is測試 page</h1>
+
+            <button @click="action" class="btn_s">btn</button>
+            <button @click="action" class="btn_l">btn</button>
+            <div class="box"></div>
+        </div>
+    </div>
 </template>
 
 <script>
-import Footer from "@/components/Footer.vue";
-// import SideMenu from "@/components/SideMenu.vue";
-
 export default {
-	name: "Test",
-	components: {
-		Footer,
-		// SideMenu,
-	},
-	methods: {
-		action() {
-			console.log("測試按鈕");
-		},
-	},
+    name: "Test",
+    components: {
+        // SideMenu,
+    },
+    methods: {
+        action() {
+            console.log("測試按鈕");
+        },
+    },
 };
 </script>
 
 <style lang="scss" scoped>
 .mem_container {
-	display: flex;
-	width: 100%;
-	margin: auto;
-	.mem_data {
-		flex-grow: 1;
-	}
+    display: flex;
+    width: 100%;
+    margin: auto;
+    .mem_data {
+        flex-grow: 1;
+    }
 }
 </style>
