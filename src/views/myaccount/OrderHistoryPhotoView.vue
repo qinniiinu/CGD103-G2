@@ -22,25 +22,77 @@
 
 						</div>
 					</div>
+					
 					<div class="ord_history_box"><!-- 訂單記錄表單盒 -->
-					<li class="item_num" ><!-- 訂單記錄列 -->
+					<li  class="item_num" ><!-- 訂單記錄列 -->
 						<div class="item_num_row">
-							<div class="item_num_title">訂單編號 20221202001</div>
-							<h2>已出貨</h2>
+							<div class="item_num_title">訂單編號： {{ord_num}}</div>
+							<h2>{{ord_condtion}}</h2>
 						</div>
-						<div class="item_page_photo">
-							<img src="" alt="">
-							<img src="" alt="">
+
+						<div class="page_photo">
+							<div class="page_photo_box">
+								<div class="item_page_photo">
+								<img :src="img_link" alt="">
+							</div>
+							<div class="item_page_photo">
+								<img :src="img_link" alt="">
+							</div>
+							</div>
+							
+							<div class="item_money">
+								<p>共{{item_product}}件商品</p>
+								<h2>訂單金額 ${{sum_price}}</h2>
+							</div>
 						</div>
-						<div class="item_money">
-							<p>共兩件商品</p>
-							<h2>訂單金額 $8888</h2>
+					</li>
+					<li  class="item_num" ><!-- 訂單記錄列 -->
+						<div class="item_num_row">
+							<div class="item_num_title">訂單編號： {{ord_num}}</div>
+							<h2>{{ord_condtion}}</h2>
 						</div>
-						
-					</li><!-- 訂單記錄 -->
-	
-						
+
+						<div class="page_photo">
+							<div class="page_photo_box">
+								<div class="item_page_photo">
+								<img :src="img_link" alt="">
+							</div>
+							<div class="item_page_photo">
+								<img :src="img_link" alt="">
+							</div>
+							</div>
+							
+							<div class="item_money">
+								<p>共{{item_product}}件商品</p>
+								<h2>訂單金額 ${{sum_price}}</h2>
+							</div>
+						</div>
+					</li>
+					<li  class="item_num" ><!-- 訂單記錄列 -->
+						<div class="item_num_row">
+							<div class="item_num_title">訂單編號： {{ord_num}}</div>
+							<h2>{{ord_condtion}}</h2>
+						</div>
+
+						<div class="page_photo">
+							<div class="page_photo_box">
+								<div class="item_page_photo">
+								<img :src="img_link" alt="">
+							</div>
+							<div class="item_page_photo">
+								<img :src="img_link" alt="">
+							</div>
+							</div>
+							
+							<div class="item_money">
+								<p>共{{item_product}}件商品</p>
+								<h2>訂單金額 ${{sum_price}}</h2>
+							</div>
+						</div>
+					</li>
+					
 					</div>
+
 					<div class="order_history_bottom">
 						<div class="order_title">#ORDER</div><!-- 左下角大字 -->
 						<div class="order_back">
@@ -56,6 +108,10 @@
 	<Footer></Footer>
 </template>
 
+
+
+
+
 <script>
 
 import Button from "@/components/Button.vue";
@@ -67,28 +123,49 @@ export default {
 		MemberSideMenu,
 		Button
 	},
+	data() {
+		return {
+			ord_num:1201201,
+			ord_condtion:"已出貨",
+			img_link:"./style1.png",
+			item_product:2,
+			sum_price:8888,
+
+		}
+	},
+	
 };
+
+
+
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/main";
+@import "@/assets/sass/main.scss";
 @import "@/assets/sass/member_side_menu";
 
+
+*{
+	list-style: none;
+}
 .Ordh_container{
 	width: 100%;
 	outline: solid 1px gray;
-}
-
-.ord_condition_box{
+	.ord_condition_box{
 	width: 100%;
 	display: flex;
 	justify-content: right;
+	}
+	
+	.item_money{
+	text-align: right;
+	}
 }
 
 
-.ord_sel{
-	margin: 10px;
-}
+
+
+
 .ham{
 	cursor: pointer;
 	margin: 10px;
@@ -98,35 +175,79 @@ export default {
 
 .ord_history_box{
 	outline: solid 1px gray;
+	background-color: $bg-violet;
 	width: 90%;
 	height: 50vh;
 	margin: 50px;
 	padding-bottom: 50px;
 	overflow:scroll;
-	display: flex;
+	// display: flex;
 	justify-content: center;
+	.item_num{
+	width: 90%;
+	margin: 20px;
+	background-color: $third_color;
+	
+
+	.page_photo{
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+		align-items: flex-end;
+		.page_photo_box{
+			display: flex;
+		}
+		.item_money{
+		margin: 10px;
+		text-align: right;
+		p{
+			margin: 10px;
+		}
+		h2{
+			margin: 10px;
+			font-weight: bold;
+			font-size: 18px;
+		}
 }
 
-.item_num{
-	width: 100%;
-	outline: 1px solid red;
-margin: 20px;
+	}
+	.item_page_photo{
+		width: 150px;
+		height: 200px;
+		overflow: hidden;
+		padding: 20px;
+		display: flex;
+		}
+	}
+	
+	.item_num_row{
+		display: flex;
+		justify-content: space-between;
+		width:100%;
+		.item_num_title{
+			margin: 20px;
+		}
+		h2{
+			font-weight: bold;
+			font-size: 20px;
+			margin: 20px;
+		}
+		
+	}
+
 }
 
-.item_num_row{
-	display: flex;
-	justify-content: space-between;
-	width: 100%;
-}
+
 
 
 .order_history_bottom{
-	width: 100%;
+	width: 90%;
 	display: flex;
-	justify-content: space-around;
-}
-.order_title{
-	color:rgb(195, 195, 195);
+	justify-content: space-between;
+	margin: 50px;
+	.order_title{
+	color:$bg-violet;
+	text-align: left;
 	@include font_set($second_font, $null, 900, italic);
 	@include s() {
 	font-size: 56px;
@@ -135,6 +256,9 @@ margin: 20px;
 		font-size: 96px;
 	}
 	}
+	
+}
+
 .transport_detail{
 
 font-weight:bold ;
