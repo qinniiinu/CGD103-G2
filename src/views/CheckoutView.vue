@@ -133,15 +133,15 @@ export default {
 		margin-bottom: 20px;
 	}
 	input{
-		
 		height: 15px;
 	}
 	.checkout{
 		width: 1200px;
-		height: 1000px;
-		margin: auto;
+		height: 900px;
 		display: flex;
-		flex-direction: center;
+		justify-content: center;
+		margin: auto;
+		margin-top: 25px;
 		gap: 5%;
 		.paydetails{
 			display: flex;
