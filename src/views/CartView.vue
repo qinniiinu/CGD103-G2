@@ -5,7 +5,7 @@
 			<div class="prod-wrap">
 				<h2>我是假設的商品區</h2>
 				<div class="items">
-						<div class="item" v-for="(item,index) in product" :key="item.id">
+					<div class="item" v-for="(item,index) in product" :key="item.id">
 						<!-- 產品編號 -->
 						<p>{{item.id}}</p>
 						<!-- 產品圖 -->
@@ -58,13 +58,13 @@
 							<div>總計: ${{aftertotal}}元</div>
 						</div>
 						<div class="payment">
-							<button>繼續逛逛</button>
-							<button>去付款</button>
+							<router-link to="/ProductList" ><button>繼續逛逛</button></router-link>
+							<router-link to="/Checkout"><button>去付款</button></router-link>
 						</div>
 					</ul>
 					<ul v-else class="none-list">
 						<li>目前尚無商品</li>
-						<button>去逛逛</button>
+						<router-link to="/ProductList"><button>去逛逛</button></router-link>
 					</ul>
 				</div>
 			</div>
@@ -117,7 +117,6 @@ export default {
 		total(index,item){
 			if(this.product.length>0){
 				let total=0
-				
 				for(const index in this.order){
 					total+=this.order[index]['count']*this.order[index]['price']
 				}
@@ -141,6 +140,7 @@ export default {
 		}
 	},
 	methods:{
+		
 		// getResource(){
 		// 	this.load=true;
 		// 	fetch('https://fakestoreapi.com/products').then(res=>res.json())
@@ -172,6 +172,7 @@ export default {
 					count:1
 				})
 			}
+			this.setStorage()
 		},
 		reduceCount(index,item){
 			console.log(item)
@@ -187,8 +188,17 @@ export default {
 				this.order.splice(prodIndex,1)
 				alert("確定要刪除此產品嗎?")
 			}
-			// this.setStorage()
+			this.setStorage()
 		},
+		getStorage(){
+			let data =localStorage.getItem('order');
+			data=JSON.parse(date)
+			this.order=data? data:[]
+        },
+		setStorage(){
+			const data=JSON.stringify(this.order);
+			localStorage.setItem('order',data);
+        },
 		dele(index,item){
 			const prodIndex=this.order.findIndex(orderItem=>{
 				return orderItem.id===item.id
@@ -238,7 +248,7 @@ h2{
 		margin: auto;
 		padding: 10px 20px;
 		.cart-title{
-			color: $title_color;
+			color: rgb(80, 80, 80);
 			display: flex;
 			padding: 10px 20px;
 			:nth-child(1){
@@ -305,9 +315,10 @@ h2{
 		.detail{
 			text-align: right;
 			margin-top: 20px;
-			div{
-				margin-bottom: 10px;
-			}
+			display: flex;
+			flex-direction: column;
+			gap:10px;
+			margin-bottom: 20px;
 		}
 		.payment{
 			display: flex;
