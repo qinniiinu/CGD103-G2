@@ -53,7 +53,7 @@
 							<button @click="dele(index,item)">x</button>
 						</li>
 						<div class="detail">
-							<div>共 {{order.length}} 件商品</div>
+							<div>共 {{order.length}} 種商品</div>
 							<div>{{memLevel}} 會員等級折扣: -${{parseInt(total*discount)}}</div>
 							<div>總計: ${{aftertotal}}元</div>
 						</div>
