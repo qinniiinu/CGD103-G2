@@ -4,7 +4,7 @@
 			{{step}}
 		</p>
 	</div>
-	<div class="consultqa">
+	<div class="consultqa-step1">
 		<div class="consultqa-title">
 			<h2>問題與方向</h2>
 			<p>選擇想諮詢的問題，至多三項</p>
@@ -24,10 +24,29 @@
 
 			</textarea>
 			<Button content="下一步" @click="changeStep()"></Button>
-			
 		</div>
 	</div>
-
+	<div class="consultqa-step2">
+		<div class="consultqa-book">
+			<div class="consultqa-know"></div>
+			<div class="consultqa-date">
+			</div>
+			<div class="consultqa-time"></div>
+		</div>
+		<Button content="下一步"></Button>
+		<Button content="下一步"></Button>
+	</div>
+	<div class="consultqa-step3">
+		<div class="consultqa-check">
+			<h2></h2>
+			<p></p>
+			<p></p>
+			<p></p>
+			<p></p>
+			<Button content="下一步"></Button>
+			<Button content="下一步"></Button>
+		</div>
+	</div>
 
 
 </template>
@@ -100,7 +119,7 @@ export default {
 			// font-size: 24px;
 		}
 	}
-	.consultqa{
+	.consultqa-step1{
 		.consultqa-title{
 			h2{
 				font-size:48px ;
