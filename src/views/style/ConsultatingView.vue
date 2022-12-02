@@ -28,10 +28,21 @@
 	</div>
 	<div class="consultqa-step2">
 		<div class="consultqa-book">
-			<div class="consultqa-know"></div>
-			<div class="consultqa-date">
+			<div class="consultqa-know">
+				<h3>預約須知</h3>
+				<p>1.諮詢時間為一個小時</p>
+				<p>2.請準時上線諮詢</p>
+				<p>3.諮詢時間為一個小時</p>
 			</div>
-			<div class="consultqa-time"></div>
+			<div class="consultqa-date">
+
+			</div>
+			<div class="consultqa-time">
+				<h3>時段</h3>
+				<div class="timepick">
+					<Datepicker v-model="date" inline auto-apply />
+				</div>
+			</div>
 		</div>
 		<Button content="下一步"></Button>
 		<Button content="下一步"></Button>
@@ -52,14 +63,20 @@
 </template>
 <script>
 import Button from "@/components/Button.vue"
+import Datepicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 
 export default {
+	
 	name: "Consultating",
 	components: {
-		Button,
+		Button, Datepicker ,
 	},
+	
+
 	data(){
 		return{
+			date: null,
 			steps:['STEP1','→','STEP2','→','STEP3'],
 			qaBtns:[
 				'網購衣服不清楚怎麼挑合適的尺寸',
@@ -88,6 +105,8 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+// @import '@vuepic/vue-datepicker/src/VueDatePicker/style/main.scss';
+
 	.step{
 		margin-top: 80px;
 		display: flex;
