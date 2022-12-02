@@ -1,85 +1,59 @@
 <template>
-  <div v-if="count < 14">
-    <!-- ====================== -->
-    <section>
-      <div class="score">
-        <h3>測驗分數: </h3>
-        <p id="demo"></p>
-      </div>
-      <div class="result">
-        <h3>測驗結果: </h3>
-        <p id="demo2"></p>
-      </div>
-      <div><button @click="processForm()" class="btn">enter</button></div>
-    </section>
-    <!-- =================== -->
-    <form name="see">
-      <section class="question_box">
-        <div class="slider_box">
-          <div class="wrap">
-            <div class="item" v-for="item in question" :key="item.id">
-              <div class="title_box">
-                <h2>
-                  <span class="num_box"
-                    >問題 <span class="num">0{{ item.id }}</span> / 7</span
-                  ><span class="question_name">{{ item.q_name }}</span>
-                </h2>
-              </div>
-              <div class="option_box" @click="next($event)">
-                <!-- 選項 -->
-                <!-- item.op.length 選項數量 = option_item2 option_item3 option_item4-->
-                <div
-                  :class="'option_item' + item.op.length"
-                  v-for="(i, idx) in item.op"
-                  :key="idx"
+  <!-- ====================== -->
+  <section>
+    <div class="score">
+      <h3>測驗分數: </h3>
+      <p id="demo"></p>
+    </div>
+    <div class="result">
+      <h3>測驗結果: </h3>
+      <p id="demo2"></p>
+    </div>
+    <div><button @click="processForm()" class="btn">enter</button></div>
+  </section>
+  <!-- =================== -->
+  <form name="see">
+    <section class="question_box">
+      <div class="slider_box">
+        <div class="wrap">
+          <div class="item" v-for="item in question" :key="item.id">
+            <div class="title_box">
+              <h2>
+                <span class="num_box"
+                  >問題 <span class="num">0{{ item.id }}</span> / 7</span
+                ><span class="question_name">{{ item.q_name }}</span>
+              </h2>
+            </div>
+            <div class="option_box" @click="next($event)">
+              <!-- 選項 -->
+              <!-- item.op.length 選項數量 = option_item2 option_item3 option_item4-->
+              <div
+                :class="'option_item' + item.op.length"
+                v-for="(i, idx) in item.op"
+                :key="idx"
+              >
+                <!-- name = q1, q2... -->
+                <input
+                  type="radio"
+                  :id="item.op[idx].op_id"
+                  :name="'q' + item.id"
+                />
+                <label :for="item.op[idx].op_id" :style="item.op[idx].styObj"
+                  ><p>{{ item.op[idx].op_name }}</p></label
                 >
-                  <!-- name = q1, q2... -->
-                  <input
-                    type="radio"
-                    :id="item.op[idx].op_id"
-                    :name="'q' + item.id"
-                  />
-                  <label :for="item.op[idx].op_id" :style="item.op[idx].styObj"
-                    ><p>{{ item.op[idx].op_name }}</p></label
-                  >
-                </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </form>
-  </div>
-  <div v-else>
-    <section class="quiz_result">
-      <div class="title_box">
-        <p>你的測驗結果是</p>
-        <h2>時尚風</h2>
       </div>
-      <div class="wraper">
-        <div class="img_box">
-          <StyleCard1 link="https://picsum.photos/600/600/?random=10" />
-          <Button content="記錄我的風格"/>
-        </div>
-        <div class="txt_box">
-            <h3>適合您的穿搭公式</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis quod qui, cumque quis consequatur asperiores consequuntur odio reiciendis debitis officia mollitia. Laborum cupiditate odio incidunt laboriosam distinctio debitis atque pariatur?</p>
-        </div>
-      </div>
-  </section>
-  </div>
+    </section>
+  </form>
 </template>
-
 <script>
-import StyleCard1 from "@/components/StyleCard1.vue";
 export default {
   name: "QuestionBox",
-    components: {
-    StyleCard1,
-  },
   data() {
     return {
-      count:0,
       x: 0,
       question: [
         {
@@ -234,12 +208,10 @@ export default {
   },
   methods: {
     next(e) {
-      this.count += 1;
       this.x -= 50;
       let y = this.x + "vw";
       e.currentTarget.parentElement.parentElement.parentElement.style.transform = `translateX(${y})`; //抓上上上層 slider_box
       console.log("y:", y);
-      console.log("count:", this.count);
     },
     processForm() {
       var sport = 0; //運動風
@@ -425,7 +397,7 @@ export default {
   }
 }
 @media screen and (min-width: 768px) {
-  .wraper {
+  .wrap {
     .item {
       .title_box {
         h2 {
@@ -470,122 +442,4 @@ export default {
     }
   }
 }
-
-// ==============
-.quiz_result{
-    .title_box{
-        text-align: center;
-        padding: 20px 0;
-        p{
-            font-size: 16px;
-            margin-bottom: 5px;
-            color: $title_color;
-        }
-        h2{
-            color: $title_color;
-            font-weight: 600;
-            font-size: 24px;
-        }
-    }
-    .wrap{
-        width: 80%;
-        position: relative;
-        margin: 0 auto;
-
-    .img_box{
-        width: 100%;
-        position: relative;
-        .item{
-            margin-left: -15px;
-        }
-        button {
-          margin: auto;
-          display: block;
-        }
-    }
-    .txt_box{
-        padding: 20px 0;
-        h3{
-            color: $title_color;
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-        p{
-            font-size: 12px;
-            color: $text_color;
-        }
-    }
-    }
-
-}
- @media screen and (min-width:768px) {
-    .quiz_result{
-    .title_box{
-        text-align: center;
-        padding: 20px 0;
-        p{
-            display: inline-block;
-            margin-right: 10px;
-            font-size: 32px;
-        }
-        h2{
-            display: inline-block;
-            font-size: 48px;
-        }
-    }
-    .wrap{
-        width: 100%;
-        max-width: 1200px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-
-    .img_box{
-        width: 50%;
-    }
-    .txt_box{
-        width: 50%;
-        order: -1;
-        h3{
-            font-size: 24px;
-        }
-        p{
-            font-size: 22px;
-        }
-    }
-    }
-
-}
- }
-.recommend{
-    padding: 50px 0;
-    width: 80%;
-    position: relative;
-    margin: 0 auto;
-    h3{
-        color: $title_color;
-        margin-bottom: 10px;
-        font-size: 16px;
-    }
-    .wrap{
-        .product_card{
-            margin: 0;
-        }
-    }
-}
- @media screen and (min-width:768px) {
-    .recommend{
-        h3{
-            font-size: 24px;
-        }
-        .wrap{
-            display: flex;
-            flex-wrap: wrap;
-              .product_card{
-                width: 33%;
-            }
-        }
-    }
- }
-
 </style>

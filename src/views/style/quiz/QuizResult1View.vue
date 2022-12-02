@@ -110,7 +110,7 @@ export default {
             font-size: 48px;
         }
     }
-    .wraper{
+    .wrap{
         width: 100%;
         max-width: 1200px;
         display: flex;
@@ -119,10 +119,6 @@ export default {
 
     .img_box{
         width: 50%;
-        position: relative;
-        img{
-            width: 100%;
-        }
     }
     .txt_box{
         width: 50%;
