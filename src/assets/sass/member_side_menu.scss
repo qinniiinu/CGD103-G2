@@ -102,8 +102,10 @@
 	width: 100% ;
 	flex-wrap: wrap;
 	.mem_data{
+	background-color: $bg_gray ;
 	flex: 1;
-	margin:50px 50px 150px 50px;
+	padding:50px 50px 150px 50px;
+
 		.title{
 			font-size: 24px;
 			color: #292929;
