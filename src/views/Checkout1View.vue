@@ -3,7 +3,7 @@
 		<div class="list">
 			<h2>購物車</h2>
 			<div class="items">
-				<div class="item" v-for="item in product" :key="item.id">
+				<div class="item" v-for="(item,index) in product" :key="item.id">
 					<!-- 產品圖 -->
 					<img :src="item.image" v-bind:alt="item.title">
 					<!-- 產品名稱 -->
@@ -48,8 +48,8 @@
 					<p>電子信箱</p>
 					<input class="email" type="text" v-model="mem_mail1">
 					<p>配送地址</p>
-					<input class="receive-address" v-model="address1" >
-					<label class="same" for="same"><input type="checkbox" id="same" name="same"  @click="check()" v-model="isChecked">同購買人資訊</label>
+					<input class="receive-address" v-model="address1">
+					<label class="same" for="same"><input type="checkbox" id="same" name="same"  @click="check()">同購買人資訊</label>
 				</div>
 				<div class="payment">
 					<h4>付款方式</h4>
@@ -108,10 +108,7 @@ export default {
 			mem_name1:"",
 			phone1:"",
 			mem_mail1:"",
-			address1:"",
-			isChecked:false,
-			a:"",
-			// active:false,
+			address1:""
 		}
 	},
 	created(){
@@ -120,21 +117,11 @@ export default {
 	},
 	methods:{
 		check(){
-			console.log(this.isChecked);
-			if(this.isChecked !== true){
-				this.mem_name1 = this.mem_name;
-				this.phone1 = this.phone;
-				this.mem_mail1 = this.mem_mail;
-				this.address1 = this.address;
-				console.log(this.mem_name1);
-			}
-			else{
-				this.mem_name1 = "";
-				this.phone1 = "";
-				this.mem_mail1 = "";
-				this.address1 = "";
-
-			}
+			this.mem_name1 = this.mem_name;
+			this.phone1 = this.phone;
+			this.mem_mail1 = this.mem_mail;
+			this.address1 = this.address;
+			console.log("mem_name1",this.mem_name1);
 		}
 	}
 };
