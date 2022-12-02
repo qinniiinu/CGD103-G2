@@ -9,7 +9,8 @@
 			<StyleCard content="文青風" link="./style4.png"/>
 			<p>首先，請讓我們更認識你<br>點擊下方開始測驗你的風格</p>
 		</div>
-		<Button content="測驗去"/>
+		<router-link :to="{ name:'QuestionBox' }"><Button content="測驗去"/></router-link>
+		<!-- <Button content="測驗去"/> -->
 	</section>
 </template>
 <script>
