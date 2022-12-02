@@ -44,7 +44,8 @@ export default {
         display: flex;
         justify-content: space-between;
         .tit{
-            font-size: 26px;
+            font-size: 24px;
+            font-weight: 700;
             color: $title_color;
         }
         .bg_tag{

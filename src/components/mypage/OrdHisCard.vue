@@ -5,18 +5,18 @@
 			<div class="title">訂單編號： {{ order1.ord_num }}</div>
 			<h2>{{ order1.ord_condtion }}</h2>
 		</div>
-		<div class="page_photo">
-			<div class="box">
-				<div class="item_page_photo">
+		<div class="photo_money">
+			<div class="photos">
+				<div class="photo">
 					<img :src="order1.img_link[1]" alt="" />
 				</div>
-				<div class="item_page_photo">
+				<div class="photo">
 					<img :src="order1.img_link[1]" alt="" />
 				</div>
 			</div>
 			<div class="item_money">
-				<p>共{{ order1.item_product }}件商品</p>
-				<h2>訂單金額 ${{ order1.sum_price }}</h2>
+				<span class="allitem">共{{ order1.item_product }}件商品</span>
+				<span class="allprice">訂單金額 ${{ order1.sum_price }}</span>
 			</div>
 		</div>
 	</li>
@@ -59,7 +59,7 @@ export default {
 .item_num{
 	width: max-width;
 	height: min-content;
-	margin: 20px 0;
+	margin-bottom: 20px;
 	padding: 20PX;
 	border: 1px solid gray;
 	background-color: $third_color;
@@ -71,13 +71,14 @@ export default {
 			font-size: 20px;
 		}
 	}
-	.page_photo{
+	.photo_money{
 		display: flex;
 		align-items: flex-end;
 		justify-content: space-between;
-		.box{
+		.photos{
 			display: flex;
-			.item_page_photo{
+			gap: 20px;
+			.photo{
 				width: 120px;
 				height: 120px;
 				display: flex;
@@ -90,11 +91,13 @@ export default {
 		}
 		.item_money{
 			text-align: right;
-			// p{
-			// 	// margin: 10px;
-			// }
-			h2{
-				// margin: 10px;
+			.allitem{
+				display: block;
+				font-size: 14px;
+			}
+			.allprice{
+				margin-top: 10px;
+				display: block;
 				font-weight: bold;
 				font-size: 18px;
 			}
