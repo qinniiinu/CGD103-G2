@@ -34,28 +34,67 @@ export default {
             bigPicture: testproduct.product_pic.split(",")[0],
             pickedColor: "",
             pickedSize: "",
-            colorClick: [false, false],
+            colorClick: [],
             number: 1,
             cartList: [],
+            sizeClick: [],
+            cartItem: {
+                id: "",
+                color: "",
+                size: "",
+            },
         };
     },
     computed: {},
     methods: {
-        check(x) {
-            if (this.pickedColor == "") {
-                this.colorClick[x] = true;
+        addCart() {
+            localStorage.getItem("cart");
+            if (this.pickedColor == "" || this.pickedSize == "") {
+                console.log(123);
+                return;
             } else {
-                this.colorClick.forEach((element) => {
-                    return element == true ? false : true;
-                });
+                this.cartItem = {
+                    id: this.product_details.product_id,
+                    color: this.pickedColor,
+                    size: this.pickedSize,
+                };
+                if (localStorage.getItem(JSON.stringify(this.cartItem))) {
+                    let num =
+                        parseInt(
+                            localStorage.getItem(JSON.stringify(this.cartItem))
+                        ) + this.number;
+                    localStorage.setItem(JSON.stringify(this.cartItem), num);
+                } else {
+                    localStorage.setItem(
+                        JSON.stringify(this.cartItem),
+                        this.number
+                    );
+                    if (localStorage.getItem("cart")) {
+                        let str =
+                            localStorage.getItem("cart") +
+                            "|" +
+                            JSON.stringify(this.cartItem);
+                        localStorage.setItem("cart", str);
+                    } else {
+                        localStorage.setItem(
+                            "cart",
+                            JSON.stringify(this.cartItem)
+                        );
+                    }
+                }
             }
+            // `["product_id":"${this.product_details.product_id}","color":"${this.pickedColor}","size:"${this.pickedSize}","number":"${this.number}"]`
+        },
+        checkColor(x) {
+            this.colorClick = [];
+            this.colorClick[x] = true;
+        },
+        checkSize(x) {
+            this.sizeClick = [];
+            this.sizeClick[x] = true;
         },
         changeBicPicture(X) {
-            console.log(X);
             this.bigPicture = X;
-        },
-        addCart() {
-            // `["product_id":"${this.product_details.product_id}","color":"${this.pickedColor}","size:"${this.pickedSize}","number":"${this.number}"]`
         },
         reduce() {
             this.number = this.number > 1 ? this.number - 1 : 1;
@@ -106,10 +145,10 @@ export default {
                         <div class="color_box">
                             <p class="color">顏色{{ pickedColor }}</p>
                             <label
-                                for="e"
+                                :for="e"
                                 v-for="(e, i) in color"
                                 :key="i"
-                                @click="check(i)"
+                                @click="checkColor(i)"
                             >
                                 <div
                                     class="circle"
@@ -117,28 +156,34 @@ export default {
                                     :class="{
                                         circleoutline: colorClick[i],
                                     }"
-                                >
-                                    <input
-                                        type="radio"
-                                        :id="e"
-                                        :value="e"
-                                        v-model="pickedColor"
-                                    />
-                                </div>
+                                ></div>
+                                <input
+                                    type="radio"
+                                    :id="e"
+                                    :value="e"
+                                    v-model="pickedColor"
+                                />
                             </label>
                         </div>
                         <div class="size_box">
-                            <p class="size">尺寸</p>
-                            <i v-for="(e, i) in size" :key="i">
-                                <label :for="e">
-                                    <input
-                                        type="radio"
-                                        :id="e"
-                                        :value="e"
-                                        v-model="pickedSize"
-                                    />{{ e }}
-                                </label></i
+                            <p class="size">尺寸 {{ pickedSize }}</p>
+                            <label
+                                :for="e"
+                                v-for="(e, i) in size"
+                                :key="i"
+                                @click="checkSize(i)"
                             >
+                                <i :class="{ pickedSize: sizeClick[i] }"
+                                    >{{ e }}
+                                </i>
+
+                                <input
+                                    type="radio"
+                                    :id="e"
+                                    :value="e"
+                                    v-model="pickedSize"
+                                />
+                            </label>
                         </div>
                     </div>
                     <div class="number_box">
@@ -269,7 +314,7 @@ export default {
             }
             .cellflex {
                 input {
-                    display: none;
+                    // display: none;
                 }
                 @include s() {
                     display: flex;
@@ -302,6 +347,7 @@ export default {
                         border-radius: 50%;
                         margin: 10px;
                         background-color: #003;
+                        border: 5px solid transparent;
 
                         @include s() {
                             width: 20px;
@@ -311,7 +357,7 @@ export default {
                         }
                     }
                     .circleoutline {
-                        border: $line solid green;
+                        border: 5px solid $main_color;
                     }
                 }
             }
@@ -327,6 +373,9 @@ export default {
                     padding: 5px;
                     @include s() {
                     }
+                }
+                i.pickedSize {
+                    background-color: $main_color;
                 }
             }
             .number_box {
