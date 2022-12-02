@@ -80,7 +80,7 @@
 					<button class="back">返回</button>
 				</div>
 				<div class="decoration">
-					#{{memLevel ? 'BASIC':'SUBSCRIBE'}}
+					#PREMIUM
 				</div>
 			</div>
 		</div>
@@ -197,6 +197,7 @@ export default {
 		bottom: 20px;
 		font-size: 72px;
 		font-weight: bolder;
+		font-style: italic;
 		position: absolute;
 		color: $secondary;
 	}
