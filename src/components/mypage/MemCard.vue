@@ -61,8 +61,9 @@ export default {
     display: flex;
     flex-direction: column;
         .title{
-            font-size: 26px;
+            font-size: 24px;
             display: block;
+            font-weight: 700;
             color: $title_color;
         }
         .more{
