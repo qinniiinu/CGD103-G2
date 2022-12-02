@@ -1,14 +1,13 @@
 <template>
     <div class="body_style">
         <div class="pic">
-            <img :src="tpimg" alt="">
+            <!-- <img :src="typeimg" alt=""> -->
+            <img src="https://picsum.photos/300/200/?random=10">
         </div>
         <div class="text">
-            <div class="title">
-                {{ title }}
-            </div>
-            <!-- 英文 hashtag -->
-            <slot></slot><!-- ?? -->
+            <h3 class="title">{{ title }}</h3>
+            <!-- hashtag -->
+            <slot></slot>
             <a href="#" class="more">
                 <span class="text">查看更多</span>
                 <font-awesome-icon icon="fa-solid fa-angle-right"/>
@@ -26,7 +25,6 @@ export default {
     props: {
         title: String,
         type: String,
-        // egtype: String
     },
     components: {
 		BgTag,
@@ -38,19 +36,19 @@ export default {
         }
     },
 }        
-// console.log(tagName);
 </script>
-
 
 <style lang="scss" scoped>
 .body_style{
+    background-color: #fff;
 	border: 1px solid black;
-	padding: $padding;
+	padding: 25px;
     display: flex;
     position: relative;
+
     .pic{
-        width: 300px;
-        height: 300px;
+        width: 250px;
+        height: 250px;
         aspect-ratio: 1/1;
         img{
             width: 100%;
@@ -63,18 +61,20 @@ export default {
     display: flex;
     flex-direction: column;
         .title{
+            font-size: 26px;
             display: block;
-        }
-        .type{
-            display: block;
-        }
-        .bgtag{ //<!-- ?? -->
-            display:block;
-            position: absolute;
-            right: $padding;
+            color: $title_color;
         }
         .more{
             display: flex;
+            position: absolute;
+            align-items: center;    
+            right: $padding;
+            bottom: $padding;
+            .text{
+                font-family: $main_font;
+                padding-right: 5px;
+            }
         }
     }
 }
