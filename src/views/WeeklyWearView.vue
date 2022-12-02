@@ -41,23 +41,23 @@
 
             </ul>
             <div class="imgbox">
-                <transition name="slideDown" >
+                <transition-group name="slideDown" >
                     <img class="img_left" v-if="picked === 'Mon'" src="../assets/weeklywear_pic/female03.jpg" alt="女裝01">
                     <img class="img_left" v-if="picked === 'Tue'" src="../assets/weeklywear_pic/female02.jpg" alt="女裝01">
                     <img class="img_left" v-if="picked === 'Wed'" src="../assets/weeklywear_pic/female01.jpg" alt="女裝01">
                     <img class="img_left" v-if="picked === 'Thur'" src="../assets/weeklywear_pic/female04.jpg" alt="女裝01">
                     <img class="img_left" v-if="picked === 'Fri'" src="../assets/weeklywear_pic/female05.jpg" alt="女裝01">
                     <img class="img_left" v-if="picked === 'End'" src="../assets/weeklywear_pic/female06.jpg" alt="女裝01">
-                </transition>
+                </transition-group>
  
-                <transition name="slideUp" >
+                <transition-group name="slideUp" >
                     <img class="img_right" v-if="picked === 'Mon'" src="../assets/weeklywear_pic/female03.jpg" alt="女裝01">
                     <img class="img_right" v-if="picked === 'Tue'" src="../assets/weeklywear_pic/female02.jpg" alt="女裝01">
                     <img class="img_right" v-if="picked === 'Wed'" src="../assets/weeklywear_pic/female01.jpg" alt="女裝01">
                     <img class="img_right" v-if="picked === 'Thur'" src="../assets/weeklywear_pic/female04.jpg" alt="女裝01">
                     <img class="img_right" v-if="picked === 'Fri'" src="../assets/weeklywear_pic/female05.jpg" alt="女裝01">
                     <img class="img_right" v-if="picked === 'End'" src="../assets/weeklywear_pic/female06.jpg" alt="女裝01">
-                </transition>
+                </transition-group>
             </div>
 
             <div class="bgpic">
