@@ -18,10 +18,10 @@ export default {
     color: $title_color;
     font-weight: 700;
     @include s() {
-        font-size: 56px;
+        font-size: 48px;
     }
     @include m() {
-        font-size: 72px;
+        font-size: 66px;
     }
 }
 </style>
