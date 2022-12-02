@@ -138,7 +138,7 @@ export default {
 			scale:1,
 			scrollTrigger: {
 			trigger: '.trouble_item:nth-child(2)', 
-			start: "top bottom ",  
+			start: "center bottom ",  
 			end: "bottom center", 
 			
 			scrub: true, 
@@ -150,7 +150,7 @@ export default {
 			scale:1,
 			scrollTrigger: {
 			trigger: '.trouble_item:nth-child(3)', 
-			start: "top bottom ",  
+			start: "center bottom ",  
 			end: "bottom center", 
 			
 			scrub: true, 
@@ -161,7 +161,7 @@ export default {
 			scale:1,
 			scrollTrigger: {
 			trigger: '.trouble_item:nth-child(4)', 
-			start: "top bottom ",  
+			start: "center bottom ",  
 			end: "bottom center", 
 			
 			scrub: true, 
@@ -172,7 +172,7 @@ export default {
 			scale:1,
 			scrollTrigger: {
 			trigger: '.trouble_item:nth-child(5)', 
-			start: "top bottom ",  
+			start: "center bottom ",  
 			end: "bottom center", 
 			
 			scrub: true, 
@@ -183,7 +183,7 @@ export default {
 			scale:1,
 			scrollTrigger: {
 			trigger: '.trouble_item:nth-child(6)', 
-			start: "top bottom ",  
+			start: "center bottom ",  
 			end: "bottom center", 
 			
 			scrub: true, 
@@ -194,7 +194,7 @@ export default {
 			scale:1,
 			scrollTrigger: {
 			trigger: '.trouble_item:nth-child(7)', 
-			start: "top bottom ",  
+			start: "center bottom ",  
 			end: "bottom center", 
 			
 			scrub: true, 
@@ -205,7 +205,7 @@ export default {
 			scale:1,
 			scrollTrigger: {
 			trigger: '.trouble_item:nth-child(8)', 
-			start: "top bottom ",  
+			start: "center bottom ",  
 			end: "bottom center", 
 			
 			scrub: true, 
@@ -216,7 +216,7 @@ export default {
 			scale:1,
 			scrollTrigger: {
 			trigger: '.trouble_item:nth-child(9)', 
-			start: "top bottom ",  
+			start: "center bottom ",  
 			end: "bottom center", 
 			
 			scrub: true, 
@@ -227,7 +227,7 @@ export default {
 			scale:1,
 			scrollTrigger: {
 			trigger: '.trouble_item:nth-child(6)', 
-			start: "top bottom ",  
+			start: "center bottom ",  
 			end: "bottom center", 
 			
 			scrub: true, 
@@ -238,7 +238,7 @@ export default {
 			scale:1,
 			scrollTrigger: {
 			trigger: '.trouble_item:nth-child(5)', 
-			start: "top bottom ",  
+			start: "center bottom ",  
 			end: "bottom center", 
 			
 			scrub: true, 
@@ -249,7 +249,7 @@ export default {
 			scale:1,
 			scrollTrigger: {
 			trigger: '.trouble_item:nth-child(4)', 
-			start: "top bottom ",  
+			start: "center bottom ",  
 			end: "bottom center", 
 			
 			scrub: true, 
@@ -260,7 +260,7 @@ export default {
 			scale:1,
 			scrollTrigger: {
 			trigger: '.trouble_item:nth-child(3)', 
-			start: "top bottom ",  
+			start: "center bottom ",  
 			end: "bottom center", 
 			
 			scrub: true, 
