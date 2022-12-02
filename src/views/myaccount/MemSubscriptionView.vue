@@ -9,7 +9,7 @@
 			<div class="data">
 				<!-- 這裡開始寫 -->
 				<div class="card">
-					<div class="card-wrap">
+					<div v-if="memsub==false" class="card-wrap">
 						<div class="card-content">
 						<h2>#BASIC</h2>
 						<p>
@@ -77,6 +77,13 @@
 						<button>立即訂閱</button>
                 		</div>
 					</div>
+					<div v-else class="card-wrap">
+						<div class="card-sub">
+							<h2>您的訂閱方案</h2>
+							<p class="memlevel">#{{memlevel}}</p>
+							<button>更改方案</button>
+                		</div>
+					</div>
 					<button class="back">返回</button>
 				</div>
 				<div class="decoration">
@@ -97,7 +104,8 @@ export default {
 	},
 	data(){
 		return{
-			memLevel:false,
+			memsub:true,
+			memlevel:'ULTRA'
 		}
 	},
 	created(){
