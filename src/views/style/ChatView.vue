@@ -59,12 +59,13 @@
 		<p>
 			風格造型師來帶領你，學習穿搭技巧、儀態調整，也重新認識自己，找出適合自己的穿搭風格！
 		</p>
-		<Button content="諮詢造型師"></Button>
+		<router-link :to="{ name:'Consultating'}">
+			<Button class="btn_s">諮詢造型師</Button>
+		</router-link>
+		
 	</div>
 </template>
 <script>
-import Footer from "@/components/Footer.vue";
-import Button from "@/components/Button.vue";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
@@ -72,8 +73,6 @@ gsap.registerPlugin(ScrollTrigger);
 export default {
 	name: "Chat",
 	components: {
-		Footer,
-		Button,
 		gsap,
 		ScrollTrigger,
 
