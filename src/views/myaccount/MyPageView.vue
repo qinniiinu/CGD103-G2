@@ -24,16 +24,10 @@
 						<SmallCard title="訂閱服務" Bgtag="#PREMIUM" more="更改訂閱" class="premium">內容
 						</SmallCard>
 						<OrderCard title="訂單紀錄" class="order">
-							<OrdHisCard></OrdHisCard>
-							<OrdHisCard></OrdHisCard>
-							<OrdHisCard></OrdHisCard>
-							<OrdHisCard></OrdHisCard>
-							<OrdHisCard></OrdHisCard>
-							<OrdHisCard></OrdHisCard>
-							<OrdHisCard></OrdHisCard>
+							<OrdHisCard ></OrdHisCard>
 						</OrderCard>
-						
 					</div>
+					<MySave></MySave>
 				</div>
 			</div>
 		</div>
@@ -48,6 +42,7 @@ import TypeTag from '@/components/mypage/TypeTag.vue';
 import SmallCard from '@/components/mypage/SmallCard.vue';
 import OrderCard from '@/components/mypage/OrderCard.vue';
 import OrdHisCard from '@/components/mypage/OrdHisCard.vue';
+import MySave from '@/components/mypage/MySave.vue';
 export default {
 	name: "MyPage",
 	components: {
@@ -58,6 +53,7 @@ export default {
 		SmallCard,
 		OrderCard,
 		OrdHisCard,
+		MySave,
 	},
 	data() {
 		return {
@@ -111,7 +107,7 @@ export default {
 		display: grid;
 		grid-template-columns: 50% 2fr;
 		grid-template-rows:1 3fr;
-		gap: 20px;
+		gap: 25px;
 		.account{
 			grid-area: 1 / 1 / 2 / 2 ;
 		}

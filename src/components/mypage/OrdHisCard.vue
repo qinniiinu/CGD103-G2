@@ -1,22 +1,25 @@
 <template>
-	<li class="item_num">
+	<li class="item" v-for="order in orders" :key="order.order_id">
 		<!-- 訂單記錄列 -->
 		<div class="row">
-			<div class="title">訂單編號： {{ order1.ord_num }}</div>
-			<h2>{{ order1.ord_condtion }}</h2>
+			<div class="title">訂單編號： {{ order.order_id }}</div>
+			<!-- 訂單狀態 -->
+			<h2>{{ order.order_con[2] }}</h2>
 		</div>
 		<div class="photo_money">
+			<!-- 商品圖 * 2 -->
 			<div class="photos">
 				<div class="photo">
-					<img :src="order1.img_link[1]" alt="" />
+					<img :src="order.product_pic[0]" alt="" />
 				</div>
 				<div class="photo">
-					<img :src="order1.img_link[1]" alt="" />
+					<img :src="order.product_pic[1]" alt="" />
 				</div>
 			</div>
+			<!-- 商品數 + 金額 -->
 			<div class="item_money">
-				<span class="allitem">共{{ order1.item_product }}件商品</span>
-				<span class="allprice">訂單金額 ${{ order1.sum_price }}</span>
+				<span class="allitem">共{{ order.quantity }}件商品</span>
+				<span class="allprice">訂單金額 ${{  order.total }}</span>
 			</div>
 		</div>
 	</li>
@@ -26,40 +29,101 @@
 export default {
 	name: "OrdHisCard",
 	props: {
-		ord_num: String,
-		ord_condtion: String,
-		item_product: String,
-		sum_price: String,
+		order_id: String,
+		order_con: String,
+		quantity: String,
+		total: String,
 	},
 	components: {
 	},
 	data() {
 		return {
-			order1:{
-				ord_num:1201201,
-				ord_condtion:"已出貨",
-				img_link:["./style1.png","./style2.png"],
-				item_product:2,
-				sum_price:888,
+			orders:[
+			{
+				order_id:1201201,
+				"order_con":{
+					"0":"取消",
+					"1":"未確認",
+					"2":"備貨中",
+					"3":"已出貨"
+				},
+				product_pic:["./style1.png","./style2.png"],
+				quantity:2,
+				total:888
 			},
-			order2:{
-				ord_num:1201202,
-				ord_condtion:"未出貨",
-				img_link:["./style3.png","./style4.png"],
-				item_product:2,
-				sum_price:999,
-			}
+			{
+				order_id:1201202,
+				order_con:{
+					"0":"取消",
+					"1":"未確認",
+					"2":"備貨中",
+					"3":"已出貨"
+				},
+				product_pic:["./style1.png","./style2.png"],
+				quantity:2,
+				total:888
+			},
+			{
+				order_id:1201202,
+				order_con:{
+					"0":"取消",
+					"1":"未確認",
+					"2":"備貨中",
+					"3":"已出貨"
+				},
+				product_pic:["./style1.png","./style2.png"],
+				quantity:2,
+				total:888
+			},
+			{
+				order_id:1201202,
+				order_con:{
+					"0":"取消",
+					"1":"未確認",
+					"2":"備貨中",
+					"3":"已出貨"
+				},
+				product_pic:["./style1.png","./style2.png"],
+				quantity:2,
+				total:888
+			},
+			{
+				order_id:1201202,
+				order_con:{
+					"0":"取消",
+					"1":"未確認",
+					"2":"備貨中",
+					"3":"已出貨"
+				},
+				product_pic:["./style1.png","./style2.png"],
+				quantity:2,
+				total:888
+			},
+			{
+				order_id:1201202,
+				order_con:{
+					"0":"取消",
+					"1":"未確認",
+					"2":"備貨中",
+					"3":"已出貨"
+				},
+				product_pic:["./style1.png","./style2.png"],
+				quantity:2,
+				total:888
+			},
+			]
+			
 		}
-	},
-};
+	}
+}
 </script>
 
 <style lang="scss" scoped>
 *{list-style: none;}
-.item_num{
+.item{
 	width: max-width;
 	height: min-content;
-	margin-bottom: 20px;
+	margin-block: 20px;
 	padding: 20PX;
 	border: 1px solid gray;
 	background-color: $third_color;
@@ -79,7 +143,7 @@ export default {
 			display: flex;
 			gap: 20px;
 			.photo{
-				width: 120px;
+				max-width: 120px;
 				height: 120px;
 				display: flex;
 				img{
