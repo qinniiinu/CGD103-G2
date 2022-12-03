@@ -36,15 +36,30 @@ export default {
         display: flex;
         justify-content: space-between;
         .tit{
-            font-size: 26px;
+            font-size: 24px;
+            font-weight: 700;
             color: $title_color;
+            margin-bottom: 20px;
+
         }
     }
     .data{
         height: 100vh;
         max-width :100%;
         overflow: auto;
-            
+        scrollbar-width: auto;
+        scrollbar-color: #4673fb #ffffff;
+        &::-webkit-scrollbar {
+            width: 14px;
         }
+        &::-webkit-scrollbar-track {
+            background: #ffffff;
+        }       
+        &::-webkit-scrollbar-thumb {
+            background-color: #4673fb;
+            border-radius: 10px;
+            border: 3px solid #ffffff;
+        }
+    }
 }
 </style>

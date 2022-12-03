@@ -167,25 +167,29 @@ const routes = [
 		component: () => import("../views/style/QuizView.vue"),
 	},
 	{
-		path: "/QuizResult",//測驗結果
-		name: "QuizResult",
-		component: () => import("../views/style/quiz/QuizResultView.vue"),
-		children: [{ //測驗結果1
-			name: 'QuizResult1',
-			path: 'QuizResult1',
-			component: () => import("../views/style/quiz/QuizResult1View.vue"),
-		},
-		{
-			name: 'QuizResult2',//測驗結果2
-			path: 'QuizResult2',
-			component: () => import("../views/style/quiz/QuizResult2View.vue"),
-		},
-		]
-	},
-	{
-		path: "/QuestionBox",
+		path: "/QuestionBox",//風格測驗題目
 		name: "QuestionBox",
 		component: () => import("../views/style/quiz/QuestionBoxView.vue"),
+	},
+	{
+		path: "/ResultSport",//測驗結果-運動風
+		name: "ResultSport",
+		component: () => import("../views/style/quiz/ResultSportView.vue"),
+	},
+	{
+		path: "/ResultHipster",//測驗結果-文青風
+		name: "ResultHipster",
+		component: () => import("../views/style/quiz/ResultHipsterView.vue"),
+	},
+	{
+		path: "/ResultFashion",//測驗結果-時尚風
+		name: "ResultFashion",
+		component: () => import("../views/style/quiz/ResultFashionView.vue"),
+	},
+	{
+		path: "/ResultMinimalist",//測驗結果-極簡風
+		name: "ResultMinimalist",
+		component: () => import("../views/style/quiz/ResultMinimalistView.vue"),
 	},
 	{
 		path: "/Set",

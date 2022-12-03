@@ -110,7 +110,7 @@ export default {
 		min-height: max-content;
 		display: grid;
 		grid-template-columns: 50% 2fr;
-		grid-template-rows: 3fr;
+		grid-template-rows:1 3fr;
 		gap: 20px;
 		.account{
 			grid-area: 1 / 1 / 2 / 2 ;
