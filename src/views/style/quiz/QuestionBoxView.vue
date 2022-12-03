@@ -1,18 +1,4 @@
 <template>
-  <div v-if="count < 14">
-    <!-- ====================== -->
-    <section>
-      <div class="score">
-        <h3>測驗分數: </h3>
-        <p id="demo"></p>
-      </div>
-      <div class="result">
-        <h3>測驗結果: </h3>
-        <p id="demo2"></p>
-      </div>
-      <div><button @click="processForm()" class="btn">enter</button></div>
-    </section>
-    <!-- =================== -->
     <form name="see">
       <section class="question_box">
         <div class="slider_box">
@@ -20,28 +6,45 @@
             <div class="item" v-for="item in question" :key="item.id">
               <div class="title_box">
                 <h2>
-                  <span class="num_box"
-                    >問題 <span class="num">0{{ item.id }}</span> / 7</span
-                  ><span class="question_name">{{ item.q_name }}</span>
+                  <span class="num_box">問題 <span class="num">0{{ item.id }}</span> / 7</span><span
+                    class="question_name">{{ item.q_name }}</span>
                 </h2>
               </div>
               <div class="option_box" @click="next($event)">
                 <!-- 選項 -->
                 <!-- item.op.length 選項數量 = option_item2 option_item3 option_item4-->
-                <div
-                  :class="'option_item' + item.op.length"
-                  v-for="(i, idx) in item.op"
-                  :key="idx"
-                >
+                <div :class="'option_item' + item.op.length" v-for="(i, idx) in item.op" :key="idx">
                   <!-- name = q1, q2... -->
-                  <input
-                    type="radio"
-                    :id="item.op[idx].op_id"
-                    :name="'q' + item.id"
-                  />
-                  <label :for="item.op[idx].op_id" :style="item.op[idx].styObj"
-                    ><p>{{ item.op[idx].op_name }}</p></label
-                  >
+                  <input type="radio" :id="item.op[idx].op_id" :name="'q' + item.id" />
+                  <label :for="item.op[idx].op_id" :style="item.op[idx].styObj">
+                    <p>{{ item.op[idx].op_name }}</p>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <!-- 最後一題 -->
+            <div class="item">
+              <div class="title_box">
+                <h2>
+                  <span class="num_box">問題 <span class="num">07</span> / 7</span><span
+                    class="question_name">你較常穿哪種衣服</span>
+                </h2>
+              </div>
+              <div class="option_box" @click="processForm()">
+                <!-- 選項 -->
+                <div class='option_item2'>
+                  <!-- name = q1, q2... -->
+                  <input type="radio" id="casual" name="q7" />
+                  <label for="casual">
+                    <p>休閒</p>
+                  </label>
+                </div>
+                <div class='option_item2'>
+                  <!-- name = q1, q2... -->
+                  <input type="radio" id="formal" name="q7"/>
+                  <label for="formal">
+                    <p>正式</p>
+                  </label>
                 </div>
               </div>
             </div>
@@ -49,37 +52,21 @@
         </div>
       </section>
     </form>
-  </div>
-  <div v-else>
-    <section class="quiz_result">
-      <div class="title_box">
-        <p>你的測驗結果是</p>
-        <h2>時尚風</h2>
-      </div>
-      <div class="wraper">
-        <div class="img_box">
-          <StyleCard1 link="https://picsum.photos/600/600/?random=10" />
-          <Button content="記錄我的風格"/>
-        </div>
-        <div class="txt_box">
-            <h3>適合您的穿搭公式</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis quod qui, cumque quis consequatur asperiores consequuntur odio reiciendis debitis officia mollitia. Laborum cupiditate odio incidunt laboriosam distinctio debitis atque pariatur?</p>
-        </div>
-      </div>
-  </section>
-  </div>
 </template>
 
 <script>
 import StyleCard1 from "@/components/StyleCard1.vue";
+import Button from "@/components/Button.vue";
 export default {
   name: "QuestionBox",
-    components: {
+  components: {
     StyleCard1,
+    Button,
   },
   data() {
     return {
-      count:0,
+      // count: 0,
+      // counts: 6,
       x: 0,
       question: [
         {
@@ -89,27 +76,14 @@ export default {
             {
               op_name: "男裝",
               op_id: "man",
-              styObj: {
-                color: "red",
-              },
             },
             {
               op_name: "女裝",
               op_id: "woman",
-              styObj: {
-                color: "#fa0",
-                "background-image":
-                  'url("https://picsum.photos/800/300/?random=10")',
-              },
             },
             {
               op_name: "中性",
               op_id: "neutral",
-              styObj: {
-                color: "#fa0",
-                "background-image":
-                  'url("https://picsum.photos/800/300/?random=10")',
-              },
             },
           ],
         },
@@ -215,37 +189,51 @@ export default {
             },
           ],
         },
-        {
-          id: 7,
-          q_name: "你較常穿哪種衣服?",
-          op: [
-            {
-              op_name: "休閒",
-              op_id: "casual",
-            },
-            {
-              op_name: "正式",
-              op_id: "formal",
-            },
-          ],
-        },
+        // {
+        //   id: 7,
+        //   q_name: "你較常穿哪種衣服?",
+        //   op: [
+        //     {
+        //       op_name: "休閒",
+        //       op_id: "casual",
+        //     },
+        //     {
+        //       op_name: "正式",
+        //       op_id: "formal",
+        //     },
+        //   ],
+        // },
       ],
     };
   },
   methods: {
+    //判斷跳轉去哪一頁
+    sendSport(){
+      this.$router.push('/ResultSport')
+    },
+    sendHipster(){
+      this.$router.push('/ResultHipster')
+    },
+    sendFashion(){
+      this.$router.push('/ResultFashion')
+    },
+    sendMinimalist(){
+      this.$router.push('/ResultMinimalist')
+    },
     next(e) {
       this.count += 1;
-      this.x -= 50;
+      this.x -= 50; //??
       let y = this.x + "vw";
       e.currentTarget.parentElement.parentElement.parentElement.style.transform = `translateX(${y})`; //抓上上上層 slider_box
       console.log("y:", y);
       console.log("count:", this.count);
     },
     processForm() {
+      console.log("send");
       var sport = 0; //運動風
       var hipster = 0; //文青風
-      var minimalist = 0; //極簡風
       var fashion = 0; //時尚風
+      var minimalist = 0; //極簡風
 
       // 1.請選擇偏好服裝。
       // if (document.see.q1[0].checked == 1) sport += 1; //男裝
@@ -254,29 +242,29 @@ export default {
 
       // 2.你目前對自己的穿搭有什麼看法 ?
       if (document.see.q2[0].checked == 1) fashion += 1; //很滿意
-      if (document.see.q2[1].checked == 1) hipster += 1; //我想改變目前風格**
+      if (document.see.q2[1].checked == 1) hipster += 2; //我想改變目前風格
       if (document.see.q2[2].checked == 1) sport += 1; // 我想增加其他風格
       if (document.see.q2[3].checked == 1) minimalist += 1; // 我不清楚我適合什麼風格
 
-      
+
       // 3.穿搭你最注重的是?
       if (document.see.q3[0].checked == 1) fashion += 1; //時尚
-      if (document.see.q3[1].checked == 1){
-        sport += 1  //舒服**
-        minimalist += 1; //舒服**
-      } 
+      if (document.see.q3[1].checked == 1) {
+        sport += 1  //舒服
+        minimalist += 2; //舒服
+      }
       if (document.see.q3[2].checked == 1) hipster += 1; //都注重
-              
+
       // 4.休假時的你喜歡?
-      if (document.see.q4[0].checked == 1) sport += 1; //爬山
+      if (document.see.q4[0].checked == 1) sport += 2; //爬山
       if (document.see.q4[1].checked == 1) hipster += 1; //喝咖啡
       if (document.see.q4[2].checked == 1) fashion += 1; //逛街
       if (document.see.q4[3].checked == 1) minimalist += 1; //睡覺
       // 5.穿衣服時你喜歡?
-      if (document.see.q5[0].checked == 1){
+      if (document.see.q5[0].checked == 1) {
         sport += 1; //寬鬆
-        minimalist += 1; //寬鬆
-      } 
+        minimalist += 2; //寬鬆
+      }
       if (document.see.q5[1].checked == 1) hipster += 1; //剛好
       if (document.see.q5[2].checked == 1) fashion += 1; //緊身
       // 6.當你有一筆預算能買一件單品，你會買?
@@ -285,38 +273,33 @@ export default {
       if (document.see.q6[2].checked == 1) fashion += 1; //配件
       if (document.see.q6[3].checked == 1) minimalist += 1; //上身
       // 7.你較常穿哪種衣服?
-      if (document.see.q7[0].checked == 1){
+      if (document.see.q7[0].checked == 1) {
         sport += 1; //休閒
         minimalist += 1; //休閒
-      } 
-      if (document.see.q7[1].checked == 1){
+      }
+      if (document.see.q7[1].checked == 1) {
         hipster += 1; //正式
-        fashion += 1; //正式
-      } 
-     console.log(sport);
+        fashion += 2; //正式
+      }
+      // ===分數統計===
       let arr = [sport, hipster, fashion, minimalist];
-      // let dict = {
-      //   sport: sport,
-      //   hipster: hipster,
-      //   minimalist: minimalist,
-      //   fashion: fashion,
-      // };
       let result = Math.max(...arr);
-      // document.see.answer.value = `時尚風: ${fashion},運動風: ${sport},文青風: ${hipster},極簡風: ${hipster}, 最大值:${result}`;
-      document.getElementById(
-        "demo"
-      ).innerText = `時尚風: ${fashion}, 運動風: ${sport}, 文青風: ${hipster}, 極簡風: ${hipster}, (最大值:${result})`;
+      
+      // 運動風
       if (result === arr[0]) {
-        document.getElementById("demo2").innerText = "運動風";
+        this.sendSport();
       }
+      // 文青風
       if (result === arr[1]) {
-        document.getElementById("demo2").innerText = "文青風";
+        this.sendHipster();
       }
+      // 時尚風
       if (result === arr[2]) {
-        document.getElementById("demo2").innerText = "時尚風";
+        this.sendFashion();
       }
+      // 極簡風
       if (result === arr[3]) {
-        document.getElementById("demo2").innerText = "極簡風";
+        this.sendMinimalist();
       }
     },
   },
@@ -326,30 +309,36 @@ export default {
 * {
   box-sizing: border-box;
 }
+
 .question_box {
   width: 100%;
   overflow: hidden;
 }
+
 .slider_box {
   width: 100vw;
   transition: 1s;
   transform: translateX(0);
 }
+
 .wrap {
   margin: 30px auto;
   position: relative;
   width: 900vw; //動態
+
   .item {
     width: 100%;
     opacity: 1;
     transition: 6s;
     display: inline-block;
     width: 100vw;
+
     .title_box {
       h2 {
         text-align: center;
         color: $title_color;
         padding: 20px;
+
         // font-size: 14px;
         span.num_box {
           display: block;
@@ -360,15 +349,18 @@ export default {
           margin-right: auto;
           margin-bottom: 10px;
           font-size: 16px;
+
           .num {
             font-weight: 600;
             color: $main_color;
           }
         }
+
         .question_name {
           position: relative;
           z-index: 1;
           font-size: 14px;
+
           &:after {
             content: "";
             background-color: $main_color;
@@ -382,11 +374,13 @@ export default {
         }
       }
     }
+
     .option_box {
       width: 100%;
       display: flex;
       flex-wrap: wrap;
-      height: calc(100vh - 205px); //*** */
+      min-height: calc(100vh - 186px); //*** */
+
       div[class*="option_item"] {
         //手機
         width: 100%;
@@ -395,6 +389,7 @@ export default {
         padding: 50px 0;
         border-bottom: 1px solid #fff;
         position: relative;
+
         // input {
         //   display: none;
         // }
@@ -406,12 +401,13 @@ export default {
           left: 0;
           text-align: center;
           cursor: pointer;
-          background-image: none !important;
+
           &:hover {
             transition: 1s;
             background-color: #fff;
             color: #333;
           }
+
           p {
             transform: translate(-50%, -50%);
             top: 50%;
@@ -424,13 +420,13 @@ export default {
     }
   }
 }
+
 @media screen and (min-width: 768px) {
-  .wraper {
+  .wrap {
     .item {
       .title_box {
         h2 {
           padding: 20px;
-          // font-size: 14px;
           span.num_box {
             display: inline-block;
             margin-right: 20px;
@@ -443,149 +439,37 @@ export default {
       }
     }
   }
+
   .option_box {
-    div[class*="option_item"] {
+    div[class*="option_item"] { //所有選項
       label {
         &:hover {
           transition: 1s;
           background-color: #fff;
           color: #333;
         }
+
         p {
-          font-size: 40px !important;
+          font-size: 24px !important;
         }
       }
     }
+
     .option_item2 {
       //兩個選項 筆電
       width: 50% !important;
     }
+
     .option_item3 {
       //三個選項 筆電
       width: 33% !important;
     }
+
     .option_item4 {
       //四個選項 筆電
       width: 25% !important;
     }
   }
 }
-
-// ==============
-.quiz_result{
-    .title_box{
-        text-align: center;
-        padding: 20px 0;
-        p{
-            font-size: 16px;
-            margin-bottom: 5px;
-            color: $title_color;
-        }
-        h2{
-            color: $title_color;
-            font-weight: 600;
-            font-size: 24px;
-        }
-    }
-    .wrap{
-        width: 80%;
-        position: relative;
-        margin: 0 auto;
-
-    .img_box{
-        width: 100%;
-        position: relative;
-        .item{
-            margin-left: -15px;
-        }
-        button {
-          margin: auto;
-          display: block;
-        }
-    }
-    .txt_box{
-        padding: 20px 0;
-        h3{
-            color: $title_color;
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-        p{
-            font-size: 12px;
-            color: $text_color;
-        }
-    }
-    }
-
-}
- @media screen and (min-width:768px) {
-    .quiz_result{
-    .title_box{
-        text-align: center;
-        padding: 20px 0;
-        p{
-            display: inline-block;
-            margin-right: 10px;
-            font-size: 32px;
-        }
-        h2{
-            display: inline-block;
-            font-size: 48px;
-        }
-    }
-    .wrap{
-        width: 100%;
-        max-width: 1200px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-
-    .img_box{
-        width: 50%;
-    }
-    .txt_box{
-        width: 50%;
-        order: -1;
-        h3{
-            font-size: 24px;
-        }
-        p{
-            font-size: 22px;
-        }
-    }
-    }
-
-}
- }
-.recommend{
-    padding: 50px 0;
-    width: 80%;
-    position: relative;
-    margin: 0 auto;
-    h3{
-        color: $title_color;
-        margin-bottom: 10px;
-        font-size: 16px;
-    }
-    .wrap{
-        .product_card{
-            margin: 0;
-        }
-    }
-}
- @media screen and (min-width:768px) {
-    .recommend{
-        h3{
-            font-size: 24px;
-        }
-        .wrap{
-            display: flex;
-            flex-wrap: wrap;
-              .product_card{
-                width: 33%;
-            }
-        }
-    }
- }
 
 </style>
