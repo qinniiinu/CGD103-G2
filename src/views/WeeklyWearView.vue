@@ -2,6 +2,8 @@
     <div class="weeklywear" >
         <h1 class="title">一週穿搭公式<br>讓你/妳有更多穿搭靈感</h1>
         <section class="section_one">
+            <img class="deco1" src="../assets/weeklywear_pic/deco01.png" alt="">
+            <img class="deco2" src="../assets/weeklywear_pic/deco02.png" alt="">
             <ul class="weekbox">
 				<li @click="Mon = !Mon">
           			<label for="Mon">
@@ -40,6 +42,7 @@
 				</li>		
 
             </ul>
+            
             <div class="imgbox">
                 <transition-group name="slideDown" >
                     <img class="img_left" v-if="picked === 'Mon'" src="../assets/weeklywear_pic/female03.jpg" alt="女裝01">
@@ -75,11 +78,11 @@
             能穿出高品味的優美色調，搭配白色讓冬季造型也擁有輕快氣息。
             </p>
             <div class="line_second"></div>
-            <div class="box_female">
-                <img class="img_female"  src="../assets/weeklywear_pic/female01.jpg" alt="女裝01">
+            <div class="box_videonpic">
                 <div class="videobox">
-                    <!-- <iframe src="https://drive.google.com/file/d/1gFI9pnrX2x6JfKXpE_6AYgEnXqrh1y9D/preview"  frameborder="0" allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe> -->
+                   <div style="width:100%;height:0px;position:relative;padding-bottom:189.947%;"><iframe src="https://streamable.com/e/n1flxb?autoplay=1&nocontrols=1" frameborder="0" width="100%" height="100%" allowfullscreen allow="autoplay" style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"></iframe></div>
                 </div>
+                <img class="img_female"  src="../assets/weeklywear_pic/female.jpg" alt="女裝">
             </div>
         </section>
  
@@ -91,11 +94,11 @@
             能穿出高品味的優美色調，搭配白色讓冬季造型也擁有輕快氣息。
             </p>
             <div class="line_second"></div>
-            <div class="box_female">
-                <img class="img_female"  src="../assets/weeklywear_pic/female01.jpg" alt="女裝01">
+            <div class="box_videonpic">
                 <div class="videobox">
- 
+                    <div style="width:100%;height:0px;position:relative;padding-bottom:189.947%;"><iframe src="https://streamable.com/e/6fcuis?autoplay=1&nocontrols=1" frameborder="0" width="100%" height="100%" allowfullscreen allow="autoplay" style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"></iframe></div>
                 </div>
+                <img class="img_female"  src="../assets/weeklywear_pic/male.jpg" alt="男裝">
             </div>
         </section>
     </div>
@@ -103,7 +106,6 @@
 </template>
  
 <script>
- 
 export default {
     // name: "",
     // components: {
@@ -117,21 +119,41 @@ export default {
             Thur:  false,
             Fri:  false,
             End:  false,
-
-			picked: "Wed",
-       
+			picked: "Wed",       
         }
     }
- 
 };
  
 </script>
+
+
+
 <style lang="scss" scoped>
     @import "@/assets/sass/main.scss";
     @import "@/assets/sass/grid";
- 
+
+    @keyframes float {
+        0% {
+            transform: translatey(0px);
+        }
+        50% {
+            transform: translatey(-20px);
+        }
+        100% {
+            transform: translatey(0px);
+        }
+    }
+
+    @keyframes line {
+        from{width: 0%;}
+        to{width: 100%;}
+    }
+
+//  ============================ 桌機 ============================
     .weeklywear{
+        width: 100%;
         .title{
+            width: 100%;
             font-size: 48px;
             font-weight: 700;
             font-family: $main_font;
@@ -141,11 +163,26 @@ export default {
             color: $title_color;
         }
         .section_one{
-            // max-width: 1200px;
+            width: 100%;
             height: 500px;
             margin: 100px auto 300px auto;
             position: relative;
-		
+            .deco1{
+                position: absolute;
+                top:-60px;
+                left: 500px;
+                z-index: 5;
+                transform: translatey(0px);
+	            animation: float 4s ease-in-out infinite;
+            }
+            .deco2{
+                position: absolute;
+                top:500px;
+                right: 500px;
+                z-index: 5;
+                transform: translatey(0px);
+	            animation: float 4s ease-in-out infinite;
+            }
             .imgbox{
                 display: flex;
                 .img_left{
@@ -230,10 +267,6 @@ export default {
                     z-index: 1;
                     animation: line 1.5s ease-out forwards;
                 }
-                @keyframes line {
-                    from{width: 0%;}
-                    to{width: 100%;}
-                }
             }  
         }
         .section_two{
@@ -255,49 +288,143 @@ export default {
                 text-align: center;
                 line-height: 160%;
                 margin: auto;
-                margin-bottom: 180px;
+                margin-bottom: 100px;
                 color: $title_color;
             }
             .line_second{
                 width: 100%;
                 height: 180px;
-                margin: 140px auto;
+                margin: 160px auto;
                 background-color:$second_color ;
                 position: absolute;
                 top:250px;
-                z-index: 1;
             }
-            .box_female{
+            .box_videonpic{
                 position: relative;
-                .img_female{
-                    position: absolute;
-                    top:-80px;
-                    right: 250px;
-                    z-index: 4;
-                    width: 20%;
-                }
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+                max-width: 1050px;
+                margin:auto;             
                 .videobox{
-                    position: absolute;
-                    top:-110px;
-                    left: 250px;
-                    z-index: 4;
                     width: 427px;
                     height: 550px;
                     overflow: hidden;
-                    // aspect-ratio: 16/9;
-                    border: 1px solid black;
                     iframe{
                         width: 100%;
                         height: 100%;
                     }
                 }
-            }
- 
+            } 
         }
-   
- 
     }
    
-   
+//  ============================ 手機 ============================
+   @media screen and (max-width: 767px){
+    .weeklywear{
+        .title{
+            font-size: 32px;
+        }
+        .section_one{
+            height: 500px;
+            margin: 100px auto 70px auto;
+            position: relative;
+            .deco1{
+                display: none;
+            }
+            .deco2{
+                display: none;
+            }
+            .imgbox{
+                display: flex;
+                width: 100%;
+                .img_left{
+                    width: 40%;
+                    position: absolute;
+                    top:80px;
+                    left: 25px;
+                    z-index: 4;
+                }
+                .img_right{
+                    width: 40%;
+                    position: absolute;
+                    top:130px;
+                    right: 25px;
+                    z-index: 4;
+                }
+            }
+            .weekbox{
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                position: absolute;
+                top:-75px;
+                right: 0px;
+                font-size: 24px;
+            }
+            .bgpic{
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                overflow: hidden;
+                .bg_right{
+                    width: 80%;
+                    height: 80%;
+                    padding: 5px;
+                }
+                .bg_left{
+                    width: 80%;
+                    height: 80%;
+                    padding: 5px;
+                }
+                .line{
+                    position: absolute;
+                    top:160px;
+                    z-index: 1;
+                }
+            }  
+        }
+        .section_two{
+            position: relative;
+            height: 100%;
+            .subtitle{
+                width: 90%;
+                padding: 10px;
+                font-size: 24px;
+            }
+            .text{
+                width: 90%;
+                padding: 5px;
+                font-size: 18px;
+                line-height: 160%;
+                margin: auto;
+                margin-bottom: 50px;
+            }
+            .line_second{
+                display: none;
+            }
+            .box_videonpic{
+                width: 100%;
+                position: relative;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                margin:auto;             
+                .videobox{
+                    width: 90%;
+                    height: 550px;
+                    margin: auto;
+                }
+                .img_female{
+                    width: 90%;
+                    margin: 80px auto;
+                }
+            } 
+        }
+    } 
+}
+
    
 </style>

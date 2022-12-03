@@ -295,16 +295,14 @@ function textStyle(x) {
 @import "@/assets/sass/main";
 
 
-body{
-	::-webkit-scrollbar{
-		display: none;
-	}
-}
 
 .landing_page_photo{
 	background-image: url("../assets/images/about-landing-page.jpg");
+	transform: scale(1.1,1.1);
+	margin-top: 50px;
 	::-webkit-scrollbar{
 		display: none;
+		
 	}
 	.box{
 		display: grid;
@@ -326,11 +324,11 @@ body{
 			color: aliceblue;
 		}
 		.textPart{
-			outline: 1px solid aliceblue;
+			outline: 1px solid hsl(208, 100%, 97%);
 			width: 500px;
 			padding: 50px;
 			height: 350px;
-			background-color: rgb(160, 165, 184);
+			background-color: rgb(160, 165, 184,0.5);
 		
 		}
 		p{

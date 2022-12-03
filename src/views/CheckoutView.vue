@@ -25,14 +25,14 @@
 				<div class="receiver">
 					<h4>收件人資訊</h4>
 					<p>姓名</p>
-					<input class="mem_name" type="text">
+					<input class="mem_name" type="text" v-model="mem_name1">
 					<p>連絡電話</p>
-					<input class="phone" type="text">
+					<input class="phone" type="text" v-model="phone1">
 					<p>電子信箱</p>
-					<input class="email" type="text">
+					<input class="email" type="text" v-model="mem_mail1">
 					<p>配送地址</p>
-					<input class="receive-address">
-					<label class="same" for="same"><input type="checkbox" id="same" >同購買人資訊</label>
+					<input class="receive-address" v-model="address1">
+					<label class="same" for="same"><input type="checkbox" id="same" @click="check()" >同購買人資訊</label>
 				</div>
 				<div class="payment">
 					<h4>付款方式</h4>
@@ -114,7 +114,11 @@ export default {
 			mem_name:"王小明",
 			phone:"0912345678",
 			mem_mail:"bj4@gmail.com",
-			address:"320桃園市中壢區復興路46號9樓"
+			address:"320桃園市中壢區復興路46號9樓",
+			mem_name1:"",
+			phone1:"",
+			mem_mail1:"",
+			address1:""
 		}
 	},
 	created(){
@@ -122,7 +126,13 @@ export default {
 	computed:{
 	},
 	methods:{
-		
+		check(){
+			this.mem_name1 = this.mem_name;
+			this.phone1 = this.phone;
+			this.mem_mail1 = this.mem_mail;
+			this.address1 = this.address;
+			console.log("mem_name1",this.mem_name1);
+		}
 	}
 };
 </script>
