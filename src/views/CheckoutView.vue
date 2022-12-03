@@ -48,7 +48,7 @@
 			<h2>購物車</h2>
 			<div class="list-wrap">
 				<div class="items">
-				<div class="item" v-for="(item,index) in product" :key="item.id">
+				<div class="item" v-for="item in order" :key="item.id">
 					<div class="product">
 						<img :src="item.image" v-bind:alt="item.title">
 						<div class="prod-detail">
@@ -56,19 +56,19 @@
 							<div class="spec">
 								<p>{{item.color}}</p>
 								<p>{{item.size}}</p>
-								<p>${{item.price}}元</p>
+								<p>${{item.price*item.count}}元</p>
 							</div>
 						</div>
 					</div>
 					<div class="count">
-						<p>x1</p>
+						<p>x{{item.count}}</p>
 					</div>
 				</div>
 				</div>
 				<div class="detail">
-					<div>共 {{product.length}} 件商品</div>
+					<div>共 {{order.length}} 件商品</div>
 					<div>{{memLevel}} 會員等級折扣: -429$</div>
-					<div>總計: $8151元</div>
+					<div>總計: ${{total*(1-discount)}}元</div>
 				</div>
 			</div>
 		</div>	
@@ -122,17 +122,48 @@ export default {
 		}
 	},
 	created(){
+		this.getStorage();
 	},
 	computed:{
+		total(){
+			if(this.order.length>0){
+				let total=0
+				for(const index in this.order){
+					total+=this.order[index]['count']*this.order[index]['price']
+				}
+				console.log(total);
+				return parseInt(total)
+			}else{
+				return 0
+			}
+		}
 	},
 	methods:{
 		check(){
-			this.mem_name1 = this.mem_name;
-			this.phone1 = this.phone;
-			this.mem_mail1 = this.mem_mail;
-			this.address1 = this.address;
-			console.log("mem_name1",this.mem_name1);
-		}
+			this.isChecked = !this.isChecked;
+			console.log(this.isChecked);
+			if(this.isChecked == true){
+				this.mem_name1 = this.mem_name;
+				this.phone1 = this.phone;
+				this.mem_mail1 = this.mem_mail;
+				this.address1 = this.address;
+				console.log(this.mem_name1);
+			}else{
+				this.mem_name1 = "";
+				this.phone1 = "";
+				this.mem_mail1 = "";
+				this.address1 = "";
+			}
+		},
+		getStorage(){
+			let data =localStorage.getItem('order');
+			data=JSON.parse(data)
+			this.order=data? data:[]
+        },
+		setStorage(){
+			const data=JSON.stringify(this.order);
+			localStorage.setItem('order',data);
+        }
 	}
 };
 </script>

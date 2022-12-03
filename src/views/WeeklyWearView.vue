@@ -45,8 +45,8 @@
             
             <div class="imgbox">
                 <transition-group name="slideDown" >
-                    <img class="img_left" v-if="picked === 'Mon'" src="../assets/weeklywear_pic/female03.jpg" alt="女裝01">
-                    <img class="img_left" v-if="picked === 'Tue'" src="../assets/weeklywear_pic/female02.jpg" alt="女裝01">
+                    <img class="img_left" v-if="picked === 'Mon'" src="../assets/weeklywear_pic/female02.jpg" alt="女裝01">
+                    <img class="img_left" v-if="picked === 'Tue'" src="../assets/weeklywear_pic/female03.jpg" alt="女裝01">
                     <img class="img_left" v-if="picked === 'Wed'" src="../assets/weeklywear_pic/female01.jpg" alt="女裝01">
                     <img class="img_left" v-if="picked === 'Thur'" src="../assets/weeklywear_pic/female04.jpg" alt="女裝01">
                     <img class="img_left" v-if="picked === 'Fri'" src="../assets/weeklywear_pic/female05.jpg" alt="女裝01">
@@ -54,12 +54,12 @@
                 </transition-group>
  
                 <transition-group name="slideUp" >
-                    <img class="img_right" v-if="picked === 'Mon'" src="../assets/weeklywear_pic/female03.jpg" alt="女裝01">
-                    <img class="img_right" v-if="picked === 'Tue'" src="../assets/weeklywear_pic/female02.jpg" alt="女裝01">
-                    <img class="img_right" v-if="picked === 'Wed'" src="../assets/weeklywear_pic/female01.jpg" alt="女裝01">
-                    <img class="img_right" v-if="picked === 'Thur'" src="../assets/weeklywear_pic/female04.jpg" alt="女裝01">
-                    <img class="img_right" v-if="picked === 'Fri'" src="../assets/weeklywear_pic/female05.jpg" alt="女裝01">
-                    <img class="img_right" v-if="picked === 'End'" src="../assets/weeklywear_pic/female06.jpg" alt="女裝01">
+                    <img class="img_right" v-if="picked === 'Mon'" src="../assets/weeklywear_pic/male03.jpg" alt="女裝01">
+                    <img class="img_right" v-if="picked === 'Tue'" src="../assets/weeklywear_pic/male02.jpg" alt="女裝01">
+                    <img class="img_right" v-if="picked === 'Wed'" src="../assets/weeklywear_pic/male01.jpg" alt="女裝01">
+                    <img class="img_right" v-if="picked === 'Thur'" src="../assets/weeklywear_pic/male04.jpg" alt="女裝01">
+                    <img class="img_right" v-if="picked === 'Fri'" src="../assets/weeklywear_pic/male05.jpg" alt="女裝01">
+                    <img class="img_right" v-if="picked === 'End'" src="../assets/weeklywear_pic/male06.jpg" alt="女裝01">
                 </transition-group>
             </div>
 
@@ -237,14 +237,17 @@ export default {
                 font-weight: 700;
                 font-family: $main_font ;
                 color: $text_color;
+               
                 li{
                     margin: 15px auto;
-					.input{
-						display: none;
-					}
-                    cursor: pointer;
-                    &:hover{
-                        color:$main_color;
+                    label{
+                        cursor: pointer;
+                        .input{
+                            display: none;
+                        }
+                        &:hover{
+                            color:$main_color;
+                        }
                     }
                 }
  
