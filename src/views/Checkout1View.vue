@@ -118,8 +118,9 @@ export default {
 	},
 	methods:{
 		check(){
+			this.isChecked = !this.isChecked;
 			console.log(this.isChecked);
-			if(this.isChecked !== true){
+			if(this.isChecked == true){
 				this.mem_name1 = this.mem_name;
 				this.phone1 = this.phone;
 				this.mem_mail1 = this.mem_mail;
