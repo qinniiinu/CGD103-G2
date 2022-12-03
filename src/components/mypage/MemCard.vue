@@ -1,5 +1,5 @@
 <template>
-    <div class="body_style">
+    <section class="body_style">
         <div class="pic">
             <!-- <img :src="typeimg" alt=""> -->
             <img src="https://picsum.photos/300/200/?random=10">
@@ -13,7 +13,7 @@
                 <font-awesome-icon icon="fa-solid fa-angle-right"/>
             </a>
         </div>
-    </div>
+    </section>
 </template> 
 
 
