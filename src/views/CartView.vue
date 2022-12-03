@@ -111,7 +111,7 @@ export default {
 	},
 	created(){
 		// console.log('created');
-		// this.getResource()
+		this.getStorage()
 	},
 	computed:{
 		total(index,item){
@@ -192,7 +192,7 @@ export default {
 		},
 		getStorage(){
 			let data =localStorage.getItem('order');
-			data=JSON.parse(date)
+			data=JSON.parse(data)
 			this.order=data? data:[]
         },
 		setStorage(){
@@ -206,7 +206,8 @@ export default {
 			if(prodIndex<0) return;
 			this.order.splice(prodIndex,1)
 			alert("確定要刪除此產品嗎?")
-		}
+		},
+	
 	}
 };
 </script>
