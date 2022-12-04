@@ -9,7 +9,7 @@
 			<StyleCard content="文青風" link="./hipster2-1.png"/>
 			<p>首先，請讓我們更認識你<br>點擊下方開始測驗你的風格</p>
 		</div>
-		<router-link :to="{ name:'QuestionBox' }"><Button content="測驗去"/></router-link>
+		<router-link :to="{ name:'QuestionBox' }"><button class="btn_s">測驗去</button></router-link>
 	</section>
 </template>
 <script>
