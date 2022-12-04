@@ -2,7 +2,10 @@
     <div class="product_card">
         <div class="box">
             <img :src="require(`@/assets/product/${imgURL}`)" />
-            <font-awesome-icon icon="fa-solid fa-heart" class="icon" />
+            <div class="icon" @click="iconChange = !iconChange">
+                <font-awesome-icon icon="fa-solid fa-heart" v-if="iconChange" />
+                <font-awesome-icon icon="fa-solid fa-plus" v-else />
+            </div>
         </div>
         <p class="title">{{ title }}</p>
         <p class="price">NT${{ price }}</p>
@@ -22,6 +25,7 @@
             top: 0;
             right: 0;
             padding: 5px;
+            cursor: pointer;
         }
         img {
             width: 100%;
@@ -43,6 +47,11 @@
 
 <script>
 export default {
+    data() {
+        return {
+            iconChange: true,
+        };
+    },
     props: {
         title: { String, default: "404" },
         price: { String, default: "404" },

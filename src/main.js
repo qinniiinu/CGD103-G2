@@ -2,11 +2,6 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-// import "sass/main.scss";
-// import "bootstrap";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "@/assets/sass/main.scss";
-// import "bootstrap/sass/bootstrap.scss";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 
@@ -30,11 +25,9 @@ import {
 	faClipboard,
 	faPlus,
 	faAngleRight,
-	faMinus
-
-
-
+	faMinus,faCaretDown
 } from "@fortawesome/free-solid-svg-icons";
+
 
 /* add icons to the library */
 library.add(
@@ -53,7 +46,8 @@ library.add(
 	faClipboard,
 	faPlus,
 	faAngleRight,
-	faMinus
+	faMinus,
+	faCaretDown,
 
 );
 
