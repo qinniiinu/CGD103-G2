@@ -9,9 +9,15 @@
 
         <div class="productMenu">
             <ul class="menOrWomen" @click="action">
-                <li @click="selected[0] = 'all'">全部</li>
-                <li @click="selected[0] = 'W'">女裝</li>
-                <li @click="selected[0] = 'F'">男裝</li>
+                <li @click="selected[0] = 'all'" @mouseenter="hoverList('all')">
+                    全部
+                </li>
+                <li @click="selected[0] = 'W'" @mouseenter="hoverList('W')">
+                    女裝
+                </li>
+                <li @click="selected[0] = 'F'" @mouseenter="hoverList('F')">
+                    男裝
+                </li>
             </ul>
             <div class="colthingList_box" v-show="openMain">
                 <label for="b1" @click="selected[1] = 'top'"
@@ -100,6 +106,43 @@
                     </li>
                 </ul>
             </div>
+            <div class="AMF" v-show="openAMF" @mouseleave="openAMF = false">
+                <div class="sub">
+                    <p>上身</p>
+                    <p>
+                        <font-awesome-icon icon=" fa-solid fa-caret-down" />
+                    </p>
+                    <p>短袖</p>
+                    <p>長袖</p>
+                    <p>外套</p>
+                </div>
+                <div class="sub">
+                    <p>下身</p>
+                    <p>
+                        <font-awesome-icon icon=" fa-solid fa-caret-down" />
+                    </p>
+                    <p>長褲</p>
+                    <p>短褲</p>
+                    <p v-if="selected[0] != 'F'">裙子</p>
+                </div>
+                <div class="sub">
+                    <p>鞋款</p>
+                    <p>
+                        <font-awesome-icon icon=" fa-solid fa-caret-down" />
+                    </p>
+                    <p>休閒鞋</p>
+                    <p v-if="selected[0] != 'F'">跟鞋</p>
+                    <p>運動鞋</p>
+                </div>
+                <div class="sub">
+                    <p>配件</p>
+                    <p>
+                        <font-awesome-icon icon=" fa-solid fa-caret-down" />
+                    </p>
+                    <p>包款</p>
+                    <p>配件</p>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -108,14 +151,19 @@ export default {
     data() {
         return {
             openMain: false,
+            openAMF: false,
             picked: [],
             selected: [],
         };
     },
-    computed: {
+    methods: {
         action() {
             this.openMain = !this.openMain;
             this.picked = [];
+        },
+        hoverList(X) {
+            this.selected[0] = X;
+            this.openAMF = true;
         },
     },
     props: {
@@ -140,6 +188,7 @@ input {
     max-width: 1200px;
     margin: auto;
     color: $title_color;
+    position: relative;
 
     .menOrWomen {
         display: flex;
@@ -160,6 +209,9 @@ input {
         line-height: 30px;
         color: $title_color;
         display: flex;
+        @include m() {
+            display: none;
+        }
         label {
             display: inline-block;
             width: 25%;
@@ -187,6 +239,25 @@ input {
                 display: inline-block;
                 box-sizing: border-box;
                 width: 25%;
+            }
+        }
+    }
+    .AMF {
+        @include s() {
+            display: none;
+        }
+        display: flex;
+        background-color: white;
+        position: absolute;
+        width: 100%;
+        z-index: 3;
+        .sub {
+            width: 25%;
+            padding: 10px;
+            text-align: center;
+
+            p {
+                padding: 5px;
             }
         }
     }
