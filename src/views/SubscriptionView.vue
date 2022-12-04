@@ -103,7 +103,38 @@
 <script>
 export default {
     name: "Product",
-    components: {},
+    components: {},data(){
+		return{
+			vip_level:[{
+				level_id:1,
+				product_item:3,
+				level_name:"BASIC",
+				discount:0.95,
+				price:899,
+			},{
+				level_id:2,
+				product_item:3,
+				level_name:"STANDARD",
+				discount:0.9,
+				price:1899,
+			},{
+				level_id:3,
+				product_item:4,
+				level_name:"ULTRA",
+				discount:0.8,
+				price:3999,
+			}
+			],
+		}
+	},
+	created(){
+		
+	},
+	computed:{
+		
+	},
+	methods:{
+	}
 };
 </script>
 <style lang="scss" scoped>
