@@ -5,19 +5,27 @@
         <input id="b3" type="radio" value="b3" v-model="picked" />
         <input id="b4" type="radio" value="b4" v-model="picked" />
         <input id="b5" type="radio" value="b5" v-model="picked" />
-        <!-- {{ picked }}{{ openMain }} -->
+        <!-- {{ picked }}{{ openMain }} -->{{ selected }}
 
         <div class="productMenu">
             <ul class="menOrWomen" @click="action">
-                <li>全部</li>
-                <li>女裝</li>
-                <li>男裝</li>
+                <li @click="selected[0] = 'all'">全部</li>
+                <li @click="selected[0] = 'W'">女裝</li>
+                <li @click="selected[0] = 'F'">男裝</li>
             </ul>
             <div class="colthingList_box" v-show="openMain">
-                <label for="b1"><div class="clothingList">上身</div></label>
-                <label for="b2"><div class="clothingList">下身</div></label>
-                <label for="b4"><div class="clothingList">鞋款</div></label>
-                <label for="b5"><div class="clothingList">配件</div></label>
+                <label for="b1" @click="selected[1] = 'top'"
+                    ><div class="clothingList">上身</div></label
+                >
+                <label for="b2" @click="selected[1] = 'down'"
+                    ><div class="clothingList">下身</div></label
+                >
+                <label for="b4" @click="selected[1] = 'shoes'"
+                    ><div class="clothingList">鞋款</div></label
+                >
+                <label for="b5" @click="selected[1] = 'other'"
+                    ><div class="clothingList">配件</div></label
+                >
             </div>
             <div class="clothingList_item_boxOutside">
                 <ul
@@ -25,35 +33,71 @@
                     id="top"
                     v-show="picked == 'b1'"
                 >
-                    <li class="clothingList_item">短袖</li>
-                    <li class="clothingList_item">長袖</li>
-                    <li class="clothingList_item">外套</li>
+                    <li @click="selected[2] = '短袖'" class="clothingList_item">
+                        短袖
+                    </li>
+                    <li @click="selected[2] = '長袖'" class="clothingList_item">
+                        長袖
+                    </li>
+                    <li @click="selected[2] = '外套'" class="clothingList_item">
+                        外套
+                    </li>
                 </ul>
                 <ul
                     class="clothingList_item_box"
                     id="down"
                     v-show="picked == 'b2'"
                 >
-                    <li class="clothingList_item">長褲</li>
-                    <li class="clothingList_item">短褲</li>
-                    <li class="clothingList_item">裙子</li>
+                    <li @click="selected[2] = '長褲'" class="clothingList_item">
+                        長褲
+                    </li>
+                    <li @click="selected[2] = '短褲'" class="clothingList_item">
+                        短褲
+                    </li>
+                    <li
+                        v-if="selected[0] != 'F'"
+                        @click="selected[2] = '裙子'"
+                        class="clothingList_item"
+                    >
+                        裙子
+                    </li>
                 </ul>
                 <ul
                     class="clothingList_item_box"
                     id="shoes"
                     v-show="picked == 'b4'"
                 >
-                    <li class="clothingList_item">休閒鞋</li>
-                    <li class="clothingList_item">跟鞋</li>
-                    <li class="clothingList_item">運動鞋</li>
+                    <li
+                        @click="selected[2] = '休閒鞋'"
+                        class="clothingList_item"
+                    >
+                        休閒鞋
+                    </li>
+                    <li
+                        @click="selected[2] = '跟鞋'"
+                        v-if="selected[0] != 'F'"
+                        class="clothingList_item"
+                    >
+                        跟鞋
+                    </li>
+                    <li
+                        @click="selected[2] = '運動鞋'"
+                        class="clothingList_item"
+                    >
+                        運動鞋
+                    </li>
                 </ul>
                 <ul
                     class="clothingList_item_box"
                     id="others"
                     v-show="picked == 'b5'"
                 >
-                    <li class="clothingList_item">包款</li>
-                    <li class="clothingList_item">配件</li>
+                    <li @click="selected[2] = '包款'" class="clothingList_item">
+                        包款
+                    </li>
+                    <li @click="selected[2] = '配件'" class="clothingList_item">
+                        配件
+                    </li>
                 </ul>
             </div>
         </div>
@@ -65,6 +109,7 @@ export default {
         return {
             openMain: false,
             picked: [],
+            selected: [],
         };
     },
     computed: {
@@ -118,13 +163,9 @@ input {
         label {
             display: inline-block;
             width: 25%;
-            border: $line solid $title_color;
-            border-top-width: 0;
+            border-bottom: $line solid $title_color;
             box-sizing: border-box;
-            border-left-width: 0;
-            &:first-child {
-                border-left: $line solid $title_color;
-            }
+
             div.clothingList {
                 text-align: center;
             }
@@ -137,29 +178,16 @@ input {
         .clothingList_item_box {
             width: 100%;
             line-height: 25px;
-            border: $line solid $title_color;
+            border-bottom: $line solid $title_color;
+            text-align: center;
 
-            border-top-width: 0;
             box-sizing: border-box;
             .clothingList_item {
                 text-align: center;
                 display: inline-block;
                 box-sizing: border-box;
-                & + .clothingList_item {
-                    border-left: $line solid $title_color;
-                }
+                width: 25%;
             }
-        }
-        #top > .clothingList_item {
-            width: 33.333333%;
-        }
-        #down > .clothingList_item,
-        #top_down > .clothingList_item,
-        #shoes > .clothingList_item {
-            width: 33.333333%;
-        }
-        #others > .clothingList_item {
-            width: (100% / 2);
         }
     }
 }
