@@ -232,7 +232,7 @@ export default {
 		justify-content: center;
 		align-items: center;
 		@include s() {
-			width:300px;
+			width:100%;
 			button{
 				margin: auto;
 				margin-block: 10px;
@@ -285,7 +285,7 @@ export default {
 			gap: 3%;
 			@include s() {
 				flex-direction: column;
-				margin: 20px;
+				margin: 5px;
 			}
 			.card-content{
 				display: flex;
@@ -298,7 +298,7 @@ export default {
 				border: 1px solid rgb(194, 194, 194);
 				padding: 10px;
 				@include s() {
-					margin: 20px;
+					margin:5px;
 				}
 				h2{
 					color: $main_color;
