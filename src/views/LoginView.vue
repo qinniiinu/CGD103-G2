@@ -1,15 +1,23 @@
 <template>
-	<div class="login">
-		<h1>This i登入</h1>
-	</div>
-	<Footer></Footer>
+	<router-link :to="{ name:'MyPage' }" class="btn_s">會員頁</router-link>
+	<SigninIn></SigninIn>
+
+
 </template>
 
 <script>
+import SigninIn from "@/components/loginpage/SigninIn.vue";
+import Signup from "@/components/loginpage/Signup.vue";
+import SignupSet from "@/components/loginpage/SignupSet.vue";
 
 export default {
-	name: "Product",
+	name: "login",
 	components: {
+		SigninIn,
+		Signup,
+		SignupSet,
+
+
 	},
 };
 </script>
