@@ -39,25 +39,32 @@
 					</ul>
 					<ul v-if="order.length>0" class="order-list">
 						<li class="item" v-for="item in order" :key="item.id">
-							<div><img :src="item.image" v-bind:alt="item.title"></div>
-							<div>{{item.title}}</div>
-							<div>{{item.color}}</div>
-							<div>{{item.size}}</div>
-							<div>
-								<button @click="reduceCount(index,item)">-</button>
-								<span>{{item.count}}</span>
-								<button @click="addCount(index,item)">+</button>
+							<div class="item-left"><img :src="item.image" v-bind:alt="item.title"></div>
+							<div class="item-right">
+								<div class="item-des">
+									<div>{{item.title}}</div>
+									<div>{{item.color}}</div>
+									<div>{{item.size}}</div>
+								</div>
+								<div class="item-p">
+									<div class="count">
+										<button @click="reduceCount(index,item)">-</button>
+										<span>{{item.count}}</span>
+										<button @click="addCount(index,item)">+</button>
+									</div>
+									<div>${{item.price}}元</div>
+									<div>${{item.price*item.count}}元</div>
+									<div><button @click="dele(index,item)">x</button></div>
+								</div>
+								
 							</div>
-							<div>${{item.price}}元</div>
-							<div>${{item.price*item.count}}元</div>
-							<button @click="dele(index,item)">x</button>
 						</li>
 						<div class="detail">
 							<div>共 {{order.length}} 種商品</div>
-							<div>{{memLevel}} 會員等級折扣: -${{parseInt(total*discount)}}</div>
-							<div>總計: ${{aftertotal}}元</div>
+							<div>{{vip_level[0].level_name}} 會員等級折扣: -${{parseInt(total*(1-vip_level[0].discount))}}</div>
+							<div>總計: ${{parseInt(total*vip_level[0].discount)}}元</div>
 						</div>
-						<div class="payment">
+						<div class="nextbtn">
 							<router-link to="/ProductList" ><button>繼續逛逛</button></router-link>
 							<router-link to="/Checkout"><button>去付款</button></router-link>
 						</div>
@@ -91,26 +98,44 @@ export default {
 			product:[
 			//產品資訊
 			{
-			id: 1,
-			image: "https://nb.scene7.com/is/image/NB/m990gl5_nb_05_i?$pdpflexf2$&qlt=80&fmt=webp&wid=472&hei=472",
-			title: "Newbalance鞋",
-			color: "灰色",
-			size: "23cm",
-			price: 7990,
+				id: 1,
+				image: "https://nb.scene7.com/is/image/NB/m990gl5_nb_05_i?$pdpflexf2$&qlt=80&fmt=webp&wid=472&hei=472",
+				title: "Newbalance鞋",
+				color: "灰色",
+				size: "23cm",
+				price: 7990,
 			},
 			{
-			id: 2,
-			image: "https://pics.pzcdn.tw/pazzo/ProductBasics/f06d3568-2bd1-4b9c-9f9e-aef3dcceed16.jpg",
-			title: "帆布袋",
-			color: "米色",
-			size: "F",
-			price: 590,
-			},
-			]
+				id: 2,
+				image: "https://pics.pzcdn.tw/pazzo/ProductBasics/f06d3568-2bd1-4b9c-9f9e-aef3dcceed16.jpg",
+				title: "帆布袋",
+				color: "米色",
+				size: "F",
+				price: 590,
+			}],
+			vip_level:[
+			{
+				level_id:1,
+				product_item:3,
+				level_name:"BASIC",
+				discount:0.95,
+				price:899,
+			},{
+				level_id:2,
+				product_item:3,
+				level_name:"STANDARD",
+				discount:0.9,
+				price:1899,
+			},{
+				level_id:3,
+				product_item:4,
+				level_name:"ULTRA",
+				discount:0.8,
+				price:3999,
+			}],
 		}
 	},
 	created(){
-		// console.log('created');
 		this.getStorage()
 	},
 	computed:{
@@ -126,18 +151,18 @@ export default {
 				return 0
 			}
 		},
-		aftertotal(index,item){
-			if(this.order.length>0){
-				let aftertotal=0
-				for(const index in this.order){
-					aftertotal+=(this.order[index]['count']*this.order[index]['price'])*0.95
-				}
-				console.log(aftertotal);
-				return parseInt(aftertotal);
-			}else{
-				return 0
-			}
-		}
+		// aftertotal(index,item){
+		// 	if(this.order.length>0){
+		// 		let aftertotal=0
+		// 		for(const index in this.order){
+		// 			aftertotal+=(this.order[index]['count']*this.order[index]['price'])*0.95
+		// 		}
+		// 		console.log(aftertotal);
+		// 		return parseInt(aftertotal);
+		// 	}else{
+		// 		return 0
+		// 	}
+		// }
 	},
 	methods:{
 		
@@ -206,6 +231,7 @@ export default {
 			if(prodIndex<0) return;
 			this.order.splice(prodIndex,1)
 			alert("確定要刪除此產品嗎?")
+			this.setStorage()
 		},
 	
 	}
@@ -220,9 +246,10 @@ h2{
 	padding: 10px 20px;
 }
 .productContainer{
-	width:1200px;
+	width:100%;
 	margin: auto;
 		.prod-wrap{
+			// display:none;
 			width: 800px;
 			margin: auto;
 			margin-bottom: 100px;
@@ -241,102 +268,255 @@ h2{
 		}
 }
 .cart{
-	width: 1200px;
-	min-height: 500px;
-	margin:auto;
-	.cart-wrap{
-		width: 940px;
-		margin: auto;
-		padding: 10px 20px;
-		.cart-title{
-			color: rgb(80, 80, 80);
-			display: flex;
-			padding: 10px 20px;
-			:nth-child(1){
-				width:200px;
-			}
-			:nth-child(2){
-				width: 140px;
-			}
-			:nth-child(3){
-				width:100px;
-			}
-			:nth-child(4),:nth-child(5),:nth-child(6),:nth-child(7){
-				width:120px;
-			}
+	margin: auto;
+	h2{
+		font-size: 18px;
+		@include m{
+			font-size: 24px;
 		}
 	}
-	.order-list{
-		margin: auto;
-		padding: 10px 20px;
-		.item{
-			color: $text_color;
-			display: flex;
-			align-items:center;
-			margin-top: 20px;
-			padding-bottom: 15px;
-			border-bottom: 1px solid $text_color;
-			:first-child{
-				width: 200px;
-				img{
+	.cart-wrap{
+		margin:20px;
+		@include m{
+			margin:50px 100px 100px 100px;
+		}
+		.cart-title{
+			color: #777;
+			margin-bottom: 10px;
+			text-align: center;
+			display: none;
+			@include m{
+				display: flex;
+				:first-child{
+					min-width: 150px;
+				}
+				:nth-child(n+2){
+					display: block;
 					width:150px;
-					height:150px;
 				}
 			}
-			:nth-child(5){
-				width:120px;
-				span{
-					padding: 0 10px;
+			@include l{
+				display: flex;
+				:first-child{
+					width: 150px;
 				}
-				button{
+				:nth-child(n+2){
+					display: block;
+					width:150px;
+				}
+			}
+		}
+		.order-list{
+			width:100%;
+			.item{
+				display: flex;
+				width: 100%;
+				font-size: 12px;
+				margin-bottom: 10px;
+				padding-bottom: 10px;
+				border-bottom: 1px solid #777;
+				.item-left{
+					img{
+						width: 80px;
+						height: 80px;
+						@include m{
+							width: 150px;
+							height: 150px;
+						}
+					}
+				}
+				.item-right{
+					display: flex;
+					flex-direction: column;
+					justify-content: space-evenly;
+					align-items: center;
+					text-align: center;
+					width: 100%;
+					@include m{
+						flex-direction: row;
+						justify-content: flex-start;
+						width: 42%;
+						font-size: 16px;
+					}
+					.item-des{
+						width: 100%;
+						display: flex;
+						:first-child(){
+							min-width: 100px;
+							@include m{
+								width: 150px;
+							}
+						}
+						:nth-child(n){
+							width: 80px;
+							@include m{
+								width: 150px;
+							}
+						}
+					}
+					.item-p{
+						width: 100%;
+						display: flex;
+						:last-child>button{
+							width: 30px;
+							font-size: 16px;
+							background-color: white;
+							border: none;
+						}
+						.count{
+							display: flex;
+							justify-content: center;
+							button{
+								color: $main_color;
+								font-size: 18px;
+								width: 30px;
+								background-color: white;
+								border: none;
+							}
+							span{
+								width: 30px;
+							}
+						}
+						:nth-child(n-1){
+							width: 80px;
+							@include m{
+								width: 150px;
+							}
+						}
+						:last-child{
+							width: 30px;
+						}
+					}
+				}
+			}
+			.detail{
+				text-align: right;
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+				margin-bottom: 20px;
+				font-size: 12px;
+				@include m{
 					font-size: 16px;
-					background: none;
-					border: none;
-					width: 20px;
-					height: 20px;
 				}
 			}
-			:nth-child(2){
-				width:140px;
-			}
-			:nth-child(3){
-				width:100px;
-			}
-			:nth-child(4),:nth-child(6),:nth-child(7){
-				width:120px;
-			}
-			:last-child{
-				font-size: 16px;
-				height: 20px;
-				width:20px;
-				background: none;
-				border:none;
-			}
-		}
-		.detail{
-			text-align: right;
-			margin-top: 20px;
-			display: flex;
-			flex-direction: column;
-			gap:10px;
-			margin-bottom: 20px;
-		}
-		.payment{
-			display: flex;
-			justify-content: space-between;
-			margin-bottom: 200px;
-			button{
-				background: $main_color;
-				color: white;
-				padding: 8px 12px;
-				border: 1px solid $main_color;
-				&:hover{
+			.nextbtn{
+				display: flex;
+				justify-content: space-between;
+				button{
+					background: $main_color;
+					color: white;
+					padding: 8px 12px;
+					border: 1px solid $main_color;
+					&:hover{
 					background-color: white;
 					color:$main_color;
+					}
 				}
 			}
 		}
+		.none-list{
+			
+		}
 	}
+}
+// .cart{
+// 	width: 100%;
+// 	min-height: 500px;
+// 	margin:auto;
+// 	.cart-wrap{
+// 		max-width: 940px;
+// 		margin: auto;
+// 		padding: 10px 20px;
+// 		.cart-title{
+// 			color: rgb(80, 80, 80);
+// 			display: flex;
+// 			padding: 10px 20px;
+// 			:nth-child(1){
+// 				width:200px;
+// 			}
+// 			:nth-child(2){
+// 				width: 140px;
+// 			}
+// 			:nth-child(3){
+// 				width:100px;
+// 			}
+// 			:nth-child(4),:nth-child(5),:nth-child(6),:nth-child(7){
+// 				width:120px;
+// 			}
+// 		}
+// 	}
+// 	.order-list{
+// 		margin: auto;
+// 		padding: 10px 20px;
+// 		.item{
+// 			color: $text_color;
+// 			display: flex;
+// 			align-items:center;
+// 			margin-top: 20px;
+// 			padding-bottom: 15px;
+// 			border-bottom: 1px solid $text_color;
+// 			:first-child{
+// 				width: 200px;
+// 				img{
+// 					width:150px;
+// 					height:150px;
+// 				}
+// 			}
+// 			:nth-child(5){
+// 				width:120px;
+// 				span{
+// 					padding: 0 10px;
+// 				}
+// 				button{
+// 					font-size: 16px;
+// 					background: none;
+// 					border: none;
+// 					width: 20px;
+// 					height: 20px;
+// 				}
+// 			}
+// 			:nth-child(2){
+// 				width:140px;
+// 			}
+// 			:nth-child(3){
+// 				width:100px;
+// 			}
+// 			:nth-child(4),:nth-child(6),:nth-child(7){
+// 				width:120px;
+// 			}
+// 			:last-child{
+// 				font-size: 16px;
+// 				height: 20px;
+// 				width:20px;
+// 				background: none;
+// 				border:none;
+// 			}
+// 		}
+// 		.detail{
+// 			text-align: right;
+// 			margin-top: 20px;
+// 			display: flex;
+// 			flex-direction: column;
+// 			gap:10px;
+// 			margin-bottom: 20px;
+// 		}
+// 		.payment{
+// 			display: flex;
+// 			justify-content: space-between;
+// 			margin-bottom: 200px;
+// 			button{
+// 				background: $main_color;
+// 				color: white;
+// 				padding: 8px 12px;
+// 				border: 1px solid $main_color;
+// 				&:hover{
+// 					background-color: white;
+// 					color:$main_color;
+// 				}
+// 			}
+// 		}
+// 	}
 	.none-list{
 		height: 200px;
 		border-bottom: 1px solid $text_color;
@@ -355,7 +535,7 @@ h2{
 			}
 		}
 	}
-}
+// }
 
 	
 	
