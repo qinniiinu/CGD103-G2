@@ -47,7 +47,6 @@ export default {
     computed: {},
     methods: {
         addCart() {
-            console.log(123);
             localStorage.getItem("cart");
             if (this.pickedColor == "" || this.pickedSize == "") {
                 this.alert = true;
@@ -64,7 +63,7 @@ export default {
                     color: this.pickedColor,
                     size: this.pickedSize,
                 };
-                let cartItemKey = cartItemKey;
+                let cartItemKey = JSON.stringify(this.cartItem);
                 if (localStorage.getItem(cartItemKey)) {
                     let num =
                         parseInt(localStorage.getItem(cartItemKey)) +
@@ -80,6 +79,12 @@ export default {
                         localStorage.setItem("cart", cartItemKey);
                     }
                 }
+            }
+        },
+        goCart() {
+            this.addCart();
+            if (localStorage.getItem(JSON.stringify(this.cartItem))) {
+                this.$router.push({ path: "/cart" });
             }
         },
         checkColor(x) {
@@ -200,7 +205,9 @@ export default {
                         <button class="btn_s" @click="addCart()">
                             加入購物車
                         </button>
-                        <button class="btn_l">直接購買</button>
+                        <button class="btn_l" @click="goCart()">
+                            直接購買
+                        </button>
                     </div>
                 </div>
             </div>
@@ -225,7 +232,11 @@ export default {
         </div>
         <div class="matchingProducts">
             <h3>搭配的商品</h3>
-            <div class="matchingProducts_box"></div>
+            <div class="matchingProducts_box">
+                <product-card></product-card>
+                <product-card></product-card>
+                <product-card></product-card>
+            </div>
         </div>
         <div class="likeAlso">
             <h3>你可能也會喜歡</h3>
@@ -376,7 +387,7 @@ export default {
                         margin: 10px;
                         background-color: #003;
                         border: 3px solid transparent;
-
+                        cursor: pointer;
                         @include s() {
                             width: 20px;
                         }
@@ -403,6 +414,7 @@ export default {
                     margin: 10px;
                     color: $title_color;
                     padding: 5px;
+                    cursor: pointer;
                     @include s() {
                     }
                 }
@@ -425,6 +437,7 @@ export default {
                     margin: 10px;
                     padding: 5px;
                     border-width: 0;
+                    cursor: pointer;
                 }
             }
 
@@ -548,7 +561,7 @@ export default {
             }
         }
         .matchingProducts_box {
-            border: 1px solid red;
+            display: flex;
         }
     }
     .likeAlso {
