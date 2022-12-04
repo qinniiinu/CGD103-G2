@@ -1,37 +1,55 @@
- <template >
-    <input type="checkbox" value="1" v-model="main" />
-    <input type="checkbox" value="2" v-model="main" />
+<template >
     <div class="outside">
         <p class="block">服飾總覽</p>
         <div class="ProductSideMenu">
             <div v-for="item in main_list" :key="item.id" class="main">
-                <div class="left_right">
-                    <p>{{ item.sex }}</p>
-                    <p><font-awesome-icon icon="fa-solid fa-plus" /></p>
-                    <input type="checkbox" :value="item.sex" v-model="main" />
-                </div>
-                <div
-                    class="sub_list"
-                    v-for="(item2, index) in item.list"
-                    :key="index"
-                    v-show="find(item.sex) == item.sex"
-                >
+                <label :for="item.id">
                     <div class="left_right">
-                        <p>{{ item2.name }}</p>
-                        <p><font-awesome-icon icon="fa-solid fa-plus" /></p>
-                        <input
-                            type="checkbox"
-                            :value="item2.name"
-                            v-model="sub[index]"
-                        />
+                        <p>{{ item.sex }}</p>
+                        <p>
+                            <font-awesome-icon
+                                icon="fa-solid fa-plus"
+                                v-show="find(item.sex) != item.sex"
+                            />
+                        </p>
                     </div>
+                </label>
+                <input
+                    type="checkbox"
+                    :id="item.id"
+                    :value="item.sex"
+                    v-model="main"
+                />
+                <div
+                    v-show="find(item.sex) == item.sex"
+                    class="sub_list"
+                    v-for="(e, i) in item.list"
+                    :key="e.id"
+                >
+                    <label :for="e.id">
+                        <div class="left_right">
+                            <p>{{ e.name }}</p>
+                            <p>
+                                <font-awesome-icon
+                                    icon="fa-solid fa-plus"
+                                    v-show="!openList(e.id)"
+                                />
+                            </p>
+                        </div>
+                    </label>
+                    <input
+                        type="checkbox"
+                        :id="e.id"
+                        :value="e.id"
+                        v-model="sub"
+                    />
                     <div
                         class="sub_list"
-                        v-for="(item3, index) in item2.sub_list"
+                        v-for="(item3, index) in e.sub_list"
                         :key="index"
-                        v-show="findSub(item2.name) == item2.name"
+                        v-show="openList(e.id)"
                     >
-                        <p>{{ item3 }}</p>
+                        <p>{{ item3.name }}</p>
                     </div>
                 </div>
             </div>
@@ -49,48 +67,70 @@
 <script>
 const productside = [
     {
+        id: "W",
         sex: "女",
         list: [
             {
-                id: "top",
+                id: "Wtop",
                 name: "上身",
-                sub_list: ["短袖", "長袖", "外套"],
+                sub_list: [
+                    { name: "短袖" },
+                    { name: "長袖" },
+                    { name: "外套" },
+                ],
             },
             {
-                id: "down",
+                id: "Wdown",
                 name: "下身",
-                sub_list: ["短褲", "長褲", "裙子"],
+                sub_list: [
+                    { name: "短褲" },
+                    { name: "長褲" },
+                    { name: "裙子" },
+                ],
             },
             {
-                id: "shoes",
+                id: "Wshoes",
                 name: "鞋款",
-                sub_list: ["皮鞋", "運動鞋", "跟鞋"],
+                sub_list: [
+                    { name: "皮鞋" },
+                    { name: "運動鞋" },
+                    { name: "跟鞋" },
+                ],
             },
             {
-                id: "others",
+                id: "Wother",
                 name: "配件",
-                sub_list: ["包款", "配件"],
+                sub_list: [{ name: "包款" }, { name: "配件" }],
             },
         ],
     },
     {
+        id: "F",
         sex: "男",
         list: [
             {
+                id: "Ftop",
                 name: "上身",
-                sub_list: ["短袖", "長袖", "外套"],
+                sub_list: [
+                    { name: "短袖" },
+                    { name: "長袖" },
+                    { name: "外套" },
+                ],
             },
             {
+                id: "Fdown",
                 name: "下身",
-                sub_list: ["短褲", "長褲"],
+                sub_list: [{ name: "短褲" }, { name: "長褲" }],
             },
             {
+                id: "Fshoes",
                 name: "鞋款",
-                sub_list: ["皮鞋", "運動鞋"],
+                sub_list: [{ name: "皮鞋" }, { name: "運動鞋" }],
             },
             {
+                id: "Fother",
                 name: "配件",
-                sub_list: ["包款", "配件"],
+                sub_list: [{ name: "包款" }, { name: "配件" }],
             },
         ],
     },
@@ -105,13 +145,20 @@ export default {
         };
     },
     methods: {
+        openList(X) {
+            let cc = false;
+            console.log(X);
+            console.log(this.sub);
+            this.sub.forEach((e) => {
+                if (X == e) {
+                    cc = true;
+                }
+            });
+            return cc;
+        },
         find(X) {
             // console.log(X);
             return this.main.find((e) => e == X);
-        },
-        findSub(X) {
-            // console.log(this.sub);
-            // return this.sub.find((e) => e == X);
         },
     },
 };
@@ -121,19 +168,32 @@ export default {
     @include s() {
         display: none;
     }
+
     padding: 10px;
+
     .block {
         border-bottom: 1px solid $title_color;
+        font-weight: 600;
         padding: 10px;
     }
+
     .ProductSideMenu {
         width: 200px;
         padding: 10px;
+        input {
+            display: none;
+        }
         .main {
             line-height: 30px;
+
             .left_right {
                 justify-content: space-between;
+                cursor: pointer;
+                p {
+                    cursor: pointer;
+                }
             }
+
             .sub_list {
                 padding-left: 20px;
             }
