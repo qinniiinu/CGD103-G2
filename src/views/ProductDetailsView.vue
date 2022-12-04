@@ -2,7 +2,8 @@
 const testproduct = {
     product_id: "1",
     product_name: "上衣A ",
-    hashtag: "#AAA,#BBB,#CCC,#DDD",
+    hashtag:
+        "#AAA,#BBB,#CCC,#DDD,#AAA,#BBB,#CCC,#DDD,#AAA,#BBB,#CCC,#DDD#AAA,#BBB,#CCC,#DDD#AAA,#BBB,#CCC,#DDD",
     unit_price: "996",
     product_state: "1",
     product_maintype: "上衣",
@@ -38,19 +39,24 @@ export default {
             number: 1,
             cartList: [],
             sizeClick: [],
-            cartItem: {
-                id: "",
-                color: "",
-                size: "",
-            },
+            cartItem: {},
+            alert: false,
+            msg: "",
         };
     },
     computed: {},
     methods: {
         addCart() {
+            console.log(123);
             localStorage.getItem("cart");
             if (this.pickedColor == "" || this.pickedSize == "") {
-                console.log(123);
+                this.alert = true;
+                this.msg =
+                    this.pickedColor == ""
+                        ? "顏色未選 "
+                        : "" + this.pickedSize == ""
+                        ? "尺寸未選"
+                        : "";
                 return;
             } else {
                 this.cartItem = {
@@ -58,32 +64,23 @@ export default {
                     color: this.pickedColor,
                     size: this.pickedSize,
                 };
-                if (localStorage.getItem(JSON.stringify(this.cartItem))) {
+                let cartItemKey = cartItemKey;
+                if (localStorage.getItem(cartItemKey)) {
                     let num =
-                        parseInt(
-                            localStorage.getItem(JSON.stringify(this.cartItem))
-                        ) + this.number;
+                        parseInt(localStorage.getItem(cartItemKey)) +
+                        this.number;
                     localStorage.setItem(JSON.stringify(this.cartItem), num);
                 } else {
-                    localStorage.setItem(
-                        JSON.stringify(this.cartItem),
-                        this.number
-                    );
+                    localStorage.setItem(cartItemKey, this.number);
                     if (localStorage.getItem("cart")) {
                         let str =
-                            localStorage.getItem("cart") +
-                            "|" +
-                            JSON.stringify(this.cartItem);
+                            localStorage.getItem("cart") + "|" + cartItemKey;
                         localStorage.setItem("cart", str);
                     } else {
-                        localStorage.setItem(
-                            "cart",
-                            JSON.stringify(this.cartItem)
-                        );
+                        localStorage.setItem("cart", cartItemKey);
                     }
                 }
             }
-            // `["product_id":"${this.product_details.product_id}","color":"${this.pickedColor}","size:"${this.pickedSize}","number":"${this.number}"]`
         },
         checkColor(x) {
             this.colorClick = [];
@@ -103,19 +100,6 @@ export default {
             this.number++;
         },
     },
-    // methods: {
-    //     getResource() {
-    //         fetch("data/fakeproduct.json")
-    //             .then((res) => res.json())
-    //             .then((json) => (this.fakeproduct = json));
-    //     },
-    //     cut(x) {
-    //         return x.split(",")[0];
-    //     },
-    // },
-    // created() {
-    //     this.getResource();
-    // },
 };
 </script>
 <template>
@@ -186,27 +170,39 @@ export default {
                             </label>
                         </div>
                     </div>
-                    <div class="number_box">
-                        <p class="number">數量</p>
-                        <p class="number">
-                            <button name="mines" value="-" @click="reduce()">
-                                <font-awesome-icon icon="fa-solid fa-minus" />
-                            </button>
-                            <span>{{ number }}</span>
-                            <button name="plus" value="+" @click="plus()">
-                                <font-awesome-icon icon="fa-solid fa-plus" />
-                            </button>
-                        </p>
+                    <div class="cellflex">
+                        <div class="number_box">
+                            <p class="number">數量</p>
+                            <p class="number">
+                                <button
+                                    name="mines"
+                                    value="-"
+                                    @click="reduce()"
+                                >
+                                    <font-awesome-icon
+                                        icon="fa-solid fa-minus"
+                                    />
+                                </button>
+                                <span>{{ number }}</span>
+                                <button name="plus" value="+" @click="plus()">
+                                    <font-awesome-icon
+                                        icon="fa-solid fa-plus"
+                                    />
+                                </button>
+                            </p>
+                        </div>
+                        <div class="tagBox">
+                            <p class="hashtag">#tag</p>
+                            <i v-for="(e, i) in hashTag" :key="i">{{ e }}</i>
+                        </div>
                     </div>
                     <div class="shop_buttonBox">
-                        <button class="btn_s" @click="addCart">
+                        <button class="btn_s" @click="addCart()">
                             加入購物車
                         </button>
                         <button class="btn_l">直接購買</button>
                     </div>
                 </div>
-
-                <i v-for="(e, i) in hashTag" :key="i">{{ e }}</i>
             </div>
         </div>
     </div>
@@ -235,9 +231,37 @@ export default {
             <h3>你可能也會喜歡</h3>
         </div>
     </div>
+    <div class="alert" v-if="alert">
+        {{ msg }}
+        <button class="btn_s" @click="alert = false">確定</button>
+    </div>
 </template>
 
 <style lang="scss" scoped>
+.alert {
+    width: 300px;
+    height: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+
+    border: 5px solid $main_color;
+    background-color: $bg_white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.show {
+    opacity: 1;
+}
+.hide {
+    opacity: 0;
+    transition: opacity 400ms;
+}
 .product_details {
     max-width: $max-width;
     margin: auto;
@@ -314,7 +338,7 @@ export default {
             }
             .cellflex {
                 input {
-                    // display: none;
+                    display: none;
                 }
                 @include s() {
                     display: flex;
@@ -329,7 +353,8 @@ export default {
 
             .color,
             .size,
-            .number {
+            .number,
+            .hashtag {
                 @include s() {
                     font-size: 14px;
                 }
@@ -338,8 +363,11 @@ export default {
                 }
             }
             .color_box {
-                padding: 25px 0;
-
+                margin: 25px 0;
+                @include s() {
+                    border-bottom: $line solid $title_color;
+                    padding-bottom: 5px;
+                }
                 label {
                     display: inline-block;
                     .circle {
@@ -347,7 +375,7 @@ export default {
                         border-radius: 50%;
                         margin: 10px;
                         background-color: #003;
-                        border: 5px solid transparent;
+                        border: 3px solid transparent;
 
                         @include s() {
                             width: 20px;
@@ -357,12 +385,16 @@ export default {
                         }
                     }
                     .circleoutline {
-                        border: 5px solid $main_color;
+                        border: 3px solid $main_color;
                     }
                 }
             }
             .size_box {
-                padding: 25px 0;
+                margin: 25px 0;
+                @include s() {
+                    border-bottom: $line solid $title_color;
+                    padding-bottom: 5px;
+                }
                 i {
                     display: inline-block;
                     border: $line solid $title_color;
@@ -376,17 +408,20 @@ export default {
                 }
                 i.pickedSize {
                     background-color: $main_color;
+                    color: #fff;
                 }
             }
             .number_box {
-                padding: 25px 0;
+                margin: 25px 0;
+                width: fit-content;
+                border-bottom: $line solid $title_color;
                 button {
                     display: inline-block;
                     width: 30px;
                     line-height: 20px;
                     font-size: 18px;
-                    background-color: $main_color;
-                    color: #fff;
+                    color: $title_color;
+                    background-color: transparent;
                     margin: 10px;
                     padding: 5px;
                     border-width: 0;
@@ -402,6 +437,27 @@ export default {
             }
             button {
                 margin: 10px;
+            }
+            .tagBox {
+                margin: 25px 0;
+                width: fit-content;
+                @include s() {
+                    border-bottom: $line solid $title_color;
+                }
+                .hashtag {
+                    @include m() {
+                        display: none;
+                    }
+                }
+                i {
+                    display: inline-block;
+                    background-color: $main_color;
+                    width: fit-content;
+                    text-align: center;
+                    margin: 10px;
+                    color: #fff;
+                    padding: 5px;
+                }
             }
         }
     }
