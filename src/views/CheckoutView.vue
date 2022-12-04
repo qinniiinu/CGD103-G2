@@ -66,9 +66,9 @@
 				</div>
 				</div>
 				<div class="detail">
-					<div>共 {{order.length}} 件商品</div>
-					<div>{{memLevel}} 會員等級折扣: -429$</div>
-					<div>總計: ${{total*(1-discount)}}元</div>
+					<div>共 {{order.length}} 種商品</div>
+					<div>{{vip_level[0].level_name}} 會員等級折扣: -${{parseInt(total*(1-vip_level[0].discount))}}</div>
+					<div>總計: ${{parseInt(total*vip_level[0].discount)}}元</div>
 				</div>
 			</div>
 		</div>	
@@ -89,8 +89,6 @@ export default {
 			order:[],
 			min:0,
 			max:0,
-			memLevel:'BASIC',
-			discount:0.05,
 			product:[
 			//產品資訊
 			{
@@ -118,7 +116,27 @@ export default {
 			mem_name1:"",
 			phone1:"",
 			mem_mail1:"",
-			address1:""
+			address1:"",
+			vip_level:[
+			{
+				level_id:1,
+				product_item:3,
+				level_name:"BASIC",
+				discount:0.95,
+				price:899,
+			},{
+				level_id:2,
+				product_item:3,
+				level_name:"STANDARD",
+				discount:0.9,
+				price:1899,
+			},{
+				level_id:3,
+				product_item:4,
+				level_name:"ULTRA",
+				discount:0.8,
+				price:3999,
+			}],
 		}
 	},
 	created(){
@@ -169,25 +187,39 @@ export default {
 </script>
 <style lang="scss" scoped>
 	h2{
-		font-size: 24px;
+		font-size: 16px;
 		color: $title_color;
-		margin-bottom: 20px;
+		margin: 20px;
+		margin-bottom: 0px;
+		@include m{
+			font-size: 24px;
+			color: $title_color;
+			margin-bottom: 20px;
+		}
 	}
 	input{
 		height: 15px;
 	}
 	.checkout{
-		width: 1200px;
-		height: 900px;
+		flex-direction: column-reverse;
+		height: 100%;
+		@include m{
+			margin: 20px 100px 100px 100px;
+			height: 900px;
+			flex-direction: row;
+		}
 		display: flex;
 		justify-content: center;
-		margin: auto;
 		margin-top: 25px;
 		gap: 5%;
 		.paydetails{
 			display: flex;
 			flex-direction: column;
-			width: 100%;
+			min-width: 55%;
+			
+			@include l{
+				min-width: 50%;
+			}
 			button{
 				align-self: right;
 				margin-top: 20px;
@@ -195,6 +227,7 @@ export default {
 				color: white;
 				padding: 8px 12px;
 				border: 1px solid $main_color;
+				margin-bottom: 50px;
 				&:hover{
 					background-color: white;
 					color:$main_color;
@@ -207,6 +240,10 @@ export default {
 				height: 650px;
 				border: 1px solid $text_color;
 				padding: 20px;
+				margin: 20px;
+				@include m{
+					margin:0px;
+				}
 				p{
 					font-size: 14px;
 					color: $text_color;
@@ -235,6 +272,12 @@ export default {
 			.list-wrap{
 				display: flex;
 				flex-direction: column;
+				margin: 20px;
+				font-size: 12px;
+				@include m{
+					margin: 0px;
+					font-size: 16px;
+				}
 				.items{
 					height:450px;
 					overflow-y: scroll;
@@ -257,14 +300,21 @@ export default {
 							display: flex;
 							gap: 10px;
 							img{
-								width: 150px;
-								height: 150px;
+								width:80px;
+								height:80px;
+								@include m{
+									width: 150px;
+									height: 150px;
+								}
 							}
 							.prod-detail{
 								display: flex;
 								flex-direction: column;
 								gap:10px;
-								width:200px;
+								width:150px;
+									@include m{
+
+									}
 								.spec{
 									display: flex;
 									justify-content: space-between;

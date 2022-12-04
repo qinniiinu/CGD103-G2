@@ -1,8 +1,10 @@
 <template>
-    <div v-if="count >= 0">
-        <p>loading...</p>
-        <p>該頁將在 <span>{{count}}</span> 秒後自動跳轉 </p>
-    </div>
+    <section v-if="count >= 0" class="loading" :style="{backgroundImage: 'url(' + require('@/assets/loading_bg.png') + ')'}">
+        <div class="item">
+          <p>結果產生中</p>
+          <p class="text-loading-width">Loading</p>
+        </div>
+    </section>
     <!-- 時間到出現結果 -->
     <div v-else>
       <section class="quiz_result">
@@ -51,7 +53,7 @@ export default {
     },
   data () {
     return {
-      count: 1
+      count: 3
     }
   },
   methods: {
@@ -73,6 +75,62 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+// loading
+.loading{
+  background-position: center;
+  background-size: contain;
+  width: 100%;
+  min-height: 100vh;
+
+  .item{
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    border: 1px solid $title_color;
+    width: 80%;
+    background-color: #fff;
+    padding: 100px 30px;
+    p{
+      font-size: 38px;
+      color: $title_color;
+      font-weight: 600;
+    }
+    .text-loading-width{
+      margin-top: 5px;
+      font-family: $second_font;
+    }
+    .text-loading-width:after{
+      content: "...";
+      overflow: hidden;
+      white-space: nowrap;
+      display: inline-block;
+      vertical-align: bottom;
+      animation: text-loading-width 2s steps(2, start) infinite;
+    }
+  }
+}
+@keyframes text-loading-width {
+  0%{
+    width: .25em;
+  }
+  50%{
+    width: .5em;
+  }
+  100%{
+    width: .75em;
+  }
+}
+@media screen and (min-width:768px) {
+  .loading{
+    background-size: cover;
+    .item{
+      width: 30%;
+    }
+  }
+}
+// 測驗結果
 .quiz_result {
   .title_box {
     text-align: center;
@@ -90,7 +148,7 @@ export default {
       font-size: 24px;
     }
   }
-
+}
   .wraper {
     width: 80%;
     position: relative;
@@ -137,7 +195,7 @@ export default {
     }
   }
 
-}
+
 
 // 768 - 1023
 @media screen and (min-width:768px) {
