@@ -147,8 +147,7 @@ export default {
     methods: {
         openList(X) {
             let cc = false;
-            console.log(X);
-            console.log(this.sub);
+
             this.sub.forEach((e) => {
                 if (X == e) {
                     cc = true;
