@@ -97,7 +97,7 @@
 							</p>
 							<p>
 								<font-awesome-icon icon="fa-solid fa-check" />
-								每月免運費<span>1</span>次
+								每月無限次免運費<span>1</span>次
 							</p>
 							<p>
 								<font-awesome-icon icon="fa-solid fa-check" />
@@ -154,7 +154,7 @@
 							</div>
 						</div>
 					</div>
-					<button class="cancel" v-if="view===2">取消訂閱</button>
+					<button class="cancel" v-if="view===2" @click="memsub=false,view=1">取消訂閱</button>
 					<router-link to="/MyPage"><button v-if="view===1" class="back">返回</button></router-link>
 					<button v-if="view===2" class="back" @click="view=1">返回</button>
 				</div>
