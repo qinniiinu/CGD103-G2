@@ -10,15 +10,18 @@
             <button @click="action" class="btn_s">btn</button>
             <button @click="action" class="btn_l">btn</button>
             <div class="box"></div>
+            <ProductFitting></ProductFitting>
         </div>
     </div>
 </template>
 
 <script>
+import ProductFitting from "@/components/product/ProductFitting.vue";
 export default {
     name: "Test",
     components: {
         // SideMenu,
+        ProductFitting,
     },
     methods: {
         action() {

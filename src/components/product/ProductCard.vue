@@ -30,9 +30,13 @@
         }
     }
     p {
+        color: $text_color;
         margin-left: 10px;
         font-size: 14px;
         padding: 5px;
+        @include m() {
+            font-size: 20px;
+        }
     }
 }
 </style>
@@ -40,9 +44,9 @@
 <script>
 export default {
     props: {
-        title: String,
-        price: String,
-        imgURL: String,
+        title: { String, default: "404" },
+        price: { String, default: "404" },
+        imgURL: { String, default: "test_01_1.jpg" },
     },
 };
 </script>
