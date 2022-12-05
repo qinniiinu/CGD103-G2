@@ -48,45 +48,54 @@
 	<div class="maybeLike">
 		<h2>你可能也喜歡</h2>
 		<swiper
-			:slides-per-view="3"
+			:modules="modules"
+			:slides-per-view="1"
 			:space-between="50"
+			navigation
+			:pagination="{ clickable: true }"
+			:scrollbar="{ draggable: true }"
 			@swiper="onSwiper"
-			@slideChange="onSlideChange">
-
-			<swiper-slide>
-				
-			</swiper-slide>
-
-
+			@slideChange="onSlideChange"
+		>
+			<swiper-slide>Slide 1</swiper-slide>
+			<swiper-slide>Slide 2</swiper-slide>
+			<swiper-slide>Slide 3</swiper-slide>
+			...
 		</swiper>
 	</div>
 
 </template>
 <script>
-	import Button from '@/components/Button.vue';
+	// import Button from '@/components/Button.vue';            
+	import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 	import { Swiper, SwiperSlide } from 'swiper/vue';
 	import 'swiper/css';
+	import 'swiper/css/navigation';
+	import 'swiper/css/pagination';
+	import 'swiper/css/scrollbar';
 
 
 	export default {
 		name: "Set",
 		components: {
-		Button,Swiper,SwiperSlide
+		Swiper,SwiperSlide
 
 		},
-		
 		setup() {
-		const onSwiper = (swiper) => {
-			console.log(swiper);
-		};
-		const onSlideChange = () => {
-			console.log('slide change');
-		};
-		return {
-			onSwiper,
-			onSlideChange,
-		};
+			const onSwiper = (swiper) => {
+				console.log(swiper);
+			};
+			const onSlideChange = () => {
+				console.log('slide change');
+			};
+			return {
+				onSwiper,
+				onSlideChange,
+				modules: [Navigation, Pagination, Scrollbar, A11y],
+			};
 		},
+
+
 		data(){
 			return{
 				pname:'Male  OOTD 12'
