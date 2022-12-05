@@ -14,7 +14,6 @@
 		display: flex;
 		justify-content: center;
 		box-sizing: border-box;
-		// text-align: end;
 		gap: 40px;
 		.mug_shot {
 			width: 80px;
@@ -100,7 +99,6 @@
 .mem_container{
 	display: flex;
 	width: 100% ;
-	flex-wrap: wrap;
 	.mem_data{
 	background-color: $bg_gray ;
 	flex: 1;
