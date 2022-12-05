@@ -2,7 +2,11 @@
   <div class="wrapper">
     <div class="form_wrapper sign_in">
       <form class="login_form" action="">
-        <h2>登入</h2>
+        <div class="title">
+          <h2>登入</h2>
+          <bg-tag class="bg_tag" Bgtag="SIGNIN"></bg-tag>
+        </div>
+
         <div class="input_group">
           <input type="text" required />
           <label for="">Username</label>
@@ -13,7 +17,7 @@
         </div>
         <div class="remember">
           <label><input type="checkbox" />記住我</label>
-          <a href="#">忘記密碼?</a>
+          <a class="forget_psw" href="#">忘記密碼?</a>
         </div>
         <button type="submit" class="btn_s">登入</button>
         <div class="social_plarform">
@@ -31,18 +35,21 @@
   </div>
 </template> 
 
-
 <script>
+import BgTag from "@/components/mypage/BgTag.vue";
 export default {
   name: "SigninIn",
   props: {},
+  components: {
+    BgTag,
+  },
 };
 </script>
 
 
 <style lang="scss" scoped>
 body {
-  background-color: $bg_gray;
+  //   background-color: $bg_gray;
   .wrapper {
     display: flex;
     justify-content: center;
@@ -50,18 +57,36 @@ body {
     padding: 30px 0;
     background-color: $bg_gray;
     .form_wrapper {
-      max-width: fit-content;
-      border: 1px solid black;
-      padding: $padding;
       background-color: white;
+      height: fit-content;
+      @include s() {
+        width: 100%;
+        padding: 30px;
+      }
+
+      @include m() {
+        border: 1px solid black;
+        width: 28%;
+        padding: 30px;
+      }
       .login_form {
-        h2 {
-          font-size: 30px;
-          font-weight: 700;
+        position: relative;
+        .title {
+			margin-bottom: 40px;
+          h2 {
+            font-size: 35px;
+            font-weight: 700;
+          }
+          .bg_tag {
+            position: absolute;
+            top: 0;
+			right: 0;
+			font-size: 45px;
+          }
         }
         .input_group {
           position: relative;
-          margin: 30px 0;
+          margin-block-start: 35px;
           border-bottom: 2px solid;
           input {
             width: 100%;
@@ -71,13 +96,13 @@ body {
             padding: 0 5px;
             border: none;
             outline: none;
-            &:focus~label{
-                color: $main_color ;
-                top:-5px;
+            &:focus ~ label {
+              color: $main_color;
+              top: -5px;
             }
-            &:valid~label{
-                color: $main_color;
-                top:-5px;
+            &:valid ~ label {
+              color: $main_color;
+              top: -5px;
             }
           }
           label {
@@ -87,40 +112,63 @@ body {
             transform: translateY(-50%);
             font-size: 16px;
             pointer-events: none;
-            transition: .5s;
+            transition: 0.5s;
             color: gray;
           }
         }
         .remember {
-            display: flex;
-            justify-content: space-between;
-            margin: 0 0 15px 5px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin: 10px 0 15px 0;
+          font-size: 14px;
           label {
             font-size: 14px;
           }
           input {
-            accent-color: $main_color ;
+            accent-color: $main_color;
+          }
+          .forget_psw {
+            font-size: 14px;
           }
         }
         .btn_s {
-            position: relative;
-            width: 100%;
-            height: 40px;
-            font-size: 16px;
-            line-height: 5px;
+          position: relative;
+          width: 100%;
+          height: 40px;
+          font-size: 16px;
+          line-height: 5px;
+          margin-bottom: 20px;
+          cursor: pointer;
         }
-        // .social_plarform {
-        //   p {
-        //   }
-        //   .social_icons {
-        //     a {
-        //     }
-        //   }
-        // }
-        // .signup {
-        //   .signup_link {
-        //   }
-        // }
+        .social_plarform {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          text-align: center;
+          width: 100%;
+          p {
+            font-size: 12px;
+            color: gray;
+          }
+          .social_icons {
+            font-size: 16px;
+            a {
+              padding: 14px;
+              margin-block: 20px;
+              display: block;
+              border: 1px solid gray;
+            }
+          }
+        }
+        .signup {
+          width: 100%;
+          text-align: center;
+          .signup_link {
+            display: block;
+            font-size: 14px;
+          }
+        }
       }
     }
 
