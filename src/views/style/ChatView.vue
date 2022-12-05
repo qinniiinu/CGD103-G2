@@ -46,11 +46,11 @@
 			<h2>#Our Stylist</h2>
 			<h2 class="sec-h2">#Our Stylist</h2>
 			<div class="our_stylist_main">
-			<div class="our_stylist_pic" v-for="stylistPic of stylistPics" :key="stylistPic">
-				<img :src="stylistPic.src" alt="">
+				<div class="our_stylist_pic" v-for="stylistPic of stylistPics" :key="stylistPic">
+					<img :src="stylistPic.src" alt="">
+				</div>
 			</div>
 		</div>
-	</div>
 	</section>
 	<div class="last_content">
 		<h2>
