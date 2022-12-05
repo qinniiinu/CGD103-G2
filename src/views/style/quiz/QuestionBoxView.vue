@@ -10,7 +10,7 @@
                     class="question_name">{{ item.q_name }}</span>
                 </h2>
               </div>
-              <div class="option_box" @click="next($event)">
+              <div class="option_box" @click.once="next($event)">
                 <!-- 選項 -->
                 <!-- item.op.length 選項數量 = option_item2 option_item3 option_item4-->
                 <div :class="'option_item' + item.op.length" v-for="(i, idx) in item.op" :key="idx">
@@ -321,8 +321,7 @@ export default {
       this.$router.push('/ResultMinimalist')
     },
     next(e) {
-      // this.count += 1;
-      this.x -= 50; //??
+      this.x -= 100; 
       let y = this.x + "vw";
       e.currentTarget.parentElement.parentElement.parentElement.style.transform = `translateX(${y})`; //抓上上上層 slider_box
       console.log("y:", y);
