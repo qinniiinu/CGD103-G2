@@ -309,7 +309,7 @@ function textStyle(x) {
 		place-items: center;
 		align-content: center;
      h2{
-		font-size: 200px;
+		font-size: 10rem;
 		font-weight: bolder;
 		text-align: left;
 		line-height: 250px;
@@ -320,7 +320,7 @@ function textStyle(x) {
 	 .introBox{
 		margin-left: 10%;
 		h2{
-			font-size: 120px;
+			font-size: 8rem;
 			color: aliceblue;
 		}
 		.textPart{
