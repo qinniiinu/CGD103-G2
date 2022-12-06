@@ -25,7 +25,9 @@ import {
 	faClipboard,
 	faPlus,
 	faAngleRight,
-	faMinus,faCaretDown
+	faMinus, faCaretDown,
+	faArrowRight,
+
 } from "@fortawesome/free-solid-svg-icons";
 
 
@@ -48,6 +50,7 @@ library.add(
 	faAngleRight,
 	faMinus,
 	faCaretDown,
+	faArrowRight,
 
 );
 
