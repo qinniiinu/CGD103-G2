@@ -7,7 +7,7 @@
 <script>
 export default {
     props: {
-        TypeTag:Array,String
+        TypeTag:String
     }
 }
 </script>

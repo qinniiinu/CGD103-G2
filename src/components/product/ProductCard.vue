@@ -1,14 +1,19 @@
 <template>
     <div class="product_card">
-        <div class="box">
-            <img :src="require(`@/assets/product/${imgURL}`)" />
-            <div class="icon" @click="iconChange = !iconChange">
-                <font-awesome-icon icon="fa-solid fa-heart" v-if="iconChange" />
-                <font-awesome-icon icon="fa-solid fa-plus" v-else />
+        <router-link :to="`/productdetails/${id}`">
+            <div class="box">
+                <img :src="require(`@/assets/product/${imgURL}`)" />
+                <div class="icon" @click="iconChange = !iconChange">
+                    <font-awesome-icon
+                        icon="fa-solid fa-heart"
+                        v-if="iconChange"
+                    />
+                    <font-awesome-icon icon="fa-solid fa-plus" v-else />
+                </div>
             </div>
-        </div>
-        <p class="title">{{ title }}</p>
-        <p class="price">NT${{ price }}</p>
+            <p class="title">{{ title }}</p>
+            <p class="price">NT${{ price }}</p>
+        </router-link>
     </div>
 </template>
 <style lang="scss" scoped>
@@ -53,6 +58,7 @@ export default {
         };
     },
     props: {
+        id: { String, default: "1" },
         title: { String, default: "404" },
         price: { String, default: "404" },
         imgURL: { String, default: "test_01_1.jpg" },

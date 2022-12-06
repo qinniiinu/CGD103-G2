@@ -10,9 +10,9 @@
 							<div class="icon"><font-awesome-icon icon="fa-solid fa-plus" /></div>
 						</div>
 						<ul class="sub">
-							<li><a href="#">風格穿搭</a></li>
-							<li><a href="#">風格測驗</a></li>
-							<li><a href="#">風格諮詢</a></li>
+							<li><router-link to="/MulStyles">風格穿搭</router-link></li>
+							<li><router-link to="/Quiz">風格測驗</router-link></li>
+							<li><router-link to="/Chat">風格諮詢</router-link></li>
 						</ul>
 					</li>
 				</div>
@@ -24,9 +24,9 @@
 							<div class="icon"><font-awesome-icon icon="fa-solid fa-plus" /></div>
 						</div>
 						<ul class="sub">
-							<li><a href="#">商品列表</a></li>
-							<li><a href="#">線上試衣間</a></li>
-							<li><a href="#">一周穿搭</a></li>
+							<li><router-link to="/ProductList">商品列表</router-link></li>
+							<li><router-link to="/FittingRoom">線上試衣間</router-link></li>
+							<li><router-link to="/WeeklyWear">一周穿搭</router-link></li>
 						</ul>
 					</li>
 				</div>
@@ -38,8 +38,8 @@
 							<div class="icon"><font-awesome-icon icon="fa-solid fa-plus" /></div>
 						</div>
 						<ul class="sub">
-							<li><a href="#">OOTD</a></li>
-							<li><a href="#">我的OOTD</a></li>
+							<li><router-link to="/">OOTD</router-link></li>
+							<li><router-link to="/">我的OOTD</router-link></li>
 						</ul>
 					</li>
 				</div>
@@ -51,8 +51,8 @@
 							<div class="icon"><font-awesome-icon icon="fa-solid fa-plus" /></div>
 						</div>
 						<ul class="sub">
-							<li><a href="#">訂閱選擇</a></li>
-							<li><a href="#">訂閱說明</a></li>
+							<li><router-link to="/">訂閱選擇</router-link></li>
+							<li><router-link to="/">訂閱說明</router-link></li>
 						</ul>
 					</li>
 				</div>
@@ -75,8 +75,8 @@
 				<p>
 					本網站為緯育TibaMe_前端設計工程師班第79期學員專題成果作品,本平台僅供學
 					習、展示之用。若有抵觸有關著作權,或有第三人主張侵害智慧財產權等情事,均
-					由學員負法律上責任,緯育公司概不負責。若有侵權疑慮,您可以私訊[緯育
-					TibaMe],後續會由專人協助處理。
+					由學員負法律上責任,緯育公司概不負責。若有侵權疑慮,您可以私訊<a href="https://www.facebook.com/TibaMe">[緯育
+					TibaMe]</a>,後續會由專人協助處理。
 				</p>
 			</div>
 		</footer>
