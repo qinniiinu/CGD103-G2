@@ -1,7 +1,7 @@
 <template>
 	<section class="quiz_idx">
 		<h2>找尋你的個人風格</h2>
-		<p>嗨~ 你了解自己嗎 ?<br>也許你不知道自己適合什麼，也許你正在尋找新的自我風格，<br>不論你現在處於什麼狀態，讓 UR:Style 一起陪你尋找屬於你的<strong>穿搭風格公式</strong>吧!</p>
+		<p>嗨~ 你了解自己嗎 ?<br>也許你不知道自己適合什麼，也許你正在尋找新的自我風格，<br>不論你現在處於什麼狀態，讓 RE:Outfit 一起陪你尋找屬於你的<strong>穿搭風格公式</strong>吧!</p>
 		<div class="wrap">
 			<StyleCard content="時尚風" link="./fashion2-1.png"/>
 			<StyleCard content="極簡風" link="./minimalist2-1.png"/>

@@ -24,17 +24,17 @@
 		<h2>風格測驗</h2>
 		<div class="wrap">
 			
-			<StyleCard content="時尚風" link="./style1.png"/>
-			<StyleCard content="極簡風" link="./style2.png"/>
-			<StyleCard content="運動風" link="./style3.png"/>
-			<StyleCard content="文青風" link="./style4.png"/>
+			<StyleCard content="時尚風" link="./fashion2-1.png"/>
+			<StyleCard content="極簡風" link="./minimalist2-1.png"/>
+			<StyleCard content="運動風" link="./sport2-1.png"/>
+			<StyleCard content="文青風" link="./hipster2-1.png"/>
 			<p>
 				不確定自己適合哪種風格嗎 ? 
 				<br>
  				現在立刻前往個人風格測驗分析
 			</p>
 		</div>
-		<Button content="測驗去"/>
+		<router-link :to="{ name:'QuestionBox' }"><button class="btn_s">測驗去</button></router-link>
 	</section>
 
 
