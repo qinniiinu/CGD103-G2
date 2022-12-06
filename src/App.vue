@@ -1,5 +1,5 @@
 <template>
-	<div class="login" v-if="(isLogin==false)">
+	<!-- <div class="login" v-if="(isLogin==false)">
 		<div class="front_end longin_box" @click="(this.isLogin=true)">
 			<p>前台</p>
 		</div>
@@ -9,8 +9,8 @@
 			</div>
 		</a>
 		
-	</div>
-	<div class="home_page" v-else>
+	</div> -->
+	<div class="home_page" >
 		<Header class="all_header"></Header>
 		<router-view/>
 		<Footer></Footer>
@@ -49,28 +49,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-	.login{
-		display: flex;
-		width: 100%;
-		justify-content: center;
-		align-items: center;
-		height: 100vh;
-	}
-	.longin_box{
-		width: 100px;
-		height: 100px;
-		background-color: $main_color;
-		margin: 20px;
-		p{
-			// display: inline-block;
-			margin: auto;
-			color:$third_color;
-			font-weight: 700;
-			line-height: 100px;
-			font-size: 24px;
-			text-align: center;
-		}
-	}
+
 	.home_page{
 		position: relative;
 		.all_header{
