@@ -9,6 +9,6 @@ module.exports = defineConfig({
 		},
 	},
 	publicPath: process.env.NODE_ENV === 'production'
-    ? '/CGD103-G2/'
+    ? '/cgd103/g2/front/'
     : '/'
 });
