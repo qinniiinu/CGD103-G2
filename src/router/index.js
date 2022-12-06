@@ -13,6 +13,11 @@ const routes = [
 		component: () => import("../views/AboutView.vue"),
 	},
 	{
+		path: "/Faq",
+		name: "Faq",
+		component: () => import("../views/FaqView.vue"),
+	},
+	{
 		path: "/ootd",
 		name: "ootd",
 		component: () => import("../views/OotdView.vue"),
@@ -82,7 +87,7 @@ const routes = [
 		name: "weeklywear",
 		component: () => import("../views/WeeklyWearView.vue"),
 	},
-	
+
 
 	// ----------myaccount START----------
 	{

@@ -2,18 +2,17 @@
 	<div class="landing_page_photo"><!-- 關於我們頁面 -->
 
 		<div class="scroll_container" style="overflow-y: scroll; height: 100vh;">
-			<div class="box" style="height: 1500px; position: relative;">
-				<div class="intro_container" style="height: 400px; position: sticky; top: 0;">
+			<div class="box" style="height: 80vh; position: relative;">
+				<div class="intro_container" style="height: 100vh; position: sticky; top: 0;">
 					<div class="textBox">
-						<h2>U<br>R<br>STYLE</h2>
+						<h2>R<br>E：<br>OUTFIT</h2>
 					</div>
 					<div class="introBox">
 						<h2>#ABOUT</h2>
 						<div class="textPart">
 							<p>
 								手工藝之美在於細節。 機器永遠無法創造出手工質感的海草花瓶或手織的藤製托盤。
-								印度傳承了豐富的傳統手工知識。 Moradabad 地區出口印度 40% 以上的手工藝製品。	在我們全新打造的系列中，我們與 SNEH 合作。 SNEH 於 2019 年創立，為印度 Moradabad 的村莊婦女提供學習工藝的機會──這種技能使她們能夠經濟獨立，擺脫不平等。 		
-								印度傳承了豐富的傳統手工知識。 Moradabad 地區出口印度 40% 以上的手工藝製品。	在我們全新打造的系列中，我們與 SNEH 合作。 SNEH 於 2019 年創立，為印度 Moradabad 的村莊婦女提供學習工藝的機會──這種技能使她們能夠經濟獨立，擺脫不平等。 		
+								印度傳承了豐富的傳統手工知識。 Moradabad 地區出口印度 40% 以上的手工藝製品。	在我們全新打造的系列中，我們與 SNEH 合作。 SNEH 於 2019 年創立，為印度 Moradabad 的村莊婦女提供學習工藝的機會。
 								</p>
 						</div>
 				</div>
@@ -21,7 +20,7 @@
 			</div>
 			<div class="box" style="height: 1000px; position: relative;">
 				<div style="height: 200px; position: sticky; top: 0;">
-					Hello world, from section 2!
+			<!-- 		Hello world, from section 2! -->
 				</div>
 			</div>
 		</div>
@@ -65,190 +64,149 @@
 			<li>
 				<div class="FAQcontainer">
 					<h3>退換貨問題</h3> 
-					<p><span>Q</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<p><span>A</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
+					<p><span>Q</span>如何退貨？</p>
+					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
 					<div class="buttonPart">
-						<button class="seeMore">看更多</button>
+						<router-link to ="/Faq">
+							<button class="seeMore">看更多</button>
+						</router-link>
 					</div>
-					
 				</div>
 			</li>
 			<li>
 				<div class="FAQcontainer">
 					<h3>退換貨問題</h3> 
-					<p><span>Q</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<p><span>A</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
+					<p><span>Q</span>如何退貨？</p>
+					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
 					<div class="buttonPart">
-						<button class="seeMore">看更多</button>
+						<router-link to ="/Faq">
+							<button class="seeMore">看更多</button>
+						</router-link>
 					</div>
-					
 				</div>
 			</li>
 			<li>
 				<div class="FAQcontainer">
 					<h3>退換貨問題</h3> 
-					<p><span>Q</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<p><span>A</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
+					<p><span>Q</span>如何退貨？</p>
+					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
 					<div class="buttonPart">
-						<button class="seeMore">看更多</button>
+						<router-link to ="/Faq">
+							<button class="seeMore">看更多</button>
+						</router-link>
 					</div>
-					
 				</div>
 			</li>
 			<li>
 				<div class="FAQcontainer">
 					<h3>退換貨問題</h3> 
-					<p><span>Q</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<p><span>A</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
+					<p><span>Q</span>如何退貨？</p>
+					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
 					<div class="buttonPart">
-						<button class="seeMore">看更多</button>
+						<router-link to ="/Faq">
+							<button class="seeMore">看更多</button>
+						</router-link>
 					</div>
-					
 				</div>
 			</li>
 			<li>
 				<div class="FAQcontainer">
 					<h3>退換貨問題</h3> 
-					<p><span>Q</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<p><span>A</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
+					<p><span>Q</span>如何退貨？</p>
+					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
 					<div class="buttonPart">
-						<button class="seeMore">看更多</button>
+						<router-link to ="/Faq">
+							<button class="seeMore">看更多</button>
+						</router-link>
 					</div>
-					
 				</div>
 			</li>
 			<li>
 				<div class="FAQcontainer">
 					<h3>退換貨問題</h3> 
-					<p><span>Q</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<p><span>A</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
+					<p><span>Q</span>如何退貨？</p>
+					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
 					<div class="buttonPart">
-						<button class="seeMore">看更多</button>
+						<router-link to ="/Faq">
+							<button class="seeMore">看更多</button>
+						</router-link>
 					</div>
-					
 				</div>
 			</li>
 			<li>
 				<div class="FAQcontainer">
 					<h3>退換貨問題</h3> 
-					<p><span>Q</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<p><span>A</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
+					<p><span>Q</span>如何退貨？</p>
+					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
 					<div class="buttonPart">
-						<button class="seeMore">看更多</button>
+						<router-link to ="/Faq">
+							<button class="seeMore">看更多</button>
+						</router-link>
 					</div>
-					
 				</div>
 			</li>
 			<li>
 				<div class="FAQcontainer">
 					<h3>退換貨問題</h3> 
-					<p><span>Q</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<p><span>A</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
+					<p><span>Q</span>如何退貨？</p>
+					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
 					<div class="buttonPart">
-						<button class="seeMore">看更多</button>
+						<router-link to ="/Faq">
+							<button class="seeMore">看更多</button>
+						</router-link>
 					</div>
-					
 				</div>
 			</li>
 			<li>
 				<div class="FAQcontainer">
 					<h3>退換貨問題</h3> 
-					<p><span>Q</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<p><span>A</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
+					<p><span>Q</span>如何退貨？</p>
+					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
 					<div class="buttonPart">
-						<button class="seeMore">看更多</button>
+						<router-link to ="/Faq">
+							<button class="seeMore">看更多</button>
+						</router-link>
 					</div>
-					
 				</div>
 			</li>
 			<li>
 				<div class="FAQcontainer">
 					<h3>退換貨問題</h3> 
-					<p><span>Q</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<p><span>A</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
+					<p><span>Q</span>如何退貨？</p>
+					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
 					<div class="buttonPart">
-						<button class="seeMore">看更多</button>
+						<router-link to ="/Faq">
+							<button class="seeMore">看更多</button>
+						</router-link>
 					</div>
-					
 				</div>
 			</li>
 			<li>
 				<div class="FAQcontainer">
 					<h3>退換貨問題</h3> 
-					<p><span>Q</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<p><span>A</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
+					<p><span>Q</span>如何退貨？</p>
+					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
 					<div class="buttonPart">
-						<button class="seeMore">看更多</button>
+						<router-link to ="/Faq">
+							<button class="seeMore">看更多</button>
+						</router-link>
 					</div>
-					
 				</div>
 			</li>
 			<li>
 				<div class="FAQcontainer">
 					<h3>退換貨問題</h3> 
-					<p><span>Q</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<p><span>A</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
+					<p><span>Q</span>如何退貨？</p>
+					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
 					<div class="buttonPart">
-						<button class="seeMore">看更多</button>
+						<router-link to ="/Faq">
+							<button class="seeMore">看更多</button>
+						</router-link>
 					</div>
-					
 				</div>
 			</li>
-			<li>
-				<div class="FAQcontainer">
-					<h3>退換貨問題</h3> 
-					<p><span>Q</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<p><span>A</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<div class="buttonPart">
-						<button class="seeMore">看更多</button>
-					</div>
-					
-				</div>
-			</li>
-			<li>
-				<div class="FAQcontainer">
-					<h3>退換貨問題</h3> 
-					<p><span>Q</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<p><span>A</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<div class="buttonPart">
-						<button class="seeMore">看更多</button>
-					</div>
-					
-				</div>
-			</li>
-			<li>
-				<div class="FAQcontainer">
-					<h3>退換貨問題</h3> 
-					<p><span>Q</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<p><span>A</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<div class="buttonPart">
-						<button class="seeMore">看更多</button>
-					</div>
-					
-				</div>
-			</li>
-			<li>
-				<div class="FAQcontainer">
-					<h3>退換貨問題</h3> 
-					<p><span>Q</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<p><span>A</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<div class="buttonPart">
-						<button class="seeMore">看更多</button>
-					</div>
-					
-				</div>
-			</li>
-			<li>
-				<div class="FAQcontainer">
-					<h3>退換貨問題</h3> 
-					<p><span>Q</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<p><span>A</span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique exercitationem</p>
-					<div class="buttonPart">
-						<button class="seeMore">看更多</button>
-					</div>
-					
-				</div>
-			</li>
+			
+			
 		</ul>
 	</div>
 	<div class="aBox">
@@ -294,12 +252,15 @@ function textStyle(x) {
 
 @import "@/assets/sass/main";
 
-
+@mixin b() {
+	@media screen and (max-width: 1023px) {
+		@content;
+	}
+}
 
 .landing_page_photo{
 	background-image: url("../assets/images/about-landing-page.jpg");
-	transform: scale(1.1,1.1);
-	margin-top: 50px;
+	// transform: scale(1.1,1.1);
 	::-webkit-scrollbar{
 		display: none;
 		
@@ -309,27 +270,42 @@ function textStyle(x) {
 		place-items: center;
 		align-content: center;
      h2{
-		font-size: 10rem;
+		font-size: 8rem;
 		font-weight: bolder;
 		text-align: left;
-		line-height: 250px;
+		line-height: 160px;
+		margin-top: 200px;
+		@include b(){
+			font-size: 6rem;
+			padding-left: 20%;
+		}
 	 }
 	 .intro_container{
+		width:80%;
 		display: flex;
+		@include b(){
+			display: block;
+		}
+		}
 	 }
 	 .introBox{
-		margin-left: 10%;
+	padding-left: 5%;
 		h2{
 			font-size: 8rem;
 			color: aliceblue;
+			@include b(){
+				font-size: 6rem;
+		}
 		}
 		.textPart{
 			outline: 1px solid hsl(208, 100%, 97%);
-			width: 500px;
+			width: 80%;
 			padding: 50px;
-			height: 350px;
+			min-height: 200px;
 			background-color: rgb(160, 165, 184,0.5);
-		
+			@include b(){
+				width: 80%;
+			}
 		}
 		p{
 			color: white;
@@ -337,11 +313,12 @@ function textStyle(x) {
 		}
 	 }
 	}
-}
+
 .contactUs{
 	width: 60%;
 	margin: auto;
 	margin-top: 100px;
+	
 	.titleBox{
 		width: 100%;
 		h4{
@@ -357,7 +334,7 @@ function textStyle(x) {
 		p{
 			margin: 10px;
 			line-height: 1.5em;
-			width: 600px;
+			width: 100%;
 		}
 		.order_title{
 			color:rgb(156, 156, 167);
@@ -370,8 +347,7 @@ function textStyle(x) {
 			}
 			position: absolute;
 			z-index: -1;
-			left: 600px;
-
+			left: 30%;
 			font-size: 120px;
 			opacity: .5;
 		}
@@ -412,7 +388,7 @@ function textStyle(x) {
 		p{
 			margin: 10px;
 			line-height: 1.5em;
-			width: 600px;
+			width: 100%;
 			
 		}
 		.order_title{
@@ -426,7 +402,7 @@ function textStyle(x) {
 			}
 			position: absolute;
 			z-index: -1;
-			left: 800px;
+			left: 30%;
 
 			font-size: 120px;
 			opacity: .5;
@@ -448,7 +424,7 @@ function textStyle(x) {
 	}
 	.FAQcontainer{
 		
-	width: 200px;
+	width: 300px;
 	margin: 20px;
 	outline: 1px solid blue;
 	h3{
