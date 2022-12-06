@@ -80,6 +80,7 @@
 <script>
 import StylistLook from "@/components/StylistLook.vue"; 
 import Button from "@/components/Button.vue"; 
+import { gsap } from "gsap";
 
 export default {
 	name: "MulStyle",
@@ -87,6 +88,7 @@ export default {
 	components: {
 		StylistLook,
 		Button,
+		gsap,
 	},
 	
   	data() {

@@ -18,7 +18,6 @@ export default {
     data() {
         return {
             fakeproduct: [],
-            
         };
     },
     methods: {
@@ -38,7 +37,7 @@ export default {
 </script>
 <template>
     <div class="product_list">
-        <router-link to="/productDetails"
+        <router-link to="/productDetails/1"
             ><button>產品內頁</button></router-link
         >
         <ProductMenu />
@@ -57,6 +56,7 @@ export default {
                 <SearchBar />
                 <div class="productCard_box">
                     <ProductCard
+                        :id="e.product_id"
                         :title="e.product_name"
                         :price="e.unit_price"
                         :imgURL="cut(e.product_pic)"

@@ -1,5 +1,6 @@
 <template>
 	<section class="home_cover">
+		<img class="logo" src="../../public/re_logo.png" alt="">
 		<div class="img_marquee">
 			<div class="img_marquee_item" v-for="(mainImg,index) of mainImgs" :key="index">
 				<img  v-show="mainImg.boolean"  :src="mainImg.src" alt="" @mouseenter="mainImg.boolean = false ; mainImg.hoverboolean = true">
@@ -11,13 +12,9 @@
 			</div>
 		</div>
 		<div class="img_marquee_2">
-			<div class="img_marquee_item" v-for="(mainImg,index) of mainImgs" :key="index">
-				<img  v-show="mainImg.boolean"  :src="mainImg.src" alt="" @mouseenter="mainImg.boolean = false ; mainImg.hoverboolean = true">
-				<img  v-show="mainImg.hoverboolean" :src="mainImg.hoversrc" alt="" @mouseout="mainImg.hoverboolean = false ; mainImg.boolean = true" >
-			</div>
-			<div class="img_marquee_item" v-for="(mainImg,index) of mainImgs" :key="index">
-				<img  v-show="mainImg.boolean"  :src="mainImg.src" alt="" @mouseenter="mainImg.boolean = false ; mainImg.hoverboolean = true">
-				<img  v-show="mainImg.hoverboolean" :src="mainImg.hoversrc" alt="" @mouseout="mainImg.hoverboolean = false ; mainImg.boolean = true" >
+			<div class="img_marquee_item" v-for="(mainIImg,index) of mainIImgs" :key="index">
+				<img  v-show="mainIImg.boolean"  :src="mainIImg.src" alt="" @mouseenter="mainIImg.boolean = false ; mainIImg.hoverboolean = true">
+				<img  v-show="mainIImg.hoverboolean" :src="mainIImg.hoversrc" alt="" @mouseout="mainIImg.hoverboolean = false ; mainIImg.boolean = true" >
 			</div>
 		</div>
 
@@ -25,16 +22,15 @@
 	
 	<section class="quiz_idx">
 		<h2>找尋你的個人風格</h2>
-		<p>嗨~ 你了解自己嗎 ?<br>也許你不知道自己適合什麼，也許你正在尋找新的自我風格，<br>不論你現在處於什麼狀態，讓 UR:Style 一起陪你尋找屬於你的<strong>穿搭風格公式</strong>吧!</p>
+		<p>嗨~ 你了解自己嗎 ?<br>也許你不知道自己適合什麼，也許你正在尋找新的自我風格，<br>不論你現在處於什麼狀態，讓 RE:Outfit 一起陪你尋找屬於你的<strong>穿搭風格公式</strong>吧!</p>
 		<div class="wrap">
-			<StyleCard content="時尚風" link="./style1.png"/>
-			<StyleCard content="極簡風" link="./style2.png"/>
-			<StyleCard content="運動風" link="./style3.png"/>
-			<StyleCard content="文青風" link="./style4.png"/>
+			<StyleCard content="時尚風" link="./fashion2-1.png"/>
+			<StyleCard content="極簡風" link="./minimalist2-1.png"/>
+			<StyleCard content="運動風" link="./sport2-1.png"/>
+			<StyleCard content="文青風" link="./hipster2-1.png"/>
 			<p>首先，請讓我們更認識你<br>點擊下方開始測驗你的風格</p>
 		</div>
-		<router-link :to="{ name:'QuestionBox' }"><Button class="btn_s">測驗去</Button></router-link>
-
+		<router-link :to="{ name:'QuestionBox' }"><button class="btn_s">測驗去</button></router-link>
 	</section>
 
 	<section class="sub_part">
@@ -105,13 +101,24 @@
 		data(){
 			return{
 				mainImgs:[
-					{src:'/img_marquee_1.png',boolean:true,hoversrc:'/img_hover_1.png',hoverboolean:false},
-					{src:'/img_marquee_2.png',boolean:true,hoversrc:'/img_hover_2.png',hoverboolean:false},
-					{src:'/img_marquee_3.png',boolean:true,hoversrc:'/img_hover_3.png',hoverboolean:false},
-					{src:'/img_marquee_4.png',boolean:true,hoversrc:'/img_hover_4.png',hoverboolean:false},
-					{src:'/img_marquee_5.png',boolean:true,hoversrc:'/img_hover_5.png',hoverboolean:false},
-					{src:'/img_marquee_6.png',boolean:true,hoversrc:'/img_hover_6.png',hoverboolean:false},
+					{src:'/img_marquee_1.jpg',boolean:true,hoversrc:'/img_hover_1.jpg',hoverboolean:false},
+					{src:'/img_marquee_2.jpg',boolean:true,hoversrc:'/img_hover_2.jpg',hoverboolean:false},
+					{src:'/img_marquee_3.jpg',boolean:true,hoversrc:'/img_hover_3.jpg',hoverboolean:false},
+					{src:'/img_marquee_4.jpg',boolean:true,hoversrc:'/img_hover_4.jpg',hoverboolean:false},
+					{src:'/img_marquee_5.jpg',boolean:true,hoversrc:'/img_hover_5.jpg',hoverboolean:false},
+					{src:'/img_marquee_6.jpg',boolean:true,hoversrc:'/img_hover_6.jpg',hoverboolean:false},
 				],
+				mainIImgs:[
+					{src:'/img_marquee_4.jpg',boolean:true,hoversrc:'/img_hover_4.jpg',hoverboolean:false},
+					{src:'/img_marquee_5.jpg',boolean:true,hoversrc:'/img_hover_5.jpg',hoverboolean:false},
+					{src:'/img_marquee_2.jpg',boolean:true,hoversrc:'/img_hover_2.jpg',hoverboolean:false},
+					{src:'/img_marquee_1.jpg',boolean:true,hoversrc:'/img_hover_1.jpg',hoverboolean:false},
+					{src:'/img_marquee_6.jpg',boolean:true,hoversrc:'/img_hover_6.jpg',hoverboolean:false},
+					{src:'/img_marquee_3.jpg',boolean:true,hoversrc:'/img_hover_3.jpg',hoverboolean:false},
+				],
+				
+
+
 				productImgs:[
 					{src:'/productImg_1.png',content:'外套'},
 					{src:'/productImg_2.png',content:'西裝外套'},
@@ -144,14 +151,52 @@
 <style lang="scss" scoped>
 @import "@/assets/sass/grid";
 	.home_cover{
+		position: relative;
+		.logo{
+			position:absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto;
+			width: 25%;
+			background-color: $main_color;
+			padding: 1.5%;
+			// height: 50%;	
+		}
 		.img_marquee{
-			display: flex;
+			display: inline-block;
+			white-space:nowrap;
 			overflow: hidden;
+			vertical-align: middle;
+			.img_marquee_item{
+				display: inline-block;
+				white-space:nowrap;
+				width: 18%;
+				// vertical-align: middle;
+				img{
+					width: 100%;
+					vertical-align: middle;
+				}
+			}
+			
 			
 		}
 		.img_marquee_2{
-			display: flex;
+			display: inline-block;
+			white-space:nowrap;
 			overflow: hidden;
+			
+			.img_marquee_item{
+				display: inline-block;
+				white-space:nowrap;
+				width: 18%;
+				
+				img{
+					width: 100%;
+					vertical-align: middle;
+				}
+			}
 			
 		}
 	}
@@ -352,63 +397,74 @@
 	}
 	
 	.quiz_idx{
-		box-sizing: border-box;
-		max-width: 1200px;
-		margin: 0 auto 50px;
-		h2{
-			font-size: 32px;
-			color: $title_color;
+	box-sizing: border-box;
+	max-width: 1200px;
+	margin: 0 auto 50px;
+	h2{
+		font-size: 32px;
+		color: $title_color;
+		font-weight: 600;
+		text-align: center;
+		padding: 30px;
+	}
+	p{
+		font-size: 14px;
+		text-align: center;
+		color: $text_color;
+		strong{
 			font-weight: 600;
-			text-align: center;
-			padding: 30px;
+			position: relative;
+			&:after{
+				content: "";
+				background-color: $main_color;
+				height: 5px;
+				width: 100%;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				z-index: -1;
+			}
+		}
+	}
+	.wrap{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		padding: 30px 5px 0 5px;
+		margin: 0 auto;
+		p{
+			margin-bottom: 30px;
+		}
+		
+	}
+	button{
+		margin: auto;
+		display: block;
+	}
+}
+// 平板以上
+@media screen and (min-width:768px) {
+	.quiz_idx{
+		h2{
+			font-size: 48px;
 		}
 		p{
-			font-size: 14px;
-			text-align: center;
-			color: $text_color;
-			strong{
-				font-weight: 600;
-			}
+			font-size: 18px;
+			line-height: 27px;
 		}
 		.wrap{
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: space-around;
-			padding: 30px 5px 0 5px;
-			margin: 0 auto;
-			p{
-				margin-bottom: 30px;
+			padding: 50px 0;
+			.item{
+				width: 20%;
 			}
-			
+			.item:nth-child(1), .item:nth-child(4){
+				top: 50px;
+			}
+			P{
+				display: none;
+			}
 		}
-		button{
-			margin: auto;
-			display: block;
-		}
-	}
-// 平板以上
-	@media screen and (min-width:768px) {
-		.quiz_idx{
-			h2{
-				font-size: 48px;
-			}
-			p{
-				font-size: 18px;
-				line-height: 27px;
-			}
-			.wrap{
-				padding: 50px 0;
-				.item{
-					width: 20%;
-				}
-				.item:nth-child(1), .item:nth-child(4){
-					top: 50px;
-				}
-				P{
-					display: none;
-				}
-			}
 
-		}
 	}
+}
 </style>
