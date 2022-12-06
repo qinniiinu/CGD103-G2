@@ -8,10 +8,6 @@
             <h3 class="title">{{ title }}</h3>
             <!-- hashtag -->
             <slot></slot>
-            <a href="#" class="more">
-                <span class="text">查看更多</span>
-                <font-awesome-icon icon="fa-solid fa-angle-right"/>
-            </a>
         </div>
     </section>
 </template> 
@@ -55,6 +51,16 @@ export default {
             height: 100%;
             object-fit:cover;
         }
+            @include s() {
+        width: 150px;
+        height: 150px;
+
+    }
+	@media screen and (max-width: 1200px) {
+		width: 200px;
+        height: 200px;
+	}
+
     }
     .text{
     margin-left: $padding;
@@ -65,17 +71,6 @@ export default {
             display: block;
             font-weight: 700;
             color: $title_color;
-        }
-        .more{
-            display: flex;
-            position: absolute;
-            align-items: center;    
-            right: $padding;
-            bottom: $padding;
-            .text{
-                font-family: $main_font;
-                padding-right: 5px;
-            }
         }
     }
 }

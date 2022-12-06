@@ -76,7 +76,11 @@ export default {
   margin-block-start: 25px;
   position: relative;
   .title {
-    display: flex;
+    font-size: 24px;
+    display: block;
+    font-weight: 700;
+    color: $title_color;
+
     margin-block-end: 10px;
     justify-content: space-between;
   }
@@ -84,31 +88,30 @@ export default {
     display: flex;
     width: 100%;
     justify-content: space-between;
-    .save_card{
-        border: 1px gray;
-        
-        .tit{
-            font-size: 20PX;
-            margin-bottom: 10px;
-        }
-        .save_item{
-            display: flex;
-            justify-content: space-between;
-            border: 1px solid gray;
-            li{
-                max-width: 150px;
-                height: 170px;
-                margin: 15px;
-                img{
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    object-position: center top;
-                }
-            }
-        }
-    }
+    .save_card {
+      border: 1px gray;
 
+      .tit {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      .save_item {
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid gray;
+        li {
+          max-width: 150px;
+          height: 170px;
+          margin: 15px;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+          }
+        }
+      }
+    }
   }
 }
 </style>

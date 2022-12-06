@@ -103,7 +103,6 @@
 	background-color: $bg_gray ;
 	flex: 1;
 	padding:50px 50px 150px 50px;
-
 		.title{
 			font-size: 24px;
 			color: #292929;
@@ -113,6 +112,10 @@
 			width: 100%;
 			min-height: max-content;
 			// border: solid sienna 1px;
+		}
+		@include s() {
+			background-color: white ;
+
 		}
 	}
 }
