@@ -262,7 +262,6 @@ export default {
 	width: 100%;
 	outline: solid 1px gray;
 	.ord_condition_box{
-	width: 100%;
 	display: flex;
 	justify-content: right;
 	}
@@ -271,6 +270,7 @@ export default {
 
 .ord_sel{
 	margin: 10px;
+	
 }
 
 
@@ -286,8 +286,8 @@ export default {
 	outline: solid 1px gray;
 	width: 90%;
 	height: 50vh;
-	margin: 50px;
-	padding-bottom: 50px;
+	margin: auto;
+	padding-bottom: 10%;
 	overflow:scroll;
 }
 .ord_history_toplist{

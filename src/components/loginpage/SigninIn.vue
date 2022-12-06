@@ -8,7 +8,7 @@
         </div>
 
         <div class="input_group">
-          <input type="email" required />
+          <input type="text" required />
           <label for="">電子郵件</label>
         </div>
         <div class="input_group">

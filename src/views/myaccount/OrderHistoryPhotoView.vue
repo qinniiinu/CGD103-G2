@@ -145,7 +145,10 @@ export default {
 }
 
 
-
+.ord_sel{
+	margin: 10px;
+	
+}
 
 
 .ham{
