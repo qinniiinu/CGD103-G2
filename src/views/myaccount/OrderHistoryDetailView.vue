@@ -132,33 +132,42 @@ export default {
 
 .Ordh_container{
 	width: 100%;
-	
+
 }
 
 
 .ord_detail_container{
 	width: 80%;
 	margin: 30px;
-	background-color:$bg_violet;
 	padding: 30px;
+	background-color:white;
+	border:1px solid rgb(162, 162, 162) ;
+	p{
+		text-align: left;
+		font-size: 16px;	}
+
+
 }
 
 .ord_title{
 	color: #444;
 	font-weight: bold;
+	
 }
 
 .ord_detail{
 	display: flex;
 	width: 100%;
-	justify-content:space-around;
+	justify-content: flex-start
+
 
 }
 
 .ord_detail_second_row{
 	display: flex;
 	width: 100%;
-	justify-content:space-around;
+	justify-content: flex-start
+
 
 }
 
@@ -169,14 +178,16 @@ p{
 }
 .ord_condition{
 	display: flex;
+	margin: 10px;
 }
 
 /* 訂單明細 */
 .ord_recipt{
 	width: 80%;
 	margin: 30px;
-	background-color: $bg_violet;
 	padding: 30px;
+	background-color:white;
+	border:1px solid rgb(162, 162, 162) ;
 }
 
 .prod_item_row{
@@ -220,6 +231,11 @@ li{
 	margin: 30px;
 	background-color:$bg_violet;
 	padding: 30px;
+	background-color:white;
+	border:1px solid rgb(162, 162, 162) ;
+	.ord_msg_box{
+		margin-top:50px ;
+	}
 
 }
 

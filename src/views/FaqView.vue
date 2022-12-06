@@ -354,13 +354,18 @@ export default {
 }
 
 button{
-    border-radius: 50px;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition:  .5 ease;
+
+    display: none;
+
+    // @include b(){
+    // border-radius: 50px;
+    // width: 50px;
+    // height: 50px;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    // transition:  .5 ease;
+    // }
 }
 .data{
     display: flex;
@@ -393,12 +398,13 @@ button{
     z-index: 99;
     transition: 1s ease-out;
     position: relative;
-    background-color:#cacfff ;
+    // background-color:#cacfff ;
+    overflow: hidden;
 
 
 
     @include b(){
-        // display: none;
+        display: none;
     }
     .titleBox{
         width: 100%;
