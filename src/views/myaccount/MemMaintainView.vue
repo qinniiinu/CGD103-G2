@@ -115,7 +115,7 @@ export default {
 		.mempic {
 			width: 50px;
 			height: 50px;
-			background-color: #fff;
+			background-color: $bg_gray;
 			border-radius: 50%;
 			margin: 0 auto;
 			position: relative;
@@ -221,7 +221,13 @@ export default {
 
 
 }
-
+@media screen and (min-width:768px) {
+	.wrap{
+		background-color: #fff;
+		border: 1px solid $title_color;
+		padding: 20px;
+	}
+}
 @media screen and (min-width:1024px) {
 	* {
 		box-sizing: border-box;
@@ -233,6 +239,9 @@ export default {
 		border: 1px solid $title_color;
 
 		.maintain {
+			.mempic {
+				background-color: #fff;
+			}
 			.input_group {
 				border: 1px solid $bg_gray;
 			}
