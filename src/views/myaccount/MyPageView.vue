@@ -46,8 +46,8 @@
               >內容
               <router-link to="/Consultation" class="more">
                 <span class="text">查看更多</span>
-                <font-awesome-icon icon="fa-solid fa-angle-right"/> 
-			</router-link>
+                <font-awesome-icon icon="fa-solid fa-angle-right" />
+              </router-link>
             </SmallCard>
             <SmallCard
               title="訂閱服務"
@@ -125,17 +125,17 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/sass/member_side_menu";
 .box {
-	    .more {
-      display: flex;
-      position: absolute;
-      align-items: center;
-      right: $padding;
-      bottom: $padding;
-      .text {
-        font-family: $main_font;
-        padding-right: 5px;
-      }
+  .more {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    right: $padding;
+    bottom: $padding;
+    .text {
+      font-family: $main_font;
+      padding-right: 5px;
     }
+  }
   .card {
     margin-block: 25px;
     .type_tag {
@@ -147,7 +147,6 @@ export default {
       position: absolute;
       right: $padding;
     }
-
   }
   .other_card {
     width: 100%;
