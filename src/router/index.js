@@ -13,6 +13,11 @@ const routes = [
 		component: () => import("../views/AboutView.vue"),
 	},
 	{
+		path: "/Faq",
+		name: "Faq",
+		component: () => import("../views/FaqView.vue"),
+	},
+	{
 		path: "/ootd",
 		name: "ootd",
 		component: () => import("../views/OotdView.vue"),
@@ -21,6 +26,7 @@ const routes = [
 		path: "/product",
 		name: "product",
 		component: () => import("../views/ProductView.vue"),
+
 	},
 	{
 		path: "/FindStyle",
@@ -53,6 +59,11 @@ const routes = [
 		component: () => import("../views/Checkout1View.vue"),
 	},
 	{
+		path:"/SubCheckout",
+		name:"SubCheckout",
+		component: () => import("../views/SubCheckoutView.vue")
+	},
+	{
 		path: "/fittingroom",
 		name: "fittingroom",
 		component: () => import("../views/FittingRoomView.vue"),
@@ -68,13 +79,17 @@ const routes = [
 		component: () => import("../views/FittingRoom2View.vue"),
 	},
 	{
+		path: "/fittingroom3",
+		name: "fittingroom3",
+		component: () => import("../views/FittingRoom3View.vue"),
+	},
+	{
 		path: "/login",
 		name: "login",
 		component: () => import("../views/LoginView.vue"),
 	},
 	{
-		path: "/productdetails",
-		name: "productdetails",
+		path: "/productdetails/:id",
 		component: () => import("../views/ProductDetailsView.vue"),
 	},
 	{
@@ -92,7 +107,7 @@ const routes = [
 		name: "weeklywear",
 		component: () => import("../views/WeeklyWearView.vue"),
 	},
-	
+
 
 	// ----------myaccount START----------
 	{
@@ -223,6 +238,13 @@ const routes = [
 const router = createRouter({
 	history: createWebHistory(process.env.BASE_URL),
 	routes,
+	scrollBehavior(to, from, savedPosition) {
+		if (savedPosition) {
+			return savedPosition
+		} else {
+			return { top: 0 }
+		}
+	},
 });
 
 export default router;
