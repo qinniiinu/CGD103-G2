@@ -5,16 +5,22 @@
       <HashTag></HashTag>
     </div>
     <div class="fittingArea">
-      <div class="container" @mousemove="mouseMove" @mouseup="mouseUp" ></div>
+      <div class="panel"></div>
       <ul class="products">
-        <li v-for="(item, i) in items" :key="i"  @mousedown="mouseDown" >
-          <img :src="item.products" />
+        <li v-for="(item, i) in items" :key="i">
+          <img
+            :src="item.products"
+            :style="item.style"
+            @mousedown="mouseDown"
+            @mousemove="mouseMove(i, $event)"
+            @mouseup="mouseUp"
+          />
         </li>
       </ul>
     </div>
   </div>
 </template>
-
+ 
 <script>
 import SearchBar from "@/components/product/SearchBar.vue";
 import ProductSideMenu from "@/components/product/ProductSideMenu.vue";
@@ -23,10 +29,10 @@ export default {
   name: "Product",
   components: {
     SearchBar,
-    ProductSideMenu,
+    // ProductSideMenu,
     HashTag,
   },
-
+ 
   data() {
     return {
       items: [
@@ -38,66 +44,48 @@ export default {
         { products: require("@/assets/fittingroom/item006.png") },
         { products: require("@/assets/fittingroom/item007.png") },
       ],
+      left: 0,
+      top: 0,
+      offsetX: 0,
+      offsetY: 0,
+      moving: false,
+      mouseX :0,
+      mouseY :0,
     };
   },
-
-    // const mouseX = 0
-    // const mouseY = 0
-    // const offsetX = 0
-    // const offsetY = 0
-    // const isDown = false
-
-    // const items = document.querySelectorAll(".items");
-    // const lists = document.querySelectorAll('.list');
-
-      // mouseDown(e){
-      //   deltaLeft = e.clientX - e.target.offsetLeft
-      //   deltaTop = e.clientY - e.target.offsetTop
-      //   move = true
-      // } 
-
-      // mouseMove(e){
-      //   deltaLeft = e.clientX - e.target.offsetLeft
-      //   deltaTop = e.clientY - e.target.offsetTop
-      //   move = true
-      // }
-
-      // mouseUp(e){
-      //   move = false
-      // }
-       
-   
-
-//     for (let i = 0; i < items.length; i++) {
-//         items[i].addEventListener('mousedown', function (e) {
-//             isDown = true
-//             mouseX = e.pageX
-//             mouseY = e.pageY
-//             document.addEventListener('mousemove', move)
-//         });
-
-//         document.addEventListener('mouseup', function (e) {
-//             if (isDown) {
-//                 offsetX += e.pageX - mouseX
-//                 offsetY += e.pageY - mouseY
-//             }
-//             isDown = false
-//             document.removeEventListener('mousemove', move)
-//         });
-
-
-//         function move(e) {
-//             if (isDown) {
-//                 const dx = e.pageX - mouseX
-//                 const dy = e.pageY - mouseY
-//                 items[i].style.transform = `translate(${offsetX + dx}px,${offsetY + dy}px)`;
-//             }
-//         }
-
-//     }
-
+ 
+  methods: {
+    mouseDown(e) {
+      this.offsetX = e.pageX;
+      this.offsetY = e.pageY;
+      this.moving = true;
+      console.log(e)
+    },
+ 
+    mouseMove(i,e) {
+      if (this.moving) {
+        const dx = e.pageX - this.mouseX;
+        const dy = e.pageY - this.mouseY;
+        this.items[i].style = {transform:`translate(${this.offsetX + dx}px,${this.offsetY + dy}px)`}
+      }
+    },
+ 
+    mouseUp(e) {
+      if (this.moving) {
+        this.offsetX += e.pageX - this.mouseX;
+        this.offsetY += e.pageY - this.mouseY;
+      }
+      this.moving = false;
+      // document.removeEventListener("mousemove", move);
+    },
+  },
 };
 </script>
+
+
+
+
+
 
 
 <style lang="scss" scoped>
@@ -113,7 +101,7 @@ export default {
   }
   .fittingArea {
     width: 60%;
-    .container {
+    .panel {
       width: 100%;
       height: 530px;
       border: 1px solid black;
@@ -121,20 +109,21 @@ export default {
     }
     .products {
       width: 100%;
-      height: 300px;
+      height: auto;
       border: 1px solid black;
-	  display: flex;
-	  flex-wrap: wrap;
-	  justify-content: center;
-	  li{
-		width: 14%;
-		height: 150px;
-		img{
-			width: 100%;
-			height: 100%;
-			object-fit: contain;
-		}
-	  }
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      li {
+        width: 100px;
+        height: 150px;
+        margin: 10px;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
     }
   }
 }
