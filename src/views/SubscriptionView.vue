@@ -16,32 +16,6 @@
         </div>
     </div>
     <div class="sub-plan">
-        <!-- <div class="subcard">
-            <div class="card-wrap">
-                <div class="card-content">
-                    <div class="level">#BASIC</div>
-                    <h2>NT$ <span>899</span>/月</h2>
-                    <p>
-                        <font-awesome-icon icon="fa-solid fa-check" />
-                        每月專屬搭配一套
-                    </p>
-                    <span>上身* 1、下身*1、外套*1</span>
-                    <p>
-                        <font-awesome-icon icon="fa-solid fa-check" />
-                        每月諮詢造型師<span>1</span>次
-                    </p>
-                    <p>
-                        <font-awesome-icon icon="fa-solid fa-check" />
-                        每月免運費<span>1</span>次
-                    </p>
-                    <p>
-                        <font-awesome-icon icon="fa-solid fa-check" />
-                        商品<span>95</span>折優惠
-                    </p>
-                    <button>訂閱</button>
-                </div>
-            </div>
-        </div> -->
         <div class="subcard" v-for="sub in subinfo" :key="sub.level">
             <div class="card-wrap">
                 <div class="card-content">
@@ -68,57 +42,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="subcard">
-            <div class="card-wrap">
-                <div class="card-content">
-                    <div class="level">#STANDARD</div>
-                    <h2>NT$ <span>1,899</span>/月</h2>
-                    <p>
-                        <font-awesome-icon icon="fa-solid fa-check" />
-                        每月專屬搭配一套
-                    </p>
-                    <span>上身* 1、下身*1、外套*1</span>
-                    <p>
-                        <font-awesome-icon icon="fa-solid fa-check" />
-                        每月諮詢造型師<span>2</span>次
-                    </p>
-                    <p>
-                        <font-awesome-icon icon="fa-solid fa-check" />
-                        每月免運費<span>2</span>次
-                    </p>
-                    <p>
-                        <font-awesome-icon icon="fa-solid fa-check" />
-                        商品<span>9</span>折優惠
-                    </p>
-                    <button>訂閱</button>
-                </div>
-            </div>-->
-        <!-- <div class="subcard">
-            <div class="card-wrap">
-                <div class="card-content">
-                    <div class="level">#ULTRA</div>
-                    <h2>NT$ <span>3,999</span>/月</h2>
-                    <p>
-                        <font-awesome-icon icon="fa-solid fa-check" />
-                        每月專屬搭配一套
-                    </p>
-                    <span>上身* 1、下身*1、外套*1、鞋子*1</span>
-                    <p>
-                        <font-awesome-icon icon="fa-solid fa-check" />
-                        每月諮詢造型師<span>5</span>次
-                    </p>
-                    <p>
-                        <font-awesome-icon icon="fa-solid fa-check" />
-                        每月無限次免運費
-                    </p>
-                    <p>
-                        <font-awesome-icon icon="fa-solid fa-check" />
-                        商品<span>8</span>折優惠
-                    </p>
-                    <button>訂閱</button>
-                </div>
-            </div>
-        </div> -->
     </div>
     <div class="sub-intro">
         <div class="intro-wrap"></div>
@@ -126,6 +49,8 @@
 </template>
 
 <script>
+import {subinfo} from'@/assets/config/setting.js'
+import {vip_level} from'@/assets/config/setting.js'
 export default {
     name: "Subscription",
     components: {
@@ -133,51 +58,8 @@ export default {
     },
     data(){
 		return{
-			vip_level:[{
-				level_id:1,
-				product_item:3,
-				level_name:"BASIC",
-				discount:0.95,
-				price:899,
-			},{
-				level_id:2,
-				product_item:3,
-				level_name:"STANDARD",
-				discount:0.9,
-				price:1899,
-			},{
-				level_id:3,
-				product_item:4,
-				level_name:"ULTRA",
-				discount:0.8,
-				price:3999,
-			}
-			],
-            subinfo:[{
-                level:'BASIC',
-                price:899,
-                monthSet:'上身* 1、下身*1',
-                monthConsult:1,
-                freeShipping:1,
-                specialOffer:95
-            },
-            {   
-                level:'STANDARD',
-                price:1899,
-                monthSet:'上身* 1、下身*1、外套*1',
-                monthConsult:2,
-                freeShipping:2,
-                specialOffer:9
-            },
-            {   
-                level:'ULTRA',
-                price:3999,
-                monthSet:'上身* 1、下身*1、外套*1、鞋子*1',
-                monthConsult:5,
-                freeShipping:'無限',
-                specialOffer:8
-            }
-            ],
+            subinfo:subinfo,
+			vip_level:vip_level,
             subscribe:[],
 		}
 	},
@@ -193,6 +75,10 @@ export default {
             this.subscribe.push({
                 level:sub.level,
                 price:sub.price,
+                monthSet:sub.monthSet,
+                monthConsult:sub.monthConsult,
+                freeShipping:sub.freeShipping,
+                specialOffer:sub.specialOffer
             })
             const data=JSON.stringify(this.subscribe);
             console.log(data);
@@ -207,8 +93,6 @@ export default {
     .wrap {
         display: flex;
         justify-content: center;
-        // align-items: center;
-        // background-image: url(../assets/bg_pic/test_bg.png);
         background: linear-gradient(
                     350deg,
                     rgb(255, 255, 255) 40%,
@@ -217,10 +101,7 @@ export default {
                 left bottom,
             url(../assets/sub_test_img/test_03.png) no-repeat fixed left top;
         background-color: RGB(245, 245, 245);
-        // background-repeat: no-repeat;
-        // background-position: left bottom;
         height: 600px;
-        // margin: auto;
         .left {
             width: 400px;
             height: auto;
@@ -228,7 +109,6 @@ export default {
         .right {
             width: 500px;
             margin: 10vh;
-            // height: 800px;
             font-size: 32px;
             color: $title_color;
             font-weight: bold;
@@ -306,19 +186,23 @@ export default {
                     right: -40px;
                     top: -50px;
                 }
-                button {
-                    cursor: pointer;
+                a{
+                    margin: auto;
                     margin-top: 20px;
+                    button {
+                    cursor: pointer;
                     background-color: $main_color;
                     color: white;
                     border: 1px solid $main_color;
-                    padding: 5px 10px;
+                    padding: 5px 20px;
                     &:hover {
                         background-color: $bg_blue;
                         color: $main_color;
                         border: 1px solid $main_color;
                     }
                 }
+                }
+                
             }
             &:after {
                 content: "";
@@ -348,7 +232,6 @@ export default {
     }
 }
 .sub-intro {
-    // width: 100vw;
     height: 600px;
 }
 </style>

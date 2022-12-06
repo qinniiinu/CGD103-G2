@@ -44,15 +44,37 @@
 			</div>
 			<button>完成訂購</button>
 		</div>
-		<div class="list">
-			<h2>購物車</h2>
-            <div class="subcard" v-for="detail in subscribe" :key="detail">
-                <div class="card-wrap">
-                    <div class="card-content">
-                        <div class="level">#{{detail.level}}</div>
-                        <h2>NT$<span>{{detail.price}}</span>/月</h2>
+        <div class="list">
+            <h2>購物車</h2>
+            <div class="sub-plan">
+                <div class="subcard" v-for="detail in subscribe" :key="detail">
+                    <div class="card-wrap">
+                        <div class="card-content">
+                            <div class="level">#{{detail.level}}</div>
+                            <h2>NT$<span>{{detail.price}}</span>/月</h2>
+                            <p>
+                                <font-awesome-icon icon="fa-solid fa-check" />
+                                每月專屬搭配<span>1</span>套
+                            </p>
+                            <span>{{detail.monthSet}}</span>
+                            <p>
+                                <font-awesome-icon icon="fa-solid fa-check" />
+                                每月諮詢造型師<span>{{detail.monthConsult}}</span>次
+                            </p>
+                            <p>
+                                <font-awesome-icon icon="fa-solid fa-check" />
+                                每月免運費<span>{{detail.freeShipping}}</span>次
+                            </p>
+                            <p>
+                                <font-awesome-icon icon="fa-solid fa-check" />
+                                商品<span>{{detail.specialOffer}}</span>折優惠
+                            </p>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="detail">
+                <div>總計: ${{vip_level.price}}元</div>
             </div>
 			<!-- <div class="list-wrap">
 				<div class="items">
@@ -72,19 +94,15 @@
 						<p>x{{item.count}}</p>
 					</div>
 				</div>
-				</div>
-				<div class="detail">
-					<div>共 {{order.length}} 種商品</div>
-					<div>{{vip_level[0].level_name}} 會員等級折扣: -${{parseInt(total*(1-vip_level[0].discount))}}</div>
-					<div>總計: ${{parseInt(total*vip_level[0].discount)}}元</div>
-				</div>
-			</div> -->
+				</div>-->
+            
 		</div>	
 	</div>
 </template>
 
 <script>
-
+import {subinfo} from'@/assets/config/setting.js'
+import {vip_level} from'@/assets/config/setting.js'
 export default {
 	name: "SubCheckoutView",
 	components: {
@@ -94,7 +112,6 @@ export default {
 			load: false,
 			source:[],
 			count:[],
-            subscribe:[],
 			min:0,
 			max:0,
 			memId:"a001",
@@ -106,55 +123,14 @@ export default {
 			phone1:"",
 			mem_mail1:"",
 			address1:"",
-			vip_level:[
-			{
-				level_id:1,
-				product_item:3,
-				level_name:"BASIC",
-				discount:0.95,
-				price:899,
-			},{
-				level_id:2,
-				product_item:3,
-				level_name:"STANDARD",
-				discount:0.9,
-				price:1899,
-			},{
-				level_id:3,
-				product_item:4,
-				level_name:"ULTRA",
-				discount:0.8,
-				price:3999,
-			}],
-            subinfo:[{
-                level:'BASIC',
-                price:899,
-                monthSet:'上身* 1、下身*1',
-                monthConsult:1,
-                freeShipping:1,
-                specialOffer:95
-            },
-            {   
-                level:'STANDARD',
-                price:1899,
-                monthSet:'上身* 1、下身*1、外套*1',
-                monthConsult:2,
-                freeShipping:2,
-                specialOffer:9
-            },
-            {   
-                level:'ULTRA',
-                price:3999,
-                monthSet:'上身* 1、下身*1、外套*1、鞋子*1',
-                monthConsult:5,
-                freeShipping:'無限',
-                specialOffer:8
-            }
-            ],
+			vip_level:vip_level,
+            subinfo:subinfo,
+            subscribe:[]
 		}
 	},
 	created(){
 		this.getStorage();
+        // window.addEventListener('beforeunload', e => this.beforeUnload(e))
 	},
 	computed:{
 		
@@ -181,9 +157,19 @@ export default {
 			data=JSON.parse(data)
 			this.subscribe=data? data:[]
             console.log(this.subscribe);
-        }
-	}
-};
+        },
+    //     beforeUnload(){
+    //     console.log('刷新或关闭');
+    //     }
+	// },
+    // beforeDestroy() {
+        
+    // },
+    // destoryed(){
+    //     window.removeEventListener('beforeunload', e => this.beforeUnload(e))
+    // }
+    }
+}
 </script>
 <style lang="scss" scoped>
 	h2{
@@ -216,7 +202,6 @@ export default {
 			display: flex;
 			flex-direction: column;
 			min-width: 55%;
-			
 			@include l{
 				min-width: 50%;
 			}
@@ -234,10 +219,24 @@ export default {
 				}
 			}
 			.paytetails-wrap{
+                height: 550px;
+                overflow-y: scroll;
+                scrollbar-width: auto;
+                scrollbar-color: #4673fb #ffffff;
+                &::-webkit-scrollbar {
+                    width: 14px;
+                }
+                &::-webkit-scrollbar-track {
+                    background: #ffffff;
+                }       
+                &::-webkit-scrollbar-thumb {
+                    background-color: rgb(194, 194, 194);
+                    border-radius: 10px;
+                    border: 3px solid #ffffff;
+                }
 				display: flex;
 				flex-direction: column;
 				gap:20px;
-				height: 650px;
 				border: 1px solid $text_color;
 				padding: 20px;
 				margin: 20px;
@@ -258,75 +257,160 @@ export default {
 				}
 			}
 		}
-		.list{
+		// .list{
+		// 	width: 100%;
+		// 	display: flex;
+		// 	flex-direction: column;
+		// 	.detail{
+		// 		display: flex;
+		// 		flex-direction: column;
+		// 		gap: 5px;
+		// 		align-self: flex-end;
+		// 		text-align: right;
+		// 	}
+		// 	.list-wrap{
+		// 		display: flex;
+		// 		flex-direction: column;
+		// 		margin: 20px;
+		// 		font-size: 12px;
+		// 		@include m{
+		// 			margin: 0px;
+		// 			font-size: 16px;
+		// 		}
+		// 		.items{
+		// 			height:450px;
+		// 			overflow-y: scroll;
+		// 			margin:20px 0;
+		// 			display: flex;
+		// 			flex-direction: column;
+		// 			border-top: 1px solid $text_color;
+		// 			border-bottom: 1px solid $text_color;
+		// 			.item{
+		// 				display: flex;
+		// 				gap:5px;
+		// 				justify-content: space-between;
+		// 				align-items: center;
+		// 				padding: 15px;
+		// 				border-bottom: 1px solid $text_color;
+		// 				&:last-child{
+		// 					border: none;
+		// 				}
+		// 				.product{
+		// 					display: flex;
+		// 					gap: 10px;
+		// 					img{
+		// 						width:80px;
+		// 						height:80px;
+		// 						@include m{
+		// 							width: 150px;
+		// 							height: 150px;
+		// 						}
+		// 					}
+		// 					.prod-detail{
+		// 						display: flex;
+		// 						flex-direction: column;
+		// 						gap:10px;
+		// 						width:150px;
+		// 							@include m{
+
+		// 							}
+		// 						.spec{
+		// 							display: flex;
+		// 							justify-content: space-between;
+		// 						}
+		// 						:last-child{
+		// 							text-align: right;
+		// 						}
+		// 					}
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// }
+        .list{
 			width: 100%;
 			display: flex;
 			flex-direction: column;
-			.detail{
+            gap: 20px;
+            .sub-plan {
+                display: flex;
+                justify-content: center;
+                position: relative;
+                .subcard {
+                    -webkit-transform: skew(-5deg);
+                    -moz-transform: skew(-5deg);
+                    -o-transform: skew(-5deg);
+                    border: 1px solid black;
+                    .card-wrap {
+                        width: 225px;
+                        background: white;
+                        padding: 30px 15px;
+                        color: $main_color;
+                        .card-content {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 10px;
+                            text-align: left;
+                            position: relative;
+                            z-index: 1;
+                            transition: all 0.3s ease-in;
+                            h2 {
+                                color: $title_color;
+                                font-size: 20px;
+                                font-weight: bold;
+                                margin: auto;
+                                margin-bottom: 10px;
+                            }
+                            p {
+                                color: $text_color;
+                                font-size: 14px;
+                            }
+                            span {
+                                font-size: 32px;
+                            }
+                            :first-child ~ span {
+                                font-size: 14px;
+                                font-weight: bold;
+                            }
+                            .level {
+                                padding: 10px 30px;
+                                background-color: $main_color;
+                                color: white;
+                                font-weight: bold;
+                                font-size: 20px;
+                                position: absolute;
+                                right: -40px;
+                                top: -50px;
+                            }
+                            a{
+                                margin: auto;
+                                margin-top: 20px;
+                                button {
+                                    cursor: pointer;
+                                    background-color: $main_color;
+                                    color: white;
+                                    border: 1px solid $main_color;
+                                    padding: 5px 20px;
+                                    &:hover {
+                                        background-color: $bg_blue;
+                                        color: $main_color;
+                                        border: 1px solid $main_color;
+                                    }
+                                }
+                            }
+                            
+                        }
+                    }
+                }
+            }
+            .detail{
 				display: flex;
 				flex-direction: column;
-				gap: 5px;
+                padding: 20px;
 				align-self: flex-end;
 				text-align: right;
 			}
-			.list-wrap{
-				display: flex;
-				flex-direction: column;
-				margin: 20px;
-				font-size: 12px;
-				@include m{
-					margin: 0px;
-					font-size: 16px;
-				}
-				.items{
-					height:450px;
-					overflow-y: scroll;
-					margin:20px 0;
-					display: flex;
-					flex-direction: column;
-					border-top: 1px solid $text_color;
-					border-bottom: 1px solid $text_color;
-					.item{
-						display: flex;
-						gap:5px;
-						justify-content: space-between;
-						align-items: center;
-						padding: 15px;
-						border-bottom: 1px solid $text_color;
-						&:last-child{
-							border: none;
-						}
-						.product{
-							display: flex;
-							gap: 10px;
-							img{
-								width:80px;
-								height:80px;
-								@include m{
-									width: 150px;
-									height: 150px;
-								}
-							}
-							.prod-detail{
-								display: flex;
-								flex-direction: column;
-								gap:10px;
-								width:150px;
-									@include m{
-
-									}
-								.spec{
-									display: flex;
-									justify-content: space-between;
-								}
-								:last-child{
-									text-align: right;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+        }
+    
+}
 </style>
