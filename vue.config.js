@@ -8,4 +8,7 @@ module.exports = defineConfig({
 			},
 		},
 	},
+	publicPath: process.env.NODE_ENV === 'production'
+    ? '/cgd103/g2/front/'
+    : '/'
 });
