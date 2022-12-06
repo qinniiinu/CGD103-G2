@@ -5,7 +5,7 @@
         <input id="b3" type="radio" value="b3" v-model="picked" />
         <input id="b4" type="radio" value="b4" v-model="picked" />
         <input id="b5" type="radio" value="b5" v-model="picked" />
-        <!-- {{ picked }}{{ openMain }} -->{{ selected }}
+        <!-- {{ picked }}{{ openMain }} {{ selected }}-->
 
         <div class="productMenu">
             <ul class="menOrWomen" @click="action">

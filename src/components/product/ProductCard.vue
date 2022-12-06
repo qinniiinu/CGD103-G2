@@ -1,16 +1,16 @@
 <template>
     <div class="product_card">
-        <router-link :to="`/productdetails/${id}`">
-            <div class="box">
+        <div class="box">
+            <router-link :to="`/productdetails/${id}`">
                 <img :src="require(`@/assets/product/${imgURL}`)" />
-                <div class="icon" @click="iconChange = !iconChange">
-                    <font-awesome-icon
-                        icon="fa-solid fa-heart"
-                        v-if="iconChange"
-                    />
-                    <font-awesome-icon icon="fa-solid fa-plus" v-else />
-                </div>
+            </router-link>
+
+            <div class="icon" @click="iconChange = !iconChange">
+                <font-awesome-icon icon="fa-solid fa-heart" v-if="iconChange" />
+                <font-awesome-icon icon="fa-solid fa-plus" v-else />
             </div>
+        </div>
+        <router-link :to="`/productdetails/${id}`">
             <p class="title">{{ title }}</p>
             <p class="price">NT${{ price }}</p>
         </router-link>
