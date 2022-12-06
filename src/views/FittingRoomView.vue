@@ -1,82 +1,85 @@
 <template>
   <div class="fittingroom">
     <div class="sideMenu">
-      <ProductSideMenu></ProductSideMenu>
-      <HashTag></HashTag>
+      <!-- <ProductSideMenu></ProductSideMenu>
+      <HashTag></HashTag> -->
     </div>
     <div class="fittingArea">
       <div class="panel"></div>
-      <ul class="products">
-        <li v-for="(item, i) in items" :key="i">
-          <img
-            :src="item.products"
-            :style="item.style"
-            @mousedown="mouseDown"
-            @mousemove="mouseMove(i, $event)"
-            @mouseup="mouseUp"
+      <div class="products">
+          <img 
+          v-for="item in product" 
+          :key="item.id" 
+          :src="item.image" 
+          @click="copy($event)" 
           />
-        </li>
-      </ul>
+      </div>
     </div>
   </div>
 </template>
  
 <script>
-import SearchBar from "@/components/product/SearchBar.vue";
-import ProductSideMenu from "@/components/product/ProductSideMenu.vue";
-import HashTag from "@/components/product/HashTag.vue";
+// import SearchBar from "@/components/product/SearchBar.vue";
+// import ProductSideMenu from "@/components/product/ProductSideMenu.vue";
+// import HashTag from "@/components/product/HashTag.vue";
 export default {
   name: "Product",
   components: {
-    SearchBar,
+    // SearchBar,
     // ProductSideMenu,
-    HashTag,
+    // HashTag,
   },
- 
+
   data() {
     return {
-      items: [
-        { products: require("@/assets/fittingroom/item001.png") },
-        { products: require("@/assets/fittingroom/item002.png") },
-        { products: require("@/assets/fittingroom/item003.png") },
-        { products: require("@/assets/fittingroom/item004.png") },
-        { products: require("@/assets/fittingroom/item005.png") },
-        { products: require("@/assets/fittingroom/item006.png") },
-        { products: require("@/assets/fittingroom/item007.png") },
+      product: [
+        { id:1 ,image: require("@/assets/fittingroom/item001.png") },
+        { id:2 ,image: require("@/assets/fittingroom/item002.png") },
+        { id:3 ,image: require("@/assets/fittingroom/item003.png") },
+        { id:4 ,image: require("@/assets/fittingroom/item004.png") },
+        { id:5 ,image: require("@/assets/fittingroom/item005.png") },
+        { id:6 ,image: require("@/assets/fittingroom/item006.png") },
+        { id:7 ,image: require("@/assets/fittingroom/item007.png") },
       ],
-      left: 0,
-      top: 0,
-      offsetX: 0,
-      offsetY: 0,
-      moving: false,
-      mouseX :0,
-      mouseY :0,
     };
   },
- 
+
   methods: {
-    mouseDown(e) {
-      this.offsetX = e.pageX;
-      this.offsetY = e.pageY;
-      this.moving = true;
-      console.log(e)
+    copy(e) {
+      let panel = document.getElementById("panel");
+      let new_item = document.createElement("div");
+      new_item.className = "item";
+      let image = document.createElement("img");
+      image.src = e.currentTarget.src;
+      new_item.appendChild(image);
+      panel.appendChild(new_item);
+      this.drag(new_item);
     },
- 
-    mouseMove(i,e) {
-      if (this.moving) {
-        const dx = e.pageX - this.mouseX;
-        const dy = e.pageY - this.mouseY;
-        this.items[i].style = {transform:`translate(${this.offsetX + dx}px,${this.offsetY + dy}px)`}
-      }
-    },
- 
-    mouseUp(e) {
-      if (this.moving) {
-        this.offsetX += e.pageX - this.mouseX;
-        this.offsetY += e.pageY - this.mouseY;
-      }
-      this.moving = false;
-      // document.removeEventListener("mousemove", move);
+
+    drag(obj) {
+      obj.onmousedown = function (event) {
+        event = event || window.event;
+
+        var ol = event.clientX - object.offsetLeft;
+        var ot = event.clientY - object.offsetTop;
+
+        document.onmousemove = function (event) {
+          event = event || window.event;
+
+          var left = event.clientX - ol;
+          var top = event.clientY - ot;
+
+          obj.style.left = left + "px";
+          obj.style.left = top + "px";
+        };
+
+        document.onmouseup = function () {
+          document.onmousemove = null;
+          document.onmouseup = null;
+        };
+
+        return false;
+      };
     },
   },
 };

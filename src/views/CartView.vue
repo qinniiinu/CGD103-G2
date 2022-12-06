@@ -112,7 +112,24 @@ export default {
 				color: "米色",
 				size: "F",
 				price: 590,
-			}],
+			},
+			{
+			id: 3,
+			image: "https://pics.pzcdn.tw/pazzo/ProductBasics/2b8716f4-5693-4743-abae-3e12b07b6aa0.jpg",
+			title: "漢堡上衣",
+			color: "藍色",
+			size: "L",
+			price: 790,
+			},
+			{
+			id: 4,
+			image: "https://pics.pzcdn.tw/pazzo/ProductBasics/73bd6f12-bae9-4c29-bf90-f02bf925b5d0.jpg",
+			title: "休閒短褲",
+			color: "卡其色",
+			size: "S",
+			price: 450,
+			}
+			],
 			vip_level:[
 			{
 				level_id:1,
@@ -133,6 +150,7 @@ export default {
 				discount:0.8,
 				price:3999,
 			}],
+
 		}
 	},
 	created(){
@@ -183,6 +201,7 @@ export default {
 			const prodIndex=this.order.findIndex(orderItem=>{
 				return orderItem.id===item.id
 			})
+			console.log(prodIndex)
 			if(prodIndex>=0){
 				this.order[prodIndex]['count']+=1
 			}else{
