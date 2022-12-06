@@ -1,20 +1,4 @@
 <script>
-const testproduct = {
-    product_id: "1",
-    product_name: "上衣A ",
-    hashtag:
-        "#AAA,#BBB,#CCC,#DDD,#AAA,#BBB,#CCC,#DDD,#AAA,#BBB,#CCC,#DDD#AAA,#BBB,#CCC,#DDD#AAA,#BBB,#CCC,#DDD",
-    unit_price: "996",
-    product_state: "1",
-    product_maintype: "上衣",
-    product_type: "",
-    product_pic: "test_01_1.jpg,test_01_2.jpg,test_01_3.jpg,test_01_2.jpg",
-    style_type: "typeA,typeB",
-    body_type: "",
-    product_gender: "F",
-    product_color: "black,red",
-    product_size: "XS,S,M,L,XL",
-};
 import ProductMenu from "@/components/product/ProductMenu.vue";
 import ProductCard from "@/components/product/ProductCard.vue";
 import HashTag from "@/components/product/HashTag.vue";
@@ -27,12 +11,8 @@ export default {
     },
     data() {
         return {
-            product_details: testproduct,
-            picList: testproduct.product_pic.split(","),
-            color: testproduct.product_color.split(","),
-            size: testproduct.product_size.split(","),
-            hashTag: testproduct.hashtag.split(","),
-            bigPicture: testproduct.product_pic.split(",")[0],
+            product_details: {},
+            bigPicture: "",
             pickedColor: "",
             pickedSize: "",
             colorClick: [],
@@ -44,8 +24,40 @@ export default {
             msg: "",
         };
     },
-    computed: {},
+    computed: {
+        product_name() {
+            return this.product_details[0].product_name;
+        },
+        unit_price() {
+            return this.product_details[0].unit_price;
+        },
+        picList() {
+            return this.product_details[0].product_pic.split(",");
+        },
+        color() {
+            return this.product_details[0].product_color.split(",");
+        },
+        size() {
+            return this.product_details[0].product_size.split(",");
+        },
+        hashTag() {
+            return this.product_details[0].hashtag.split(",");
+        },
+        bigPicture() {
+            return this.picList[0];
+        },
+    },
     methods: {
+        getResource() {
+            fetch("../data/fakeproduct.json")
+                .then((res) => res.json())
+                .then((json) => {
+                    this.product_details = json.filter((e) => {
+                        if (e.product_id === this.$route.params.id) return e;
+                    });
+                    console.log(this.product_details);
+                });
+        },
         addCart() {
             localStorage.getItem("cart");
             if (this.pickedColor == "" || this.pickedSize == "") {
@@ -105,6 +117,9 @@ export default {
             this.number++;
         },
     },
+    created() {
+        this.getResource();
+    },
 };
 </script>
 <template>
@@ -128,8 +143,8 @@ export default {
             </div>
             <div class="right">
                 <div class="rightTop">
-                    <h1 class="title">{{ product_details.product_name }}</h1>
-                    <p class="price">NT${{ product_details.unit_price }}</p>
+                    <h1 class="title">{{ product_name }}</h1>
+                    <p class="price">NT${{ unit_price }}</p>
                     <div class="cellflex">
                         <div class="color_box">
                             <p class="color">顏色{{ pickedColor }}</p>
