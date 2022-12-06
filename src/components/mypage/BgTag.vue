@@ -17,9 +17,12 @@ export default {
     color: $bg_violet;
     @include font_set($second_font, $null, 900, italic);
     @include s() {
-        font-size: 56px;
+        font-size: 50px;
     }
     @include m() {
+        font-size: 60px;
+    }
+    @include xl() {
         font-size: 72px;
     }
 }
