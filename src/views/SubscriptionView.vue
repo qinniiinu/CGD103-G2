@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="sub-plan">
-        <div class="subcard">
+        <!-- <div class="subcard">
             <div class="card-wrap">
                 <div class="card-content">
                     <div class="level">#BASIC</div>
@@ -41,8 +41,34 @@
                     <button>訂閱</button>
                 </div>
             </div>
+        </div> -->
+        <div class="subcard" v-for="sub in subinfo" :key="sub.level">
+            <div class="card-wrap">
+                <div class="card-content">
+                    <div class="level">#{{sub.level}}</div>
+                    <h2>NT$<span>{{sub.price}}</span>/月</h2>
+                    <p>
+                        <font-awesome-icon icon="fa-solid fa-check" />
+                        每月專屬搭配<span>1</span>套
+                    </p>
+                    <span>{{sub.monthSet}}</span>
+                    <p>
+                        <font-awesome-icon icon="fa-solid fa-check" />
+                        每月諮詢造型師<span>{{sub.monthConsult}}</span>次
+                    </p>
+                    <p>
+                        <font-awesome-icon icon="fa-solid fa-check" />
+                        每月免運費<span>{{sub.freeShipping}}</span>次
+                    </p>
+                    <p>
+                        <font-awesome-icon icon="fa-solid fa-check" />
+                        商品<span>{{sub.specialOffer}}</span>折優惠
+                    </p>
+                    <router-link to="/SubCheckout"><button @click="setStorage(index,sub)">訂閱</button></router-link>
+                </div>
+            </div>
         </div>
-        <div class="subcard">
+        <!-- <div class="subcard">
             <div class="card-wrap">
                 <div class="card-content">
                     <div class="level">#STANDARD</div>
@@ -66,9 +92,8 @@
                     </p>
                     <button>訂閱</button>
                 </div>
-            </div>
-        </div>
-        <div class="subcard">
+            </div>-->
+        <!-- <div class="subcard">
             <div class="card-wrap">
                 <div class="card-content">
                     <div class="level">#ULTRA</div>
@@ -84,7 +109,7 @@
                     </p>
                     <p>
                         <font-awesome-icon icon="fa-solid fa-check" />
-                        每月免運費
+                        每月無限次免運費
                     </p>
                     <p>
                         <font-awesome-icon icon="fa-solid fa-check" />
@@ -93,7 +118,7 @@
                     <button>訂閱</button>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="sub-intro">
         <div class="intro-wrap"></div>
@@ -102,8 +127,11 @@
 
 <script>
 export default {
-    name: "Product",
-    components: {},data(){
+    name: "Subscription",
+    components: {
+
+    },
+    data(){
 		return{
 			vip_level:[{
 				level_id:1,
@@ -125,6 +153,32 @@ export default {
 				price:3999,
 			}
 			],
+            subinfo:[{
+                level:'BASIC',
+                price:899,
+                monthSet:'上身* 1、下身*1',
+                monthConsult:1,
+                freeShipping:1,
+                specialOffer:95
+            },
+            {   
+                level:'STANDARD',
+                price:1899,
+                monthSet:'上身* 1、下身*1、外套*1',
+                monthConsult:2,
+                freeShipping:2,
+                specialOffer:9
+            },
+            {   
+                level:'ULTRA',
+                price:3999,
+                monthSet:'上身* 1、下身*1、外套*1、鞋子*1',
+                monthConsult:5,
+                freeShipping:'無限',
+                specialOffer:8
+            }
+            ],
+            subscribe:[],
 		}
 	},
 	created(){
@@ -134,6 +188,16 @@ export default {
 		
 	},
 	methods:{
+        setStorage(index,sub){
+            console.log(sub);
+            this.subscribe.push({
+                level:sub.level,
+                price:sub.price,
+            })
+            const data=JSON.stringify(this.subscribe);
+            console.log(data);
+            localStorage.setItem('subscribe',data);
+        }
 	}
 };
 </script>
@@ -243,6 +307,7 @@ export default {
                     top: -50px;
                 }
                 button {
+                    cursor: pointer;
                     margin-top: 20px;
                     background-color: $main_color;
                     color: white;
