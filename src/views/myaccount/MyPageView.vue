@@ -10,6 +10,9 @@
         <!-- 這裡開始寫 -->
         <div class="box">
           <MemCard title="我的身型" class="card">
+            <template #pic>
+              <img class="type_pic" src="bodyType_hourglass.png" alt="body.type1">
+            </template>
             <type-tag :TypeTag="bodytypes.type1" class="type_tag"></type-tag>
             <bg-tag :Bgtag="body.type1" class="bgtag"></bg-tag>
             <router-link to="/BodyType" class="more">
@@ -18,6 +21,9 @@
             </router-link>
           </MemCard>
           <MemCard title="我的風格" class="card">
+			<template #pic>
+              <img class="type_pic" src="hipster2.png" alt="styletypes.type1">
+            </template>
             <type-tag :TypeTag="styletypes.type1" class="type_tag"></type-tag>
             <bg-tag :Bgtag="body.type1" class="bgtag"></bg-tag>
             <router-link to="/memQuiz" class="more">
@@ -146,6 +152,11 @@ export default {
       display: block;
       position: absolute;
       right: $padding;
+    }
+    .type_pic{
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
     }
   }
   .other_card {
