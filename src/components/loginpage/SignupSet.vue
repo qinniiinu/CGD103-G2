@@ -12,6 +12,7 @@
           <!-- 性別 -->
           <div class="sex">
             <button
+              type="button"
               class="btn_l"
               @click="myFilter"
               :class="{ active: isActive === false }"
@@ -19,6 +20,7 @@
               男
             </button>
             <button
+              type="button"
               class="btn_l"
               @click="myFilter"
               :class="{ active: isActive }"
@@ -126,7 +128,7 @@
             />我同意本網站的隱私權政策，並同意Urstyle收集及使用我的個人資料以處理訂單。</label
           >
         </div>
-        <button type="submit" class="btn_s">註冊</button>
+        <router-link to="/BodyType"><button type="submit" class="btn_s">註冊</button></router-link>
       </form>
     </div>
   </div>
@@ -137,8 +139,9 @@
 import BgTag from "@/components/mypage/BgTag.vue";
 export default {
   name: "SignupSet",
-  props: {
-    BgTag,
+  props: {},
+  components: {
+	BgTag,
   },
   data() {
     return {
@@ -154,7 +157,13 @@ export default {
         clothes: "", // 衣長
         pants: "", //褲長
       },
+      isActive: false,
     };
+  },
+  methods: {
+    myFilter: function () {
+      this.isActive = !this.isActive;
+    },
   },
 };
 </script>
@@ -196,64 +205,72 @@ export default {
         }
       }
       //  性別/身高體重/鞋碼
-      .item{
-        &:nth-child(2){
-            margin-top: 20px;
-        .sex {
-          display: flex;
-          justify-content: space-between;
-          .active {
-            background-color: $main-color;
-            color: white;
-          }
-        }
-        }
-        &:nth-child(3){
+      .item {
+        &:nth-child(2) {
+          margin-top: 20px;
+          .sex {
             display: flex;
-        flex-direction: column;
-        margin-top: 20px;
-        .rage_group {
-          margin-block: 15px;
-          span {
-            margin-inline: 3px;
-            margin: auto;
+            justify-content: space-between;
+            .active {
+              background-color: $main-color;
+              color: white;
+            }
           }
-          input {
-            margin-top: 5px;
-            width: 100%;
+          .my_body {
+            // input group css
+            .input_group {
+              position: relative;
+              margin-block-start: 35px;
+              border-bottom: 2px solid;
+              input {
+                width: 100%;
+                height: 40px;
+                font-size: 16px;
+                color: #333;
+                padding: 0 5px;
+                border: none;
+                outline: none;
+                &:focus ~ label {
+                  color: $main_color;
+                  top: -5px;
+                }
+                &:valid ~ label {
+                  color: $main_color;
+                  top: -5px;
+                }
+              }
+              label {
+                position: absolute;
+                top: 50%;
+                left: 5px;
+                transform: translateY(-50%);
+                font-size: 16px;
+                pointer-events: none;
+                transition: 0.5s;
+                color: gray;
+              }
+            }
           }
         }
+        // 其他數據
+        &:nth-child(3) {
+          display: flex;
+          flex-direction: column;
+          margin-top: 20px;
+          .rage_group {
+            margin-block: 15px;
+            span {
+              margin-inline: 3px;
+              margin: auto;
+            }
+            input {
+              margin-top: 5px;
+              width: 100%;
+            }
+          }
         }
       }
-    //   .item:nth-child(1) {
-    //     margin-top: 20px;
-    //     .sex {
-    //       display: flex;
-    //       justify-content: space-between;
-    //       .active {
-    //         background-color: $main-color;
-    //         color: white;
-    //       }
-    //     }
-    //     // .my_body {
-    //     // }
-    //   }
-    //   //  其他數據 rage bar
-    //   .item:nth-child(2) {
-    //     display: flex;
-    //     flex-direction: column;
-    //     margin-top: 20px;
-    //     .rage_group {
-    //       margin-block: 15px;
-    //       span {
-    //         margin-inline: 3px;
-    //       }
-    //       input {
-    //         margin-top: 5px;
-    //         width: 100%;
-    //       }
-    //     }
-    //   }
+
       .remember {
         display: flex;
         justify-content: space-between;
@@ -277,43 +294,9 @@ export default {
         font-size: 16px;
         line-height: 5px;
         margin-bottom: 20px;
-        cursor: pointer;
+        color: white;
       }
     }
-  }
-}
-
-// input group css
-.input_group {
-  position: relative;
-  margin-block-start: 35px;
-  border-bottom: 2px solid;
-  input {
-    width: 100%;
-    height: 40px;
-    font-size: 16px;
-    color: #333;
-    padding: 0 5px;
-    border: none;
-    outline: none;
-    &:focus ~ label {
-      color: $main_color;
-      top: -5px;
-    }
-    &:valid ~ label {
-      color: $main_color;
-      top: -5px;
-    }
-  }
-  label {
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    transform: translateY(-50%);
-    font-size: 16px;
-    pointer-events: none;
-    transition: 0.5s;
-    color: gray;
   }
 }
 
