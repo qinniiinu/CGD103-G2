@@ -39,7 +39,8 @@ export default {
 				{src:'/look-9.jpg',ootdName:'OOTD-009',tag:['#運動穿搭','＃蘋果形'],id:'09'},
 			]
 		}
-	}
+	},
+	
 };
 </script>
 <style lang="scss" scoped>

@@ -49,18 +49,19 @@
 		<h2>你可能也喜歡</h2>
 		<swiper
 			:modules="modules"
-			:slides-per-view="1"
-			:space-between="50"
+			:slides-per-view="3"
+			:space-between="0"
 			navigation
 			:pagination="{ clickable: true }"
-			:scrollbar="{ draggable: true }"
+
 			@swiper="onSwiper"
 			@slideChange="onSlideChange"
 		>
-			<swiper-slide>Slide 1</swiper-slide>
-			<swiper-slide>Slide 2</swiper-slide>
-			<swiper-slide>Slide 3</swiper-slide>
-			...
+			<swiper-slide class="swiper" v-for="(col,index) of cols" :key="index">
+				<lookCard class="swiper-item" :link="col.src" :tag="col.tag" :ootdName="col.ootdName" :heartId="col.id"></lookCard>
+			</swiper-slide>
+			
+		
 		</swiper>
 	</div>
 
@@ -73,12 +74,12 @@
 	import 'swiper/css/navigation';
 	import 'swiper/css/pagination';
 	import 'swiper/css/scrollbar';
-
+	import lookCard from "@/components/lookCard.vue";
 
 	export default {
 		name: "Set",
 		components: {
-		Swiper,SwiperSlide
+		Swiper,SwiperSlide,lookCard
 
 		},
 		setup() {
@@ -119,6 +120,18 @@
 					{src:'/look-item-3.png',title:'寬條紋襯衫',text:'減少洗滌後的頑固皺紋，您可以享受適度的休閒和粗獷',price:'1,290'},
 					{src:'/look-item-4.png',title:'斜紋棉布褲',text:'由 100% 棉製成的傳統斜紋棉布褲',price:'1,290'},
 				],
+				cols:[
+					{src:'/look-1.jpg',ootdName:'OOTD-001',tag:['#上班穿搭','＃沙漏形'],id:'01'},
+					{src:'/look-2.jpg',ootdName:'OOTD-002',tag:['#約會穿搭','＃蘋果形'],id:'02'},
+					{src:'/look-3.jpg',ootdName:'OOTD-003',tag:['#上課穿搭','＃蘋果形'],id:'03'},
+					{src:'/look-4.jpg',ootdName:'OOTD-004',tag:['#上課穿搭','＃蘋果形'],id:'04'},
+					{src:'/look-5.jpg',ootdName:'OOTD-005',tag:['#開會穿搭','＃蘋果形'],id:'05'},
+					{src:'/look-6.jpg',ootdName:'OOTD-006',tag:['#旅行穿搭','＃蘋果形'],id:'06'},
+					{src:'/look-7.jpg',ootdName:'OOTD-007',tag:['#趴踢穿搭','＃蘋果形'],id:'07'},
+					{src:'/look-8.jpg',ootdName:'OOTD-008',tag:['#宴會穿搭','＃蘋果形'],id:'08'},
+					{src:'/look-9.jpg',ootdName:'OOTD-009',tag:['#運動穿搭','＃蘋果形'],id:'09'},
+						
+				]
 			}
 		}
 	};
@@ -377,13 +390,21 @@
 		width: 90%;
 		max-width: 1200px;
 		margin: auto;
+		margin-top:80px ;
 		h2{
-			margin: 50px 0px 20px;
+			margin-bottom: -80px;
 			font-weight: 700;
 			font-size: 32px;
 			color: $title_color;
-			margin-right: 10px;
 			text-align: center;
+		}
+		.swiper{
+			margin-bottom: 80px;
+			.swiper-item{
+				width: 60%;
+				margin: auto;
+				margin-top:30% ;
+			}
 		}
 	}
 </style>
