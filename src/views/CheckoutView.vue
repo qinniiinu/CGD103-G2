@@ -76,7 +76,7 @@
 </template>
 
 <script>
-
+import {vip_level} from'@/assets/config/setting.js'
 export default {
 	name: "Product",
 	components: {
@@ -107,6 +107,22 @@ export default {
 			size: "F",
 			price: 590,
 			},
+			{
+			id: 3,
+			image: "https://pics.pzcdn.tw/pazzo/ProductBasics/2b8716f4-5693-4743-abae-3e12b07b6aa0.jpg",
+			title: "漢堡上衣",
+			color: "藍色",
+			size: "L",
+			price: 790,
+			},
+			{
+			id: 4,
+			image: "https://pics.pzcdn.tw/pazzo/ProductBasics/73bd6f12-bae9-4c29-bf90-f02bf925b5d0.jpg",
+			title: "休閒短褲",
+			color: "卡其色",
+			size: "S",
+			price: 450,
+			}
 			],
 			memId:"a001",
 			mem_name:"王小明",
@@ -117,26 +133,7 @@ export default {
 			phone1:"",
 			mem_mail1:"",
 			address1:"",
-			vip_level:[
-			{
-				level_id:1,
-				product_item:3,
-				level_name:"BASIC",
-				discount:0.95,
-				price:899,
-			},{
-				level_id:2,
-				product_item:3,
-				level_name:"STANDARD",
-				discount:0.9,
-				price:1899,
-			},{
-				level_id:3,
-				product_item:4,
-				level_name:"ULTRA",
-				discount:0.8,
-				price:3999,
-			}],
+			vip_level:vip_level
 		}
 	},
 	created(){
@@ -212,7 +209,6 @@ export default {
 			display: flex;
 			flex-direction: column;
 			min-width: 55%;
-			
 			@include l{
 				min-width: 50%;
 			}
@@ -277,6 +273,19 @@ export default {
 				.items{
 					height:450px;
 					overflow-y: scroll;
+					scrollbar-width: auto;
+					scrollbar-color: #4673fb #ffffff;
+					&::-webkit-scrollbar {
+						width: 14px;
+					}
+					&::-webkit-scrollbar-track {
+						background: #ffffff;
+					}       
+					&::-webkit-scrollbar-thumb {
+						background-color: rgb(194, 194, 194);
+						border-radius: 10px;
+						border: 3px solid #ffffff;
+					}
 					margin:20px 0;
 					display: flex;
 					flex-direction: column;
