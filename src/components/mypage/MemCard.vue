@@ -2,7 +2,7 @@
     <section class="body_style">
         <div class="pic">
             <!-- <img :src="typeimg" alt=""> -->
-            <img src="https://picsum.photos/300/200/?random=10">
+            <slot class="type_pic" name="pic"></slot>
         </div>
         <div class="text">
             <h3 class="title">{{ title }}</h3>
@@ -46,7 +46,7 @@ export default {
         width: 250px;
         height: 250px;
         aspect-ratio: 1/1;
-        img{
+        .type_pic{
             width: 100%;
             height: 100%;
             object-fit:cover;
