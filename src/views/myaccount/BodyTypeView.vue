@@ -129,7 +129,7 @@
               </div>
             </div>
             <div class="item">
-              <router-link to="/MyPage" class="btn_s back">返回</router-link>
+              <router-link to="/MyPage" class="btn_l back">返回</router-link>
               <router-link to="/MyPage"  class="btn_s save">儲存</router-link>
             </div>
           </section>
