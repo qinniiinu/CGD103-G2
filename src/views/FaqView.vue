@@ -1,6 +1,13 @@
 <template>
-    <div class="data">
-        <div class="asideBar"><!-- 側邊欄 -->
+    <div  class="data">
+        <div class="asideBar" :class="`${is_expanded ? 'is-expanded' : ''}`"><!-- 側邊欄 -->
+        
+            <div class="menu-toggle-wrap"><!-- 側邊欄按鍵 -->
+			<button class="menu-toggle" @click="ToggleMenu">
+				<span class="material-icons">
+                    <font-awesome-icon icon="fa-solid fa-arrow-right" />
+                </span>
+			</button>
             <div class="titleBox">
                 <h1>退換貨須知</h1>
                 <h2>購物問題</h2>
@@ -16,23 +23,24 @@
                 <h2>確認衣物</h2>
                 <h2>合作店面</h2>
                 <h2>聯絡方式</h2>
-            </div>
-            <div class="titleBox">
-                <h1>退換貨須知</h1>
-                <h2>購物問題</h2>
-                <h2>取消訂閱</h2>
-                <h2>確認衣物</h2>
-                <h2>合作店面</h2>
-                <h2>聯絡方式</h2>
-            </div>
+            </div> 
+
+
 
         </div>
+
+           
+		</div>
+        
         <div class="FAQ"><!-- 常見問題 -->
             <div class="FAQbox">
-                <h1>常見問題</h1>
                 <div class="order_title">
                     #FAQ
                 </div>
+                <h1>常見問題
+                    
+                </h1>
+               
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio nobis sed dolorem quasi, consequuntur </p>
             </div>
             <div class="FAQContainer">
@@ -302,6 +310,16 @@
 
 </template>
 
+<script setup>
+import { ref } from 'vue'
+import logoURL from '../assets/logo.png'
+const is_expanded = ref(localStorage.getItem("is_expanded") === "true")
+const ToggleMenu = () => {
+	is_expanded.value = !is_expanded.value
+	localStorage.setItem("is_expanded", is_expanded.value)
+}
+</script>
+
 
 <script>
 
@@ -329,17 +347,66 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/sass/main";
 
-
-.data{
-    display: flex;
+@mixin b() {
+	@media screen and (max-width: 1023px) {
+		@content;
+	}
 }
 
+button{
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:  .5 ease;
+}
+.data{
+    display: flex;
+    margin: auto;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.is-expanded {
+		width: 20%;
+        min-width: 200px;
+        transition: all .5 ease-in-out;
+		.menu-toggle-wrap {
+			top: -3rem;
+            width: 900px;
+            transition: all .5 ease-in-out;
+
+         
+			.menu-toggle {
+				transform: rotate(-180deg);
+                }
+			}
+		}
+
+
+
+
 .asideBar{
-    width: 300px;
-    background-color:#eceeff ;
+    width: 20%;
+    z-index: 99;
+    transition: 1s ease-out;
+    position: relative;
+    background-color:#cacfff ;
+
+
+
+    @include b(){
+        // display: none;
+    }
     .titleBox{
         width: 100%;
-        margin-top: 8rem;
+        margin-top: 3rem;
+        position: relative;
+        margin-left: -300px;
+        z-index: 99;
+        
         h1{
             font-size: 30px;
             font-weight: bold;
@@ -356,18 +423,20 @@ export default {
     }
 }
 .FAQ{
-	width: 60%;
+	width: 70%;
 	margin: auto;
 	margin-top: 100px;
+  
 	h1{
 			font-size: 60px;
 			margin: 10px;
 			font-weight: bold;
+            
 		}
 		p{
 			margin: 10px;
 			line-height: 1.5em;
-			width: 600px;
+			width: 100%;
 			
 		}
 		.order_title{
@@ -381,8 +450,8 @@ export default {
 			}
 			position: absolute;
 			z-index: -1;
-			left: 800px;
-
+			left: 60%;
+            
 			font-size: 120px;
 			opacity: .5;
 		}
@@ -405,6 +474,9 @@ export default {
     &:focus{
         height: 300px;
         transition: all 0.5s;
+        @include b(){
+            height: 500px;
+        }
     }
     &:focus .icon{
 
@@ -432,6 +504,9 @@ export default {
     p{
         font-size: 30px;
         font-weight: bold;
+        @include b(){
+            font-size:20px;
+        }
     }
     .icon{
         color: blue;
