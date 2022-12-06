@@ -2,6 +2,7 @@
 	<router-link :to="{ name:'MyPage' }" class="btn_s">會員頁</router-link>	
 	<SigninIn></SigninIn>
 	<Signup></Signup>
+	<SignupSet></SignupSet>
 
 </template>
 
