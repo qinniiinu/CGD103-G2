@@ -73,8 +73,8 @@
                     </div>
                 </div>
             </div>
-            <div class="detail">
-                <div>總計: ${{vip_level.price}}元</div>
+            <div class="detail" v-for="detail in subscribe" :key="detail">
+                <div>總計: ${{detail.price}}元</div>
             </div>
 			<!-- <div class="list-wrap">
 				<div class="items">
@@ -219,7 +219,7 @@ export default {
 				}
 			}
 			.paytetails-wrap{
-                height: 550px;
+                height: 450px;
                 overflow-y: scroll;
                 scrollbar-width: auto;
                 scrollbar-color: #4673fb #ffffff;

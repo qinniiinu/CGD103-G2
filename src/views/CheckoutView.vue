@@ -229,7 +229,21 @@ export default {
 				display: flex;
 				flex-direction: column;
 				gap:20px;
-				height: 650px;
+				height: 450px;
+				overflow-y: scroll;
+                scrollbar-width: auto;
+                scrollbar-color: #4673fb #ffffff;
+                &::-webkit-scrollbar {
+                    width: 14px;
+                }
+                &::-webkit-scrollbar-track {
+                    background: #ffffff;
+                }       
+                &::-webkit-scrollbar-thumb {
+                    background-color: rgb(194, 194, 194);
+                    border-radius: 10px;
+                    border: 3px solid #ffffff;
+                }
 				border: 1px solid $text_color;
 				padding: 20px;
 				margin: 20px;
