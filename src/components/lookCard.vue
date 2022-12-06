@@ -27,11 +27,17 @@ export default {
         tag:Array,
         heartId:String,
     },
-    data(){
-        return{
-            tags:['','','','']
-
+//     data(){
+//         return{
+//             tags:[]
+// 
+//         }
+//     },
+    computed:{
+        tags(){
+            return this.tag && this.tag.length>0 ? this.tag:[]
         }
+
     },
     
 
