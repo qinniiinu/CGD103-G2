@@ -64,6 +64,7 @@ body {
 	background-color: $main_color ;
 	box-sizing: border-box;
 	border: 2px solid $main_color;
+	text-align: center;
 
 	@include s() {
 		font-size: 18PX;
@@ -92,6 +93,7 @@ body {
 	color: $main_color;
 	background-color: $bg_white ;
 	box-sizing: border-box;
+	text-align: center;
 
 	@include s() {
 		font-size: 18PX;
