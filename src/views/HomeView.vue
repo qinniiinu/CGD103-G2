@@ -16,6 +16,10 @@
 				<img  v-show="mainIImg.boolean"  :src="mainIImg.src" alt="" @mouseenter="mainIImg.boolean = false ; mainIImg.hoverboolean = true">
 				<img  v-show="mainIImg.hoverboolean" :src="mainIImg.hoversrc" alt="" @mouseout="mainIImg.hoverboolean = false ; mainIImg.boolean = true" >
 			</div>
+			<div class="img_marquee_item" v-for="(mainIImg,index) of mainIImgs" :key="index">
+				<img  v-show="mainIImg.boolean"  :src="mainIImg.src" alt="" @mouseenter="mainIImg.boolean = false ; mainIImg.hoverboolean = true">
+				<img  v-show="mainIImg.hoverboolean" :src="mainIImg.hoversrc" alt="" @mouseout="mainIImg.hoverboolean = false ; mainIImg.boolean = true" >
+			</div>
 		</div>
 
 	</section>
@@ -41,9 +45,18 @@
 			</div>
 			<h3 class="basic">#BASIC</h3>
 			<h3 class="standard">#STANDARD</h3>
-			<h3 class="ultra">#ULTRA</h3>	
+			<h3 class="ultra">#ULTRA</h3>
+			<div class="text_bg">
+				<p> #PREMIUM #單品消費優惠 #每月專屬搭配 #專屬造型顧問 #消費免運費</p>
+				<p>#消費免運費 #PREMIUM #每月專屬搭配 #單品消費優惠 #專屬造型顧問 </p>
+				<p> #每月專屬搭配 #專屬造型顧問 #單品消費優惠 #消費免運費 #PREMIUM</p>
+				<p>#專屬造型顧問 #消費免運費 #PREMIUM #單品消費優惠 #每月專屬搭配 </p>
+				<p>#單品消費優惠 #每月專屬搭配 #專屬造型顧問 #PREMIUM #消費免運費</p>
+			</div>	
 		</div>
-		<button class="btn_s">訂閱去</button>
+		<router-link to="/subscription"><button class="btn_s">訂閱去</button></router-link>
+
+	
 	</section>
 
 	<section class="consult_part">
@@ -97,6 +110,36 @@
 		components: {
 			StyleCard,
 		},
+		setup(){
+			const marquee = document.querySelectorAll('.img_marquee_item');
+
+		
+			addEventListener("load", function () {
+				marquee.forEach(el => {
+					// set a default rate, the higher the value, the faster it is
+					const rate = 200;
+					// get the width of the element
+					const distance = el.clientWidth;
+					// get the margin-right of the element
+					const style = window.getComputedStyle(el);
+					const marginRight = parseInt(style.marginRight) || 0;
+					// get the total width of the element
+					const totalDistance = distance + marginRight;
+					// get the duration of the animation 
+					// for a better explanation, see the quoted codepen in the first comment
+					const time = totalDistance / rate;
+					// get the parent of the element
+					const container = el.parentElement;
+
+					gsap.to(container, time, {
+						repeat: -1,
+						x: '-'+totalDistance,
+						ease: Linear.easeNone,
+					});
+				});
+			});
+			return{marquee,}
+		},
 
 		data(){
 			return{
@@ -141,6 +184,8 @@
 		},
 		mounted(){
 		
+			
+
 		}
 		,
 		methods:{
@@ -163,16 +208,48 @@
 			background-color: $main_color;
 			padding: 1.5%;
 			// height: 50%;	
+			z-index: 5;
 		}
+
+		
+// 		
+		@keyframes Loop1 {
+			0% {
+				-webkit-transform: translate3d(0, 0, 0);
+				transform: translate3d(0, 0, 0)
+			}
+			100% {
+				-webkit-transform: translate3d(-600%, 0, 0);
+				transform: translate3d(-600%, 0, 0)
+			}
+		}
+
+		@keyframes Loop2 {
+			0% {
+				-webkit-transform: translate3d(-50%, 0, 0);
+				transform: translate3d(-50%, 0, 0)
+			}
+			100% {
+				-webkit-transform: translate3d(-650%, 0, 0);
+				transform: translate3d(-650%, 0, 0)
+			}
+		}
+
+
+
 		.img_marquee{
+			
 			display: inline-block;
 			white-space:nowrap;
 			overflow: hidden;
 			vertical-align: middle;
+			
 			.img_marquee_item{
+				animation: Loop1 14s linear infinite;
 				display: inline-block;
 				white-space:nowrap;
 				width: 18%;
+				z-index: -2;
 				// vertical-align: middle;
 				img{
 					width: 100%;
@@ -186,12 +263,14 @@
 			display: inline-block;
 			white-space:nowrap;
 			overflow: hidden;
+
 			
 			.img_marquee_item{
+				animation: Loop2 15s linear infinite;
 				display: inline-block;
 				white-space:nowrap;
 				width: 18%;
-				
+				z-index: -2;
 				img{
 					width: 100%;
 					vertical-align: middle;
@@ -201,41 +280,49 @@
 		}
 	}
 	.sub_part{
-
+		margin-top: 80px;
 		h2{
 			color: $title_color;
-			font-size:32px ;
+			font-size:48px ;
 			text-align: center;
 			font-weight: 700;
 		}
 		.sub_body{
 			position: relative;
+			overflow: hidden;
 			.main_pic{
-				width: 30%;
+				position: relative;
+				width: 55%;
 				max-width: 360px;
 				margin: auto;
 				margin-top:50px ;
+				z-index: 5;
+				@include m{
+					width: 30%;
+				}
 				img{
 					width: 100%;
 					height: 100%;
 					object-fit: cover;
+					z-index: 5;
 				}
 			}
 			h3{
+				overflow: hidden;
 				color: $main_color;
-				font-size:32px ;
+				font-size:4rem ;
 				font-family: "Poppins", sans-serif;
     			font-weight: 900;
-				@include m{
-					font-size:56px ;
-				}
+				// @include m{
+				// 	font-size:56px ;
+				// }
 				font-weight: 700;
 				font-style: italic;
 			}
 			.basic{
 				position: absolute;
 				top: 15%;
-    			left: 53%;
+    			left: 50%;
 				@include m{
 					// position: absolute;
 					top: 15%;
@@ -247,33 +334,74 @@
 			.standard{
 				position: absolute;
 				top: 50%;
-				left: 10%;
+				left: 5%;
 				@include m{
 					top: 50%;
 					left: 18%;
+					z-index: -1;
+
 				}
 				
-				// z-index: -1;
+				z-index: 6;
 			}
 			.ultra{
-				top: 70%;
-				left: 58%;
+				overflow: hidden;
+				top: 75%;
+				left: 50%;
 				@include m{
 					top: 70%;
 					left: 60%;
 				}
 				position: absolute;
 				
-				z-index: -1;
+				z-index: 6;
+			}
+			.text_bg{
+				position:absolute;
+				top: 0;
+				z-index: -5;
+				width: 100%;
+				overflow: hidden;
+				// white-space:nowrap;
+				p{	
+					display: inline-block;
+					white-space:nowrap;
+					overflow: hidden;
+					font-size:5rem;
+					font-weight: 900;
+					z-index: -5;
+					line-height: 7.5rem;
+					color: $second-color;
+					&:nth-child(2){
+						margin-left: -30px;
+					}
+					&:nth-child(3){
+						margin-left: -80px;
+					}
+					&:nth-child(4){
+						margin-left: 20px;
+					}
+					&:nth-child(5){
+						margin-left: -200px;
+					}
+					
+				}
+			
+
 			}
 		}
 		button{
 			margin: 50px auto 80px;
 			display: block;
+			line-height: 20px;
+			@include m{
+				line-height: 50px;
+			}
 		}
 		
 	}
 	.product_part{
+		margin-top: 80px;
 		.container{
 			margin-bottom: 80px;
 			.row{
@@ -291,7 +419,7 @@
 		}
 		h2{
 			color: $title_color;
-			font-size:32px ;
+			font-size:48px ;
 			text-align: center;
 			font-weight: 700;
 
@@ -301,7 +429,7 @@
 
 
 	.our_stylist_h2{
-			font-size:32px ;
+			font-size:48px ;
 			color: $title_color ;
 			font-weight: 700;
 			line-height: 32px;

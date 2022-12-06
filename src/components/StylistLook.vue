@@ -10,7 +10,7 @@
     <div class="stylist-card-look">
         <div class="look-item" v-for="lookItem of lookItems" :key="lookItem">
                 <img :src="lookItem.src" alt="">
-                <Button class="look_btn" content="查看更多"></Button>
+                <router-link to="/Set"><Button class="look_btn" content="查看更多"></Button></router-link> 
         </div>
     </div>
 </div>

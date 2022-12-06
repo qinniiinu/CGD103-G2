@@ -3,7 +3,8 @@
 		<div class="cover_main">
 			<h2>Don’t know how to wear?</h2>
 			<p>快來探索屬於你的專屬風格</p>
-			<Button content="探索去"/>
+			
+			<router-link to="/Wearing"><Button content="探索去"/></router-link>
 		</div>
 	</div>
 
@@ -67,7 +68,11 @@
 				<br>
 				預約我們的風格團隊
 			</p>
-			<Button content="諮詢造型師"></Button>
+			<router-link :to="{ name:'Consultating'}">
+				<button class="btn_s"> 諮詢造型師 </button>
+			</router-link>
+
+			
 		</div>
 
 	</div>
@@ -336,6 +341,7 @@ export default {
 			Button{
 				height: 60px;
 				line-height: 30px;
+				// color: aliceblue;
 			}
 
 		}

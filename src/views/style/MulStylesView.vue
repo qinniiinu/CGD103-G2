@@ -2,9 +2,11 @@
 
 	<div class="mulstyles">
 		<div class="mulstyle_cover">
-			<div :class="['cover_pic', { main:currentPic === coverPic}]" v-for="(coverPic,index) of coverPics" :key="index" @click="currentPic = coverPic">
+			<div :class="['cover_pic', { main:currentPic === coverPic}]" v-for="(coverPic,index) of coverPics" :key="index" @mouseenter="currentPic = coverPic">
 				<img :src="coverPic.src">
-				<Button class="cover_btn" content="查看更多"></Button>
+				<h2>{{coverPic.text}}</h2>
+				<router-link to="/Set"><Button class="cover_btn" content="查看更多"></Button></router-link>
+				
 			</div>
 		</div>
 		<!-- <Button content="查看更多"></Button> -->
@@ -96,12 +98,12 @@ export default {
 			logoText:'RE:Outfit  ',
 		
 			coverPics:[
-				{src:'./cover_img2.JPG'},
-				{src:'./cover_img1.JPG'},
-				{src:'./cover_img3.JPG'},
-				{src:'./cover_img5.JPG'},
-				{src:'./cover_img7.JPG'},
-				{src:'./cover_img9.JPG'},
+				{src:'/cover_img1.JPG',text:'登山Outdoor風'},
+				{src:'/cover_img2.JPG',text:'居家健身風'},
+				{src:'/cover_img3.JPG',text:'都會Outdoor風'},
+				{src:'/cover_img4.JPG',text:'戶外Outdoor風'},
+				{src:'/cover_img5.JPG',text:'輕盈運動風'},
+				{src:'/cover_img9.JPG',text:'都會休閒風'},
 			],
 			stylePics:[
 				{src:'/mulstyle-1.jpg'},
@@ -215,12 +217,12 @@ export default {
 				'#宴會穿搭',
 			],
 			currentTag:'#上班穿搭',
-			currentPic: [{src:'./cover_img2.JPG'}],
+			currentPic: [{src:'/cover_img2.JPG'}],
 			kolPics:[
-				{src:'./stylelist-look1.webp'},
-				{src:'./stylelist-look2.webp'},
-				{src:'./stylelist-look3.webp'},
-				{src:'./stylelist-look4.webp'},
+				{src:'/stylelist-look1.webp'},
+				{src:'/stylelist-look2.webp'},
+				{src:'/stylelist-look3.webp'},
+				{src:'/stylelist-look4.webp'},
 			],
     	} 
   	},
@@ -261,7 +263,9 @@ export default {
 		left: 0;
 		right: 0;
 		margin: auto;
-		display:none;
+		// display:none;
+		
+		opacity: 0;
 	}
 	.mulstyle_cover{
 		display: flex;
@@ -280,6 +284,20 @@ export default {
 			overflow: hidden;
 			width: 0;
 			flex-grow: 1;
+			position: relative;
+			// box-shadow: 1px 1px 0px $title_color;
+			&::before{
+				content: '';
+				width: 100%;
+				height: 100%;
+				background-color:rgba(0,0,0,.5);
+				position: absolute;
+				top: 0px;
+				transition:background-color .8s 0s ;
+				// z-index: -1;
+			}
+			transition:flex-grow .8s 0s,opacity .8s 0s ;
+			opacity: 1;
 			img{
 				// width: 80%;
 				// @include m{
@@ -290,6 +308,19 @@ export default {
 				object-fit: cover;
 				object-position: center;
 			}
+			h2{
+				position:absolute;
+				bottom: 20%;
+				left: 0;
+				right: 0;
+				margin: auto;
+				// display:none;
+				font-weight: 700;
+				font-size: 36px;
+				color: $second_color;
+				text-align: center;
+				opacity:0 ;
+			}
 			
 		}
 		// .cover_pic:first-child{
@@ -298,9 +329,21 @@ export default {
 	
 		.main{
 			flex-grow: 6;
+			opacity: 1;
+			transition:flex-grow .8s 0s,opacity .8s 0s ;
 			position: relative;
+			&::before{
+				background-color:rgba(0,0,0,0);
+				// z-index: -1;
+				transition:background-color .8s 0s ;
+			}
 			.cover_btn{
-				display:block;
+				opacity: 1;
+				transition:opacity .8s .8s ;
+			}
+			h2{
+				opacity: 1;
+				transition:opacity .8s .3s ;
 			}
 		}
 
