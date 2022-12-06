@@ -8,12 +8,12 @@
         </div>
 
         <div class="input_group">
-          <input type="text" required />
-          <label for="">Username</label>
+          <input type="email" required />
+          <label for="">電子郵件</label>
         </div>
         <div class="input_group">
-          <input type="password" required />
-          <label for="">Password</label>
+          <input type="password" placeholder="密碼須包含英文與數字" required />
+          <label for="" class="psw">密碼</label>
         </div>
         <div class="remember">
           <label><input type="checkbox" />記住我</label>
@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="signup">
-          <a href="#" class="signup_link">註冊新帳號</a>
+          <a href="#" class="signup_link" @click="ToSignup">註冊新帳號</a>
         </div>
       </form>
     </div>
@@ -43,6 +43,16 @@ export default {
   components: {
     BgTag,
   },
+  data() {
+    return {
+      Signup:false
+    }
+  },
+  methods:{
+    ToSignup(){
+      Signup = true
+    }
+  }
 };
 </script>
 
@@ -72,7 +82,7 @@ body {
       .login_form {
         position: relative;
         .title {
-			margin-bottom: 40px;
+          margin-bottom: 40px;
           h2 {
             font-size: 35px;
             font-weight: 700;
@@ -80,8 +90,8 @@ body {
           .bg_tag {
             position: absolute;
             top: 0;
-			right: 0;
-			font-size: 45px;
+            right: 0;
+            font-size: 45px;
           }
         }
         .input_group {
@@ -114,6 +124,9 @@ body {
             pointer-events: none;
             transition: 0.5s;
             color: gray;
+          }
+          .psw {
+            color: rgba(255, 255, 255, 0);
           }
         }
         .remember {
@@ -167,19 +180,10 @@ body {
           .signup_link {
             display: block;
             font-size: 14px;
+            
           }
         }
       }
-    }
-
-    @include s() {
-      //  //只在手機版
-    }
-    @include m() {
-      // 768~
-    }
-    @include xl() {
-      // 1200~
     }
   }
 }

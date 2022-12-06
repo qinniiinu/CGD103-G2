@@ -1,27 +1,29 @@
 <template>
 	<li class="item" v-for="order in orders" :key="order.order_id">
-		<!-- 訂單記錄列 -->
-		<div class="row">
-			<div class="title">訂單編號： {{ order.order_id }}</div>
-			<!-- 訂單狀態 -->
-			<h2>{{ order.order_con[2] }}</h2>
-		</div>
-		<div class="photo_money">
-			<!-- 商品圖 * 2 -->
-			<div class="photos">
-				<div class="photo">
-					<img :src="order.product_pic[0]" alt="" />
+		<router-link to="/OrderHistoryDetail">
+			<!-- 訂單記錄列 -->
+			<div class="row">
+				<div class="title">訂單編號： {{ order.order_id }}</div>
+				<!-- 訂單狀態 -->
+				<h2>{{ order.order_con[2] }}</h2>
+			</div>
+			<div class="photo_money">
+				<!-- 商品圖 * 2 -->
+				<div class="photos">
+					<div class="photo">
+						<img :src="order.product_pic[0]" alt="" />
+					</div>
+					<div class="photo">
+						<img :src="order.product_pic[1]" alt="" />
+					</div>
 				</div>
-				<div class="photo">
-					<img :src="order.product_pic[1]" alt="" />
+				<!-- 商品數 + 金額 -->
+				<div class="item_money">
+					<span class="allitem">共{{ order.quantity }}件商品</span>
+					<span class="allprice">訂單金額 ${{  order.total }}</span>
 				</div>
 			</div>
-			<!-- 商品數 + 金額 -->
-			<div class="item_money">
-				<span class="allitem">共{{ order.quantity }}件商品</span>
-				<span class="allprice">訂單金額 ${{  order.total }}</span>
-			</div>
-		</div>
+		</router-link>
 	</li>
 </template> 
 
