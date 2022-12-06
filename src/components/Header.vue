@@ -31,7 +31,7 @@
                         </ul>
                     </li>
                     <li class="main_list">
-                        <router-link to="/ootd">風格牆</router-link>
+                        <router-link to="/">風格牆</router-link>
                         <ul class="sub">
                             <li><router-link to="/">OOTD</router-link></li>
                             <li><router-link to="/">我的OOTD</router-link></li>
@@ -40,7 +40,7 @@
                     <li class="main_list">
                         <router-link to="/subscription">穿搭訂閱</router-link>
                         <ul class="sub">
-                            <li><router-link to="/subscription">訂閱選擇</router-link></li>
+                            <li><router-link to="/">訂閱選擇</router-link></li>
                             <li><router-link to="/">訂閱說明</router-link></li>
                         </ul>
                     </li>
@@ -111,7 +111,10 @@
     }
     header {
         background-color: $bg_white;
-
+        box-shadow: .5px 0px 3px .5px rgb(0,0,0,0.1);
+        position: sticky;
+		top: 0;
+        z-index: 999999;
         .header_box {
             max-width: $max_width;
             height: $nav_height;
@@ -206,22 +209,36 @@
 
                 ul.main .main_list {
                     position: relative;
+
                     @include m() {
                         display: inline-block;
 
                         &:hover > ul.sub {
                             display: block;
+                            &::after{
+                                content: '';
+                                width: 100%;
+                                height: 100%;
+                                background-color: #000;
+                                position:absolute;
+                                top: 0;
+                                right: -3px;
+                                z-index: -1;
+                                padding-bottom: 3px;
+                            }
+                            // box-shadow: 3px 3px rgb(0,0,0,);
                         }
 
                         &:hover > a {
                             border: $line solid $main_color;
                             font-weight: 600;
+
                         }
                     }
                     a {
                         font-size: $nav_fsize;
                         display: block;
-
+                        
                         @include s() {
                             padding: 20px;
                             color: $third_color;
@@ -229,6 +246,8 @@
                             text-align: center;
                             // margin: 5px;
 							border-bottom: 2px solid $second_color;
+                            
+                            
                         }
 
                         @include m() {
@@ -238,6 +257,7 @@
                             line-height: ($nav_height - $line * 2);
                             border: $line solid transparent;
 							letter-spacing:1px;
+                          
                         }
                     }
                     .sub {

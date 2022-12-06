@@ -3,12 +3,15 @@
 		<div class="front_end longin_box" @click="(this.isLogin=true)">
 			<p>前台</p>
 		</div>
-		<div class="back_end longin_box" >
-			<p>後台</p>
-		</div>
+		<a href="https://tibamef2e.com/cgd103/g2/back/">
+			<div class="back_end longin_box" >
+				<p>後台</p>
+			</div>
+		</a>
+		
 	</div>
 	<div class="home_page" v-else>
-		<Header></Header>
+		<Header class="all_header"></Header>
 		<router-view/>
 		<Footer></Footer>
 	</div>
@@ -68,4 +71,12 @@ export default {
 			text-align: center;
 		}
 	}
+	.home_page{
+		position: relative;
+		.all_header{
+			position: sticky;
+			top: 0;
+		}
+	}
+	
 </style>
