@@ -97,7 +97,7 @@
 							</p>
 							<p>
 								<font-awesome-icon icon="fa-solid fa-check" />
-								每月無限次免運費<span>1</span>次
+								每月免運費<span>1</span>次
 							</p>
 							<p>
 								<font-awesome-icon icon="fa-solid fa-check" />
@@ -143,7 +143,7 @@
 							</p>
 							<p>
 								<font-awesome-icon icon="fa-solid fa-check" />
-								每月免運費
+								每月無限次免運費
 							</p>
 							<p>
 								<font-awesome-icon icon="fa-solid fa-check" />
