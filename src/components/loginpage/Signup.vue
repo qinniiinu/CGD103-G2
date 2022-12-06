@@ -9,16 +9,16 @@
         </div>
 
         <div class="input_group">
-          <input type="email" required />
+          <input type="text" required />
           <label for="">電子郵件</label>
         </div>
         <div class="input_group">
-          <input type="password" required />
-          <label for="">密碼</label>
+          <input type="password" placeholder="密碼須包含英文與數字" required />
+          <label for="" class="psw">密碼</label>
         </div>
         <div class="input_group">
           <input type="password" required />
-          <label for="">密碼確認</label>
+          <label for="" >密碼確認</label>
         </div>
         <div class="input_group">
           <input type="text" required />
@@ -30,7 +30,7 @@
             <label for="">月</label>
           </div>
           <div class="input_group">
-            <input type="number" min="1" max="31"  required />
+            <input type="number" min="1" max="31" required />
             <label for="">日</label>
           </div>
           <div class="input_group">
@@ -65,7 +65,7 @@ export default {
   },
   data() {
     return {
-      Signup:true
+      Signup: true,
     };
   },
   methods: {
@@ -144,6 +144,9 @@ body {
             pointer-events: none;
             transition: 0.5s;
             color: gray;
+          }
+          .psw {
+            color: rgba(255, 255, 255, 0);
           }
         }
         .birth {
