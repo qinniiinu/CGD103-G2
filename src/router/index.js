@@ -21,6 +21,7 @@ const routes = [
 		path: "/product",
 		name: "product",
 		component: () => import("../views/ProductView.vue"),
+
 	},
 	{
 		path: "/FindStyle",
@@ -63,8 +64,7 @@ const routes = [
 		component: () => import("../views/LoginView.vue"),
 	},
 	{
-		path: "/productdetails",
-		name: "productdetails",
+		path: "/productdetails/:id",
 		component: () => import("../views/ProductDetailsView.vue"),
 	},
 	{
@@ -82,7 +82,7 @@ const routes = [
 		name: "weeklywear",
 		component: () => import("../views/WeeklyWearView.vue"),
 	},
-	
+
 
 	// ----------myaccount START----------
 	{
@@ -213,6 +213,13 @@ const routes = [
 const router = createRouter({
 	history: createWebHistory(process.env.BASE_URL),
 	routes,
+	scrollBehavior(to, from, savedPosition) {
+		if (savedPosition) {
+			return savedPosition
+		} else {
+			return { top: 0 }
+		}
+	},
 });
 
 export default router;
