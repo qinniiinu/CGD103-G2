@@ -79,9 +79,14 @@ export default {
 		}
     .stylist-card-info{
         @include m{
+            width: 40%;
+            margin-right: 20px;
+            // height: 100%;
+		}
+        @include l{
             width: 20%;
             margin-right: 20px;
-            height: 360px;
+            // height: 100%;
 		}
 		margin: auto;
         width: 80%;
@@ -116,8 +121,15 @@ export default {
             width: 80%;
               // gap: 15px;
             // margin-right: 20px;
+            flex-wrap: wrap;
+            //  height: 00px;
+		}
+        @include l{
+            width: 80%;
+              // gap: 15px;
+            // margin-right: 20px;
             flex-wrap: nowrap;
-             height: 360px;
+            //  height: 20%;
 		}
         flex-wrap: wrap;
         .look-item{
@@ -126,6 +138,13 @@ export default {
             @include m{
                 width: 48%;
             }
+            @include l{
+            width: 40%;
+              // gap: 15px;
+            // margin-right: 20px;
+
+            //  height: 20%;
+		}
             position: relative;
         }
         // flex-wrap: wlorap;
@@ -143,21 +162,21 @@ export default {
 
 }
 
-.stylist-card:last-child{
-    margin-bottom: 100px;
-}
+// .stylist-card:last-child{
+//     margin-bottom: 100px;
+// }
 
    .card-info-pic{
     width:100px;
     height:100px;
     @include l{
-        width:120px;
-        height:120px;
+        width:70px;
+        height:70px;
         
 	}
     @include xl{
-        width:150px;
-        height:150px;
+        width:100px;
+        height:100px;
         
 	}
 

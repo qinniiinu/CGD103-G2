@@ -1,103 +1,94 @@
 <template>
   <div class="fittingroom">
     <div class="sideMenu">
-      <ProductSideMenu></ProductSideMenu>
-      <HashTag></HashTag>
+      <!-- <ProductSideMenu></ProductSideMenu>
+      <HashTag></HashTag> -->
     </div>
     <div class="fittingArea">
-      <div class="container" @mousemove="mouseMove" @mouseup="mouseUp" ></div>
-      <ul class="products">
-        <li v-for="(item, i) in items" :key="i"  @mousedown="mouseDown" >
-          <img :src="item.products" />
-        </li>
-      </ul>
+      <div class="panel"></div>
+      <div class="products">
+          <img 
+          v-for="item in product" 
+          :key="item.id" 
+          :src="item.image" 
+          @click="copy($event)" 
+          />
+      </div>
     </div>
   </div>
 </template>
-
+ 
 <script>
-import SearchBar from "@/components/product/SearchBar.vue";
-import ProductSideMenu from "@/components/product/ProductSideMenu.vue";
-import HashTag from "@/components/product/HashTag.vue";
+// import SearchBar from "@/components/product/SearchBar.vue";
+// import ProductSideMenu from "@/components/product/ProductSideMenu.vue";
+// import HashTag from "@/components/product/HashTag.vue";
 export default {
   name: "Product",
   components: {
-    SearchBar,
-    ProductSideMenu,
-    HashTag,
+    // SearchBar,
+    // ProductSideMenu,
+    // HashTag,
   },
 
   data() {
     return {
-      items: [
-        { products: require("@/assets/fittingroom/item001.png") },
-        { products: require("@/assets/fittingroom/item002.png") },
-        { products: require("@/assets/fittingroom/item003.png") },
-        { products: require("@/assets/fittingroom/item004.png") },
-        { products: require("@/assets/fittingroom/item005.png") },
-        { products: require("@/assets/fittingroom/item006.png") },
-        { products: require("@/assets/fittingroom/item007.png") },
+      product: [
+        { id:1 ,image: require("@/assets/fittingroom/item001.png") },
+        { id:2 ,image: require("@/assets/fittingroom/item002.png") },
+        { id:3 ,image: require("@/assets/fittingroom/item003.png") },
+        { id:4 ,image: require("@/assets/fittingroom/item004.png") },
+        { id:5 ,image: require("@/assets/fittingroom/item005.png") },
+        { id:6 ,image: require("@/assets/fittingroom/item006.png") },
+        { id:7 ,image: require("@/assets/fittingroom/item007.png") },
       ],
     };
   },
 
-    // const mouseX = 0
-    // const mouseY = 0
-    // const offsetX = 0
-    // const offsetY = 0
-    // const isDown = false
+  methods: {
+    copy(e) {
+      let panel = document.getElementById("panel");
+      let new_item = document.createElement("div");
+      new_item.className = "item";
+      let image = document.createElement("img");
+      image.src = e.currentTarget.src;
+      new_item.appendChild(image);
+      panel.appendChild(new_item);
+      this.drag(new_item);
+    },
 
-    // const items = document.querySelectorAll(".items");
-    // const lists = document.querySelectorAll('.list');
+    drag(obj) {
+      obj.onmousedown = function (event) {
+        event = event || window.event;
 
-      // mouseDown(e){
-      //   deltaLeft = e.clientX - e.target.offsetLeft
-      //   deltaTop = e.clientY - e.target.offsetTop
-      //   move = true
-      // } 
+        var ol = event.clientX - object.offsetLeft;
+        var ot = event.clientY - object.offsetTop;
 
-      // mouseMove(e){
-      //   deltaLeft = e.clientX - e.target.offsetLeft
-      //   deltaTop = e.clientY - e.target.offsetTop
-      //   move = true
-      // }
+        document.onmousemove = function (event) {
+          event = event || window.event;
 
-      // mouseUp(e){
-      //   move = false
-      // }
-       
-   
+          var left = event.clientX - ol;
+          var top = event.clientY - ot;
 
-//     for (let i = 0; i < items.length; i++) {
-//         items[i].addEventListener('mousedown', function (e) {
-//             isDown = true
-//             mouseX = e.pageX
-//             mouseY = e.pageY
-//             document.addEventListener('mousemove', move)
-//         });
+          obj.style.left = left + "px";
+          obj.style.left = top + "px";
+        };
 
-//         document.addEventListener('mouseup', function (e) {
-//             if (isDown) {
-//                 offsetX += e.pageX - mouseX
-//                 offsetY += e.pageY - mouseY
-//             }
-//             isDown = false
-//             document.removeEventListener('mousemove', move)
-//         });
+        document.onmouseup = function () {
+          document.onmousemove = null;
+          document.onmouseup = null;
+        };
 
-
-//         function move(e) {
-//             if (isDown) {
-//                 const dx = e.pageX - mouseX
-//                 const dy = e.pageY - mouseY
-//                 items[i].style.transform = `translate(${offsetX + dx}px,${offsetY + dy}px)`;
-//             }
-//         }
-
-//     }
-
+        return false;
+      };
+    },
+  },
 };
 </script>
+
+
+
+
+
 
 
 <style lang="scss" scoped>
@@ -113,7 +104,7 @@ export default {
   }
   .fittingArea {
     width: 60%;
-    .container {
+    .panel {
       width: 100%;
       height: 530px;
       border: 1px solid black;
@@ -121,20 +112,21 @@ export default {
     }
     .products {
       width: 100%;
-      height: 300px;
+      height: auto;
       border: 1px solid black;
-	  display: flex;
-	  flex-wrap: wrap;
-	  justify-content: center;
-	  li{
-		width: 14%;
-		height: 150px;
-		img{
-			width: 100%;
-			height: 100%;
-			object-fit: contain;
-		}
-	  }
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      li {
+        width: 100px;
+        height: 150px;
+        margin: 10px;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
-	<router-link :to="{ name:'MyPage' }" class="btn_s">會員頁</router-link>
+	<router-link :to="{ name:'MyPage' }" class="btn_s">會員頁</router-link>	
 	<SigninIn></SigninIn>
-
+	<Signup></Signup>
 
 </template>
 
@@ -16,8 +16,10 @@ export default {
 		SigninIn,
 		Signup,
 		SignupSet,
-
-
 	},
+	  data() {
+    return {
+    }
+  },
 };
 </script>
