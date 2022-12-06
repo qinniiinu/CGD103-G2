@@ -5,12 +5,8 @@
             <span class="bg_tag">{{ Bgtag }}</span>
         </div>
         <div class="data">
-            <slot name="data"></slot>
+            <slot></slot>
         </div>
-        <a href="#" class="more">
-            <span class="text">{{ more }}</span>
-            <font-awesome-icon icon="fa-solid fa-angle-right"/>
-        </a>
     </section>
 </template> 
 
@@ -20,7 +16,7 @@ export default {
     props: {
         title: String,
         Bgtag: String,
-        more: String,
+
     },
     components: {
 	},
@@ -52,24 +48,29 @@ export default {
             color: $bg_violet;
             @include font_set($second_font, $null, 900, italic);
             @include s() {
+                font-size: 34px;
+            }
+            @include l() {
                 font-size: 36px;
             }
             @include m() {
-                font-size: 48px;
+                font-size: 40px;
             }
         }      
     }
     .data{
         padding: 10px;
     }
-    .more{
-        display: flex;
-        justify-content: flex-end;        
-        .text{
-            font-family: $main_font;
-            padding-right: 5px;
-        }
+    .more {
+      display: flex;
+      position: absolute;
+      align-items: center;
+      right: $padding;
+      bottom: $padding;
+      .text {
+        font-family: $main_font;
+        padding-right: 5px;
+      }
     }
-
 }
 </style>

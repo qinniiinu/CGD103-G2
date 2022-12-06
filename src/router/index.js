@@ -58,9 +58,29 @@ const routes = [
 		component: () => import("../views/Checkout1View.vue"),
 	},
 	{
+		path:"/SubCheckout",
+		name:"SubCheckout",
+		component: () => import("../views/SubCheckoutView.vue")
+	},
+	{
 		path: "/fittingroom",
 		name: "fittingroom",
 		component: () => import("../views/FittingRoomView.vue"),
+	},
+	{
+		path: "/fittingroom1",
+		name: "fittingroom1",
+		component: () => import("../views/FittingRoom1View.vue"),
+	},
+	{
+		path: "/fittingroom2",
+		name: "fittingroom2",
+		component: () => import("../views/FittingRoom2View.vue"),
+	},
+	{
+		path: "/fittingroom3",
+		name: "fittingroom3",
+		component: () => import("../views/FittingRoom3View.vue"),
 	},
 	{
 		path: "/login",

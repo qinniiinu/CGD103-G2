@@ -46,7 +46,15 @@
 		</div>
 		<div class="list">
 			<h2>購物車</h2>
-			<div class="list-wrap">
+            <div class="subcard" v-for="detail in subscribe" :key="detail">
+                <div class="card-wrap">
+                    <div class="card-content">
+                        <div class="level">#{{detail.level}}</div>
+                        <h2>NT$<span>{{detail.price}}</span>/月</h2>
+                    </div>
+                </div>
+            </div>
+			<!-- <div class="list-wrap">
 				<div class="items">
 				<div class="item" v-for="item in order" :key="item.id">
 					<div class="product">
@@ -70,7 +78,7 @@
 					<div>{{vip_level[0].level_name}} 會員等級折扣: -${{parseInt(total*(1-vip_level[0].discount))}}</div>
 					<div>總計: ${{parseInt(total*vip_level[0].discount)}}元</div>
 				</div>
-			</div>
+			</div> -->
 		</div>	
 	</div>
 </template>
@@ -78,7 +86,7 @@
 <script>
 
 export default {
-	name: "Product",
+	name: "SubCheckoutView",
 	components: {
 	},
 	data(){
@@ -86,28 +94,9 @@ export default {
 			load: false,
 			source:[],
 			count:[],
-			order:[],
+            subscribe:[],
 			min:0,
 			max:0,
-			product:[
-			//產品資訊
-			{
-			id: 1,
-			image: "https://nb.scene7.com/is/image/NB/m990gl5_nb_05_i?$pdpflexf2$&qlt=80&fmt=webp&wid=472&hei=472",
-			title: "Newbalance鞋",
-			color: "灰色",
-			size: "23cm",
-			price: 7990,
-			},
-			{
-			id: 2,
-			image: "https://pics.pzcdn.tw/pazzo/ProductBasics/f06d3568-2bd1-4b9c-9f9e-aef3dcceed16.jpg",
-			title: "帆布袋",
-			color: "米色",
-			size: "F",
-			price: 590,
-			},
-			],
 			memId:"a001",
 			mem_name:"王小明",
 			phone:"0912345678",
@@ -137,24 +126,38 @@ export default {
 				discount:0.8,
 				price:3999,
 			}],
+            subinfo:[{
+                level:'BASIC',
+                price:899,
+                monthSet:'上身* 1、下身*1',
+                monthConsult:1,
+                freeShipping:1,
+                specialOffer:95
+            },
+            {   
+                level:'STANDARD',
+                price:1899,
+                monthSet:'上身* 1、下身*1、外套*1',
+                monthConsult:2,
+                freeShipping:2,
+                specialOffer:9
+            },
+            {   
+                level:'ULTRA',
+                price:3999,
+                monthSet:'上身* 1、下身*1、外套*1、鞋子*1',
+                monthConsult:5,
+                freeShipping:'無限',
+                specialOffer:8
+            }
+            ],
 		}
 	},
 	created(){
 		this.getStorage();
 	},
 	computed:{
-		total(){
-			if(this.order.length>0){
-				let total=0
-				for(const index in this.order){
-					total+=this.order[index]['count']*this.order[index]['price']
-				}
-				console.log(total);
-				return parseInt(total)
-			}else{
-				return 0
-			}
-		}
+		
 	},
 	methods:{
 		check(){
@@ -174,10 +177,11 @@ export default {
 			}
 		},
 		getStorage(){
-			let data =localStorage.getItem('order');
+			let data =localStorage.getItem('subscribe');
 			data=JSON.parse(data)
-			this.order=data? data:[]
-        },
+			this.subscribe=data? data:[]
+            console.log(this.subscribe);
+        }
 	}
 };
 </script>

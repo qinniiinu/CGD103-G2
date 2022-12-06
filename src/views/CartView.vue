@@ -133,6 +133,7 @@ export default {
 				discount:0.8,
 				price:3999,
 			}],
+
 		}
 	},
 	created(){
@@ -183,6 +184,7 @@ export default {
 			const prodIndex=this.order.findIndex(orderItem=>{
 				return orderItem.id===item.id
 			})
+			console.log(prodIndex)
 			if(prodIndex>=0){
 				this.order[prodIndex]['count']+=1
 			}else{
