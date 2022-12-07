@@ -52,7 +52,7 @@ export default {
 @import "@/assets/sass/member_side_menu";
 
 	.book{
-		width: 80%;
+		width: 100%;
 		border: 1px solid $title_color;
 		margin: auto;
 		text-align: center;
@@ -74,7 +74,7 @@ export default {
 		}
 	}
 	.recommend-part{
-		width: 80%;
+		width: 100%;
 		border: 1px solid $title_color;
 		margin: auto;
 		margin-top:50px ;
@@ -86,12 +86,12 @@ export default {
 			font-size: 24px;
 			margin: 20px;
 		}
-		.recommend{
-          .item{
+		// .recommend{
+        //   .item{
 			
 			
-			}
-		}
+		// 	}
+		// }
 		.deco{
 			// margin-top: 50px ;
 			.decoration{
