@@ -110,67 +110,67 @@
 		components: {
 			StyleCard,
 		},
-		setup(){
-			const marquee = document.querySelectorAll('.img_marquee_item');
-
-		
-			addEventListener("load", function () {
-				marquee.forEach(el => {
-					// set a default rate, the higher the value, the faster it is
-					const rate = 200;
-					// get the width of the element
-					const distance = el.clientWidth;
-					// get the margin-right of the element
-					const style = window.getComputedStyle(el);
-					const marginRight = parseInt(style.marginRight) || 0;
-					// get the total width of the element
-					const totalDistance = distance + marginRight;
-					// get the duration of the animation 
-					// for a better explanation, see the quoted codepen in the first comment
-					const time = totalDistance / rate;
-					// get the parent of the element
-					const container = el.parentElement;
-
-					gsap.to(container, time, {
-						repeat: -1,
-						x: '-'+totalDistance,
-						ease: Linear.easeNone,
-					});
-				});
-			});
-			return{marquee,}
-		},
+// 		setup(){
+// 			const marquee = document.querySelectorAll('.img_marquee_item');
+// 
+// 		
+// 			addEventListener("load", function () {
+// 				marquee.forEach(el => {
+// 					// set a default rate, the higher the value, the faster it is
+// 					const rate = 200;
+// 					// get the width of the element
+// 					const distance = el.clientWidth;
+// 					// get the margin-right of the element
+// 					const style = window.getComputedStyle(el);
+// 					const marginRight = parseInt(style.marginRight) || 0;
+// 					// get the total width of the element
+// 					const totalDistance = distance + marginRight;
+// 					// get the duration of the animation 
+// 					// for a better explanation, see the quoted codepen in the first comment
+// 					const time = totalDistance / rate;
+// 					// get the parent of the element
+// 					const container = el.parentElement;
+// 
+// 					gsap.to(container, time, {
+// 						repeat: -1,
+// 						x: '-'+totalDistance,
+// 						ease: Linear.easeNone,
+// 					});
+// 				});
+// 			});
+// 			return{marquee,}
+// 		},
 
 		data(){
 			return{
 				mainImgs:[
-					{src:'/img_marquee_1.jpg',boolean:true,hoversrc:'/img_hover_1.jpg',hoverboolean:false},
-					{src:'/img_marquee_2.jpg',boolean:true,hoversrc:'/img_hover_2.jpg',hoverboolean:false},
-					{src:'/img_marquee_3.jpg',boolean:true,hoversrc:'/img_hover_3.jpg',hoverboolean:false},
-					{src:'/img_marquee_4.jpg',boolean:true,hoversrc:'/img_hover_4.jpg',hoverboolean:false},
-					{src:'/img_marquee_5.jpg',boolean:true,hoversrc:'/img_hover_5.jpg',hoverboolean:false},
-					{src:'/img_marquee_6.jpg',boolean:true,hoversrc:'/img_hover_6.jpg',hoverboolean:false},
+					{src:'./img_marquee_1.jpg',boolean:true,hoversrc:'./img_hover_1.jpg',hoverboolean:false},
+					{src:'./img_marquee_2.jpg',boolean:true,hoversrc:'./img_hover_2.jpg',hoverboolean:false},
+					{src:'./img_marquee_3.jpg',boolean:true,hoversrc:'./img_hover_3.jpg',hoverboolean:false},
+					{src:'./img_marquee_4.jpg',boolean:true,hoversrc:'./img_hover_4.jpg',hoverboolean:false},
+					{src:'./img_marquee_5.jpg',boolean:true,hoversrc:'./img_hover_5.jpg',hoverboolean:false},
+					{src:'./img_marquee_6.jpg',boolean:true,hoversrc:'./img_hover_6.jpg',hoverboolean:false},
 				],
 				mainIImgs:[
-					{src:'/img_marquee_4.jpg',boolean:true,hoversrc:'/img_hover_4.jpg',hoverboolean:false},
-					{src:'/img_marquee_5.jpg',boolean:true,hoversrc:'/img_hover_5.jpg',hoverboolean:false},
-					{src:'/img_marquee_2.jpg',boolean:true,hoversrc:'/img_hover_2.jpg',hoverboolean:false},
-					{src:'/img_marquee_1.jpg',boolean:true,hoversrc:'/img_hover_1.jpg',hoverboolean:false},
-					{src:'/img_marquee_6.jpg',boolean:true,hoversrc:'/img_hover_6.jpg',hoverboolean:false},
-					{src:'/img_marquee_3.jpg',boolean:true,hoversrc:'/img_hover_3.jpg',hoverboolean:false},
+					{src:'./img_marquee_4.jpg',boolean:true,hoversrc:'./img_hover_4.jpg',hoverboolean:false},
+					{src:'./img_marquee_5.jpg',boolean:true,hoversrc:'./img_hover_5.jpg',hoverboolean:false},
+					{src:'./img_marquee_2.jpg',boolean:true,hoversrc:'./img_hover_2.jpg',hoverboolean:false},
+					{src:'./img_marquee_1.jpg',boolean:true,hoversrc:'./img_hover_1.jpg',hoverboolean:false},
+					{src:'./img_marquee_6.jpg',boolean:true,hoversrc:'./img_hover_6.jpg',hoverboolean:false},
+					{src:'./img_marquee_3.jpg',boolean:true,hoversrc:'./img_hover_3.jpg',hoverboolean:false},
 				],
 				
 
 
 				productImgs:[
-					{src:'/productImg_1.png',content:'外套'},
-					{src:'/productImg_2.png',content:'西裝外套'},
-					{src:'/productImg_3.png',content:'襯衫'},
-					{src:'/productImg_4.png',content:'長袖'},
-					{src:'/productImg_5.png',content:'短袖'},
-					{src:'/productImg_6.png',content:'長褲'},
-					{src:'/productImg_7.png',content:'配件'},
-					{src:'/productImg_8.png',content:'鞋子'},
+					{src:'./productImg_1.png',content:'外套'},
+					{src:'./productImg_2.png',content:'西裝外套'},
+					{src:'./productImg_3.png',content:'襯衫'},
+					{src:'./productImg_4.png',content:'長袖'},
+					{src:'./productImg_5.png',content:'短袖'},
+					{src:'./productImg_6.png',content:'長褲'},
+					{src:'./productImg_7.png',content:'配件'},
+					{src:'./productImg_8.png',content:'鞋子'},
 				],
 				stylistPics:[
 					{src:'./stylist-8.jpg'},
