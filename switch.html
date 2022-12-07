@@ -1,4 +1,4 @@
-<!DOCTYPE html>
++<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+           body{
+        background-image: url(../../public/router_cover-photo.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+
         	.login{
                 display: flex;
                 width: 100%;
@@ -14,8 +20,8 @@
                 height: 100vh;
             }
             .longin_box{
-                width: 100px;
-                height: 100px;
+                width: 150px;
+                height: 150px;
                 background-color: #495BFF;
                 margin: 20px;
                
@@ -25,8 +31,8 @@
                     margin: auto;
                     color:#ECEEFF;
                     font-weight: 700;
-                    line-height: 100px;
-                    font-size: 24px;
+                    line-height: 150px;
+                    font-size: 36px;
                     text-align: center;
                     margin: auto;
             }
@@ -39,7 +45,9 @@
     <div class="login">
         <a href="">
             <div class="front_end longin_box">
-                <p>前台</p>
+                <router-link to="/">
+                     <p>前台</p>
+               </router-link> 
             </div>
         </a>
         <a href="https://tibamef2e.com/cgd103/g2/back/">
