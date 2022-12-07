@@ -45,10 +45,10 @@
 					<div class="prod_item_row">
 						<img class="prod_pic" src="https://cf.shopee.tw/file/df4b87d6f94bb46bff2b209ed4047c27_tn" alt="">
 						<div class="item_name">經典夏威夷草裙</div>
-						<div class="item_block">
+					
 							<div class="item_name">$700</div>
 							<div class="item_name">L</div>
-						</div>
+						
 						<div class="item_name">x20</div>
 					</div>
 					<div class="prod_item_row">
