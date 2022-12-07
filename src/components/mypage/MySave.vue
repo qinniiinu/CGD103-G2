@@ -83,6 +83,9 @@ export default {
 
     margin-block-end: 10px;
     justify-content: space-between;
+    @include s() {
+      font-size: 22px;
+    }
   }
   .data {
     display: flex;
@@ -111,6 +114,10 @@ export default {
           }
         }
       }
+    }
+    @include s() {
+      gap: 10px;
+      flex-direction: column;
     }
   }
 }
