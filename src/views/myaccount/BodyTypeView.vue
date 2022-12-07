@@ -130,7 +130,7 @@
             </div>
             <div class="item">
               <router-link to="/MyPage" class="btn_l back">返回</router-link>
-              <router-link to="/MyPage"  class="btn_s save">儲存</router-link>
+              <router-link to="/MyPage" class="btn_s save">儲存</router-link>
             </div>
           </section>
         </div>
@@ -184,15 +184,14 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/sass/member_side_menu";
 .body_tyle {
-	
   @include m() {
     border: 1px solid #333;
     padding: 20px 25px;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: auto;
     grid-gap: 50px 50px;
-	background-color: white;
+    background-color: white;
   }
   .item:nth-child(1) {
     padding: 20px 0;
@@ -214,9 +213,9 @@ export default {
         color: #333;
       }
     }
-	  @include m() {
-    grid-area: 1/1/3/3;
-  }
+    @include m() {
+      grid-area: 1/1/3/3;
+    }
   }
   .item:nth-child(2) {
     //image
@@ -231,7 +230,7 @@ export default {
       object-fit: cover;
     }
     @include m() {
-    grid-area: 1/4/3/5;
+      grid-area: 1/4/3/5;
     }
   }
   .item:nth-child(3) {
@@ -245,8 +244,8 @@ export default {
       line-height: 27px;
       font-size: 16px;
     }
-	@include m() {
-    grid-area: 2/1/3/4;
+    @include m() {
+      grid-area: 2/1/3/4;
     }
   }
   //  性別/身高體重/鞋碼
@@ -260,8 +259,8 @@ export default {
         color: white;
       }
     }
-	    @include m() {
-			grid-area: 3/1/5/3;
+    @include m() {
+      grid-area: 3/1/5/3;
     }
   }
   //  其他數據 rage bar
@@ -275,12 +274,29 @@ export default {
         margin-inline: 3px;
       }
       input {
-        margin-top: 5px;
+        margin-top: 10px;
         width: 100%;
       }
+      input[type="range"] {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 10px;
+        background-color: $second_color;
+        border-radius: 5px;
+        outline: none;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 30px;
+        height: 15px;
+        background-color: $main_color;
+        border-radius: 50px;
+        box-shadow: 1px 2px #25319e;
+        cursor: pointer;
+      }
     }
-		@include m() {
-    grid-area: 3/3/5/5;
+    @include m() {
+      grid-area: 3/3/5/5;
     }
   }
   .item:nth-child(6) {
@@ -290,11 +306,11 @@ export default {
     margin-top: 20px;
     .btn_s {
       margin-inline: 20px;
-	  text-align: center;
-	  vertical-align: middle;
+      text-align: center;
+      vertical-align: middle;
     }
-			@include m() {
-grid-area: 5/3/6/5;
+    @include m() {
+      grid-area: 5/3/6/5;
     }
   }
 }
