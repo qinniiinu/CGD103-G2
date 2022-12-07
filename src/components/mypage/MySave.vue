@@ -5,20 +5,24 @@
       <!-- 收藏穿搭 -->
       <div class="save_card">
         <h4 class="tit">收藏穿搭</h4>
-        <ul class="save_item">
-          <li v-for="ootd in ootds" :key="ootd.combo_id">
-            <img :src="ootd.combo_pic" alt="ootd.combo_id" />
-          </li>
-        </ul>
+        <router-link to="/Favorites">
+          <ul class="save_item">
+            <li v-for="ootd in ootds" :key="ootd.combo_id">
+              <img :src="ootd.combo_pic" alt="ootd.combo_id" />
+            </li>
+          </ul>
+        </router-link>
       </div>
       <!-- 單品商品 -->
       <div class="save_card">
         <h4 class="tit">單品商品</h4>
-        <ul class="save_item">
-          <li v-for="product in products" :key="product.product_id">
-            <img :src="product.product_pic" alt="product.product_id" />
-          </li>
-        </ul>
+        <router-link to="/Favorites">
+          <ul class="save_item">
+            <li v-for="product in products" :key="product.product_id">
+              <img :src="product.product_pic" alt="product.product_id" />
+            </li>
+          </ul>
+        </router-link>
       </div>
     </div>
   </section>
@@ -83,6 +87,9 @@ export default {
 
     margin-block-end: 10px;
     justify-content: space-between;
+    @include s() {
+      font-size: 22px;
+    }
   }
   .data {
     display: flex;
@@ -111,6 +118,10 @@ export default {
           }
         }
       }
+    }
+    @include s() {
+      gap: 10px;
+      flex-direction: column;
     }
   }
 }
