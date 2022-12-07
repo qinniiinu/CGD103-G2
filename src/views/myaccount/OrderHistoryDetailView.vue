@@ -102,9 +102,9 @@
 				</div>
 			</div>
 			<div class="order_back">
-				<a href="#"><!-- 返回鍵 -->
+				<router-link to="/MyPage"><!-- 返回鍵 -->
 					<button>返回</button>
-				</a>
+				</router-link>
 			</div>
 		</div>
 	
