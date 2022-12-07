@@ -47,14 +47,15 @@ export default {
       color: $bg_violet;
       @include font_set($second_font, $null, 900, italic);
       @include s() {
-        font-size: 34px;
+        font-size: 30px;
+      }      
+      @include m() {
+        font-size: 40px;
       }
       @include l() {
         font-size: 36px;
       }
-      @include m() {
-        font-size: 40px;
-      }
+
     }
   }
   .data {

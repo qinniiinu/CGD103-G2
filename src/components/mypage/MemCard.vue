@@ -41,21 +41,18 @@ export default {
   position: relative;
 
   .pic {
-    width: 250px;
-    height: 250px;
+    width: 135px;
+    height: 170px;
+    z-index: 1;
     aspect-ratio: 1/1;
     .type_pic {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-    @include s() {
-      width: 150px;
-      height: 150px;
-    }
-    @media screen and (max-width: 1200px) {
-      width: 200px;
-      height: 200px;
+    @include m() {
+    width: 250px;
+    height: 250px;
     }
   }
   .text {
