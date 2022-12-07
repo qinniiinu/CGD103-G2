@@ -125,10 +125,18 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/sass/main.scss";
 @import "@/assets/sass/member_side_menu";
-
+@mixin b() {
+	@media screen and (max-width: 1023px) {
+		@content;
+	}
+}
 
 *{
 	list-style: none;
+}
+
+.data{
+	padding: 0;
 }
 .Ordh_container{
 	width: 100%;
@@ -138,6 +146,10 @@ export default {
 	display: flex;
 	justify-content: right;
 	}
+	@include b() {
+		outline:none;
+      }
+
 	
 	.item_money{
 	text-align: right;
@@ -168,6 +180,11 @@ export default {
 	overflow:scroll;
 	// display: flex;
 	justify-content: center;
+	@include b() {
+		outline:none;
+		width: 100%;
+		margin: 0px;
+      }
 	.item_num{
 	width: 90%;
 	margin: 20px;

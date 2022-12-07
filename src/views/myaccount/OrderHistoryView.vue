@@ -35,10 +35,10 @@
 							<li class="ord_history_toplist_title">
 								<p>訂單狀態</p>
 							</li>
-							<li class="ord_history_toplist_title">
+							<li class="ord_history_toplist_title" id="Q" >
 								<p>訂單問題</p>
 							</li>
-							<li class="ord_history_toplist_title">
+							<li class="ord_history_toplist_title" id="C" >
 								<p>物流狀態</p>
 							</li>
 						</ul>
@@ -50,10 +50,10 @@
 									<li class="ord_history_content">20221202001</li>
 									<li class="ord_history_content">$8888</li>
 									<li class="ord_history_content">已出貨</li>
-									<li class="ord_history_content">
+									<li class="ord_history_content" id="Q" >
 										<a class="transport_detail" href="">聯繫客服</a>
 									</li>									
-									<li class="ord_history_content">
+									<li class="ord_history_content" id="C" >
 										<a class="transport_detail" href="">物流詳情</a>
 									</li>
 								</ul>
@@ -66,10 +66,10 @@
 									<li class="ord_history_content">20221202001</li>
 									<li class="ord_history_content">$8888</li>
 									<li class="ord_history_content">已出貨</li>
-									<li class="ord_history_content">
+									<li class="ord_history_content" id="Q" >
 										<a class="transport_detail" href="">聯繫客服</a>
 									</li>									
-									<li class="ord_history_content">
+									<li class="ord_history_content" id="C" >
 										<a class="transport_detail" href="">物流詳情</a>
 									</li>
 								</ul>
@@ -82,10 +82,10 @@
 									<li class="ord_history_content">20221202001</li>
 									<li class="ord_history_content">$8888</li>
 									<li class="ord_history_content">已出貨</li>
-									<li class="ord_history_content">
+									<li class="ord_history_content" id="Q" >
 										<a class="transport_detail" href="">聯繫客服</a>
 									</li>									
-									<li class="ord_history_content">
+									<li class="ord_history_content" id="C" >
 										<a class="transport_detail" href="">物流詳情</a>
 									</li>
 								</ul>
@@ -98,10 +98,10 @@
 									<li class="ord_history_content">20221202001</li>
 									<li class="ord_history_content">$8888</li>
 									<li class="ord_history_content">已出貨</li>
-									<li class="ord_history_content">
+									<li class="ord_history_content" id="Q" >
 										<a class="transport_detail" href="">聯繫客服</a>
 									</li>									
-									<li class="ord_history_content">
+									<li class="ord_history_content" id="C" >
 										<a class="transport_detail" href="">物流詳情</a>
 									</li>
 								</ul>
@@ -114,10 +114,10 @@
 									<li class="ord_history_content">20221202001</li>
 									<li class="ord_history_content">$8888</li>
 									<li class="ord_history_content">已出貨</li>
-									<li class="ord_history_content">
+									<li class="ord_history_content" id="Q" >
 										<a class="transport_detail" href="">聯繫客服</a>
 									</li>									
-									<li class="ord_history_content">
+									<li class="ord_history_content" id="C" >
 										<a class="transport_detail" href="">物流詳情</a>
 									</li>
 								</ul>
@@ -130,10 +130,10 @@
 									<li class="ord_history_content">20221202001</li>
 									<li class="ord_history_content">$8888</li>
 									<li class="ord_history_content">已出貨</li>
-									<li class="ord_history_content">
+									<li class="ord_history_content" id="Q" >
 										<a class="transport_detail" href="">聯繫客服</a>
 									</li>									
-									<li class="ord_history_content">
+									<li class="ord_history_content" id="C" >
 										<a class="transport_detail" href="">物流詳情</a>
 									</li>
 								</ul>
@@ -146,10 +146,10 @@
 									<li class="ord_history_content">20221202001</li>
 									<li class="ord_history_content">$8888</li>
 									<li class="ord_history_content">已出貨</li>
-									<li class="ord_history_content">
+									<li class="ord_history_content" id="Q" >
 										<a class="transport_detail" href="">聯繫客服</a>
 									</li>									
-									<li class="ord_history_content">
+									<li class="ord_history_content" id="C" >
 										<a class="transport_detail" href="">物流詳情</a>
 									</li>
 								</ul>
@@ -162,10 +162,10 @@
 									<li class="ord_history_content">20221202001</li>
 									<li class="ord_history_content">$8888</li>
 									<li class="ord_history_content">已出貨</li>
-									<li class="ord_history_content">
+									<li class="ord_history_content" id="Q" >
 										<a class="transport_detail" href="">聯繫客服</a>
 									</li>									
-									<li class="ord_history_content">
+									<li class="ord_history_content" id="C" >
 										<a class="transport_detail" href="">物流詳情</a>
 									</li>
 								</ul>
@@ -178,10 +178,10 @@
 									<li class="ord_history_content">20221202001</li>
 									<li class="ord_history_content">$8888</li>
 									<li class="ord_history_content">已出貨</li>
-									<li class="ord_history_content">
+									<li class="ord_history_content" id="Q" >
 										<a class="transport_detail" href="">聯繫客服</a>
 									</li>									
-									<li class="ord_history_content">
+									<li class="ord_history_content" id="C" >
 										<a class="transport_detail" href="">物流詳情</a>
 									</li>
 								</ul>
@@ -194,31 +194,16 @@
 									<li class="ord_history_content">20221202001</li>
 									<li class="ord_history_content">$8888</li>
 									<li class="ord_history_content">已出貨</li>
-									<li class="ord_history_content">
+									<li class="ord_history_content" id="Q" >
 										<a class="transport_detail" href="">聯繫客服</a>
 									</li>									
-									<li class="ord_history_content">
+									<li class="ord_history_content" id="C" >
 										<a class="transport_detail" href="">物流詳情</a>
 									</li>
 								</ul>
 							</router-link>
 							</li>
-							<li class="ord_history_content_word">
-								<router-link to="/OrderHistoryDetail">
-								<ul class="content_row">
-									<li class="ord_history_content">20221202</li>
-									<li class="ord_history_content">20221202001</li>
-									<li class="ord_history_content">$8888</li>
-									<li class="ord_history_content">已出貨</li>
-									<li class="ord_history_content">
-										<a class="transport_detail" href="">聯繫客服</a>
-									</li>									
-									<li class="ord_history_content">
-										<a class="transport_detail" href="">物流詳情</a>
-									</li>
-								</ul>
-							</router-link>
-							</li>
+							
 							
 						</ul>
 					</div>
@@ -258,6 +243,24 @@ export default {
 @import "@/assets/sass/main";
 @import "@/assets/sass/member_side_menu";
 
+@mixin b() {
+	@media screen and (max-width: 1023px) {
+		@content;
+	}
+}
+
+.mem_container .mem_data{
+	@include b() {
+		padding: 0%;
+	}
+}
+.body{
+	@include b() {
+		p{
+			font-size: 12px;
+		} 
+	}
+}
 .Ordh_container{
 	width: 100%;
 	outline: solid 1px gray;
@@ -265,6 +268,10 @@ export default {
 	display: flex;
 	justify-content: right;
 	}
+	@include b() {
+		outline:none;
+      }
+	
 
 }
 
@@ -279,7 +286,9 @@ export default {
 	cursor: pointer;
 	margin: 10px;
 	margin-right:7%;
-
+	@include b() {
+		display:none;
+      }
 }
 
 .ord_history_box{
@@ -289,12 +298,32 @@ export default {
 	margin: auto;
 	padding-bottom: 10%;
 	overflow:scroll;
+	@include b() {
+		width: 100%;     
+		outline: none; 
+	}
 }
 .ord_history_toplist{
 	display: flex;
 	justify-content: center;
 	width: 80%;
 	padding-left: 10%;
+	@include b() {
+		width: 100%;  
+		padding-left: 0%;
+	}
+}
+
+#C{
+	@include b() {
+	display: none;
+	}
+}
+
+#Q{
+	@include b() {
+	display: none;
+	}
 }
 
 .ord_history_toplist_title{
@@ -307,8 +336,12 @@ export default {
 	justify-content: center;
 	outline: solid 1px gray;
 	margin-bottom: 20px;
+	@include b() {
+		width: 100%;     
+		outline: none; 
+	}
 	&:hover{
-            background-color:$bg_violet;
+            background-color:$second_color;
             color: $main_color ;
             cursor: pointer;
         }
@@ -327,6 +360,7 @@ export default {
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
+
 }
 .order_title{
 	color:$bg_violet;

@@ -11,7 +11,11 @@
         <div class="box">
           <MemCard title="我的身型" class="card">
             <template #pic>
-              <img class="type_pic" src="bodyType_hourglass.png" alt="body.type1">
+              <img
+                class="type_pic"
+                src="bodyType_hourglass.png"
+                alt="body.type1"
+              />
             </template>
             <type-tag :TypeTag="bodytypes.type1" class="type_tag"></type-tag>
             <bg-tag :Bgtag="body.type1" class="bgtag"></bg-tag>
@@ -21,8 +25,8 @@
             </router-link>
           </MemCard>
           <MemCard title="我的風格" class="card">
-			<template #pic>
-              <img class="type_pic" src="hipster2.png" alt="styletypes.type1">
+            <template #pic>
+              <img class="type_pic" src="hipster2.png" alt="styletypes.type1" />
             </template>
             <type-tag :TypeTag="styletypes.type1" class="type_tag"></type-tag>
             <bg-tag :Bgtag="body.type1" class="bgtag"></bg-tag>
@@ -147,16 +151,19 @@ export default {
     .type_tag {
       display: block;
       margin: auto;
+      @include s() {
+        font-size: 30px;
+      }
     }
     .bgtag {
       display: block;
       position: absolute;
       right: $padding;
     }
-    .type_pic{
-    width: 100%;
-    height: 100%;
-    object-fit:cover;
+    .type_pic {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
   .other_card {
@@ -168,16 +175,31 @@ export default {
     gap: 25px;
     .account {
       grid-area: 1 / 1 / 2 / 2;
+      @include s() {
+        grid-area: 1/1/2/3;
+      }
     }
     .consult {
       grid-area: 2 / 1 / 3 / 2;
+      @include s() {
+        grid-area: 2/1/3/3;
+      }
     }
     .premium {
       grid-area: 3 / 1 / 4 / 2;
+      @include s() {
+        grid-area: 3/1/4/3;
+      }
     }
     .order {
       grid-area: 1 / 2 / 4 / 3;
-      // background-color: white;
+      @include s() {
+        grid-area: 4/1/5/3;
+        padding: 20px;
+      }
+    }
+    @include s() {
+      grid-template-rows: 1 4fr;
     }
   }
 }
