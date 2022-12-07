@@ -32,14 +32,12 @@ export default {
     },
     created() {
         this.getResource();
+        console.log(this.fakeproduct);
     },
 };
 </script>
 <template>
     <div class="product_list">
-        <router-link to="/productDetails/1"
-            ><button>產品內頁</button></router-link
-        >
         <ProductMenu />
         <div class="left_right bestseller_box">
             <img src="@/assets/product/bestseller_01.jpg" alt="" />

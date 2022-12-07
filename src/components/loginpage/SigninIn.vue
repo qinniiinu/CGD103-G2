@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="signup">
-          <a href="#" class="signup_link" @click="ToSignup">註冊新帳號</a>
+          <router-link to="/Signup" class="signup_link">註冊新帳號</router-link>
         </div>
       </form>
     </div>

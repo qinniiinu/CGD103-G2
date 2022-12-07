@@ -11,7 +11,7 @@ export default {
     },
     data() {
         return {
-            product_details: {},
+            temp: {},
             bigPicture: "",
             pickedColor: "",
             pickedSize: "",
@@ -22,29 +22,38 @@ export default {
             cartItem: {},
             alert: false,
             msg: "",
+            bigPicture: "test_01_1.jpg",
         };
     },
     computed: {
+        product_details() {
+            return this.temp[0];
+        },
         product_name() {
-            return this.product_details[0].product_name;
+            return this.product_details.product_name;
         },
         unit_price() {
-            return this.product_details[0].unit_price;
+            return this.product_details.unit_price;
         },
         picList() {
-            return this.product_details[0].product_pic.split(",");
+            return this.product_details?.product_pic?.split(",") ?? [];
         },
         color() {
-            return this.product_details[0].product_color.split(",");
+            return this.product_details?.product_color?.split(",");
         },
         size() {
-            return this.product_details[0].product_size.split(",");
+            return this.product_details?.product_size?.split(",");
         },
         hashTag() {
-            return this.product_details[0].hashtag.split(",");
+            return this.product_details.hashtag?.split(",");
         },
-        bigPicture() {
-            return this.picList[0];
+        pic() {
+            if (this.picList[0]) {
+                this.bigPicture = this.picList[0];
+                return this.picList[0];
+            } else {
+                return "test_01_1.jpg";
+            }
         },
     },
     methods: {
@@ -52,10 +61,11 @@ export default {
             fetch("../data/fakeproduct.json")
                 .then((res) => res.json())
                 .then((json) => {
-                    this.product_details = json.filter((e) => {
+                    this.temp = json.filter((e) => {
                         if (e.product_id === this.$route.params.id) return e;
                     });
-                    console.log(this.product_details);
+
+                    this.bigPicture = this.temp[0].product_pic.split(",")[0];
                 });
         },
         addCart() {
@@ -91,6 +101,8 @@ export default {
                         localStorage.setItem("cart", cartItemKey);
                     }
                 }
+                this.alert = true;
+                this.msg = "加入成功";
             }
         },
         goCart() {
@@ -147,7 +159,7 @@ export default {
                     <p class="price">NT${{ unit_price }}</p>
                     <div class="cellflex">
                         <div class="color_box">
-                            <p class="color">顏色{{ pickedColor }}</p>
+                            <p class="color">顏色</p>
                             <label
                                 :for="e"
                                 v-for="(e, i) in color"
@@ -170,7 +182,7 @@ export default {
                             </label>
                         </div>
                         <div class="size_box">
-                            <p class="size">尺寸 {{ pickedSize }}</p>
+                            <p class="size">尺寸</p>
                             <label
                                 :for="e"
                                 v-for="(e, i) in size"
@@ -258,8 +270,8 @@ export default {
         </div>
     </div>
     <div class="alert" v-if="alert">
-        {{ msg }}
-        <button class="btn_s" @click="alert = false">確定</button>
+        <p>{{ msg }}</p>
+        <p><button class="btn_s" @click="alert = false">確定</button></p>
     </div>
 </template>
 
@@ -278,8 +290,12 @@ export default {
     background-color: $bg_white;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    p {
+        margin: 20px;
+    }
 }
 .show {
     opacity: 1;
@@ -296,6 +312,7 @@ export default {
     .leftright {
         @include m() {
             display: flex;
+            align-items: space-around;
         }
         .left {
             @include s() {
@@ -474,6 +491,7 @@ export default {
                 }
                 .hashtag {
                     @include m() {
+                        margin: 20px 0;
                         display: none;
                     }
                 }
