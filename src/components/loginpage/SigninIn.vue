@@ -1,4 +1,5 @@
 <template>
+  <router-link :to="{ name: 'MyPage' }" class="btn_s">會員頁</router-link>
   <div class="wrapper">
     <div class="form_wrapper sign_in">
       <form class="login_form" action="">
@@ -45,14 +46,14 @@ export default {
   },
   data() {
     return {
-      Signup:false
-    }
+      Signup: false,
+    };
   },
-  methods:{
-    ToSignup(){
-      Signup = true
-    }
-  }
+  methods: {
+    ToSignup() {
+      Signup = true;
+    },
+  },
 };
 </script>
 
@@ -180,7 +181,6 @@ body {
           .signup_link {
             display: block;
             font-size: 14px;
-            
           }
         }
       }
