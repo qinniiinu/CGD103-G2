@@ -221,8 +221,8 @@ export default {
     //image
     position: relative;
     margin: auto;
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
     img {
       width: 100%;
       height: 100%;
@@ -231,6 +231,9 @@ export default {
     }
     @include m() {
       grid-area: 1/4/3/5;
+          width: 250px;
+    height: 250px;
+
     }
   }
   .item:nth-child(3) {
