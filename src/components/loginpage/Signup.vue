@@ -41,11 +41,11 @@
 		<div class="remember">
 		  <label><input type="checkbox" />我已閱讀並同意會員約定條款說明</label>
 		</div>
-		<button type="submit" class="btn_s">下一步</button>
+		<router-link to="/SignupSet"><button type="submit" class="btn_s">下一步</button></router-link>
 		<div class="signup">
 		  <p>
 			已有帳號，
-			<a href="#" class="signup_link" @click="ToSignin">前往登入</a>
+			<router-link to="/login" href="#" class="signup_link">前往登入</router-link>
 		  </p>
 		</div>
 	  </form>

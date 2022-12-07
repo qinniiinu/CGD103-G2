@@ -83,10 +83,25 @@ const routes = [
 		name: "fittingroom3",
 		component: () => import("../views/FittingRoom3View.vue"),
 	},
+	// {
+	// 	path: "/login",
+	// 	name: "login",
+	// 	component: () => import("../views/LoginView.vue"),
+	// },
 	{
-		path: "/login",
-		name: "login",
-		component: () => import("../views/LoginView.vue"),
+		path: "/login", //登入
+		name: "SigninIn",
+		component: () => import("../components/loginpage/SigninIn.vue"),
+	},
+	{
+		path: "/Signup", //註冊
+		name: "Signup",
+		component: () => import("../components/loginpage/Signup.vue"),
+	},
+	{
+		path: "/SignupSet", //身形建置
+		name: "SignupSet",
+		component: () => import("../components/loginpage/SignupSet.vue"),
 	},
 	{
 		path: "/productdetails/:id",
