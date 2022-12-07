@@ -128,22 +128,35 @@ export default {
 @import "@/assets/sass/main.scss";
 @import "@/assets/sass/member_side_menu";
 
-
+@mixin b() {
+	@media screen and (max-width: 1023px) {
+		@content;
+	}
+}
+.mem_container .mem_data{
+	@include b() {
+		padding: 0%;
+	}
+}
 
 .Ordh_container{
-	width: 100%;
+	width: 90%;
+	margin: auto;
 
 }
 
 
 .ord_detail_container{
 	width: 100%;
-	background-color:white;
+	background-color:$second_color;
 	border:1px solid rgb(162, 162, 162) ;
 	p{
 		text-align: left;
 		font-size: 16px;	}
-
+@include b(){
+	display: block;
+	border: 0;
+}
 
 }
 
@@ -156,16 +169,20 @@ export default {
 .ord_detail{
 	display: flex;
 	width: 100%;
-	justify-content: flex-start
-
+	justify-content: flex-start;
+	@include b(){
+	display: block;
+}
 
 }
 
 .ord_detail_second_row{
 	display: flex;
 	width: 100%;
-	justify-content: flex-start
-
+	justify-content: flex-start;
+	@include b(){
+	display: block;
+}
 
 }
 
@@ -182,8 +199,13 @@ p{
 /* 訂單明細 */
 .ord_recipt{
 	width: 100%;
-	background-color:white;
+	margin-top: 50px;
+	background-color:$second_color;
 	border:1px solid rgb(162, 162, 162) ;
+	@include b(){
+	display: block;
+	border: 0;
+}
 }
 
 .prod_item_row{
@@ -191,6 +213,9 @@ p{
 	width: 80%;
 	display: flex;
 	justify-content: space-around;
+	@include b(){
+	display: block;
+	}
 }
 .prod_pic{
 	width: 100px;
@@ -225,11 +250,16 @@ li{
 .ord_msg{
 	width: 100%;
 	background-color:$bg_violet;
-	background-color:white;
+	background-color:$second_color;
 	border:1px solid rgb(162, 162, 162) ;
+	margin-top: 50px;
 	.ord_msg_box{
 		margin-top:50px ;
 	}
+	@include b(){
+	display: block;
+	border: 0;
+}
 
 }
 
@@ -237,9 +267,11 @@ li{
 
 
 .text_box{
-	width: 100%;
+	width: 90%;
+	margin: auto;
 	height: 200px;
 	margin-bottom: 30px;
+
 	.text_box:last-child{
 		height: 100px;
 	}
@@ -248,8 +280,6 @@ li{
 .msg_title{
 	width: 100%;
 	display: flex;
-	margin: 10px;
-	margin-left: 0px;
 }
 
 h3{
@@ -266,7 +296,7 @@ h3{
 	display: flex;
 	justify-content: right;
 	margin: 10px;
-	margin-right: -30px;
+
 }
 
 .sm-b{
