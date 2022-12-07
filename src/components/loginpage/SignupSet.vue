@@ -128,7 +128,7 @@
             />我同意本網站的隱私權政策，並同意Urstyle收集及使用我的個人資料以處理訂單。</label
           >
         </div>
-        <router-link to="/BodyType"><button type="submit" class="btn_s">註冊</button></router-link>
+        <router-link to="/MyPage"><button type="submit" class="btn_s">註冊</button></router-link>
       </form>
     </div>
   </div>
@@ -261,11 +261,27 @@ export default {
             margin-block: 15px;
             span {
               margin-inline: 3px;
-              margin: auto;
             }
             input {
-              margin-top: 5px;
+              margin-top: 10px;
               width: 100%;
+            }
+            input[type="range"]{
+              -webkit-appearance: none;
+              width: 100%;
+              height: 10px;
+              background-color: $second_color;
+              border-radius: 5px;
+              outline: none;
+            }
+            input[type="range"]::-webkit-slider-thumb{
+              -webkit-appearance: none;
+              width: 30px;
+              height: 15px;
+              background-color: $main_color;
+              border-radius: 50px;
+              box-shadow: 1px 2px #25319e;
+              cursor: pointer;
             }
           }
         }
