@@ -3,14 +3,9 @@
         <div class="wrap">
             <div class="left"></div>
             <div class="right">
-                <h2>立即升級體驗完整服務</h2>
+                <h2>打造屬於你的穿搭風格</h2>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Fugit, totam nostrum itaque amet iste omnis eaque aperiam
-                    vel sint doloribus voluptatum commodi eum velit officiis
-                    adipisci culpa sunt atque harum tenetur officia vero, earum
-                    at ullam? Expedita quidem illum, autem voluptas repellat, ea
-                    culpa ratione minima sunt sequi cumque fuga.
+                    依據您喜愛的風格、不同的穿搭情境，為您選擇適合穿搭組合，與在地設計師及多間服飾品牌合作，滿足您對各類穿搭的慾望，
                 </p>
             </div>
         </div>
@@ -43,9 +38,23 @@
             </div>
         </div>
     </div>
-    <div class="sub-intro">
-        <div class="intro-wrap"></div>
-    </div>
+    <!-- <div class="sub-intro">
+        <div class="intro-wrap">
+            <div class="circle">
+                <div class="circle-wrap">
+                    <h2>風格穿搭</h2>
+                    <p>aaa</p>
+                </div>
+                
+            </div>
+            <div class="intro">
+                <div class="intro-card">
+                    
+                    <h2>專屬穿搭</h2>
+                </div>
+            </div>
+        </div>
+    </div> -->
 </template>
 
 <script>
@@ -91,6 +100,10 @@ export default {
 .subscription {
     width: 100%;
     .wrap {
+        @include l{
+            height: 600px;
+        }
+        height:380px;
         display: flex;
         justify-content: center;
         background: linear-gradient(
@@ -101,33 +114,45 @@ export default {
                 left bottom,
             url(../assets/sub_test_img/test_03.png) no-repeat fixed left top;
         background-color: RGB(245, 245, 245);
-        height: 600px;
+        
         .left {
-            width: 400px;
+            width: 300px;
             height: auto;
+            @include s{
+                display: none;
+            }
         }
         .right {
-            width: 500px;
+            width: 550px;
             margin: 10vh;
             font-size: 32px;
             color: $title_color;
             font-weight: bold;
             p {
-                font-size: 14px;
+                font-size: 18px;
                 font-weight: normal;
                 margin-top: 20px;
-                line-height: 20px;
+                line-height: 25px;
             }
         }
     }
 }
 .sub-plan {
-    height: 280px;
+    height: 100%;
+    width: 250px;
     margin: auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     position: relative;
-    .subcard {
+    gap: 30px;
+    margin-bottom: 100px;
+    @include l{
+        width: 100%;
+        height: 200px;
+        flex-direction: row;
+        margin-bottom: 0px;
+        .subcard {
         -webkit-transform: skew(-5deg);
         -moz-transform: skew(-5deg);
         -o-transform: skew(-5deg);
@@ -135,7 +160,7 @@ export default {
         border: 1px solid black;
         &:nth-child(1) {
             top: -200px;
-            left: 15vw;
+            left: 12vw;
         }
         &:nth-child(2) {
             top: -250px;
@@ -143,10 +168,36 @@ export default {
         }
         &:nth-child(3) {
             top: -300px;
-            left: 65vw;
+            left: 68vw;
         }
+        }
+    }
+        .subcard {
+            @include l{
+                margin: auto;
+            }
+        -webkit-transform: skew(-5deg);
+        -moz-transform: skew(-5deg);
+        -o-transform: skew(-5deg);
+        // position: absolute;
+        border: 1px solid black;
+        // &:nth-child(1) {
+        //     top: -200px;
+        //     left: 12vw;
+        // }
+        // &:nth-child(2) {
+        //     top: -250px;
+        //     left: 40vw;
+        // }
+        // &:nth-child(3) {
+        //     top: -300px;
+        //     left: 68vw;
+        // }
         .card-wrap {
-            width: 225px;
+            @include l{
+                width: 225px;
+            }
+            // width: 225px;
             background: white;
             padding: 30px 15px;
             color: $main_color;
@@ -231,7 +282,6 @@ export default {
         }
     }
 }
-.sub-intro {
-    height: 600px;
-}
+
+
 </style>
