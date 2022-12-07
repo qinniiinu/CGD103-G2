@@ -159,6 +159,9 @@ export default {
       display: block;
       position: absolute;
       right: $padding;
+      @include s() {
+        font-size: 40px;
+      }
     }
     .type_pic {
       width: 100%;
