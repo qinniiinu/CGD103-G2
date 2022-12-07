@@ -352,8 +352,8 @@ export default {
             @include m() {
                 width: 50%;
             }
-            .rightTop {
-            }
+            // .rightTop {
+            // }
             color: $text_color;
             padding: 10px;
             .title {
