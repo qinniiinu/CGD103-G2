@@ -25,7 +25,7 @@ const routes = [
 	{
 		path: "/product",
 		name: "product",
-		component: () => import("../views/ProductView.vue"),
+		component: () => import("../views/product/ProductView.vue"),
 
 	},
 	{
@@ -105,12 +105,12 @@ const routes = [
 	},
 	{
 		path: "/productdetails/:id",
-		component: () => import("../views/ProductDetailsView.vue"),
+		component: () => import("../views/product/ProductDetailsView.vue"),
 	},
 	{
 		path: "/productlist",
 		name: "productlist",
-		component: () => import("../views/ProductListView.vue"),
+		component: () => import("../views/product/ProductListView.vue"),
 	},
 	{
 		path: "/subscription",

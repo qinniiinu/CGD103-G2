@@ -2,12 +2,14 @@
 import ProductMenu from "@/components/product/ProductMenu.vue";
 import ProductCard from "@/components/product/ProductCard.vue";
 import HashTag from "@/components/product/HashTag.vue";
+import Alert from "@/components/Alert.vue";
 export default {
     name: "Product",
     components: {
         ProductMenu,
         ProductCard,
         HashTag,
+        Alert,
     },
     data() {
         return {
@@ -127,6 +129,9 @@ export default {
         },
         plus() {
             this.number++;
+        },
+        tab(val) {
+            this.alert = val;
         },
     },
     created() {
@@ -269,10 +274,7 @@ export default {
             <h3>你可能也會喜歡</h3>
         </div>
     </div>
-    <div class="alert" v-if="alert">
-        <p>{{ msg }}</p>
-        <p><button class="btn_s" @click="alert = false">確定</button></p>
-    </div>
+    <Alert :show="alert" :msg="msg" @closeAlert="tab"></Alert>
 </template>
 
 <style lang="scss" scoped>
