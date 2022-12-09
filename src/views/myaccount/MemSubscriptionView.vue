@@ -167,7 +167,6 @@
 </template>
 
 <script>
-import Footer from "@/components/Footer.vue";
 import MemberSideMenu from "@/components/MemberSideMenu.vue";
 export default {
 	name: "MemSubscriptionView",
