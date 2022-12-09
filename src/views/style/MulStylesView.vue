@@ -98,12 +98,12 @@ export default {
 			logoText:'RE:Outfit  ',
 		
 			coverPics:[
-				{src:'./cover_img1.JPG',text:'登山Outdoor風'},
-				{src:'./cover_img2.JPG',text:'居家健身風'},
-				{src:'./cover_img3.JPG',text:'都會Outdoor風'},
-				{src:'./cover_img4.JPG',text:'戶外Outdoor風'},
-				{src:'./cover_img5.JPG',text:'輕盈運動風'},
-				{src:'./cover_img9.JPG',text:'都會休閒風'},
+				{src:'./cover_img1.jpg',text:'登山Outdoor風'},
+				{src:'./cover_img2.jpg',text:'居家健身風'},
+				{src:'./cover_img3.jpg',text:'都會Outdoor風'},
+				{src:'./cover_img4.jpg',text:'戶外Outdoor風'},
+				{src:'./cover_img5.jpg',text:'輕盈運動風'},
+				{src:'./cover_img9.jpg',text:'都會休閒風'},
 			],
 			stylePics:[
 				{src:'./mulstyle-1.jpg'},
@@ -217,7 +217,7 @@ export default {
 				'#宴會穿搭',
 			],
 			currentTag:'#上班穿搭',
-			currentPic: [{src:'./cover_img2.JPG'}],
+			currentPic: [{src:'./cover_img2.jpg'}],
 			kolPics:[
 				{src:'./stylelist-look1.webp'},
 				{src:'./stylelist-look2.webp'},
