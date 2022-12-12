@@ -22,9 +22,10 @@ export default {
     },
     methods: {
         getResource() {
-            fetch("data/fakeproduct.json")
-                .then((res) => res.json())
-                .then((json) => (this.fakeproduct = json));
+            this.axios.get("data/fakeproduct.json").then((response) => {
+                this.fakeproduct = response.data;
+                console.log(this.fakeproduct);
+            });
         },
         cut(x) {
             return x.split(",")[0];
@@ -32,7 +33,6 @@ export default {
     },
     created() {
         this.getResource();
-        console.log(this.fakeproduct);
     },
 };
 </script>

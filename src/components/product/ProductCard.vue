@@ -1,7 +1,7 @@
 <template>
     <div class="product_card">
         <div class="box">
-            <router-link :to="`/productdetails/${id}`">
+            <router-link :to="`/productDetails/${id}`">
                 <img :src="require(`@/assets/product/${imgURL}`)" />
             </router-link>
 
@@ -10,7 +10,7 @@
                 <font-awesome-icon icon="fa-solid fa-plus" v-else />
             </div>
         </div>
-        <router-link :to="`/productdetails/${id}`">
+        <router-link :to="`/productDetails/${id}`">
             <p class="title">{{ title }}</p>
             <p class="price">NT${{ price }}</p>
         </router-link>

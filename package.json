@@ -14,10 +14,12 @@
 		"@fortawesome/vue-fontawesome": "^3.0.2",
 		"@popperjs/core": "^2.11.6",
 		"@vuepic/vue-datepicker": "^3.6.0",
+		"axios": "^1.2.1",
 		"core-js": "^3.8.3",
 		"gsap": "^3.11.3",
 		"swiper": "^8.4.5",
 		"vue": "^3.2.13",
+		"vue-axios": "^3.5.2",
 		"vue-router": "^4.0.3",
 		"vuex": "^4.0.0"
 	},
