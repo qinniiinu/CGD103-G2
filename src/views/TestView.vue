@@ -9,6 +9,11 @@
 
             <button @click="action" class="btn_s">btn</button>
             <button @click="action" class="btn_l">btn</button>
+            <button @click="action" class="btn_ms">btn</button>
+            <button @click="action" class="btn_ms">btn</button>
+            <button @click="action" class="btn_ml">btn</button>
+            <button @click="action" class="btn_mgs">btn</button>
+            <button @click="action" class="btn_mgl">btn</button>
             <div class="box"></div>
             <ProductFitting></ProductFitting>
         </div>
