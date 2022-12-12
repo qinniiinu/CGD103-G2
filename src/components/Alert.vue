@@ -1,5 +1,5 @@
 <template>
-    <div class="bg" v-show="tr || show" @click="close">
+    <div class="bg" v-show="tr" @click="close">
         <div class="alert">
             <p>{{ msg }}</p>
             <p>
@@ -15,20 +15,16 @@ export default {
             String,
             default: "",
         },
-        show: { Boolean },
     },
     data() {
         return { tr: false };
     },
     methods: {
         close() {
-            this.tr = false;
+            this.tr = false ? true : false;
             this.$emit("closeAlert", this.tr);
             return this.tr;
         },
-        /*  emit() {
-            this.$emit("closeAlert", this.tr);
-        }, */
     },
 };
 </script>

@@ -177,8 +177,9 @@ export default {
     }
 
     .ProductSideMenu {
-        width: 200px;
-        padding: 10px;
+        width: 100%;
+        min-width: 180px;
+        padding: 10px 0;
         input {
             display: none;
         }
@@ -188,6 +189,7 @@ export default {
             .left_right {
                 justify-content: space-between;
                 cursor: pointer;
+                width: 100%;
                 p {
                     cursor: pointer;
                 }

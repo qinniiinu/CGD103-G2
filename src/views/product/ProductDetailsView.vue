@@ -32,10 +32,10 @@ export default {
             return this.temp[0];
         },
         product_name() {
-            return this.product_details.product_name;
+            return this.product_details?.product_name;
         },
         unit_price() {
-            return this.product_details.unit_price;
+            return this.product_details?.unit_price;
         },
         picList() {
             return this.product_details?.product_pic?.split(",") ?? [];
@@ -47,7 +47,7 @@ export default {
             return this.product_details?.product_size?.split(",");
         },
         hashTag() {
-            return this.product_details.hashtag?.split(",");
+            return this.product_details?.hashtag?.split(",");
         },
         pic() {
             if (this.picList[0]) {
@@ -274,7 +274,7 @@ export default {
             <h3>你可能也會喜歡</h3>
         </div>
     </div>
-    <Alert :show="alert" :msg="msg" @closeAlert="tab"></Alert>
+    <Alert :msg="msg" @closeAlert="tab" v-show="alert"></Alert>
 </template>
 
 <style lang="scss" scoped>
@@ -420,7 +420,7 @@ export default {
                         border-radius: 50%;
                         margin: 10px;
                         background-color: #003;
-                        border: 3px solid transparent;
+                        border: 3px solid $title_color;
                         cursor: pointer;
                         @include s() {
                             width: 20px;
@@ -565,7 +565,7 @@ export default {
             box-sizing: border-box;
             .dressingGuideTitle {
                 background-color: $second_color;
-                color: $title_color;
+                color: $text_color;
                 font-size: 24px;
                 font-weight: 600;
                 padding: 20px;
