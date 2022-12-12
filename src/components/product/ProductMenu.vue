@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="productMenuOutside">
+        <div class="productMenuBack"></div>
         <input id="b1" type="radio" value="b1" v-model="picked" />
         <input id="b2" type="radio" value="b2" v-model="picked" />
         <input id="b3" type="radio" value="b3" v-model="picked" />
@@ -73,10 +74,7 @@
                     id="shoes"
                     v-show="picked == 'b4'"
                 >
-                    <li
-                        @click="selected[2] = '休閒鞋'"
-                        class="clothingList_item"
-                    >
+                    <li @click="selected[2] = '皮鞋'" class="clothingList_item">
                         休閒鞋
                     </li>
                     <li
@@ -130,7 +128,7 @@
                     <p>
                         <font-awesome-icon icon=" fa-solid fa-caret-down" />
                     </p>
-                    <p>休閒鞋</p>
+                    <p>皮鞋</p>
                     <p v-if="selected[0] != 'F'">跟鞋</p>
                     <p>運動鞋</p>
                 </div>
@@ -183,13 +181,23 @@ $menOrWomen_m: 60px;
 input {
     display: none;
 }
+
+// .productMenuOutside{
+//     // position: relative;
+// }
+.productMenuBack {
+    height: 60px;
+    width: 100%;
+}
 .productMenu {
     width: 100%;
     max-width: 1200px;
     margin: auto;
     color: $title_color;
-    position: relative;
-
+    position: fixed;
+    top: 60px;
+    background-color: $bg-white;
+    z-index: 5;
     .menOrWomen {
         display: flex;
         height: $menOrWomen_m;
@@ -251,11 +259,16 @@ input {
         position: absolute;
         width: 100%;
         z-index: 3;
+        border: $line solid $title_color;
+        border-top: 0;
+        box-sizing: border-box;
         .sub {
             width: 25%;
             padding: 10px;
             text-align: center;
-
+            & + .sub {
+                border-left: $line solid $title_color;
+            }
             p {
                 padding: 5px;
             }

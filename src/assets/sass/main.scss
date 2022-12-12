@@ -2,7 +2,6 @@
 @import "variable";
 @import "mixin";
 @import url("https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Livvic:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,500;1,600;1,700;1,900&family=Noto+Sans+TC:wght@400;500;700;900&family=Poppins:ital,wght@0,400;1,600&display=swap");
-// @import "node_modules/bootstrap/scss/bootstrap";
 $null: null;
 
 // 顏色
@@ -25,15 +24,6 @@ $main_font: "Noto Sans TC", sans-serif;
 $second_font: "Poppins", sans-serif;
 $third_font: "Poppins", sans-serif;
 $four_font: "Poppins", sans-serif;
-// $font_size_s: 12px;
-// $font_size_m: $font_size_s * 1.2;
-// $font_size_l: $font_size_s * 1.5;
-// $font_size_xl: $font_size_s * 2;
-
-// $font_size_title_s: 18px;
-// $font_size_title_m: $font_size_title_s * 1.2;
-// $font_size_title_l: $font_size_title_s * 1.5;
-// $font_size_title_xl: $font_size_title_s * 2;
 
 $line: 2px;
 $nav_height: 60px;
@@ -58,6 +48,7 @@ body {
 	display: flex;
 }
 
+//按鈕大顆
 .btn_s {
 	border: $line solid $main_color;
 	color: white;
@@ -79,14 +70,13 @@ body {
 		cursor: pointer;
 
 		&:hover {
-			background-color: #ECEEFF;
+			background-color: $second_color;
 			color: $main_color ;
 			border: 2px solid $main_color;
 			cursor: pointer;
 		}
 	}
 }
-
 
 .btn_l {
 	border: $line solid $main_color;
@@ -108,10 +98,75 @@ body {
 		cursor: pointer;
 
 		&:hover {
-			background-color: #ECEEFF;
+			background-color: $second_color;
 			color: $main_color ;
 			border: $line solid $main_color;
 			cursor: pointer;
 		}
+	}
+}
+
+//按鈕小顆
+.btn_ms {
+	background: $bg_white;
+	color: $main_color;
+	padding: 10px 12px;
+	border: $line solid $main_color;
+	box-sizing: border-box;
+	min-width: 80px;
+
+	&:hover {
+		background-color: $second_color;
+		color: $main_color ;
+		border: $line solid $main_color;
+		cursor: pointer;
+	}
+}
+
+//按鈕小顆灰色
+.btn_ml {
+	background: $main_color;
+	color: white;
+	padding: 10px 12px;
+	border: $line solid $main_color;
+	box-sizing: border-box;
+	min-width: 80px;
+
+	&:hover {
+		background-color: $second_color;
+		color: $main_color ;
+		border: $line solid $main_color;
+		cursor: pointer;
+	}
+}
+
+.btn_mgs {
+	background: $text_color;
+	color: white;
+	padding: 10px 12px;
+	border: $line solid $text_color;
+	box-sizing: border-box;
+	min-width: 80px;
+
+	&:hover {
+		background-color: $bg_gray;
+		border: $line solid $title_color;
+		color: $title_color ;
+		cursor: pointer;
+	}
+}
+
+.btn_mgl {
+	background: white;
+	color: $title_color;
+	padding: 10px 12px;
+	border: $line solid $text_color;
+	box-sizing: border-box;
+	min-width: 80px;
+
+	&:hover {
+		background-color: $bg_gray;
+		border: $line solid $title_color;
+		cursor: pointer;
 	}
 }
