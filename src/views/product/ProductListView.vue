@@ -17,15 +17,65 @@ export default {
     },
     data() {
         return {
-            fakeproduct: [],
+            product: [],
         };
     },
+    computed: {
+        resultproduct() {
+            if (JSON.stringify(this.$route.query) !== "{}") {
+                this.scrollBlock();
+                if (!this.$route.query.M) {
+                    console.log(this.$route.query.M);
+                    switch (this.$route.query.G) {
+                        case "0":
+                            return this.product.filter((e) => {
+                                return e.product_gender == 0;
+                            });
+                            break;
+                        case "1":
+                            return this.product.filter((e) => {
+                                return e.product_gender == 1;
+                            });
+                            break;
+
+                        default:
+                            return this.product;
+                    }
+                } else {
+                    return this.product.filter((e) => {
+                        if (!this.$route.query.T)
+                            return (
+                                e.product_gender == this.$route.query.G &&
+                                e.product_maintype == this.$route.query.M
+                            );
+                        else {
+                            return (
+                                e.product_gender == this.$route.query.G &&
+                                e.product_maintype == this.$route.query.M &&
+                                e.product_type == this.$route.query.T
+                            );
+                        }
+                    });
+                }
+            } else {
+                return this.product;
+            }
+        },
+    },
     methods: {
-        getResource() {
-            this.axios.get("data/fakeproduct.json").then((response) => {
-                this.fakeproduct = response.data;
-                console.log(this.fakeproduct);
+        scrollBlock() {
+            const box = this.$refs.sectionlist;
+            window.scrollTo({
+                top: box?.offsetTop,
+                behavior: "smooth",
             });
+        },
+        getResource() {
+            this.axios
+                .get("http://localhost/phps/list.php")
+                .then((response) => {
+                    this.product = response.data;
+                });
         },
         cut(x) {
             return x.split(",")[0];
@@ -45,12 +95,12 @@ export default {
         </div>
         <BestSeller />
         <div class="divider"></div>
-        <div class="leftright">
+        <div class="leftright" ref="sectionlist">
             <div class="Sidebar">
                 <ProductSideMenu></ProductSideMenu>
                 <HashTag></HashTag>
             </div>
-            <div>
+            <div id="list">
                 <SearchBar />
                 <div class="productCard_box">
                     <ProductCard
@@ -58,7 +108,7 @@ export default {
                         :title="e.product_name"
                         :price="e.unit_price"
                         :imgURL="cut(e.product_pic)"
-                        v-for="e in fakeproduct"
+                        v-for="e in resultproduct"
                         :key="e.product_id"
                     />
                 </div>

@@ -29,7 +29,7 @@ export default {
     },
     computed: {
         product_details() {
-            return this.temp[0];
+            return this.temp;
         },
         product_name() {
             return this.product_details?.product_name;
@@ -60,15 +60,12 @@ export default {
     },
     methods: {
         getResource() {
-            fetch("../data/fakeproduct.json")
-                .then((res) => res.json())
-                .then((json) => {
-                    this.temp = json.filter((e) => {
-                        if (e.product_id === this.$route.params.id) return e;
-                    });
-
-                    this.bigPicture = this.temp[0].product_pic.split(",")[0];
+            this.axios.get("../data/fakeproduct.json").then((response) => {
+                this.temp = response.data.find((e) => {
+                    if (e.product_id === this.$route.params.id) return e;
                 });
+                this.bigPicture = this.temp?.product_pic.split(",")[0];
+            });
         },
         addCart() {
             localStorage.getItem("cart");
@@ -230,7 +227,7 @@ export default {
                         </div>
                         <div class="tagBox">
                             <p class="hashtag">#tag</p>
-                            <i v-for="(e, i) in hashTag" :key="i">{{ e }}</i>
+                            <i v-for="(e, i) in hashTag" :key="i">#{{ e }}</i>
                         </div>
                     </div>
                     <div class="shop_buttonBox">
