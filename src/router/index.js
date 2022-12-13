@@ -149,6 +149,13 @@ const routes = [
 		path: "/MyPage",
 		name: "MyPage",
 		component: () => import("../views/myaccount/MyPageView.vue"),
+		children: [
+			{
+			  path: '',
+			  name: "OverView",
+			  component: () => import("../views/myaccount/OverView.vue")
+			},
+		]
 	},
 	{
 		path: "/OrderDetails",
