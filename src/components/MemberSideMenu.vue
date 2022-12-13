@@ -1,8 +1,8 @@
 <template>
 	<aside class="member_side_menu">
         <div class="member">
-            <router-link to="/MyPage" class="mug_shot">
-                <img src="https://fakeimg.pl/100x100/200">
+            <router-link :to="{name:'OverView'}" class="mug_shot">
+                <div class="imgBox"><img src="https://fakeimg.pl/100x100/200"></div>
             </router-link>
             <div class="name_level">
                 <p class="name">Customer</p>
