@@ -30,7 +30,7 @@
         "product_size": "XS,S,M,L,XL"
     },
     {
-        "product_id": 103,
+        "product_id": "103",
         "product_name": "皮鞋",
         "hashtag": "極簡風,皮革,蘋果型",
         "unit_price": "1200",
@@ -45,7 +45,7 @@
         "product_size": "25,26,27,28,29,30.31,"
     },
     {
-        "product_id": 104,
+        "product_id": "104",
         "product_name": "前口袋連帽外套",
         "hashtag": "文青風,梨型",
         "unit_price": "900",
@@ -60,7 +60,7 @@
         "product_size": "XS,S,M,L,XL"
     },
     {
-        "product_id": 105,
+        "product_id": "105",
         "product_name": "毛帽",
         "hashtag": "文青風,休閒風,針織",
         "unit_price": "300",
@@ -75,7 +75,7 @@
         "product_size": "F"
     },
     {
-        "product_id": 106,
+        "product_id": "106",
         "product_name": "大口袋長褲",
         "hashtag": "文青風,倒三角型",
         "unit_price": "550",
@@ -90,7 +90,7 @@
         "product_size": "XS,S,M,L,XL"
     },
     {
-        "product_id": 107,
+        "product_id": "107",
         "product_name": "皮製外套",
         "hashtag": "時尚風,皮革,矩形",
         "unit_price": "1300",
@@ -105,7 +105,7 @@
         "product_size": "XS,S,M,L,XL"
     },
     {
-        "product_id": 108,
+        "product_id": "108",
         "product_name": "連帽外套",
         "hashtag": "時尚風,蘋果型",
         "unit_price": "600",
@@ -120,7 +120,7 @@
         "product_size": "XS,S,M,L,XL"
     },
     {
-        "product_id": 109,
+        "product_id": "109",
         "product_name": "牛仔褲",
         "hashtag": "時尚風,單寧,梨型",
         "unit_price": "700",
@@ -135,7 +135,7 @@
         "product_size": "XS,S,M,L,XL"
     },
     {
-        "product_id": 110,
+        "product_id": "110",
         "product_name": "運動鞋",
         "hashtag": "時尚風,運動風",
         "unit_price": "900",
@@ -150,7 +150,7 @@
         "product_size": "25,26,27,28,29,30.31"
     },
     {
-        "product_id": 111,
+        "product_id": "111",
         "product_name": "運動鞋",
         "hashtag": "運動風",
         "unit_price": "900",
@@ -165,7 +165,7 @@
         "product_size": "25,26,27,28,29,30.31"
     },
     {
-        "product_id": 112,
+        "product_id": "112",
         "product_name": "針織上衣",
         "hashtag": "文青風,針織,倒三角型",
         "unit_price": "900",
@@ -180,7 +180,7 @@
         "product_size": "XS,S,M,L,XL"
     },
     {
-        "product_id": 113,
+        "product_id": "113",
         "product_name": "襯衫",
         "hashtag": "文青風,矩形",
         "unit_price": "900",
@@ -195,7 +195,7 @@
         "product_size": "XS,S,M,L,XL"
     },
     {
-        "product_id": 114,
+        "product_id": "114",
         "product_name": "黑裙",
         "hashtag": "文青風,蘋果型",
         "unit_price": "900",
@@ -210,7 +210,7 @@
         "product_size": "XS,S,M,L,XL"
     },
     {
-        "product_id": 115,
+        "product_id": "115",
         "product_name": "小白鞋",
         "hashtag": "文青風,極簡風",
         "unit_price": "900",
@@ -225,7 +225,7 @@
         "product_size": "22,23,24,25,26"
     },
     {
-        "product_id": 116,
+        "product_id": "116",
         "product_name": "洋裝",
         "hashtag": "時尚風,梨型",
         "unit_price": "1200",
@@ -240,7 +240,7 @@
         "product_size": "XS,S,M,L,XL"
     },
     {
-        "product_id": 117,
+        "product_id": "117",
         "product_name": "低跟鞋",
         "hashtag": "時尚風",
         "unit_price": "1800",
@@ -255,7 +255,7 @@
         "product_size": "22,23,24,25,26"
     },
     {
-        "product_id": 118,
+        "product_id": "118",
         "product_name": "運動外套",
         "hashtag": "運動風,矩形",
         "unit_price": "900",
@@ -270,7 +270,7 @@
         "product_size": "XS,S,M,L,XL"
     },
     {
-        "product_id": 119,
+        "product_id": "119",
         "product_name": "豹紋長褲",
         "hashtag": "運動風,倒三角型",
         "unit_price": "900",
@@ -285,7 +285,7 @@
         "product_size": "XS,S,M,L,XL"
     },
     {
-        "product_id": 120,
+        "product_id": "120",
         "product_name": "黑鞋",
         "hashtag": "運動風,休閒風",
         "unit_price": "1200",
@@ -300,7 +300,7 @@
         "product_size": "22,23,24,25,26"
     },
     {
-        "product_id": 121,
+        "product_id": "121",
         "product_name": "襯衫",
         "hashtag": "極簡風,素色,蘋果型",
         "unit_price": "900",
@@ -315,7 +315,7 @@
         "product_size": "XS,S,M,L,XL"
     },
     {
-        "product_id": 122,
+        "product_id": "122",
         "product_name": "長褲",
         "hashtag": "極簡風,梨型",
         "unit_price": "900",
