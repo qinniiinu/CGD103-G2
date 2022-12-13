@@ -59,8 +59,8 @@ const routes = [
 		component: () => import("../views/Checkout1View.vue"),
 	},
 	{
-		path:"/SubCheckout",
-		name:"SubCheckout",
+		path: "/SubCheckout",
+		name: "SubCheckout",
 		component: () => import("../views/SubCheckoutView.vue")
 	},
 	{
@@ -149,6 +149,13 @@ const routes = [
 		path: "/MyPage",
 		name: "MyPage",
 		component: () => import("../views/myaccount/MyPageView.vue"),
+		children: [
+			{
+			  path: '',
+			  name: "OverView",
+			  component: () => import("../views/myaccount/OverView.vue")
+			},
+		]
 	},
 	{
 		path: "/OrderDetails",
