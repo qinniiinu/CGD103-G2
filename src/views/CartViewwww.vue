@@ -2,6 +2,29 @@
 	<template v-if="load">loading...</template>
 	<template v-else>
 		<div class="productContainer">
+			<div class="prod-wrap">
+				<h2>我是假設的商品區</h2>
+				<div class="items">
+					<div class="item" v-for="(item,index) in product" :key="item.id">
+						<!-- 產品編號 -->
+						<p>{{item.id}}</p>
+						<!-- 產品圖 -->
+						<img :src="item.image" v-bind:alt="item.title">
+						<!-- 產品名稱 -->
+						<p>{{item.title}}</p>
+						<!-- 產品顏色 -->
+						<p>{{item.color}}</p>
+						<!-- 產品尺寸 -->
+						<p>{{item.size}}</p>
+						<!-- 產品單價 -->
+						<p>{{item.price}}元</p>
+						<div class="count">
+							<button @click="reduceCount(index,item)">-</button>
+							<button @click="addCount(index,item)">+</button>
+						</div>
+					</div>
+				</div>
+			</div>
 			<div class="cart">
 				<div class="cart-wrap">
 					<h2>購物車</h2>
@@ -58,7 +81,6 @@
 
 <script>
 import {vip_level} from'@/assets/config/setting.js';
-import {products} from'@/assets/config/setting.js';
 
 export default {
 	name: "Cart",
@@ -74,26 +96,60 @@ export default {
 			max:0,
 			memLevel:'BASIC',
 			discount:0.05,
-			vip_level:vip_level,
-			products:products
+			product:[
+			//產品資訊
+			{
+				id: 1,
+				image: "https://nb.scene7.com/is/image/NB/m990gl5_nb_05_i?$pdpflexf2$&qlt=80&fmt=webp&wid=472&hei=472",
+				title: "Newbalance鞋",
+				color: "灰色",
+				size: "23cm",
+				price: 7990,
+			},
+			{
+				id: 2,
+				image: "https://pics.pzcdn.tw/pazzo/ProductBasics/f06d3568-2bd1-4b9c-9f9e-aef3dcceed16.jpg",
+				title: "帆布袋",
+				color: "米色",
+				size: "F",
+				price: 590,
+			},
+			{
+			id: 3,
+			image: "https://pics.pzcdn.tw/pazzo/ProductBasics/2b8716f4-5693-4743-abae-3e12b07b6aa0.jpg",
+			title: "漢堡上衣",
+			color: "藍色",
+			size: "L",
+			price: 790,
+			},
+			{
+			id: 4,
+			image: "https://pics.pzcdn.tw/pazzo/ProductBasics/73bd6f12-bae9-4c29-bf90-f02bf925b5d0.jpg",
+			title: "休閒短褲",
+			color: "卡其色",
+			size: "S",
+			price: 450,
+			}
+			],
+			vip_level:vip_level
 		}
 	},
 	created(){
 		this.getStorage()
 	},
 	computed:{
-		// total(index,item){
-		// 	if(this.product.length>0){
-		// 		let total=0
-		// 		for(const index in this.order){
-		// 			total+=this.order[index]['count']*this.order[index]['price']
-		// 		}
-		// 		console.log(total);
-		// 		return parseInt(total)
-		// 	}else{
-		// 		return 0
-		// 	}
-		// },
+		total(index,item){
+			if(this.product.length>0){
+				let total=0
+				for(const index in this.order){
+					total+=this.order[index]['count']*this.order[index]['price']
+				}
+				console.log(total);
+				return parseInt(total)
+			}else{
+				return 0
+			}
+		},
 		// aftertotal(index,item){
 		// 	if(this.order.length>0){
 		// 		let aftertotal=0
@@ -120,79 +176,63 @@ export default {
 		// 		this.load=false
 		// 	})
 		// }
-		// addCount(index,item){
-		// 	console.log(item)
-		// 	this.count[index]+=1
-		// 	const prodIndex=this.order.findIndex(orderItem=>{
-		// 		return orderItem.id===item.id
-		// 	})
-		// 	console.log(prodIndex)
-		// 	if(prodIndex>=0){
-		// 		this.order[prodIndex]['count']+=1
-		// 	}else{
-		// 		// 推進購物車產品資訊
-		// 		this.order.push({
-		// 			id:item.id,
-		// 			title:item.title,
-		// 			image:item.image,
-		// 			color:item.color,
-		// 			size:item.size,
-		// 			price:item.price,
-		// 			count:1
-		// 		})
-		// 	}
-		// 	this.setStorage()
-		// },
-		// reduceCount(index,item){
-		// 	console.log(item)
-		// 	if(this.count[index]<=0) return
-		// 	this.count[index]-=1
-		// 	const prodIndex=this.order.findIndex(orderItem=>{
-		// 		return orderItem.id===item.id
-		// 	})
-		// 	if(prodIndex<0) return;
-		// 	if(this.order[prodIndex]['count']>1){
-		// 		this.order[prodIndex]['count']-=1
-		// 	}else{
-		// 		this.order.splice(prodIndex,1)
-		// 		alert("確定要刪除此產品嗎?")
-		// 	}
-		// 	this.setStorage()
-		// },
+		addCount(index,item){
+			console.log(item)
+			this.count[index]+=1
+			const prodIndex=this.order.findIndex(orderItem=>{
+				return orderItem.id===item.id
+			})
+			console.log(prodIndex)
+			if(prodIndex>=0){
+				this.order[prodIndex]['count']+=1
+			}else{
+				// 推進購物車產品資訊
+				this.order.push({
+					id:item.id,
+					title:item.title,
+					image:item.image,
+					color:item.color,
+					size:item.size,
+					price:item.price,
+					count:1
+				})
+			}
+			this.setStorage()
+		},
+		reduceCount(index,item){
+			console.log(item)
+			if(this.count[index]<=0) return
+			this.count[index]-=1
+			const prodIndex=this.order.findIndex(orderItem=>{
+				return orderItem.id===item.id
+			})
+			if(prodIndex<0) return;
+			if(this.order[prodIndex]['count']>1){
+				this.order[prodIndex]['count']-=1
+			}else{
+				this.order.splice(prodIndex,1)
+				alert("確定要刪除此產品嗎?")
+			}
+			this.setStorage()
+		},
 		getStorage(){
-			let data =localStorage.getItem('cart');
+			let data =localStorage.getItem('order');
 			data=JSON.parse(data)
 			this.order=data? data:[]
-			console.log(this.order);
-			// this.order.push({
-			// 	id:item.product_id,
-			// 	// title:item.title,
-			// 	// image:item.image,
-			// 	// color:item.color,
-			// 	// size:item.size,
-			// 	// price:item.price,
-			// 	// count:1
-			// })
-			
         },
-		// additem(){
-		// 	const prodIndex=this.order.findIndex(orderItem=>{
-		//  		return orderItem.id===item.id
-		//  	})
-		// },
-		// setStorage(){
-		// 	const data=JSON.stringify(this.order);
-		// 	localStorage.setItem('order',data);
-        // },
-		// dele(index,item){
-		// 	const prodIndex=this.order.findIndex(orderItem=>{
-		// 		return orderItem.id===item.id
-		// 	})
-		// 	if(prodIndex<0) return;
-		// 	this.order.splice(prodIndex,1)
-		// 	alert("確定要刪除此產品嗎?")
-		// 	this.setStorage()
-		// },
+		setStorage(){
+			const data=JSON.stringify(this.order);
+			localStorage.setItem('order',data);
+        },
+		dele(index,item){
+			const prodIndex=this.order.findIndex(orderItem=>{
+				return orderItem.id===item.id
+			})
+			if(prodIndex<0) return;
+			this.order.splice(prodIndex,1)
+			alert("確定要刪除此產品嗎?")
+			this.setStorage()
+		},
 	
 	}
 };
@@ -374,9 +414,6 @@ h2{
 					}
 				}
 			}
-		}
-		.none-list{
-			
 		}
 	}
 }
