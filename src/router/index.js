@@ -54,11 +54,6 @@ const routes = [
 		component: () => import("../views/CheckoutView.vue"),
 	},
 	{
-		path: "/checkout1",
-		name: "checkout1",
-		component: () => import("../views/Checkout1View.vue"),
-	},
-	{
 		path:"/SubCheckout",
 		name:"SubCheckout",
 		component: () => import("../views/SubCheckoutView.vue")
