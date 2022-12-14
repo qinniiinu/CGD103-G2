@@ -151,9 +151,9 @@ const routes = [
 		component: () => import("../views/myaccount/MyPageView.vue"),
 		children: [
 			{
-			  path: '',
-			  name: "OverView",
-			  component: () => import("../views/myaccount/OverView.vue")
+				path: '',
+				name: "OverView",
+				component: () => import("../views/myaccount/OverView.vue")
 			},
 		]
 	},
@@ -261,10 +261,10 @@ const router = createRouter({
 	history: createWebHistory(process.env.BASE_URL),
 	routes,
 	scrollBehavior(to, from, savedPosition) {
-		if (savedPosition) {
-			return savedPosition
-		} else {
-			return { top: 0 }
+		if (to.name !== from.name) return {
+			top: 0,
+			left: 0,
+			behavior: 'smooth'
 		}
 	},
 });

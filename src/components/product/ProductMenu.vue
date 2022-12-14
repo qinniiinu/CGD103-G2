@@ -8,7 +8,7 @@
         <input id="b5" type="radio" value="b5" v-model="picked" />
 
         <div class="productMenu">
-            {{ selected }}
+            <!-- {{ selected }} -->
             <ul class="menOrWomen" @click="action">
                 <!-- <li @click="go('A')" @mouseenter="hoverList('A')">全部</li> -->
                 <li @click="go('0')" @mouseenter="hoverList('0')">女裝</li>
@@ -190,9 +190,6 @@ export default {
                     T: C,
                 },
             });
-        },
-        scroll() {
-            document.querySelector("#list").scrollIntoView({ block: "start" });
         },
         action() {
             this.openMain = !this.openMain;
