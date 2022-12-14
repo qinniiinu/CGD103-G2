@@ -34,7 +34,7 @@
 			<StyleCard content="文青風" link="./hipster2-1.png"/>
 			<p>首先，請讓我們更認識你<br>點擊下方開始測驗你的風格</p>
 		</div>
-		<router-link :to="{ name:'QuestionBox' }"><button class="btn_s">測驗去</button></router-link>
+		<router-link :to="{ name:'QuestionBox' }"><button class="btn_ns">測驗去</button></router-link>
 	</section>
 
 	<section class="sub_part">
@@ -54,7 +54,7 @@
 				<p>#單品消費優惠 #每月專屬搭配 #專屬造型顧問 #PREMIUM #消費免運費</p>
 			</div>	
 		</div>
-		<router-link to="/subscription"><button class="btn_s">訂閱去</button></router-link>
+		<router-link to="/subscription"><button class="btn_ns">訂閱去</button></router-link>
 
 	
 	</section>
@@ -81,7 +81,7 @@
 			風格造型師來帶領你，學習穿搭技巧、儀態調整，也重新認識自己，找出適合自己的穿搭風格！
 		</p>
 		<router-link :to="{ name:'Consultating'}">
-			<Button class="btn_s">諮詢造型師</Button>
+			<Button class="btn_ns">諮詢造型師</Button>
 		</router-link>
 		
 	</div>
@@ -393,10 +393,7 @@
 		button{
 			margin: 50px auto 80px;
 			display: block;
-			line-height: 20px;
-			@include m{
-				line-height: 50px;
-			}
+			cursor: pointer;
 		}
 		
 	}
