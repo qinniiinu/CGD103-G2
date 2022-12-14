@@ -22,10 +22,10 @@ export default {
     },
     computed: {
         resultproduct() {
-            if (JSON.stringify(this.$route.query) !== "{}") {
+            if (location.search != "") {
+                console.log(location.search != "");
                 this.scrollBlock();
                 if (!this.$route.query.M) {
-                    console.log(this.$route.query.M);
                     switch (this.$route.query.G) {
                         case "0":
                             return this.product.filter((e) => {
@@ -71,11 +71,9 @@ export default {
             });
         },
         getResource() {
-            this.axios
-                .get("http://localhost/phps/list.php")
-                .then((response) => {
-                    this.product = response.data;
-                });
+            this.axios.get("/api_server/list.php").then((response) => {
+                this.product = response.data;
+            });
         },
         cut(x) {
             return x.split(",")[0];
@@ -94,8 +92,8 @@ export default {
             <img src="@/assets/product/bestseller_02.jpg" alt="" />
         </div>
         <BestSeller />
-        <div class="divider"></div>
-        <div class="leftright" ref="sectionlist">
+        <div class="divider" ref="sectionlist"></div>
+        <div class="leftright">
             <div class="Sidebar">
                 <ProductSideMenu></ProductSideMenu>
                 <HashTag></HashTag>
