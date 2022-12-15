@@ -26,7 +26,7 @@
 	
 	<section class="quiz_idx">
 		<h2>找尋你的個人風格</h2>
-		<p>嗨~ 你了解自己嗎 ?<br>也許你不知道自己適合什麼，也許你正在尋找新的自我風格，<br>不論你現在處於什麼狀態，讓 RE:Outfit 一起陪你尋找屬於你的<strong>穿搭風格公式</strong>吧!</p>
+		<p>嗨~ 你了解自己嗎 ?<br>也許你不知道自己適合什麼，也許你正在尋找新的自我風格，<span>不論你現在處於什麼狀態，讓 RE:Outfit 一起陪你尋找屬於你的<strong>穿搭風格公式</strong>吧!</span></p>
 		<div class="wrap">
 			<StyleCard content="時尚風" link="./fashion2-1.png"/>
 			<StyleCard content="極簡風" link="./minimalist2-1.png"/>
@@ -204,15 +204,18 @@
 			right: 0;
 			bottom: 0;
 			margin: auto;
-			width: 25%;
+			width: 50%;
 			background-color: $main_color;
-			padding: 1.5%;
+			padding: 3.5%;
 			// height: 50%;	
 			z-index: 5;
+			@include m{
+					width: 25%;
+					padding: 1.5%;
+				}
 		}
 
 		
-// 		
 		@keyframes Loop1 {
 			0% {
 				-webkit-transform: translate3d(0, 0, 0);
@@ -248,7 +251,10 @@
 				animation: Loop1 14s linear infinite;
 				display: inline-block;
 				white-space:nowrap;
-				width: 18%;
+				width: 55%;
+				@include m{
+					width: 18%;
+				}
 				z-index: -2;
 				// vertical-align: middle;
 				img{
@@ -269,7 +275,10 @@
 				animation: Loop2 15s linear infinite;
 				display: inline-block;
 				white-space:nowrap;
-				width: 18%;
+				width: 55%;
+				@include m{
+					width: 18%;
+				}
 				z-index: -2;
 				img{
 					width: 100%;
@@ -280,12 +289,21 @@
 		}
 	}
 	.sub_part{
-		margin-top: 80px;
+		padding-top:30px ;
+		@include m{
+			padding-top:50px ;
+		}
+
 		h2{
 			color: $title_color;
-			font-size:48px ;
+			font-size: 32px;
+			@include m{
+				font-size: 48px;
+				margin-bottom: 30px;
+			}
 			text-align: center;
 			font-weight: 700;
+			margin-bottom: 10px;
 		}
 		.sub_body{
 			position: relative;
@@ -321,21 +339,25 @@
 			}
 			.basic{
 				position: absolute;
-				top: 15%;
-    			left: 50%;
+				top: 7%;
+    			left: 5%;
+				font-size:3.5rem ;
 				@include m{
 					// position: absolute;
 					top: 15%;
     				left: 55%;
+					font-size:4rem ;
 				}
 				
 				z-index: -1;
 			}
 			.standard{
 				position: absolute;
-				top: 50%;
-				left: 5%;
+				top: 45%;
+				left: 11.5%;
+				font-size:3rem ;
 				@include m{
+					font-size:4rem ;
 					top: 50%;
 					left: 18%;
 					z-index: -1;
@@ -346,11 +368,13 @@
 			}
 			.ultra{
 				overflow: hidden;
-				top: 75%;
-				left: 50%;
+				top: 80%;
+				left: 30%;
+				font-size:3.8rem ;
 				@include m{
+					font-size:4rem ;
 					top: 70%;
-					left: 60%;
+					left: 58%;
 				}
 				position: absolute;
 				
@@ -398,7 +422,11 @@
 		
 	}
 	.product_part{
-		margin-top: 80px;
+		padding-top:30px ;
+		padding-bottom: 80px;
+		@include m{
+			padding-top:50px ;
+		}
 		.container{
 			margin-bottom: 80px;
 			.row{
@@ -416,17 +444,32 @@
 		}
 		h2{
 			color: $title_color;
-			font-size:48px ;
+			font-size: 32px;
+			@include m{
+				font-size: 48px;
+			}
 			text-align: center;
 			font-weight: 700;
 
 		}
 	}
 
-
+	.consult_part{
+		padding-top:20px;
+		@include m{
+			padding-top:50px ;
+		}
+		width: 100%;
+		max-width: 1200px;
+		margin: auto;
+	}
 
 	.our_stylist_h2{
-			font-size:48px ;
+			font-size: 32px;
+			@include m{
+				font-size: 48px;
+				margin-bottom: 50px;
+			}
 			color: $title_color ;
 			font-weight: 700;
 			line-height: 32px;
@@ -449,13 +492,17 @@
 		}
 		h2{
 			position:absolute;
-			top: 12%;
+			top: 13%;
 			left: 0;
 			right: 0;
 			// bottom: 0;
 			margin: auto;
 			font-weight: 900;
-			font-size: 48px;
+			font-size: 32px;
+			@include m{
+				font-size: 48px;
+				
+			}
 			font-style: italic;
 			width: fit-content ;
 			height: fit-content;
@@ -470,7 +517,7 @@
 
 		.sec-h2{
 			// bottom: 0;
-			top: 70%;
+			top: 80%;
 
 			@include m{
 				display: none;
@@ -481,6 +528,7 @@
 		.our_stylist_main{
 			display: flex;
 			flex-wrap:wrap;
+			justify-content: center;
 			@include m{
 				width: 100%;
 				// gap: 10px;
@@ -489,8 +537,8 @@
 			
 			.our_stylist_pic{
 				@include m{
-					width: 33%;
-
+					width: 30%;
+					
 				}
 				width: 50%;
 				img{
@@ -503,7 +551,7 @@
 		}
 	}
 	.last_content{
-		margin: 50px 0;
+		margin: 30px 10% 50px;
 		h2{
 			font-size:32px ;
 			color: $title_color ;
@@ -516,15 +564,20 @@
 			line-height: 30px;
 		}
 		Button{
-			margin-top:50px ;
+			width: fit-content;
+			margin-top:30px ;
 		}
 		text-align: center;
 	}
 	
 	.quiz_idx{
-	box-sizing: border-box;
-	max-width: 1200px;
-	margin: 0 auto 50px;
+		padding-top:20px;
+		@include m{
+			padding-top:50px ;
+		}
+		box-sizing: border-box;
+		max-width: 1200px;
+		margin: 0 5% 50px;
 	h2{
 		font-size: 32px;
 		color: $title_color;
@@ -533,9 +586,11 @@
 		padding: 30px;
 	}
 	p{
-		font-size: 14px;
+		margin: 0 5%;
+		font-size: 16px;
 		text-align: center;
 		color: $text_color;
+		line-height: 24px;
 		strong{
 			font-weight: 600;
 			position: relative;
@@ -570,12 +625,16 @@
 // 平板以上
 @media screen and (min-width:768px) {
 	.quiz_idx{
+		margin: 0 auto 50px;
 		h2{
 			font-size: 48px;
 		}
 		p{
 			font-size: 18px;
-			line-height: 27px;
+			line-height: 30px;
+			span{
+				display: block;
+			}
 		}
 		.wrap{
 			padding: 50px 0;

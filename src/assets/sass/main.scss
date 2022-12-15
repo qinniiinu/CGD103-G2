@@ -55,13 +55,16 @@ body {
 	box-sizing: border-box;
 	border: 2px solid $main_color;
 	text-align: center;
-	font-size: 18PX;
-	padding: 15px 30px;
+	font-size: 14PX;
+	padding: 12px 24px;
+	font-weight: 600;
+	width: fit-content;
+	line-height: normal;
 	cursor: pointer;
 	@include m() {
 		font-size: 18px;
-		
-
+		font-weight: 400;
+		padding: 15px 30px;
 		&:hover {
 			background-color: $second_color;
 			color: $main_color ;
