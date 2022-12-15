@@ -38,6 +38,20 @@
 		<router-link :to="{ name:'QuestionBox' }"><button class="btn_s">測驗去</button></router-link>
 	</section>
 
+	<div class="textLoop_animate">
+			<div class="logo_texts" >
+				{{logoText}}{{logoText}}{{logoText}}{{logoText}}
+			</div>
+			<div class="logo_texts" >
+				{{logoText}}{{logoText}}{{logoText}}{{logoText}}
+				
+			</div>
+			<div class="logo_texts" >
+				{{logoText}}{{logoText}}{{logoText}}{{logoText}}
+			</div>
+	</div>
+	
+
 
 	<div class="textLoop_animate">
 			<div class="logo_texts" >
