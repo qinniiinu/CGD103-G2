@@ -60,9 +60,11 @@ export default {
     },
     methods: {
         getResource() {
-            this.axios.get("../data/fakeproduct.json").then((response) => {
+            this.axios.get("/api_server/list.php").then((response) => {
+                console.log(response.data);
+
                 this.temp = response.data.find((e) => {
-                    if (e.product_id === this.$route.params.id) return e;
+                    if (e.product_id == this.$route.params.id) return e;
                 });
                 this.bigPicture = this.temp?.product_pic.split(",")[0];
             });
