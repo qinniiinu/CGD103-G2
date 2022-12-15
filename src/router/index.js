@@ -121,11 +121,6 @@ const routes = [
 
 	// ----------myaccount START----------
 	{
-		path: "/BodyType",
-		name: "BodyType",
-		component: () => import("../views/myaccount/BodyTypeView.vue"),
-	},
-	{
 		path: "/Consultation",
 		name: "Consultation",
 		component: () => import("../views/myaccount/ConsultationView.vue"),
@@ -149,6 +144,11 @@ const routes = [
 				path: '',
 				name: "OverView",
 				component: () => import("../views/myaccount/OverView.vue")
+			},
+			{
+				path: "BodyType",
+				name: "BodyType",
+				component: () => import("../views/myaccount/BodyTypeView.vue"),
 			},
 		]
 	},

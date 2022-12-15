@@ -1,78 +1,68 @@
 <template>
-    <div class="mem_data">
-      <p class="title">Costomer, 歡迎回來</p>
-      <div class="data">
-        <!-- 這裡開始寫 -->
-        <div class="box">
-          <MemCard title="我的身型" class="card">
-            <template #pic>
-              <img
-                class="type_pic"
-                src="body_hourglass.png"
-                alt="body.type1"
-              />
-            </template>
-            <type-tag :TypeTag="bodytypes.type1" class="type_tag"></type-tag>
-            <bg-tag :Bgtag="body.type1" class="bgtag"></bg-tag>
-            <router-link to="/BodyType" class="more">
-              <span class="text">查看更多</span>
-              <font-awesome-icon icon="fa-solid fa-angle-right" />
-            </router-link>
-          </MemCard>
-          <MemCard title="我的風格" class="card">
-            <template #pic>
-              <img class="type_pic" src="hipster2.png" alt="styletypes.type1" />
-            </template>
-            <type-tag :TypeTag="styletypes.type1" class="type_tag"></type-tag>
-            <bg-tag :Bgtag="body.type1" class="bgtag"></bg-tag>
-            <router-link to="/memQuiz" class="more">
-              <span class="text">查看更多</span>
-              <font-awesome-icon icon="fa-solid fa-angle-right" />
-            </router-link>
-          </MemCard>
+  <p class="title">Costomer, 歡迎回來</p>
+  <div class="data">
+    <!-- 這裡開始寫 -->
+    <div class="box">
+      <MemCard title="我的身型" class="card">
+        <template #pic>
+          <img class="type_pic" src="body_hourglass.png" alt="body.type1" />
+        </template>
+        <type-tag :TypeTag="bodytypes.type1" class="type_tag"></type-tag>
+        <bg-tag :Bgtag="body.type1" class="bgtag"></bg-tag>
+        <router-link to="/BodyType" class="more">
+          <span class="text">查看更多</span>
+          <font-awesome-icon icon="fa-solid fa-angle-right" />
+        </router-link>
+      </MemCard>
+      <MemCard title="我的風格" class="card">
+        <template #pic>
+          <img class="type_pic" src="hipster2.png" alt="styletypes.type1" />
+        </template>
+        <type-tag :TypeTag="styletypes.type1" class="type_tag"></type-tag>
+        <bg-tag :Bgtag="body.type1" class="bgtag"></bg-tag>
+        <router-link to="/memQuiz" class="more">
+          <span class="text">查看更多</span>
+          <font-awesome-icon icon="fa-solid fa-angle-right" />
+        </router-link>
+      </MemCard>
 
-          <div class="other_card">
-            <SmallCard
-              title="帳號資料"
-              Bgtag="#ACCOUNT"
-              more="編輯"
-              class="account"
-              >內容
-              <router-link to="/MemMaintain" class="more">
-                <span class="text">查看更多</span>
-                <font-awesome-icon icon="fa-solid fa-angle-right" />
-              </router-link>
-            </SmallCard>
-            <SmallCard
-              title="風格諮詢"
-              Bgtag="#CONSULT"
-              more="立即諮詢"
-              class="consult"
-              >內容
-              <router-link to="/Consultation" class="more">
-                <span class="text">查看更多</span>
-                <font-awesome-icon icon="fa-solid fa-angle-right" />
-              </router-link>
-            </SmallCard>
-            <SmallCard
-              title="訂閱服務"
-              Bgtag="#PREMIUM"
-              more="更改訂閱"
-              class="premium"
-              >內容
-              <router-link to="/memSubscription" class="more">
-                <span class="text">查看更多</span>
-                <font-awesome-icon icon="fa-solid fa-angle-right" />
-              </router-link>
-            </SmallCard>
-            <OrderCard title="訂單紀錄" class="order">
-              <OrdHisCard></OrdHisCard>
-            </OrderCard>
-          </div>
-          <MySave></MySave>
-        </div>
+      <div class="other_card">
+        <SmallCard title="帳號資料" Bgtag="#ACCOUNT" more="編輯" class="account"
+          >內容
+          <router-link to="/MemMaintain" class="more">
+            <span class="text">查看更多</span>
+            <font-awesome-icon icon="fa-solid fa-angle-right" />
+          </router-link>
+        </SmallCard>
+        <SmallCard
+          title="風格諮詢"
+          Bgtag="#CONSULT"
+          more="立即諮詢"
+          class="consult"
+          >內容
+          <router-link to="/Consultation" class="more">
+            <span class="text">查看更多</span>
+            <font-awesome-icon icon="fa-solid fa-angle-right" />
+          </router-link>
+        </SmallCard>
+        <SmallCard
+          title="訂閱服務"
+          Bgtag="#PREMIUM"
+          more="更改訂閱"
+          class="premium"
+          >內容
+          <router-link to="/memSubscription" class="more">
+            <span class="text">查看更多</span>
+            <font-awesome-icon icon="fa-solid fa-angle-right" />
+          </router-link>
+        </SmallCard>
+        <OrderCard title="訂單紀錄" class="order">
+          <OrdHisCard></OrdHisCard>
+        </OrderCard>
       </div>
+      <MySave></MySave>
     </div>
+  </div>
 </template>
 
 <script>
@@ -125,11 +115,13 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "@/assets/sass/member_side_menu";
-.mem_data{
-    width: 82%;
-    box-sizing: border-box;
+
+.title {
+  font-size: 24px;
+  color: #292929;
+  padding-bottom: $padding;
 }
+
 .box {
   .more {
     display: flex;
