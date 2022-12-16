@@ -43,10 +43,10 @@
             return {
              
                 lookItems:[
-                    {src:'./ootd-look-1.jpg'},
-                    {src:'./ootd-look-2.jpg'},
-                    {src:'./ootd-look-3.jpg'},
-                    {src:'./ootd-look-2.jpg'},
+                    {src:'/ootd-look-1.jpg'},
+                    {src:'/ootd-look-2.jpg'},
+                    {src:'/ootd-look-3.jpg'},
+                    {src:'/ootd-look-2.jpg'},
     
                 ],
             } 

@@ -1,177 +1,168 @@
 <template>
 	<!-- 會員 container -->
-	<div class="mem_container">
-		<!-- 側邊欄組件 -->
-		<MemberSideMenu></MemberSideMenu>
-		<!-- 右側會員資料-->
-		<div class="mem_data">
-			<p class="title">訂閱服務</p>
-			<div class="data">
-				<!-- 這裡開始寫 -->
-				<div class="card">
-					<div v-if="memsub==false" class="card-wrap">
-						<div class="card-content">
-						<h2>#BASIC</h2>
-						<p>
-							<font-awesome-icon icon="fa-solid fa-check" />
-							每月專屬搭配一套
-						</p>
-						<span>上身* 1、下身*1、外套*1</span>
-						<p>
-							<font-awesome-icon icon="fa-solid fa-check" />
-							每月諮詢造型師<span>1</span>次
-						</p>
-						<p>
-							<font-awesome-icon icon="fa-solid fa-check" />
-							每月免運費<span>1</span>次
-						</p>
-						<p>
-							<font-awesome-icon icon="fa-solid fa-check" />
-							商品<span>95</span>折優惠
-						</p>
-						<h3>NT$ <span>899</span>/月</h3>
-						<button>立即訂閱</button>
-                		</div>
-						<div class="card-content">
-						<h2>#STANDARD</h2>
-						<p>
-							<font-awesome-icon icon="fa-solid fa-check" />
-							每月專屬搭配一套
-						</p>
-						<span>上身* 1、下身*1、外套*1</span>
-						<p>
-							<font-awesome-icon icon="fa-solid fa-check" />
-							每月諮詢造型師<span>2</span>次
-						</p>
-						<p>
-							<font-awesome-icon icon="fa-solid fa-check" />
-							每月免運費<span>2</span>次
-						</p>
-						<p>
-							<font-awesome-icon icon="fa-solid fa-check" />
-							商品<span>9</span>折優惠
-						</p>
-						<h3>NT$ <span>1,899</span>/月</h3>
-						<button>立即訂閱</button>
-                		</div>
-						<div class="card-content">
-						<h2>#ULTRA</h2>
-						<p>
-							<font-awesome-icon icon="fa-solid fa-check" />
-							每月專屬搭配一套
-						</p>
-						<span>上身* 1、下身*1、外套*1、鞋子*1</span>
-						<p>
-							<font-awesome-icon icon="fa-solid fa-check" />
-							每月諮詢造型師<span>5</span>次
-						</p>
-						<p>
-							<font-awesome-icon icon="fa-solid fa-check" />
-							每月無限次免運費
-						</p>
-						<p>
-							<font-awesome-icon icon="fa-solid fa-check" />
-							商品<span>8</span>折優惠
-						</p>
-						<h3>NT$ <span>3,999</span>/月</h3>
-						<button>立即訂閱</button>
-                		</div>
-					</div>
-					<div v-else class="card-wrap">
-						<div v-if="view===1" class="card-sub">
-							<h2>您的訂閱方案</h2>
-							<p class="memlevel">#{{vip_level[0].level_name}}</p>
-							<button @click="view=2">更改方案</button>
-                		</div>
-						<div class="card-wrap" v-if="view===2">
-							<div class="activestyle card-content ">
-							<h2>#BASIC</h2>
-							<p>
-								<font-awesome-icon icon="fa-solid fa-check" />
-								每月專屬搭配一套
-							</p>
-							<span>上身* 1、下身*1、外套*1</span>
-							<p>
-								<font-awesome-icon icon="fa-solid fa-check" />
-								每月諮詢造型師<span>1</span>次
-							</p>
-							<p>
-								<font-awesome-icon icon="fa-solid fa-check" />
-								每月免運費<span>1</span>次
-							</p>
-							<p>
-								<font-awesome-icon icon="fa-solid fa-check" />
-								商品<span>95</span>折優惠
-							</p>
-							<h3>NT$ <span>899</span>/月</h3>
-							<p>訂閱日:{{sub_time}} </p>
-							<p>下次付款日:{{sub_deadline}} </p>
-							<button>已訂閱</button>
-							</div>
-							<div class="card-content">
-							<h2>#STANDARD</h2>
-							<p>
-								<font-awesome-icon icon="fa-solid fa-check" />
-								每月專屬搭配一套
-							</p>
-							<span>上身* 1、下身*1、外套*1</span>
-							<p>
-								<font-awesome-icon icon="fa-solid fa-check" />
-								每月諮詢造型師<span>2</span>次
-							</p>
-							<p>
-								<font-awesome-icon icon="fa-solid fa-check" />
-								每月免運費<span>2</span>次
-							</p>
-							<p>
-								<font-awesome-icon icon="fa-solid fa-check" />
-								商品<span>9</span>折優惠
-							</p>
-							<h3>NT$ <span>1,899</span>/月</h3>
-							<button>立即訂閱</button>
-							</div>
-							<div class="card-content">
-							<h2>#ULTRA</h2>
-							<p>
-								<font-awesome-icon icon="fa-solid fa-check" />
-								每月專屬搭配一套
-							</p>
-							<span>上身* 1、下身*1、外套*1、鞋子*1</span>
-							<p>
-								<font-awesome-icon icon="fa-solid fa-check" />
-								每月諮詢造型師<span>5</span>次
-							</p>
-							<p>
-								<font-awesome-icon icon="fa-solid fa-check" />
-								每月無限次免運費
-							</p>
-							<p>
-								<font-awesome-icon icon="fa-solid fa-check" />
-								商品<span>8</span>折優惠
-							</p>
-							<h3>NT$ <span>3,999</span>/月</h3>
-							<button>立即訂閱</button>
-							</div>
-						</div>
-					</div>
-					<button class="cancel" v-if="view===2" @click="memsub=false,view=1">取消訂閱</button>
-					<router-link to="/MyPage"><button v-if="view===1" class="back">返回</button></router-link>
-					<button v-if="view===2" class="back" @click="view=1">返回</button>
+	<p class="title">訂閱服務</p>
+	<div class="data">
+		<!-- 這裡開始寫 -->
+		<div class="card">
+			<div v-if="memsub==false" class="card-wrap">
+				<div class="card-content">
+				<h2>#BASIC</h2>
+				<p>
+					<font-awesome-icon icon="fa-solid fa-check" />
+					每月專屬搭配一套
+				</p>
+				<span>上身* 1、下身*1、外套*1</span>
+				<p>
+					<font-awesome-icon icon="fa-solid fa-check" />
+					每月諮詢造型師<span>1</span>次
+				</p>
+				<p>
+					<font-awesome-icon icon="fa-solid fa-check" />
+					每月免運費<span>1</span>次
+				</p>
+				<p>
+					<font-awesome-icon icon="fa-solid fa-check" />
+					商品<span>95</span>折優惠
+				</p>
+				<h3>NT$ <span>899</span>/月</h3>
+				<button>立即訂閱</button>
 				</div>
-				<div class="decoration">
-					#PREMIUM
+				<div class="card-content">
+				<h2>#STANDARD</h2>
+				<p>
+					<font-awesome-icon icon="fa-solid fa-check" />
+					每月專屬搭配一套
+				</p>
+				<span>上身* 1、下身*1、外套*1</span>
+				<p>
+					<font-awesome-icon icon="fa-solid fa-check" />
+					每月諮詢造型師<span>2</span>次
+				</p>
+				<p>
+					<font-awesome-icon icon="fa-solid fa-check" />
+					每月免運費<span>2</span>次
+				</p>
+				<p>
+					<font-awesome-icon icon="fa-solid fa-check" />
+					商品<span>9</span>折優惠
+				</p>
+				<h3>NT$ <span>1,899</span>/月</h3>
+				<button>立即訂閱</button>
+				</div>
+				<div class="card-content">
+				<h2>#ULTRA</h2>
+				<p>
+					<font-awesome-icon icon="fa-solid fa-check" />
+					每月專屬搭配一套
+				</p>
+				<span>上身* 1、下身*1、外套*1、鞋子*1</span>
+				<p>
+					<font-awesome-icon icon="fa-solid fa-check" />
+					每月諮詢造型師<span>5</span>次
+				</p>
+				<p>
+					<font-awesome-icon icon="fa-solid fa-check" />
+					每月無限次免運費
+				</p>
+				<p>
+					<font-awesome-icon icon="fa-solid fa-check" />
+					商品<span>8</span>折優惠
+				</p>
+				<h3>NT$ <span>3,999</span>/月</h3>
+				<button>立即訂閱</button>
 				</div>
 			</div>
+			<div v-else class="card-wrap">
+				<div v-if="view===1" class="card-sub">
+					<h2>您的訂閱方案</h2>
+					<p class="memlevel">#{{vip_level[0].level_name}}</p>
+					<button @click="view=2">更改方案</button>
+				</div>
+				<div class="card-wrap" v-if="view===2">
+					<div class="activestyle card-content ">
+					<h2>#BASIC</h2>
+					<p>
+						<font-awesome-icon icon="fa-solid fa-check" />
+						每月專屬搭配一套
+					</p>
+					<span>上身* 1、下身*1、外套*1</span>
+					<p>
+						<font-awesome-icon icon="fa-solid fa-check" />
+						每月諮詢造型師<span>1</span>次
+					</p>
+					<p>
+						<font-awesome-icon icon="fa-solid fa-check" />
+						每月免運費<span>1</span>次
+					</p>
+					<p>
+						<font-awesome-icon icon="fa-solid fa-check" />
+						商品<span>95</span>折優惠
+					</p>
+					<h3>NT$ <span>899</span>/月</h3>
+					<p>訂閱日:{{sub_time}} </p>
+					<p>下次付款日:{{sub_deadline}} </p>
+					<button>已訂閱</button>
+					</div>
+					<div class="card-content">
+					<h2>#STANDARD</h2>
+					<p>
+						<font-awesome-icon icon="fa-solid fa-check" />
+						每月專屬搭配一套
+					</p>
+					<span>上身* 1、下身*1、外套*1</span>
+					<p>
+						<font-awesome-icon icon="fa-solid fa-check" />
+						每月諮詢造型師<span>2</span>次
+					</p>
+					<p>
+						<font-awesome-icon icon="fa-solid fa-check" />
+						每月免運費<span>2</span>次
+					</p>
+					<p>
+						<font-awesome-icon icon="fa-solid fa-check" />
+						商品<span>9</span>折優惠
+					</p>
+					<h3>NT$ <span>1,899</span>/月</h3>
+					<button>立即訂閱</button>
+					</div>
+					<div class="card-content">
+					<h2>#ULTRA</h2>
+					<p>
+						<font-awesome-icon icon="fa-solid fa-check" />
+						每月專屬搭配一套
+					</p>
+					<span>上身* 1、下身*1、外套*1、鞋子*1</span>
+					<p>
+						<font-awesome-icon icon="fa-solid fa-check" />
+						每月諮詢造型師<span>5</span>次
+					</p>
+					<p>
+						<font-awesome-icon icon="fa-solid fa-check" />
+						每月無限次免運費
+					</p>
+					<p>
+						<font-awesome-icon icon="fa-solid fa-check" />
+						商品<span>8</span>折優惠
+					</p>
+					<h3>NT$ <span>3,999</span>/月</h3>
+					<button>立即訂閱</button>
+					</div>
+				</div>
+			</div>
+			<button class="cancel" v-if="view===2" @click="memsub=false,view=1">取消訂閱</button>
+			<router-link to="/MyPage"><button v-if="view===1" class="back">返回</button></router-link>
+			<button v-if="view===2" class="back" @click="view=1">返回</button>
+		</div>
+		<div class="decoration">
+			#PREMIUM
 		</div>
 	</div>
 </template>
 
 <script>
-import MemberSideMenu from "@/components/MemberSideMenu.vue";
 export default {
-	name: "MemSubscriptionView",
+	name: "memSubscription",
 	components: {
-		MemberSideMenu
 	},
 	data(){
 		return{
@@ -213,7 +204,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/member_side_menu";
+.title {
+  font-size: 24px;
+  color: #292929;
+  padding-bottom: $padding;
+}
 .mem_container{
 	background-color: $bg_gray;
 }
