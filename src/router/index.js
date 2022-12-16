@@ -6,6 +6,9 @@ const routes = [
 		path: "/",
 		name: "home",
 		component: HomeView,
+		meta:{
+			title:'首頁'
+		}
 	},
 	{
 		path: "/about",
@@ -62,6 +65,9 @@ const routes = [
 		path: "/fittingroom",
 		name: "fittingroom",
 		component: () => import("../views/FittingRoomView.vue"),
+		meta:{
+			title:'試衣間'
+		}
 	},
 	{
 		path: "/fittingroom1",
@@ -116,6 +122,9 @@ const routes = [
 		path: "/weeklywear",
 		name: "weeklywear",
 		component: () => import("../views/WeeklyWearView.vue"),
+		meta:{
+			title:'一週穿搭'
+		}
 	},
 
 
@@ -150,6 +159,11 @@ const routes = [
 				name: "BodyType",
 				component: () => import("../views/myaccount/BodyTypeView.vue"),
 			},
+			{
+				path: "memQuiz",
+				name: "memQuiz",
+				component: () => import("../views/myaccount/MemQuizView.vue"),
+			},
 		]
 	},
 	{
@@ -177,11 +191,7 @@ const routes = [
 		name: "memSubscription",
 		component: () => import("../views/myaccount/MemSubscriptionView.vue"),
 	},
-	{
-		path: "/memQuiz",
-		name: "memQuiz",
-		component: () => import("../views/myaccount/MemQuizView.vue"),
-	},
+
 	// ----------myaccount END----------
 	{
 		path: "/Confirm",
