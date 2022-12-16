@@ -11,7 +11,7 @@
 					<section class="recommend">
                         <h2>推薦穿搭</h2>
                         <div class="item">
-                            <StylistLook2 class="stylist" scardP="./stylist-1.jpg" stylistName="Kevin" stylistInfo="擅長時尚風格,用前衛的單品,搭配出衝突的美感"></StylistLook2>
+                            <StylistLook2 class="stylist" scardP="/stylist-1.jpg" stylistName="Kevin" stylistInfo="擅長時尚風格,用前衛的單品,搭配出衝突的美感"></StylistLook2>
                         </div>
                     </section>
                     <section class="deco">

@@ -9,7 +9,7 @@
                     <div class="name_level">
                         <span class="name">{{ member.mem_name }}</span>
                         <span class="level">{{ member.level_id }} Account</span>
-                        <router-link to="/memSubscription" class="level_up">立即升級</router-link>
+                        <router-link to="/MyPage/memSubscription" class="level_up">立即升級</router-link>
                     </div>
                 </div>
                 <nav class="side_menu">
