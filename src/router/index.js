@@ -129,11 +129,7 @@ const routes = [
 
 
 	// ----------myaccount START----------
-	{
-		path: "/Favorites",
-		name: "Favorites",
-		component: () => import("../views/myaccount/FavoritesView.vue"),
-	},
+
 	{
 		path: "/MyPage",
 		name: "MyPage",
@@ -168,6 +164,11 @@ const routes = [
 				path: "memSubscription",
 				name: "memSubscription",
 				component: () => import("../views/myaccount/MemSubscriptionView.vue"),
+			},
+			{
+				path: "Favorites",
+				name: "Favorites",
+				component: () => import("../views/myaccount/FavoritesView.vue"),
 			},
 		]
 	},
