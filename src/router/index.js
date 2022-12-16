@@ -150,6 +150,11 @@ const routes = [
 				name: "BodyType",
 				component: () => import("../views/myaccount/BodyTypeView.vue"),
 			},
+			{
+				path: "memQuiz",
+				name: "memQuiz",
+				component: () => import("../views/myaccount/MemQuizView.vue"),
+			},
 		]
 	},
 	{
@@ -177,11 +182,7 @@ const routes = [
 		name: "memSubscription",
 		component: () => import("../views/myaccount/MemSubscriptionView.vue"),
 	},
-	{
-		path: "/memQuiz",
-		name: "memQuiz",
-		component: () => import("../views/myaccount/MemQuizView.vue"),
-	},
+
 	// ----------myaccount END----------
 	{
 		path: "/Confirm",
