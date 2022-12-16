@@ -161,7 +161,7 @@
 
 <script>
 export default {
-	name: "MemSubscription",
+	name: "memSubscription",
 	components: {
 	},
 	data(){
