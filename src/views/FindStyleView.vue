@@ -56,8 +56,16 @@
 			</div>
 	</div>
 
-	<!-- <section class="mulstyles_page">
-		<h2>情境穿搭</h2>
+	<section class="mulstyles_page">
+		<h2>風格穿搭</h2>
+		<div class="style_type">
+			<div class="type_item" v-for="(styleType,index) of styleTypes" :key="index">
+				<img :src="styleType.src" alt="">
+				<p>{{styleType.text}}</p>
+			</div>
+		</div>
+		
+
 
 		<router-link to="/MulStyles"><button class="btn_ns">看更多</button></router-link>
 	</section>
@@ -73,7 +81,7 @@
 			<div class="logo_texts" >
 				{{logoText}}{{logoText}}{{logoText}}{{logoText}}
 			</div>
-	</div> -->
+	</div>
 
 	<div class="our_stylist">
 		<h2>#Our Stylist</h2>
@@ -126,7 +134,13 @@ export default {
 				{src:'./stylist-6.jpg'},
 				{src:'./stylist-7.jpg'},
 				{src:'./stylist-3.jpg'},
-			]
+			],
+			styleTypes:[
+				{src:'./style_type1.jpg',text:'#野營Outdoor風'},
+				{src:'./style_type2.jpg',text:'#都會休閒風'},
+				{src:'./style_type3.jpg',text:'#居家健身風'},
+				{src:'./style_type4.jpg',text:'#登山Outdoor風'},
+			],
 		}
 	}
 };
@@ -178,6 +192,109 @@ export default {
 		// width: 120px;
     	// line-height: 50px;
 		margin-top:50px ;
+	}
+}
+.mulstyles_page{
+	width: 80%;
+    max-width: 960px;
+	@include m{
+		width: 90%;
+    	max-width: 1080px;
+		
+	}
+	@include xl{
+		width: 100%;
+    	max-width: 1200px;
+	}
+	margin: auto;
+	h2{
+		text-align: center;
+		font-weight: 700;
+		color: $text_color;
+		font-size: 32px;
+		margin-bottom:30px;
+		@include m{
+			font-size: 48px;
+		}
+	}
+	.style_type{
+		display:flex;
+		width: 100%;
+		flex-wrap: wrap;
+		.type_item{
+			display:flex;
+			flex-direction: column;
+			@include ss{
+				width: 48%;
+				margin-bottom:10px ;
+			}
+			margin: 10px auto;
+			width: 100%;
+			margin-bottom:30px ;
+
+			@include m{
+				width: 22%;
+				margin-bottom:10px ;
+			}
+			p{
+				font-style: italic;
+				font-weight: 700;
+				font-size: 28px;
+				text-align: center;
+				@include ss{
+
+					font-size: 20px;
+					// text-align: center;
+
+				}	
+
+				@include m{
+					font-size: 24px;
+					text-align: start;
+				}
+				@include xl{
+					font-size: 32px;
+					text-align: start;
+				}
+				
+			}
+			img{
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				margin-bottom:10px;
+				@include m{
+					margin-bottom:20px;
+				}
+			}
+			&:nth-child(1){
+				img{
+					@include m{
+						margin-top:20px;
+						order: 1;
+						margin-bottom:0px;
+					}
+					
+				}
+			}
+			&:nth-child(3){
+				img{
+					@include m{
+						margin-top:20px;
+						order: 1;
+						margin-bottom:0px;
+					}
+				}
+			}
+		}
+	}
+	button{
+		display:block;
+		margin: auto;
+		margin-top:10px ;
+		@include ss{
+			margin-top:30px ;
+		}
 	}
 }
 .find_style_page{

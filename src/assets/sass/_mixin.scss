@@ -9,6 +9,13 @@
 		@content;
 	}
 }
+
+@mixin ss() {
+	@media screen and (min-width: 400px) {
+		@content;
+	}
+}
+
 @mixin m() {
 	@media screen and (min-width: 768px) {
 		@content;
