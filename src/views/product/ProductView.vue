@@ -75,14 +75,14 @@
     </div>
     <div class="productlist">
         <div class="Box">
-            <ProductCard></ProductCard>
-            <ProductCard></ProductCard>
-            <ProductCard></ProductCard>
-            <ProductCard></ProductCard>
-            <ProductCard></ProductCard>
-            <ProductCard></ProductCard>
-            <ProductCard></ProductCard>
-            <ProductCard></ProductCard>
+            <ProductCard
+                :id="e.product_id"
+                :title="e.product_name"
+                :price="e.unit_price"
+                :imgURL="cut(e.product_pic)"
+                v-for="e in product"
+                :key="e.product_id"
+            />
         </div>
     </div>
     <div class="buttonBox">
@@ -105,7 +105,26 @@ export default {
         ProductCard,
         ProductFitting,
     },
-    props: {},
+    data() {
+        return {
+            product: [],
+        };
+    },
+
+    methods: {
+        cut(x) {
+            return x.split(",")[0];
+        },
+        getResource() {
+            this.axios.get("/api_server/mainproduct.php").then((response) => {
+                console.log(response.data);
+                this.product = response.data;
+            });
+        },
+    },
+    created() {
+        this.getResource();
+    },
 };
 </script>
 <style lang="scss" scoped>

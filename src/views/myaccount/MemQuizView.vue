@@ -1,62 +1,52 @@
 <template>
-    <!-- 會員 container -->
-    <div class="mem_container">
-        <!-- 側邊欄組件 -->
-        <MemberSideMenu></MemberSideMenu>
-        <!-- 右側會員資料-->
-        <div class="mem_data">
-            <p class="title">我的風格</p>
-            <div class="data">
-                <!-- 這裡開始寫 -->
-                <div class="wrap">
-                    <section class="style">
-                        <div class="item">
-                            <p>屬於:</p>
-                            <h2>#文青風</h2>
-                        </div>
-                        <div class="item">
-                            <img src="hipster2.png" alt="文青">
-                        </div>
-                        <div class="item"><p>文青風在穿搭時，也可以嘗試看看多層次的穿搭法。選擇色系相近、長短不同的衣服，穿搭時可以營造出層次感，讓衣著看上去不會過度呆版。例如選擇長版的素色薄外套搭配條紋的T恤，或是利用襯衫當作外套，內襯一件素色T恤也是相當好的搭配。這樣的穿搭法除了可以增加視覺的豐富度，面對季節交替又或是夏天冷氣房與室外的溫差變化，都能靈活的穿脫，可說是兼具實用性與時尚性的文青風格。</p></div>
-                        <div class="item">
-                            <router-link :to="{ name:'Quiz'}"><button class="btn_s">重新測驗</button></router-link>
-                        </div>
-                    </section>
-                    <section class="recommend">
-                        <h2>推薦穿搭</h2>
-                        <div class="item">
-                            <StylistLook scardP="./stylist-1.jpg" stylistName="Kevin" stylistInfo="擅長時尚風格,用前衛的單品,搭配出衝突的美感"></StylistLook>
-                        </div>
-                    </section>
-                    <section class="recommend">
-                        <h2>推薦單品</h2>
-                        <div class="item">
-                            <StylistLook scardP="./stylist-1.jpg" stylistName="Kevin" stylistInfo="擅長時尚風格,用前衛的單品,搭配出衝突的美感"></StylistLook>
-                        </div>
-                    </section>
-                    <section class="deco">
-                        <div class="decoration">
-					        #CASUAL
-				        </div>
-                        <div class="btn_box">
-                            <router-link :to="{ name:'MyPage'}"><button class="btn_l">返回</button></router-link>
-                            <router-link :to="{ name:'Quiz'}"><button class="btn_s">重新測驗</button></router-link>
-                            
-                        </div>
-                    </section>
+    <p class="title">我的風格</p>
+    <div class="data">
+        <!-- 這裡開始寫 -->
+        <div class="wrap">
+            <section class="style">
+                <div class="item">
+                    <p>屬於:</p>
+                    <h2>#文青風</h2>
                 </div>
-            </div>
+                <div class="item">
+                    <img src="/hipster2.png" alt="文青">
+                </div>
+                <div class="item"><p>文青風在穿搭時，也可以嘗試看看多層次的穿搭法。選擇色系相近、長短不同的衣服，穿搭時可以營造出層次感，讓衣著看上去不會過度呆版。例如選擇長版的素色薄外套搭配條紋的T恤，或是利用襯衫當作外套，內襯一件素色T恤也是相當好的搭配。這樣的穿搭法除了可以增加視覺的豐富度，面對季節交替又或是夏天冷氣房與室外的溫差變化，都能靈活的穿脫，可說是兼具實用性與時尚性的文青風格。</p></div>
+                <div class="item">
+                    <router-link :to="{ name:'Quiz'}"><button class="btn_s">重新測驗</button></router-link>
+                </div>
+            </section>
+            <section class="recommend">
+                <h2>推薦穿搭</h2>
+                <div class="item">
+                    <StylistLook scardP="/stylist-1.jpg" stylistName="Kevin" stylistInfo="擅長時尚風格,用前衛的單品,搭配出衝突的美感"></StylistLook>
+                </div>
+            </section>
+            <section class="recommend">
+                <h2>推薦單品</h2>
+                <div class="item">
+                    <StylistLook scardP="/stylist-1.jpg" stylistName="Kevin" stylistInfo="擅長時尚風格,用前衛的單品,搭配出衝突的美感"></StylistLook>
+                </div>
+            </section>
+            <section class="deco">
+                <div class="decoration">
+                    #CASUAL
+                </div>
+                <div class="btn_box">
+                    <router-link :to="{ name:'MyPage'}"><button class="btn_l">返回</button></router-link>
+                    <router-link :to="{ name:'Quiz'}"><button class="btn_s">重新測驗</button></router-link>
+                    
+                </div>
+            </section>
         </div>
     </div>
 </template>
 
 <script>
-import MemberSideMenu from "@/components/MemberSideMenu.vue";
 import StylistLook from "@/components/StylistLook.vue"; 
 export default {
     name: "MemQuiz",
     components: {
-        MemberSideMenu,
         StylistLook
     },
     data() {
@@ -75,7 +65,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/member_side_menu";
+.title {
+  font-size: 24px;
+  color: #292929;
+  padding-bottom: $padding;
+}
 .wrap{
     .style{
         .item:nth-child(1){ //title

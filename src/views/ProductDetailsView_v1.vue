@@ -2,17 +2,16 @@
 import ProductMenu from "@/components/product/ProductMenu.vue";
 import ProductCard from "@/components/product/ProductCard.vue";
 import HashTag from "@/components/product/HashTag.vue";
-import Alert from "@/components/Alert.vue";
 export default {
     name: "Product",
     components: {
         ProductMenu,
         ProductCard,
         HashTag,
-        Alert,
     },
     data() {
         return {
+            count:[],
             temp: {},
             bigPicture: "",
             pickedColor: "",
@@ -29,13 +28,13 @@ export default {
     },
     computed: {
         product_details() {
-            return this.temp;
+            return this.temp[0];
         },
         product_name() {
-            return this.product_details?.product_name;
+            return this.product_details.product_name;
         },
         unit_price() {
-            return this.product_details?.unit_price;
+            return this.product_details.unit_price;
         },
         picList() {
             return this.product_details?.product_pic?.split(",") ?? [];
@@ -47,7 +46,7 @@ export default {
             return this.product_details?.product_size?.split(",");
         },
         hashTag() {
-            return this.product_details?.hashtag?.split(",");
+            return this.product_details.hashtag?.split(",");
         },
         pic() {
             if (this.picList[0]) {
@@ -60,14 +59,15 @@ export default {
     },
     methods: {
         getResource() {
-            this.axios.get("/api_server/list.php").then((response) => {
-                console.log(response.data);
+            fetch("../data/fakeproduct.json")
+                .then((res) => res.json())
+                .then((json) => {
+                    this.temp = json.filter((e) => {
+                        if (e.product_id === this.$route.params.id) return e;
+                    });
 
-                this.temp = response.data.find((e) => {
-                    if (e.product_id == this.$route.params.id) return e;
+                    this.bigPicture = this.temp[0].product_pic.split(",")[0];
                 });
-                this.bigPicture = this.temp?.product_pic.split(",")[0];
-            });
         },
         addCart() {
             localStorage.getItem("cart");
@@ -85,23 +85,24 @@ export default {
                     id: this.product_details.product_id,
                     color: this.pickedColor,
                     size: this.pickedSize,
+                    count:1
                 };
-                let cartItemKey = JSON.stringify(this.cartItem);
-                if (localStorage.getItem(cartItemKey)) {
-                    let num =
-                        parseInt(localStorage.getItem(cartItemKey)) +
-                        this.number;
-                    localStorage.setItem(JSON.stringify(this.cartItem), num);
-                } else {
-                    localStorage.setItem(cartItemKey, this.number);
-                    if (localStorage.getItem("cart")) {
-                        let str =
-                            localStorage.getItem("cart") + "|" + cartItemKey;
-                        localStorage.setItem("cart", str);
-                    } else {
-                        localStorage.setItem("cart", cartItemKey);
-                    }
-                }
+                // let cartItemKey = JSON.stringify(this.cartItem);
+                // if (localStorage.getItem(cartItemKey)) {
+                //     let num =
+                //         parseInt(localStorage.getItem(cartItemKey)) +
+                //         this.number;
+                //     localStorage.setItem(JSON.stringify(this.cartItem), num);
+                // } else {
+                //     localStorage.setItem(cartItemKey, this.number);
+                //     if (localStorage.getItem("cart")) {
+                //         let str =
+                //             localStorage.getItem("cart") + "|" + cartItemKey;
+                //         localStorage.setItem("cart", str);
+                //     } else {
+                //         localStorage.setItem("cart", cartItemKey);
+                //     }
+                // }
                 this.alert = true;
                 this.msg = "加入成功";
             }
@@ -128,9 +129,6 @@ export default {
         },
         plus() {
             this.number++;
-        },
-        tab(val) {
-            this.alert = val;
         },
     },
     created() {
@@ -229,7 +227,7 @@ export default {
                         </div>
                         <div class="tagBox">
                             <p class="hashtag">#tag</p>
-                            <i v-for="(e, i) in hashTag" :key="i">#{{ e }}</i>
+                            <i v-for="(e, i) in hashTag" :key="i">{{ e }}</i>
                         </div>
                     </div>
                     <div class="shop_buttonBox">
@@ -273,7 +271,10 @@ export default {
             <h3>你可能也會喜歡</h3>
         </div>
     </div>
-    <Alert :msg="msg" @closeAlert="tab" v-show="alert"></Alert>
+    <div class="alert" v-if="alert">
+        <p>{{ msg }}</p>
+        <p><button class="btn_s" @click="alert = false">確定</button></p>
+    </div>
 </template>
 
 <style lang="scss" scoped>
@@ -419,7 +420,7 @@ export default {
                         border-radius: 50%;
                         margin: 10px;
                         background-color: #003;
-                        border: 3px solid $title_color;
+                        border: 3px solid transparent;
                         cursor: pointer;
                         @include s() {
                             width: 20px;
@@ -564,7 +565,7 @@ export default {
             box-sizing: border-box;
             .dressingGuideTitle {
                 background-color: $second_color;
-                color: $text_color;
+                color: $title_color;
                 font-size: 24px;
                 font-weight: 600;
                 padding: 20px;
