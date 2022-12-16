@@ -6,7 +6,7 @@
 <script>
 export default {
     props: {
-        Bgtag:Array,String
+        Bgtag:String
     }
 }
 </script>

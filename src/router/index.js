@@ -57,13 +57,8 @@ const routes = [
 		component: () => import("../views/CheckoutView.vue"),
 	},
 	{
-		path: "/checkout1",
-		name: "checkout1",
-		component: () => import("../views/Checkout1View.vue"),
-	},
-	{
-		path: "/SubCheckout",
-		name: "SubCheckout",
+		path:"/SubCheckout",
+		name:"SubCheckout",
 		component: () => import("../views/SubCheckoutView.vue")
 	},
 	{
@@ -135,11 +130,6 @@ const routes = [
 
 	// ----------myaccount START----------
 	{
-		path: "/BodyType",
-		name: "BodyType",
-		component: () => import("../views/myaccount/BodyTypeView.vue"),
-	},
-	{
 		path: "/Consultation",
 		name: "Consultation",
 		component: () => import("../views/myaccount/ConsultationView.vue"),
@@ -160,9 +150,19 @@ const routes = [
 		component: () => import("../views/myaccount/MyPageView.vue"),
 		children: [
 			{
-			  path: '',
-			  name: "OverView",
-			  component: () => import("../views/myaccount/OverView.vue")
+				path: '',
+				name: "OverView",
+				component: () => import("../views/myaccount/OverView.vue")
+			},
+			{
+				path: "BodyType",
+				name: "BodyType",
+				component: () => import("../views/myaccount/BodyTypeView.vue"),
+			},
+			{
+				path: "memQuiz",
+				name: "memQuiz",
+				component: () => import("../views/myaccount/MemQuizView.vue"),
 			},
 		]
 	},
@@ -191,11 +191,7 @@ const routes = [
 		name: "memSubscription",
 		component: () => import("../views/myaccount/MemSubscriptionView.vue"),
 	},
-	{
-		path: "/memQuiz",
-		name: "memQuiz",
-		component: () => import("../views/myaccount/MemQuizView.vue"),
-	},
+
 	// ----------myaccount END----------
 	{
 		path: "/Confirm",
@@ -270,10 +266,10 @@ const router = createRouter({
 	history: createWebHistory(process.env.BASE_URL),
 	routes,
 	scrollBehavior(to, from, savedPosition) {
-		if (savedPosition) {
-			return savedPosition
-		} else {
-			return { top: 0 }
+		if (to.name !== from.name) return {
+			top: 0,
+			left: 0,
+			behavior: 'smooth'
 		}
 	},
 });

@@ -23,7 +23,7 @@
                 <div
                     v-show="find(item.sex) == item.sex"
                     class="sub_list"
-                    v-for="(e, i) in item.list"
+                    v-for="e in item.list"
                     :key="e.id"
                 >
                     <label :for="e.id">

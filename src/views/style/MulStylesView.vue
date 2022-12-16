@@ -2,7 +2,7 @@
 
 	<div class="mulstyles">
 		<div class="mulstyle_cover">
-			<div :class="['cover_pic', { main:currentPic === coverPic}]" v-for="(coverPic,index) of coverPics" :key="index" @mouseenter="currentPic = coverPic">
+			<div :class="['cover_pic', { main:currentPic === coverPic}]" v-for="(coverPic,index) of coverPics" :key="index" @click="currentPic = coverPic">
 				<img :src="coverPic.src">
 				<h2>{{coverPic.text}}</h2>
 				<router-link to="/Set"><Button class="cover_btn" content="查看更多"></Button></router-link>
@@ -36,7 +36,7 @@
 			</li>
 		</ul>
 		<div class="container" >
-			<div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+			<div class="row row-cols-2 row-cols-md-2 row-cols-xl-4">
 				<div class="col" v-for="(img,index) of showimgs" :key="index">
 					<img :src="img.src">
 				</div>
@@ -69,10 +69,11 @@
 				</div>
 			</div>
 		</div>
+		
 		<div class="stylist_title">
 			<h2>精選造型師</h2>
 		</div>
-		<StylistLook scardP="./stylist-1.jpg" stylistName="Kevin" stylistInfo="擅長時尚風格,用前衛的單品,搭配出衝突的美感"></StylistLook>
+		<StylistLook class="stylistLook" scardP="./stylist-1.jpg" stylistName="Kevin" stylistInfo="擅長時尚風格,用前衛的單品,搭配出衝突的美感"></StylistLook>
 
 		<StylistLook scardP="./stylist-2.jpg" stylistName="Molly" stylistInfo="擅長極簡風格,用簡單的單品,搭配出不一樣的風格"></StylistLook>
 	</div>
@@ -273,7 +274,7 @@ export default {
 		// max-width: 390px;
 		margin:20px auto;
 		height: 500px;
-	
+		cursor: pointer;
 		
 
 		@include xl{
@@ -285,6 +286,7 @@ export default {
 			width: 0;
 			flex-grow: 1;
 			position: relative;
+			
 			// box-shadow: 1px 1px 0px $title_color;
 			&::before{
 				content: '';
@@ -332,6 +334,7 @@ export default {
 			opacity: 1;
 			transition:flex-grow .8s 0s,opacity .8s 0s ;
 			position: relative;
+			cursor:auto;
 			&::before{
 				background-color:rgba(0,0,0,0);
 				// z-index: -1;
@@ -577,5 +580,7 @@ export default {
     		// margin-top: 50px;
 			
 	}
-
+	.stylistLook{
+		margin-bottom: 80px;
+	}
 </style>

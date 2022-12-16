@@ -4,7 +4,7 @@
 			<h2>Don’t know how to wear?</h2>
 			<p>快來探索屬於你的專屬風格</p>
 			
-			<router-link to="/Wearing"><Button content="探索去"/></router-link>
+			<router-link to="/Wearing"><button class="btn_ns">看更多穿搭</button></router-link>
 		</div>
 	</div>
 
@@ -21,6 +21,10 @@
 			</div>
 	</div>
 		 
+	
+
+	
+
 	<section class="find_style_page">
 		<h2>風格測驗</h2>
 		<div class="wrap">
@@ -35,7 +39,7 @@
  				現在立刻前往個人風格測驗分析
 			</p>
 		</div>
-		<router-link :to="{ name:'QuestionBox' }"><button class="btn_s">測驗去</button></router-link>
+		<router-link :to="{ name:'QuestionBox' }"><button class="btn_ns">測驗去</button></router-link>
 	</section>
 
 
@@ -51,6 +55,25 @@
 				{{logoText}}{{logoText}}{{logoText}}{{logoText}}
 			</div>
 	</div>
+
+	<!-- <section class="mulstyles_page">
+		<h2>情境穿搭</h2>
+
+		<router-link to="/MulStyles"><button class="btn_ns">看更多</button></router-link>
+	</section>
+
+	<div class="textLoop_animate">
+			<div class="logo_texts" >
+				{{logoText}}{{logoText}}{{logoText}}{{logoText}}
+			</div>
+			<div class="logo_texts" >
+				{{logoText}}{{logoText}}{{logoText}}{{logoText}}
+				
+			</div>
+			<div class="logo_texts" >
+				{{logoText}}{{logoText}}{{logoText}}{{logoText}}
+			</div>
+	</div> -->
 
 	<div class="our_stylist">
 		<h2>#Our Stylist</h2>
@@ -69,7 +92,7 @@
 				預約我們的風格團隊
 			</p>
 			<router-link :to="{ name:'Consultating'}">
-				<button class="btn_s"> 諮詢造型師 </button>
+				<button class="btn_ns"> 諮詢造型師 </button>
 			</router-link>
 
 			
@@ -84,13 +107,13 @@
 
 <script>
 import StyleCard from "@/components/StyleCard.vue";
-import Button from "@/components/Button.vue";
+
 
 export default {
 	name: "FindStyle",
 	components: {
 		StyleCard,
-		Button,
+
 	},
 
 	data() {
@@ -139,7 +162,10 @@ export default {
 	p{
 		// text-shadow: 3.5px 1px $third_color;
 		display: block;
-		font-size: 32px;
+		font-size: 28px;
+		@include m{
+			font-size: 32px;
+		}
 		text-align: center;
 		font-weight: 700;
 		color: $third_color;
