@@ -41,7 +41,7 @@
 		<div class="remember">
 		  <label><input type="checkbox" />我已閱讀並同意會員約定條款說明</label>
 		</div>
-		<router-link to="/SignupSet"><button type="submit" class="btn_s">下一步</button></router-link>
+		<router-link to="/BodyTyping"><button type="submit" class="btn_s">下一步</button></router-link>
 		<div class="signup">
 		  <p>
 			已有帳號，
@@ -58,7 +58,7 @@
 <script>
 import BgTag from "@/components/mypage/BgTag.vue";
 export default {
-  name: "Signup",
+  name: "Register",
   props: {},
   components: {
 	BgTag,

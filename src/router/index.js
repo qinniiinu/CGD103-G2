@@ -95,14 +95,14 @@ const routes = [
 		component: () => import("../components/loginpage/SigninIn.vue"),
 	},
 	{
-		path: "/Signup", //註冊
-		name: "Signup",
-		component: () => import("../components/loginpage/Signup.vue"),
+		path: "/Register", //註冊
+		name: "Register",
+		component: () => import("../components/loginpage/Register.vue"),
 	},
 	{
-		path: "/SignupSet", //身形建置
-		name: "SignupSet",
-		component: () => import("../components/loginpage/SignupSet.vue"),
+		path: "/BodyTyping", //身形建置
+		name: "BodyTyping",
+		component: () => import("../components/loginpage/BodyTyping.vue"),
 	},
 	{
 		path: "/productdetails/:id",

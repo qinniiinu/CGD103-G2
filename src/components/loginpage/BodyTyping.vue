@@ -128,17 +128,16 @@
             />我同意本網站的隱私權政策，並同意Urstyle收集及使用我的個人資料以處理訂單。</label
           >
         </div>
-        <router-link to="/MyPage"><button type="submit" class="btn_s">註冊</button></router-link>
+        <router-link to="/"><button type="submit" class="btn_s">註冊</button></router-link>
       </form>
     </div>
   </div>
 </template> 
 
-
 <script>
 import BgTag from "@/components/mypage/BgTag.vue";
 export default {
-  name: "SignupSet",
+  name: "BodyTyping",
   props: {},
   components: {
 	BgTag,
