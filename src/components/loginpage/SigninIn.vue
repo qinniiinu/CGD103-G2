@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="signup">
-          <router-link to="/Signup" class="signup_link">註冊新帳號</router-link>
+          <router-link to="/Register" class="signup_link">註冊新帳號</router-link>
         </div>
       </form>
     </div>
