@@ -1,5 +1,6 @@
 <template>
   <div class="weeklywear">
+    <BreadCrumbs></BreadCrumbs>
     <h1 class="title">一週穿搭公式<br />讓你/妳有更多穿搭靈感</h1>
     <section class="section_one">
       <img class="deco1" src="../assets/weeklywear_pic/deco01.png" alt="" />
@@ -266,10 +267,12 @@
 </template>
  
 <script>
+import BreadCrumbs from "@/components/BreadCrumbs.vue";
 export default {
-  // name: "",
-  // components: {
-  // },
+  name: "",
+  components: {
+    BreadCrumbs, 
+  },
 
   data() {
     return {
@@ -284,7 +287,6 @@ export default {
   },
 };
 </script>
-
 
 
 <style lang="scss" scoped>
@@ -302,7 +304,6 @@ export default {
     transform: translatey(0px);
   }
 }
-
 @keyframes line {
   from {
     width: 0%;
@@ -321,7 +322,7 @@ export default {
     font-weight: 700;
     font-family: $main_font;
     text-align: center;
-    line-height: 100%;
+    line-height: 130%;
     margin: 50px auto;
     color: $title_color;
   }
@@ -331,17 +332,17 @@ export default {
     position: relative;
     .deco1 {
       position: absolute;
-      top: -60px;
-      left: 500px;
-      z-index: 5;
+      top: -220px;
+      left: 380px;
+      width: 8%;
       transform: translatey(0px);
       animation: float 4s ease-in-out infinite;
     }
     .deco2 {
       position: absolute;
-      top: 500px;
-      right: 500px;
-      z-index: 5;
+      top: -160px;
+      right: 400px;
+      width: 8%;
       transform: translatey(0px);
       animation: float 4s ease-in-out infinite;
     }
@@ -351,20 +352,19 @@ export default {
       width: 100%;
       max-width: 952px;
       margin: auto;
-
       .img_left {
         position: absolute;
         top: -30px;
-        left: 6%;
+        right: 62%;
         z-index: 4;
-        width: 30%;
+        width: 36%;
       }
       .img_right {
         position: absolute;
         top: 30px;
-        right: 6%;
+        left: 62%;
         z-index: 4;
-        width: 30%;
+        width: 36%;
       }
     }
     .slideDown-leave-active,
@@ -396,6 +396,8 @@ export default {
     }
 
     .weekbox {
+      margin: auto;
+      width: 40%;
       display: inline-block;
       position: absolute;
       top: 110px;
@@ -444,7 +446,7 @@ export default {
   }
   .section_two {
     position: relative;
-    height: 1000px;
+    min-height: 1000px;
     .subtitle {
       font-size: 32px;
       font-weight: 700;
@@ -493,6 +495,8 @@ export default {
   }
 }
 
+
+  
 //  ============================ 手機 ============================
 @media screen and (max-width: 767px) {
   .weeklywear {

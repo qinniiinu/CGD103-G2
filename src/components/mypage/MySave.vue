@@ -1,31 +1,31 @@
 <template>
-  <section class="my_save">
-    <h3 class="title">我的收藏</h3>
-    <div class="data">
-      <!-- 收藏穿搭 -->
-      <div class="save_card">
-        <h4 class="tit">收藏穿搭</h4>
-        <router-link to="/Favorites">
-          <ul class="save_item">
-            <li v-for="ootd in ootds" :key="ootd.combo_id">
-              <img :src="ootd.combo_pic" alt="ootd.combo_id" />
-            </li>
-          </ul>
-        </router-link>
-      </div>
-      <!-- 單品商品 -->
-      <div class="save_card">
-        <h4 class="tit">單品商品</h4>
-        <router-link to="/Favorites">
-          <ul class="save_item">
-            <li v-for="product in products" :key="product.product_id">
-              <img :src="product.product_pic" alt="product.product_id" />
-            </li>
-          </ul>
-        </router-link>
-      </div>
-    </div>
-  </section>
+    <section class="my_save">
+        <h3 class="title">我的收藏</h3>
+        <div class="data">
+            <!-- 收藏穿搭 -->
+            <div class="save_card">
+                <h4 class="tit">收藏穿搭</h4>
+                <router-link to="/Favorites">
+                    <ul class="save_item">
+                        <li v-for="ootd in ootds" :key="ootd.combo_id">
+                            <img :src="ootd.combo_pic" alt="ootd.combo_id" />
+                        </li>
+                    </ul>
+                </router-link>
+            </div>
+            <!-- 單品商品 -->
+            <div class="save_card">
+            <h4 class="tit">單品商品</h4>
+                <router-link to="/Favorites">
+                    <ul class="save_item">
+                    <li v-for="product in products" :key="product.product_id">
+                        <img :src="product.product_pic" alt="product.product_id" />
+                    </li>
+                    </ul>
+                </router-link>
+            </div>
+        </div>
+    </section>
 </template> 
 
 

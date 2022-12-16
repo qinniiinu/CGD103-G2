@@ -3,9 +3,11 @@
     <div class="sideMenu">
       <ProductSideMenu></ProductSideMenu>
       <HashTag></HashTag>
+      <!-- <BreadCrumbs></BreadCrumbs> -->
     </div>
     <div class="fittingArea">
       <div id="panel" class="wrap1">
+        <button @click="remove">reset</button>
       </div>
       <div id="wrap2" class="products">
         <img
@@ -24,12 +26,14 @@
 import SearchBar from "@/components/product/SearchBar.vue";
 import ProductSideMenu from "@/components/product/ProductSideMenu.vue";
 import HashTag from "@/components/product/HashTag.vue";
+// import BreadCrumbs from "@/components/BreadCrumbs.vue";
 export default {
   name: "Product",
   components: {
     SearchBar,
     ProductSideMenu,
     HashTag,
+    // BreadCrumbs,
   },
 
   data() {
@@ -56,8 +60,14 @@ export default {
       new_item.appendChild(image);
       panel.appendChild(new_item);
       this.drag(new_item);
-      this.reset(new_item);
+      // this.reset(new_item);
     },
+
+    // remove(){
+      
+    // }
+
+
 
 
     drag(obj) {
