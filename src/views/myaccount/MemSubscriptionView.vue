@@ -5,71 +5,29 @@
 		<!-- 這裡開始寫 -->
 		<div class="card">
 			<div v-if="memsub==false" class="card-wrap">
-				<div class="card-content">
-				<h2>#BASIC</h2>
-				<p>
-					<font-awesome-icon icon="fa-solid fa-check" />
-					每月專屬搭配一套
-				</p>
-				<span>上身* 1、下身*1、外套*1</span>
-				<p>
-					<font-awesome-icon icon="fa-solid fa-check" />
-					每月諮詢造型師<span>1</span>次
-				</p>
-				<p>
-					<font-awesome-icon icon="fa-solid fa-check" />
-					每月免運費<span>1</span>次
-				</p>
-				<p>
-					<font-awesome-icon icon="fa-solid fa-check" />
-					商品<span>95</span>折優惠
-				</p>
-				<h3>NT$ <span>899</span>/月</h3>
-				<button>立即訂閱</button>
-				</div>
-				<div class="card-content">
-				<h2>#STANDARD</h2>
-				<p>
-					<font-awesome-icon icon="fa-solid fa-check" />
-					每月專屬搭配一套
-				</p>
-				<span>上身* 1、下身*1、外套*1</span>
-				<p>
-					<font-awesome-icon icon="fa-solid fa-check" />
-					每月諮詢造型師<span>2</span>次
-				</p>
-				<p>
-					<font-awesome-icon icon="fa-solid fa-check" />
-					每月免運費<span>2</span>次
-				</p>
-				<p>
-					<font-awesome-icon icon="fa-solid fa-check" />
-					商品<span>9</span>折優惠
-				</p>
-				<h3>NT$ <span>1,899</span>/月</h3>
-				<button>立即訂閱</button>
-				</div>
-				<div class="card-content">
-				<h2>#ULTRA</h2>
-				<p>
-					<font-awesome-icon icon="fa-solid fa-check" />
-					每月專屬搭配一套
-				</p>
-				<span>上身* 1、下身*1、外套*1、鞋子*1</span>
-				<p>
-					<font-awesome-icon icon="fa-solid fa-check" />
-					每月諮詢造型師<span>5</span>次
-				</p>
-				<p>
-					<font-awesome-icon icon="fa-solid fa-check" />
-					每月無限次免運費
-				</p>
-				<p>
-					<font-awesome-icon icon="fa-solid fa-check" />
-					商品<span>8</span>折優惠
-				</p>
-				<h3>NT$ <span>3,999</span>/月</h3>
-				<button>立即訂閱</button>
+				<div class="card-v" v-for="sub in subinfo" :key="sub.level">
+					<div class="card-content">
+						<h2>#{{sub.level}}</h2>
+						<p>
+							<font-awesome-icon icon="fa-solid fa-check" />
+							每月專屬搭配<span>1</span>套
+                    	</p>
+						<span>{{sub.monthSet}}</span>
+						<p>
+                        <font-awesome-icon icon="fa-solid fa-check" />
+							每月諮詢造型師<span>{{sub.monthConsult}}</span>次
+						</p>
+						<p>
+							<font-awesome-icon icon="fa-solid fa-check" />
+							每月免運費<span>{{sub.freeShipping}}</span>次
+						</p>
+						<p>
+							<font-awesome-icon icon="fa-solid fa-check" />
+							商品<span>{{sub.specialOffer}}</span>折優惠
+						</p>
+						<h3>NT$<span>{{sub.price}}</span>/月</h3>
+						<router-link to="/SubCheckout"><button @click="setStorage(index,sub)">訂閱</button></router-link>
+					</div>
 				</div>
 			</div>
 			<div v-else class="card-wrap">
@@ -79,8 +37,33 @@
 					<button @click="view=2">更改方案</button>
 				</div>
 				<div class="card-wrap" v-if="view===2">
-					<div class="activestyle card-content ">
-					<h2>#BASIC</h2>
+					<div class="card-v" v-for="sub in subinfo" :key="sub.level">
+						<div class="card-content" :class="{activestyle:isActive(sub.level)}">
+							<h2>#{{sub.level}}</h2>
+							<p>
+								<font-awesome-icon icon="fa-solid fa-check" />
+								每月專屬搭配<span>1</span>套
+							</p>
+							<span>{{sub.monthSet}}</span>
+							<p>
+							<font-awesome-icon icon="fa-solid fa-check" />
+								每月諮詢造型師<span>{{sub.monthConsult}}</span>次
+							</p>
+							<p>
+								<font-awesome-icon icon="fa-solid fa-check" />
+								每月免運費<span>{{sub.freeShipping}}</span>次
+							</p>
+							<p>
+								<font-awesome-icon icon="fa-solid fa-check" />
+								商品<span>{{sub.specialOffer}}</span>折優惠
+							</p>
+							<h3>NT$<span>{{sub.price}}</span>/月</h3>
+							<p>訂閱日:{{sub_time}} </p>
+							<p>下次付款日:{{sub_deadline}} </p>
+							<router-link to="/SubCheckout"><button @click="setStorage(index,sub)">訂閱</button></router-link>
+						</div>
+					</div>
+					<!-- <h2>#BASIC</h2>
 					<p>
 						<font-awesome-icon icon="fa-solid fa-check" />
 						每月專屬搭配一套
@@ -146,7 +129,7 @@
 					</p>
 					<h3>NT$ <span>3,999</span>/月</h3>
 					<button>立即訂閱</button>
-					</div>
+					</div> -->
 				</div>
 			</div>
 			<button class="cancel" v-if="view===2" @click="memsub=false,view=1">取消訂閱</button>
@@ -160,45 +143,56 @@
 </template>
 
 <script>
+import {subinfo} from'@/assets/config/setting.js'
+import {vip_level} from'@/assets/config/setting.js'
 export default {
 	name: "memSubscription",
 	components: {
 	},
 	data(){
 		return{
-			vip_level:[{
-				level_id:1,
-				product_item:3,
-				level_name:"BASIC",
-				discount:0.95,
-				price:899,
-			},{
-				level_id:2,
-				product_item:3,
-				level_name:"STANDARD",
-				discount:0.9,
-				price:1899,
-			},{
-				level_id:3,
-				product_item:4,
-				level_name:"ULTRA",
-				discount:0.8,
-				price:3999,
-			}
-			],
+			subinfo:subinfo,
+			vip_level:vip_level,
 			memsub:true,
 			view:1,
 			sub_time:'2022/12/02',
-			sub_deadline:'2022/01/02'
+			sub_deadline:'2022/01/02',
+			subscribe:[],
+			active:true,
+			mem_level:'BASIC',
+			meminfo:[]
 		}
 	},
 	created(){
-		
+		this.getResource();
 	},
 	computed:{
 		
 	},
 	methods:{
+		setStorage(index,sub){
+            console.log(sub);
+            this.subscribe.push({
+                level:sub.level,
+                price:sub.price,
+                monthSet:sub.monthSet,
+                monthConsult:sub.monthConsult,
+                freeShipping:sub.freeShipping,
+                specialOffer:sub.specialOffer
+            })
+            const data=JSON.stringify(this.subscribe);
+            console.log(data);
+            localStorage.setItem('subscribe',data);
+        },
+		isActive(e){
+			return e===this.mem_level;
+		},
+		getResource() {
+            this.axios.get("/api_server/subscription.php").then((response) => {
+                this.meminfo = response.data;
+            });
+			console.log(this.meminfo);
+        },
 	}
 };
 </script>
