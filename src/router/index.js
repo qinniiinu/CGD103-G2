@@ -6,6 +6,9 @@ const routes = [
 		path: "/",
 		name: "home",
 		component: HomeView,
+		meta:{
+			title:'首頁'
+		}
 	},
 	{
 		path: "/about",
@@ -67,6 +70,9 @@ const routes = [
 		path: "/fittingroom",
 		name: "fittingroom",
 		component: () => import("../views/FittingRoomView.vue"),
+		meta:{
+			title:'試衣間'
+		}
 	},
 	{
 		path: "/fittingroom1",
@@ -121,6 +127,9 @@ const routes = [
 		path: "/weeklywear",
 		name: "weeklywear",
 		component: () => import("../views/WeeklyWearView.vue"),
+		meta:{
+			title:'一週穿搭'
+		}
 	},
 
 
