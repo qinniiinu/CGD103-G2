@@ -3,7 +3,7 @@
         <aside class="member_side_container">
             <div class="member_side_menu">
                 <div class="member">
-                    <router-link to="/MemMaintain" class="mug_shot">
+                    <router-link to="/MyPage/MemMaintain" class="mug_shot">
                         <img :src="member.mem_pic" :alt="member.mem_name">
                     </router-link>
                     <div class="name_level">
@@ -48,9 +48,9 @@ export default {
                 { name: '我的資料', url:'/MyPage'},
                 { name: '我的身型', url:'/MyPage/BodyType'},
                 { name: '我的風格', url:'/MyPage/memQuiz'},
-                { name: '個人資訊', url:'/MemMaintain'},
-                { name: '風格諮詢', url:'/Consultation'},
-                { name: '訂閱服務', url:'/memSubscription'},
+                { name: '個人資訊', url:'/MyPage/MemMaintain'},
+                { name: '風格諮詢', url:'/MyPage/Consultation'},
+                { name: '訂閱服務', url:'/MyPage/memSubscription'},
                 { name: '訂單紀錄', url:'/OrderHistory'},
                 { name: '我的收藏', url:'/Favorites'},
             ],
@@ -60,13 +60,10 @@ export default {
                 mem_name:"王曉明",
                 level_id: "STANDARD",
             },
-
         }
     },
     methods:{
-
     },
-    
 }
 </script>
 

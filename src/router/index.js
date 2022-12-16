@@ -130,19 +130,9 @@ const routes = [
 
 	// ----------myaccount START----------
 	{
-		path: "/Consultation",
-		name: "Consultation",
-		component: () => import("../views/myaccount/ConsultationView.vue"),
-	},
-	{
 		path: "/Favorites",
 		name: "Favorites",
 		component: () => import("../views/myaccount/FavoritesView.vue"),
-	},
-	{
-		path: "/MemMaintain",
-		name: "MemMaintain",
-		component: () => import("../views/myaccount/MemMaintainView.vue"),
 	},
 	{
 		path: "/MyPage",
@@ -151,7 +141,7 @@ const routes = [
 		children: [
 			{
 				path: '',
-				name: "OverView",
+				name: "Over",
 				component: () => import("../views/myaccount/OverView.vue")
 			},
 			{
@@ -163,6 +153,21 @@ const routes = [
 				path: "memQuiz",
 				name: "memQuiz",
 				component: () => import("../views/myaccount/MemQuizView.vue"),
+			},
+			{
+				path: "MemMaintain",
+				name: "MemMaintain",
+				component: () => import("../views/myaccount/MemMaintainView.vue"),
+			},
+			{
+				path: "Consultation",
+				name: "Consultation",
+				component: () => import("../views/myaccount/ConsultationView.vue"),
+			},
+			{
+				path: "memSubscription",
+				name: "memSubscription",
+				component: () => import("../views/myaccount/MemSubscriptionView.vue"),
 			},
 		]
 	},
@@ -186,11 +191,7 @@ const routes = [
 		name: "OrderHistoryDetail",
 		component: () => import("../views/myaccount/OrderHistoryDetailView.vue"),
 	},
-	{
-		path: "/memSubscription",
-		name: "memSubscription",
-		component: () => import("../views/myaccount/MemSubscriptionView.vue"),
-	},
+
 
 	// ----------myaccount END----------
 	{

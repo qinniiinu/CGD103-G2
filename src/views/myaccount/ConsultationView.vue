@@ -1,10 +1,4 @@
 <template>
-	<!-- 會員 container -->
-	<div class="mem_container">
-		<!-- 側邊欄組件 -->
-		<MemberSideMenu></MemberSideMenu>
-		<!-- 右側會員資料-->
-		<div class="mem_data">
 			<p class="title">風格諮詢</p>
 			<div class="data">
 				<!-- 這裡開始寫 -->
@@ -30,27 +24,25 @@
                     </section>
 				</div>
 			</div>
-		</div>
-	</div>
-	<Footer></Footer>
 </template>
 
 <script>
 
-import MemberSideMenu from "@/components/MemberSideMenu.vue";
 import StylistLook2 from "@/components/StylistLook2.vue";
 export default {
 	name: "Consultation",
 	components: {
-
-		MemberSideMenu,StylistLook2
+		StylistLook2
 	},
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/member_side_menu";
-
+	.title {
+	font-size: 24px;
+	color: #292929;
+	padding-bottom: $padding;
+	}
 	.book{
 		width: 100%;
 		border: 1px solid $title_color;
