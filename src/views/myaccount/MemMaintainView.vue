@@ -1,79 +1,68 @@
 <template>
-	<!-- 會員 container -->
-	<div class="mem_container">
-		<!-- 側邊欄組件 -->
-		<MemberSideMenu></MemberSideMenu>
-		<!-- 右側會員資料-->
-		<div class="mem_data">
-			<p class="title">帳號資訊</p>
-			<div class="data">
-				<!-- 這裡開始寫 -->
-				<div class="wrap">
-					<section class="maintain">
-						<div class="img_box">
-							<div class="mempic"></div>
-						</div>
-						<div class="form_box">
-							<div class="input_group">
-								<input type="text"  v-model="mem_name" required/>
-								<label for="">姓名</label>
-							</div>
-							<div class="input_group">
-								<input type="tel" v-model="phone" required />
-								<label for="">行動電話</label>
-							</div>
-							<div class="birthday">
-								<div class="input_group">
-									<input type="number" v-model="birthday[1].m" required />
-									<label for="">月</label>
-								</div>
-								<div class="input_group">
-									<input type="number" v-model="birthday[2].d" required />
-									<label for="">日</label>
-								</div>
-								<div class="input_group">
-									<input type="number" v-model="birthday[0].y" required />
-									<label for="">年</label>
-								</div>
-							</div>
-							<div class="password">
-								<div class="input_group">
-									<input type="password" v-model="mem_pwd" required />
-									<label for="">密碼</label>
-								</div>
-								<button class="btn_s">修改密碼</button>
-							</div>
-							<div class="input_group">
-								<input type="mail" v-model="mem_mail" required />
-								<label for="">電子郵件</label>
-							</div>
-							<div class="input_group">
-								<input type="text" v-model="address" required />
-								<label for="">聯絡地址</label>
-							</div>
-						</div>
-						<div class="deco">
-							<div class="btn_box">
-								<router-link :to="{ name:'MyPage'}"><button class="btn_l">返回</button></router-link>
-								<button class="btn_s">儲存</button>
-							</div>
-							<div class="decoration">#ACCOUNT</div>
-						</div>
-					</section>
-
+	<p class="title">帳號資訊</p>
+	<div class="data">
+		<!-- 這裡開始寫 -->
+		<div class="wrap">
+			<section class="maintain">
+				<div class="img_box">
+					<div class="mempic"></div>
 				</div>
-			</div>
+				<div class="form_box">
+					<div class="input_group">
+						<input type="text" disabled v-model="mem_name" required/>
+						<label for="">姓名</label>
+					</div>
+					<div class="input_group">
+						<input type="tel" v-model="phone" required />
+						<label for="">行動電話</label>
+					</div>
+					<div class="birthday">
+						<div class="input_group">
+							<input type="number" v-model="birthday[1].m" required />
+							<label for="">月</label>
+						</div>
+						<div class="input_group">
+							<input type="number" v-model="birthday[2].d" required />
+							<label for="">日</label>
+						</div>
+						<div class="input_group">
+							<input type="number" v-model="birthday[0].y" required />
+							<label for="">年</label>
+						</div>
+					</div>
+					<div class="password">
+						<div class="input_group">
+							<input type="password" v-model="mem_pwd" required />
+							<label for="">密碼</label>
+						</div>
+						<button class="btn_s">修改密碼</button>
+					</div>
+					<div class="input_group">
+						<input type="mail" v-model="mem_mail" required />
+						<label for="">電子郵件</label>
+					</div>
+					<div class="input_group">
+						<input type="text" v-model="address" required />
+						<label for="">聯絡地址</label>
+					</div>
+				</div>
+				<div class="deco">
+					<div class="btn_box">
+						<router-link :to="{ name:'MyPage'}"><button class="btn_l">返回</button></router-link>
+						<button class="btn_s">儲存</button>
+					</div>
+					<div class="decoration">#ACCOUNT</div>
+				</div>
+			</section>
+
 		</div>
 	</div>
 </template>
 
 <script>
-import MemberSideMenu from "@/components/MemberSideMenu.vue";
 export default {
 	name: "MemQuiz",
 	components: {
-		MemberSideMenu,
-		// StylistLook
 	},
 	data() {
 		return {
@@ -108,8 +97,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/member_side_menu";
-
+.title {
+  font-size: 24px;
+  color: #292929;
+  padding-bottom: $padding;
+}
 .wrap {
 	.maintain {
 		.mempic {
@@ -152,6 +144,10 @@ export default {
 				}
 
 				&:valid~label {
+					color: $main_color;
+					top: -5px;
+				}
+				&:disabled~label {
 					color: $main_color;
 					top: -5px;
 				}
