@@ -52,7 +52,7 @@ export default {
                 { name: '風格諮詢', url:'/MyPage/Consultation'},
                 { name: '訂閱服務', url:'/MyPage/memSubscription'},
                 { name: '訂單紀錄', url:'/OrderHistory'},
-                { name: '我的收藏', url:'/Favorites'},
+                { name: '我的收藏', url:'/MyPage/Favorites'},
             ],
             // 會員資料
             member:{  
@@ -181,7 +181,6 @@ export default {
                                     opacity: 1;
                                 }
                             }
-
                         }
                         // 當前選單位置 # 標籤
                         .active .side_menu_tag{
