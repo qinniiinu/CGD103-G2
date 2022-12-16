@@ -1,44 +1,36 @@
 <template>
-    <!-- 會員 container -->
-    <div class="mem_container">
-        <!-- 側邊欄組件 -->
-        <MemberSideMenu></MemberSideMenu>
-        <!-- 右側會員資料-->
-        <div class="mem_data">
-            <p class="title">我的收藏</p>
-            <div class="data">
-                <!-- 這裡開始寫 -->
-                <div class="card">
-                    <productCard></productCard>
-                    <productCard></productCard>
-                    <productCard></productCard>
-                    <productCard></productCard>
-                    <productCard></productCard>
-                    <productCard></productCard>
-                    <productCard></productCard>
-                    <productCard></productCard>
-                </div>
-                <div class="decoration">#Favorite</div>
-            </div>
+    <p class="title">我的收藏</p>
+    <div class="data">
+        <!-- 這裡開始寫 -->
+        <div class="card">
+            <productCard></productCard>
+            <productCard></productCard>
+            <productCard></productCard>
+            <productCard></productCard>
+            <productCard></productCard>
+            <productCard></productCard>
+            <productCard></productCard>
+            <productCard></productCard>
         </div>
+        <div class="decoration">#Favorite</div>
     </div>
 </template>
 <script>
 import productCard from "@/components/product/ProductCard.vue";
-
-import MemberSideMenu from "@/components/MemberSideMenu.vue";
 export default {
     name: "Favorites",
     components: {
-        MemberSideMenu,
         productCard,
     },
 };
 </script>
 
-
 <style lang="scss" scoped>
-@import "@/assets/sass/member_side_menu";
+.title {
+  font-size: 24px;
+  color: #292929;
+  padding-bottom: $padding;
+}
 .mem_container {
     background-color: $bg_gray;
 }

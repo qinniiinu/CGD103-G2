@@ -1,236 +1,221 @@
 <template>
-	<!-- 會員 container -->
-	<div class="mem_container">
-		<!-- 側邊欄組件 -->
-		<MemberSideMenu></MemberSideMenu>
-		<!-- 右側會員資料-->
-		<div class="mem_data">
-			<p class="title">#訂單紀錄</p>
-			<div class="data">
-				<div class="Ordh_container"><!-- 訂單紀錄容器盒 -->
-					<div class="ord_condition_box"><!-- 右上角功能盒 -->
-						<select class="ord_sel" name="" id="">
-							<option>訂單狀態</option>
-								<option>已出貨</option>
-								<option>運送中</option>
-								<option>尚未出貨</option>
-						</select>
-						<div class="ham">
-							<router-link  to="/OrderHistoryPhoto">	<font-awesome-icon icon="fa-solid fa-clipboard" />	</router-link>
-							
-						</div>
-					</div>
-					<div class="ord_history_box"><!-- 訂單記錄表單盒 -->
-						
-						<ul class="ord_history_toplist"><!-- 最上方選單 -->
-							<li class="ord_history_toplist_title">
-								<p>訂購日期</p>
-							</li>
-							<li class="ord_history_toplist_title">
-								<p>訂單編號</p>
-							</li>
-							<li class="ord_history_toplist_title">
-								<p>金額</p>
-							</li>
-							<li class="ord_history_toplist_title">
-								<p>訂單狀態</p>
-							</li>
-							<li class="ord_history_toplist_title" id="Q" >
-								<p>訂單問題</p>
-							</li>
-							<li class="ord_history_toplist_title" id="C" >
-								<p>物流狀態</p>
+	<p class="title">#訂單紀錄</p>
+	<div class="data">
+		<div class="Ordh_container"><!-- 訂單紀錄容器盒 -->
+			<div class="ord_condition_box"><!-- 右上角功能盒 -->
+				<select class="ord_sel" name="" id="">
+					<option>訂單狀態</option>
+						<option>已出貨</option>
+						<option>運送中</option>
+						<option>尚未出貨</option>
+				</select>
+				<div class="ham">
+					<router-link  to="/OrderHistoryPhoto">	<font-awesome-icon icon="fa-solid fa-clipboard" />	</router-link>
+					
+				</div>
+			</div>
+			<div class="ord_history_box"><!-- 訂單記錄表單盒 -->
+				
+				<ul class="ord_history_toplist"><!-- 最上方選單 -->
+					<li class="ord_history_toplist_title">
+						<p>訂購日期</p>
+					</li>
+					<li class="ord_history_toplist_title">
+						<p>訂單編號</p>
+					</li>
+					<li class="ord_history_toplist_title">
+						<p>金額</p>
+					</li>
+					<li class="ord_history_toplist_title">
+						<p>訂單狀態</p>
+					</li>
+					<li class="ord_history_toplist_title" id="Q" >
+						<p>訂單問題</p>
+					</li>
+					<li class="ord_history_toplist_title" id="C" >
+						<p>物流狀態</p>
+					</li>
+				</ul>
+				<ul class="ord_history_content"><!-- 選單內容加scroll bar -->
+					<li class="ord_history_content_word">
+						<router-link to="/OrderHistoryDetail">
+						<ul class="content_row">
+							<li class="ord_history_content">20221202</li>
+							<li class="ord_history_content">20221202001</li>
+							<li class="ord_history_content">$8888</li>
+							<li class="ord_history_content">已出貨</li>
+							<li class="ord_history_content" id="Q" >
+								<a class="transport_detail" href="">聯繫客服</a>
+							</li>									
+							<li class="ord_history_content" id="C" >
+								<a class="transport_detail" href="">物流詳情</a>
 							</li>
 						</ul>
-						<ul class="ord_history_content"><!-- 選單內容加scroll bar -->
-							<li class="ord_history_content_word">
-								<router-link to="/OrderHistoryDetail">
-								<ul class="content_row">
-									<li class="ord_history_content">20221202</li>
-									<li class="ord_history_content">20221202001</li>
-									<li class="ord_history_content">$8888</li>
-									<li class="ord_history_content">已出貨</li>
-									<li class="ord_history_content" id="Q" >
-										<a class="transport_detail" href="">聯繫客服</a>
-									</li>									
-									<li class="ord_history_content" id="C" >
-										<a class="transport_detail" href="">物流詳情</a>
-									</li>
-								</ul>
-							</router-link>
+					</router-link>
+					</li>
+					<li class="ord_history_content_word">
+						<router-link to="/OrderHistoryDetail">
+						<ul class="content_row">
+							<li class="ord_history_content">20221202</li>
+							<li class="ord_history_content">20221202001</li>
+							<li class="ord_history_content">$8888</li>
+							<li class="ord_history_content">已出貨</li>
+							<li class="ord_history_content" id="Q" >
+								<a class="transport_detail" href="">聯繫客服</a>
+							</li>									
+							<li class="ord_history_content" id="C" >
+								<a class="transport_detail" href="">物流詳情</a>
 							</li>
-							<li class="ord_history_content_word">
-								<router-link to="/OrderHistoryDetail">
-								<ul class="content_row">
-									<li class="ord_history_content">20221202</li>
-									<li class="ord_history_content">20221202001</li>
-									<li class="ord_history_content">$8888</li>
-									<li class="ord_history_content">已出貨</li>
-									<li class="ord_history_content" id="Q" >
-										<a class="transport_detail" href="">聯繫客服</a>
-									</li>									
-									<li class="ord_history_content" id="C" >
-										<a class="transport_detail" href="">物流詳情</a>
-									</li>
-								</ul>
-							</router-link>
-							</li>
-							<li class="ord_history_content_word">
-								<router-link to="/OrderHistoryDetail">
-								<ul class="content_row">
-									<li class="ord_history_content">20221202</li>
-									<li class="ord_history_content">20221202001</li>
-									<li class="ord_history_content">$8888</li>
-									<li class="ord_history_content">已出貨</li>
-									<li class="ord_history_content" id="Q" >
-										<a class="transport_detail" href="">聯繫客服</a>
-									</li>									
-									<li class="ord_history_content" id="C" >
-										<a class="transport_detail" href="">物流詳情</a>
-									</li>
-								</ul>
-							</router-link>
-							</li>
-							<li class="ord_history_content_word">
-								<router-link to="/OrderHistoryDetail">
-								<ul class="content_row">
-									<li class="ord_history_content">20221202</li>
-									<li class="ord_history_content">20221202001</li>
-									<li class="ord_history_content">$8888</li>
-									<li class="ord_history_content">已出貨</li>
-									<li class="ord_history_content" id="Q" >
-										<a class="transport_detail" href="">聯繫客服</a>
-									</li>									
-									<li class="ord_history_content" id="C" >
-										<a class="transport_detail" href="">物流詳情</a>
-									</li>
-								</ul>
-							</router-link>
-							</li>
-							<li class="ord_history_content_word">
-								<router-link to="/OrderHistoryDetail">
-								<ul class="content_row">
-									<li class="ord_history_content">20221202</li>
-									<li class="ord_history_content">20221202001</li>
-									<li class="ord_history_content">$8888</li>
-									<li class="ord_history_content">已出貨</li>
-									<li class="ord_history_content" id="Q" >
-										<a class="transport_detail" href="">聯繫客服</a>
-									</li>									
-									<li class="ord_history_content" id="C" >
-										<a class="transport_detail" href="">物流詳情</a>
-									</li>
-								</ul>
-							</router-link>
-							</li>
-							<li class="ord_history_content_word">
-								<router-link to="/OrderHistoryDetail">
-								<ul class="content_row">
-									<li class="ord_history_content">20221202</li>
-									<li class="ord_history_content">20221202001</li>
-									<li class="ord_history_content">$8888</li>
-									<li class="ord_history_content">已出貨</li>
-									<li class="ord_history_content" id="Q" >
-										<a class="transport_detail" href="">聯繫客服</a>
-									</li>									
-									<li class="ord_history_content" id="C" >
-										<a class="transport_detail" href="">物流詳情</a>
-									</li>
-								</ul>
-							</router-link>
-							</li>
-							<li class="ord_history_content_word">
-								<router-link to="/OrderHistoryDetail">
-								<ul class="content_row">
-									<li class="ord_history_content">20221202</li>
-									<li class="ord_history_content">20221202001</li>
-									<li class="ord_history_content">$8888</li>
-									<li class="ord_history_content">已出貨</li>
-									<li class="ord_history_content" id="Q" >
-										<a class="transport_detail" href="">聯繫客服</a>
-									</li>									
-									<li class="ord_history_content" id="C" >
-										<a class="transport_detail" href="">物流詳情</a>
-									</li>
-								</ul>
-							</router-link>
-							</li>
-							<li class="ord_history_content_word">
-								<router-link to="/OrderHistoryDetail">
-								<ul class="content_row">
-									<li class="ord_history_content">20221202</li>
-									<li class="ord_history_content">20221202001</li>
-									<li class="ord_history_content">$8888</li>
-									<li class="ord_history_content">已出貨</li>
-									<li class="ord_history_content" id="Q" >
-										<a class="transport_detail" href="">聯繫客服</a>
-									</li>									
-									<li class="ord_history_content" id="C" >
-										<a class="transport_detail" href="">物流詳情</a>
-									</li>
-								</ul>
-							</router-link>
-							</li>
-							<li class="ord_history_content_word">
-								<router-link to="/OrderHistoryDetail">
-								<ul class="content_row">
-									<li class="ord_history_content">20221202</li>
-									<li class="ord_history_content">20221202001</li>
-									<li class="ord_history_content">$8888</li>
-									<li class="ord_history_content">已出貨</li>
-									<li class="ord_history_content" id="Q" >
-										<a class="transport_detail" href="">聯繫客服</a>
-									</li>									
-									<li class="ord_history_content" id="C" >
-										<a class="transport_detail" href="">物流詳情</a>
-									</li>
-								</ul>
-							</router-link>
-							</li>
-							<li class="ord_history_content_word">
-								<router-link to="/OrderHistoryDetail">
-								<ul class="content_row">
-									<li class="ord_history_content">20221202</li>
-									<li class="ord_history_content">20221202001</li>
-									<li class="ord_history_content">$8888</li>
-									<li class="ord_history_content">已出貨</li>
-									<li class="ord_history_content" id="Q" >
-										<a class="transport_detail" href="">聯繫客服</a>
-									</li>									
-									<li class="ord_history_content" id="C" >
-										<a class="transport_detail" href="">物流詳情</a>
-									</li>
-								</ul>
-							</router-link>
-							</li>
-							
-							
 						</ul>
-					</div>
-					<div class="order_history_bottom">
-						<div class="order_title">#ORDER</div><!-- 左下角大字 -->
-						<div class="order_back">
-							<a href="#"><!-- 返回鍵 -->
-								<button>返回</button>
-							</a>
-						</div>
-					</div>
+					</router-link>
+					</li>
+					<li class="ord_history_content_word">
+						<router-link to="/OrderHistoryDetail">
+						<ul class="content_row">
+							<li class="ord_history_content">20221202</li>
+							<li class="ord_history_content">20221202001</li>
+							<li class="ord_history_content">$8888</li>
+							<li class="ord_history_content">已出貨</li>
+							<li class="ord_history_content" id="Q" >
+								<a class="transport_detail" href="">聯繫客服</a>
+							</li>									
+							<li class="ord_history_content" id="C" >
+								<a class="transport_detail" href="">物流詳情</a>
+							</li>
+						</ul>
+					</router-link>
+					</li>
+					<li class="ord_history_content_word">
+						<router-link to="/OrderHistoryDetail">
+						<ul class="content_row">
+							<li class="ord_history_content">20221202</li>
+							<li class="ord_history_content">20221202001</li>
+							<li class="ord_history_content">$8888</li>
+							<li class="ord_history_content">已出貨</li>
+							<li class="ord_history_content" id="Q" >
+								<a class="transport_detail" href="">聯繫客服</a>
+							</li>									
+							<li class="ord_history_content" id="C" >
+								<a class="transport_detail" href="">物流詳情</a>
+							</li>
+						</ul>
+					</router-link>
+					</li>
+					<li class="ord_history_content_word">
+						<router-link to="/OrderHistoryDetail">
+						<ul class="content_row">
+							<li class="ord_history_content">20221202</li>
+							<li class="ord_history_content">20221202001</li>
+							<li class="ord_history_content">$8888</li>
+							<li class="ord_history_content">已出貨</li>
+							<li class="ord_history_content" id="Q" >
+								<a class="transport_detail" href="">聯繫客服</a>
+							</li>									
+							<li class="ord_history_content" id="C" >
+								<a class="transport_detail" href="">物流詳情</a>
+							</li>
+						</ul>
+					</router-link>
+					</li>
+					<li class="ord_history_content_word">
+						<router-link to="/OrderHistoryDetail">
+						<ul class="content_row">
+							<li class="ord_history_content">20221202</li>
+							<li class="ord_history_content">20221202001</li>
+							<li class="ord_history_content">$8888</li>
+							<li class="ord_history_content">已出貨</li>
+							<li class="ord_history_content" id="Q" >
+								<a class="transport_detail" href="">聯繫客服</a>
+							</li>									
+							<li class="ord_history_content" id="C" >
+								<a class="transport_detail" href="">物流詳情</a>
+							</li>
+						</ul>
+					</router-link>
+					</li>
+					<li class="ord_history_content_word">
+						<router-link to="/OrderHistoryDetail">
+						<ul class="content_row">
+							<li class="ord_history_content">20221202</li>
+							<li class="ord_history_content">20221202001</li>
+							<li class="ord_history_content">$8888</li>
+							<li class="ord_history_content">已出貨</li>
+							<li class="ord_history_content" id="Q" >
+								<a class="transport_detail" href="">聯繫客服</a>
+							</li>									
+							<li class="ord_history_content" id="C" >
+								<a class="transport_detail" href="">物流詳情</a>
+							</li>
+						</ul>
+					</router-link>
+					</li>
+					<li class="ord_history_content_word">
+						<router-link to="/OrderHistoryDetail">
+						<ul class="content_row">
+							<li class="ord_history_content">20221202</li>
+							<li class="ord_history_content">20221202001</li>
+							<li class="ord_history_content">$8888</li>
+							<li class="ord_history_content">已出貨</li>
+							<li class="ord_history_content" id="Q" >
+								<a class="transport_detail" href="">聯繫客服</a>
+							</li>									
+							<li class="ord_history_content" id="C" >
+								<a class="transport_detail" href="">物流詳情</a>
+							</li>
+						</ul>
+					</router-link>
+					</li>
+					<li class="ord_history_content_word">
+						<router-link to="/OrderHistoryDetail">
+						<ul class="content_row">
+							<li class="ord_history_content">20221202</li>
+							<li class="ord_history_content">20221202001</li>
+							<li class="ord_history_content">$8888</li>
+							<li class="ord_history_content">已出貨</li>
+							<li class="ord_history_content" id="Q" >
+								<a class="transport_detail" href="">聯繫客服</a>
+							</li>									
+							<li class="ord_history_content" id="C" >
+								<a class="transport_detail" href="">物流詳情</a>
+							</li>
+						</ul>
+					</router-link>
+					</li>
+					<li class="ord_history_content_word">
+						<router-link to="/OrderHistoryDetail">
+						<ul class="content_row">
+							<li class="ord_history_content">20221202</li>
+							<li class="ord_history_content">20221202001</li>
+							<li class="ord_history_content">$8888</li>
+							<li class="ord_history_content">已出貨</li>
+							<li class="ord_history_content" id="Q" >
+								<a class="transport_detail" href="">聯繫客服</a>
+							</li>									
+							<li class="ord_history_content" id="C" >
+								<a class="transport_detail" href="">物流詳情</a>
+							</li>
+						</ul>
+					</router-link>
+					</li>
+				</ul>
+			</div>
+			<div class="order_history_bottom">
+				<div class="order_title">#ORDER</div><!-- 左下角大字 -->
+				<div class="order_back">
+					<a href="#"><!-- 返回鍵 -->
+						<button>返回</button>
+					</a>
 				</div>
 			</div>
 		</div>
 	</div>
-	<Footer></Footer>
 </template>
 
 <script>
-
 import Button from "@/components/Button.vue";
-import MemberSideMenu from "@/components/MemberSideMenu.vue";
-
 export default {
 	name: "OrderHistory",
 	components: {    
-		MemberSideMenu,
 		Button
 	},
 };
@@ -240,8 +225,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/main";
-@import "@/assets/sass/member_side_menu";
+.title {
+  font-size: 24px;
+  color: #292929;
+  padding-bottom: $padding;
+}
 
 @mixin b() {
 	@media screen and (max-width: 1023px) {
@@ -279,8 +267,6 @@ export default {
 	margin: 10px;
 	
 }
-
-
 
 .ham{
 	cursor: pointer;

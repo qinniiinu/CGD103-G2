@@ -166,11 +166,22 @@ const routes = [
 				component: () => import("../views/myaccount/MemSubscriptionView.vue"),
 			},
 			{
+				path: "OrderHistory",
+				name: "OrderHistory",
+				component: () => import("../views/myaccount/OrderHistoryView.vue"),
+			},
+			{
 				path: "Favorites",
 				name: "Favorites",
 				component: () => import("../views/myaccount/FavoritesView.vue"),
 			},
 		]
+	},
+
+	{
+		path: "/OrderHistoryDetail", //與 OrderHistory 合併後刪除
+		name: "OrderHistoryDetail",
+		component: () => import("../views/myaccount/OrderHistoryDetailView.vue"),
 	},
 	{
 		path: "/OrderDetails",
@@ -178,20 +189,11 @@ const routes = [
 		component: () => import("../views/myaccount/OrderDetailsView.vue"),
 	},
 	{
-		path: "/OrderHistory",
-		name: "OrderHistory",
-		component: () => import("../views/myaccount/OrderHistoryView.vue"),
-	},
-	{
 		path: "/OrderHistoryPhoto",
 		name: "OrderHistoryPhoto",
 		component: () => import("../views/myaccount/OrderHistoryPhotoView.vue"),
 	},
-	{
-		path: "/OrderHistoryDetail",
-		name: "OrderHistoryDetail",
-		component: () => import("../views/myaccount/OrderHistoryDetailView.vue"),
-	},
+
 
 
 	// ----------myaccount END----------

@@ -51,7 +51,7 @@ export default {
                 { name: '個人資訊', url:'/MyPage/MemMaintain'},
                 { name: '風格諮詢', url:'/MyPage/Consultation'},
                 { name: '訂閱服務', url:'/MyPage/memSubscription'},
-                { name: '訂單紀錄', url:'/OrderHistory'},
+                { name: '訂單紀錄', url:'/MyPage/OrderHistory'},
                 { name: '我的收藏', url:'/MyPage/Favorites'},
             ],
             // 會員資料
