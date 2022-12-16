@@ -47,7 +47,7 @@ export default {
             options: [
                 { name: '我的資料', url:'/MyPage'},
                 { name: '我的身型', url:'/MyPage/BodyType'},
-                { name: '我的風格', url:'/memQuiz'},
+                { name: '我的風格', url:'/MyPage/memQuiz'},
                 { name: '個人資訊', url:'/MemMaintain'},
                 { name: '風格諮詢', url:'/Consultation'},
                 { name: '訂閱服務', url:'/memSubscription'},
