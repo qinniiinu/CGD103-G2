@@ -60,7 +60,9 @@
 		<h2>風格穿搭</h2>
 		<div class="style_type">
 			<div class="type_item" v-for="(styleType,index) of styleTypes" :key="index">
-				<img :src="styleType.src" alt="">
+				<div class="type_pic">
+					<img :src="styleType.src" alt="">
+				</div>
 				<p>{{styleType.text}}</p>
 			</div>
 		</div>
@@ -82,30 +84,32 @@
 				{{logoText}}{{logoText}}{{logoText}}{{logoText}}
 			</div>
 	</div>
-
-	<div class="our_stylist">
-		<h2>#Our Stylist</h2>
-		<h2 class="sec-h2">#Our Stylist</h2>
-		<div class="our_stylist_main">
-			<div class="our_stylist_pic" v-for="stylistPic of stylistPics" :key="stylistPic">
-				<img :src="stylistPic.src" alt="">
+	
+	<div class="chat_stylist">
+		<h2>風格諮詢</h2>
+		<div class="our_stylist">
+		
+			<h3>#Our Stylist</h3>
+			<h3 class="sec-h2">#Our Stylist</h3>
+			<div class="our_stylist_main">
+				<div class="our_stylist_pic" v-for="stylistPic of stylistPics" :key="stylistPic">
+					<img :src="stylistPic.src" alt="">
+				</div>
+			</div>
+			<div class="stylist_content">
+				<p>
+					更深入了解
+					<br>
+					制定個人穿搭攻略
+					<br>
+					預約我們的風格團隊
+				</p>
+				<router-link :to="{ name:'Consultating'}">
+					<button class="btn_ns"> 諮詢造型師 </button>
+				</router-link>
+		
 			</div>
 		</div>
-		<div class="stylist_content">
-			<p>
-				更深入了解 
-				<br>
-				制定個人穿搭攻略
-				<br>
-				預約我們的風格團隊
-			</p>
-			<router-link :to="{ name:'Consultating'}">
-				<button class="btn_ns"> 諮詢造型師 </button>
-			</router-link>
-
-			
-		</div>
-
 	</div>
 		 		
 
@@ -195,7 +199,7 @@ export default {
 	}
 }
 .mulstyles_page{
-	width: 80%;
+	width: 85%;
     max-width: 960px;
 	@include m{
 		width: 90%;
@@ -210,7 +214,7 @@ export default {
 	h2{
 		text-align: center;
 		font-weight: 700;
-		color: $text_color;
+		color: $title_color;
 		font-size: 32px;
 		margin-bottom:30px;
 		@include m{
@@ -220,10 +224,43 @@ export default {
 	.style_type{
 		display:flex;
 		width: 100%;
+		gap:20px;
 		flex-wrap: wrap;
+		@include xl{
+			width: 95%;
+			margin: auto;
+		}
 		.type_item{
 			display:flex;
 			flex-direction: column;
+			
+			.type_pic{
+				position: relative;
+				&::before {
+					content:"";
+					position: absolute;
+					top: 5px;
+					left: 5px;
+					border: 1px solid #000;
+					background-color: #EEEEEE;
+					width: 100%;
+					height: 100%;
+					z-index: -1;
+				}
+
+				&::after {
+					content: "";
+					position: absolute;
+					top: 10px;
+					left: 10px;
+					border: 1px solid #000;
+					background-color: #D7D7D7;
+					width: 100%;
+					height: 100%;
+					z-index: -2;
+				}
+			}
+			
 			@include ss{
 				width: 48%;
 				margin-bottom:10px ;
@@ -240,9 +277,10 @@ export default {
 				font-style: italic;
 				font-weight: 700;
 				font-size: 28px;
+				margin-top: 25px;
 				text-align: center;
 				@include ss{
-
+					margin-top: 20px;
 					font-size: 20px;
 					// text-align: center;
 
@@ -262,13 +300,17 @@ export default {
 				width: 100%;
 				height: 100%;
 				object-fit: cover;
+				position: relative;
+				border: 1px solid #000;
 				margin-bottom:10px;
 				@include m{
 					margin-bottom:20px;
 				}
+				
+			
 			}
 			&:nth-child(1){
-				img{
+				.type_pic{
 					@include m{
 						margin-top:20px;
 						order: 1;
@@ -278,7 +320,7 @@ export default {
 				}
 			}
 			&:nth-child(3){
-				img{
+				.type_pic{
 					@include m{
 						margin-top:20px;
 						order: 1;
@@ -286,6 +328,25 @@ export default {
 					}
 				}
 			}
+
+			&:nth-child(2){
+				p{
+					@include m{
+						margin-top:20px;
+						
+					}
+					
+				}
+			}
+			&:nth-child(4){
+				p{
+					@include m{
+						margin-top:20px;
+						
+					}
+				}
+			}
+		
 		}
 	}
 	button{
@@ -387,12 +448,27 @@ export default {
 			transform: translate3d(-100%, 0, 0)
 		}
 	}
+	.chat_stylist{
+		margin: auto;
+		margin-bottom: 50px;
+		h2{
+			font-size: 32px;
+			color: $title_color;
+			font-weight: 600;
+			text-align: center;
+			margin: 0px 0px 40px;
+			@include m{
+				font-size: 48px;
+			}
+		}
+		
+	}
 	.our_stylist{
 		display: flex;
 		flex-direction: column;
 		margin: auto;
 		position: relative;
-		margin-bottom: 50px;
+	
 		
 		@include m{
 			flex-direction: row;
@@ -400,7 +476,8 @@ export default {
 			margin: auto;
 			margin-bottom: 80px;
 		}
-		h2{
+		
+		h3{
 			position:absolute;
 			top: 12%;
 			left: 0;
@@ -435,7 +512,7 @@ export default {
 			display: flex;
 			flex-wrap:wrap;
 			@include m{
-				width: 70%;
+				width: 60%;
 				gap: 10px;
 			}
 			
@@ -455,15 +532,16 @@ export default {
 			}
 		}
 		.stylist_content{
-		
+			background-color:$second_color;
 			display: flex;
 			align-items: center;
 			justify-content: space-around;
 			@include m{
-					width: 30%;
+					width: 40%;
 					flex-direction: column;
 					justify-content: center;
 					gap: 20px;
+					
 			}
 			p{
 				@include m{
@@ -479,7 +557,8 @@ export default {
 				color:$title-color ;
 				display: inline-block;
 				line-height: 40px;
-				margin: 10px;
+				margin: 20px;
+
 			}
 			Button{
 				height: 60px;
