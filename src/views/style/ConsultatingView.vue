@@ -12,8 +12,8 @@
 		</div>
 		<div class="consultqa-btn">
 			<div class="consultqa-btn-item" v-for="(qaBtn,index) of qaBtns" :key="index">
-				<label :for="qaBtn.id">
-					<input type="checkbox" :id="qaBtn.id">
+				<label :for="qaBtn.id" :name="btncheck" >
+					<input type="checkbox" :id="qaBtn.id" :value="qaBtn.text" name="btncheck" v-model="qaBtncheck" :checked="hascheck()" >
 					<p>{{qaBtn.text}}</p>
 				</label>
 			</div>
@@ -22,13 +22,11 @@
 			<div class="consultqa-input-title">
 				<h3>
 					其他
-				
 				</h3>
 			</div>
-			<textarea class="consultqa-textarea">
-
-			</textarea>
+			<textarea class="consultqa-textarea" maxlength="1000" placeholder="輸入你想諮詢的問題" v-model="qatextarea"></textarea>
 			<Button class="btn_s" @click="changeStep()">下一步</Button>
+			<p :class="{prompt:isprompt,noprompt:notprompt}">{{stepPrompt}}</p>
 		</div>
 	</div>
 	<div class="consultqa-step2" v-show="step2">
@@ -48,60 +46,34 @@
 				<p>3.諮詢時間為一個小時</p>
 			</div>
 			<div class="consultqa-date">
-					<Datepicker v-model="date" inline  vertical/>
+				<Datepicker v-model="date" model-type="yyyy/MM/dd" :enable-time-picker="false"  inline />
 			</div>
 			<div class="consultqa-time">
 				<h3>時段</h3>
-				<div class="consultqa-time-item morning">
-					<h4>上午</h4>
+				<div class="consultqa-time-item" v-for="(time,index) of times" :key="index">
+					<h4>{{time.era}}</h4>
 					<div class="time-btn">
-						<input type="radio" id="time10" name="time">
-						<label for="time10">
-							<p>10:00</p>
+						<input type="radio" :id="time.id" name="time" :checked="hascheck2()" @click=" qatime= time.item ;qaera =time.era">
+						<label :for="time.id">
+							<p>{{time.item}}</p>
 						</label>
-
-						<input type="radio" id="time11" name="time">
-						<label for="time11">
-							<p>11:00</p>
-						</label>	
-					</div>
-				
-				</div>
-				<div class="consultqa-time-item afternoon">
-					<h4>下午</h4>
-					<div class="time-btn">
-						<input type="radio" id="time14" name="time">
-						<label for="time14">
-							<p>14:00</p>
-						</label>
-
-						<input type="radio" id="time15" name="time">
-						<label for="time15">
-							
-							<p>15:00</p>
+					
+						<input type="radio" :id="time.id2" name="time" :checked="hascheck2()" @click="qatime = time.item2 ; qaera =time.era">
+						<label :for="time.id2">
+							<p>{{time.item2}}</p>
 						</label>
 					</div>
-				</div>
-				<div class="consultqa-time-item night">
-					<h4>晚上</h4>
-						<div class="time-btn">
-							<input type="radio" id="time19" name="time">
-							<label for="time19" >
-								<p>19:00</p>
-							</label>
-
-							<input type="radio" id="time20" name="time">
-							<label for="time20">
-								<p>20:00</p>
-							</label>
-						</div>
 				</div>
 
 			</div>
 		</div>
+		<div class="pickdate">
+			<p>你選擇的日期:<span>{{date}}</span></p>
+		</div>
 		<div class="btn_stp">
 			<Button class="btn_l" @click="backStep1()">上一步</Button>
 			<Button class="btn_s" @click="changeStep2()">下一步</Button>
+			<p :class="{p_prompt:canprompt,p_noprompt:cantprompt}">{{datePrompt}}</p>
 		</div>
 	</div>
 	<div class="consultqa-step3" v-show="step3">
@@ -114,18 +86,18 @@
 			<h2>預約資訊確認</h2>
 			<div class="consulta-qa consultqa-check-item">
 				<h3>諮詢方向</h3>
-				<p>不了解自己適合什麼</p>
-				<p>不想思考每天要穿什麼</p>
-				<p>對自己的穿搭沒自信</p>
-				<p>對自己的穿搭沒自信對自己的穿搭沒自信對自己的穿搭沒自信對自己的穿搭沒自信對自己的穿搭沒自信對自己的穿搭沒自信對自己的穿搭沒自信</p>
+				<p>{{qaBtncheck[0]}}</p>
+				<p v-if="this.qaBtncheck.length>1 ">{{qaBtncheck[1]}}</p>
+				<p v-if="this.qaBtncheck.length>2 ">{{qaBtncheck[2]}}</p>
+				<p v-if="this.qatextarea !='' ">{{qatextarea}}</p>
 			</div>
 			<div class="book-date consultqa-check-item">
 				<h3>日期</h3>
-				<p>2022年11月11日</p>
+				<p>{{date}}</p>
 			</div>
 			<div class="book-time consultqa-check-item">
 				<h3>時段</h3>
-				<p>下午 2:00</p>
+				<p>{{qaera}}{{qatime}}{{qatime2}}</p>
 			</div>
 			<div class="check-btn">
 				<Button class="btn_l" @click="backStep2()">上一步</Button>
@@ -140,6 +112,8 @@
 
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/src/VueDatePicker/style/main.scss';
+import { scrollTop } from 'dom7';
+import { ref } from 'vue';
 
 
 export default {
@@ -148,11 +122,17 @@ export default {
 	components: {
 		 Datepicker ,
 	},
-	
+	setup() {
+		const bookdate = ref();
+        
+        return {
+            bookdate,
+        }
+    },
 
 	data(){
 		return{
-			date: null,
+			date: '',
 			steps:['STEP1','→','STEP2','→','STEP3'],
 			qaBtns:[
 				{id:1,text:'網購衣服不清楚怎麼挑合適的尺寸'},
@@ -166,38 +146,127 @@ export default {
 				{id:9,text:'想嘗試更多風格'},
 				
 			],
+			times:[
+				{id:'time10',item:'10:00',era:'上午',id2:'time11',item2:'11:00'},
+				{id:'time14',item:'02:00',era:'下午',id2:'time15',item2:'03:00'},
+				{id:'time19',item:'07:00',era:'晚上',id2:'time20',item2:'08:00'},
+				
+				
+				
+			],
+			qaBtncheck:[],
+			btn:0,
 			step1:true,
 			step2:false,
 			step3:false,
-			setStep:'',
-			comStep:[],
-			checkBtn:'',
-			checkBtns:['a','s','d','f','g','r','t','i','r'],
+			btncheck:'qabtn-box',
+			stepPrompt:'至少選一個',
+			isprompt:false,
+			notprompt:true,
+			qatime:'',
+			qaera:'',
+			datePrompt:'日期、時間要選擇',
+			canprompt:false,
+			cantprompt:true,
+			qatextarea:'',
+			bookdate:'',
 		}
 	},
+	computed:{
+	
+		btncheck(){
+			if(this.qaBtncheck.length>3){
+				this.qaBtncheck.splice(0,1)
+			}
+		},
+		
+	},
 	mounted () {
-		// this.setStep=this.steps[0] 
+	
 	},
 	methods:{
 		changeStep(){
 			
-			this.step1=false
-			this.step2=true
+			if(this.qaBtncheck.length>0){
+				this.step1=false
+				this.step2=true
+				this.isprompt=false
+				this.notprompt=true
+				window.scrollTo({
+					top: 0,
+					left: 0,
+					behavior: 'smooth'
+				})
+				
+				
+			}else{
+				this.step2=false
+				this.isprompt=true
+				this.notprompt=false
+				console.log(isprompt)
+
+			}
+				
 		},
+		hascheck(){
+			if(this.qaBtncheck.length>0){
+				this.isprompt=false
+				this.notprompt=true
+				
+			}
+		},
+
 		changeStep2(){
-		
-			this.step3=true
-			this.step2=false
+			
+			// alert(this.date)
+			if(this.qatime!=''&& this.date!=''){
+				
+				this.step3=true
+				this.step2=false
+				window.scrollTo({
+					top: 0,
+					left: 0,
+					behavior: 'smooth'
+				})
+
+				
+			}else{
+				this.canprompt=true
+				this.cantprompt=false
+			}
+			
 		},
+		hascheck2(){
+			// if(this.qatime==''||this.date==''){
+			// 	// this.canprompt=true
+			// 	// this.cantprompt=false
+			// }else{
+			// 	this.canprompt=false
+			// 	this.cantprompt=true
+			// }
+			// 	
+			
+		},
+
 		backStep1(){
            
 			this.step2=false
 			this.step1=true
+			window.scrollTo({
+					top: 0,
+					left: 0,
+					behavior: 'smooth'
+				})
         },
         backStep2(){
        
 			this.step3=false
 			this.step2=true
+			window.scrollTo({
+					top: 0,
+					left: 0,
+					behavior: 'smooth'
+				})
         }
 
 	}
@@ -205,7 +274,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
+	label{
+		cursor: pointer;
+	}
 
 
 	
@@ -321,8 +392,28 @@ export default {
 				font-size: 24px;
 			}
 			.consultqa-textarea{
+				display: inline-block;
 				width: 100%;
+				// max-width: 312px;
 				height: 300px;
+				margin: auto;
+				&:focus{
+					// border: red;
+					outline:0px;
+				}
+				box-sizing: border-box;
+				padding:20px;
+				font-size:16px ;
+				letter-spacing: 1px;
+				line-height: 24px;
+				@include m{
+					// max-width: 1200px;
+					font-size:16px ;
+					letter-spacing: 1.5px;
+					
+					
+				}
+
 			}
 			Button{
 				text-align: center;
@@ -334,9 +425,33 @@ export default {
 						line-height: 36px;
 					}
 			}
+			.prompt{
+				text-align: center;
+				margin: 10px  auto 50px;
+				color: red;
+				font-size:14px ;
+			}
+			.noprompt{
+				text-align: center;
+				margin: 10px  auto 50px;
+				color:transparent;
+				font-size:14px ;
+			}
 		}
 	}
 	.consultqa-step2{
+		.pickdate{
+			p{
+				text-align: center;
+				margin: 0px auto 50px;
+				font-size:24px ;
+				color:$title_color ;
+				font-weight: 700;
+				span{
+					color:$main_color ;
+				}
+			}
+		}
 		.step{
 			width: 80%;
 			max-width: 1200px;
@@ -428,7 +543,7 @@ export default {
 
 			}
 			.consultqa-date{
-				
+				border:2px solid $main-color ;
 				@include m{
 					margin-top:50px ;
 				}
@@ -483,6 +598,7 @@ export default {
 							background-color:$main-color;
 							color: $second_color;
 							font-weight: 700;
+							border:0px solid $main_color;
 						}
 
 					}
@@ -511,6 +627,18 @@ export default {
 				}
 			}
 			margin-bottom:20px ;
+			.p_prompt{
+				text-align: center;
+				margin: 10px  auto 50px;
+				color: red;
+				font-size:14px ;
+			}
+			.p_noprompt{
+				text-align: center;
+				margin: 10px  auto 50px;
+				color: transparent;
+				font-size:14px ;
+			}
 		}
 	}
 	.consultqa-step3{
@@ -575,11 +703,15 @@ export default {
 			margin: 50px auto;
 		
 			h2{
+				margin: 20px auto;
 				text-align: center;
-				font-size: 22px;
+				font-size: 24px;
 				font-weight: 700;
 				color: $title_color;
 				line-height: 40px;
+				@include m{
+						font-size: 32px;
+					}
 			}
 			.consultqa-check-item{
 				width: 80%;
@@ -587,11 +719,17 @@ export default {
 				margin-top: 20px;
 				h3{
 					font-size: 18px;
+					@include m{
+						font-size: 22px;
+					}
 					color: $title_color;
 					font-weight: 700;
 					margin-bottom: 15px;
 				}
 				p{
+					@include m{
+						font-size: 18px;
+					}
 					font-size: 14px;
 					margin: 10px 0px;
 					padding: 10px;
@@ -619,3 +757,4 @@ export default {
 		}
 	}
 </style>
+
