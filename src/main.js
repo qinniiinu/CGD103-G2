@@ -28,6 +28,7 @@ import {
 	faAngleRight,
 	faMinus, faCaretDown,
 	faArrowRight,
+	faFilter,
 
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -52,6 +53,7 @@ library.add(
 	faMinus,
 	faCaretDown,
 	faArrowRight,
+	faFilter,
 
 );
 

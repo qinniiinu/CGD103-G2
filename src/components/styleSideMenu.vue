@@ -144,11 +144,22 @@ export default {
 <style lang="scss" scoped>
 
     .sideMenu{
-        width: 20%;
-        min-width: 195px;
-        max-width: 240px;
+        @include m{
+            width: 100%;
+            // min-width: 200px;
+            max-width: 240px;
+            box-sizing: border-box;
+        }
+        width: 90%;
+        // min-width: 195px;
+        max-width: 351px;
+        height: 100%;
+     
         .sideMenu-group{
             
+            &:last-child{
+                padding-bottom:50px ;
+            }
             .sideMenu-group-title{
                 h3{
                     font-size: 20px;
@@ -180,6 +191,7 @@ export default {
                         }
                     }
                 }
+                
             }
             
         }
