@@ -108,92 +108,24 @@ export default {
 		// }
 	},
 	methods:{
-		
-		// getResource(){
-		// 	this.load=true;
-		// 	fetch('https://fakestoreapi.com/products').then(res=>res.json())
-		// 	.then(json=>{
-		// 		this.source=json
-		// 		for(let item in this.source){
-		// 			this.count.push(0)
-		// 		}
-		// 		this.load=false
-		// 	})
-		// }
-		// addCount(index,item){
-		// 	console.log(item)
-		// 	this.count[index]+=1
-		// 	const prodIndex=this.order.findIndex(orderItem=>{
-		// 		return orderItem.id===item.id
-		// 	})
-		// 	console.log(prodIndex)
-		// 	if(prodIndex>=0){
-		// 		this.order[prodIndex]['count']+=1
-		// 	}else{
-		// 		// 推進購物車產品資訊
-		// 		this.order.push({
-		// 			id:item.id,
-		// 			title:item.title,
-		// 			image:item.image,
-		// 			color:item.color,
-		// 			size:item.size,
-		// 			price:item.price,
-		// 			count:1
-		// 		})
-		// 	}
-		// 	this.setStorage()
-		// },
-		// reduceCount(index,item){
-		// 	console.log(item)
-		// 	if(this.count[index]<=0) return
-		// 	this.count[index]-=1
-		// 	const prodIndex=this.order.findIndex(orderItem=>{
-		// 		return orderItem.id===item.id
-		// 	})
-		// 	if(prodIndex<0) return;
-		// 	if(this.order[prodIndex]['count']>1){
-		// 		this.order[prodIndex]['count']-=1
-		// 	}else{
-		// 		this.order.splice(prodIndex,1)
-		// 		alert("確定要刪除此產品嗎?")
-		// 	}
-		// 	this.setStorage()
-		// },
+		getResource(index,item){
+			this.load=true;
+			this.order.push({
+				id:item.product_id,
+				title:item.title,
+				image:item.image,
+				color:item.color,
+				size:item.size,
+				price:item.price,
+				count:1
+			})
+		},
 		getStorage(){
 			let data =localStorage.getItem('cart');
 			data=JSON.parse(data)
 			this.order=data? data:[]
 			console.log(this.order);
-			// this.order.push({
-			// 	id:item.product_id,
-			// 	// title:item.title,
-			// 	// image:item.image,
-			// 	// color:item.color,
-			// 	// size:item.size,
-			// 	// price:item.price,
-			// 	// count:1
-			// })
-			
-        },
-		// additem(){
-		// 	const prodIndex=this.order.findIndex(orderItem=>{
-		//  		return orderItem.id===item.id
-		//  	})
-		// },
-		// setStorage(){
-		// 	const data=JSON.stringify(this.order);
-		// 	localStorage.setItem('order',data);
-        // },
-		// dele(index,item){
-		// 	const prodIndex=this.order.findIndex(orderItem=>{
-		// 		return orderItem.id===item.id
-		// 	})
-		// 	if(prodIndex<0) return;
-		// 	this.order.splice(prodIndex,1)
-		// 	alert("確定要刪除此產品嗎?")
-		// 	this.setStorage()
-		// },
-	
+        }
 	}
 };
 </script>
