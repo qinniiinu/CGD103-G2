@@ -247,7 +247,7 @@ export default {
 			trigger:".FAQRow",
 			start:"top 40%",
 			end:"top 0%",
-			markers:true,
+			// markers:true,
 			scrub:8,
 
 		},
