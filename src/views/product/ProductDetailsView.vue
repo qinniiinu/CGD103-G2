@@ -19,7 +19,7 @@ export default {
             pickedSize: "",
             colorClick: [],
             number: 1,
-            cartList: [],
+            cart: [],
             sizeClick: [],
             cartItem: {},
             alert: false,
@@ -68,8 +68,13 @@ export default {
                 this.bigPicture = this.temp?.product_pic.split(",")[0];
             });
         },
-        addCart() {
-            localStorage.getItem("cart");
+        getStorage(){
+			let data =localStorage.getItem('cart');
+			data=JSON.parse(data)
+			this.cart=data? data:[]
+            console.log(this.cart);
+        },
+        addCart(e,i) {
             if (this.pickedColor == "" || this.pickedSize == "") {
                 this.alert = true;
                 this.msg =
@@ -80,30 +85,27 @@ export default {
                         : "";
                 return;
             } else {
-                this.cartItem = {
-                    id: this.product_details.product_id,
-                    color: this.pickedColor,
-                    size: this.pickedSize,
-                };
-                let cartItemKey = JSON.stringify(this.cartItem);
-                if (localStorage.getItem(cartItemKey)) {
-                    let num =
-                        parseInt(localStorage.getItem(cartItemKey)) +
-                        this.number;
-                    localStorage.setItem(JSON.stringify(this.cartItem), num);
-                } else {
-                    localStorage.setItem(cartItemKey, this.number);
-                    if (localStorage.getItem("cart")) {
-                        let str =
-                            localStorage.getItem("cart") + "|" + cartItemKey;
-                        localStorage.setItem("cart", str);
-                    } else {
-                        localStorage.setItem("cart", cartItemKey);
-                    }
+                const prodIndex=this.cart.findIndex(cartItem=>{
+                    return cartItem.id===this.product_details.product_id && cartItem.color===this.pickedColor && cartItem.size===this.pickedSize
+                })
+                if(prodIndex>=0){
+                    this.cart[prodIndex]['count']+=1
+                }else{
+                    this.cart.push({
+                        id: this.product_details.product_id,
+                        color: this.pickedColor,
+                        size: this.pickedSize,
+                        count:1
+                    })
                 }
+                this.setStorage();
                 this.alert = true;
                 this.msg = "加入成功";
             }
+        },
+        setStorage(){
+            const data=JSON.stringify(this.cart);
+            localStorage.setItem('cart',data);
         },
         goCart() {
             this.addCart();
@@ -134,7 +136,8 @@ export default {
     },
     created() {
         this.getResource();
-    },
+        this.getStorage();
+    }
 };
 </script>
 <template>
