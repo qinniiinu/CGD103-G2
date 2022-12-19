@@ -29,7 +29,14 @@ import {
 	faMinus, faCaretDown,
 	faArrowRight,
 	faFilter,
+<<<<<<< HEAD
 	faRecycle,
+=======
+<<<<<<< HEAD
+	faRecycle,
+=======
+>>>>>>> 47d9911e6bf3231104d360e0d9d3ef3774da39e4
+>>>>>>> develop
 
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -55,7 +62,14 @@ library.add(
 	faCaretDown,
 	faArrowRight,
 	faFilter,
+<<<<<<< HEAD
 	faRecycle,
+=======
+<<<<<<< HEAD
+	faRecycle,
+=======
+>>>>>>> 47d9911e6bf3231104d360e0d9d3ef3774da39e4
+>>>>>>> develop
 
 );
 
