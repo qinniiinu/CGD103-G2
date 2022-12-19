@@ -76,7 +76,7 @@ export default {
             });
         },
         cut(x) {
-            return x.split(",")[0];
+            if (x) return x.split(",")[0];
         },
     },
     created() {
