@@ -73,6 +73,7 @@ export default {
     @include m() {
         display: none;
     }
+    z-index: -1;
 }
 img {
     width: 100%;

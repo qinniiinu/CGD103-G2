@@ -131,6 +131,7 @@
             .logo {
 				margin-left: 10px;
                 height: 40px;
+                width: 59px;
                 img {
                     width: 100%;
                     height: 100%;

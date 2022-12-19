@@ -1,141 +1,141 @@
 // MemberSideMenu.Vue
-.member_side_menu {
-	background-color: $main_color;
-	width: 18%;
-	min-width: max-content;
-	padding-bottom: $padding;
-	height: auto;
-
-	@include s() {
-		display: none;
-	}
-
-	.member {
-		width: 100%;
-		padding: 20px;
-		display: flex;
-		justify-content: center;
-		box-sizing: border-box;
-		gap: 40px;
-
-		.mug_shot {
-			width: 80px;
-			min-width: 50px;
-			aspect-ratio: 1 /1;
-			border-radius: 50%;
-			overflow: hidden;
-
-			img {
-				width: 100%;
-				height: 100%;
-				object-position: center;
-			}
-		}
-
-		// 名字 + 會員等級
-		.name_level {
-			font-family: $second_font;
-			color: white;
-			text-align: end;
-			display: flex;
-			flex-direction: column;
-			justify-content: space-evenly;
-
-			.name {
-				font-weight: 700;
-				font-size: 24px;
-			}
-
-			.level {
-				font-weight: 400;
-				font-size: 14px;
-			}
-
-			.level_up {
-				font-family: $main_font;
-				font-weight: 400;
-				font-size: 14px;
-				color: white;
-			}
-		}
-	}
-
-	.side_menu {
-		width: 100%;
-		color: white;
-
-		.side_menu_title {
-			font-family: $main_font;
-			font-size: 18px;
-			font-weight: 500;
-			line-height: 50px;
-			display: block;
-			text-align: start;
-			padding-left: 50%
-		}
-
-		nav {
-			padding-right: 15%;
-
-			>a {
-				display: block;
-				text-align: end;
-				font-size: 16px;
-				font-weight: 300;
-				color: white;
-				line-height: 45px;
-
-				// 當前頁面 # 標籤
-				.side_menu_tag {
-					font-family: $second_font;
-					font-size: 20px;
-					font-size: 18px;
-					font-weight: 700;
-					margin-right: 20px;
-					vertical-align: middle;
-					opacity: 0;
-				}
-
-				.show {
-					opacity: 1;
-				}
-
-				&:hover {
-					.side_menu_tag {
-						opacity: 1;
-					}
-				}
-			}
-		}
-	}
-}
-
-// MemberSideMenu 共用 scss
 .mem_container {
-	display: flex;
-	width: 100%;
-
-	.mem_data {
-		background-color: $bg_gray;
-		flex: 1;
-		padding: 50px 50px 150px 50px;
-
-		.title {
-			font-size: 24px;
-			color: #292929;
-			padding-bottom: $padding;
-		}
-
-		.data {
-			width: 100%;
-			min-height: max-content;
-			// border: solid sienna 1px;
-		}
-
-		@include s() {
-			background-color: white;
-			padding: 25px 25px 100px 25px;
-
-		}
+    width: 100%;
+    @include m() {
+		display: flex;
 	}
+    
+    // 左邊側邊欄容器
+    .member_side_container{
+        display: none;
+        @include m() {
+            display: block;
+            min-width: 190px;
+            padding-bottom: $padding;
+            height: auto;
+            background-color: $main_color;
+
+	    }
+        @include xl() {
+            min-width: 250px;
+	    }
+        // 側邊欄內容
+        .member_side_menu{	        
+            width: 100%;
+            position: sticky;
+            top: 60px;
+            // 會員頭貼 + 姓名 + 等級
+            .member{
+                width: 100%;
+                padding: 25px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                box-sizing: border-box;
+                gap: 20px;
+                @include xl() {
+                    flex-direction: row;
+                    justify-content: space-between;
+                    gap: 5px;
+                }
+                // 頭貼
+                .mug_shot{
+                    width: 80px;
+                    aspect-ratio: 1 /1;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        vertical-align: middle;
+                        object-position: center;
+                    }
+                }
+                // 姓名 + 等級
+                .name_level{
+                    font-family: $second_font,$main_font;
+                    color: white;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-evenly;
+                    gap: 6px;
+                    @include xl() {
+                        text-align: end;
+                        align-items: flex-end;
+                    }
+                    .name{
+                        font-weight: 700;
+				        font-size: 20px;
+                    }
+                    .level{
+                        font-weight: 300;
+				        font-size: 14px;
+                    }
+                    .level_up{
+                        font-family: $main_font;
+                        font-weight: 300;
+                        font-size: 14px;
+                        color: white;
+                    }
+                }
+            }
+            // 選單
+            .side_menu{
+                width: 100%;
+                color: white;
+                ul {
+                    padding-right: 15%;
+                    li {
+                        display: block;
+                        text-align: end;
+                        font-size: 16px;
+                        font-weight: 300;
+
+                        line-height: 45px;
+                        a{
+                            color: white;
+                            // 當前頁面 # 標籤
+                            .side_menu_tag {
+                                font-family: $second_font;
+                                font-size: 20px;
+                                font-size: 18px;
+                                font-weight: 700;
+                                margin-right: 20px;
+                                vertical-align: middle;
+                                opacity: 0;
+                            }
+                            &:hover {
+                                .side_menu_tag {
+                                    opacity: 1;
+                                }
+                            }
+
+                        }
+                        // 當前選單位置 # 標籤
+                        .active .side_menu_tag{
+                                opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+
+
+	}
+    // 右邊內容容器
+    .mem_data_container{
+        margin: auto;
+        width: 100%;
+        .mem_data {
+            background-color: white;
+            padding: 25px 25px 100px 25px;
+            width: 100%;
+		    @include m() {
+                background-color: $bg_gray;
+                box-sizing: border-box;
+                padding: 50px 50px 150px 50px;
+            }
+	    }
+    }
 }

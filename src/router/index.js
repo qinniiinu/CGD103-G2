@@ -6,6 +6,9 @@ const routes = [
 		path: "/",
 		name: "home",
 		component: HomeView,
+		meta:{
+			title:'首頁'
+		}
 	},
 	{
 		path: "/about",
@@ -25,7 +28,7 @@ const routes = [
 	{
 		path: "/product",
 		name: "product",
-		component: () => import("../views/ProductView.vue"),
+		component: () => import("../views/product/ProductView.vue"),
 
 	},
 	{
@@ -54,11 +57,6 @@ const routes = [
 		component: () => import("../views/CheckoutView.vue"),
 	},
 	{
-		path: "/checkout1",
-		name: "checkout1",
-		component: () => import("../views/Checkout1View.vue"),
-	},
-	{
 		path:"/SubCheckout",
 		name:"SubCheckout",
 		component: () => import("../views/SubCheckoutView.vue")
@@ -67,6 +65,9 @@ const routes = [
 		path: "/fittingroom",
 		name: "fittingroom",
 		component: () => import("../views/FittingRoomView.vue"),
+		meta:{
+			title:'試衣間'
+		}
 	},
 	{
 		path: "/fittingroom1",
@@ -94,23 +95,23 @@ const routes = [
 		component: () => import("../components/loginpage/SigninIn.vue"),
 	},
 	{
-		path: "/Signup", //註冊
-		name: "Signup",
-		component: () => import("../components/loginpage/Signup.vue"),
+		path: "/Register", //註冊
+		name: "Register",
+		component: () => import("../components/loginpage/Register.vue"),
 	},
 	{
-		path: "/SignupSet", //身形建置
-		name: "SignupSet",
-		component: () => import("../components/loginpage/SignupSet.vue"),
+		path: "/BodyTyping", //身形建置
+		name: "BodyTyping",
+		component: () => import("../components/loginpage/BodyTyping.vue"),
 	},
 	{
 		path: "/productdetails/:id",
-		component: () => import("../views/ProductDetailsView.vue"),
+		component: () => import("../views/product/ProductDetailsView.vue"),
 	},
 	{
 		path: "/productlist",
 		name: "productlist",
-		component: () => import("../views/ProductListView.vue"),
+		component: () => import("../views/product/ProductListView.vue"),
 	},
 	{
 		path: "/subscription",
@@ -121,34 +122,66 @@ const routes = [
 		path: "/weeklywear",
 		name: "weeklywear",
 		component: () => import("../views/WeeklyWearView.vue"),
+		meta:{
+			title:'一週穿搭'
+		}
 	},
 
 
 	// ----------myaccount START----------
-	{
-		path: "/BodyType",
-		name: "BodyType",
-		component: () => import("../views/myaccount/BodyTypeView.vue"),
-	},
-	{
-		path: "/Consultation",
-		name: "Consultation",
-		component: () => import("../views/myaccount/ConsultationView.vue"),
-	},
-	{
-		path: "/Favorites",
-		name: "Favorites",
-		component: () => import("../views/myaccount/FavoritesView.vue"),
-	},
-	{
-		path: "/MemMaintain",
-		name: "MemMaintain",
-		component: () => import("../views/myaccount/MemMaintainView.vue"),
-	},
+
 	{
 		path: "/MyPage",
 		name: "MyPage",
 		component: () => import("../views/myaccount/MyPageView.vue"),
+		children: [
+			{
+				path: '',
+				name: "Over",
+				component: () => import("../views/myaccount/OverView.vue")
+			},
+			{
+				path: "BodyType",
+				name: "BodyType",
+				component: () => import("../views/myaccount/BodyTypeView.vue"),
+			},
+			{
+				path: "memQuiz",
+				name: "memQuiz",
+				component: () => import("../views/myaccount/MemQuizView.vue"),
+			},
+			{
+				path: "MemMaintain",
+				name: "MemMaintain",
+				component: () => import("../views/myaccount/MemMaintainView.vue"),
+			},
+			{
+				path: "Consultation",
+				name: "Consultation",
+				component: () => import("../views/myaccount/ConsultationView.vue"),
+			},
+			{
+				path: "memSubscription",
+				name: "memSubscription",
+				component: () => import("../views/myaccount/MemSubscriptionView.vue"),
+			},
+			{
+				path: "OrderHistory",
+				name: "OrderHistory",
+				component: () => import("../views/myaccount/OrderHistoryView.vue"),
+			},
+			{
+				path: "Favorites",
+				name: "Favorites",
+				component: () => import("../views/myaccount/FavoritesView.vue"),
+			},
+		]
+	},
+
+	{
+		path: "/OrderHistoryDetail", //與 OrderHistory 合併後刪除
+		name: "OrderHistoryDetail",
+		component: () => import("../views/myaccount/OrderHistoryDetailView.vue"),
 	},
 	{
 		path: "/OrderDetails",
@@ -156,30 +189,13 @@ const routes = [
 		component: () => import("../views/myaccount/OrderDetailsView.vue"),
 	},
 	{
-		path: "/OrderHistory",
-		name: "OrderHistory",
-		component: () => import("../views/myaccount/OrderHistoryView.vue"),
-	},
-	{
 		path: "/OrderHistoryPhoto",
 		name: "OrderHistoryPhoto",
 		component: () => import("../views/myaccount/OrderHistoryPhotoView.vue"),
 	},
-	{
-		path: "/OrderHistoryDetail",
-		name: "OrderHistoryDetail",
-		component: () => import("../views/myaccount/OrderHistoryDetailView.vue"),
-	},
-	{
-		path: "/memSubscription",
-		name: "memSubscription",
-		component: () => import("../views/myaccount/MemSubscriptionView.vue"),
-	},
-	{
-		path: "/memQuiz",
-		name: "memQuiz",
-		component: () => import("../views/myaccount/MemQuizView.vue"),
-	},
+
+
+
 	// ----------myaccount END----------
 	{
 		path: "/Confirm",
@@ -254,10 +270,10 @@ const router = createRouter({
 	history: createWebHistory(process.env.BASE_URL),
 	routes,
 	scrollBehavior(to, from, savedPosition) {
-		if (savedPosition) {
-			return savedPosition
-		} else {
-			return { top: 0 }
+		if (to.name !== from.name) return {
+			top: 0,
+			left: 0,
+			behavior: 'smooth'
 		}
 	},
 });
