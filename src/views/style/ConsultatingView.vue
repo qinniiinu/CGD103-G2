@@ -69,6 +69,7 @@
 		</div>
 		<div class="pickdate">
 			<p>你選擇的日期:<span>{{date}}</span></p>
+			<p>你選擇的時間:<span>{{qaera}}{{qatime}}</span></p>
 		</div>
 		<div class="btn_stp">
 			<Button class="btn_l" @click="backStep1()">上一步</Button>
