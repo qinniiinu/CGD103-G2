@@ -357,15 +357,15 @@ button{
 
     display: none;
 
-    // @include b(){
-    // border-radius: 50px;
-    // width: 50px;
-    // height: 50px;
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
-    // transition:  .5 ease;
-    // }
+    @include b(){
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:  .5 ease;
+    }
 }
 .data{
     display: flex;
@@ -400,9 +400,6 @@ button{
     position: relative;
     // background-color:#cacfff ;
     overflow: hidden;
-
-
-
     @include b(){
         display: none;
     }

@@ -1,30 +1,107 @@
 <template>
 	<div class="landing_page_photo"><!-- 關於我們頁面 -->
-
+		
 		<div class="scroll_container" style="overflow-y: scroll; height: 100vh;">
+			
+			
 			<div class="box" style="height: 80vh; position: relative;">
+			<video autoplay muted loop>
+			<source src="../assets/video/pexels-ron-lach-7289099.mp4" type="video/mp4">
+			</video>
 				<div class="intro_container" style="height: 100vh; position: sticky; top: 0;">
 					<div class="textBox">
-						<h2>R<br>E：<br>OUTFIT</h2>
+						<h2>RE：<font-awesome-icon class="Re-anima" icon="fa-solid fa-recycle" />	<br>OUTFIT</h2>
 					</div>
-					<div class="introBox">
-						<h2>#ABOUT</h2>
-						<div class="textPart">
-							<p>
-								手工藝之美在於細節。 機器永遠無法創造出手工質感的海草花瓶或手織的藤製托盤。
-								印度傳承了豐富的傳統手工知識。 Moradabad 地區出口印度 40% 以上的手工藝製品。	在我們全新打造的系列中，我們與 SNEH 合作。 SNEH 於 2019 年創立，為印度 Moradabad 的村莊婦女提供學習工藝的機會。
-								</p>
-						</div>
-				</div>
+				
+			
 				</div>
 			</div>
-			<div class="box" style="height: 1000px; position: relative;">
+			<div class="box" style="height: 1200px; position: relative;">
 				<div style="height: 200px; position: sticky; top: 0;">
-			<!-- 		Hello world, from section 2! -->
+					<div class="introBox">
+		
+						<h2>一個，讓過剩衣服<br>再利用的<br>時尚服飾品牌</h2>
+
+					</div>
 				</div>
 			</div>
-		</div>
+			<div class="box" style="height: 1200px; position: relative;">
+				
+				<div style="height: 200px; position: sticky; top: 0;">
+					<div class="introBox">
+						<h2>您的支持，減少了每年<br>{{waste}}的浪費</h2>
+						<!-- <div class="textPart">
+							<p>
+								
+							</p>
+						</div> -->
+					</div>
+				</div>
+			</div>
+			<div class="box" style="height: 1200px; position: relative;">
+			<video autoplay muted loop>
+			<source src="../assets/video/pexels-artem-podrez-7048759.mp4" type="video/mp4">
+			</video>
+				<div style="height: 200px; position: sticky; top: 0;">
+					<div class="introBox">
+						<h2>這些衣服來自於<br>大量生產過剩的衣服</h2>
+						<!-- <div class="textPart">
+							<p>
+								
+							</p>
+						</div> -->
+					</div>
+				</div>
+			</div>
+			<div class="box" style="height: 1200px; position: relative;">
+				<div style="height: 200px; position: sticky; top: 0;">
+					<div class="introBox">
+						<h2>我們不斷思考<br>如何再利用這些衣服？</h2>
+						<!-- <div class="textPart">
+							<p>
+								
+							</p>
+						</div> -->
+					</div>
+				</div>
+			</div>
+			<div class="box" style="height: 1500px; position: relative;">
+				<video autoplay muted loop>
+			<source src="../assets/video/pexels-anna-nekrashevich-8056088.mp4" type="video/mp4">
+			</video>
+				<div style="height: 200px; position: sticky; top: 0;">
+					<div class="introBox">
+						<h2>於是建立一個讓過季衣服的<br>整合平台，<br>成為我們的時尚。</h2>
+						<!-- <div class="textPart">
+							<p>
+								
+							</p>
+						</div> -->
+					</div>
+				</div>
+			</div>
+			<div class="box" style="height: 1200px; position: relative;">
+				<div style="height: 200px; position: sticky; top: 0;">
+					<div class="introBox">
+						<h2>歡迎支持我們RE:Outfit<br>讓衣服們找到屬於它的家。</h2>
+						<!-- <div class="textPart">
+							<p>
+								
+							</p>
+						</div> -->
+					</div>
+				</div>
+			</div>
+			
+			
+			
 	</div>
+		<!-- <div class="testB"></div>
+			<div class="testA">
+				<div class="square"></div>
+				<div class="square2"></div>
+			</div> -->
+    </div>
 	<div class="contactUs"> <!-- 聯絡我們 -->
 		<div class="container">
 			<div class="titleBox">
@@ -121,90 +198,6 @@
 					</div>
 				</div>
 			</li>
-			<li>
-				<div class="FAQcontainer">
-					<h3>退換貨問題</h3> 
-					<p><span>Q</span>如何退貨？</p>
-					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
-					<div class="buttonPart">
-						<router-link to ="/Faq">
-							<button class="seeMore">看更多</button>
-						</router-link>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="FAQcontainer">
-					<h3>退換貨問題</h3> 
-					<p><span>Q</span>如何退貨？</p>
-					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
-					<div class="buttonPart">
-						<router-link to ="/Faq">
-							<button class="seeMore">看更多</button>
-						</router-link>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="FAQcontainer">
-					<h3>退換貨問題</h3> 
-					<p><span>Q</span>如何退貨？</p>
-					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
-					<div class="buttonPart">
-						<router-link to ="/Faq">
-							<button class="seeMore">看更多</button>
-						</router-link>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="FAQcontainer">
-					<h3>退換貨問題</h3> 
-					<p><span>Q</span>如何退貨？</p>
-					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
-					<div class="buttonPart">
-						<router-link to ="/Faq">
-							<button class="seeMore">看更多</button>
-						</router-link>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="FAQcontainer">
-					<h3>退換貨問題</h3> 
-					<p><span>Q</span>如何退貨？</p>
-					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
-					<div class="buttonPart">
-						<router-link to ="/Faq">
-							<button class="seeMore">看更多</button>
-						</router-link>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="FAQcontainer">
-					<h3>退換貨問題</h3> 
-					<p><span>Q</span>如何退貨？</p>
-					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
-					<div class="buttonPart">
-						<router-link to ="/Faq">
-							<button class="seeMore">看更多</button>
-						</router-link>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="FAQcontainer">
-					<h3>退換貨問題</h3> 
-					<p><span>Q</span>如何退貨？</p>
-					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
-					<div class="buttonPart">
-						<router-link to ="/Faq">
-							<button class="seeMore">看更多</button>
-						</router-link>
-					</div>
-				</div>
-			</li>
 			
 			
 		</ul>
@@ -221,28 +214,63 @@
 
 <script>
 
+import { gsap } from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import Header from "@/components/Header.vue";
 import Button from "@/components/Button.vue";
+import { TweenMax } from 'gsap/gsap-core';
+gsap.registerPlugin(ScrollTrigger);
+
 
 export default {
 	name: "About",
 	components: {
 		Header,
 		Button,
+		gsap,
+		ScrollTrigger,
 	},
+	data(){
+		return{
+			waste:'8000件衣服',
+
+
+		}},
+
+	mounted(){
+
+	gsap.to(".FAQcontainer",{
+		    x:1000,
+		    duration:8,
+		    scrollTrigger:{
+			
+			trigger:".FAQRow",
+			start:"top 40%",
+			end:"top 0%",
+			markers:true,
+			scrub:8,
+
+		},
+	})
+
+	/* FAQ滑鼠控制 */
+	// gsap.to(".textBox",1,{
+	// 	    delay:1.3,
+	// 		opacity:0,
+	// 		y:20,
+	// })
+
+
+
+	}
 };
 
 
 
 
-function textStyle(x) {
-    if (x < 0) {
-        return `transform: translateY(300px);`
-    } else {
-        return `transform: translateY(0);`
-    }
-}
 </script>
+
+
 
 
 
@@ -258,48 +286,113 @@ function textStyle(x) {
 	}
 }
 
+
+.Re-anima{
+	color:$second_color;
+	width: 20vw;
+	height: 20vh;	
+	animation: rotation 2s infinite linear;}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+video{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
 .landing_page_photo{
-	background-image: url("../assets/images/about-landing-page.jpg");
-	// transform: scale(1.1,1.1);
+	overflow: hidden;
 	::-webkit-scrollbar{
 		display: none;
 		
 	}
+
+
+
+
+
+	/* 測試 */
+
+.testB, .testA{
+	height: 80vh;
+	width: 50%;
+	
+
+}
+
+.testB{
+	background-color:rgb(125, 250, 114) ;
+}
+
+.testA{
+	background-color:salmon ;
+}
+
+.square{
+	width: 150px;
+	height: 300px;
+	background-color:rgb(0, 11, 128) ;
+}
+.square2{
+	margin-top: 300px;
+	width: 150px;
+	height: 150px;
+	background-color:rgb(0, 128, 43) ;
+}
+
+.red{
+	background-color:red;
+}
+
 	.box{
 		display: grid;
 		place-items: center;
 		align-content: center;
-     h2{
-		font-size: 8rem;
-		font-weight: bolder;
-		text-align: left;
-		line-height: 160px;
-		margin-top: 200px;
-		@include b(){
-			font-size: 6rem;
-			padding-left: 20%;
-		}
-	 }
+     
 	 .intro_container{
-		width:80%;
+		width:90%;
 		display: flex;
 		@include b(){
 			display: block;
 		}
 		}
 	 }
-	 .introBox{
-	padding-left: 5%;
+	 .textBox{
+		display: flex;
+		align-items: center;
+		height: 100vh;
 		h2{
-			font-size: 8rem;
+		font-size: 23vw;
+		font-weight: bolder;
+		text-align: left;
+		line-height: 30vh;
+	 }
+	 }
+	 .introBox{
+		padding-left: 5%;
+		display: flex;
+		align-items: end;
+		min-width: 70vw;
+		h2{
+			font-size: 6rem;
+			font-weight: bolder;
 			color: aliceblue;
+			line-height: 20vh;
 			@include b(){
 				font-size: 6rem;
 		}
 		}
 		.textPart{
 			outline: 1px solid hsl(208, 100%, 97%);
-			width: 80%;
+			width: 90%;
 			padding: 50px;
 			min-height: 200px;
 			background-color: rgb(160, 165, 184,0.5);
@@ -410,23 +503,27 @@ function textStyle(x) {
 }
 .FAQRow{
 	width: 100%;
+	max-width: 1200px;
+	margin: auto;
 	display: flex;
 	margin-bottom: 50px; 
-	
-	ul{
+	// ::-webkit-scrollbar {display: none; /* Chrome Safari */}
 
+	ul{
 	position: relative;
 	display: flex;
 	overflow-x:scroll ;
 	overscroll-behavior: contain;
 	scroll-snap-type: inline mandatory;
-	scroll-snap-align:start;
+	scroll-snap-align:end;
+	
+
 	}
 	.FAQcontainer{
-		
 	width: 300px;
 	margin: 20px;
 	outline: 1px solid blue;
+
 	h3{
 		font-weight: bolder;
 		font-size: 30px;
