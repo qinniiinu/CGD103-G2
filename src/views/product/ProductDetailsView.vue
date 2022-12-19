@@ -1,11 +1,13 @@
 <script>
 import ProductMenu from "@/components/product/ProductMenu.vue";
+import Breadcrumb from "@/components/product/Breadcrumb.vue";
 import ProductCard from "@/components/product/ProductCard.vue";
 import HashTag from "@/components/product/HashTag.vue";
 import Alert from "@/components/Alert.vue";
 export default {
     name: "Product",
     components: {
+        Breadcrumb,
         ProductMenu,
         ProductCard,
         HashTag,
@@ -28,6 +30,27 @@ export default {
         };
     },
     computed: {
+        bread() {
+            console.log(this.temp.product_gender);
+            console.log(this.temp.product_maintype);
+            console.log(this.temp.product_type);
+
+            let gender = this.temp.product_gender == 1 ? "男" : "女";
+            return [
+                {
+                    name: gender,
+                    link: `/productlist?G=${this.temp.product_gender}`,
+                },
+                {
+                    name: this.temp.product_maintype,
+                    link: `/productlist?G=${this.temp.product_gender}&M=${this.temp.product_maintype}`,
+                },
+                {
+                    name: this.temp.product_type,
+                    link: `/productlist?G=${this.temp.product_gender}&M=${this.temp.product_maintype}&T=${this.temp.product_type}`,
+                },
+            ];
+        },
         product_details() {
             return this.temp;
         },
@@ -68,13 +91,13 @@ export default {
                 this.bigPicture = this.temp?.product_pic.split(",")[0];
             });
         },
-        getStorage(){
-			let data =localStorage.getItem('cart');
-			data=JSON.parse(data)
-			this.cart=data? data:[]
+        getStorage() {
+            let data = localStorage.getItem("cart");
+            data = JSON.parse(data);
+            this.cart = data ? data : [];
             console.log(this.cart);
         },
-        addCart(e,i) {
+        addCart(e, i) {
             if (this.pickedColor == "" || this.pickedSize == "") {
                 this.alert = true;
                 this.msg =
@@ -85,27 +108,31 @@ export default {
                         : "";
                 return;
             } else {
-                const prodIndex=this.cart.findIndex(cartItem=>{
-                    return cartItem.id===this.product_details.product_id && cartItem.color===this.pickedColor && cartItem.size===this.pickedSize
-                })
-                if(prodIndex>=0){
-                    this.cart[prodIndex]['count']+=1
-                }else{
+                const prodIndex = this.cart.findIndex((cartItem) => {
+                    return (
+                        cartItem.id === this.product_details.product_id &&
+                        cartItem.color === this.pickedColor &&
+                        cartItem.size === this.pickedSize
+                    );
+                });
+                if (prodIndex >= 0) {
+                    this.cart[prodIndex]["count"] += 1;
+                } else {
                     this.cart.push({
                         id: this.product_details.product_id,
                         color: this.pickedColor,
                         size: this.pickedSize,
-                        count:1
-                    })
+                        count: 1,
+                    });
                 }
                 this.setStorage();
                 this.alert = true;
                 this.msg = "加入成功";
             }
         },
-        setStorage(){
-            const data=JSON.stringify(this.cart);
-            localStorage.setItem('cart',data);
+        setStorage() {
+            const data = JSON.stringify(this.cart);
+            localStorage.setItem("cart", data);
         },
         goCart() {
             this.addCart();
@@ -137,12 +164,16 @@ export default {
     created() {
         this.getResource();
         this.getStorage();
-    }
+    },
 };
 </script>
 <template>
     <div class="product_details">
         <ProductMenu />
+        <div class="leftright">
+            <p class="breadTitle">商品分類</p>
+            <Breadcrumb :arr="bread"></Breadcrumb>
+        </div>
         <div class="leftright">
             <div class="left">
                 <div class="bigPic">
@@ -279,6 +310,9 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.breadTitle {
+    padding: 20px 20px 20px 0px;
+}
 .alert {
     width: 300px;
     height: 250px;

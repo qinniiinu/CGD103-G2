@@ -134,10 +134,11 @@ const routes = [
 		path: "/MyPage",
 		name: "MyPage",
 		component: () => import("../views/myaccount/MyPageView.vue"),
+		// redirect:"/MyPage",//已解決路徑問題
 		children: [
 			{
 				path: '',
-				name: "Over",
+				name: "OverView",
 				component: () => import("../views/myaccount/OverView.vue")
 			},
 			{

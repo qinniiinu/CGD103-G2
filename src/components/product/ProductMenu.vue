@@ -11,21 +11,61 @@
             <!-- {{ selected }} -->
             <ul class="menOrWomen" @click="action">
                 <!-- <li @click="go('A')" @mouseenter="hoverList('A')">全部</li> -->
-                <li @click="go('0')" @mouseenter="hoverList('0')">女裝</li>
-                <li @click="go('1')" @mouseenter="hoverList('1')">男裝</li>
+                <li
+                    @click="go('0')"
+                    @mouseenter="hoverList('0')"
+                    :class="{ blod: selected[0] == 0 }"
+                >
+                    女裝
+                </li>
+                <li
+                    @click="go('1')"
+                    @mouseenter="hoverList('1')"
+                    :class="{ blod: selected[0] == 1 }"
+                >
+                    男裝
+                </li>
             </ul>
             <div class="colthingList_box" v-show="openMain">
                 <label for="b1" @click="go(selected[0], '上身')"
-                    ><div class="clothingList">上身</div></label
+                    ><div
+                        :class="[
+                            { clothingList: true },
+                            { blod: selected[1] == '上身' },
+                        ]"
+                    >
+                        上身
+                    </div></label
                 >
                 <label for="b2" @click="go(selected[0], '下身')"
-                    ><div class="clothingList">下身</div></label
+                    ><div
+                        :class="[
+                            { clothingList: true },
+                            { blod: selected[1] == '下身' },
+                        ]"
+                    >
+                        下身
+                    </div></label
                 >
                 <label for="b4" @click="go(selected[0], '鞋款')"
-                    ><div class="clothingList">鞋款</div></label
+                    ><div
+                        :class="[
+                            { clothingList: true },
+                            { blod: selected[1] == '鞋款' },
+                        ]"
+                    >
+                        鞋款
+                    </div></label
                 >
                 <label for="b5" @click="go(selected[0], '配件')">
-                    <div class="clothingList">配件</div></label
+                    <div
+                        :class="[
+                            { clothingList: true },
+                            { blod: selected[1] == '配件' },
+                        ]"
+                    >
+                        配件
+                    </div></label
                 >
             </div>
             <div class="clothingList_item_boxOutside">
@@ -36,19 +76,28 @@
                 >
                     <li
                         @click="go(selected[0], selected[1], '短袖')"
-                        class="clothingList_item"
+                        :class="[
+                            { clothingList_item: true },
+                            { blod: selected[2] == '短袖' },
+                        ]"
                     >
                         短袖
                     </li>
                     <li
                         @click="go(selected[0], selected[1], '長袖')"
-                        class="clothingList_item"
+                        :class="[
+                            { clothingList_item: true },
+                            { blod: selected[2] == '長袖' },
+                        ]"
                     >
                         長袖
                     </li>
                     <li
                         @click="go(selected[0], selected[1], '外套')"
-                        class="clothingList_item"
+                        :class="[
+                            { clothingList_item: true },
+                            { blod: selected[2] == '外套' },
+                        ]"
                     >
                         外套
                     </li>
@@ -60,20 +109,29 @@
                 >
                     <li
                         @click="go(selected[0], selected[1], '長褲')"
-                        class="clothingList_item"
+                        :class="[
+                            { clothingList_item: true },
+                            { blod: selected[2] == '長褲' },
+                        ]"
                     >
                         長褲
                     </li>
                     <li
                         @click="go(selected[0], selected[1], '短褲')"
-                        class="clothingList_item"
+                        :class="[
+                            { clothingList_item: true },
+                            { blod: selected[2] == '短褲' },
+                        ]"
                     >
                         短褲
                     </li>
                     <li
                         v-if="selected[0] != '1'"
                         @click="go(selected[0], selected[1], '裙子')"
-                        class="clothingList_item"
+                        :class="[
+                            { clothingList_item: true },
+                            { blod: selected[2] == '裙子' },
+                        ]"
                     >
                         裙子
                     </li>
@@ -85,20 +143,29 @@
                 >
                     <li
                         @click="go(selected[0], selected[1], '皮鞋')"
-                        class="clothingList_item"
+                        :class="[
+                            { clothingList_item: true },
+                            { blod: selected[2] == '皮鞋' },
+                        ]"
                     >
                         皮鞋
                     </li>
                     <li
                         @click="go(selected[0], selected[1], '跟鞋')"
                         v-if="selected[0] != '1'"
-                        class="clothingList_item"
+                        :class="[
+                            { clothingList_item: true },
+                            { blod: selected[2] == '跟鞋' },
+                        ]"
                     >
                         跟鞋
                     </li>
                     <li
                         @click="go(selected[0], selected[1], '運動鞋')"
-                        class="clothingList_item"
+                        :class="[
+                            { clothingList_item: true },
+                            { blod: selected[2] == '運動鞋' },
+                        ]"
                     >
                         運動鞋
                     </li>
@@ -110,13 +177,19 @@
                 >
                     <li
                         @click="go(selected[0], selected[1], '包款')"
-                        class="clothingList_item"
+                        :class="[
+                            { clothingList_item: true },
+                            { blod: selected[2] == '包款' },
+                        ]"
                     >
                         包款
                     </li>
                     <li
                         @click="go(selected[0], selected[1], '配件')"
-                        class="clothingList_item"
+                        :class="[
+                            { clothingList_item: true },
+                            { blod: selected[2] == '配件' },
+                        ]"
                     >
                         配件
                     </li>
@@ -238,9 +311,13 @@ input {
             box-sizing: border-box;
             text-align: center;
             line-height: $menOrWomen_m - $line * 2;
+            cursor: pointer;
         }
         li + li {
             border-left-width: 0;
+        }
+        li.blod {
+            font-weight: 600;
         }
     }
     .colthingList_box {
@@ -258,6 +335,11 @@ input {
 
             div.clothingList {
                 text-align: center;
+                cursor: pointer;
+            }
+            div.clothingList.blod {
+                text-align: center;
+                font-weight: 600;
             }
         }
     }
@@ -276,7 +358,11 @@ input {
                 text-align: center;
                 display: inline-block;
                 box-sizing: border-box;
+                cursor: pointer;
                 width: 25%;
+            }
+            .blod {
+                font-weight: 600;
             }
         }
     }
@@ -296,11 +382,16 @@ input {
             width: 25%;
             padding: 10px;
             text-align: center;
+
             & + .sub {
                 border-left: $line solid $title_color;
             }
             p {
                 padding: 5px;
+                &:hover {
+                    cursor: pointer;
+                    font-weight: 600;
+                }
             }
         }
     }
