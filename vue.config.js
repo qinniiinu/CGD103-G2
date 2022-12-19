@@ -23,7 +23,8 @@ module.exports = defineConfig({
 			}
 		}
 	},
-	productionSourceMap: false
+	productionSourceMap: false,
+	filenameHashing: false
 });
 
 

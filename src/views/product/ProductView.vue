@@ -113,7 +113,7 @@ export default {
 
     methods: {
         cut(x) {
-            return x.split(",")[0];
+            if (x) return x.split(",")[0];
         },
         getResource() {
             this.axios.get("/api_server/mainproduct.php").then((response) => {
