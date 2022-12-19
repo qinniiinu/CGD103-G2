@@ -1,5 +1,6 @@
 <template>
 	<div class="landing_page_photo"><!-- 關於我們頁面 -->
+<<<<<<< HEAD
 		
 		<div class="scroll_container" style="overflow-y: scroll; height: 100vh;">
 			
@@ -102,6 +103,33 @@
 				<div class="square2"></div>
 			</div> -->
     </div>
+=======
+
+		<div class="scroll_container" style="overflow-y: scroll; height: 100vh;">
+			<div class="box" style="height: 80vh; position: relative;">
+				<div class="intro_container" style="height: 100vh; position: sticky; top: 0;">
+					<div class="textBox">
+						<h2>R<br>E：<br>OUTFIT</h2>
+					</div>
+					<div class="introBox">
+						<h2>#ABOUT</h2>
+						<div class="textPart">
+							<p>
+								手工藝之美在於細節。 機器永遠無法創造出手工質感的海草花瓶或手織的藤製托盤。
+								印度傳承了豐富的傳統手工知識。 Moradabad 地區出口印度 40% 以上的手工藝製品。	在我們全新打造的系列中，我們與 SNEH 合作。 SNEH 於 2019 年創立，為印度 Moradabad 的村莊婦女提供學習工藝的機會。
+								</p>
+						</div>
+				</div>
+				</div>
+			</div>
+			<div class="box" style="height: 1000px; position: relative;">
+				<div style="height: 200px; position: sticky; top: 0;">
+			<!-- 		Hello world, from section 2! -->
+				</div>
+			</div>
+		</div>
+	</div>
+>>>>>>> b236b4971c985d95551e463ae00636739844b942
 	<div class="contactUs"> <!-- 聯絡我們 -->
 		<div class="container">
 			<div class="titleBox">
@@ -198,6 +226,93 @@
 					</div>
 				</div>
 			</li>
+<<<<<<< HEAD
+=======
+			<li>
+				<div class="FAQcontainer">
+					<h3>退換貨問題</h3> 
+					<p><span>Q</span>如何退貨？</p>
+					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
+					<div class="buttonPart">
+						<router-link to ="/Faq">
+							<button class="seeMore">看更多</button>
+						</router-link>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="FAQcontainer">
+					<h3>退換貨問題</h3> 
+					<p><span>Q</span>如何退貨？</p>
+					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
+					<div class="buttonPart">
+						<router-link to ="/Faq">
+							<button class="seeMore">看更多</button>
+						</router-link>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="FAQcontainer">
+					<h3>退換貨問題</h3> 
+					<p><span>Q</span>如何退貨？</p>
+					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
+					<div class="buttonPart">
+						<router-link to ="/Faq">
+							<button class="seeMore">看更多</button>
+						</router-link>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="FAQcontainer">
+					<h3>退換貨問題</h3> 
+					<p><span>Q</span>如何退貨？</p>
+					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
+					<div class="buttonPart">
+						<router-link to ="/Faq">
+							<button class="seeMore">看更多</button>
+						</router-link>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="FAQcontainer">
+					<h3>退換貨問題</h3> 
+					<p><span>Q</span>如何退貨？</p>
+					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
+					<div class="buttonPart">
+						<router-link to ="/Faq">
+							<button class="seeMore">看更多</button>
+						</router-link>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="FAQcontainer">
+					<h3>退換貨問題</h3> 
+					<p><span>Q</span>如何退貨？</p>
+					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
+					<div class="buttonPart">
+						<router-link to ="/Faq">
+							<button class="seeMore">看更多</button>
+						</router-link>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="FAQcontainer">
+					<h3>退換貨問題</h3> 
+					<p><span>Q</span>如何退貨？</p>
+					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
+					<div class="buttonPart">
+						<router-link to ="/Faq">
+							<button class="seeMore">看更多</button>
+						</router-link>
+					</div>
+				</div>
+			</li>
+>>>>>>> b236b4971c985d95551e463ae00636739844b942
 			
 			
 		</ul>
@@ -214,6 +329,7 @@
 
 <script>
 
+<<<<<<< HEAD
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Header from "@/components/Header.vue";
@@ -221,12 +337,17 @@ import Button from "@/components/Button.vue";
 import { TweenMax } from 'gsap/gsap-core';
 gsap.registerPlugin(ScrollTrigger);
 
+=======
+import Header from "@/components/Header.vue";
+import Button from "@/components/Button.vue";
+>>>>>>> b236b4971c985d95551e463ae00636739844b942
 
 export default {
 	name: "About",
 	components: {
 		Header,
 		Button,
+<<<<<<< HEAD
 		gsap,
 		ScrollTrigger,
 	},
@@ -263,19 +384,35 @@ export default {
 
 
 	}
+=======
+	},
+>>>>>>> b236b4971c985d95551e463ae00636739844b942
 };
 
 
 
 
+<<<<<<< HEAD
+=======
+function textStyle(x) {
+    if (x < 0) {
+        return `transform: translateY(300px);`
+    } else {
+        return `transform: translateY(0);`
+    }
+}
+>>>>>>> b236b4971c985d95551e463ae00636739844b942
 </script>
 
 
 
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b236b4971c985d95551e463ae00636739844b942
 <style lang="scss" scoped>
 
 @import "@/assets/sass/main";
@@ -286,6 +423,7 @@ export default {
 	}
 }
 
+<<<<<<< HEAD
 
 .Re-anima{
 	color:$second_color;
@@ -310,10 +448,16 @@ video{
 
 .landing_page_photo{
 	overflow: hidden;
+=======
+.landing_page_photo{
+	background-image: url("../assets/images/about-landing-page.jpg");
+	// transform: scale(1.1,1.1);
+>>>>>>> b236b4971c985d95551e463ae00636739844b942
 	::-webkit-scrollbar{
 		display: none;
 		
 	}
+<<<<<<< HEAD
 
 
 
@@ -352,19 +496,38 @@ video{
 	background-color:red;
 }
 
+=======
+>>>>>>> b236b4971c985d95551e463ae00636739844b942
 	.box{
 		display: grid;
 		place-items: center;
 		align-content: center;
+<<<<<<< HEAD
      
 	 .intro_container{
 		width:90%;
+=======
+     h2{
+		font-size: 8rem;
+		font-weight: bolder;
+		text-align: left;
+		line-height: 160px;
+		margin-top: 200px;
+		@include b(){
+			font-size: 6rem;
+			padding-left: 20%;
+		}
+	 }
+	 .intro_container{
+		width:80%;
+>>>>>>> b236b4971c985d95551e463ae00636739844b942
 		display: flex;
 		@include b(){
 			display: block;
 		}
 		}
 	 }
+<<<<<<< HEAD
 	 .textBox{
 		display: flex;
 		align-items: center;
@@ -386,13 +549,24 @@ video{
 			font-weight: bolder;
 			color: aliceblue;
 			line-height: 20vh;
+=======
+	 .introBox{
+	padding-left: 5%;
+		h2{
+			font-size: 8rem;
+			color: aliceblue;
+>>>>>>> b236b4971c985d95551e463ae00636739844b942
 			@include b(){
 				font-size: 6rem;
 		}
 		}
 		.textPart{
 			outline: 1px solid hsl(208, 100%, 97%);
+<<<<<<< HEAD
 			width: 90%;
+=======
+			width: 80%;
+>>>>>>> b236b4971c985d95551e463ae00636739844b942
 			padding: 50px;
 			min-height: 200px;
 			background-color: rgb(160, 165, 184,0.5);
@@ -503,6 +677,7 @@ video{
 }
 .FAQRow{
 	width: 100%;
+<<<<<<< HEAD
 	max-width: 1200px;
 	margin: auto;
 	display: flex;
@@ -510,11 +685,19 @@ video{
 	// ::-webkit-scrollbar {display: none; /* Chrome Safari */}
 
 	ul{
+=======
+	display: flex;
+	margin-bottom: 50px; 
+	
+	ul{
+
+>>>>>>> b236b4971c985d95551e463ae00636739844b942
 	position: relative;
 	display: flex;
 	overflow-x:scroll ;
 	overscroll-behavior: contain;
 	scroll-snap-type: inline mandatory;
+<<<<<<< HEAD
 	scroll-snap-align:end;
 	
 
@@ -524,6 +707,15 @@ video{
 	margin: 20px;
 	outline: 1px solid blue;
 
+=======
+	scroll-snap-align:start;
+	}
+	.FAQcontainer{
+		
+	width: 300px;
+	margin: 20px;
+	outline: 1px solid blue;
+>>>>>>> b236b4971c985d95551e463ae00636739844b942
 	h3{
 		font-weight: bolder;
 		font-size: 30px;

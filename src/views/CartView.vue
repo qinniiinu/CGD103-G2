@@ -108,6 +108,7 @@ export default {
 		// }
 	},
 	methods:{
+<<<<<<< HEAD
 		
 		// getResource(){
 		// 	this.load=true;
@@ -159,11 +160,26 @@ export default {
 		// 	}
 		// 	this.setStorage()
 		// },
+=======
+		getResource(index,item){
+			this.load=true;
+			this.order.push({
+				id:item.product_id,
+				title:item.title,
+				image:item.image,
+				color:item.color,
+				size:item.size,
+				price:item.price,
+				count:1
+			})
+		},
+>>>>>>> b236b4971c985d95551e463ae00636739844b942
 		getStorage(){
 			let data =localStorage.getItem('cart');
 			data=JSON.parse(data)
 			this.order=data? data:[]
 			console.log(this.order);
+<<<<<<< HEAD
 			// this.order.push({
 			// 	id:item.product_id,
 			// 	// title:item.title,
@@ -194,6 +210,9 @@ export default {
 		// 	this.setStorage()
 		// },
 	
+=======
+        }
+>>>>>>> b236b4971c985d95551e463ae00636739844b942
 	}
 };
 </script>

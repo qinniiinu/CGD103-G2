@@ -76,7 +76,11 @@ export default {
             });
         },
         cut(x) {
+<<<<<<< HEAD
             return x.split(",")[0];
+=======
+            if (x) return x.split(",")[0];
+>>>>>>> b236b4971c985d95551e463ae00636739844b942
         },
     },
     created() {
