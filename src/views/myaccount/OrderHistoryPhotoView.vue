@@ -1,3 +1,5 @@
+<!-- 此頁取消，合併到OrderHistoryVuew -->
+
 <template>
 	
 	<!-- 會員 container -->
@@ -19,7 +21,6 @@
 						</select>
 						<div class="ham">
 							<router-link  to="/OrderHistory"><font-awesome-icon icon="fa-solid fa-list" /></router-link>
-
 						</div>
 					</div>
 					
