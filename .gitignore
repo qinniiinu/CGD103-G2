@@ -2,7 +2,6 @@
 node_modules
 /dist
 deploy.sh
-connectBooks.php
 
 # local env files
 .env.local

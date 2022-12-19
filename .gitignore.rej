@@ -1,0 +1,9 @@
+diff a/.gitignore b/.gitignore	(rejected hunks)
+@@ -2,6 +2,7 @@
+ node_modules
+ /dist
+ deploy.sh
++connectBooks.php
+ 
+ # local env files
+ .env.local
