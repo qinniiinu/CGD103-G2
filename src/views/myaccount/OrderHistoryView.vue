@@ -38,7 +38,7 @@
 				</ul>
 				<ul class="ord_history_content"><!-- 選單內容加scroll bar -->
 					<li class="ord_history_content_word">
-						<router-link to="/OrderHistoryDetail">
+						<router-link to="/MyPage/OrderHistoryDetail">
 						<ul class="content_row">
 							<li class="ord_history_content">20221202</li>
 							<li class="ord_history_content">20221202001</li>
@@ -110,20 +110,12 @@
 				</li>	
 			</div>
 
-
-
-
-
-
-
-
-
 			<div class="order_history_bottom">
 				<div class="order_title">#ORDER</div><!-- 左下角大字 -->
 				<div class="order_back">
-					<a href="#"><!-- 返回鍵 -->
-						<button class="btn_ms" >返回</button>
-					</a>
+				<router-link to="/MyPage"><!-- 返回鍵 -->
+					<button class="btn_ms" >返回</button>
+				</router-link>
 				</div>
 			</div>
 		</div>

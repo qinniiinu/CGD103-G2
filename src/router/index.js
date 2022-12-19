@@ -134,7 +134,6 @@ const routes = [
 		path: "/MyPage",
 		name: "MyPage",
 		component: () => import("../views/myaccount/MyPageView.vue"),
-		// redirect:"/MyPage",//已解決路徑問題
 		children: [
 			{
 				path: '',
@@ -172,6 +171,11 @@ const routes = [
 				component: () => import("../views/myaccount/OrderHistoryView.vue"),
 			},
 			{
+				path: "OrderHistoryDetail",
+				name: "OrderHistoryDetail",
+				component: () => import("../views/myaccount/OrderHistoryDetailView.vue"),
+			},
+			{
 				path: "Favorites",
 				name: "Favorites",
 				component: () => import("../views/myaccount/FavoritesView.vue"),
@@ -179,11 +183,6 @@ const routes = [
 		]
 	},
 
-	{
-		path: "/OrderHistoryDetail", //與 OrderHistory 合併後刪除
-		name: "OrderHistoryDetail",
-		component: () => import("../views/myaccount/OrderHistoryDetailView.vue"),
-	},
 	{
 		path: "/OrderDetails",
 		name: "OrderDetails",
