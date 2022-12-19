@@ -30,7 +30,7 @@
                 <div class="clothes">
                     <img src="@/assets/product/fittung_02.png" />
                 </div>
-                <div class="clothes">
+                <div class="clothes swiper">
                     <ProductFitting></ProductFitting>
                 </div>
                 <div class="clothes">
@@ -276,8 +276,11 @@ export default {
 .block.fitting {
     background: url("@/assets/product/bgfitting.jpg") repeat-y;
     .view {
+        display: flex;
+        justify-content: center;
         .Box.fitting {
-            gap: 30px;
+            min-width: 900px;
+            margin: auto;
         }
     }
 }
@@ -289,6 +292,7 @@ export default {
     .clothes {
         transform: translateY(-5%);
         margin: 0 0 -5%;
+        width: 300px;
     }
 }
 .productlist {
