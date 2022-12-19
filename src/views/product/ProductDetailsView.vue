@@ -19,11 +19,7 @@ export default {
             pickedSize: "",
             colorClick: [],
             number: 1,
-<<<<<<< HEAD
             cartList: [],
-=======
-            cart: [],
->>>>>>> b236b4971c985d95551e463ae00636739844b942
             sizeClick: [],
             cartItem: {},
             alert: false,
@@ -66,28 +62,14 @@ export default {
         getResource() {
             this.axios.get("/api_server/list.php").then((response) => {
                 console.log(response.data);
-<<<<<<< HEAD
-
-=======
->>>>>>> b236b4971c985d95551e463ae00636739844b942
                 this.temp = response.data.find((e) => {
                     if (e.product_id == this.$route.params.id) return e;
                 });
                 this.bigPicture = this.temp?.product_pic.split(",")[0];
             });
         },
-<<<<<<< HEAD
         addCart() {
             localStorage.getItem("cart");
-=======
-        getStorage(){
-			let data =localStorage.getItem('cart');
-			data=JSON.parse(data)
-			this.cart=data? data:[]
-            console.log(this.cart);
-        },
-        addCart(e,i) {
->>>>>>> b236b4971c985d95551e463ae00636739844b942
             if (this.pickedColor == "" || this.pickedSize == "") {
                 this.alert = true;
                 this.msg =
@@ -98,7 +80,6 @@ export default {
                         : "";
                 return;
             } else {
-<<<<<<< HEAD
                 this.cartItem = {
                     id: this.product_details.product_id,
                     color: this.pickedColor,
@@ -120,33 +101,10 @@ export default {
                         localStorage.setItem("cart", cartItemKey);
                     }
                 }
-=======
-                const prodIndex=this.cart.findIndex(cartItem=>{
-                    return cartItem.id===this.product_details.product_id && cartItem.color===this.pickedColor && cartItem.size===this.pickedSize
-                })
-                if(prodIndex>=0){
-                    this.cart[prodIndex]['count']+=1
-                }else{
-                    this.cart.push({
-                        id: this.product_details.product_id,
-                        color: this.pickedColor,
-                        size: this.pickedSize,
-                        count:1
-                    })
-                }
-                this.setStorage();
->>>>>>> b236b4971c985d95551e463ae00636739844b942
                 this.alert = true;
                 this.msg = "加入成功";
             }
         },
-<<<<<<< HEAD
-=======
-        setStorage(){
-            const data=JSON.stringify(this.cart);
-            localStorage.setItem('cart',data);
-        },
->>>>>>> b236b4971c985d95551e463ae00636739844b942
         goCart() {
             this.addCart();
             if (localStorage.getItem(JSON.stringify(this.cartItem))) {
@@ -176,12 +134,7 @@ export default {
     },
     created() {
         this.getResource();
-<<<<<<< HEAD
     },
-=======
-        this.getStorage();
-    }
->>>>>>> b236b4971c985d95551e463ae00636739844b942
 };
 </script>
 <template>

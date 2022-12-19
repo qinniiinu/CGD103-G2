@@ -357,7 +357,6 @@ button{
 
     display: none;
 
-<<<<<<< HEAD
     @include b(){
     border-radius: 50px;
     width: 50px;
@@ -367,17 +366,6 @@ button{
     justify-content: center;
     transition:  .5 ease;
     }
-=======
-    // @include b(){
-    // border-radius: 50px;
-    // width: 50px;
-    // height: 50px;
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
-    // transition:  .5 ease;
-    // }
->>>>>>> b236b4971c985d95551e463ae00636739844b942
 }
 .data{
     display: flex;
@@ -412,12 +400,6 @@ button{
     position: relative;
     // background-color:#cacfff ;
     overflow: hidden;
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> b236b4971c985d95551e463ae00636739844b942
     @include b(){
         display: none;
     }
