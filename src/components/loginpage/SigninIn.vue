@@ -1,20 +1,19 @@
 <template>
-  <router-link :to="{ name: 'MyPage' }" class="btn_s">會員頁</router-link>
+<router-link to="/MyPage" class="btn_s">會員頁</router-link>
   <div class="wrapper">
     <div class="form_wrapper sign_in">
-      <form class="login_form" action="">
+      <form @submit.prevent="checkLogin" action="/api_server/login.php" method="post" enctype="application/x-www-form-urlencoded" class="login_form">
         <div class="title">
           <h2>登入</h2>
           <bg-tag class="bg_tag" Bgtag="SIGNIN"></bg-tag>
         </div>
-
         <div class="input_group">
-          <input type="text" required />
-          <label for="">電子郵件</label>
+          <input type="text" v-model="mem_mail" name="mem_mail" id="mem_mail" required/>
+          <label for="mem_mail">電子郵件</label>
         </div>
         <div class="input_group">
-          <input type="password" placeholder="密碼須包含英文與數字" required />
-          <label for="" class="psw">密碼</label>
+          <input type="password" v-model="mem_pwd" name="mem_pwd" id="mem_pwd" placeholder="密碼須包含英文與數字" required />
+          <label for="mem_pwd" class="psw">密碼</label>
         </div>
         <div class="remember">
           <label><input type="checkbox" />記住我</label>
@@ -37,23 +36,45 @@
 </template> 
 
 <script>
+import axios from 'axios';
 import BgTag from "@/components/mypage/BgTag.vue";
 export default {
   name: "SigninIn",
-  props: {},
   components: {
     BgTag,
   },
   data() {
     return {
-      Signup: false,
+        mem_mail:'',
+        mem_pwd:'',
     };
   },
   methods: {
-    ToSignup() {
-      Signup = true;
-    },
-  },
+    checkLogin() {
+      if (!this.mem_mail || !this.mem_pwd) {
+      alert("表單未提交或缺少必填字段");
+      return;
+     }
+      axios.post('/api_server/login.php')
+      // , {
+      //   mem_mail: this.mem_mail,
+      //   mem_pwd: this.mem_pwd,
+      // }
+      .then(response=> {
+        console.log('請求成功：', response.data);
+        // 處理響應
+        if (response.data) {
+            this.$router.push({path:'/MyPage'});
+          } else {
+          // 帳號密碼錯誤
+            alert(response.data.message);
+          }
+          }).catch(error=> {
+          console.log('請求失敗：', error);
+          // 處理錯誤
+          });
+        }
+      },
 };
 </script>
 

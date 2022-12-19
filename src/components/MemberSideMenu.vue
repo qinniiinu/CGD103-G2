@@ -55,14 +55,16 @@ export default {
                 { name: '我的收藏', url:'/MyPage/Favorites'},
             ],
             // 會員資料
-            member:{  
+            member:{ 
                 mem_pic:"/fashion2.png",
                 mem_name:"王曉明",
                 level_id: "STANDARD",
             },
         }
     },
+    
     methods:{
+
     },
 }
 </script>
