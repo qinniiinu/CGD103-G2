@@ -54,11 +54,8 @@ library.add(
 	faMinus,
 	faCaretDown,
 	faArrowRight,
-<<<<<<< HEAD
 	faFilter,
-=======
 	faRecycle,
->>>>>>> Wei
 
 );
 
