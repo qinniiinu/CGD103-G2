@@ -314,7 +314,7 @@ export default {
 .order_history_bottom{
 	width: 100%;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	button{
 		margin: 20px;
 	}
@@ -343,7 +343,7 @@ text-decoration: underline;
 .item_num{
 	width: 90%;
 	margin: 20px;
-	background-color: $third_color;
+	background-color: $second_color;
 	
 
 	.page_photo{
@@ -351,6 +351,7 @@ text-decoration: underline;
 		width: 100%;
 		justify-content: space-between;
 		align-items: flex-end;
+	
 		.page_photo_box{
 			display: flex;
 		}
