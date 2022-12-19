@@ -47,7 +47,7 @@ export default {
 
 <template>
     <!-- Slider main container -->
-    <div ref="swiper" class="swiper">
+    <div ref="swiper" class="swiper disp">
         <div class="swiper-wrapper">
             <!-- Slides -->
             <div class="swiper-slide">
@@ -70,10 +70,12 @@ export default {
 .swiper {
     max-width: $max-width;
     margin: auto;
+    z-index: -1;
+}
+.swiper.disp {
     @include m() {
         display: none;
     }
-    z-index: -1;
 }
 img {
     width: 100%;

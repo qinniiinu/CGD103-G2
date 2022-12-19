@@ -1,11 +1,13 @@
 <script>
 import ProductMenu from "@/components/product/ProductMenu.vue";
+import Breadcrumb from "@/components/product/Breadcrumb.vue";
 import ProductCard from "@/components/product/ProductCard.vue";
 import HashTag from "@/components/product/HashTag.vue";
 import Alert from "@/components/Alert.vue";
 export default {
     name: "Product",
     components: {
+        Breadcrumb,
         ProductMenu,
         ProductCard,
         HashTag,
@@ -28,6 +30,27 @@ export default {
         };
     },
     computed: {
+        bread() {
+            console.log(this.temp.product_gender);
+            console.log(this.temp.product_maintype);
+            console.log(this.temp.product_type);
+
+            let gender = this.temp.product_gender == 1 ? "男" : "女";
+            return [
+                {
+                    name: gender,
+                    link: `/productlist?G=${this.temp.product_gender}`,
+                },
+                {
+                    name: this.temp.product_maintype,
+                    link: `/productlist?G=${this.temp.product_gender}&M=${this.temp.product_maintype}`,
+                },
+                {
+                    name: this.temp.product_type,
+                    link: `/productlist?G=${this.temp.product_gender}&M=${this.temp.product_maintype}&T=${this.temp.product_type}`,
+                },
+            ];
+        },
         product_details() {
             return this.temp;
         },
@@ -141,6 +164,10 @@ export default {
 <template>
     <div class="product_details">
         <ProductMenu />
+        <div class="leftright">
+            <p class="breadTitle">商品分類</p>
+            <Breadcrumb :arr="bread"></Breadcrumb>
+        </div>
         <div class="leftright">
             <div class="left">
                 <div class="bigPic">
@@ -277,6 +304,9 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.breadTitle {
+    padding: 20px 20px 20px 0px;
+}
 .alert {
     width: 300px;
     height: 250px;

@@ -99,7 +99,10 @@ export default {
                 <HashTag></HashTag>
             </div>
             <div id="list">
-                <SearchBar />
+                <div class="leftright">
+                    <SearchBar />
+                </div>
+
                 <div class="productCard_box">
                     <ProductCard
                         :id="e.product_id"
@@ -138,6 +141,9 @@ export default {
     .leftright {
         @include m() {
             display: flex;
+        }
+        .Sidebar {
+            width: 200px;
         }
         .productCard_box {
             display: flex;
