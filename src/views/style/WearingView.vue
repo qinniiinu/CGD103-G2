@@ -80,10 +80,11 @@ export default {
 		display: none;
 	}
 	#switch:checked+.sidemenu_box .sidemenu{
-		transform:scaleX(1);
 		opacity: 1;
-		transition: transform .5s 0s ;
+		transition: transform .5s 0s;
+		transform:scaleX(1);
 		transform:translateX(0px) ;
+	
 		
 		&::after{
 				display: block;
@@ -140,9 +141,10 @@ export default {
 			border: 1px solid $title_color;
 			margin-top:-2px ;
 			margin-left: auto;
-			transition: transform .5s 0s ;
+			transition: transform .5s 0s ,opacity .5s 0s;
 			// border-right:0px ;
 			opacity: 0;
+			
 			
 
 			
