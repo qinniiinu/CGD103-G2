@@ -3,15 +3,14 @@
     <?php
     if (isset($_SESSION['member'])) { // 會員已登入
         //取得會員資料
-        $user = $_SESSION['member'];
+        $member = $_SESSION['member'];
         // 設定回應標頭
         header('Content-Type: application/json');
         // 將會員資料輸出為 JSON 格式
-        echo json_encode($user);
-
+        echo json_encode($member);
+        exit();
     }
     else{//尚未登入，
         header('Location:/login');
-        exit;
     }
 ?> 

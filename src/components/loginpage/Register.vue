@@ -1,6 +1,6 @@
 <template>
   <!--註冊-->
-  <div class="signup_wrapper wrapper">
+  <div v-if="!gotype" class="signup_wrapper wrapper">
 	<div class="form_wrapper sign_up">
 	  <form @submit.prevent="handleSubmit" class="login_form" action="">
 		<div class="title">
@@ -41,9 +41,7 @@
 		<div class="remember">
 		  <label><input type="checkbox" />我已閱讀並同意會員約定條款說明</label>
 		</div>
-		<!-- <router-link to="/BodyTyping"> -->
-		<button type="submit" class="btn_s">下一步</button>
-		<!-- </router-link> -->
+		<button type="submit" class="btn_s" @click="gotype">下一步</button>
 
 		<!-- 已有帳號 -->
 		<div class="signup">
@@ -54,6 +52,139 @@
 		</div>
 	  </form>
 	</div>
+  </div>
+
+  <!-- 身形建置 -->
+  <div v-if="gotype" class="wrapper bodyTyping">
+    <div class="form_wrapper bodyset">
+      <form class="bodyset_form" action="">
+        <div class="title">
+          <h2>註冊</h2>
+          <bg-tag class="bg_tag" Bgtag="SIGNUP"></bg-tag>
+        </div>
+
+        <!-- 性別/身高體重/鞋碼 -->
+        <div class="item">
+          <!-- 性別 -->
+          <div class="sex">
+            <input type="radio" :value="1" v-bind="sex" id="male" name="sex">
+			<label
+              class="btn_l"
+				for="male"
+            >
+              男
+            </label>
+            <input type="radio" :value="0" v-bind="sex" id="female" name="sex"> 
+			<label
+              class="btn_l"
+			  for="female"
+            >
+              女
+            </label>
+          </div>
+          <!-- 身高體重/鞋碼  -->
+          <div class="my_body">
+            <div class="input_group">
+              <input v-model="height" type="text" required />
+              <label for="">身高 cm</label>
+            </div>
+            <div class="input_group">
+              <input v-model="weight" type="text" required />
+              <label for="">體重 kg</label>
+            </div>
+            <div class="input_group">
+              <input type="text" v-model="shoesize" required />
+              <label for="">鞋碼 cm</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 其他數據 range bar -->
+        <div class="item">
+          <div class="rage_group">
+            <span>肩寬</span>
+            <span class="value">{{ shoulder }}</span>
+            <span>cm</span>
+            <input
+              v-model="shoulder"
+              type="range"
+              min="1"
+              max="100"
+              class="slider"
+            />
+          </div>
+          <div class="rage_group">
+            <span>胸圍</span>
+            <span class="value">{{ chest }}</span>
+            <span>cm</span>
+            <input
+              v-model="chest"
+              type="range"
+              min="1"
+              max="100"
+              class="slider"
+            />
+          </div>
+          <div class="rage_group">
+            <span>腰圍</span>
+            <span class="value">{{ waistline }}</span>
+            <span>cm</span>
+            <input
+              v-model="waistline"
+              type="range"
+              min="1"
+              max="100"
+              class="slider"
+            />
+          </div>
+          <div class="rage_group">
+            <span>臀圍</span>
+            <span class="value">{{ hip }}</span>
+            <span>cm</span>
+            <input
+              v-model="hip"
+              type="range"
+              min="1"
+              max="100"
+              class="slider"
+            />
+          </div>
+          <div class="rage_group">
+            <span>衣長</span>
+            <span class="value">{{ clothes }}</span>
+            <span>cm</span>
+            <input
+              v-model="clothes"
+              type="range"
+              min="1"
+              max="100"
+              class="slider"
+            />
+          </div>
+          <div class="rage_group">
+            <span>褲長</span>
+            <span class="value">{{ pants }}</span>
+            <span>cm</span>
+            <input
+              v-model="pants"
+              type="range"
+              min="1"
+              max="100"
+              class="slider"
+            />
+          </div>
+        </div>
+
+        <div class="remember">
+          <label
+            ><input
+              type="checkbox"
+            />我同意本網站的隱私權政策，並同意Urstyle收集及使用我的個人資料以處理訂單。</label
+          >
+        </div>
+		<button type="submit" class="btn_s">註冊</button>
+      </form>
+    </div>
   </div>
 </template> 
 
@@ -68,6 +199,7 @@ export default {
   },
   data() {
 	return {
+		// 註冊
 		mem_mail:'',
 		mem_pwd:'',
 		psd_confirm:'',
@@ -75,6 +207,20 @@ export default {
 		bday_m:'',
 		bday_d:'',
 		bday_y:'',
+		// 身形建置
+        sex: '',
+        height: '', //身高
+        weight: '', //體重
+        shoesize: '', //鞋碼
+        shoulder: '', //肩寬
+        chest: '', // 胸圍
+        waistline: '', // 腰圍
+        hip: '', //臀圍
+        clothes: '', // 衣長
+        pants: '', //褲長
+		// 男女按鈕
+      	isActive: false,
+		goType: false,
 	};
   },
   methods: {
@@ -97,14 +243,22 @@ export default {
 		const response = await axios.post('/api_server/register.php',data)
 			.then(res=>console.log(res))
 			.catch(err=>console.log(err))
+	},
+
+	myFilter() {
+		this.isActive = !this.isActive;
+    },
+
+	gotype(){
+		this.goType = true;
 	}
   },
 };
 </script>
 
 <style lang="scss" scoped>
+// 會員註冊
 body {
-  //   background-color: $bg_gray;
   .wrapper {
 	display: flex;
 	justify-content: center;
@@ -277,15 +431,155 @@ body {
 		}
 	  }
 	}
-	@include s() {
-	  //  //只在手機版
-	}
-	@include m() {
-	  // 768~
-	}
-	@include xl() {
-	  // 1200~
-	}
+  }
+}
+
+// 身形建置
+.wrapper {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  padding: 30px 0;
+  background-color: $bg_gray;
+  .form_wrapper {
+    background-color: white;
+    height: fit-content;
+    @include s() {
+      width: 100%;
+      padding: 30px;
+    }
+
+    @include m() {
+      border: 1px solid black;
+      width: 28%;
+      padding: 30px;
+    }
+    .bodyset_form {
+      position: relative;
+      .title {
+        margin-bottom: 40px;
+        h2 {
+          font-size: 35px;
+          font-weight: 700;
+        }
+        .bg_tag {
+          position: absolute;
+          top: 0;
+          right: 0;
+          font-size: 45px;
+        }
+      }
+      //  性別/身高體重/鞋碼
+      .item {
+        &:nth-child(2) {
+          margin-top: 20px;
+          .sex {
+            display: flex;
+            justify-content: space-between;
+			input{
+				&:checked + label{
+					background-color: $main-color;
+              		color: white;
+				}
+			}
+          }
+          .my_body {
+            // input group css
+            .input_group {
+              position: relative;
+              margin-block-start: 35px;
+              border-bottom: 2px solid;
+              input {
+                width: 100%;
+                height: 40px;
+                font-size: 16px;
+                color: #333;
+                padding: 0 5px;
+                border: none;
+                outline: none;
+                &:focus ~ label {
+                  color: $main_color;
+                  top: -5px;
+                }
+                &:valid ~ label {
+                  color: $main_color;
+                  top: -5px;
+                }
+              }
+              label {
+                position: absolute;
+                top: 50%;
+                left: 5px;
+                transform: translateY(-50%);
+                font-size: 16px;
+                pointer-events: none;
+                transition: 0.5s;
+                color: gray;
+              }
+            }
+          }
+        }
+        // 其他數據
+        &:nth-child(3) {
+          display: flex;
+          flex-direction: column;
+          margin-top: 20px;
+          .rage_group {
+            margin-block: 15px;
+            span {
+              margin-inline: 3px;
+            }
+            input {
+              margin-top: 10px;
+              width: 100%;
+            }
+            input[type="range"]{
+              -webkit-appearance: none;
+              width: 100%;
+              height: 10px;
+              background-color: $second_color;
+              border-radius: 5px;
+              outline: none;
+            }
+            input[type="range"]::-webkit-slider-thumb{
+              -webkit-appearance: none;
+              width: 30px;
+              height: 15px;
+              background-color: $main_color;
+              border-radius: 50px;
+              box-shadow: 1px 2px #25319e;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      .remember {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px 0 15px 0;
+        font-size: 14px;
+        label {
+          font-size: 14px;
+        }
+        input {
+          accent-color: $main_color;
+        }
+        .forget_psw {
+          font-size: 14px;
+        }
+      }
+      .btn_s {
+        position: relative;
+        width: 100%;
+        height: 40px;
+        font-size: 16px;
+        line-height: 5px;
+        margin-bottom: 20px;
+        color: white;
+      }
+    }
   }
 }
 </style>

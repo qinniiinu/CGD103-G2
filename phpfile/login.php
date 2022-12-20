@@ -42,7 +42,7 @@ try {
     $errMsg .= "行號 : ".$e -> getLine()."<br>";
     echo json_encode(["msg"=>$errMsg]);
 }
-//使用 filter_input 函數來確保輸入資料的安全性。
+ //使用 filter_input 函數來確保輸入資料的安全性。
 // $mem_mail = filter_input(INPUT_POST, 'mem_mail', FILTER_SANITIZE_EMAIL);
 // 這樣可以過濾掉不合法的電子郵件格式。
 ?>
