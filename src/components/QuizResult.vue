@@ -1,90 +1,110 @@
 <template>
-    <section v-if="count >= 0" class="loading" :style="{backgroundImage: 'url(' + require('@/assets/loading_bg.png') + ')'}">
-        <div class="item">
-          <p>結果產生中</p>
-          <p class="text-loading-width">Loading</p>
-        </div>
-    </section>
-    <!-- 時間到出現結果 -->
-    <div v-else>
-      <section class="quiz_result">
-        <div class="title_box">
-          <p>你的測驗結果是</p>
-          <h2>{{ result }}</h2>
-        </div>
-        <div class="wraper">
-          <div class="img_box">
-            <StyleCard1 :link="img1" />
-            <StyleCard1 :link="img2" />
-            <!-- <StyleCard1 link="./hipster2.png" /> -->
-          </div>
-          <div class="txt_box">
-            <h3>適合您的穿搭公式</h3>
-            <p>{{desc}}</p>
-            <Button content="記錄我的風格" />
-          </div>
-        </div>
-      </section>
-      <h3 class="recommend">推薦穿搭</h3>
-  <StylistLook :scardP="scardP" :stylistName="stylistName" :stylistInfo="stylistInfo"></StylistLook>
-
+  <section v-if="count >= 0" class="loading"
+    :style="{ backgroundImage: 'url(' + require('@/assets/loading_bg.png') + ')' }">
+    <div class="item">
+      <p>結果產生中</p>
+      <p class="text-loading-width">Loading</p>
     </div>
+  </section>
+  <!-- 時間到出現結果 -->
+  <div v-else>
+    <section class="quiz_result">
+      <div class="title_box">
+        <p>你的測驗結果是</p>
+        <h2>{{ result }}</h2>
+      </div>
+      <div class="wraper">
+        <div class="img_box">
+          <StyleCard1 :link="img1" />
+          <StyleCard1 :link="img2" />
+        </div>
+        <div class="txt_box">
+          <h3>適合您的穿搭公式</h3>
+          <p>{{ desc }}</p>
+          <Button content="記錄我的風格" />
+        </div>
+      </div>
+    </section>
+    <!-- 推薦 -->
+    <h3 class="recommend">推薦商品</h3>
+    <section class="recommend_box">
+      <div v-for="e in product" class="item" :key="e.combo_pic" >
+        <img :src="require(`@/assets/product/${e.combo_pic}`)" />
+        <h4>{{ e.combo_name }}</h4>
+      </div>
+      <div v-for="e in product" class="item" :key="e.combo_pic" >
+        <img :src="require(`@/assets/product/${e.combo_pic}`)" />
+        <h4>{{ e.combo_name }}</h4>
+      </div>
+    </section>
+
+  </div>
 </template>
 <script>
 import StyleCard1 from "@/components/StyleCard1.vue";
 import Button from "@/components/Button.vue";
-import StylistLook from "@/components/StylistLook.vue";
+//引入BASE_URL參數
+import { BASE_URL } from '../assets/js/common.js'
 export default {
   name: "QuizResult",
   components: {
     StyleCard1,
     Button,
-    StylistLook,
   },
   props: {
-        result:String,
-        img1:String,
-        img2:String,
-        desc:String,
-        scardP:String,
-        stylistName:String,
-        stylistInfo:String,
+    result: String,
+    img1: String,
+    img2: String,
+    desc: String,
 
-    },
-  data () {
+  },
+  data() {
     return {
-      count: 3
+      count: 3,
+      // count: -1,
+      product:[],
     }
   },
   methods: {
     // 倒數功能
-    countDown () {
+    countDown() {
       // 執行一次，count減1
       this.count--
       // 每秒執行一次
       setTimeout(() => {
         this.countDown();
       }, 1000)
-    }
+    },
+    getResource() {
+      this.axios.get(`${BASE_URL}/quiz/style_recommend.php`).then((response) => {
+                this.product = response.data;
+                console.log(this.product);
+            });
+    },
   },
-  mounted () {
+  mounted() {
+    this.getResource();
     this.countDown();
-  }   
+  }
 
 
 }
 </script>
 <style lang="scss" scoped>
+* {
+  box-sizing: border-box;
+}
+
 // loading
-.loading{
+.loading {
   background-position: center;
   background-size: contain;
   width: 100%;
   min-height: 100vh;
 
-  .item{
+  .item {
     position: absolute;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
     text-align: center;
@@ -92,16 +112,19 @@ export default {
     width: 80%;
     background-color: #fff;
     padding: 100px 30px;
-    p{
+
+    p {
       font-size: 38px;
       color: $title_color;
       font-weight: 600;
     }
-    .text-loading-width{
+
+    .text-loading-width {
       margin-top: 5px;
       font-family: $second_font;
     }
-    .text-loading-width:after{
+
+    .text-loading-width:after {
       content: "...";
       overflow: hidden;
       white-space: nowrap;
@@ -111,25 +134,31 @@ export default {
     }
   }
 }
+
 @keyframes text-loading-width {
-  0%{
+  0% {
     width: .25em;
   }
-  50%{
+
+  50% {
     width: .5em;
   }
-  100%{
+
+  100% {
     width: .75em;
   }
 }
+
 @media screen and (min-width:768px) {
-  .loading{
+  .loading {
     background-size: cover;
-    .item{
+
+    .item {
       width: 30%;
     }
   }
 }
+
 // 測驗結果
 .quiz_result {
   .title_box {
@@ -149,53 +178,82 @@ export default {
     }
   }
 }
-  .wraper {
-    width: 80%;
+
+.wraper {
+  width: 80%;
+  position: relative;
+  margin: 0 auto;
+
+  .img_box {
+    width: 100%;
     position: relative;
-    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 
-    .img_box {
-      width: 100%;
-      position: relative;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-evenly;
+    .item {
+      // margin-left: -15px;
+      width: 40%;
+      height: fit-content;
 
-      .item {
-        // margin-left: -15px;
-        width: 40%;
-        height: fit-content;
-
-        &:nth-child(2) {
-          top: 30px;
-        }
+      &:nth-child(2) {
+        top: 30px;
       }
-    }
-
-    .txt_box {
-      padding: 40px 0;
-
-      h3 {
-        color: $title_color;
-        margin-bottom: 10px;
-        font-size: 16px;
-        font-weight: 600;
-      }
-
-      p {
-        font-size: 12px;
-        color: $text_color;
-        line-height: 20px;
-      }
-    }
-
-    button {
-      margin: 20px auto;
-      display: block;
     }
   }
 
+  .txt_box {
+    padding: 40px 0;
 
+    h3 {
+      color: $title_color;
+      margin-bottom: 10px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 12px;
+      color: $text_color;
+      line-height: 20px;
+    }
+  }
+
+  button {
+    margin: 20px auto;
+    display: block;
+  }
+}
+
+h3 {
+  margin-bottom: 20px;
+}
+
+.recommend_box {
+  display: flex;
+  flex-wrap: wrap;
+  // flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px;
+
+  // border: 1px solid red;
+  .item {
+    width: 48%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #000;
+
+    img {
+      width: 100%;
+    }
+
+    h4 {
+      text-align: center;
+      color: $text_color;
+      padding: 10px;
+    }
+  }
+}
 
 // 768 - 1023
 @media screen and (min-width:768px) {
@@ -225,6 +283,7 @@ export default {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-evenly;
+
       .img_box {
         width: 50%;
 
@@ -261,6 +320,32 @@ export default {
     }
 
   }
+
+  .recommend_box {
+    display: flex;
+    flex-wrap: wrap;
+    // flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 10px;
+
+    // border: 1px solid red;
+    .item {
+      width: 23%;
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #000;
+
+      img {
+        width: 100%;
+      }
+
+      h4 {
+        text-align: center;
+        color: $text_color;
+        padding: 10px;
+      }
+    }
+  }
 }
 
 // 1024以上
@@ -268,6 +353,7 @@ export default {
   .quiz_result {
     .wraper {
       max-width: 1200px;
+
       .img_box {
         .item {
           &:nth-child(1) {
@@ -281,6 +367,12 @@ export default {
       }
     }
   }
+
+  .recommend_box {
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 1px solid red;
+  }
 }
 
 .recommend {
@@ -289,9 +381,10 @@ export default {
   font-size: 16px;
   font-weight: 600;
 }
+
 @media screen and (min-width:768px) {
   .recommend {
-  font-size: 24px;
-}
+    font-size: 24px;
+  }
 }
 </style>

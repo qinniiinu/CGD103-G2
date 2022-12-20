@@ -2,46 +2,50 @@
   <!--註冊-->
   <div class="signup_wrapper wrapper">
 	<div class="form_wrapper sign_up">
-	  <form class="login_form" action="">
+	  <form @submit.prevent="handleSubmit" class="login_form" action="">
 		<div class="title">
 		  <h2>註冊</h2>
-		  <bg-tag class="bg_tag" Bgtag="SIGNUP"></bg-tag>
+		  <BgTag class="bg_tag" Bgtag="SIGNUP"></BgTag>
 		</div>
 
 		<div class="input_group">
-		  <input type="text" required />
+		  <input type="text" v-model="mem_mail" required />
 		  <label for="">電子郵件</label>
 		</div>
 		<div class="input_group">
-		  <input type="password" placeholder="密碼須包含英文與數字" required />
+		  <input type="password" placeholder="密碼須包含英文與數字" v-model="mem_pwd" required />
 		  <label for="" class="psw">密碼</label>
 		</div>
 		<div class="input_group">
-		  <input type="password" required />
+		  <input type="password" v-model="psd_confirm" required />
 		  <label for="">密碼確認</label>
 		</div>
 		<div class="input_group">
-		  <input type="text" required />
+		  <input type="text"  v-model="mem_name" required />
 		  <label for="">姓名</label>
 		</div>
 		<div class="birth">
 		  <div class="input_group">
-			<input type="number" min="1" max="12" required />
+			<input type="number" min="1" max="12" v-model="bday_m" required />
 			<label for="">月</label>
 		  </div>
 		  <div class="input_group">
-			<input type="number" min="1" max="31" required />
+			<input type="number" min="1" max="31" v-model="bday_d" required />
 			<label for="">日</label>
 		  </div>
 		  <div class="input_group">
-			<input type="number" required />
+			<input type="number" v-model="bday_y" required />
 			<label for="">年</label>
 		  </div>
 		</div>
 		<div class="remember">
 		  <label><input type="checkbox" />我已閱讀並同意會員約定條款說明</label>
 		</div>
-		<router-link to="/BodyTyping"><button type="submit" class="btn_s">下一步</button></router-link>
+		<!-- <router-link to="/BodyTyping"> -->
+		<button type="submit" class="btn_s">下一步</button>
+		<!-- </router-link> -->
+
+		<!-- 已有帳號 -->
 		<div class="signup">
 		  <p>
 			已有帳號，
@@ -53,9 +57,8 @@
   </div>
 </template> 
 
-
-
 <script>
+import axios from 'axios';
 import BgTag from "@/components/mypage/BgTag.vue";
 export default {
   name: "Register",
@@ -65,13 +68,36 @@ export default {
   },
   data() {
 	return {
-	  Signup: true,
+		mem_mail:'',
+		mem_pwd:'',
+		psd_confirm:'',
+		mem_name:'',
+		bday_m:'',
+		bday_d:'',
+		bday_y:'',
 	};
   },
   methods: {
-	ToSignin() {
-	  Signup = false;
-	},
+	combineDate() {
+	const year = this.bday_y;
+	const month = this.bday_m.toString().padStart(2, '0');// padStart() 函數可以在數字左邊補 0，使得字符串長度為 2
+	const day = this.bday_d.toString().padStart(2, '0');
+    const bday = new Date(year, parseInt(month)-1, day);
+    return bday;
+  	},
+
+	async handleSubmit(){
+		const data = {
+			mem_mail:this.mem_mail,
+			mem_pwd:this.mem_pwd,
+			psd_confirm:this.psd_confirm,
+			mem_name:this.mem_name,
+			bday:this.combineDate(),
+		}
+		const response = await axios.post('/api_server/register.php',data)
+			.then(res=>console.log(res))
+			.catch(err=>console.log(err))
+	}
   },
 };
 </script>

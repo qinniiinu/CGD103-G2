@@ -1,11 +1,7 @@
+<!-- 此頁取消，合併到OrderHistoryVuew -->
+
 <template>
 	
-	<!-- 會員 container -->
-	<div class="mem_container">
-		<!-- 側邊欄組件 -->
-		<MemberSideMenu></MemberSideMenu>
-		<!-- 右側會員資料-->
-		<div class="mem_data">
 			<p class="title">#訂單紀錄</p>
 			<router-view/>
 			<div class="data">
@@ -19,7 +15,6 @@
 						</select>
 						<div class="ham">
 							<router-link  to="/OrderHistory"><font-awesome-icon icon="fa-solid fa-list" /></router-link>
-
 						</div>
 					</div>
 					
@@ -62,24 +57,14 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	<Footer></Footer>
 </template>
-
-
-
-
 
 <script>
 
 import Button from "@/components/Button.vue";
-import MemberSideMenu from "@/components/MemberSideMenu.vue";
 export default {
 	name: "OrderHistoryPhoto",
 	components: {
-    
-		MemberSideMenu,
 		Button
 	},
 	data() {
@@ -110,9 +95,6 @@ export default {
 			        sum_price:8888,
 				},
 			],
-		
-		
-
 		}
 	},
 	
@@ -123,8 +105,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/sass/main.scss";
-@import "@/assets/sass/member_side_menu";
+.title {
+  font-size: 24px;
+  color: #292929;
+  padding-bottom: $padding;
+}
+
 @mixin b() {
 	@media screen and (max-width: 1023px) {
 		@content;

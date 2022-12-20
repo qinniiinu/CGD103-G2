@@ -1,13 +1,13 @@
 <?php
-// //跨域(正式開發不能這樣)
+// 跨域
 header('Access-Control-Allow-Origin:*');
 header("Content-Type:application/json;charset=utf-8");
 
-require_once("../connectBooks.php");
+require_once("../../connectBooks.php");
 
-$sql = "select * from `product` where product_state=1 && product_name is not null";
+$sql = "SELECT combo_name,combo_pic FROM product_combo WHERE hashtag = '極簡風';";
 $book = $pdo->query($sql);
-$books = $book->fetchAll();
+$books = $book->fetchALL(PDO::FETCH_ASSOC);
 $data = [];
 foreach ($books as $i => $page) {
     $data[] = $page;

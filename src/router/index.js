@@ -137,7 +137,7 @@ const routes = [
 		children: [
 			{
 				path: '',
-				name: "Over",
+				name: "OverView",
 				component: () => import("../views/myaccount/OverView.vue")
 			},
 			{
@@ -171,6 +171,11 @@ const routes = [
 				component: () => import("../views/myaccount/OrderHistoryView.vue"),
 			},
 			{
+				path: "OrderHistoryDetail",
+				name: "OrderHistoryDetail",
+				component: () => import("../views/myaccount/OrderHistoryDetailView.vue"),
+			},
+			{
 				path: "Favorites",
 				name: "Favorites",
 				component: () => import("../views/myaccount/FavoritesView.vue"),
@@ -178,11 +183,6 @@ const routes = [
 		]
 	},
 
-	{
-		path: "/OrderHistoryDetail", //與 OrderHistory 合併後刪除
-		name: "OrderHistoryDetail",
-		component: () => import("../views/myaccount/OrderHistoryDetailView.vue"),
-	},
 	{
 		path: "/OrderDetails",
 		name: "OrderDetails",
