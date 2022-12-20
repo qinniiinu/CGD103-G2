@@ -7,7 +7,7 @@ require_once("../connectBooks.php");
 
 $sql = "SELECT * FROM `vip_level`;";
 $memSub = $pdo->query($sql);
-$memSubAll = $memSub->fetchAll();
+$memSubAll = $memSub->fetchAll(PDO::FETCH_ASSOC);
 $data = [];
 foreach ($memSubAll as $i => $page) {
     $data[] = $page;
