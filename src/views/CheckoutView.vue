@@ -50,7 +50,7 @@
 				<div class="items">
 				<div class="item" v-for="item in order" :key="item.id">
 					<div class="product">
-						<img :src="item.image" v-bind:alt="item.title">
+						<img :src="require(`@/assets/product/${item.image}`)" v-bind:alt="item.title">
 						<div class="prod-detail">
 							<p>{{item.title}}</p>
 							<div class="spec">
@@ -84,46 +84,46 @@ export default {
 	data(){
 		return{
 			load: false,
-			source:[],
+			cart:[],
 			count:[],
 			order:[],
 			min:0,
 			max:0,
-			product:[
-			//產品資訊
-			{
-			id: 1,
-			image: "https://nb.scene7.com/is/image/NB/m990gl5_nb_05_i?$pdpflexf2$&qlt=80&fmt=webp&wid=472&hei=472",
-			title: "Newbalance鞋",
-			color: "灰色",
-			size: "23cm",
-			price: 7990,
-			},
-			{
-			id: 2,
-			image: "https://pics.pzcdn.tw/pazzo/ProductBasics/f06d3568-2bd1-4b9c-9f9e-aef3dcceed16.jpg",
-			title: "帆布袋",
-			color: "米色",
-			size: "F",
-			price: 590,
-			},
-			{
-			id: 3,
-			image: "https://pics.pzcdn.tw/pazzo/ProductBasics/2b8716f4-5693-4743-abae-3e12b07b6aa0.jpg",
-			title: "漢堡上衣",
-			color: "藍色",
-			size: "L",
-			price: 790,
-			},
-			{
-			id: 4,
-			image: "https://pics.pzcdn.tw/pazzo/ProductBasics/73bd6f12-bae9-4c29-bf90-f02bf925b5d0.jpg",
-			title: "休閒短褲",
-			color: "卡其色",
-			size: "S",
-			price: 450,
-			}
-			],
+			// product:[
+			// //產品資訊
+			// {
+			// id: 1,
+			// image: "https://nb.scene7.com/is/image/NB/m990gl5_nb_05_i?$pdpflexf2$&qlt=80&fmt=webp&wid=472&hei=472",
+			// title: "Newbalance鞋",
+			// color: "灰色",
+			// size: "23cm",
+			// price: 7990,
+			// },
+			// {
+			// id: 2,
+			// image: "https://pics.pzcdn.tw/pazzo/ProductBasics/f06d3568-2bd1-4b9c-9f9e-aef3dcceed16.jpg",
+			// title: "帆布袋",
+			// color: "米色",
+			// size: "F",
+			// price: 590,
+			// },
+			// {
+			// id: 3,
+			// image: "https://pics.pzcdn.tw/pazzo/ProductBasics/2b8716f4-5693-4743-abae-3e12b07b6aa0.jpg",
+			// title: "漢堡上衣",
+			// color: "藍色",
+			// size: "L",
+			// price: 790,
+			// },
+			// {
+			// id: 4,
+			// image: "https://pics.pzcdn.tw/pazzo/ProductBasics/73bd6f12-bae9-4c29-bf90-f02bf925b5d0.jpg",
+			// title: "休閒短褲",
+			// color: "卡其色",
+			// size: "S",
+			// price: 450,
+			// }
+			// ],
 			memId:"a001",
 			mem_name:"王小明",
 			phone:"0912345678",
@@ -171,7 +171,7 @@ export default {
 			}
 		},
 		getStorage(){
-			let data =localStorage.getItem('order');
+			let data =localStorage.getItem('cart');
 			data=JSON.parse(data)
 			this.order=data? data:[]
         },
