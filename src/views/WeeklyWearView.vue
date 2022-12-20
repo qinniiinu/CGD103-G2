@@ -1,6 +1,6 @@
 <template>
   <div class="weeklywear">
-    <BreadCrumbs></BreadCrumbs>
+    <!-- <BreadCrumbs></BreadCrumbs> -->
     <h1 class="title">一週穿搭公式<br />讓你/妳有更多穿搭靈感</h1>
     <section class="section_one">
       <img class="deco1" src="../assets/weeklywear_pic/deco01.png" alt="" />

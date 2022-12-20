@@ -14,9 +14,9 @@
 						<div>單價</div>
 						<div>總價</div>
 					</ul>
-					<ul v-if="order.length>0" class="order-list">
-						<li class="item" v-for="item in order" :key="item.id">
-							<div class="item-left"><img :src="item.image" v-bind:alt="item.title"></div>
+					<ul v-if="cart.length>0" class="order-list">
+						<li class="item" v-for="item in cart" :key="item.id">
+							<div class="item-left"><img :src="require(`@/assets/product/${item.image}`)" v-bind:alt="item.title"></div>
 							<div class="item-right">
 								<div class="item-des">
 									<div>{{item.title}}</div>
@@ -37,7 +37,7 @@
 							</div>
 						</li>
 						<div class="detail">
-							<div>共 {{order.length}} 種商品</div>
+							<div>共 {{cart.length}} 種商品</div>
 							<div>{{vip_level[0].level_name}} 會員等級折扣: -${{parseInt(total*(1-vip_level[0].discount))}}</div>
 							<div>總計: ${{parseInt(total*vip_level[0].discount)}}元</div>
 						</div>
@@ -70,62 +70,75 @@ export default {
 			source:[],
 			count:[],
 			order:[],
+			cart:[],
 			min:0,
 			max:0,
 			memLevel:'BASIC',
 			discount:0.05,
 			vip_level:vip_level,
-			products:products
+			ProductsList:[],
 		}
 	},
 	created(){
-		this.getStorage()
+		this.getStorage();
 	},
 	computed:{
-		// total(index,item){
-		// 	if(this.product.length>0){
-		// 		let total=0
-		// 		for(const index in this.order){
-		// 			total+=this.order[index]['count']*this.order[index]['price']
-		// 		}
-		// 		console.log(total);
-		// 		return parseInt(total)
-		// 	}else{
-		// 		return 0
-		// 	}
-		// },
-		// aftertotal(index,item){
-		// 	if(this.order.length>0){
-		// 		let aftertotal=0
-		// 		for(const index in this.order){
-		// 			aftertotal+=(this.order[index]['count']*this.order[index]['price'])*0.95
-		// 		}
-		// 		console.log(aftertotal);
-		// 		return parseInt(aftertotal);
-		// 	}else{
-		// 		return 0
-		// 	}
-		// }
+		total(index,item){
+			if(this.cart.length>0){
+				let total=0
+				for(const index in this.cart){
+					total+=this.cart[index]['count']*this.cart[index]['price']
+				}
+				console.log(total);
+				return parseInt(total)
+			}else{
+				return 0
+			}
+		},
+		aftertotal(index,item){
+			if(this.cart.length>0){
+				let aftertotal=0
+				for(const index in this.cart){
+					aftertotal+=(this.cart[index]['count']*this.cart[index]['price'])*0.95
+				}
+				console.log(aftertotal);
+				return parseInt(aftertotal);
+			}else{
+				return 0
+			}
+		}
 	},
 	methods:{
-		getResource(index,item){
-			this.load=true;
-			this.order.push({
-				id:item.product_id,
-				title:item.title,
-				image:item.image,
-				color:item.color,
-				size:item.size,
-				price:item.price,
-				count:1
-			})
+		setStorage(){
+			const data=JSON.stringify(this.cart);
+			localStorage.setItem('cart',data);
 		},
 		getStorage(){
 			let data =localStorage.getItem('cart');
 			data=JSON.parse(data)
-			this.order=data? data:[]
-			console.log(this.order);
-        }
+			this.cart=data? data:[]
+			console.log(this.cart);
+        },
+		addCount(index,item){
+			console.log(item.count);
+			item.count+=1;
+			this.setStorage()
+		},
+		reduceCount(index,item){
+			console.log(item.count);
+			if(item.count<0) return;
+			if(item.count>1){
+				item.count-=1
+			}else{
+				this.cart.splice(item,1)
+			}
+			this.setStorage()
+		},
+		dele(index,item){
+			if(item.count<0) return;
+			this.cart.splice(item,1)
+			this.setStorage()
+		},
 	}
 };
 </script>

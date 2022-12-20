@@ -13,6 +13,7 @@ module.exports = defineConfig({
 		: '/',
 
 	devServer: {
+
 		proxy: {
 			'/api_server': {
 				target: 'http://localhost/cgd103_g2_frontend/phpfile',

@@ -31,23 +31,19 @@ export default {
     },
     computed: {
         bread() {
-            console.log(this.temp.product_gender);
-            console.log(this.temp.product_maintype);
-            console.log(this.temp.product_type);
-
-            let gender = this.temp.product_gender == 1 ? "男" : "女";
+            let gender = this.temp?.product_gender == 1 ? "男裝" : "女裝";
             return [
                 {
                     name: gender,
-                    link: `/productlist?G=${this.temp.product_gender}`,
+                    link: `/productlist?G=${this.temp?.product_gender}`,
                 },
                 {
-                    name: this.temp.product_maintype,
-                    link: `/productlist?G=${this.temp.product_gender}&M=${this.temp.product_maintype}`,
+                    name: this.temp?.product_maintype,
+                    link: `/productlist?G=${this.temp?.product_gender}&M=${this.temp?.product_maintype}`,
                 },
                 {
-                    name: this.temp.product_type,
-                    link: `/productlist?G=${this.temp.product_gender}&M=${this.temp.product_maintype}&T=${this.temp.product_type}`,
+                    name: this.temp?.product_type,
+                    link: `/productlist?G=${this.temp?.product_gender}&M=${this.temp?.product_maintype}&T=${this.temp?.product_type}`,
                 },
             ];
         },
@@ -84,7 +80,6 @@ export default {
     methods: {
         getResource() {
             this.axios.get("/api_server/list.php").then((response) => {
-                console.log(response.data);
                 this.temp = response.data.find((e) => {
                     if (e.product_id == this.$route.params.id) return e;
                 });
@@ -93,9 +88,8 @@ export default {
         },
         getStorage() {
             let data = localStorage.getItem("cart");
-            data = JSON.parse(data);
+            if (data) data = JSON.parse(data);
             this.cart = data ? data : [];
-            console.log(this.cart);
         },
         addCart(e, i) {
             if (this.pickedColor == "" || this.pickedSize == "") {
@@ -115,14 +109,22 @@ export default {
                         cartItem.size === this.pickedSize
                     );
                 });
-                if (prodIndex >= 0) {
-                    this.cart[prodIndex]["count"] += 1;
+                if (prodIndex>=0) {
+                    if(prodIndex==1){
+                        this.cart[prodIndex]["count"] += 1;
+                        return;
+                    }else{
+                        this.cart[prodIndex]["count"] += this.number;
+                    }
                 } else {
                     this.cart.push({
                         id: this.product_details.product_id,
+                        title:this.product_name,
+                        image:this.temp?.product_pic.split(",")[0],
+                        price:this.unit_price,
                         color: this.pickedColor,
                         size: this.pickedSize,
-                        count: 1,
+                        count: this.number,
                     });
                 }
                 this.setStorage();
@@ -170,10 +172,7 @@ export default {
 <template>
     <div class="product_details">
         <ProductMenu />
-        <div class="leftright">
-            <p class="breadTitle">商品分類</p>
-            <Breadcrumb :arr="bread"></Breadcrumb>
-        </div>
+        <Breadcrumb :arr="bread"></Breadcrumb>
         <div class="leftright">
             <div class="left">
                 <div class="bigPic">
@@ -310,9 +309,6 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.breadTitle {
-    padding: 20px 20px 20px 0px;
-}
 .alert {
     width: 300px;
     height: 250px;

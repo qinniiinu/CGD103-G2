@@ -34,7 +34,7 @@
 			<label for="">日</label>
 		  </div>
 		  <div class="input_group">
-			<input type="number" v-model="bday_y" required />
+			<input type="number" min="1900" max="2022" v-model="bday_y" required />
 			<label for="">年</label>
 		  </div>
 		</div>
@@ -80,9 +80,9 @@ export default {
   methods: {
 	combineDate() {
 	const year = this.bday_y;
-	const month = this.bday_m.toString().padStart(2, '0');// padStart() 函數可以在數字左邊補 0，使得字符串長度為 2
-	const day = this.bday_d.toString().padStart(2, '0');
-    const bday = new Date(year, parseInt(month)-1, day);
+	const month = this.bday_m;
+	const day = this.bday_d;
+    const bday = `${year}-${month}-${day}`;
     return bday;
   	},
 
@@ -101,7 +101,6 @@ export default {
   },
 };
 </script>
-
 
 <style lang="scss" scoped>
 body {
@@ -220,7 +219,6 @@ body {
 			}
 		  }
 		}
-
 		.remember {
 		  display: flex;
 		  justify-content: space-between;
@@ -279,7 +277,6 @@ body {
 		}
 	  }
 	}
-
 	@include s() {
 	  //  //只在手機版
 	}

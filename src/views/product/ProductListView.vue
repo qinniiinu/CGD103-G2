@@ -5,6 +5,8 @@ import SearchBar from "@/components/product/SearchBar.vue";
 import ProductCard from "@/components/product/ProductCard.vue";
 import ProductSideMenu from "@/components/product/ProductSideMenu.vue";
 import HashTag from "@/components/product/HashTag.vue";
+import Breadcrumb from "@/components/product/Breadcrumb.vue";
+
 export default {
     name: "Product",
     components: {
@@ -14,74 +16,125 @@ export default {
         ProductCard,
         ProductSideMenu,
         HashTag,
+        Breadcrumb,
     },
     data() {
         return {
+            sortinput: "",
+            searchinput: "",
+            tmp: [],
             product: [],
         };
     },
     computed: {
-        resultproduct() {
-            if (location.search != "") {
-                console.log(location.search != "");
-                this.scrollBlock();
-                if (!this.$route.query.M) {
-                    switch (this.$route.query.G) {
-                        case "0":
-                            return this.product.filter((e) => {
-                                return e.product_gender == 0;
-                            });
-                            break;
-                        case "1":
-                            return this.product.filter((e) => {
-                                return e.product_gender == 1;
-                            });
-                            break;
-
-                        default:
-                            return this.product;
-                    }
-                } else {
-                    return this.product.filter((e) => {
-                        if (!this.$route.query.T)
-                            return (
-                                e.product_gender == this.$route.query.G &&
-                                e.product_maintype == this.$route.query.M
-                            );
-                        else {
-                            return (
-                                e.product_gender == this.$route.query.G &&
-                                e.product_maintype == this.$route.query.M &&
-                                e.product_type == this.$route.query.T
-                            );
-                        }
-                    });
-                }
-            } else {
-                return this.product;
+        bread() {
+            let arr = [];
+            if (JSON.stringify(this.$route.query) == "{}") {
+                return [{ name: "商品總覽", link: "/productlist" }];
             }
+            if (this.$route.query.G) {
+                let gender = this.$route.query.G == 1 ? "男裝" : "女裝";
+
+                arr.push({
+                    name: gender,
+                    link: `/productlist?G=${this.$route.query.G}`,
+                });
+            }
+            if (this.$route.query.M) {
+                arr.push({
+                    name: this.$route.query.M,
+                    link: `/productlist?G=${this.$route.query.G}&M=${this.$route.query.M}`,
+                });
+            }
+            if (this.$route.query.T) {
+                arr.push({
+                    name: this.$route.query.T,
+                    link: `/productlist?G=${this.$route.query.G}&M=${this.$route.query.M}&T=${this.$route.query.T}`,
+                });
+            }
+
+            return arr;
+        },
+    },
+    watch: {
+        $route: function () {
+            this.getResource();
         },
     },
     methods: {
+        search(val) {
+            if (val != "")
+                this.product = this.product.filter((e) => {
+                    if (JSON.stringify(e).indexOf(val) !== -1) {
+                        return e;
+                    }
+                });
+        },
+        sort(val) {
+            if (val == "StoB") {
+                this.product = this.product.sort(function (a, b) {
+                    return a.unit_price - b.unit_price;
+                });
+            } else {
+                this.product = this.product.sort(function (a, b) {
+                    return b.unit_price - a.unit_price;
+                });
+            }
+        },
+        resultproduct() {
+            if (location.search !== "") {
+                console.log("filter");
+
+                // this.scrollBlock();
+                let result = this.tmp;
+                if (this.$route.query.G) {
+                    console.log("filterG");
+
+                    this.product = this.product.filter((e) => {
+                        return e.product_gender == this.$route.query.G;
+                    });
+                }
+                if (this.$route.query.M) {
+                    console.log("filterM");
+
+                    this.product = this.product.filter((e) => {
+                        return e.product_maintype == this.$route.query.M;
+                    });
+                }
+                if (this.$route.query.T) {
+                    console.log("filterT");
+
+                    this.product = this.product.filter((e) => {
+                        return e.product_type == this.$route.query.T;
+                    });
+                }
+            } else {
+                this.product = this.tmp;
+            }
+        },
         scrollBlock() {
-            const box = this.$refs.sectionlist;
+            console.log(window.innerWidth);
+            const height = window.innerWidth >= 768 ? 650 : 550;
             window.scrollTo({
-                top: box?.offsetTop,
+                top: height,
                 behavior: "smooth",
             });
         },
         getResource() {
             this.axios.get("/api_server/list.php").then((response) => {
-                this.product = response.data;
+                this.product = this.tmp = response.data;
+                this.resultproduct();
             });
         },
         cut(x) {
             if (x) return x.split(",")[0];
         },
     },
+    beforeCreate() {},
     created() {
         this.getResource();
     },
+    mounted() {},
 };
 </script>
 <template>
@@ -92,15 +145,16 @@ export default {
             <img src="@/assets/product/bestseller_02.jpg" alt="" />
         </div>
         <BestSeller />
-        <div class="divider" ref="sectionlist"></div>
+        <div class="divider"></div>
         <div class="leftright">
             <div class="Sidebar">
                 <ProductSideMenu></ProductSideMenu>
                 <HashTag></HashTag>
             </div>
             <div id="list">
-                <div class="leftright">
-                    <SearchBar />
+                <div class="leftright space_between">
+                    <Breadcrumb :arr="bread"></Breadcrumb>
+                    <SearchBar @update:searchVal="search" @update:sort="sort" />
                 </div>
 
                 <div class="productCard_box">
@@ -109,7 +163,7 @@ export default {
                         :title="e.product_name"
                         :price="e.unit_price"
                         :imgURL="cut(e.product_pic)"
-                        v-for="e in resultproduct"
+                        v-for="e in product"
                         :key="e.product_id"
                     />
                 </div>
@@ -143,7 +197,9 @@ export default {
             display: flex;
         }
         .Sidebar {
-            width: 200px;
+            @include m() {
+                width: 200px;
+            }
         }
         .productCard_box {
             display: flex;
@@ -158,6 +214,16 @@ export default {
                 }
             }
         }
+        #list {
+            @include m {
+                width: calc(100% - 200px);
+            }
+        }
     }
+}
+
+.space_between {
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 </style>
