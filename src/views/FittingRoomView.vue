@@ -7,30 +7,28 @@
     </div>
     <div class="fittingArea">
       <div id="panel" class="wrap1">
-        <button @click="remove">reset</button>
+        <button @click="remove" class="remove">刪除圖片</button>
       </div>
       <div id="wrap2" class="products">
-        <img
-          :src="item.image"
-          alt=""
-          v-for="item in product"
-          :key="item.id"
-          @click="copy($event)"
-        />
+        <!-- <div v-for="e in product" class="item" :key="e.product_pic">
+          <img :src="require(`@/assets/product/${e.product_pic}`)" />
+        </div> -->
+        <div v-for="e in product" class="item" :key="e.product_pic" >
+          <img :src="cut(`@/assets/product/${e.product_pic}`)" alt="" @click="copy($event)" />
+        </div>
       </div>
     </div>
   </div>
 </template>
  
 <script>
-import SearchBar from "@/components/product/SearchBar.vue";
 import ProductSideMenu from "@/components/product/ProductSideMenu.vue";
 import HashTag from "@/components/product/HashTag.vue";
+import { BASE_URL } from "../assets/js/common.js";
 // import BreadCrumbs from "@/components/BreadCrumbs.vue";
 export default {
   name: "Product",
   components: {
-    SearchBar,
     ProductSideMenu,
     HashTag,
     // BreadCrumbs,
@@ -39,64 +37,106 @@ export default {
   data() {
     return {
       product: [
-        { id: 1, image: require("@/assets/fittingroom/item001.png") },
-        { id: 2, image: require("@/assets/fittingroom/item002.png") },
-        { id: 3, image: require("@/assets/fittingroom/item003.png") },
-        { id: 4, image: require("@/assets/fittingroom/item004.png") },
-        { id: 5, image: require("@/assets/fittingroom/item005.png") },
-        { id: 6, image: require("@/assets/fittingroom/item006.png") },
-        { id: 7, image: require("@/assets/fittingroom/item007.png") },
+        // { id: 1, image: require("@/assets/fittingroom/item001.png") },
+        // { id: 2, image: require("@/assets/fittingroom/item002.png") },
+        // { id: 3, image: require("@/assets/fittingroom/item003.png") },
+        // { id: 4, image: require("@/assets/fittingroom/item004.png") },
+        // { id: 5, image: require("@/assets/fittingroom/item005.png") },
+        // { id: 6, image: require("@/assets/fittingroom/item006.png") },
+        // { id: 7, image: require("@/assets/fittingroom/item007.png") },
       ],
     };
   },
 
   methods: {
-    copy(e) {
-      var panel = document.getElementById("panel");
-      var new_item = document.createElement("div");
-      new_item.className = "item";
-      var image = document.createElement("img");
-      image.src = e.currentTarget.src;
-      new_item.appendChild(image);
-      panel.appendChild(new_item);
-      this.drag(new_item);
-      // this.reset(new_item);
+    getResource() {
+      this.axios.get(`${BASE_URL}/fittingroom.php`).then((response) => {
+        this.product = response.data;
+        console.log(this.product);
+      });
     },
-
-    // remove(){
-      
-    // }
-
-
-
-
-    drag(obj) {
-      obj.onmousedown = function (event) {
-        event = event || window.event;
-
-        var ol = event.clientX - obj.offsetLeft;
-        var ot = event.clientY - obj.offsetTop;
-
-        document.onmousemove = function (event) {
-          event = event || window.event;
-
-          var left = event.clientX - ol;
-          var top = event.clientY - ot;
-
-          obj.style.left = left + "px";
-          obj.style.top = top + "px";
-        };
-
-        document.onmouseup = function () {
-          document.onmousemove = null;
-
-          document.onmouseup = null;
-        };
-
-        return false;
-      };
+    cut(x) {
+      if (x) return x.split(",")[0];
     },
   },
+  created() {
+    this.getResource();
+  },
+
+  //複製圖片
+  copy(e) {
+    var panel = document.getElementById("panel");
+    var new_item = document.createElement("div");
+    new_item.className = "item";
+    var image = document.createElement("img");
+    image.src = e.currentTarget.src;
+    new_item.appendChild(image);
+    panel.appendChild(new_item);
+    this.drag(new_item);
+  },
+
+  remove(e) {
+    let setThis = e.target.parentNode;
+    // console.log(setThis.lastChild);
+    setThis.removeChild(setThis.childNodes[1]);
+  },
+
+  //圖片拖曳
+  drag(obj) {
+    // obj.preventDefault();
+    obj.ontouchstart = function (event) {
+      event = event || window.event;
+
+      var ol = event.clientX - obj.offsetLeft;
+      var ot = event.clientY - obj.offsetTop;
+
+      document.ontouchmove = function (event) {
+        event = event || window.event;
+
+        var left = event.clientX - ol;
+        var top = event.clientY - ot;
+
+        obj.style.left = left + "px";
+        obj.style.top = top + "px";
+      };
+
+      document.ontouchend = function () {
+        document.ontouchmove = null;
+
+        document.ontouchend = null;
+      };
+
+      return false;
+    };
+  },
+
+  //   drag(obj) {
+  //     obj.onmousedown = function (event) {
+  //       event = event || window.event;
+
+  //       var ol = event.clientX - obj.offsetLeft;
+  //       var ot = event.clientY - obj.offsetTop;
+
+  //       document.onmousemove = function (event) {
+  //         event = event || window.event;
+
+  //         var left = event.clientX - ol;
+  //         var top = event.clientY - ot;
+
+  //         obj.style.left = left + "px";
+  //         obj.style.top = top + "px";
+  //       };
+
+  //       document.onmouseup = function () {
+  //         document.onmousemove = null;
+
+  //         document.onmouseup = null;
+  //       };
+
+  //       return false;
+  //     };
+  //   },
+  // },
 };
 </script>
 
@@ -124,6 +164,27 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
   min-height: 500px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.wrap1 .remove {
+  background: $main_color;
+  color: white;
+  padding: 10px 12px;
+  border: $line solid $main_color;
+  box-sizing: border-box;
+  min-width: 80px;
+  height: 40px;
+  margin: 2%;
+
+  &:hover {
+    background-color: $second_color;
+    color: $main_color;
+    border: $line solid $main_color;
+    cursor: pointer;
+  }
 }
 
 .item {
