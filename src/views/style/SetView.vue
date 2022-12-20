@@ -42,7 +42,7 @@
 				<div class="totalPrice">
 					<p>整套售價:$NT6,999</p>
 				</div>
-				<button class="btn_s" >加入購物車</button>
+				<button class="btn_s" @click="add()">加入購物車</button>
 		</div>
 	</div>
 
@@ -135,12 +135,42 @@
 						
 				],
 				lookmain:'',
+				cart:[],
 			}
 		},
 		mounted () {
 			// String(lookmain)
 			this.lookmain=this.productPics[0].src 
 		},
+		methods:{
+			getStorage() {
+				let data = localStorage.getItem("cart");
+				if (data) data = JSON.parse(data);
+				this.cart = data ? data : [];
+			},
+			add(){
+				this.cart.push({
+                        // id: 
+                        title:this.products[0].title,
+                        // image:this.products[0].src,
+                        // price:this.products[0].price,
+                        // color: this.pickedColor,
+                        // size: this.pickedSize,
+                        count: 1,
+                    });
+					this.setStorage();
+			},
+			setStorage() {
+            	const data = JSON.stringify(this.cart);
+            	localStorage.setItem("cart", data);
+        	},
+			
+			
+		},
+		created() {
+				// this.getResource();
+				this.getStorage();
+			},
 	};
 </script>
 <style lang="scss" scoped>
