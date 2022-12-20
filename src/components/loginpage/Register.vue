@@ -1,6 +1,6 @@
 <template>
   <!--註冊-->
-  <div v-if="!gotype" class="signup_wrapper wrapper">
+  <div v-if="goType===false" class="signup_wrapper wrapper">
 	<div class="form_wrapper sign_up">
 	  <form @submit.prevent="handleSubmit" class="login_form" action="">
 		<div class="title">
@@ -55,7 +55,7 @@
   </div>
 
   <!-- 身形建置 -->
-  <div v-if="gotype" class="wrapper bodyTyping">
+  <div v-else class="wrapper bodyTyping">
     <div class="form_wrapper bodyset">
       <form class="bodyset_form" action="">
         <div class="title">
@@ -69,14 +69,14 @@
           <div class="sex">
             <input type="radio" :value="1" v-bind="sex" id="male" name="sex">
 			<label
-              class="btn_l"
+              class="btn_nl"
 				for="male"
             >
               男
             </label>
             <input type="radio" :value="0" v-bind="sex" id="female" name="sex"> 
 			<label
-              class="btn_l"
+              class="btn_nl"
 			  for="female"
             >
               女
@@ -275,7 +275,7 @@ body {
 
 	  @include m() {
 		border: 1px solid black;
-		width: 28%;
+		width: 30%;
 		padding: 30px;
 	  }
 	  .login_form {
@@ -451,7 +451,7 @@ body {
 
     @include m() {
       border: 1px solid black;
-      width: 28%;
+      width: 30%;
       padding: 30px;
     }
     .bodyset_form {
@@ -477,9 +477,16 @@ body {
             display: flex;
             justify-content: space-between;
 			input{
+				display: none;
 				&:checked + label{
 					background-color: $main-color;
               		color: white;
+				}
+			}
+			.btn_nl{
+				padding: 15px 50px;
+				@include xl() {
+					padding: 15px 70px;
 				}
 			}
           }
