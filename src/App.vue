@@ -11,7 +11,10 @@
 		
 	</div> -->
 	<div class="home_page" >
-		<Header class="all_header"></Header>
+		<div class="all_header">
+			<Header></Header>
+		</div>
+
 		<router-view/>
 		<Footer></Footer>
 	</div>
@@ -55,6 +58,7 @@ export default {
 		.all_header{
 			position: sticky;
 			top: 0;
+			z-index: 99999;
 		}
 	}
 	

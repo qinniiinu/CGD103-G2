@@ -9,10 +9,11 @@
 			</div>
 			<div class="look-pic">
 				<div class="main-pic">
-					<img src="../../../public/look-main-pic.png" alt="">
+					<img :src="String(lookmain)" alt="">
+					<!-- <img src="../../../public/look-info-pic1.png" alt=""> -->
 				</div>
 				<div class="sub-pic">
-					<div class="sub-pic-item" v-for="(productPic,index) of productPics " :key="index">
+					<div class="sub-pic-item" v-for="(productPic,index) of productPics " :key="index" @click="lookmain=productPic.src">
 						<img :src="productPic.src" alt="">
 					</div>
 				</div>
@@ -109,10 +110,11 @@
 				]
 				,
 				productPics:[
-					{src:'/productPic_1.webp'},
-					{src:'/productPic_2.webp'},
-					{src:'/productPic_3.webp'},
-					{src:'/productPic_4.webp'},
+					{src:'/look-info-pic1.png'},
+					{src:'/look-info-pic2.png'},
+					{src:'/look-info-pic3.png'},
+					{src:'/look-info-pic4.png'},
+					{src:'/look-info-pic5.png'},
 				],
 				products:[
 					{src:'/look-item-1.png',title:'UV剪裁夾克',text:'可用於各種場合的質地，不僅適用於戶外活動和運動，還適用於日常休閒裝。UPF40+',price:'1,990'},
@@ -131,9 +133,14 @@
 					{src:'/look-8.jpg',ootdName:'OOTD-008',tag:['#宴會穿搭','＃蘋果形'],id:'08'},
 					{src:'/look-9.jpg',ootdName:'OOTD-009',tag:['#運動穿搭','＃蘋果形'],id:'09'},
 						
-				]
+				],
+				lookmain:'',
 			}
-		}
+		},
+		mounted () {
+			// String(lookmain)
+			this.lookmain=this.productPics[0].src 
+		},
 	};
 </script>
 <style lang="scss" scoped>
@@ -219,6 +226,8 @@
 					margin-top: 45px;
 					display: flex;
 					gap: 18px;
+					box-sizing: border-box;
+					cursor: pointer;
 
 					img{
 						border: 1px solid $title_color;
@@ -233,6 +242,7 @@
 				border: 1px solid $title_color;
 				display: flex;
 				margin-top:20px;
+				box-sizing: border-box;
 				img{
 					padding: 10px;
 					width:20%;
