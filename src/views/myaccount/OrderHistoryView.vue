@@ -9,7 +9,7 @@
 						<option>運送中</option>
 						<option>尚未出貨</option>
 				</select>
-				<div  class="ham">
+				<div  class="ham"><!-- 以下設定頁面切換 -->
 					<font-awesome-icon class="icon" @click="change(0)" :class="{newStyle:0===number}" icon="fa-solid fa-list" />
 					<font-awesome-icon class="icon"  @click="change(1)" :class="{newStyle:1===number}" icon="fa-solid fa-clipboard" />
 				</div>
@@ -36,8 +36,9 @@
 						<p>物流狀態</p>
 					</li>
 				</ul>
+
 				<ul class="ord_history_content"><!-- 選單內容加scroll bar -->
-					<li class="ord_history_content_word">
+					<li v-for="item in product" :key="item.id"  class="ord_history_content_word"><!-- 需要v-for的地方 -->
 						<router-link to="/MyPage/OrderHistoryDetail">
 						<ul class="content_row">
 							<li class="ord_history_content">20221202</li>
@@ -56,10 +57,10 @@
 				</ul>
 			</div>
 
-			<div v-show="1===number"  class="ord_history_box"><!-- 訂單記錄圖片盒 -->
+			<div v-show="1===number"  class="ord_history_box"><!-- 訂單記錄圖片頁 -->
 				
 					
-					<li v-for="item in product" :key="item.id" class="item_num" >
+				<li v-for="item in product" :key="item.id" class="item_num" >
 					<div class="item_num_row">
 						<div class="item_num_title">訂單編號： {{item.ord_num}}</div>
 						<h2>{{item.ord_condtion}}</h2>
@@ -124,48 +125,61 @@
 
 <script>
 import Button from "@/components/Button.vue";
+import { BASE_URL } from '../../assets/js/common.js'
 export default {
 	name: "OrderHistory",
+	components: {    
+		Button,
+	},
 	data(){
 		return{
 			number:0,
 			product:[
-				{
-					id:1,
-					ord_num:1201201,
-			        ord_condtion:"已出貨",
-					img_link:"../style1.png",
-					item_product:2,
-			        sum_price:8888,
-				},
-				{
-					id:2,
-					ord_num:1201201,
-			        ord_condtion:"已出貨",
-					img_link:"../style2.png",
-					item_product:2,
-			        sum_price:8888,
-				},
-				{
-					id:3,
-					ord_num:1201201,
-			        ord_condtion:"已出貨",
-					img_link:"../style3.png",
-					item_product:2,
-			        sum_price:8888,
-				},
+
+				// {
+				// 	id:1,
+				// 	ord_num:1201201,
+			    //     ord_condtion:"已出貨",
+				// 	img_link:"../style1.png",
+				// 	item_product:2,
+			    //     sum_price:8888,
+				// },
+				// {
+				// 	id:2,
+				// 	ord_num:1201201,
+			    //     ord_condtion:"已出貨",
+				// 	img_link:"../style2.png",
+				// 	item_product:2,
+			    //     sum_price:8888,
+				// },
+				// {
+				// 	id:3,
+				// 	ord_num:1201201,
+			    //     ord_condtion:"已出貨",
+				// 	img_link:"../style3.png",
+				// 	item_product:2,
+			    //     sum_price:8888,
+				// },
 			],
 		}
 	},
 	methods:{
 		change:function(index){
 			this.number =index;
-		}
+		},
+		getResource() {
+        this.axios.get(`${BASE_URL}/quiz/style_recommend.php`).then((response) => {
+                this.product = response.data;
+                console.log(this.product);
+            });
+        },
 	},
+	mounted() {
+    this.getResource();
+    this.countDown();
+  },
 
-	components: {    
-		Button
-	},
+	
 };
 
 

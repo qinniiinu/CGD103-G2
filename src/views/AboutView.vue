@@ -1,7 +1,7 @@
 <template>
 	<div class="landing_page_photo"><!-- 關於我們頁面 -->
 		
-		<div class="scroll_container" style="overflow-y: scroll; height: 100vh;">
+		<div class="scroll_container" style="overflow-y: scroll; scroll-snap-type:y mandatory;height: 100vh;">
 			
 			
 			<div class="box" style="height: 80vh; position: relative;">
@@ -218,7 +218,7 @@ import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Header from "@/components/Header.vue";
 import Button from "@/components/Button.vue";
-import { TweenMax } from 'gsap/gsap-core';
+
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -286,11 +286,16 @@ export default {
 	}
 }
 
+*{
+	scroll-snap-type: mandatory;
+}
+
 
 .Re-anima{
 	color:$second_color;
 	width: 20vw;
-	height: 20vh;	
+	height: 20vh;
+	margin-bottom: 10vh;	
 	animation: rotation 2s infinite linear;}
 
 @keyframes rotation {
@@ -319,39 +324,6 @@ video{
 
 
 
-	/* 測試 */
-
-.testB, .testA{
-	height: 80vh;
-	width: 50%;
-	
-
-}
-
-.testB{
-	background-color:rgb(125, 250, 114) ;
-}
-
-.testA{
-	background-color:salmon ;
-}
-
-.square{
-	width: 150px;
-	height: 300px;
-	background-color:rgb(0, 11, 128) ;
-}
-.square2{
-	margin-top: 300px;
-	width: 150px;
-	height: 150px;
-	background-color:rgb(0, 128, 43) ;
-}
-
-.red{
-	background-color:red;
-}
-
 	.box{
 		display: grid;
 		place-items: center;
@@ -360,6 +332,7 @@ video{
 	 .intro_container{
 		width:90%;
 		display: flex;
+
 		@include b(){
 			display: block;
 		}
@@ -369,9 +342,11 @@ video{
 		display: flex;
 		align-items: center;
 		height: 100vh;
+		margin:auto;
 		h2{
-		font-size: 23vw;
-		font-weight: bolder;
+		
+		font-size: 21.5vw;
+		font-weight:900;
 		text-align: left;
 		line-height: 30vh;
 	 }
@@ -379,11 +354,11 @@ video{
 	 .introBox{
 		padding-left: 5%;
 		display: flex;
-		align-items: end;
+		align-items: flex-end;
 		min-width: 70vw;
 		h2{
 			font-size: 6rem;
-			font-weight: bolder;
+			font-weight: bold;
 			color: aliceblue;
 			line-height: 20vh;
 			@include b(){
