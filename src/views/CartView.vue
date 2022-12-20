@@ -58,7 +58,6 @@
 
 <script>
 import {vip_level} from'@/assets/config/setting.js';
-import {products} from'@/assets/config/setting.js';
 
 export default {
 	name: "Cart",
@@ -221,11 +220,11 @@ h2{
 				border-bottom: 1px solid #777;
 				.item-left{
 					img{
-						width: 80px;
-						height: 80px;
+						width: 65px;
+						height: 85px;
 						@include m{
 							width: 150px;
-							height: 150px;
+							height: 190px;
 						}
 					}
 				}
@@ -261,6 +260,7 @@ h2{
 					.item-p{
 						width: 100%;
 						display: flex;
+						align-items: center;
 						:last-child>button{
 							width: 30px;
 							font-size: 16px;
@@ -279,6 +279,7 @@ h2{
 							}
 							span{
 								width: 30px;
+								margin: auto;
 							}
 						}
 						:nth-child(n-1){

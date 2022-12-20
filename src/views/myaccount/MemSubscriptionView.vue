@@ -270,7 +270,8 @@ export default {
 		}
 		.card-wrap{
 			display: flex;
-			gap: 3%;
+			justify-content: center;
+			gap: 1%;
 			@include s() {
 				flex-direction: column;
 				margin: 5px;
@@ -280,7 +281,7 @@ export default {
 				flex-direction: column;
 				align-items: center;
 				justify-content: center;
-				gap: 2%;
+				gap: 1%;
 				width: 250px;
 				height: 320px;
 				border: 1px solid rgb(194, 194, 194);
