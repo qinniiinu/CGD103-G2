@@ -109,14 +109,22 @@ export default {
                         cartItem.size === this.pickedSize
                     );
                 });
-                if (prodIndex >= 0) {
-                    this.cart[prodIndex]["count"] += 1;
+                if (prodIndex>=0) {
+                    if(prodIndex==1){
+                        this.cart[prodIndex]["count"] += 1;
+                        return;
+                    }else{
+                        this.cart[prodIndex]["count"] += this.number;
+                    }
                 } else {
                     this.cart.push({
                         id: this.product_details.product_id,
+                        title:this.product_name,
+                        image:this.temp?.product_pic.split(",")[0],
+                        price:this.unit_price,
                         color: this.pickedColor,
                         size: this.pickedSize,
-                        count: 1,
+                        count: this.number,
                     });
                 }
                 this.setStorage();
