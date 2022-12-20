@@ -59,12 +59,14 @@ body {
 	padding: 12px 24px;
 	font-weight: 600;
 	width: fit-content;
-	line-height: normal;
+	height: normal;
 	cursor: pointer;
+
 	@include m() {
 		font-size: 18px;
 		font-weight: 400;
 		padding: 15px 30px;
+
 		&:hover {
 			background-color: $second_color;
 			color: $main_color ;
@@ -95,7 +97,7 @@ body {
 
 	@include m() {
 		width: 150px;
-		line-height: 60px;
+		height: 60px;
 		font-size: 18px;
 		cursor: pointer;
 
@@ -123,7 +125,7 @@ body {
 
 	@include m() {
 		width: 150px;
-		line-height: 60px;
+		height: 60px;
 		font-size: 18px;
 		cursor: pointer;
 

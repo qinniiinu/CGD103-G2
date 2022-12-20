@@ -5,7 +5,7 @@ header("Content-Type:application/json;charset=utf-8");
 
 require_once("../connectBooks.php");
 
-$sql = "SELECT * FROM `product`  LIMIT 8;";
+$sql = "SELECT * FROM `product` where product_state=1 && product_name is not null   LIMIT 8 ;";
 $book = $pdo->query($sql);
 $books = $book->fetchAll();
 $data = [];
