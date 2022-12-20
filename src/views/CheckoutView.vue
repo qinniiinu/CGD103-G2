@@ -50,7 +50,7 @@
 				<div class="items">
 				<div class="item" v-for="item in order" :key="item.id">
 					<div class="product">
-						<img :src="require(`@/assets/product/${item.image}`)" v-bind:alt="item.title">
+						<img v-bind:alt="item.title">
 						<div class="prod-detail">
 							<p>{{item.title}}</p>
 							<div class="spec">
