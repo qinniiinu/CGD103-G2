@@ -1,4 +1,3 @@
-sass 處理好了
 
 # cgd103_g2
 
@@ -21,6 +20,6 @@ npm run build
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 未處理webpack<br>
-未處理  axios  <br>
+axios  <br>
 未處理  jquery <br>
 ?? Docker <br>

@@ -117,7 +117,6 @@ export default {
         },
         getResource() {
             this.axios.get("/api_server/mainproduct.php").then((response) => {
-                console.log(response.data);
                 this.product = response.data;
             });
         },
@@ -280,6 +279,7 @@ export default {
         justify-content: center;
         .Box.fitting {
             min-width: 900px;
+            width: 100%;
             margin: auto;
         }
     }

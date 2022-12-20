@@ -1,11 +1,10 @@
 <?php
-// //跨域(正式開發不能這樣)
 header('Access-Control-Allow-Origin:*');
 header("Content-Type:application/json;charset=utf-8");
 
 require_once("../connectBooks.php");
 
-$sql = "SELECT * FROM `product` where product_state=1 && product_name is not null   LIMIT 8 ;";
+$sql = "SELECT `product_pic` FROM `product`  LIMIT 6;";
 $book = $pdo->query($sql);
 $books = $book->fetchAll();
 $data = [];

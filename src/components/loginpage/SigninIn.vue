@@ -1,25 +1,38 @@
 <template>
-<router-link to="/MyPage" class="btn_s">會員頁</router-link>
+  <router-link to="/MyPage" class="btn_s">會員頁</router-link>
   <div class="wrapper">
     <div class="form_wrapper sign_in">
-      <form @submit.prevent="checkLogin" action="/api_server/login.php" method="post" enctype="application/x-www-form-urlencoded" class="login_form">
+      <form @submit.prevent="checkLogin" class="login_form">
         <div class="title">
           <h2>登入</h2>
           <bg-tag class="bg_tag" Bgtag="SIGNIN"></bg-tag>
         </div>
         <div class="input_group">
-          <input type="text" v-model="mem_mail" name="mem_mail" id="mem_mail" required/>
+          <input
+            type="text"
+            v-model="mem_mail"
+            name="mem_mail"
+            id="mem_mail"
+            required
+          />
           <label for="mem_mail">電子郵件</label>
         </div>
         <div class="input_group">
-          <input type="password" v-model="mem_pwd" name="mem_pwd" id="mem_pwd" placeholder="密碼須包含英文與數字" required />
+          <input
+            type="password"
+            v-model="mem_pwd"
+            name="mem_pwd"
+            id="mem_pwd"
+            placeholder="密碼須包含英文與數字"
+            required
+          />
           <label for="mem_pwd" class="psw">密碼</label>
         </div>
         <div class="remember">
           <label><input type="checkbox" />記住我</label>
           <a class="forget_psw" href="#">忘記密碼?</a>
         </div>
-        <button type="submit" class="btn_s">登入</button>
+        <button class="btn_s" type="submit">登入</button>
         <div class="social_plarform">
           <p>or</p>
           <div class="social_icons">
@@ -28,7 +41,9 @@
           </div>
         </div>
         <div class="signup">
-          <router-link to="/Register" class="signup_link">註冊新帳號</router-link>
+          <router-link to="/Register" class="signup_link">
+		  	註冊新帳號
+		  </router-link>
         </div>
       </form>
     </div>
@@ -36,7 +51,7 @@
 </template> 
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 import BgTag from "@/components/mypage/BgTag.vue";
 export default {
   name: "SigninIn",
@@ -45,36 +60,43 @@ export default {
   },
   data() {
     return {
-        mem_mail:'',
-        mem_pwd:'',
+      mem_mail: "",
+      mem_pwd: "",
     };
   },
   methods: {
     checkLogin() {
       if (!this.mem_mail || !this.mem_pwd) {
-      alert("表單未提交或缺少必填字段");
-      return;
-     }
-      axios.post('/api_server/login.php')
-      // , {
-      //   mem_mail: this.mem_mail,
-      //   mem_pwd: this.mem_pwd,
-      // }
-      .then(response=> {
-        console.log('請求成功：', response.data);
-        // 處理響應
-        if (response.data) {
-            this.$router.push({path:'/MyPage'});
+        alert("表單缺少必填欄位");
+        return;
+      }
+      let formData = new FormData();
+      formData.append("mem_mail", this.mem_mail);
+      formData.append("mem_pwd", this.mem_pwd);
+
+      fetch("/api_server/login.php", {
+        method: "post",
+        body: formData,
+      })
+        .then((response) => {
+          console.log("---", response.ok);
+          return response.json();
+        })
+        .then((data) => {
+          console.log("====", data);
+          if (data.msg) {
+            console.log(data.msg);
+            alert("登入失敗" + data.msg);
           } else {
-          // 帳號密碼錯誤
-            alert(response.data.message);
+            console.log("登入成功：", data);
+            //this.$router.push({path:'/MyPage'});
           }
-          }).catch(error=> {
-          console.log('請求失敗：', error);
-          // 處理錯誤
-          });
-        }
-      },
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
 };
 </script>
 

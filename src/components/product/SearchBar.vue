@@ -1,18 +1,35 @@
 <template>
     <div class="left_right">
         <div class="search">
-            <input type="search" placeholder="Search.." />
-            <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
+            <input
+                type="search"
+                placeholder="Search.."
+                :value="searchVal"
+                @keyup.enter="changesearch($event)"
+            />
         </div>
-        <select name="name" id="select2-here">
-            <option value="First value">First</option>
-            <option value="Second value">Second</option>
-            <option value="Third value">Third</option>
-            <option value="Forth value">Forth</option>
-            <option value="Fifth value">Fifth</option>
+        <select :value="sort" @change="changesort($event)">
+            <option value="StoB">價格小到大</option>
+            <option value="BtoS">價格大到小</option>
         </select>
     </div>
 </template>
+<script>
+export default {
+    props: {
+        searchVal: String,
+        sort: String,
+    },
+    methods: {
+        changesearch(event) {
+            this.$emit("update:searchVal", event.target.value);
+        },
+        changesort(event) {
+            this.$emit("update:sort", event.target.value);
+        },
+    },
+};
+</script>
 <style lang="scss" scoped>
 .left_right {
     padding: 10px;
@@ -20,23 +37,24 @@
     justify-content: flex-end;
     .search {
         max-width: 250px;
+        min-width: 150px;
         position: relative;
         input {
             width: 100%;
             height: 30px;
             border: $line solid $title_color;
         }
-        .fa-magnifying-glass {
-            color: $title_color;
-            position: absolute;
-            right: 5px;
-            top: 0;
-            bottom: 0;
-            margin: auto;
-        }
+        // .fa-magnifying-glass {
+        //     color: $title_color;
+        //     position: absolute;
+        //     right: 5px;
+        //     top: 0;
+        //     bottom: 0;
+        //     margin: auto;
+        // }
     }
     select {
-        width: 150px;
+        min-width: 50px;
         height: 30px;
         border: $line solid $title_color;
     }
