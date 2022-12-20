@@ -150,7 +150,8 @@
 								spaceBetween: 50     
 							} 
 						}   
-				}
+				},
+				// cartempty:0,
 			}
 		},
 		computed: {
@@ -170,16 +171,49 @@
 				this.cart = data ? data : [];
 			},
 			add(){
-				this.cart.push({
-                        // id: 
+
+				this.cart.push({	// id: 
                         title:this.products[0].title,
-                        // image:this.products[0].src,
-                        // price:this.products[0].price,
-                        // color: this.pickedColor,
-                        // size: this.pickedSize,
+                        image:this.products[0].src,
+                        price:this.products[0].price,
+                        color: this.products[0].color,
+                        size: this.products[0].size,
                         count: 1,
-                    });
+                    },{	// id: 
+                        title:this.products[1].title,
+                        image:this.products[1].src,
+                        price:this.products[1].price,
+                        color: this.products[1].color,
+                        size: this.products[1].size,
+                        count: 1,
+                    },
+					{	// id: 
+                        title:this.products[2].title,
+                        image:this.products[2].src,
+                        price:this.products[2].price,
+                        color: this.products[2].color,
+                        size: this.products[2].size,
+                        count: 1,
+                    },
+					{	// id: 
+                        title:this.products[3].title,
+                        image:this.products[3].src,
+                        price:this.products[3].price,
+                        color: this.products[3].color,
+                        size: this.products[3].size,
+                        count: 1,
+                    },
+					
+				);
 					this.setStorage();
+					
+
+				// 	if(this.cartempty<1){
+				// 
+				// }
+				// this.cartempty+=1
+
+				
 			},
 			setStorage() {
             	const data = JSON.stringify(this.cart);
