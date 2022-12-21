@@ -79,16 +79,16 @@ export default {
         body: formData,
       })
         .then((response) => {
-          console.log("---", response.ok);
+        //   console.log("---", response.ok);
           return response.json();
         })
         .then((data) => {
-          console.log("====", data);
+        //   console.log("====", data);
           if (data.msg) {
-            console.log(data.msg);
+            // console.log(data.msg);
             alert("登入失敗，" + data.msg);
           } else {
-            console.log("登入成功：", data);
+            // console.log("登入成功：", data);
             this.$router.push({path:'/MyPage'});
           }
         })
@@ -103,7 +103,6 @@ export default {
 
 <style lang="scss" scoped>
 body {
-  //   background-color: $bg_gray;
   .wrapper {
     display: flex;
     justify-content: center;

@@ -218,8 +218,7 @@ export default {
         hip: '', //臀圍
         clothes: '', // 衣長
         pants: '', //褲長
-		// 男女按鈕
-      	isActive: false,
+		// 註冊 身形建置 切換
 		goType: false,
 	};
   },
@@ -244,10 +243,6 @@ export default {
 			.then(res=>console.log(res))
 			.catch(err=>console.log(err))
 	},
-
-	myFilter() {
-		this.isActive = !this.isActive;
-    },
 
 	gotype(){
 		this.goType = true;
