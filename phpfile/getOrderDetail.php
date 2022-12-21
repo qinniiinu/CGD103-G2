@@ -5,7 +5,12 @@ header("Content-Type:application/json;charset=utf-8");
 
 require_once("../connectBooks.php");
 
-$sql = "SELECT * FROM `orders` WHERE order_id =103;";
+
+$sql = "SELECT *
+FROM orders o JOIN order_item i ON o.order_id=i.order_id;
+-- WHERE order_id = 101";
+
+
 $memSub = $pdo->query($sql);
 $memSubAll = $memSub->fetchAll();
 $data = [];

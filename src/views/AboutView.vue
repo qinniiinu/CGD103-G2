@@ -120,7 +120,7 @@
 				<input class="inputText" type="textarea" placeholder="請輸入詢問內容">
 				<div class="sendOut">
 					<input class="check" type="checkbox">點擊「確定送出」即表示您同意我們的隱私權條款聲明
-				<button>確認送出</button>
+				<button class="btn_ml">確認送出</button>
 				</div>
 				
 			</div>
@@ -138,62 +138,14 @@
 	</div>
 	<div class="FAQRow">
 		<ul>
-			<li>
+			<li  v-for="e in faq" :key="e.id" >
 				<div class="FAQcontainer">
-					<h3>退換貨問題</h3> 
-					<p><span>Q</span>如何退貨？</p>
-					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
+					<h3>{{e.que}}</h3> 
+					<p><span>Q：</span>{{e.how}}</p>
+					<p><span>A：</span>{{e.ans}}</p>
 					<div class="buttonPart">
 						<router-link to ="/Faq">
-							<button class="seeMore">看更多</button>
-						</router-link>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="FAQcontainer">
-					<h3>退換貨問題</h3> 
-					<p><span>Q</span>如何退貨？</p>
-					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
-					<div class="buttonPart">
-						<router-link to ="/Faq">
-							<button class="seeMore">看更多</button>
-						</router-link>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="FAQcontainer">
-					<h3>退換貨問題</h3> 
-					<p><span>Q</span>如何退貨？</p>
-					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
-					<div class="buttonPart">
-						<router-link to ="/Faq">
-							<button class="seeMore">看更多</button>
-						</router-link>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="FAQcontainer">
-					<h3>退換貨問題</h3> 
-					<p><span>Q</span>如何退貨？</p>
-					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
-					<div class="buttonPart">
-						<router-link to ="/Faq">
-							<button class="seeMore">看更多</button>
-						</router-link>
-					</div>
-				</div>
-			</li>
-			<li>
-				<div class="FAQcontainer">
-					<h3>退換貨問題</h3> 
-					<p><span>Q</span>如何退貨？</p>
-					<p><span>A</span>只要還沒剪標籤，都可以在十四日內郵寄退貨!</p>
-					<div class="buttonPart">
-						<router-link to ="/Faq">
-							<button class="seeMore">看更多</button>
+							<button class="btn_ml">看更多</button>
 						</router-link>
 					</div>
 				</div>
@@ -218,8 +170,10 @@ import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Header from "@/components/Header.vue";
 import Button from "@/components/Button.vue";
+import { MotionPathPlugin } from 'gsap/all';
 
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(MotionPathPlugin);
 
 
 export default {
@@ -233,6 +187,52 @@ export default {
 	data(){
 		return{
 			waste:'8000件衣服',
+			faq:[
+				{
+				id:1,
+				que:"退換貨問題",
+				how:"如何退貨",
+				ans:"只要還沒剪標籤，都可以在十四日內郵寄退貨",
+				},	
+				{
+				id:2,
+				que:"退換貨問題",
+				how:"如何退貨",
+				ans:"只要還沒剪標籤，都可以在十四日內郵寄退貨",
+				},
+				{
+				id:3,
+				que:"退換貨問題",
+				how:"如何退貨",
+				ans:"只要還沒剪標籤，都可以在十四日內郵寄退貨",
+				},
+				{
+				id:4,
+				que:"退換貨問題",
+				how:"如何退貨",
+				ans:"只要還沒剪標籤，都可以在十四日內郵寄退貨",
+				},
+				{
+				id:5,
+				que:"退換貨問題",
+				how:"如何退貨",
+				ans:"只要還沒剪標籤，都可以在十四日內郵寄退貨",
+				},
+				{
+				id:6,
+				que:"退換貨問題",
+				how:"如何退貨",
+				ans:"只要還沒剪標籤，都可以在十四日內郵寄退貨",
+				},
+				{
+				id:7,
+				que:"退換貨問題",
+				how:"如何退貨",
+				ans:"只要還沒剪標籤，都可以在十四日內郵寄退貨",
+				},
+				
+				
+			]
 
 
 		}},
@@ -242,8 +242,8 @@ export default {
 	gsap.to(".FAQcontainer",{
 		    x:1000,
 		    duration:8,
+		
 		    scrollTrigger:{
-			
 			trigger:".FAQRow",
 			start:"top 40%",
 			end:"top 0%",
@@ -291,6 +291,9 @@ export default {
 }
 
 
+.btn_ml{
+	margin: 20px;
+}
 .Re-anima{
 	color:$second_color;
 	width: 20vw;
@@ -480,9 +483,8 @@ video{
 }
 .FAQRow{
 	width: 100%;
-	max-width: 1200px;
-	margin: auto;
 	display: flex;
+	justify-content: center;
 	margin-bottom: 50px; 
 	// ::-webkit-scrollbar {display: none; /* Chrome Safari */}
 
@@ -490,11 +492,30 @@ video{
 	position: relative;
 	display: flex;
 	overflow-x:scroll ;
-	overscroll-behavior: contain;
+	overscroll-behavior: auto;
 	scroll-snap-type: inline mandatory;
 	scroll-snap-align:end;
+	&::-webkit-scrollbar {
+		display: none;
+
+    };
 	
 
+	
+
+
+	// scrollbar-color: #4673fb #ffffff;
+    //     &::-webkit-scrollbar {
+    //         width: 14px;
+    //     }
+    //     &::-webkit-scrollbar-track {
+    //         background:transparent;
+    //     }       
+    //     &::-webkit-scrollbar-thumb {
+    //         background-color: #4673fb;
+    //         border-radius: 10px;
+    //         border: 3px solid #ffffff;
+    //     }
 	}
 	.FAQcontainer{
 	width: 300px;
