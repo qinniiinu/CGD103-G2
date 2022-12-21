@@ -296,15 +296,17 @@ export default {
 	width: 20vw;
 	height: 20vh;
 	margin-bottom: 10vh;	
-	animation: rotation 2s infinite linear;}
-
-@keyframes rotation {
+	animation: rotation 2s infinite linear;
+    @keyframes rotation {
     from {
         transform: rotate(0deg);
     }
     to {
         transform: rotate(359deg);
-    }
+    }}
+	@include b(){
+		margin-bottom: 0vh;	
+	}
 }
 
 video{
