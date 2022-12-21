@@ -345,6 +345,8 @@
 					width:20%;
 					margin: auto;
 					height: 20%;
+					max-height: 150px;
+					max-width: 150px;
 					min-width: 120px;
 					min-height: 120px;
 					@include m{
@@ -385,8 +387,14 @@
 						margin-left:auto ;
 						margin-top: 20px;
 						padding: 5px 10px;
+						line-height: 18px;
 						@include m{
+
 							margin-top: 50px;
+						}
+						@include l{
+
+							margin-top: 65px;
 						}
 					}
 					// p:last-child{

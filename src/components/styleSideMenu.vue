@@ -152,7 +152,7 @@ export default {
         }
         width: 90%;
         // min-width: 195px;
-        max-width: 351px;
+        max-width: 300px;
         height: 100%;
      
         .sideMenu-group{
