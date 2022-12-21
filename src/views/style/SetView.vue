@@ -2,15 +2,14 @@
 	<div class="product_main">
 		<div class="product-content">
 			<div class="product-name">
-				<h2>{{pname}}</h2>
-				<p v-for="(hashtag,index) of hashtags" :key="index">
+				<h2>{{ootd.pname}}</h2>
+				<p v-for="(hashtag,index) of ootd.hashtags" :key="index">
 					{{hashtag}}
 				</p>
 			</div>
 			<div class="look-pic">
 				<div class="main-pic">
 					<img :src="String(lookmain)" alt="">
-					<!-- <img src="../../../public/look-info-pic1.png" alt=""> -->
 				</div>
 				<div class="sub-pic">
 					<div class="sub-pic-item" v-for="(productPic,index) of productPics " :key="index" @click="lookmain=productPic.src">
@@ -23,7 +22,7 @@
 				<div class="text">
 					<h3>造型師 Ian</h3>
 					<p>擁有五年資歷的Ian，擅長街頭風格......</p>
-					<p>more</p>
+					<button class="btn_ns">more</button>
 				</div>
 			</div>
 		</div>
@@ -34,15 +33,14 @@
 						<div class="look-item-content">
 							<h3>{{product.title}}</h3>
 							<p>{{product.text}}</p>
-							<!-- <p>{{}}</p> -->
 							<p>$NT{{product.price}}</p>
 						</div>
 					</div>
 				</div>
 				<div class="totalPrice">
-					<p>整套售價:$NT6,999</p>
+					<p>整套售價:$NT{{total}}</p>
 				</div>
-				<button class="btn_s" @click="add()">加入購物車</button>
+				<button class="btn_ns" @click="add()">加入購物車</button>
 		</div>
 	</div>
 
@@ -50,11 +48,11 @@
 		<h2>你可能也喜歡</h2>
 		<swiper
 			:modules="modules"
-			:slides-per-view="3"
+			
 			:space-between="0"
 			navigation
 			:pagination="{ clickable: true }"
-
+			:breakpoints="swiperOptions.breakpoints"
 			@swiper="onSwiper"
 			@slideChange="onSlideChange"
 		>
@@ -100,15 +98,10 @@
 
 		data(){
 			return{
-				pname:'Male  OOTD 12'
-				,
-				hashtags:[
-					'Outdoor',
-					'戶外穿搭',
-					'OOTD',
-					'橘色'
-				]
-				,
+				ootd:{
+					id:666,pname:'都會簡約時尚穿搭',hashtags:['Outdoor','戶外穿搭','OOTD','橘色']
+				},
+
 				productPics:[
 					{src:'/look-info-pic1.png'},
 					{src:'/look-info-pic2.png'},
@@ -117,10 +110,10 @@
 					{src:'/look-info-pic5.png'},
 				],
 				products:[
-					{src:'/look-item-1.png',title:'UV剪裁夾克',text:'可用於各種場合的質地，不僅適用於戶外活動和運動，還適用於日常休閒裝。UPF40+',price:'1,990'},
-					{src:'/look-item-2.png',title:'超輕羽絨背心',text:'實用性和設計性得到進一步發展。輕薄又保暖，可以根據場合和造型隨意佩戴',price:'1,690'},
-					{src:'/look-item-3.png',title:'寬條紋襯衫',text:'減少洗滌後的頑固皺紋，您可以享受適度的休閒和粗獷',price:'1,290'},
-					{src:'/look-item-4.png',title:'斜紋棉布褲',text:'由 100% 棉製成的傳統斜紋棉布褲',price:'1,290'},
+					{id:501,color:'brown',size:'s',src:'/look-item-1.png',title:'合身剪裁長版大衣',text:'一件剪裁考究的外套，可以根據您的著裝和溫度，將衣領向上或向下穿著',price:5590},
+					{id:502,color:'beige',size:'s',src:'/look-item-2.png',title:'簡約條紋襯衫',text:'舒適的棉質襯衫。設計點是清新的條紋圖案',price:1990},
+					{id:503,color:'beige',size:'s',src:'/look-item-3.png',title:'平紋針織高喬褲',text:'通過排列環，您可以享受直線和曲線的輪廓',price:1290},
+					{id:504,color:'black',size:'s',src:'/look-item-4.png',title:'時尚短靴',text:'從材料到細節，我們都非常注重細節，以實現舒適性和高設計性。',price:3990},
 				],
 				cols:[
 					{src:'/look-1.jpg',ootdName:'OOTD-001',tag:['#上班穿搭','＃沙漏形'],id:'01'},
@@ -136,11 +129,40 @@
 				],
 				lookmain:'',
 				cart:[],
+				total:'',
+				swiperOptions: {
+						breakpoints: {   
+							// 390:{       
+							// 	slidesPerView: 2,
+							// 	spaceBetween: 10     
+							// },         
+							768: {       
+								slidesPerView: 2,
+								spaceBetween: 10     
+							},          
+							1024: {       
+								slidesPerView: 2,       
+								spaceBetween: 50     
+							},   
+					
+							1200: {       
+								slidesPerView: 3,       
+								spaceBetween: 50     
+							} 
+						}   
+				},
+				// cartempty:0,
 			}
 		},
+		computed: {
+			
+		
+			
+		},
 		mounted () {
-			// String(lookmain)
+
 			this.lookmain=this.productPics[0].src 
+			this.total=this.products[0].price + this.products[1].price + this.products[2].price + this.products[3].price
 		},
 		methods:{
 			getStorage() {
@@ -149,16 +171,49 @@
 				this.cart = data ? data : [];
 			},
 			add(){
-				this.cart.push({
-                        // id: 
+
+				this.cart.push({	// id: 
                         title:this.products[0].title,
-                        // image:this.products[0].src,
-                        // price:this.products[0].price,
-                        // color: this.pickedColor,
-                        // size: this.pickedSize,
+                        image:this.products[0].src,
+                        price:this.products[0].price,
+                        color: this.products[0].color,
+                        size: this.products[0].size,
                         count: 1,
-                    });
+                    },{	// id: 
+                        title:this.products[1].title,
+                        image:this.products[1].src,
+                        price:this.products[1].price,
+                        color: this.products[1].color,
+                        size: this.products[1].size,
+                        count: 1,
+                    },
+					{	// id: 
+                        title:this.products[2].title,
+                        image:this.products[2].src,
+                        price:this.products[2].price,
+                        color: this.products[2].color,
+                        size: this.products[2].size,
+                        count: 1,
+                    },
+					{	// id: 
+                        title:this.products[3].title,
+                        image:this.products[3].src,
+                        price:this.products[3].price,
+                        color: this.products[3].color,
+                        size: this.products[3].size,
+                        count: 1,
+                    },
+					
+				);
 					this.setStorage();
+					
+
+				// 	if(this.cartempty<1){
+				// 
+				// }
+				// this.cartempty+=1
+
+				
 			},
 			setStorage() {
             	const data = JSON.stringify(this.cart);
@@ -186,15 +241,16 @@
 		.product-content{
 			width: 90%;
 			margin: auto;
+			margin-top:20px ;
 			@include l{
 				width: 50%;
 			}
 			.product-name{
-			
 		
 				margin-bottom: 10px;
+				// vertical-align: middle;
 				@include l{
-					display: flex;
+
 					align-items: center;
 					margin-bottom: 20px;
 					flex-wrap: wrap;
@@ -209,9 +265,20 @@
 					display: inline-block;
 					background-color: $main-color;
 					color: $third-color;
-					padding: 10px;
+					padding: 5px 8px;
+					@include m{
+						padding: 8px 10px;
+						// margin-top:auto;
+						margin-bottom: auto;
+						font-size: 16px;
+					}
 					margin: 5px;
-					margin-top: 10px;
+					vertical-align: middle;
+					margin-top: 15px;
+					font-size: 14px;
+				}
+				p:first-child{
+					margin-left: 0px;
 				}
 
 			}
@@ -276,36 +343,70 @@
 				img{
 					padding: 10px;
 					width:20%;
+					margin: auto;
+					height: 20%;
+					max-height: 150px;
+					max-width: 150px;
+					min-width: 120px;
+					min-height: 120px;
+					@include m{
+
+					}
 					object-fit: cover;
 					flex-grow:1 ;
 				}
 				.text{
 					padding: 10px;
 					padding-left: 0;
-					margin-left: 10px;
-					flex-grow:10 ;
+					@include m{
+						margin-left: 10px;
+					}
+					margin-left: 0px;
+					flex-grow:1 ;
 					h3{
 						font-weight: 700;
 						color: $title_color;
 						font-size: 20px;
 						margin-bottom: 5px;
+						@include m{
+							font-size:22px;
+						}
 					}
 					p{
 						
 						color:$text_color ;
 						line-height:21px ;
 						font-size:14px;
+						text-align: justify;
+						@include m{
+							font-size:16px;
+						}
 					}
-					p:last-child{
-						padding: 0px 10px;
-						background: $main_color;
-						width: fit-content;
-						color: $third_color;
-						display: flex;
-						line-height: 28px;
-						margin-top: 50px;
+					button{
+						display: block;
 						margin-left:auto ;
+						margin-top: 20px;
+						padding: 5px 10px;
+						line-height: 18px;
+						@include m{
+
+							margin-top: 50px;
+						}
+						@include l{
+
+							margin-top: 65px;
+						}
 					}
+					// p:last-child{
+					// 	padding: 0px 10px;
+					// 	background: $main_color;
+					// 	width: fit-content;
+					// 	color: $third_color;
+					// 	display: flex;
+					// 	line-height: 28px;
+					// 	
+					//
+					// }
 				}
 			}
 		}
@@ -334,6 +435,7 @@
 					margin: 20px auto ;
 					border: 1px solid $title_color; 
 					width:45% ;
+					box-sizing: border-box;
 					@include l{
 						margin: 20px 30px ;
 						margin-right:auto;
@@ -345,8 +447,11 @@
 					}
 					
 					.look-item-pic{
-						padding: 20px ;
+						padding: 12px ;
 						width: 80%;
+						@include m{
+							margin: auto 0;
+						}
 						@include l{
 							width: 30%;
 						}
@@ -360,7 +465,18 @@
 					
 					.look-item-content{
 						width: 80%;
-						padding:0px 20px;
+						padding:0px 12px;
+						display: flex;
+						flex-direction: column;
+						margin-bottom: 15px;
+						
+						@include m{
+							display: block;
+							margin:0px;
+						}
+						// justify-content: space-between;
+						// align-content: stretch;
+						// margin-bottom:20px ;
 						@include l{
 							width: 70%;
 							padding: 20px;
@@ -370,21 +486,33 @@
 						h3{
 							font-weight: 700;
 							color: $title_color;
-							font-size: 20px;
+							font-size: 18px;
 							margin-bottom: 10px;
+							letter-spacing: .5px;
+							@include m{
+								font-size: 20px;
+							}
 						}
 						p{
 							color:$text_color ;
-							line-height:21px ;
-							font-size:14px;
+							line-height:18px ;
+							@include m{
+								line-height:21px; 
+								font-size: 14px;
+							}
+							font-size:12px;
+							letter-spacing: .5px;
+							text-align: justify;
 						}
 						p:last-child{
 							color:$title_color;
 							line-height:32px ;
 							font-size:24px;
-							margin-bottom: 20px;
-							margin-top: 5px;
+							// margin-bottom: 20px;
+							// margin-top:auto;
 							font-weight: 700;
+							margin-top: 10px;
+							text-align: center;
 							@include l{
 								margin-top: 40px;
 								margin-bottom: 0;
@@ -432,7 +560,7 @@
 		margin: auto;
 		margin-top:80px ;
 		h2{
-			margin-bottom: -80px;
+			margin-bottom: 50px;
 			font-weight: 700;
 			font-size: 32px;
 			color: $title_color;
@@ -443,7 +571,7 @@
 			.swiper-item{
 				width: 60%;
 				margin: auto;
-				margin-top:30% ;
+				
 			}
 		}
 	}

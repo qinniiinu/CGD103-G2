@@ -5,11 +5,13 @@ header("Content-Type:application/json;charset=utf-8");
 
 require_once("../connectBooks.php");
 
-$sql = "SELECT * FROM `vip_level`;";
+$sql = "SELECT level_id
+FROM member m JOIN vip_level v ON m.level_id=v.level_id;
+ORDER BY level_id DESC;";
 $memSub = $pdo->query($sql);
-$memSubAll = $memSub->fetchAll();
+$memSubRow = $memSub->fetchAll(PDO::FETCH_ASSOC);
 $data = [];
-foreach ($memSubAll as $i => $page) {
+foreach ($memSubRow as $i => $page) {
     $data[] = $page;
 }
 echo json_encode($data);
