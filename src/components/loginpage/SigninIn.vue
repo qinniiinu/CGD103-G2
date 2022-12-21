@@ -89,7 +89,7 @@ export default {
             alert("登入失敗" + data.msg);
           } else {
             console.log("登入成功：", data);
-            //this.$router.push({path:'/MyPage'});
+            this.$router.push({path:'/MyPage'});
           }
         })
         .catch((error) => {
