@@ -24,7 +24,7 @@ try {
         }else{ //登入成功,
             //自資料庫中取回資料
             $memRow = $member->fetch(PDO::FETCH_ASSOC);
-    
+
             //將登入者的資料寫入session
             $_SESSION['member'] = $memRow;
     
