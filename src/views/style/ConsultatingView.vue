@@ -115,7 +115,7 @@ import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/src/VueDatePicker/style/main.scss';
 import { scrollTop } from 'dom7';
 import { ref } from 'vue';
-// import { BASE_URL } from "@/assets/js/commom.js";
+import { BASE_URL } from "../../assets/js/common.js";
 
 
 export default {
@@ -278,7 +278,7 @@ export default {
 				appointment_qa:this.qaBtncheck.toString(),
 				appointment_qatext:this.qatextarea
 			}
-			fetch(`http://localhost:8887/cgd103_g2_frontend/phpfile/chat_qa.php`,{
+			fetch(`${BASE_URL}/chat_qa.php`,{
 				method:'post',
 				body:new URLSearchParams(payload)
 			})
