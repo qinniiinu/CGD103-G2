@@ -282,6 +282,13 @@ export default {
 				method:'post',
 				body:new URLSearchParams(payload)
 			})
+			// .then((response) => {
+			// 	return response.json();
+			// })
+			// .then((data)=>{
+			// 	console.log(data);
+			// })
+			// .catch((error) =>{console.log(error);})
 
 
 			/* let xhr = new XMLHttpRequest();

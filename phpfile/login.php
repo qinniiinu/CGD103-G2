@@ -6,7 +6,6 @@
     header("Content-Type:application/json;charset=UTF-8");
 try {
     require_once("../connectBooks.php");
-    // require_once("http://localhost:8887/cgd103_g2_frontend/phpfile/connectBooks.php");
     $sql = "select * from `member` where mem_mail=:mem_mail and mem_pwd=:mem_pwd;";
     $errMsg = "";
     if (isset($_POST['mem_mail']) && isset($_POST['mem_pwd'])) {
