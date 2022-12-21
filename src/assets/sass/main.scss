@@ -76,9 +76,8 @@ body {
 }
 
 .btn_nl {
-
-	color: white;
-	background-color: $main_color ;
+	color: $main_color ;
+	background-color: white ;
 	box-sizing: border-box;
 	border: 2px solid $main_color;
 	text-align: center;
