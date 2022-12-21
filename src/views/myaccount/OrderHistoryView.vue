@@ -38,21 +38,21 @@
 				</ul>
 
 				<ul class="ord_history_content"><!-- 選單內容加scroll bar -->
-					<li v-for="item in product" :key="item.id"  class="ord_history_content_word"><!-- 需要v-for的地方 -->
+					<li v-for="e in orders" :key="e.order_id"  class="ord_history_content_word">
 						<router-link to="/MyPage/OrderHistoryDetail">
-						<ul class="content_row">
-							<li class="ord_history_content">20221202</li>
-							<li class="ord_history_content">20221202001</li>
-							<li class="ord_history_content">$8888</li>
-							<li class="ord_history_content">已出貨</li>
-							<li class="ord_history_content" id="Q" >
-								<a class="transport_detail" href="">聯繫客服</a>
-							</li>									
-							<li class="ord_history_content" id="C" >
-								<a class="transport_detail" href="">物流詳情</a>
-							</li>
-						</ul>
-					</router-link>
+							<ul class="content_row">
+								<li scope="row" class="ord_history_content">{{e.order_time}}</li>
+								<li class="ord_history_content">{{e.order_id}}</li>
+								<li class="ord_history_content">{{e.total}}</li>
+								<li class="ord_history_content">{{e.order_con}}</li><!-- 訂單狀態 -->
+								<li class="ord_history_content" id="Q" >
+									<a class="transport_detail" href="">聯繫客服</a>
+								</li>									
+								<li class="ord_history_content" id="C" >
+									<a class="transport_detail" href="">物流詳情</a>
+								</li>
+							</ul>
+						</router-link>
 					</li>
 				</ul>
 			</div>
@@ -60,10 +60,10 @@
 			<div v-show="1===number"  class="ord_history_box"><!-- 訂單記錄圖片頁 -->
 				
 					
-				<li v-for="item in product" :key="item.id" class="item_num" >
+				<li v-for="item in orders" :key="item.order_id" class="item_num" >
 					<div class="item_num_row">
-						<div class="item_num_title">訂單編號： {{item.ord_num}}</div>
-						<h2>{{item.ord_condtion}}</h2>
+						<div class="item_num_title">訂單編號： {{item.order_id}}</div>
+						<h2>{{item.order_con}}</h2>
 					</div>
 
 					<div class="page_photo">
@@ -78,34 +78,7 @@
 						
 						<div class="item_money">
 							<p>共{{item.item_product}}件商品</p>
-							<h2>訂單金額 ${{item.sum_price}}</h2>
-						</div>
-					</div>
-				</li>	
-			</div>
-
-			<div v-show="2===number"  class="ord_history_box"><!-- 訂單詳情 -->
-					
-					
-					<li v-for="item in product" :key="item.id" class="item_num" >
-					<div class="item_num_row">
-						<div class="item_num_title">訂單編號： {{item.ord_num}}</div>
-						<h2>{{item.ord_condtion}}</h2>
-					</div>
-
-					<div class="page_photo">
-						<div class="page_photo_box">
-							<div class="item_page_photo">
-							<img :src="item.img_link" alt="">
-						</div>
-						<div class="item_page_photo">
-							<img :src="item.img_link" alt="">
-						</div>
-						</div>
-						
-						<div class="item_money">
-							<p>共{{item.item_product}}件商品</p>
-							<h2>訂單金額 ${{item.sum_price}}</h2>
+							<h2>訂單金額 ${{item.total}}</h2>
 						</div>
 					</div>
 				</li>	
@@ -133,34 +106,36 @@ export default {
 	},
 	data(){
 		return{
-			number:0,
+			number:0,//用來切換子頁面的值
+			orders:[],
 			product:[
-
-				// {
-				// 	id:1,
-				// 	ord_num:1201201,
-			    //     ord_condtion:"已出貨",
-				// 	img_link:"../style1.png",
-				// 	item_product:2,
-			    //     sum_price:8888,
-				// },
-				// {
-				// 	id:2,
-				// 	ord_num:1201201,
-			    //     ord_condtion:"已出貨",
-				// 	img_link:"../style2.png",
-				// 	item_product:2,
-			    //     sum_price:8888,
-				// },
-				// {
-				// 	id:3,
-				// 	ord_num:1201201,
-			    //     ord_condtion:"已出貨",
-				// 	img_link:"../style3.png",
-				// 	item_product:2,
-			    //     sum_price:8888,
-				// },
+			// {
+			// 	 	id:1,
+			// 	 	ord_num:1201201,
+			//          ord_condtion:"已出貨",
+			// 	 	img_link:"../style1.png",
+			// 	 	item_product:2,
+			//          sum_price:8888,
+			// 	 },
+			// 	 {
+			// 	 	id:2,
+			// 	 	ord_num:1201201,
+			//          ord_condtion:"已出貨",
+			// 	 	img_link:"../style2.png",
+			// 	 	item_product:2,
+			//          sum_price:8888,
+			// 	 },
+			// 	 {
+			// 	 	id:3,
+			// 	 	ord_num:1201201,
+			//          ord_condtion:"已出貨",
+			// 	 	img_link:"../style3.png",
+			// 	 	item_product:2,
+			//          sum_price:8888,
+			// 	 },
+			
 			],
+			
 		}
 	},
 	methods:{
@@ -168,15 +143,14 @@ export default {
 			this.number =index;
 		},
 		getResource() {
-        this.axios.get(`${BASE_URL}/quiz/style_recommend.php`).then((response) => {
-                this.product = response.data;
-                console.log(this.product);
+        this.axios.get(`${BASE_URL}/getOrder.php`).then((response) => {
+			    console.log(response.data);
+				this.orders = response.data;
             });
         },
 	},
 	mounted() {
-    this.getResource();
-    this.countDown();
+    	this.getResource();
   },
 
 	
@@ -214,7 +188,8 @@ export default {
 		padding: 0%;
 	}
 }
-.body{
+body{
+	
 	@include b() {
 		p{
 			font-size: 12px;
@@ -258,6 +233,19 @@ export default {
 	margin: auto;
 	padding-bottom: 10%;
 	overflow:scroll;
+    scrollbar-width: auto;
+	scrollbar-color: #4673fb #ffffff;
+        &::-webkit-scrollbar {
+            width: 14px;
+        }
+        &::-webkit-scrollbar-track {
+            background:transparent;
+        }       
+        &::-webkit-scrollbar-thumb {
+            background-color: #4673fb;
+            border-radius: 10px;
+            border: 3px solid #ffffff;
+        }
 	background-color:  white;
 	@include b() {
 		width: 100%;     

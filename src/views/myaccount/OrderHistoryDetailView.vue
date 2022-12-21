@@ -3,20 +3,21 @@
 	<router-view/>
 	<div class="data">
 		<div class="Ordh_container"><!-- 訂單紀錄容器盒 -->
-			<div class="ord_detail_container">
+			<div v-for="e in orders" :key="e.order_id" class="ord_detail_container">
 				<h3 class="ord_title">訂單詳情</h3>
 				<div class="ord_detail">
 					<div class="ord_condition">
 						<p>訂單編號：</p>
-						<p>21157867866</p>
+						<p>{{e.order_id}}</p>
 					</div>
 					<div class="ord_condition">
 						<p>訂單狀態：</p>
-						<p>已出貨</p>
+						<p>{{e.order_con}}</p>
 					</div>
 					<div class="ord_condition">
-						<p>收件人：</p>
-						<p>王曉明 0935141735</p>
+						<p>收件人：{{e.ord_mem}}</p>
+						<p>電話：{{e.ord_phone}}</p> 
+						
 					</div>
 				</div>
 				<div class="ord_detail_second_row">
@@ -27,8 +28,8 @@
 						</a></p>
 					</div>
 					<div class="ord_condition">
-						<p>送件地址：</p>
-						<p>210 桃園市中壢區復興路424號</p>
+						<p>送件地址：{{e.ord_addr}}</p>
+						
 					</div>
 				
 				</div>
@@ -97,19 +98,37 @@
 	</div>
 	<div class="order_back">
 		<router-link to="/MyPage/OrderHistory"><!-- 返回鍵 -->
-			<button>返回</button>
+			<button class="btn_ms">返回</button>
 		</router-link>
 	</div>
 </template>
 
 <script>
-
+import { BASE_URL } from '../../assets/js/common.js'
 import Button from "@/components/Button.vue";
 export default {
 	name: "OrderHistoryDetail",
 	components: {
 		Button
 	},
+	data(){
+		return{
+			orders:[],
+
+		}
+	},
+	methods:{
+		getResource() {
+        this.axios.get(`${BASE_URL}/getOrderDetail.php`).then((response) => {
+			console.log(response.data);
+			this.orders = response.data;
+            });
+        },
+	},
+	mounted() {
+    	this.getResource();
+    },
+
 };
 </script>
 
@@ -229,6 +248,7 @@ p{
 .prod_item_row{
 	// display: flex;
 	align-items: center;
+	background-color: $second_color;
 }
 .sum_money{
 	width: 100%;
@@ -247,7 +267,6 @@ li{
 /* 訂單留言 */
 .ord_msg{
 	width: 100%;
-	background-color:$bg_violet;
 	background-color:$second_color;
 	border:1px solid rgb(162, 162, 162) ;
 	margin-top: 50px;
