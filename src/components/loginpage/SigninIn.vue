@@ -62,6 +62,7 @@ export default {
     return {
       mem_mail: "",
       mem_pwd: "",
+      mem_id:''
     };
   },
   methods: {
@@ -74,7 +75,7 @@ export default {
       formData.append("mem_mail", this.mem_mail);
       formData.append("mem_pwd", this.mem_pwd);
 
-      fetch("/api_server/login.php", {
+      fetch("http://localhost:8887/cgd103_g2_frontend/phpfile/login.php", {
         method: "post",
         body: formData,
       })
@@ -97,6 +98,7 @@ export default {
         });
     },
   },
+
 };
 </script>
 

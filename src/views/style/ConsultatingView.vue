@@ -102,7 +102,7 @@
 			</div>
 			<div class="check-btn">
 				<Button class="btn_l" @click="backStep2()">上一步</Button>
-				<Button class="btn_s">完成</Button>
+				<Button class="btn_s" @click="insert()">完成</Button>
 			</div>
 		</div>
 	</div>
@@ -115,6 +115,7 @@ import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/src/VueDatePicker/style/main.scss';
 import { scrollTop } from 'dom7';
 import { ref } from 'vue';
+import { BASE_URL } from "../../assets/js/common.js";
 
 
 export default {
@@ -268,7 +269,30 @@ export default {
 					left: 0,
 					behavior: 'smooth'
 				})
-        }
+        },
+		insert() {
+			console.log(this.qaBtncheck.toString());
+			const payload={
+				appointment_date:this.date,
+				appointment_time:this.qatime,
+				appointment_qa:this.qaBtncheck.toString(),
+				appointment_qatext:this.qatextarea
+			}
+			fetch(`${BASE_URL}/chat_qa.php`,{
+				method:'post',
+				body:new URLSearchParams(payload)
+			})
+
+
+			/* let xhr = new XMLHttpRequest();
+			xhr.onload = function () {
+				let result = JSON.parse(xhr.responseText);
+				alert(result.msg);
+			};
+			xhr.open("post", `${BASE_URL}/chat_qa.php`, true);
+			xhr.send(new FormData(document.getElementById("add_employee"))); */
+			// lightbox.classList.remove("active"); // 關新增燈箱
+		},
 
 	}
 
