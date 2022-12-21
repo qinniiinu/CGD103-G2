@@ -88,7 +88,7 @@
 				<div class="order_title">#ORDER</div><!-- 左下角大字 -->
 				<div class="order_back">
 				<router-link to="/MyPage"><!-- 返回鍵 -->
-					<button class="btn_ms" >返回</button>
+					<button class="btn_l" >返回</button>
 				</router-link>
 				</div>
 			</div>
