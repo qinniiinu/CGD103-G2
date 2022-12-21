@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
 	name: "MemberSideMenu",
 	props: {
@@ -56,16 +57,25 @@ export default {
             ],
             // 會員資料
             member:{ 
-                mem_pic:"/fashion2.png",
-                mem_name:"王曉明",
-                level_id: "STANDARD",
+                // mem_pic:"/fashion2.png",
+                // mem_name:"王曉明",
+                // level_id: "101",
             },
+            body:{}
         }
     },
-    
     methods:{
 
     },
+    created(){
+        axios.get('/api_server/member.php')
+        .then(res =>this.member = res.data)
+        .catch(error =>console.log(error))
+
+        axios.get('/api_server/memberInfo.php')
+        .then(res =>this.body = res.data)
+        .catch(error =>console.log(error))
+    }
 }
 </script>
 
