@@ -7,7 +7,7 @@ $errMsg = "";
 try {
     if (isset($_SESSION['member'])) { // 若會員已登入
         require_once("../connectBooks.php");
-        $sql = "SELECT b.*, s.*, vl.* from member m JOIN body b on(m.body_id=b.body_id) 
+        $sql = "SELECT m.*, b.*, s.*, vl.* from member m JOIN body b on(m.body_id=b.body_id) 
                                      JOIN style s on(m.style_id=s.style_id)
                                      JOIN vip_level vl on(m.level_id=vl.level_id)
         where m.mem_id=:mem_id;";
