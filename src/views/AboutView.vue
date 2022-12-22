@@ -103,29 +103,35 @@
 			</div> -->
     </div>
 	<div class="contactUs"> <!-- 聯絡我們 -->
-		<div class="container">
+		
+		<form class="container" id="insert_client" method="post" enctype="multipart/form-data">	
 			<div class="titleBox">
 				<h4>歡迎來信合作</h4>
 				<div class="order_title">#CONTACT</div>
 				<h1>聯絡我們</h1>
 				
-				<p>有關商品相關問題(例如：商品瑕疵)，請透過客服專線、電子郵件連繫我們，或到鄰近您的店舖洽詢。(店舖營業時間，請查看GU FAQ)</p>
+				<p>有關商品相關問題(例如：商品瑕疵)，請透過客服專線、電子郵件連繫我們，或到鄰近您的店舖洽詢。(店舖營業時間，請查看 FAQ)</p>
 				
 			</div>
 			<div class="inputBox">
-				<input class="inputBar" type="text" placeholder="請輸入姓名">
-				<input class="inputBar" type="text" placeholder="請輸入公司名稱">
-				<input class="inputBar" type="email" placeholder="請輸入信箱">
-				<input class="inputBar" type="text" placeholder="請輸入連絡電話">
-				<input class="inputText" type="textarea" placeholder="請輸入詢問內容">
+				<input class="inputBar" type="text" id="client_person" name="client_person"
+				placeholder="請輸入姓名">
+				<input class="inputBar" type="text" id="client_name" name="client_name" placeholder="請輸入公司名稱">
+				<input class="inputBar" type="email" 
+				id="client_mail" name="client_mail" placeholder="請輸入信箱">
+				<input class="inputBar" type="text" id="client_phone" name="client_phone" placeholder="請輸入連絡電話">
+				<input class="inputText" type="textarea" id="client_meg" name="client_meg" placeholder="請輸入詢問內容">
 				<div class="sendOut">
 					<input class="check" type="checkbox">點擊「確定送出」即表示您同意我們的隱私權條款聲明
-				<button class="btn_ml">確認送出</button>
+				<button class="btn_ml" @click="insert()" id="update">確認送出</button>
 				</div>
 				
 			</div>
+		</form>
 		</div>
-	</div>
+		
+			
+	
 
 	<div class="FAQ"><!-- 常見問題 -->
 		<div class="FAQbox">
@@ -233,10 +239,18 @@ export default {
 				
 				
 			]
-
-
-		}},
-
+		}
+	},
+	methods: {
+	  insert() {
+      //新增員工
+      let xhr = new XMLHttpRequest();
+      xhr.onload = function () {
+      let result = JSON.parse(xhr.responseText);alert(result.msg);
+      };
+      xhr.open("post", `${BASE_URL}/clientInsert.php`, true);
+      xhr.send(new FormData(document.getElementById("insert_client")));
+	}},
 	mounted(){
 
 	gsap.to(".FAQcontainer",{
