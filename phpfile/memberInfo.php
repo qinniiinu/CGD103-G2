@@ -28,6 +28,5 @@ try {
     $errMsg .= "行號 : ".$e -> getLine()."<br>";
     echo json_encode(["msg"=>$errMsg]);
 }
-
 ?>
 

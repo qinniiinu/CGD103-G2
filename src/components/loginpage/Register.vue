@@ -2,7 +2,7 @@
   <!--註冊-->
   <div v-if="goType===false" class="signup_wrapper wrapper">
 	<div class="form_wrapper sign_up">
-	  <form @submit.prevent="handleSubmit" class="login_form" action="">
+	  <form class="login_form" action="">
 		<div class="title">
 		  <h2>註冊</h2>
 		  <BgTag class="bg_tag" Bgtag="SIGNUP"></BgTag>
@@ -41,7 +41,7 @@
 		<div class="remember">
 		  <label><input type="checkbox" />我已閱讀並同意會員約定條款說明</label>
 		</div>
-		<button type="submit" class="btn_s" @click="gotype">下一步</button>
+		<button type="button" class="btn_s" @click="gotype">下一步</button>
 
 		<!-- 已有帳號 -->
 		<div class="signup">
@@ -57,7 +57,7 @@
   <!-- 身形建置 -->
   <div v-else class="wrapper bodyTyping">
     <div class="form_wrapper bodyset">
-      <form class="bodyset_form" action="">
+      <form @submit.prevent="handleSubmit" class="bodyset_form" action="">
         <div class="title">
           <h2>註冊</h2>
           <bg-tag class="bg_tag" Bgtag="SIGNUP"></bg-tag>
@@ -67,14 +67,14 @@
         <div class="item">
           <!-- 性別 -->
           <div class="sex">
-            <input type="radio" :value="1" v-bind="sex" id="male" name="sex">
+            <input type="radio" value="1" v-bind="sex" id="male" name="sex">
 			<label
               class="btn_nl"
 				for="male"
             >
               男
             </label>
-            <input type="radio" :value="0" v-bind="sex" id="female" name="sex"> 
+            <input type="radio" value="0" v-bind="sex" id="female" name="sex"> 
 			<label
               class="btn_nl"
 			  for="female"
@@ -208,42 +208,55 @@ export default {
 		bday_d:'',
 		bday_y:'',
 		// 身形建置
-        sex: '',
-        height: '', //身高
-        weight: '', //體重
-        shoesize: '', //鞋碼
-        shoulder: '', //肩寬
-        chest: '', // 胸圍
-        waistline: '', // 腰圍
-        hip: '', //臀圍
-        clothes: '', // 衣長
-        pants: '', //褲長
+    sex: '',
+    height: '', //身高
+    weight: '', //體重
+    shoesize: '', //鞋碼
+    shoulder: '', //肩寬
+    chest: '', // 胸圍
+    waistline: '', // 腰圍
+    hip: '', //臀圍
+    clothes: '', // 衣長
+    pants: '', //褲長
 		// 註冊 身形建置 切換
 		goType: false,
 	};
   },
   methods: {
 	combineDate() {
-	const year = this.bday_y;
-	const month = this.bday_m;
-	const day = this.bday_d;
+    const year = this.bday_y;
+    const month = this.bday_m;
+    const day = this.bday_d;
     const bday = `${year}-${month}-${day}`;
     return bday;
-  	},
+  },
+	handleSubmit(){
+    let formData = new FormData();
+    formData.append("mem_mail", this.mem_mail);
+    formData.append("mem_pwd", this.mem_pwd);
+    formData.append("mem_name", this.mem_name);
+    formData.append("bday", this.combineDate());
+    // 身形
+    formData.append("sex", this.sex);
+    formData.append("height", this.height);
+    formData.append("weight", this.weight);
+    formData.append("shoesize", this.shoesize);
+    formData.append("shoulder", this.shoulder);
+    formData.append("chest", this.chest);
+    formData.append("waistline", this.waistline);
+    formData.append("hip", this.hip);
+    formData.append("clothes", this.clothes);
+    formData.append("pants", this.pants);
+    formData.append("chest", this.chest);
 
-	async handleSubmit(){
-		const data = {
-			mem_mail:this.mem_mail,
-			mem_pwd:this.mem_pwd,
-			psd_confirm:this.psd_confirm,
-			mem_name:this.mem_name,
-			bday:this.combineDate(),
-		}
-		const response = await axios.post('/api_server/register.php',data)
-			.then(res=>console.log(res))
-			.catch(err=>console.log(err))
+    fetch('/api_server/register.php',{
+        method: "post",
+        body: formData,
+      })
+      .then((response) => {
+          return response.json();
+      })
 	},
-
 	gotype(){
 		this.goType = true;
 	}
