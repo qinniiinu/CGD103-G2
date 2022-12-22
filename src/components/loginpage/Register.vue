@@ -67,14 +67,14 @@
         <div class="item">
           <!-- 性別 -->
           <div class="sex">
-            <input type="radio" value="1" v-bind="sex" id="male" name="sex">
+            <input type="radio" :value="1" v-model="sex" id="male" name="sex">
 			<label
               class="btn_nl"
 				for="male"
             >
               男
             </label>
-            <input type="radio" value="0" v-bind="sex" id="female" name="sex"> 
+            <input type="radio" :value="0" v-model="sex" id="female" name="sex"> 
 			<label
               class="btn_nl"
 			  for="female"
@@ -228,6 +228,7 @@ export default {
     const month = this.bday_m;
     const day = this.bday_d;
     const bday = `${year}-${month}-${day}`;
+    console.log("---",bday);
     return bday;
   },
 	handleSubmit(){
@@ -256,6 +257,8 @@ export default {
       .then((response) => {
           return response.json();
       })
+      .then((data) =>console.log(data))
+      .catch(error =>console.log(error));
 	},
 	gotype(){
 		this.goType = true;
