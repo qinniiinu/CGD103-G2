@@ -8,15 +8,46 @@
     stylistName="Mary"
     stylistInfo="擅長運動風格,用前衛的單品,搭配出衝突的美感"
      />
-  </template>
+      <h3 class="recommend">推薦商品</h3>
+    <section class="recommend_box">
+      <div v-for="e in product" class="item" :key="e.product_pic" >
+         <router-link :to="`/productDetails/${e.product_id}`">
+          <img :src="require(`@/assets/product/${e.product_pic}`)" />
+          <h4>{{ e.product_name }}</h4>
+        </router-link>
+      </div>
+    </section>
+</template>
   
-  <script>
-  import QuizResult from "@/components/QuizResult.vue";
-  export default {
-    components: {
-      QuizResult,
+<script>
+import QuizResult from "@/components/QuizResult.vue";
+//引入BASE_URL參數
+import { BASE_URL } from '@/assets/js/common.js';
+export default {
+  name: "ResultSport",
+  components: {
+    QuizResult,
+  },
+   data() {
+    return {
+      product:[],
+    }
+  },
+  methods:{
+     getResource() {
+      this.axios.get(`${BASE_URL}/quiz/sport_recommend.php`).then((response) => {
+                this.product = response.data;
+                console.log(this.product);
+            });
     },
-  
-  
+  },
+   mounted() {
+    this.getResource();
   }
-  </script>
+
+
+}
+</script>
+<style lang="scss" scoped>
+@import "@/assets/sass/quiz_result";
+</style>

@@ -7,13 +7,11 @@
    />
    <h3 class="recommend">推薦商品</h3>
     <section class="recommend_box">
-      <div v-for="e in product" class="item" :key="e.combo_pic" >
-        <img :src="require(`@/assets/product/${e.combo_pic}`)" />
-        <h4>{{ e.combo_name }}</h4>
-      </div>
-      <div v-for="e in product" class="item" :key="e.combo_pic" >
-        <img :src="require(`@/assets/product/${e.combo_pic}`)" />
-        <h4>{{ e.combo_name }}</h4>
+      <div v-for="e in product" class="item" :key="e.product_pic" >
+         <router-link :to="`/productDetails/${e.product_id}`">
+          <img :src="require(`@/assets/product/${e.product_pic}`)" />
+          <h4>{{ e.product_name }}</h4>
+        </router-link>
       </div>
     </section>
 </template>
@@ -22,7 +20,7 @@
 <script>
 import QuizResult from "@/components/QuizResult.vue";
 //引入BASE_URL參數
-import { BASE_URL } from '../../../assets/js/common.js'
+import { BASE_URL } from '@/assets/js/common.js';
 export default {
   components: {
     QuizResult,
@@ -34,7 +32,7 @@ export default {
   },
   methods:{
      getResource() {
-      this.axios.get(`${BASE_URL}/quiz/style_recommend.php`).then((response) => {
+      this.axios.get(`${BASE_URL}/quiz/minimalist_recommend.php`).then((response) => {
                 this.product = response.data;
                 console.log(this.product);
             });
@@ -49,80 +47,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-*{
-  box-sizing: border-box;
-}
-  .recommend_box {
-  display: flex;
-  flex-wrap: wrap;
-  // flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 10px;
-
-  // border: 1px solid red;
-  .item {
-    width: 49%;
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #000;
-
-    img {
-      width: 100%;
-    }
-
-    h4 {
-      text-align: center;
-      color: $text_color;
-      padding: 10px;
-    }
-  }
-}
- @media screen and (min-width:768px) {
-  .recommend_box {
-    display: flex;
-    flex-wrap: wrap;
-    // flex-wrap: wrap;
-    justify-content: space-evenly;
-    padding: 10px;
-
-    // border: 1px solid red;
-    .item {
-      width: 23%;
-      margin-bottom: 20px;
-      padding: 10px;
-      border: 1px solid #000;
-
-      img {
-        width: 100%;
-      }
-
-      h4 {
-        text-align: center;
-        color: $text_color;
-        padding: 10px;
-      }
-    }
-  }
- }
- @media screen and (min-width:1024px) {
-   .recommend_box {
-    max-width: 1200px;
-    margin: 0 auto;
-    // border: 1px solid red;
-  }
- }
- .recommend {
-  color: $title_color;
-  text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-  // padding: 10px;
-  margin-bottom: 20px;
-}
-
-@media screen and (min-width:768px) {
-  .recommend {
-    font-size: 24px;
-  }
-}
+@import "@/assets/sass/quiz_result";
 </style>
