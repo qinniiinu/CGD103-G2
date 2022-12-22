@@ -10,12 +10,14 @@
         <button @click="remove" class="remove">刪除圖片</button>
       </div>
       <div id="wrap2" class="products">
-        <!-- <div v-for="e in product" class="item" :key="e.product_pic">
-          <img :src="require(`@/assets/product/${e.product_pic}`)" />
-        </div> -->
-        <div v-for="e in product" class="item" :key="e.product_pic" >
-          <img :src="cut(`@/assets/product/${e.product_pic}`)" alt="" @click="copy($event)" />
-        </div>
+        <!-- <img src="https://picsum.photos/100/100/?random=10" @click="copy($event)"> -->
+        <img
+          :src="require(`@/assets/product/${cut(e.product_pic)}`)"
+          v-for="e in product"
+          class="items"
+          :key="e.product_id"
+          @click="copy($event)"
+        />
       </div>
     </div>
   </div>
@@ -52,91 +54,94 @@ export default {
     getResource() {
       this.axios.get(`${BASE_URL}/fittingroom.php`).then((response) => {
         this.product = response.data;
+
         console.log(this.product);
       });
     },
     cut(x) {
       if (x) return x.split(",")[0];
     },
+
+    copy(e) {
+      var panel = document.getElementById("panel");
+      var new_item = document.createElement("div");
+      new_item.className = "item";
+      var image = document.createElement("img");
+      image.src = e.currentTarget.src;
+      new_item.appendChild(image);
+      panel.appendChild(new_item);
+      this.drag(new_item);
+    },
+
+
+
+    //圖片拖曳(touch)
+    // drag(obj) {
+    //   obj.addEventListener("touchstart", function (event) {
+    //     event = event || window.event;
+
+    //     var ol = event.touches[0].clientX - obj.offsetLeft;
+    //     var ot = event.touches[0].clientY - obj.offsetTop;
+
+    //     obj.addEventListener("touchmove", function (event) {
+    //       event = event || window.event;
+
+    //       var left = event.touches[0].clientX - ol;
+    //       var top = event.touches[0].clientY - ot;
+
+    //       obj.style.left = left + "px";
+    //       obj.style.top = top + "px";
+    //     });
+
+    //     obj.addEventListener("touchend", function () {
+    //       obj.removeEventListener("touchmove");
+    //       obj.removeEventListener("touchend");
+    //     });
+
+    //     event.preventDefault();
+    //   });
+    // },
+
+
+    // 圖片拖曳(mouse)
+    drag(obj) {
+      // obj.preventDefault();
+      obj.onmousedown = function (event) {
+        event = event || window.event;
+
+        var ol = event.clientX - obj.offsetLeft;
+        var ot = event.clientY - obj.offsetTop;
+
+        document.onmousemove = function (event) {
+          event = event || window.event;
+
+          var left = event.clientX - ol;
+          var top = event.clientY - ot;
+
+          obj.style.left = left + "px";
+          obj.style.top = top + "px";
+        };
+
+        document.onmouseup = function () {
+          document.onmousemove = null;
+
+          document.onmouseup = null;
+        };
+
+        return false;
+      };
+    },
+
+    remove(e) {
+      let setThis = e.target.parentNode;
+      // console.log(setThis.lastChild);
+      setThis.removeChild(setThis.childNodes[1]);
+    },
   },
+
   created() {
     this.getResource();
   },
-
-  //複製圖片
-  copy(e) {
-    var panel = document.getElementById("panel");
-    var new_item = document.createElement("div");
-    new_item.className = "item";
-    var image = document.createElement("img");
-    image.src = e.currentTarget.src;
-    new_item.appendChild(image);
-    panel.appendChild(new_item);
-    this.drag(new_item);
-  },
-
-  remove(e) {
-    let setThis = e.target.parentNode;
-    // console.log(setThis.lastChild);
-    setThis.removeChild(setThis.childNodes[1]);
-  },
-
-  //圖片拖曳
-  drag(obj) {
-    // obj.preventDefault();
-    obj.ontouchstart = function (event) {
-      event = event || window.event;
-
-      var ol = event.clientX - obj.offsetLeft;
-      var ot = event.clientY - obj.offsetTop;
-
-      document.ontouchmove = function (event) {
-        event = event || window.event;
-
-        var left = event.clientX - ol;
-        var top = event.clientY - ot;
-
-        obj.style.left = left + "px";
-        obj.style.top = top + "px";
-      };
-
-      document.ontouchend = function () {
-        document.ontouchmove = null;
-
-        document.ontouchend = null;
-      };
-
-      return false;
-    };
-  },
-
-  //   drag(obj) {
-  //     obj.onmousedown = function (event) {
-  //       event = event || window.event;
-
-  //       var ol = event.clientX - obj.offsetLeft;
-  //       var ot = event.clientY - obj.offsetTop;
-
-  //       document.onmousemove = function (event) {
-  //         event = event || window.event;
-
-  //         var left = event.clientX - ol;
-  //         var top = event.clientY - ot;
-
-  //         obj.style.left = left + "px";
-  //         obj.style.top = top + "px";
-  //       };
-
-  //       document.onmouseup = function () {
-  //         document.onmousemove = null;
-
-  //         document.onmouseup = null;
-  //       };
-
-  //       return false;
-  //     };
-  //   },
-  // },
 };
 </script>
 
@@ -203,7 +208,7 @@ export default {
 
 #wrap2 {
   width: 100%;
-  height: auto;
+  height: 20%;
   border: 1px solid gray;
   display: flex;
   flex-wrap: wrap;

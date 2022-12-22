@@ -1,7 +1,6 @@
 <?php
 // 前台 判斷會員登入狀態，若已登入 => 取得 SESSION 中的會員資料，
 //     尚未登入 => 傳送錯誤訊息
-    session_start();
     header('Access-Control-Allow-Origin:*');
     header("Content-Type:application/json;charset=UTF-8");
     $errMsg = "";

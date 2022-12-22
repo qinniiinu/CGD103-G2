@@ -18,7 +18,7 @@
 				</div>
 			</div>
 			<div class="stylist">
-				<img src="../../../public/stylist-headPic.png" alt="">
+				<img src="../../../public/pic/stylist-headPic.png" alt="">
 				<div class="text">
 					<h3>造型師 Ian</h3>
 					<p>擁有五年資歷的Ian，擅長街頭風格......</p>
@@ -103,28 +103,28 @@
 				},
 
 				productPics:[
-					{src:'/look-info-pic1.png'},
-					{src:'/look-info-pic2.png'},
-					{src:'/look-info-pic3.png'},
-					{src:'/look-info-pic4.png'},
-					{src:'/look-info-pic5.png'},
+					{src:'look/look-info-pic1.png'},
+					{src:'look/look-info-pic2.png'},
+					{src:'look/look-info-pic3.png'},
+					{src:'look/look-info-pic4.png'},
+					{src:'look/look-info-pic5.png'},
 				],
 				products:[
-					{id:501,color:'brown',size:'s',src:'/look-item-1.png',title:'合身剪裁長版大衣',text:'一件剪裁考究的外套，可以根據您的著裝和溫度，將衣領向上或向下穿著',price:5590},
-					{id:502,color:'beige',size:'s',src:'/look-item-2.png',title:'簡約條紋襯衫',text:'舒適的棉質襯衫。設計點是清新的條紋圖案',price:1990},
-					{id:503,color:'beige',size:'s',src:'/look-item-3.png',title:'平紋針織高喬褲',text:'通過排列環，您可以享受直線和曲線的輪廓',price:1290},
-					{id:504,color:'black',size:'s',src:'/look-item-4.png',title:'時尚短靴',text:'從材料到細節，我們都非常注重細節，以實現舒適性和高設計性。',price:3990},
+					{id:501,color:'brown',size:'s',src:'/product/look-item-1.png',title:'合身剪裁長版大衣',text:'一件剪裁考究的外套，可以根據您的著裝和溫度，將衣領向上或向下穿著',price:5590},
+					{id:502,color:'beige',size:'s',src:'/product/look-item-2.png',title:'簡約條紋襯衫',text:'舒適的棉質襯衫。設計點是清新的條紋圖案',price:1990},
+					{id:503,color:'beige',size:'s',src:'/product/look-item-3.png',title:'平紋針織高喬褲',text:'通過排列環，您可以享受直線和曲線的輪廓',price:1290},
+					{id:504,color:'black',size:'s',src:'/product/look-item-4.png',title:'時尚短靴',text:'從材料到細節，我們都非常注重細節，以實現舒適性和高設計性。',price:3990},
 				],
 				cols:[
-					{src:'/look-1.jpg',ootdName:'OOTD-001',tag:['#上班穿搭','＃沙漏形'],id:'01'},
-					{src:'/look-2.jpg',ootdName:'OOTD-002',tag:['#約會穿搭','＃蘋果形'],id:'02'},
-					{src:'/look-3.jpg',ootdName:'OOTD-003',tag:['#上課穿搭','＃蘋果形'],id:'03'},
-					{src:'/look-4.jpg',ootdName:'OOTD-004',tag:['#上課穿搭','＃蘋果形'],id:'04'},
-					{src:'/look-5.jpg',ootdName:'OOTD-005',tag:['#開會穿搭','＃蘋果形'],id:'05'},
-					{src:'/look-6.jpg',ootdName:'OOTD-006',tag:['#旅行穿搭','＃蘋果形'],id:'06'},
-					{src:'/look-7.jpg',ootdName:'OOTD-007',tag:['#趴踢穿搭','＃蘋果形'],id:'07'},
-					{src:'/look-8.jpg',ootdName:'OOTD-008',tag:['#宴會穿搭','＃蘋果形'],id:'08'},
-					{src:'/look-9.jpg',ootdName:'OOTD-009',tag:['#運動穿搭','＃蘋果形'],id:'09'},
+					{src:'/look/look-1.jpg',ootdName:'OOTD-001',tag:['#上班穿搭','＃沙漏形'],id:'01'},
+					{src:'/look/look-2.jpg',ootdName:'OOTD-002',tag:['#約會穿搭','＃蘋果形'],id:'02'},
+					{src:'/look/look-3.jpg',ootdName:'OOTD-003',tag:['#上課穿搭','＃蘋果形'],id:'03'},
+					{src:'/look/look-4.jpg',ootdName:'OOTD-004',tag:['#上課穿搭','＃蘋果形'],id:'04'},
+					{src:'/look/look-5.jpg',ootdName:'OOTD-005',tag:['#開會穿搭','＃蘋果形'],id:'05'},
+					{src:'/look/look-6.jpg',ootdName:'OOTD-006',tag:['#旅行穿搭','＃蘋果形'],id:'06'},
+					{src:'/look/look-7.jpg',ootdName:'OOTD-007',tag:['#趴踢穿搭','＃蘋果形'],id:'07'},
+					{src:'/look/look-8.jpg',ootdName:'OOTD-008',tag:['#宴會穿搭','＃蘋果形'],id:'08'},
+					{src:'/look/look-9.jpg',ootdName:'OOTD-009',tag:['#運動穿搭','＃蘋果形'],id:'09'},
 						
 				],
 				lookmain:'',

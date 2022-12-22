@@ -29,10 +29,10 @@
 		<h2>風格測驗</h2>
 		<div class="wrap">
 			
-			<StyleCard content="時尚風" link="./fashion2-1.png"/>
-			<StyleCard content="極簡風" link="./minimalist2-1.png"/>
-			<StyleCard content="運動風" link="./sport2-1.png"/>
-			<StyleCard content="文青風" link="./hipster2-1.png"/>
+			<StyleCard content="時尚風" link="./pic/fashion2-1.png"/>
+			<StyleCard content="極簡風" link="./pic/minimalist2-1.png"/>
+			<StyleCard content="運動風" link="./pic/sport2-1.png"/>
+			<StyleCard content="文青風" link="./pic/hipster2-1.png"/>
 			<p>
 				不確定自己適合哪種風格嗎 ? 
 				<br>
@@ -132,18 +132,18 @@ export default {
     	return {
 			logoText:'RE:Outfit  ',
 			stylistPics:[
-				{src:'./stylist-8.jpg'},
-				{src:'./stylist-4.jpg'},
-				{src:'./stylist-5.jpg'},
-				{src:'./stylist-6.jpg'},
-				{src:'./stylist-7.jpg'},
-				{src:'./stylist-3.jpg'},
+				{src:'./pic/stylist-8.jpg'},
+				{src:'./pic/stylist-4.jpg'},
+				{src:'./pic/stylist-5.jpg'},
+				{src:'./pic/stylist-6.jpg'},
+				{src:'./pic/stylist-7.jpg'},
+				{src:'./pic/stylist-3.jpg'},
 			],
 			styleTypes:[
-				{src:'./style_type1.jpg',text:'#野營Outdoor風'},
-				{src:'./style_type2.jpg',text:'#都會休閒風'},
-				{src:'./style_type3.jpg',text:'#居家健身風'},
-				{src:'./style_type4.jpg',text:'#登山Outdoor風'},
+				{src:'./look/style_type1.jpg',text:'#野營Outdoor風'},
+				{src:'./look/style_type2.jpg',text:'#都會休閒風'},
+				{src:'./look/style_type3.jpg',text:'#居家健身風'},
+				{src:'./look/style_type4.jpg',text:'#登山Outdoor風'},
 			],
 		}
 	}
@@ -155,7 +155,7 @@ export default {
 	width: 100%;
 	// margin-top:60px ;
 	height: 100vh;
-	background-image:url("../../public/cover-photo.jpg");
+	background-image:url("../../public/pic/cover-photo.jpg");
 	background-size: cover;
 	background-position: center;
 	position: relative;

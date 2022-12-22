@@ -150,8 +150,8 @@ export default {
 			],
 			times:[
 				{id:'time10',item:'10:00',era:'上午',id2:'time11',item2:'11:00'},
-				{id:'time14',item:'02:00',era:'下午',id2:'time15',item2:'03:00'},
-				{id:'time19',item:'07:00',era:'晚上',id2:'time20',item2:'08:00'},
+				{id:'time14',item:'14:00',era:'下午',id2:'time15',item2:'15:00'},
+				{id:'time19',item:'19:00',era:'晚上',id2:'time20',item2:'20:00'},
 				
 				
 				
@@ -271,7 +271,7 @@ export default {
 				})
         },
 		insert() {
-			console.log(this.qaBtncheck.toString());
+			// console.log(this.qaBtncheck.toString());
 			const payload={
 				appointment_date:this.date,
 				appointment_time:this.qatime,
@@ -282,13 +282,8 @@ export default {
 				method:'post',
 				body:new URLSearchParams(payload)
 			})
-			// .then((response) => {
-			// 	return response.json();
-			// })
-			// .then((data)=>{
-			// 	console.log(data);
-			// })
-			// .catch((error) =>{console.log(error);})
+			// .then(response=>console.log(response));
+
 
 
 			/* let xhr = new XMLHttpRequest();

@@ -4,22 +4,20 @@
     header('Access-Control-Allow-Origin:*');
     header("Content-Type:application/json;charset=utf-8");
     try{
-        if(isset($_SESSION['member'])){
-            require_once("../connectBooks.php");
-            $sql = "SELECT v.*
-            FROM member m JOIN vip_level v ON m.level_id=v.level_id where m.mem_id=:mem_id
-            ORDER BY level_id ASC;";
-            $errMsg = "";
-        }
-        
+        require_once("../connectBooks.php");
+        $sql = "SELECT v.*
+        FROM member m JOIN vip_level v ON m.level_id=v.level_id where m.mem_id=:mem_id
+        ORDER BY level_id ASC;";
+        $errMsg = "";
+        $member_id = $_SESSION['member']['mem_id'];
+        $level = $pdo->prepare($sql); //先編譯好
+        $level->bindValue(":mem_id", $member_id); //代入資料
+        $level->execute(); //執行之
+        $levelRow = $level->fetch(PDO::FETCH_ASSOC);
+        echo json_encode($levelRow);
+    } catch (PDOException $e) {
+        $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
+        $errMsg .= "行號 : ".$e -> getLine()."<br>";
+        echo json_encode(["msg"=>$errMsg]);
     }
-
-
-$memSub = $pdo->query($sql);
-$memSubRow = $memSub->fetchAll(PDO::FETCH_ASSOC);
-$data = [];
-foreach ($memSubRow as $i => $page) {
-    $data[] = $page;
-}
-echo json_encode($data);
 ?>
