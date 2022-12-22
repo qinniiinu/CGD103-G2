@@ -14,14 +14,14 @@
                 <li
                     @click="go('0')"
                     @mouseenter="hoverList('0')"
-                    :class="{ blod: selected[0] == 0 }"
+                    :class="{ blod: $route.query.G == 0 }"
                 >
                     女裝
                 </li>
                 <li
                     @click="go('1')"
                     @mouseenter="hoverList('1')"
-                    :class="{ blod: selected[0] == 1 }"
+                    :class="{ blod: $route.query.G == 1 }"
                 >
                     男裝
                 </li>
