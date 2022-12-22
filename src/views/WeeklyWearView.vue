@@ -81,13 +81,23 @@
 
       <div class="imgbox">
         <transition-group class="left" name="slideDown">
+          <!-- <img
+            :src="require(`@/assets/weeklywear_pic/${e.weeklywear_pic}`)"
+            v-for="e in weeklywear"
+            class="items"
+            :key="e.weeklywear_pic_id"
+          /> -->
+
+          
           <img
             class="img_left"
-            v-if="picked === 'Mon'"
-            src="../assets/weeklywear_pic/female02.jpg"
-            alt="女裝01"
+            v-for="e in weeklywear"
+            :key="e.weeklywear_id"
+            :src="require(`@/assets/weeklywear_pic/${e.weeklywear_pic}`)"
           />
-          <img
+
+
+          <!--<img
             class="img_left"
             v-if="picked === 'Tue'"
             src="../assets/weeklywear_pic/female03.jpg"
@@ -116,7 +126,7 @@
             v-if="picked === 'End'"
             src="../assets/weeklywear_pic/female06.jpg"
             alt="女裝01"
-          />
+          /> -->
         </transition-group>
 
         <transition-group class="right" name="slideUp">
@@ -268,14 +278,17 @@
  
 <script>
 import BreadCrumbs from "@/components/BreadCrumbs.vue";
+import { BASE_URL } from "../assets/js/common.js";
+
 export default {
   name: "",
   components: {
-    BreadCrumbs, 
+    BreadCrumbs,
   },
 
   data() {
     return {
+      weeklywear: [],
       Wed: true,
       Mon: false,
       Tue: false,
@@ -284,6 +297,20 @@ export default {
       End: false,
       picked: "Wed",
     };
+  },
+
+  methods: {
+    getResource() {
+      this.axios.get(`${BASE_URL}/WeeklyWear.php`).then((response) => {
+        this.weeklywear = response.data;
+
+        console.log(this.weeklywear);
+      });
+    },
+  },
+
+  created() {
+    this.getResource();
   },
 };
 </script>
@@ -495,8 +522,6 @@ export default {
   }
 }
 
-
-  
 //  ============================ 手機 ============================
 @media screen and (max-width: 767px) {
   .weeklywear {

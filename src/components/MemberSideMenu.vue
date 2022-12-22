@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { BASE_URL } from "@/assets/js/common.js";
+// import { BASE_URL } from "@/assets/js/common.js";
 import axios from 'axios';
 export default {
 	name: "MemberSideMenu",
@@ -68,11 +68,23 @@ export default {
     methods:{
 
     },
-    mounted(){
+    created(){
         // axios.get(`api_server/memberInfo.php`)
         axios.get('/api_server/memberInfo.php')
         .then(res =>this.member = res.data)
         .catch(error =>console.log(error));
+
+        // fetch('/api_server/memberInfo.php',{
+        // method: "get"
+        // })
+        // .then((response) => {
+        //     return response.json();
+        // })
+        // .then((data) =>{
+        //     console.log(data)
+        //     this.member = data})
+        // .catch(error =>console.log(error));
+
     }
 }
 </script>

@@ -11,8 +11,8 @@ try {
                                      JOIN style s on(m.style_id=s.style_id)
                                      JOIN vip_level vl on(m.level_id=vl.level_id)
         where m.mem_id=:mem_id;";
-
         $member_id = $_SESSION['member']['mem_id']; // 抓出 SESSION 中已登入者的 mem_id
+
         $member = $pdo->prepare($sql); //先編譯好
         $member->bindValue(":mem_id", $member_id); //代入資料
         $member->execute(); //執行之
