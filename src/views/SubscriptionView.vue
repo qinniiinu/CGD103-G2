@@ -11,16 +11,16 @@
         </div>
     </div>
     <div class="sub-plan">
-        <div class="subcard" v-for="sub in subinfo" :key="sub.level">
+        <div class="subcard" v-for="sub in vip_level" :key="sub.level">
             <div class="card-wrap">
                 <div class="card-content">
-                    <div class="level">#{{sub.level}}</div>
+                    <div class="level">#{{sub.level_name}}</div>
                     <h2>NT$<span>{{sub.price}}</span>/月</h2>
                     <p>
                         <font-awesome-icon icon="fa-solid fa-check" />
                         每月專屬搭配<span>1</span>套
                     </p>
-                    <span>{{sub.monthSet}}</span>
+                    <span>{{sub.set_info}}</span>
                     <p>
                         <font-awesome-icon icon="fa-solid fa-check" />
                         每月諮詢造型師<span>{{sub.monthConsult}}</span>次
@@ -38,28 +38,9 @@
             </div>
         </div>
     </div>
-    <!-- <div class="sub-intro">
-        <div class="intro-wrap">
-            <div class="circle">
-                <div class="circle-wrap">
-                    <h2>風格穿搭</h2>
-                    <p>aaa</p>
-                </div>
-                
-            </div>
-            <div class="intro">
-                <div class="intro-card">
-                    
-                    <h2>專屬穿搭</h2>
-                </div>
-            </div>
-        </div>
-    </div> -->
 </template>
 
 <script>
-import {subinfo} from'@/assets/config/setting.js'
-import {vip_level} from'@/assets/config/setting.js'
 export default {
     name: "Subscription",
     components: {
@@ -67,13 +48,12 @@ export default {
     },
     data(){
 		return{
-            subinfo:subinfo,
-			vip_level:vip_level,
+			vip_level:[],
             subscribe:[],
 		}
 	},
 	created(){
-		
+		this.getResource();
 	},
 	computed:{
 		
@@ -82,9 +62,10 @@ export default {
         setStorage(index,sub){
             console.log(sub);
             this.subscribe.push({
-                level:sub.level,
+                level:sub.level_name,
                 price:sub.price,
                 monthSet:sub.monthSet,
+                set_info:sub.set_info,
                 monthConsult:sub.monthConsult,
                 freeShipping:sub.freeShipping,
                 specialOffer:sub.specialOffer
@@ -92,7 +73,13 @@ export default {
             const data=JSON.stringify(this.subscribe);
             console.log(data);
             localStorage.setItem('subscribe',data);
-        }
+        },
+        getResource() {
+            this.axios.get("/api_server/vip_level.php").then((response) => {
+                this.vip_level= response.data;
+				console.log(this.vip_level);
+            });
+        },
 	}
 };
 </script>
@@ -112,7 +99,7 @@ export default {
                     transparent 40%
                 )
                 left bottom,
-            url(../assets/sub_test_img/test_03.png) no-repeat fixed left top;
+            url(/public/pic/subpageimg.png) no-repeat fixed left top;
         background-color: RGB(245, 245, 245);
         
         .left {
