@@ -52,27 +52,27 @@
 							<li class="total_money">訂單總額$12666</li>
 						</div>
 					</div>
-		</div>
+		    </div>
 
-			<div class="ord_msg">
+			<div v-for="e in order_qa" :key="e.meg_id" class="ord_msg">
 				<h2 class="ord_title">訂單留言</h2>
 				<div class="ord_msg_box">
 					<div class="msg_title">
 						<h4>你的留言紀錄</h4> 
-						<div class="msg_time">留言時間：20201231 23:59</div>
+						<div class="msg_time">留言時間：{{e.meg_time}}</div>
 					</div>
 					<h3>
-						我希望可以多了解一下自己的穿衣風格
+						{{e.meg_cont}}
 					</h3>
 					
 				</div>
 				<div class="ord_msg_box">
 					<div class="msg_title">
 						<h4>客服回覆狀態</h4> 
-						<div class="msg_time">回覆時間：20201231 23:59</div>
+						<div class="msg_time">回覆時間：{{e.meg_time}}</div>
 					</div>
 					<h3>
-						你打扮的已經不錯了，但是從我的角度，你可以再做以下幾點修正<div class=""></div>
+						{{e.meg_cont}}
 					</h3>
 				</div>
 				<div class="ord_msg_box">
@@ -107,6 +107,7 @@ export default {
 		return{
 			orders:[],
 			order_item:[],//要符合資料庫表單名稱
+			order_qa:[],
 
 		}
 	},
@@ -116,6 +117,7 @@ export default {
 			console.log(response.data);
 			this.orders = response.data;
 			this.order_item = response.data;
+			this.order_qa = response.data;
             });
         },
 	},

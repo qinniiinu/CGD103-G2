@@ -7,8 +7,11 @@ require_once("../connectBooks.php");
 
 
 $sql = "SELECT *
-FROM orders o JOIN order_item i ON o.order_id=i.order_id;
--- WHERE order_id = 101";
+FROM (orders INNER JOIN order_item  ON orders.order_id= order_item.order_id)
+INNER JOIN order_qa
+ON orders.order_id=order_qa.order_id
+;";
+
 
 
 $memSub = $pdo->query($sql);

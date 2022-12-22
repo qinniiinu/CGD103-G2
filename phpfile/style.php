@@ -7,7 +7,7 @@ $errMsg = "";
 try {
   
         require_once("../connectBooks.php");
-        $sql = "SELECT s.style_name from member m
+        $sql = "SELECT s.style_name,s.style_descrip from member m
         JOIN style s on(m.style_id=s.style_id)
         where m.mem_id=:mem_id;";
 
