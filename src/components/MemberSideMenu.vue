@@ -69,7 +69,7 @@ export default {
 
     },
     mounted(){
-        // axios.get(`${BASE_URL}/memberInfo.php`)
+        // axios.get(`api_server/memberInfo.php`)
         axios.get('/api_server/memberInfo.php')
         .then(res =>this.member = res.data)
         .catch(error =>console.log(error));

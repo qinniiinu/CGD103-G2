@@ -26,7 +26,7 @@ $errMsg = "";
 
 if (isset($_SESSION['member'])) { // 若會員已登入
     require_once("../connectBooks.php");
-    $member_id = $_SESSION['member'][0]; //
+    $member_id = $_SESSION['member']['mem_id']; //
     $appointment_date=$_REQUEST['appointment_date'];
     $appointment_time=$_REQUEST['appointment_time'];
     $appointment_qa=$_REQUEST['appointment_qa'];

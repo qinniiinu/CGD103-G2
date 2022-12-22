@@ -97,10 +97,10 @@ export default {
 				'不知道要買什麼衣服',
 			],
 			consultPics:[
-				{src:'/trouble_pic1.jpg'},
-				{src:'/trouble_pic2.jpg'},
-				{src:'/trouble_pic3.jpg'},
-				{src:'/trouble_pic4.jpg'},
+				{src:'/pic/trouble_pic1.jpg'},
+				{src:'/pic/trouble_pic2.jpg'},
+				{src:'/pic/trouble_pic3.jpg'},
+				{src:'/pic/trouble_pic4.jpg'},
 			],
 			consultText:[
 				'建立基本風格確實需要勇氣，同時也要對現今的自己有正確的接納與理解。除了自己的風格，也必須認識其他的品味。',
@@ -115,12 +115,12 @@ export default {
 				'日常練習',
 			],
 			stylistPics:[
-				{src:'./stylist-8.jpg'},
-				{src:'./stylist-4.jpg'},
-				{src:'./stylist-5.jpg'},
-				{src:'./stylist-6.jpg'},
-				{src:'./stylist-7.jpg'},
-				{src:'./stylist-3.jpg'},
+				{src:'./pic/stylist-8.jpg'},
+				{src:'./pic/stylist-4.jpg'},
+				{src:'./pic/stylist-5.jpg'},
+				{src:'./pic/stylist-6.jpg'},
+				{src:'./pic/stylist-7.jpg'},
+				{src:'./pic/stylist-3.jpg'},
 			],
 			consultTag:[
 				'SELF-RECOGNITION',
