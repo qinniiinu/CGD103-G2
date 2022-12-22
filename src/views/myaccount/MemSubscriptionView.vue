@@ -98,6 +98,7 @@ export default {
 	},
 	created(){
 		this.getResource();
+		// console.log(window.matchmedia("min-width:768px"));
 	},
 	computed:{
 		
@@ -124,7 +125,7 @@ export default {
 		getResource() {
             this.axios.get("/api_server/subscription.php").then((response) => {
                 this.memSub= response.data;
-				// console.log(this.memSub);
+				console.log(this.memSub);
             });
             this.axios.get("/api_server/vip_level.php").then((response) => {
                 this.vip_level= response.data.discount;
