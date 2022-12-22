@@ -14,24 +14,24 @@
 				<div class="buyer">
 					<h4>購買人資訊</h4>
 					<p>姓名</p>
-					<input class="memName" type="text" v-model="mem_name">
+					<input class="memName" type="text" v-model="memInfo.mem_name">
 					<p>連絡電話</p>
-					<input class="phone" type="text" v-model="phone">
+					<input class="phone" type="text" v-model="memInfo.phone">
 					<p>電子信箱</p>
-					<input class="email" type="text" v-model="mem_mail">
+					<input class="email" type="text" v-model="memInfo.mem_mail">
 					<p>聯絡地址</p>
-					<input class="address" type="text" v-model="address">
+					<input class="address" type="text" v-model="memInfo.address">
 				</div>
 				<div class="receiver">
 					<h4>收件人資訊</h4>
 					<p>姓名</p>
-					<input class="mem_name" type="text" v-model="mem_name1">
+					<input class="mem_name" type="text" v-model="inner">
 					<p>連絡電話</p>
-					<input class="phone" type="text" v-model="phone1">
+					<input class="phone" type="text" v-model="inner">
 					<p>電子信箱</p>
-					<input class="email" type="text" v-model="mem_mail1">
+					<input class="email" type="text" v-model="inner">
 					<p>配送地址</p>
-					<input class="receive-address" v-model="address1">
+					<input class="receive-address" v-model="inner">
 					<label class="same" for="same"><input type="checkbox" id="same" @click="check()" >同購買人資訊</label>
 				</div>
 				<div class="payment">
@@ -56,7 +56,7 @@
                                 <font-awesome-icon icon="fa-solid fa-check" />
                                 每月專屬搭配<span>1</span>套
                             </p>
-                            <span>{{detail.monthSet}}</span>
+                            <span>{{detail.set_info}}</span>
                             <p>
                                 <font-awesome-icon icon="fa-solid fa-check" />
                                 每月諮詢造型師<span>{{detail.monthConsult}}</span>次
@@ -76,26 +76,6 @@
             <div class="detail" v-for="detail in subscribe" :key="detail">
                 <div>總計: ${{detail.price}}元</div>
             </div>
-			<!-- <div class="list-wrap">
-				<div class="items">
-				<div class="item" v-for="item in order" :key="item.id">
-					<div class="product">
-						<img :src="item.image" v-bind:alt="item.title">
-						<div class="prod-detail">
-							<p>{{item.title}}</p>
-							<div class="spec">
-								<p>{{item.color}}</p>
-								<p>{{item.size}}</p>
-								<p>${{item.price*item.count}}元</p>
-							</div>
-						</div>
-					</div>
-					<div class="count">
-						<p>x{{item.count}}</p>
-					</div>
-				</div>
-				</div>-->
-            
 		</div>	
 	</div>
 </template>
@@ -114,6 +94,7 @@ export default {
 			count:[],
 			min:0,
 			max:0,
+			inner:'',
 			memId:"a001",
 			mem_name:"王小明",
 			phone:"0912345678",
@@ -125,12 +106,13 @@ export default {
 			address1:"",
 			vip_level:vip_level,
             subinfo:subinfo,
-            subscribe:[]
+            subscribe:[],
+			memInfo:[]
 		}
 	},
 	created(){
 		this.getStorage();
-        // window.addEventListener('beforeunload', e => this.beforeUnload(e))
+		this.getResource();
 	},
 	computed:{
 		
@@ -139,17 +121,18 @@ export default {
 		check(){
 			this.isChecked = !this.isChecked;
 			console.log(this.isChecked);
-			if(this.isChecked == true){
-				this.mem_name1 = this.mem_name;
-				this.phone1 = this.phone;
-				this.mem_mail1 = this.mem_mail;
-				this.address1 = this.address;
-				console.log(this.mem_name1);
-			}else{
-				this.mem_name1 = "";
-				this.phone1 = "";
-				this.mem_mail1 = "";
-				this.address1 = "";
+			if(this.isChecked==false){
+				inner=memInfo.mem_name;
+				inner=memInfo.phone;
+				inner=memInfo.mem_mail;
+				inner=memInfo.address;
+				// console.log(this.mem_name1);
+			}
+			else{
+				memInfo.mem_name= "1";
+				memInfo.phone= "1";
+				memInfo.mem_mail = "1";
+				memInfo.address= "1";
 			}
 		},
 		getStorage(){
@@ -158,17 +141,13 @@ export default {
 			this.subscribe=data? data:[]
             console.log(this.subscribe);
         },
-    //     beforeUnload(){
-    //     console.log('刷新或关闭');
-    //     }
-	// },
-    // beforeDestroy() {
-        
-    // },
-    // destoryed(){
-    //     window.removeEventListener('beforeunload', e => this.beforeUnload(e))
-    // }
-    }
+		getResource() {
+            this.axios.get("/api_server/memberinfo.php").then((response) => {
+                this.memInfo= response.data;
+				console.log(this.memInfo);
+            });
+    	}
+	}
 }
 </script>
 <style lang="scss" scoped>

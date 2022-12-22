@@ -5,8 +5,11 @@
     header("Content-Type:application/json;charset=utf-8");
     try{
         require_once("../connectBooks.php");
-        $sql = "SELECT v.*
-        FROM member m JOIN vip_level v ON m.level_id=v.level_id where m.mem_id=:mem_id
+        $sql = "SELECT v.*, o.sub_time,o.sub_deadline
+        FROM member m
+        JOIN vip_level v ON m.level_id=v.level_id
+        JOIN vip_orders o ON m.level_id=o.level_id
+        where m.mem_id=:mem_id
         ORDER BY level_id ASC;";
         $errMsg = "";
         $member_id = $_SESSION['member']['mem_id'];
