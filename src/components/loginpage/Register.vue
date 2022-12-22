@@ -12,7 +12,7 @@
           <input type="text" v-model="mem_mail" @blur="validateEmail" required />
           <label for="">電子郵件</label>
         </div>
-        <div class="exists">此帳號已註冊</div>
+        <div :class="{emailExists:emailExists}">此帳號已註冊</div>
         <div class="input_group">
           <input
             type="password"
@@ -221,11 +221,12 @@ export default {
       hip: "", //臀圍
       clothes: "", // 衣長
       pants: "", //褲長
-      // 註冊 身形建置 切換
-      goType: false,
+      goType: false, // 切換註冊 / 身形建置
+      emailExists:false // email 是否已註冊
     };
   },
   methods: {
+    // 合併日期
     combineDate() {
       const year = this.bday_y;
       const month = this.bday_m;
@@ -234,6 +235,7 @@ export default {
       console.log("---", bday);
       return bday;
     },
+    // 送出登入表單
     handleSubmit() {
       let formData = new FormData();
       formData.append("mem_mail", this.mem_mail);
@@ -264,9 +266,15 @@ export default {
         .then((data) => console.log(data))
         .catch((error) => console.log(error));
     },
+    // 前往身形建置
     gotype() {
       this.goType = true;
     },
+    // 帳號已註冊，出現 div，且無法送出
+    emailExists() {
+      emailExists=true; // email 是否已註冊
+    }, 
+    // email 是否已註冊
     validateEmail(){
       let formData = new FormData();
       formData.append("mail", this.mem_mail);
@@ -278,7 +286,12 @@ export default {
         .then((response) => {
           return response.json();
         })
-        .then((data) => console.log(data))
+        .then((data) =>{ 
+        console.log(data)
+        if (data.emailExists) {
+          emailExists();
+        }
+        })
         .catch((error) => console.log(error));
     }
   },
