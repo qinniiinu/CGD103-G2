@@ -1,13 +1,13 @@
 <?php
-// 取得已登入會員 身形 body、風格 style、訂閱等級 vip_level、
 session_start();
 header('Access-Control-Allow-Origin:*');
 header("Content-Type:application/json;charset=UTF-8");
 $errMsg = "";
 try {
     if (isset($_SESSION['member'])) { // 若會員已登入
+        // 取得已登入會員 身形 body、風格 style、訂閱等級 vip_level、
         require_once("../connectBooks.php");
-        $sql = "SELECT m.*, b.*, s.*, vl.* from member m JOIN body b on(m.body_id=b.body_id) 
+        $sql = "SELECT m.*, b.*, s.*, vl.* from member m JOIN body b on(m.body_id=b.body_id)  
                                      JOIN style s on(m.style_id=s.style_id)
                                      JOIN vip_level vl on(m.level_id=vl.level_id)
         where m.mem_id=:mem_id;";
@@ -28,5 +28,6 @@ try {
     $errMsg .= "行號 : ".$e -> getLine()."<br>";
     echo json_encode(["msg"=>$errMsg]);
 }
+
 ?>
 

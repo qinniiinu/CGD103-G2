@@ -62,17 +62,29 @@ export default {
                 // mem_name:"王曉明",
                 // level_id: "101",
             },
-            body:{}
+            // body:{}
         }
     },
     methods:{
 
     },
+<<<<<<< HEAD
     mounted(){
         // axios.get(`${BASE_URL}/memberInfo.php`)
         axios.get('/api_server/memberInfo.php')
         .then(res =>this.member = res.data)
         .catch(error =>console.log(error));
+=======
+    created(){
+        axios.get(`${BASE_URL}/memberInfo.php`)
+        .then(res =>this.member = res.data)
+        .catch(error =>console.log(error))
+
+        // axios.get(`${BASE_URL}/memberInfo.php`)
+        // // .then(res => console.log(res))
+        // .then(res =>this.member = res.data)
+        // .catch(error =>console.log(error))
+>>>>>>> Jasmine
     }
 }
 </script>
