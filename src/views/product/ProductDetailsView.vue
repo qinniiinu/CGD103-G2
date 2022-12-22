@@ -176,8 +176,7 @@ export default {
         <div class="leftright">
             <div class="left">
                 <div class="bigPic">
-                    <img :src="`pic/${bigPicture}`" />
-                    <!-- <img :src="require(`@/../public/pic/${bigPicture}`)" /> -->
+                    <img :src="`/pic/${bigPicture}`" />
                 </div>
                 <div class="leftDown">
                     <div
@@ -186,7 +185,7 @@ export default {
                         :key="i"
                         @click="changeBicPicture(e)"
                     >
-                        <img :src="`./pic/${e}`" />
+                        <img :src="`/pic/${e}`" />
                     </div>
                 </div>
             </div>
