@@ -1,6 +1,6 @@
 <template>
 	<section class="home_cover">
-		<img class="logo" src="../../public/re_logo.png" alt="">
+		<img class="logo" src="../../public/pic/re_logo.png" alt="">
 		<div class="img_marquee">
 			<div class="img_marquee_item" v-for="(mainImg,index) of mainImgs" :key="index">
 				<img  v-show="mainImg.boolean"  :src="mainImg.src" alt="" @mouseenter="mainImg.boolean = false ; mainImg.hoverboolean = true">
@@ -28,10 +28,10 @@
 		<h2>找尋你的個人風格</h2>
 		<p>嗨~ 你了解自己嗎 ?<br>也許你不知道自己適合什麼，也許你正在尋找新的自我風格，<span>不論你現在處於什麼狀態，讓 RE:Outfit 一起陪你尋找屬於你的<strong>穿搭風格公式</strong>吧!</span></p>
 		<div class="wrap">
-			<StyleCard content="時尚風" link="./fashion2-1.png"/>
-			<StyleCard content="極簡風" link="./minimalist2-1.png"/>
-			<StyleCard content="運動風" link="./sport2-1.png"/>
-			<StyleCard content="文青風" link="./hipster2-1.png"/>
+			<StyleCard content="時尚風" link="./pic/fashion2-1.png"/>
+			<StyleCard content="極簡風" link="./pic/minimalist2-1.png"/>
+			<StyleCard content="運動風" link="./pic/sport2-1.png"/>
+			<StyleCard content="文青風" link="./pic/hipster2-1.png"/>
 			<p>首先，請讓我們更認識你<br>點擊下方開始測驗你的風格</p>
 		</div>
 		<router-link :to="{ name:'QuestionBox' }"><button class="btn_ns">測驗去</button></router-link>
@@ -41,7 +41,7 @@
 		<h2>風格訂閱</h2>
 		<div class="sub_body">
 			<div class="main_pic">
-				<img src="../../public/subStylist.png" alt="">
+				<img src="../../public/pic/subStylist.png" alt="">
 			</div>
 			<h3 class="basic">#BASIC</h3>
 			<h3 class="standard">#STANDARD</h3>
@@ -144,41 +144,41 @@
 		data(){
 			return{
 				mainImgs:[
-					{src:'./img_marquee_1.jpg',boolean:true,hoversrc:'./img_hover_1.jpg',hoverboolean:false},
-					{src:'./img_marquee_2.jpg',boolean:true,hoversrc:'./img_hover_2.jpg',hoverboolean:false},
-					{src:'./img_marquee_3.jpg',boolean:true,hoversrc:'./img_hover_3.jpg',hoverboolean:false},
-					{src:'./img_marquee_4.jpg',boolean:true,hoversrc:'./img_hover_4.jpg',hoverboolean:false},
-					{src:'./img_marquee_5.jpg',boolean:true,hoversrc:'./img_hover_5.jpg',hoverboolean:false},
-					{src:'./img_marquee_6.jpg',boolean:true,hoversrc:'./img_hover_6.jpg',hoverboolean:false},
+					{src:'./pic/img_marquee_1.jpg',boolean:true,hoversrc:'./pic/img_hover_1.jpg',hoverboolean:false},
+					{src:'./pic/img_marquee_2.jpg',boolean:true,hoversrc:'./pic/img_hover_2.jpg',hoverboolean:false},
+					{src:'./pic/img_marquee_3.jpg',boolean:true,hoversrc:'./pic/img_hover_3.jpg',hoverboolean:false},
+					{src:'./pic/img_marquee_4.jpg',boolean:true,hoversrc:'./pic/img_hover_4.jpg',hoverboolean:false},
+					{src:'./pic/img_marquee_5.jpg',boolean:true,hoversrc:'./pic/img_hover_5.jpg',hoverboolean:false},
+					{src:'./pic/img_marquee_6.jpg',boolean:true,hoversrc:'./pic/img_hover_6.jpg',hoverboolean:false},
 				],
 				mainIImgs:[
-					{src:'./img_marquee_4.jpg',boolean:true,hoversrc:'./img_hover_4.jpg',hoverboolean:false},
-					{src:'./img_marquee_5.jpg',boolean:true,hoversrc:'./img_hover_5.jpg',hoverboolean:false},
-					{src:'./img_marquee_2.jpg',boolean:true,hoversrc:'./img_hover_2.jpg',hoverboolean:false},
-					{src:'./img_marquee_1.jpg',boolean:true,hoversrc:'./img_hover_1.jpg',hoverboolean:false},
-					{src:'./img_marquee_6.jpg',boolean:true,hoversrc:'./img_hover_6.jpg',hoverboolean:false},
-					{src:'./img_marquee_3.jpg',boolean:true,hoversrc:'./img_hover_3.jpg',hoverboolean:false},
+					{src:'./pic/img_marquee_4.jpg',boolean:true,hoversrc:'./pic/img_hover_4.jpg',hoverboolean:false},
+					{src:'./pic/img_marquee_5.jpg',boolean:true,hoversrc:'./pic/img_hover_5.jpg',hoverboolean:false},
+					{src:'./pic/img_marquee_2.jpg',boolean:true,hoversrc:'./pic/img_hover_2.jpg',hoverboolean:false},
+					{src:'./pic/img_marquee_1.jpg',boolean:true,hoversrc:'./pic/img_hover_1.jpg',hoverboolean:false},
+					{src:'./pic/img_marquee_6.jpg',boolean:true,hoversrc:'./pic/img_hover_6.jpg',hoverboolean:false},
+					{src:'./pic/img_marquee_3.jpg',boolean:true,hoversrc:'./pic/img_hover_3.jpg',hoverboolean:false},
 				],
 				
 
 
 				productImgs:[
-					{src:'./productImg_1.png',content:'外套'},
-					{src:'./productImg_2.png',content:'西裝外套'},
-					{src:'./productImg_3.png',content:'襯衫'},
-					{src:'./productImg_4.png',content:'長袖'},
-					{src:'./productImg_5.png',content:'短袖'},
-					{src:'./productImg_6.png',content:'長褲'},
-					{src:'./productImg_7.png',content:'配件'},
-					{src:'./productImg_8.png',content:'鞋子'},
+					{src:'./pic/productImg_1.png',content:'外套'},
+					{src:'./pic/productImg_2.png',content:'西裝外套'},
+					{src:'./pic/productImg_3.png',content:'襯衫'},
+					{src:'./pic/productImg_4.png',content:'長袖'},
+					{src:'./pic/productImg_5.png',content:'短袖'},
+					{src:'./pic/productImg_6.png',content:'長褲'},
+					{src:'./pic/productImg_7.png',content:'配件'},
+					{src:'./pic/productImg_8.png',content:'鞋子'},
 				],
 				stylistPics:[
-					{src:'./stylist-8.jpg'},
-					{src:'./stylist-4.jpg'},
-					{src:'./stylist-5.jpg'},
-					{src:'./stylist-6.jpg'},
-					{src:'./stylist-7.jpg'},
-					{src:'./stylist-3.jpg'},
+					{src:'./pic/stylist-8.jpg'},
+					{src:'./pic/stylist-4.jpg'},
+					{src:'./pic/stylist-5.jpg'},
+					{src:'./pic/stylist-6.jpg'},
+					{src:'./pic/stylist-7.jpg'},
+					{src:'./pic/stylist-3.jpg'},
 				],
 			}
 		},
