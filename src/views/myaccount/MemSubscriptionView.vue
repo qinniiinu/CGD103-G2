@@ -55,7 +55,7 @@
 							</p>
 							<p>
 								<font-awesome-icon icon="fa-solid fa-check" />
-								商品<span>{{sub.specialOffer}}</span>折優惠
+								商品<span>{{sub.discount}}</span>折優惠
 							</p>
 							<h3>NT$<span>{{sub.price}}</span>/月</h3>
 							<p>訂閱日:{{sub_time}} </p>
@@ -77,7 +77,6 @@
 
 <script>
 import {subinfo} from'@/assets/config/setting.js'
-import { watch } from '@vue/runtime-core';
 export default {
 	name: "memSubscription",
 	components: {
@@ -99,7 +98,7 @@ export default {
 	},
 	created(){
 		this.getResource();
-		
+		// console.log(window.matchmedia("min-width:768px"));
 	},
 	computed:{
 		
@@ -129,8 +128,16 @@ export default {
 				console.log(this.memSub);
             });
             this.axios.get("/api_server/vip_level.php").then((response) => {
-                this.vip_level= response.data;
-				console.log(this.vip_level);
+                this.vip_level= response.data.discount;
+				console.log(response.data);
+				// console.log(typeof(response.data[0].discount));
+				// console.log(typeof(response.data.discount));
+				// if(this.vip_level.discount){
+				// 	this.vip_level.discount*100
+				// }
+				
+				
+				
             });
 			
         },
