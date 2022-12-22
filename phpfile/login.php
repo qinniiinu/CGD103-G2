@@ -6,14 +6,14 @@
     header("Content-Type:application/json;charset=UTF-8");
 try {
     require_once("../connectBooks.php");
-    $sql = "select * from `member` where mem_mail=:mem_mail and mem_pwd=:mem_pwd;";
+    $sql = "SELECT * from `member` where mem_mail=:mem_mail and mem_pwd=:mem_pwd;";
     $errMsg = "";
     if (isset($_POST['mem_mail']) && isset($_POST['mem_pwd'])) {
         // 使用表單數據
         $mem_mail = $_POST['mem_mail'];
         $mem_pwd = $_POST['mem_pwd'];
 
-        $member = $pdo->prepare( $sql ); //先編譯好
+        $member = $pdo->prepare($sql); //先編譯好
         $member->bindValue(":mem_mail", $mem_mail); //代入資料
         $member->bindValue(":mem_pwd", $mem_pwd);
         $member->execute();//執行之

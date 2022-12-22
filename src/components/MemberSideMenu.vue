@@ -8,7 +8,7 @@
                     </router-link>
                     <div class="name_level">
                         <span class="name">{{ member.mem_name }}</span>
-                        <span class="level">{{ member.level_id }} Account</span>
+                        <span class="level">{{ member.level_name }} Account</span>
                         <router-link to="/MyPage/memSubscription" class="level_up">立即升級</router-link>
                     </div>
                 </div>
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import { BASE_URL } from "@/assets/js/common.js";
 import axios from 'axios';
 export default {
 	name: "MemberSideMenu",
@@ -61,20 +62,21 @@ export default {
                 // mem_name:"王曉明",
                 // level_id: "101",
             },
-            body:{}
+            // body:{}
         }
     },
     methods:{
 
     },
     created(){
-        axios.get('/api_server/member.php')
+        axios.get(`${BASE_URL}/memberInfo.php`)
         .then(res =>this.member = res.data)
         .catch(error =>console.log(error))
 
-        axios.get('/api_server/memberInfo.php')
-        .then(res =>this.body = res.data)
-        .catch(error =>console.log(error))
+        // axios.get(`${BASE_URL}/memberInfo.php`)
+        // // .then(res => console.log(res))
+        // .then(res =>this.member = res.data)
+        // .catch(error =>console.log(error))
     }
 }
 </script>
