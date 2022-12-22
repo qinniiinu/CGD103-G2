@@ -3,4 +3,5 @@
 // 本地端
 export const BASE_URL = 'http://localhost/cgd103_g2_frontend/phpfile'
 
+// MAC用
 // export const BASE_URL = 'http://localhost:8887/cgd103_g2_frontend/phpfile'
