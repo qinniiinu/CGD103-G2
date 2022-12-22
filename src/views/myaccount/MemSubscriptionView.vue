@@ -33,18 +33,18 @@
 			<div v-else class="card-wrap">
 				<div v-if="view===1" class="card-sub">
 					<h2>您的訂閱方案</h2>
-					<p class="memlevel">#{{vip_level[0].level_name}}</p>
+					<p class="memlevel">#{{memSub.level_name}}</p>
 					<button @click="view=2">更改方案</button>
 				</div>
 				<div class="card-wrap" v-if="view===2">
-					<div class="card-v" v-for="sub in subinfo" :key="sub.level">
-						<div class="card-content" :class="{activestyle:isActive(sub.level)}">
-							<h2>#{{sub.level}}</h2>
+					<div class="card-v" v-for="sub in vip_level" :key="sub.level">
+						<div class="card-content" :class="{activestyle:isActive(memsub.level)}">
+							<h2>#{{sub.level_name}}</h2>
 							<p>
 								<font-awesome-icon icon="fa-solid fa-check" />
-								每月專屬搭配<span>1</span>套
+								每月專屬搭配<span>{{sub.monthSet}}</span>套
 							</p>
-							<span>{{sub.monthSet}}</span>
+							<span>{{sub.set_info}}</span>
 							<p>
 							<font-awesome-icon icon="fa-solid fa-check" />
 								每月諮詢造型師<span>{{sub.monthConsult}}</span>次
@@ -55,7 +55,7 @@
 							</p>
 							<p>
 								<font-awesome-icon icon="fa-solid fa-check" />
-								商品<span>{{sub.specialOffer}}</span>折優惠
+								商品<span>{{sub.discount}}</span>折優惠
 							</p>
 							<h3>NT$<span>{{sub.price}}</span>/月</h3>
 							<p>訂閱日:{{sub_time}} </p>
@@ -63,73 +63,6 @@
 							<router-link to="/SubCheckout"><button @click="setStorage(index,sub)">訂閱</button></router-link>
 						</div>
 					</div>
-					<!-- <h2>#BASIC</h2>
-					<p>
-						<font-awesome-icon icon="fa-solid fa-check" />
-						每月專屬搭配一套
-					</p>
-					<span>上身* 1、下身*1、外套*1</span>
-					<p>
-						<font-awesome-icon icon="fa-solid fa-check" />
-						每月諮詢造型師<span>1</span>次
-					</p>
-					<p>
-						<font-awesome-icon icon="fa-solid fa-check" />
-						每月免運費<span>1</span>次
-					</p>
-					<p>
-						<font-awesome-icon icon="fa-solid fa-check" />
-						商品<span>95</span>折優惠
-					</p>
-					<h3>NT$ <span>899</span>/月</h3>
-					<p>訂閱日:{{sub_time}} </p>
-					<p>下次付款日:{{sub_deadline}} </p>
-					<button>已訂閱</button>
-					</div>
-					<div class="card-content">
-					<h2>#STANDARD</h2>
-					<p>
-						<font-awesome-icon icon="fa-solid fa-check" />
-						每月專屬搭配一套
-					</p>
-					<span>上身* 1、下身*1、外套*1</span>
-					<p>
-						<font-awesome-icon icon="fa-solid fa-check" />
-						每月諮詢造型師<span>2</span>次
-					</p>
-					<p>
-						<font-awesome-icon icon="fa-solid fa-check" />
-						每月免運費<span>2</span>次
-					</p>
-					<p>
-						<font-awesome-icon icon="fa-solid fa-check" />
-						商品<span>9</span>折優惠
-					</p>
-					<h3>NT$ <span>1,899</span>/月</h3>
-					<button>立即訂閱</button>
-					</div>
-					<div class="card-content">
-					<h2>#ULTRA</h2>
-					<p>
-						<font-awesome-icon icon="fa-solid fa-check" />
-						每月專屬搭配一套
-					</p>
-					<span>上身* 1、下身*1、外套*1、鞋子*1</span>
-					<p>
-						<font-awesome-icon icon="fa-solid fa-check" />
-						每月諮詢造型師<span>5</span>次
-					</p>
-					<p>
-						<font-awesome-icon icon="fa-solid fa-check" />
-						每月無限次免運費
-					</p>
-					<p>
-						<font-awesome-icon icon="fa-solid fa-check" />
-						商品<span>8</span>折優惠
-					</p>
-					<h3>NT$ <span>3,999</span>/月</h3>
-					<button>立即訂閱</button>
-					</div> -->
 				</div>
 			</div>
 			<button class="cancel" v-if="view===2" @click="memsub=false,view=1">取消訂閱</button>
@@ -144,7 +77,6 @@
 
 <script>
 import {subinfo} from'@/assets/config/setting.js'
-import {vip_level} from'@/assets/config/setting.js'
 export default {
 	name: "memSubscription",
 	components: {
@@ -152,7 +84,7 @@ export default {
 	data(){
 		return{
 			subinfo:subinfo,
-			vip_level:vip_level,
+			vip_level:[],
 			memsub:true,
 			view:1,
 			sub_time:'2022/12/02',
@@ -160,7 +92,8 @@ export default {
 			subscribe:[],
 			active:true,
 			mem_level:'BASIC',
-			meminfo:[]
+			memSub:[],
+			count:"",
 		}
 	},
 	created(){
@@ -178,7 +111,8 @@ export default {
                 monthSet:sub.monthSet,
                 monthConsult:sub.monthConsult,
                 freeShipping:sub.freeShipping,
-                specialOffer:sub.specialOffer
+                specialOffer:sub.specialOffer,
+				
             })
             const data=JSON.stringify(this.subscribe);
             console.log(data);
@@ -189,9 +123,22 @@ export default {
 		},
 		getResource() {
             this.axios.get("/api_server/subscription.php").then((response) => {
-                this.meminfo = response.data;
+                this.memSub= response.data;
+				// console.log(this.memSub);
             });
-			console.log(this.meminfo);
+            this.axios.get("/api_server/vip_level.php").then((response) => {
+                this.vip_level= response.data.discount;
+				console.log(response.data);
+				// console.log(typeof(response.data[0].discount));
+				// console.log(typeof(response.data.discount));
+				// if(this.vip_level.discount){
+				// 	this.vip_level.discount*100
+				// }
+				
+				
+				
+            });
+			
         },
 	}
 };

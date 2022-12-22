@@ -26,7 +26,7 @@
       </div>
     </section>
     <!-- 推薦 -->
-    <h3 class="recommend">推薦商品</h3>
+    <!-- <h3 class="recommend">推薦商品</h3>
     <section class="recommend_box">
       <div v-for="e in product" class="item" :key="e.combo_pic" >
         <img :src="require(`@/assets/product/${e.combo_pic}`)" />
@@ -36,7 +36,17 @@
         <img :src="require(`@/assets/product/${e.combo_pic}`)" />
         <h4>{{ e.combo_name }}</h4>
       </div>
-    </section>
+    </section> -->
+    <!-- <section class="recommend_box">
+      <div v-for="e in product" class="item" :key="e.combo_pic" >
+        <img :src="require(`@/assets/product/${img_url}`)" />
+        <h4>{{ e.combo_name }}</h4>
+      </div>
+      <div v-for="e in product" class="item" :key="e.combo_pic" >
+        <img :src="require(`@/assets/product/${img_url}`)" />
+        <h4>{{ e.combo_name }}</h4>
+      </div>
+    </section> -->
 
   </div>
 </template>
@@ -44,7 +54,7 @@
 import StyleCard1 from "@/components/StyleCard1.vue";
 import Button from "@/components/Button.vue";
 //引入BASE_URL參數
-import { BASE_URL } from '../assets/js/common.js'
+// import { BASE_URL } from '../assets/js/common.js'
 export default {
   name: "QuizResult",
   components: {
@@ -60,9 +70,9 @@ export default {
   },
   data() {
     return {
-      count: 3,
-      // count: -1,
-      product:[],
+      // count: 3,
+      count: -1,
+      // product:[],
     }
   },
   methods: {
@@ -75,15 +85,15 @@ export default {
         this.countDown();
       }, 1000)
     },
-    getResource() {
-      this.axios.get(`${BASE_URL}/quiz/style_recommend.php`).then((response) => {
-                this.product = response.data;
-                console.log(this.product);
-            });
-    },
+    // getResource() {
+    //   this.axios.get(`${BASE_URL}/quiz/style_recommend.php`).then((response) => {
+    //             this.product = response.data;
+    //             console.log(this.product);
+    //         });
+    // },
   },
   mounted() {
-    this.getResource();
+    // this.getResource();
     this.countDown();
   }
 

@@ -62,6 +62,7 @@ export default {
     return {
       mem_mail: "",
       mem_pwd: "",
+      mem_id:''
     };
   },
   methods: {
@@ -97,6 +98,7 @@ export default {
         });
     },
   },
+
 };
 </script>
 
