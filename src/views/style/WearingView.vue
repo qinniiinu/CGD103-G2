@@ -15,8 +15,10 @@
 			<!-- <SearchBar class="searchbar" /> -->
 			  <div class="container">
 					<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
-						<div class="col" v-for="(col,index) of cols" :key="index" >
-							<lookCard :link="col.src" :tag="col.tag" :ootdName="col.ootdName" :heartId="col.id"></lookCard>
+						<div class="col" v-for="(look,index) of looks" :key="index" >
+							<router-link :to="`/Set/${look.combo_id}`">
+								<lookCard :link="`/look/${look.combo_main_pic}`" :tag="look.hashtag" :ootdName="look.combo_name" :heartId="look.combo_id"></lookCard>
+							</router-link>
 						</div>
 					</div>
 			  </div>
@@ -28,6 +30,7 @@
 import styleSideMenu from "@/components/styleSideMenu.vue";
 import lookCard from "@/components/lookCard.vue";
 import SearchBar from "@/components/product/SearchBar.vue";
+import { BASE_URL } from "../../assets/js/common.js";
 export default {
 	name: "Wearing",
 	components: {
@@ -36,21 +39,115 @@ export default {
 
 	data(){
 		return{
-			cols:[
-				{src:'/look/look-1.jpg',ootdName:'OOTD-001',tag:['#上班穿搭','＃沙漏形','素色'],id:'01'},
-				{src:'/look/look-2.jpg',ootdName:'OOTD-002',tag:['#約會穿搭','＃梨形'],id:'02'},
-				{src:'/look/look-3.jpg',ootdName:'OOTD-003',tag:['#上課穿搭','＃蘋果形'],id:'03'},
-				{src:'/look/look-4.jpg',ootdName:'OOTD-004',tag:['#上課穿搭','＃蘋果形','單寧'],id:'04'},
-				{src:'/look/look-5.jpg',ootdName:'OOTD-005',tag:['#開會穿搭','＃蘋果形'],id:'05'},
-				{src:'/look/look-6.jpg',ootdName:'OOTD-006',tag:['#旅行穿搭','＃蘋果形'],id:'06'},
-				{src:'/look/look-7.jpg',ootdName:'OOTD-007',tag:['#趴踢穿搭','＃蘋果形'],id:'07'},
-				{src:'/look/look-8.jpg',ootdName:'OOTD-008',tag:['#宴會穿搭','＃蘋果形'],id:'08'},
-				{src:'/look/look-9.jpg',ootdName:'OOTD-009',tag:['#運動穿搭','＃蘋果形'],id:'09'},
-				{src:'/look/look-10.jpg',ootdName:'OOTD-010',tag:['#運動穿搭','＃蘋果形'],id:'10'},
-				{src:'/look/look-11.jpg',ootdName:'OOTD-011',tag:['#運動穿搭','＃蘋果形'],id:'11'},
-			]
+			looks:[],
+			tmp:[],
+			// cols:[
+			// 	{src:'/look/look-1.jpg',ootdName:'OOTD-001',tag:['#上班穿搭','＃沙漏形','素色'],id:'01'},
+			// 	{src:'/look/look-2.jpg',ootdName:'OOTD-002',tag:['#約會穿搭','＃梨形'],id:'02'},
+			// 	{src:'/look/look-3.jpg',ootdName:'OOTD-003',tag:['#上課穿搭','＃蘋果形'],id:'03'},
+			// 	{src:'/look/look-4.jpg',ootdName:'OOTD-004',tag:['#上課穿搭','＃蘋果形','單寧'],id:'04'},
+			// 	{src:'/look/look-5.jpg',ootdName:'OOTD-005',tag:['#開會穿搭','＃蘋果形'],id:'05'},
+			// 	{src:'/look/look-6.jpg',ootdName:'OOTD-006',tag:['#旅行穿搭','＃蘋果形'],id:'06'},
+			// 	{src:'/look/look-7.jpg',ootdName:'OOTD-007',tag:['#趴踢穿搭','＃蘋果形'],id:'07'},
+			// 	{src:'/look/look-8.jpg',ootdName:'OOTD-008',tag:['#宴會穿搭','＃蘋果形'],id:'08'},
+			// 	{src:'/look/look-9.jpg',ootdName:'OOTD-009',tag:['#運動穿搭','＃蘋果形'],id:'09'},
+			// 	{src:'/look/look-10.jpg',ootdName:'OOTD-010',tag:['#運動穿搭','＃蘋果形'],id:'10'},
+			// 	{src:'/look/look-11.jpg',ootdName:'OOTD-011',tag:['#運動穿搭','＃蘋果形'],id:'11'},
+			// ]
 		}
 	},
+	computed: {
+        bread() {
+            let arr = [{ name: "穿搭總覽", link: "/Wearing" }];
+            if (JSON.stringify(this.$route.query) == "{}") {
+                return arr;
+            }
+            if (this.$route.query.S) {
+                arr.push({
+                    name: `搜尋關鍵字：` + this.$route.query.S,
+                    link: `/Wearing?S=${this.$route.query.S}`,
+                });
+            }
+
+            return arr;
+        },
+    },
+    watch: {
+        $route: function () {
+            this.getResource();
+        },
+    },
+    methods: {
+        search(val) {
+            const query_current = location.search;
+
+            if (val != "") {
+                this.looks = this.looks.filter((look) => {
+                    if (JSON.stringify(look).indexOf(val) !== -1) {
+                        return look;
+                    }
+                });
+                this.$router.push(`/Wearing?${query_current}&S=${val}`);
+            } else {
+                this.$router.push(`/Wearing?${query_current}`);
+            }
+        },
+        // sort(val) {
+        //     if (val == "StoB") {
+        //         this.product = this.product.sort(function (a, b) {
+        //             return a.unit_price - b.unit_price;
+        //         });
+        //     } else {
+        //         this.product = this.product.sort(function (a, b) {
+        //             return b.unit_price - a.unit_price;
+        //         });
+        //     }
+        // },
+        resultproduct() {
+            if (location.search !== "") {
+                this.scrollBlock();
+                let result = this.tmp;
+                // if (this.$route.query.G) {
+                //     this.looks = this.looks.filter((e) => {
+                //         return e.product_gender == this.$route.query.G;
+                //     });
+                // }
+                // if (this.$route.query.M) {
+                //     this.looks = this.looks.filter((e) => {
+                //         return e.looks_maintype == this.$route.query.M;
+                //     });
+                // }
+                if (this.$route.query.T) {
+                    this.looks = this.looks.filter((look) => {
+                        return look.looks_type == this.$route.query.T;
+                    });
+                }
+            } else {
+                this.looks = this.tmp;
+            }
+        },
+        scrollBlock() {
+            console.log(window.innerWidth);
+            const height =
+                window.innerWidth >= 500 ? 650 : window.innerWidth * 0.85;
+            window.scrollTo({
+                top: height,
+                behavior: "smooth",
+            });
+        },
+        getResource() {
+            this.axios.get(`${BASE_URL}/look_list.php`).then((response) => {
+                this.looks = this.tmp = response.data;
+                this.resultproduct();
+            });
+        },
+        // cut(x) {
+        //     if (x) return x.split(",")[0];
+        // },
+    },
+    created() {
+        this.getResource();
+    },
 	
 };
 </script>
