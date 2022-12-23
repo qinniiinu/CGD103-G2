@@ -25,13 +25,13 @@
 				<div class="receiver">
 					<h4>收件人資訊</h4>
 					<p>姓名</p>
-					<input class="mem_name" type="text" v-model="inner">
+					<input class="mem_name" type="text" v-model="inner[0]">
 					<p>連絡電話</p>
-					<input class="phone" type="text" v-model="inner">
+					<input class="phone" type="text" v-model="inner[1]">
 					<p>電子信箱</p>
-					<input class="email" type="text" v-model="inner">
+					<input class="email" type="text" v-model="inner[2]">
 					<p>配送地址</p>
-					<input class="receive-address" v-model="inner">
+					<input class="receive-address" v-model="inner[3]">
 					<label class="same" for="same"><input type="checkbox" id="same" @click="check()" >同購買人資訊</label>
 				</div>
 				<div class="payment">
@@ -90,20 +90,10 @@ export default {
 	data(){
 		return{
 			load: false,
-			source:[],
 			count:[],
 			min:0,
 			max:0,
-			inner:'',
-			memId:"a001",
-			mem_name:"王小明",
-			phone:"0912345678",
-			mem_mail:"bj4@gmail.com",
-			address:"320桃園市中壢區復興路46號9樓",
-			mem_name1:"",
-			phone1:"",
-			mem_mail1:"",
-			address1:"",
+			inner:[],
 			vip_level:vip_level,
             subinfo:subinfo,
             subscribe:[],
@@ -121,18 +111,14 @@ export default {
 		check(){
 			this.isChecked = !this.isChecked;
 			console.log(this.isChecked);
-			if(this.isChecked==false){
-				inner=memInfo.mem_name;
-				inner=memInfo.phone;
-				inner=memInfo.mem_mail;
-				inner=memInfo.address;
-				// console.log(this.mem_name1);
+			if(this.isChecked==true){
+				this.inner[0]=this.memInfo.mem_name;
+				this.inner[1]=this.memInfo.phone;
+				this.inner[2]=this.memInfo.mem_mail;
+				this.inner[3]=this.memInfo.address;
 			}
 			else{
-				memInfo.mem_name= "1";
-				memInfo.phone= "1";
-				memInfo.mem_mail = "1";
-				memInfo.address= "1";
+				this.inner=[];
 			}
 		},
 		getStorage(){
@@ -142,13 +128,22 @@ export default {
             console.log(this.subscribe);
         },
 		getResource() {
-            this.axios.get("/api_server/memberinfo.php").then((response) => {
+            this.axios.get("/api_server/member.php").then((response) => {
                 this.memInfo= response.data;
 				console.log(this.memInfo);
             });
     	}
 	}
 }
+
+
+// let url = `${location.protocol}//${location.host}/Cart`
+// location.href = url
+
+// window.addEventListener('storage', e => {
+// 	localStorage.setItem(e.key, e.oldValue)
+// })
+
 </script>
 <style lang="scss" scoped>
 	h2{

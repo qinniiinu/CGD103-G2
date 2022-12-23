@@ -14,24 +14,24 @@
 				<div class="buyer">
 					<h4>購買人資訊</h4>
 					<p>姓名</p>
-					<input class="memName" type="text" v-model="mem_name">
+					<input class="memName" type="text" v-model="memInfo.mem_name">
 					<p>連絡電話</p>
-					<input class="phone" type="text" v-model="phone">
+					<input class="phone" type="text" v-model="memInfo.phone">
 					<p>電子信箱</p>
-					<input class="email" type="text" v-model="mem_mail">
+					<input class="email" type="text" v-model="memInfo.mem_mail">
 					<p>聯絡地址</p>
-					<input class="address" type="text" v-model="address">
+					<input class="address" type="text" v-model="memInfo.address">
 				</div>
 				<div class="receiver">
 					<h4>收件人資訊</h4>
 					<p>姓名</p>
-					<input class="mem_name" type="text" v-model="mem_name1">
+					<input class="mem_name" type="text" v-model="inner[0]">
 					<p>連絡電話</p>
-					<input class="phone" type="text" v-model="phone1">
+					<input class="phone" type="text" v-model="inner[1]">
 					<p>電子信箱</p>
-					<input class="email" type="text" v-model="mem_mail1">
+					<input class="email" type="text" v-model="inner[2]">
 					<p>配送地址</p>
-					<input class="receive-address" v-model="address1">
+					<input class="receive-address" v-model="inner[3]">
 					<label class="same" for="same"><input type="checkbox" id="same" @click="check()" >同購買人資訊</label>
 				</div>
 				<div class="payment">
@@ -89,20 +89,14 @@ export default {
 			order:[],
 			min:0,
 			max:0,
-			memId:"a001",
-			mem_name:"王小明",
-			phone:"0912345678",
-			mem_mail:"bj4@gmail.com",
-			address:"320桃園市中壢區復興路46號9樓",
-			mem_name1:"",
-			phone1:"",
-			mem_mail1:"",
-			address1:"",
-			vip_level:vip_level
+			vip_level:vip_level,
+			memInfo:[],
+			inner:[]
 		}
 	},
 	created(){
 		this.getStorage();
+		this.getResource();
 	},
 	computed:{
 		total(){
@@ -122,17 +116,14 @@ export default {
 		check(){
 			this.isChecked = !this.isChecked;
 			console.log(this.isChecked);
-			if(this.isChecked == true){
-				this.mem_name1 = this.mem_name;
-				this.phone1 = this.phone;
-				this.mem_mail1 = this.mem_mail;
-				this.address1 = this.address;
-				console.log(this.mem_name1);
-			}else{
-				this.mem_name1 = "";
-				this.phone1 = "";
-				this.mem_mail1 = "";
-				this.address1 = "";
+			if(this.isChecked==true){
+				this.inner[0]=this.memInfo.mem_name;
+				this.inner[1]=this.memInfo.phone;
+				this.inner[2]=this.memInfo.mem_mail;
+				this.inner[3]=this.memInfo.address;
+			}
+			else{
+				this.inner=[];
 			}
 		},
 		getStorage(){
@@ -140,6 +131,12 @@ export default {
 			data=JSON.parse(data)
 			this.order=data? data:[]
         },
+		getResource() {
+            this.axios.get("/api_server/member.php").then((response) => {
+                this.memInfo= response.data;
+				console.log(this.memInfo);
+            });
+    	}
 	}
 };
 </script>
