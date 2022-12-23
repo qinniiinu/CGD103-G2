@@ -6,15 +6,13 @@
       <section class="style">
         <div class="item">
           <p>屬於:</p>
-          <h2>#文青風</h2>
+          <h2>#{{info.style_name}}</h2>
         </div>
         <div class="item">
-          <img src="/hipster2.png" alt="文青" />
+          <img :src="`/pic/${info.style_pic}`" :alt="info.style_name" />
         </div>
         <div class="item">
-          <p>
-            文青風在穿搭時，也可以嘗試看看多層次的穿搭法。選擇色系相近、長短不同的衣服，穿搭時可以營造出層次感，讓衣著看上去不會過度呆版。例如選擇長版的素色薄外套搭配條紋的T恤，或是利用襯衫當作外套，內襯一件素色T恤也是相當好的搭配。這樣的穿搭法除了可以增加視覺的豐富度，面對季節交替又或是夏天冷氣房與室外的溫差變化，都能靈活的穿脫，可說是兼具實用性與時尚性的文青風格。
-          </p>
+          <p>{{info.style_descrip}}</p>
         </div>
         <div class="item">
           <router-link :to="{ name: 'Quiz' }"
@@ -22,11 +20,12 @@
           >
         </div>
       </section>
+      <!-- <img src="../../../public/pic/hipster1.png" alt=""> -->
       <section class="recommend">
         <h2>推薦穿搭</h2>
         <div class="item">
           <StylistLook
-            scardP="/stylist-1.jpg"
+            scardP="/pic/stylist-1.jpg"
             stylistName="Kevin"
             stylistInfo="擅長時尚風格,用前衛的單品,搭配出衝突的美感"
           ></StylistLook>
@@ -34,13 +33,7 @@
       </section>
       <section class="recommend">
         <h2>推薦單品</h2>
-        <div class="item">
-          <StylistLook
-            scardP="/stylist-1.jpg"
-            stylistName="Kevin"
-            stylistInfo="擅長時尚風格,用前衛的單品,搭配出衝突的美感"
-          ></StylistLook>
-        </div>
+        
       </section>
       <section class="deco">
         <div class="decoration">#CASUAL</div>
@@ -68,7 +61,8 @@ export default {
   },
   data() {
     return {
-        product:[],
+        info:[],
+        style_name:"",
     };
   },
   created() {},
@@ -85,9 +79,9 @@ export default {
     //   });
     // },
      getResource() {
-      this.axios.get(`${BASE_URL}/style.php`).then((response) => {
-                this.product = response.data;
-                console.log(this.product);
+      this.axios.get(`/api_server/mem_style.php`).then((response) => {
+                this.info = response.data;
+                console.log(this.info.style_name);
             });
     },
   },

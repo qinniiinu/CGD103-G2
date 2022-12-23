@@ -7,21 +7,26 @@
         <input id="b4" type="radio" value="b4" v-model="picked" />
         <input id="b5" type="radio" value="b5" v-model="picked" />
 
-        <div class="productMenu">
+        <div class="productMenu" @mouseleave="hoverListOut()">
             <!-- {{ selected }} -->
             <ul class="menOrWomen" @click="action">
-                <!-- <li @click="go('A')" @mouseenter="hoverList('A')">全部</li> -->
                 <li
                     @click="go('0')"
                     @mouseenter="hoverList('0')"
-                    :class="{ blod: $route.query.G == 0 }"
+                    :class="[
+                        { blod: $route.query.G == 0 },
+                        { bg: selected[0] == 0 },
+                    ]"
                 >
                     女裝
                 </li>
                 <li
                     @click="go('1')"
                     @mouseenter="hoverList('1')"
-                    :class="{ blod: $route.query.G == 1 }"
+                    :class="[
+                        { blod: $route.query.G == 1 },
+                        { bg: selected[0] == 1 },
+                    ]"
                 >
                     男裝
                 </li>
@@ -274,6 +279,11 @@ export default {
                 this.openAMF = true;
             }
         },
+        hoverListOut() {
+            if (document.body.clientWidth > 767) {
+                this.selected = [];
+            }
+        },
     },
     props: {},
 };
@@ -319,10 +329,15 @@ input {
         li.blod {
             font-weight: 600;
         }
+        li.bg {
+            background-color: $bg_gray;
+        }
     }
     .colthingList_box {
         line-height: 30px;
         color: $title_color;
+        border: $line solid $title_color;
+        border-width: 0 $line $line $line;
         display: flex;
         @include m() {
             display: none;
@@ -330,7 +345,6 @@ input {
         label {
             display: inline-block;
             width: 25%;
-            border-bottom: $line solid $title_color;
             box-sizing: border-box;
 
             div.clothingList {
@@ -346,12 +360,15 @@ input {
     .clothingList_item_boxOutside {
         line-height: 25px;
         border-top-width: 0;
+
         // display: flex;
+
         .clothingList_item_box {
             width: 100%;
             line-height: 25px;
-            border-bottom: $line solid $title_color;
             text-align: center;
+            border: $line solid $title_color;
+            border-width: 0 $line $line $line;
 
             box-sizing: border-box;
             .clothingList_item {

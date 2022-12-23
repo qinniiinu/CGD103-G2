@@ -28,9 +28,9 @@ export default {
     },
     computed: {
         bread() {
-            let arr = [];
+            let arr = [{ name: "商品總覽", link: "/productlist" }];
             if (JSON.stringify(this.$route.query) == "{}") {
-                return [{ name: "商品總覽", link: "/productlist" }];
+                return arr;
             }
             if (this.$route.query.G) {
                 let gender = this.$route.query.G == 1 ? "男裝" : "女裝";
@@ -52,6 +52,12 @@ export default {
                     link: `/productlist?G=${this.$route.query.G}&M=${this.$route.query.M}&T=${this.$route.query.T}`,
                 });
             }
+            if (this.$route.query.S) {
+                arr.push({
+                    name: `搜尋關鍵字：` + this.$route.query.S,
+                    link: `/productlist?S=${this.$route.query.S}`,
+                });
+            }
 
             return arr;
         },
@@ -63,12 +69,18 @@ export default {
     },
     methods: {
         search(val) {
-            if (val != "")
+            const query_current = location.search;
+
+            if (val != "") {
                 this.product = this.product.filter((e) => {
                     if (JSON.stringify(e).indexOf(val) !== -1) {
                         return e;
                     }
                 });
+                this.$router.push(`/productlist?${query_current}&S=${val}`);
+            } else {
+                this.$router.push(`/productlist?${query_current}`);
+            }
         },
         sort(val) {
             if (val == "StoB") {
@@ -83,27 +95,19 @@ export default {
         },
         resultproduct() {
             if (location.search !== "") {
-                console.log("filter");
-
-                // this.scrollBlock();
+                this.scrollBlock();
                 let result = this.tmp;
                 if (this.$route.query.G) {
-                    console.log("filterG");
-
                     this.product = this.product.filter((e) => {
                         return e.product_gender == this.$route.query.G;
                     });
                 }
                 if (this.$route.query.M) {
-                    console.log("filterM");
-
                     this.product = this.product.filter((e) => {
                         return e.product_maintype == this.$route.query.M;
                     });
                 }
                 if (this.$route.query.T) {
-                    console.log("filterT");
-
                     this.product = this.product.filter((e) => {
                         return e.product_type == this.$route.query.T;
                     });
@@ -114,7 +118,8 @@ export default {
         },
         scrollBlock() {
             console.log(window.innerWidth);
-            const height = window.innerWidth >= 768 ? 650 : 550;
+            const height =
+                window.innerWidth >= 500 ? 650 : window.innerWidth * 0.85;
             window.scrollTo({
                 top: height,
                 behavior: "smooth",
@@ -130,11 +135,9 @@ export default {
             if (x) return x.split(",")[0];
         },
     },
-    beforeCreate() {},
     created() {
         this.getResource();
     },
-    mounted() {},
 };
 </script>
 <template>
@@ -225,5 +228,8 @@ export default {
 .space_between {
     justify-content: space-between;
     flex-wrap: wrap;
+}
+.searchbar {
+    align-items: flex-end;
 }
 </style>
