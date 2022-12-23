@@ -12,7 +12,10 @@
 					</div>
 					<div class="ord_condition">
 						<p>訂單狀態：</p>
-						<p>{{orders[0].order_con}}</p>
+						<p v-if="orders[0].order_con == 1">訂單取消</P>
+						<p v-else-if="orders[0].order_con == 2">商品配送中</P>
+               			<p v-else>商品已送達</p>
+					
 					</div>
 					<div class="ord_condition">
 						<p>收件人：{{orders[0].ord_mem}}</p>
@@ -37,12 +40,12 @@
 			
 			<div class="ord_recipt">
 				<h3 class="ord_title">訂單明細</h3>
-					<div v-for="e in order_item" :key="e.order_item_id" class="prod_item_row"><!-- 訂單商品列 -->
+					<div v-if="order_item.length" class="prod_item_row"><!-- 訂單商品列 -->
 						<img class="prod_pic" src="https://cf.shopee.tw/file/df4b87d6f94bb46bff2b209ed4047c27_tn" alt="">
-						<div class="item_name">{{e.product_id}}</div>
-						<div class="item_name">${{e.item_price}}</div>
-						<div class="item_name">{{e.size}}</div>
-						<div class="item_name">X {{e.quantity}}</div>
+						<div class="item_name">{{order_item[this.order_item.length-1].product_id}}</div>
+						<div class="item_name">${{order_item[this.order_item.length-1].item_price}}</div>
+						<div class="item_name">{{order_item[this.order_item.length-1].size}}</div>
+						<div class="item_name">X {{order_item[this.order_item.length-1].quantity}}</div>
 					</div>
 				
 					<div class="sum_money">
@@ -54,37 +57,38 @@
 					</div>
 		    </div>
 
-			<div v-for="e in order_qa" :key="e.meg_id" class="ord_msg">
+			<div v-if="order_qa.length" class="ord_msg">
 				<h2 class="ord_title">訂單留言</h2>
 				<div class="ord_msg_box">
 					<div class="msg_title">
 						<h4>你的留言紀錄</h4> 
-						<div class="msg_time">留言時間：{{e.meg_time}}</div>
+						<div class="msg_time">留言時間：{{order_qa[this.order_qa.length-1].meg_time}}</div>
 					</div>
+					<!-- 回覆內容 -->
 					<h3>
-						{{e.meg_cont}}
+						{{order_qa[this.order_qa.length-1].meg_cont}}
 					</h3>
 					
 				</div>
 				<div class="ord_msg_box">
 					<div class="msg_title">
 						<h4>客服回覆狀態</h4> 
-						<div class="msg_time">回覆時間：{{e.meg_time}}</div>
+						<div class="msg_time">回覆時間：{{order_qa[0].meg_time}}</div>
 					</div>
 					<h3>
-						{{e.meg_cont}}
+						{{order_qa[0].meg_cont}}
 					</h3>
 				</div>
-				<div class="ord_msg_box">
+				<form class="ord_msg_box" id="insert_msg" method="post" enctype="multipart/form-data" >
 					<div class="msg_title">
 						<h3>您的留言</h3> 
 					</div>
-					<input class="text_box" type="textarea" placeholder="親愛的客人歡迎在此留言詢問問題">
+					<input class="text_box" id="meg_cont" name="meg_cont" type="textarea" placeholder="親愛的客人歡迎在此留言詢問問題">
 					<div class="msg_button_container">
-				<button class="btn_ms">取消</button>
-				<button class="btn_ml">送出</button>
-			</div>
-				</div>
+						<button type="" class="btn_ms">取消</button>
+						<button type="submit" class="btn_ml" @click="insert">送出</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -113,13 +117,25 @@ export default {
 	},
 	methods:{
 		getResource() {
-        this.axios.get(`${BASE_URL}/getOrderDetail.php`).then((response) => {
-			console.log(response.data);
-			this.orders = response.data;
-			this.order_item = response.data;
-			this.order_qa = response.data;
+       		this.axios.get(`http://localhost/cgd103_g2_frontend/phpfile/getOrderDetail.php`).then((response) => {
+				console.log(response.data);
+				this.orders = response.data;
+				this.order_item = response.data;
+				this.order_qa = response.data;
             });
         },
+		insert() {
+			if (!this.meg_cont ) {
+        		alert("輸入成功！");
+				fetch(`http://localhost/cgd103_g2_frontend/phpfile/msgInsert.php`,{
+					method:'post',
+					body:new FormData(document.getElementById('insert_msg'))
+				}).then((res)=>res.json())
+				  .then((json)=>console.log(json))
+      			}
+			
+		},
+
 	},
 	mounted() {
     	this.getResource();
