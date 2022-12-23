@@ -273,6 +273,7 @@ export default {
 		insert() {
 			// console.log(this.qaBtncheck.toString());
 			const payload={
+				mem_id:this.$store.state.user.mem_id,
 				appointment_date:this.date,
 				appointment_time:this.qatime,
 				appointment_qa:this.qaBtncheck.toString(),
@@ -281,7 +282,7 @@ export default {
 			fetch(`${BASE_URL}/chat_qa.php`,{
 				method:'post',
 				body:new URLSearchParams(payload)
-			})
+			}).then((res)=>res.json()).then((json)=>console.log(json));
 			// .then(response=>console.log(response));
 
 

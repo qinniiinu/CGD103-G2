@@ -109,19 +109,19 @@ export default {
                         cartItem.size === this.pickedSize
                     );
                 });
-                if (prodIndex>=0) {
-                    if(prodIndex==1){
+                if (prodIndex >= 0) {
+                    if (prodIndex == 1) {
                         this.cart[prodIndex]["count"] += 1;
                         return;
-                    }else{
+                    } else {
                         this.cart[prodIndex]["count"] += this.number;
                     }
                 } else {
                     this.cart.push({
                         id: this.product_details.product_id,
-                        title:this.product_name,
-                        image:this.temp?.product_pic.split(",")[0],
-                        price:this.unit_price,
+                        title: this.product_name,
+                        image: this.temp?.product_pic.split(",")[0],
+                        price: this.unit_price,
                         color: this.pickedColor,
                         size: this.pickedSize,
                         count: this.number,
@@ -176,7 +176,7 @@ export default {
         <div class="leftright">
             <div class="left">
                 <div class="bigPic">
-                    <img :src="require(`@/assets/product/${bigPicture}`)" />
+                    <img :src="`/pic/${bigPicture}`" />
                 </div>
                 <div class="leftDown">
                     <div
@@ -185,7 +185,7 @@ export default {
                         :key="i"
                         @click="changeBicPicture(e)"
                     >
-                        <img :src="require(`@/assets/product/${picList[i]}`)" />
+                        <img :src="`/pic/${e}`" />
                     </div>
                 </div>
             </div>
@@ -276,7 +276,7 @@ export default {
             </div>
         </div>
     </div>
-
+    <!-- 
     <div class="dressingGuide">
         <h2>穿搭指南</h2>
         <div class="leftright">
@@ -304,7 +304,7 @@ export default {
         <div class="likeAlso">
             <h3>你可能也會喜歡</h3>
         </div>
-    </div>
+    </div> -->
     <Alert :msg="msg" @closeAlert="tab" v-show="alert"></Alert>
 </template>
 

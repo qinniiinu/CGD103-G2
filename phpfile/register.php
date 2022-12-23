@@ -5,14 +5,14 @@ header('Access-Control-Allow-Origin:*');
 header("Content-Type:application/json;charset=utf-8");
 
 try {
-    // 註冊帳號
+    // 註冊帳號資料
     if($_POST["action"] == "register"){
         $mem_mail = $_POST["mem_mail"];
         $mem_pwd = $_POST["mem_pwd"];
         $mem_name = $_POST["mem_name"];
         $bday = $_POST["bday"];
 
-        // 身形建置
+        // 身形資料
         $chest = $_POST["chest"];
         $shoulder = $_POST["shoulder"];
         $waistline = $_POST["waistline"];
@@ -50,8 +50,8 @@ try {
         $member = $pdo->prepare( $sql );
         $member->bindValue(":mail", $_POST["mem_mail"]);
         $member->execute();//執行之
-        if($member->rowCount() === 0){
-            
+        if($member->rowCount() == 1){ // 已有帳號
+            // 
         }
     }
 

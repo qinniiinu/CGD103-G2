@@ -4,15 +4,15 @@
 	<div class="data">
 		<!-- 這裡開始寫 -->
 		<div class="card">
-			<div v-if="memsub==false" class="card-wrap">
-				<div class="card-v" v-for="sub in subinfo" :key="sub.level">
+			<div v-if="showPanel==false" class="card-wrap">
+				<div class="card-v" v-for="sub in vip_level" :key="sub.level">
 					<div class="card-content">
-						<h2>#{{sub.level}}</h2>
+						<h2>#{{sub.level_name}}</h2>
 						<p>
 							<font-awesome-icon icon="fa-solid fa-check" />
 							每月專屬搭配<span>1</span>套
                     	</p>
-						<span>{{sub.monthSet}}</span>
+						<span>{{sub.set_info}}</span>
 						<p>
                         <font-awesome-icon icon="fa-solid fa-check" />
 							每月諮詢造型師<span>{{sub.monthConsult}}</span>次
@@ -31,14 +31,14 @@
 				</div>
 			</div>
 			<div v-else class="card-wrap">
-				<div v-if="view===1" class="card-sub">
+				<div v-if="view==1" class="card-sub">
 					<h2>您的訂閱方案</h2>
 					<p class="memlevel">#{{memSub.level_name}}</p>
 					<button @click="view=2">更改方案</button>
 				</div>
-				<div class="card-wrap" v-if="view===2">
+				<div class="card-wrap" v-if="view==2">
 					<div class="card-v" v-for="sub in vip_level" :key="sub.level">
-						<div class="card-content" :class="{activestyle:isActive(memsub.level)}">
+						<div class="card-content" :class="{activestyle:isActive(sub.level_name)}">
 							<h2>#{{sub.level_name}}</h2>
 							<p>
 								<font-awesome-icon icon="fa-solid fa-check" />
@@ -55,17 +55,17 @@
 							</p>
 							<p>
 								<font-awesome-icon icon="fa-solid fa-check" />
-								商品<span>{{sub.discount}}</span>折優惠
+								商品<span>{{sub.specialOffer}}</span>折優惠
 							</p>
 							<h3>NT$<span>{{sub.price}}</span>/月</h3>
-							<p>訂閱日:{{sub_time}} </p>
-							<p>下次付款日:{{sub_deadline}} </p>
-							<router-link to="/SubCheckout"><button @click="setStorage(index,sub)">訂閱</button></router-link>
+							<p v-if="memSub.level_id==sub.level_id">訂閱日:{{memSub.sub_time}} </p>
+							<p v-if="memSub.level_id==sub.level_id">下次付款日:{{memSub.sub_deadline}} </p>
+							<router-link v-if="memSub.level_id!=sub.level_id" to="/SubCheckout"><button @click="setStorage(index,sub)">訂閱</button></router-link>
 						</div>
 					</div>
 				</div>
 			</div>
-			<button class="cancel" v-if="view===2" @click="memsub=false,view=1">取消訂閱</button>
+			<button class="cancel" v-if="view===2" @click="showPanel=false,view=1">取消訂閱</button>
 			<router-link to="/MyPage"><button v-if="view===1" class="back">返回</button></router-link>
 			<button v-if="view===2" class="back" @click="view=1">返回</button>
 		</div>
@@ -76,16 +76,14 @@
 </template>
 
 <script>
-import {subinfo} from'@/assets/config/setting.js'
 export default {
 	name: "memSubscription",
 	components: {
 	},
 	data(){
 		return{
-			subinfo:subinfo,
 			vip_level:[],
-			memsub:true,
+			showPanel:'',
 			view:1,
 			sub_time:'2022/12/02',
 			sub_deadline:'2022/01/02',
@@ -93,12 +91,10 @@ export default {
 			active:true,
 			mem_level:'BASIC',
 			memSub:[],
-			count:"",
 		}
 	},
 	created(){
 		this.getResource();
-		// console.log(window.matchmedia("min-width:768px"));
 	},
 	computed:{
 		
@@ -107,40 +103,43 @@ export default {
 		setStorage(index,sub){
             console.log(sub);
             this.subscribe.push({
-                level:sub.level,
+                level:sub.level_name,
                 price:sub.price,
                 monthSet:sub.monthSet,
                 monthConsult:sub.monthConsult,
                 freeShipping:sub.freeShipping,
                 specialOffer:sub.specialOffer,
-				
             })
             const data=JSON.stringify(this.subscribe);
             console.log(data);
             localStorage.setItem('subscribe',data);
         },
 		isActive(e){
-			return e===this.mem_level;
+			return e===this.memSub.level_name;
 		},
 		getResource() {
             this.axios.get("/api_server/subscription.php").then((response) => {
                 this.memSub= response.data;
 				console.log(this.memSub);
+				console.log(this.memSub.level_id);
+				if(this.memSub.level_id!=''){
+					this.showPanel=true;
+					console.log(this.showPanel);
+				}
             });
             this.axios.get("/api_server/vip_level.php").then((response) => {
-                this.vip_level= response.data.discount;
-				console.log(response.data);
-				// console.log(typeof(response.data[0].discount));
-				// console.log(typeof(response.data.discount));
-				// if(this.vip_level.discount){
-				// 	this.vip_level.discount*100
-				// }
-				
-				
-				
+                this.vip_level= response.data;
+				console.log(this.vip_level);
             });
-			
         },
+		// isSub(){
+		// 	if(this.memSub.level_id!=''){
+		// 		showPanel=true;
+		// 		console.log(showPanel);
+		// 	}else{
+		// 		showPanel=false;
+		// 	}
+		// }
 	}
 };
 </script>

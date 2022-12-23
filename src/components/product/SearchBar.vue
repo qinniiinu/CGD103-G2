@@ -1,5 +1,5 @@
 <template>
-    <div class="left_right">
+    <div class="left_right searchbar">
         <div class="search">
             <input
                 type="search"
@@ -9,6 +9,7 @@
             />
         </div>
         <select :value="sort" @change="changesort($event)">
+            <option value="">排序</option>
             <option value="StoB">價格小到大</option>
             <option value="BtoS">價格大到小</option>
         </select>
