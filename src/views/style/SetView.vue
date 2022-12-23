@@ -132,7 +132,7 @@
 				],
 				lookmain:'',
 				cart:[],
-				page:909,
+				page:901,
 				total:'',
 				swiperOptions: {
 						breakpoints: {   
