@@ -74,11 +74,7 @@ export default {
       formData.append("mem_mail", this.mem_mail);
       formData.append("mem_pwd", this.mem_pwd);
 
-<<<<<<< HEAD
       fetch(`/api_server/login.php`, {
-=======
-      fetch('/api_server/login.php', {
->>>>>>> dae66536042c87cc6d8be6424632487ffbbe5a1c
         method: "post",
         body: formData,
       })
