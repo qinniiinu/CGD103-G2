@@ -9,7 +9,9 @@
           <h2>#沙漏型</h2>
         </div>
         <div class="item">
-          <img src="/body_hourglass.png" alt="文青" />
+          <img src="/pic/body_hourglass.png" alt="文青" />
+          <!-- <img :src="`/pic/${member.body_pic}`" alt="文青" /> -->
+
         </div>
         <div class="item">
           <p>{{ body.body_descrip }}</p>
