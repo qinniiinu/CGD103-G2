@@ -9,7 +9,7 @@
     <section class="recommend_box">
       <div v-for="e in product" class="item" :key="e.product_pic" >
          <router-link :to="`/productDetails/${e.product_id}`">
-          <img :src="require(`@/assets/product/${cut(e.product_pic)}`)" />
+          <img :src="`/pic/${cut(e.product_pic)}`" />
           <h4>{{ e.product_name }}</h4>
         </router-link>
       </div>
@@ -32,7 +32,7 @@ export default {
   },
   methods:{
      getResource() {
-      this.axios.get(`${BASE_URL}/quiz/hipster_recommend.php`).then((response) => {
+      this.axios.get(`${BASE_URL}/quiz/fashion_recommend.php`).then((response) => {
                 this.product = response.data;
                 console.log(this.product);
             });
