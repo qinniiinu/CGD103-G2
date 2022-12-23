@@ -21,7 +21,8 @@
         <div class="txt_box">
           <h3>適合您的穿搭公式</h3>
           <p>{{ desc }}</p>
-          <Button content="記錄我的風格" />
+          <!-- <button class="btn_ns" @click="`${click}()`">記錄我的風格</button> -->
+          <!-- <button class="btn_ns" @click="click()">記錄我的風格</button> -->
         </div>
       </div>
     </section>
@@ -52,20 +53,21 @@
 </template>
 <script>
 import StyleCard1 from "@/components/StyleCard1.vue";
-import Button from "@/components/Button.vue";
+// import Button from "@/components/Button.vue";
 //引入BASE_URL參數
 // import { BASE_URL } from '../assets/js/common.js'
 export default {
   name: "QuizResult",
   components: {
     StyleCard1,
-    Button,
+    // Button,
   },
   props: {
     result: String,
     img1: String,
     img2: String,
     desc: String,
+    // click:Function,
 
   },
   data() {
@@ -192,7 +194,7 @@ export default {
 .wraper {
   width: 80%;
   position: relative;
-  margin: 0 auto;
+  margin: 0px auto;
 
   .img_box {
     width: 100%;
@@ -228,47 +230,18 @@ export default {
       line-height: 20px;
     }
   }
-
-  button {
-    margin: 20px auto;
-    display: block;
-  }
 }
 
 h3 {
   margin-bottom: 20px;
 }
 
-.recommend_box {
-  display: flex;
-  flex-wrap: wrap;
-  // flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 10px;
 
-  // border: 1px solid red;
-  .item {
-    width: 48%;
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #000;
-
-    img {
-      width: 100%;
-    }
-
-    h4 {
-      text-align: center;
-      color: $text_color;
-      padding: 10px;
-    }
-  }
-}
 
 // 768 - 1023
 @media screen and (min-width:768px) {
   .quiz_result {
-    margin-bottom: 100px;
+    // margin-bottom: 100px;
 
     // margin-top: 50px;
     .title_box {
@@ -331,31 +304,7 @@ h3 {
 
   }
 
-  .recommend_box {
-    display: flex;
-    flex-wrap: wrap;
-    // flex-wrap: wrap;
-    justify-content: space-evenly;
-    padding: 10px;
-
-    // border: 1px solid red;
-    .item {
-      width: 23%;
-      margin-bottom: 20px;
-      padding: 10px;
-      border: 1px solid #000;
-
-      img {
-        width: 100%;
-      }
-
-      h4 {
-        text-align: center;
-        color: $text_color;
-        padding: 10px;
-      }
-    }
-  }
+  
 }
 
 // 1024以上
@@ -378,23 +327,6 @@ h3 {
     }
   }
 
-  .recommend_box {
-    max-width: 1200px;
-    margin: 0 auto;
-    border: 1px solid red;
-  }
 }
 
-.recommend {
-  color: $title_color;
-  text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-@media screen and (min-width:768px) {
-  .recommend {
-    font-size: 24px;
-  }
-}
 </style>

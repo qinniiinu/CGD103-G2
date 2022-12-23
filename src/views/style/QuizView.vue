@@ -3,10 +3,10 @@
 		<h2>找尋你的個人風格</h2>
 		<p>嗨~ 你了解自己嗎 ?<br>也許你不知道自己適合什麼，也許你正在尋找新的自我風格，<br>不論你現在處於什麼狀態，讓 RE:Outfit 一起陪你尋找屬於你的<strong>穿搭風格公式</strong>吧!</p>
 		<div class="wrap">
-			<StyleCard content="時尚風" link="./fashion2-1.png"/>
-			<StyleCard content="極簡風" link="./minimalist2-1.png"/>
-			<StyleCard content="運動風" link="./sport2-1.png"/>
-			<StyleCard content="文青風" link="./hipster2-1.png"/>
+			<StyleCard content="時尚風" link="/pic/fashion2-1.png"/>
+			<StyleCard content="極簡風" link="/pic/minimalist2-1.png"/>
+			<StyleCard content="運動風" link="/pic/sport2-1.png"/>
+			<StyleCard content="文青風" link="/pic/hipster2-1.png"/>
 			<p>首先，請讓我們更認識你<br>點擊下方開始測驗你的風格</p>
 		</div>
 		<router-link :to="{ name:'QuestionBox' }"><button class="btn_s">測驗去</button></router-link>

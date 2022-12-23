@@ -1,19 +1,15 @@
 <template>
   <QuizResult 
   result="時尚風" 
-  img1="./fashion1.png" 
-  img2="./fashion3.png"
+  img1="/pic/fashion1.png" 
+  img2="/pic/fashion3.png"
   desc="時尚風在穿搭時，也可以嘗試看看多層次的穿搭法。選擇色系相近、長短不同的衣服，穿搭時可以營造出層次感，讓衣著看上去不會過度呆版。例如選擇長版的素色薄外套搭配條紋的T恤，或是利用襯衫當作外套，內襯一件素色T恤也是相當好的搭配。這樣的穿搭法除了可以增加視覺的豐富度，面對季節交替又或是夏天冷氣房與室外的溫差變化，都能靈活的穿脫，可說是兼具實用性與時尚性的風格。"
-  scardP="./stylist-1.jpg"
-  stylistName="Kevin"
-  stylistInfo="擅長時尚風格,用前衛的單品,搭配出衝突的美感"
    />
     <h3 class="recommend">推薦商品</h3>
     <section class="recommend_box">
       <div v-for="e in product" class="item" :key="e.product_pic" >
          <router-link :to="`/productDetails/${e.product_id}`">
-          <img :src="require(`@/assets/product/${e.product_pic}`)" />
-           <!-- <img :src="cut(e.product_pic)" alt=""/> -->
+          <img :src="require(`@/assets/product/${cut(e.product_pic)}`)" />
           <h4>{{ e.product_name }}</h4>
         </router-link>
       </div>
