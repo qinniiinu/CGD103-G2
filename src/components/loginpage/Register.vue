@@ -7,14 +7,15 @@
           <h2>註冊</h2>
           <BgTag class="bg_tag" Bgtag="SIGNUP"></BgTag>
         </div>
-
         <div class="input_group">
-          <input type="text" v-model="mem_mail" @blur="validateEmail" required />
+          <input type="text" v-model="mem_mail" maxlength="20" @blur="validateEmail" required />
           <label for="">電子郵件</label>
         </div>
-        <div :class="{emailExists:emailExists}">此帳號已註冊</div>
+        <div v-if="emailExists" class="emailExists">此帳號已註冊</div>
+        <div v-if="emailUnForm" class="emailUnForm">Email 格式不正確</div>
         <div class="input_group">
           <input
+						maxlength="10"
             type="password"
             placeholder="密碼須包含英文與數字"
             v-model="mem_pwd"
@@ -23,11 +24,11 @@
           <label for="" class="psw">密碼</label>
         </div>
         <div class="input_group">
-          <input type="password" v-model="psd_confirm" required />
+          <input type="password" maxlength="10" v-model="psd_confirm" required />
           <label for="">密碼確認</label>
         </div>
         <div class="input_group">
-          <input type="text" v-model="mem_name" required />
+          <input type="text" maxlength="10" v-model="mem_name" required />
           <label for="">姓名</label>
         </div>
         <div class="birth">
@@ -51,9 +52,10 @@
           </div>
         </div>
         <div class="remember">
-          <label><input type="checkbox" />我已閱讀並同意會員約定條款說明</label>
+					<input type="checkbox" id="agree" v-model="checked">
+          <label for="agree">我已閱讀並同意會員約定條款說明</label>
         </div>
-        <button type="button" class="btn_s" @click="gotype">下一步</button>
+        <button type="submit" :disabled="notSubmit" class="btn_s" @click="gotype">下一步</button>
 
         <!-- 已有帳號 -->
         <div class="signup">
@@ -222,7 +224,10 @@ export default {
       clothes: "", // 衣長
       pants: "", //褲長
       goType: false, // 切換註冊 / 身形建置
-      emailExists:false // email 是否已註冊
+      emailExists: false, // email 是否已註冊
+      emailUnForm: false, // emamil 格式
+      notSubmit: false,
+			checked: false,
     };
   },
   methods: {
@@ -232,7 +237,6 @@ export default {
       const month = this.bday_m;
       const day = this.bday_d;
       const bday = `${year}-${month}-${day}`;
-      console.log("---", bday);
       return bday;
     },
     // 送出登入表單
@@ -263,45 +267,101 @@ export default {
         .then((response) => {
           return response.json();
         })
-        .then((data) => console.log(data))
+        .then((data) =>{
+					// console.log(data)
+					if (data.msg) {
+						alert("data.msg");
+					}
+				})
         .catch((error) => console.log(error));
+    },
+		// email 格式不正確，出現div ，且無法送出
+    IfemailUnForm(){
+				this.emailUnForm = true;
+				this.notSubmit = true;
+		},
+			// 帳號已註冊，出現 div，且無法送出
+		IfemailExists() {
+				this.emailExists = true; 
+				this.notSubmit = true;
+		},
+    // 檢查 email 格式，並檢查是否已註冊
+    validateEmail(){
+			let EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+      // 檢查 eamil 格式
+      if (EMAIL_REGEX.test(this.mem_mail)) { // 電子郵件格式正確
+        this.emailUnForm = false;
+        this.notSubmit = true;
+        //檢查是否已註冊過
+        let formData = new FormData();
+        formData.append("mem_mail", this.mem_mail);
+        formData.append("action", "check_email");
+        fetch("/api_server/register.php",{
+          method:"post",
+          body:formData
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) =>{ 
+            // console.log(data)
+            if (data.errMsg) { //此帳號已註冊
+              this.IfemailExists();
+            }
+						else{
+							this.emailExists = false; 
+							this.notSubmit = false;
+						}
+          })
+          .catch((error) => console.log(error));
+      } else { // 電子郵件格式不正確    
+        this.IfemailUnForm();
+      }
     },
     // 前往身形建置
     gotype() {
+			if (!this.mem_mail || !this.mem_pwd || !this.psd_confirm || !this.mem_name || !this.bday_m ||
+      !this.bday_d || !this.bday_y || !this.checked){
+        alert("表單缺少必填欄位");
+        return;
+			}
       this.goType = true;
     },
-    // 帳號已註冊，出現 div，且無法送出
-    emailExists() {
-      emailExists=true; // email 是否已註冊
-    }, 
-    // email 是否已註冊
-    validateEmail(){
-      let formData = new FormData();
-      formData.append("mail", this.mem_mail);
-      formData.append("action", "check_email");
-      fetch("/api_server/register.php?" ,{
-        method:"post",
-        body:formData
-      })
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) =>{ 
-        console.log(data)
-        if (data.emailExists) {
-          emailExists();
-        }
-        })
-        .catch((error) => console.log(error));
-    }
   },
 };
+
+
+// let month = 1
+// switch(month){
+// 	case 1:
+// 	case 3:
+// 	case 5:
+// 	case 7:
+// 	case 8:
+// 	case 10:
+// 	case 12:
+// 		days = 31
+// 		break
+// 	case 4:
+// 	case 6:
+// 	case 9:
+// 	case 11:
+// 		days = 30
+// 	default: 
+// 		days = 28 // 或 days = 29 (西元年可以被 4 整除)
+// }
 </script>
 
 <style lang="scss" scoped>
 // 會員註冊
 body {
-  .wrapper {
+	.emailExists{ // 警示帳號存在
+          color: red;
+        }
+	.emailUnForm{ // 警示帳號格是不正確
+		color: red;
+	}
+  .signup_wrapper {
     display: flex;
     justify-content: center;
     margin: auto;
@@ -417,7 +477,6 @@ body {
         }
         .remember {
           display: flex;
-          justify-content: space-between;
           align-items: center;
           margin: 10px 0 15px 0;
           font-size: 14px;
@@ -425,6 +484,7 @@ body {
             font-size: 14px;
           }
           input {
+						margin-inline-end: 5px;
             accent-color: $main_color;
           }
           .forget_psw {

@@ -16,12 +16,12 @@
                     <ul>
                         <li v-for="option in options" :key="option.name">
                             <router-link :to="option.url" exact-active-class="active">
-                                <span :class="{ active: option.active }" class="side_menu_tag">#</span>
+                                <span class="side_menu_tag">#</span>
                                 {{ option.name }}
                             </router-link>
                         </li>
-                        <li>
-                            <router-link to="/">登出</router-link>
+                        <li @click="Logout">
+                            <router-link to="">登出</router-link>
                         </li>
                     </ul>
                 </nav>
@@ -37,7 +37,7 @@
 
 <script>
 // import { BASE_URL } from "@/assets/js/common.js";
-import axios from 'axios';
+// import axios from 'axios';
 export default {
 	name: "MemberSideMenu",
 	props: {
@@ -66,11 +66,28 @@ export default {
         }
     },
     methods:{
+        // 登出
+        Logout(){
+            fetch(`/api_server/logout.php`)
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                if(data.msg){
+                    this.$router.push({path:'/login'})
+                }else{
+                    alert(errMsg);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }
 
     },
     created(){
         // axios.get(`api_server/memberInfo.php`)
-        axios.get('/api_server/memberInfo.php')
+        this.axios.get('/api_server/memberInfo.php')
         .then(res =>this.member = res.data)
         .catch(error =>console.log(error));
 
@@ -82,7 +99,8 @@ export default {
         // })
         // .then((data) =>{
         //     console.log(data)
-        //     this.member = data})
+        //     this.member = data
+        // })
         // .catch(error =>console.log(error));
 
     }
