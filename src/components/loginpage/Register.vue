@@ -1,57 +1,71 @@
 <template>
   <!--註冊-->
-  <div v-if="goType===false" class="signup_wrapper wrapper">
-	<div class="form_wrapper sign_up">
-	  <form class="login_form" action="">
-		<div class="title">
-		  <h2>註冊</h2>
-		  <BgTag class="bg_tag" Bgtag="SIGNUP"></BgTag>
-		</div>
+  <div v-if="goType === false" class="signup_wrapper wrapper">
+    <div class="form_wrapper sign_up">
+      <form class="login_form" action="">
+        <div class="title">
+          <h2>註冊</h2>
+          <BgTag class="bg_tag" Bgtag="SIGNUP"></BgTag>
+        </div>
 
-		<div class="input_group">
-		  <input type="text" v-model="mem_mail" required />
-		  <label for="">電子郵件</label>
-		</div>
-		<div class="input_group">
-		  <input type="password" placeholder="密碼須包含英文與數字" v-model="mem_pwd" required />
-		  <label for="" class="psw">密碼</label>
-		</div>
-		<div class="input_group">
-		  <input type="password" v-model="psd_confirm" required />
-		  <label for="">密碼確認</label>
-		</div>
-		<div class="input_group">
-		  <input type="text"  v-model="mem_name" required />
-		  <label for="">姓名</label>
-		</div>
-		<div class="birth">
-		  <div class="input_group">
-			<input type="number" min="1" max="12" v-model="bday_m" required />
-			<label for="">月</label>
-		  </div>
-		  <div class="input_group">
-			<input type="number" min="1" max="31" v-model="bday_d" required />
-			<label for="">日</label>
-		  </div>
-		  <div class="input_group">
-			<input type="number" min="1900" max="2022" v-model="bday_y" required />
-			<label for="">年</label>
-		  </div>
-		</div>
-		<div class="remember">
-		  <label><input type="checkbox" />我已閱讀並同意會員約定條款說明</label>
-		</div>
-		<button type="button" class="btn_s" @click="gotype">下一步</button>
+        <div class="input_group">
+          <input type="text" v-model="mem_mail" @blur="validateEmail" required />
+          <label for="">電子郵件</label>
+        </div>
+        <div :class="{emailExists:emailExists}">此帳號已註冊</div>
+        <div class="input_group">
+          <input
+            type="password"
+            placeholder="密碼須包含英文與數字"
+            v-model="mem_pwd"
+            required
+          />
+          <label for="" class="psw">密碼</label>
+        </div>
+        <div class="input_group">
+          <input type="password" v-model="psd_confirm" required />
+          <label for="">密碼確認</label>
+        </div>
+        <div class="input_group">
+          <input type="text" v-model="mem_name" required />
+          <label for="">姓名</label>
+        </div>
+        <div class="birth">
+          <div class="input_group">
+            <input type="number" min="1" max="12" v-model="bday_m" required />
+            <label for="">月</label>
+          </div>
+          <div class="input_group">
+            <input type="number" min="1" max="31" v-model="bday_d" required />
+            <label for="">日</label>
+          </div>
+          <div class="input_group">
+            <input
+              type="number"
+              min="1900"
+              max="2022"
+              v-model="bday_y"
+              required
+            />
+            <label for="">年</label>
+          </div>
+        </div>
+        <div class="remember">
+          <label><input type="checkbox" />我已閱讀並同意會員約定條款說明</label>
+        </div>
+        <button type="button" class="btn_s" @click="gotype">下一步</button>
 
-		<!-- 已有帳號 -->
-		<div class="signup">
-		  <p>
-			已有帳號，
-			<router-link to="/login" href="#" class="signup_link">前往登入</router-link>
-		  </p>
-		</div>
-	  </form>
-	</div>
+        <!-- 已有帳號 -->
+        <div class="signup">
+          <p>
+            已有帳號，
+            <router-link to="/login" href="#" class="signup_link"
+              >前往登入</router-link
+            >
+          </p>
+        </div>
+      </form>
+    </div>
   </div>
 
   <!-- 身形建置 -->
@@ -67,20 +81,10 @@
         <div class="item">
           <!-- 性別 -->
           <div class="sex">
-            <input type="radio" :value="1" v-model="sex" id="male" name="sex">
-			<label
-              class="btn_nl"
-				for="male"
-            >
-              男
-            </label>
-            <input type="radio" :value="0" v-model="sex" id="female" name="sex"> 
-			<label
-              class="btn_nl"
-			  for="female"
-            >
-              女
-            </label>
+            <input type="radio" :value="1" v-model="sex" id="male" name="sex" />
+            <label class="btn_nl" for="male"> 男 </label>
+            <input type="radio" :value="0" v-model="sex" id="female" name="sex"/>
+            <label class="btn_nl" for="female"> 女 </label>
           </div>
           <!-- 身高體重/鞋碼  -->
           <div class="my_body">
@@ -182,87 +186,114 @@
             />我同意本網站的隱私權政策，並同意Urstyle收集及使用我的個人資料以處理訂單。</label
           >
         </div>
-		<button type="submit" class="btn_s">註冊</button>
+        <button type="submit" class="btn_s">註冊</button>
       </form>
     </div>
   </div>
 </template> 
 
 <script>
-import axios from 'axios';
 import BgTag from "@/components/mypage/BgTag.vue";
 export default {
   name: "Register",
   props: {},
   components: {
-	BgTag,
+    BgTag,
   },
   data() {
-	return {
-		// 註冊
-		mem_mail:'',
-		mem_pwd:'',
-		psd_confirm:'',
-		mem_name:'',
-		bday_m:'',
-		bday_d:'',
-		bday_y:'',
-		// 身形建置
-    sex: '',
-    height: '', //身高
-    weight: '', //體重
-    shoesize: '', //鞋碼
-    shoulder: '', //肩寬
-    chest: '', // 胸圍
-    waistline: '', // 腰圍
-    hip: '', //臀圍
-    clothes: '', // 衣長
-    pants: '', //褲長
-		// 註冊 身形建置 切換
-		goType: false,
-	};
+    return {
+      // 註冊
+      mem_mail: "",
+      mem_pwd: "",
+      psd_confirm: "",
+      mem_name: "",
+      bday_m: "",
+      bday_d: "",
+      bday_y: "",
+      // 身形建置
+      sex: "",
+      height: "", //身高
+      weight: "", //體重
+      shoesize: "", //鞋碼
+      shoulder: "", //肩寬
+      chest: "", // 胸圍
+      waistline: "", // 腰圍
+      hip: "", //臀圍
+      clothes: "", // 衣長
+      pants: "", //褲長
+      goType: false, // 切換註冊 / 身形建置
+      emailExists:false // email 是否已註冊
+    };
   },
   methods: {
-	combineDate() {
-    const year = this.bday_y;
-    const month = this.bday_m;
-    const day = this.bday_d;
-    const bday = `${year}-${month}-${day}`;
-    console.log("---",bday);
-    return bday;
-  },
-	handleSubmit(){
-    let formData = new FormData();
-    formData.append("mem_mail", this.mem_mail);
-    formData.append("mem_pwd", this.mem_pwd);
-    formData.append("mem_name", this.mem_name);
-    formData.append("bday", this.combineDate());
-    // 身形
-    formData.append("sex", this.sex);
-    formData.append("height", this.height);
-    formData.append("weight", this.weight);
-    formData.append("shoesize", this.shoesize);
-    formData.append("shoulder", this.shoulder);
-    formData.append("chest", this.chest);
-    formData.append("waistline", this.waistline);
-    formData.append("hip", this.hip);
-    formData.append("clothes", this.clothes);
-    formData.append("pants", this.pants);
-    formData.append("chest", this.chest);
+    // 合併日期
+    combineDate() {
+      const year = this.bday_y;
+      const month = this.bday_m;
+      const day = this.bday_d;
+      const bday = `${year}-${month}-${day}`;
+      console.log("---", bday);
+      return bday;
+    },
+    // 送出登入表單
+    handleSubmit() {
+      let formData = new FormData();
+      formData.append("mem_mail", this.mem_mail);
+      formData.append("mem_pwd", this.mem_pwd);
+      formData.append("mem_name", this.mem_name);
+      formData.append("bday", this.combineDate());
+      // 身形
+      formData.append("sex", this.sex);
+      formData.append("height", this.height);
+      formData.append("weight", this.weight);
+      formData.append("shoesize", this.shoesize);
+      formData.append("shoulder", this.shoulder);
+      formData.append("chest", this.chest);
+      formData.append("waistline", this.waistline);
+      formData.append("hip", this.hip);
+      formData.append("clothes", this.clothes);
+      formData.append("pants", this.pants);
+      formData.append("chest", this.chest);
+      formData.append("action", "register");
 
-    fetch('/api_server/register.php',{
+      fetch("/api_server/register.php", {
         method: "post",
         body: formData,
       })
-      .then((response) => {
+        .then((response) => {
           return response.json();
+        })
+        .then((data) => console.log(data))
+        .catch((error) => console.log(error));
+    },
+    // 前往身形建置
+    gotype() {
+      this.goType = true;
+    },
+    // 帳號已註冊，出現 div，且無法送出
+    emailExists() {
+      emailExists=true; // email 是否已註冊
+    }, 
+    // email 是否已註冊
+    validateEmail(){
+      let formData = new FormData();
+      formData.append("mail", this.mem_mail);
+      formData.append("action", "check_email");
+      fetch("/api_server/register.php?" ,{
+        method:"post",
+        body:formData
       })
-      .then((data) =>console.log(data))
-      .catch(error =>console.log(error));
-	},
-	gotype(){
-		this.goType = true;
-	}
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) =>{ 
+        console.log(data)
+        if (data.emailExists) {
+          emailExists();
+        }
+        })
+        .catch((error) => console.log(error));
+    }
   },
 };
 </script>
@@ -271,177 +302,177 @@ export default {
 // 會員註冊
 body {
   .wrapper {
-	display: flex;
-	justify-content: center;
-	margin: auto;
-	padding: 30px 0;
-	background-color: $bg_gray;
-	.form_wrapper {
-	  background-color: white;
-	  height: fit-content;
-	  @include s() {
-		width: 100%;
-		padding: 30px;
-	  }
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding: 30px 0;
+    background-color: $bg_gray;
+    .form_wrapper {
+      background-color: white;
+      height: fit-content;
+      @include s() {
+        width: 100%;
+        padding: 30px;
+      }
 
-	  @include m() {
-		border: 1px solid black;
-		width: 30%;
-		padding: 30px;
-	  }
-	  .login_form {
-		position: relative;
-		.title {
-		  margin-bottom: 40px;
-		  h2 {
-			font-size: 35px;
-			font-weight: 700;
-		  }
-		  .bg_tag {
-			position: absolute;
-			top: 0;
-			right: 0;
-			font-size: 45px;
-		  }
-		}
-		.input_group {
-		  position: relative;
-		  margin-block-start: 35px;
-		  border-bottom: 2px solid;
-		  input {
-			width: 100%;
-			height: 40px;
-			font-size: 16px;
-			color: #333;
-			padding: 0 5px;
-			border: none;
-			outline: none;
-			&:focus ~ label {
-			  color: $main_color;
-			  top: -5px;
-			}
-			&:valid ~ label {
-			  color: $main_color;
-			  top: -5px;
-			}
-		  }
-		  label {
-			position: absolute;
-			top: 50%;
-			left: 5px;
-			transform: translateY(-50%);
-			font-size: 16px;
-			pointer-events: none;
-			transition: 0.5s;
-			color: gray;
-		  }
-		  .psw {
-			color: rgba(255, 255, 255, 0);
-		  }
-		}
-		.birth {
-		  display: flex;
-		  gap: 15px;
-		  .input_group {
-			position: relative;
-			margin-block-start: 35px;
-			border-bottom: 2px solid;
-			&:nth-child(1) {
-			  flex: 1;
-			}
-			&:nth-child(2) {
-			  flex: 1;
-			}
-			&:nth-child(3) {
-			  flex: 2;
-			}
-			input {
-			  width: 100%;
-			  height: 40px;
-			  font-size: 16px;
-			  color: #333;
-			  padding: 0 5px;
-			  border: none;
-			  outline: none;
-			  &:focus ~ label {
-				color: $main_color;
-				top: 0px;
-			  }
-			  &:valid ~ label {
-				color: $main_color;
-				top: 0px;
-			  }
-			}
-			label {
-			  position: absolute;
-			  top: 50%;
-			  left: 5px;
-			  transform: translateY(-50%);
-			  font-size: 16px;
-			  pointer-events: none;
-			  transition: 0.5s;
-			  color: gray;
-			}
-		  }
-		}
-		.remember {
-		  display: flex;
-		  justify-content: space-between;
-		  align-items: center;
-		  margin: 10px 0 15px 0;
-		  font-size: 14px;
-		  label {
-			font-size: 14px;
-		  }
-		  input {
-			accent-color: $main_color;
-		  }
-		  .forget_psw {
-			font-size: 14px;
-		  }
-		}
-		.btn_s {
-		  position: relative;
-		  width: 100%;
-		  height: 40px;
-		  font-size: 16px;
-		  line-height: 5px;
-		  margin-bottom: 20px;
-		  cursor: pointer;
-		}
-		.social_plarform {
-		  display: flex;
-		  flex-direction: column;
-		  justify-content: space-between;
-		  text-align: center;
-		  width: 100%;
-		  p {
-			font-size: 12px;
-			color: gray;
-		  }
-		  .social_icons {
-			font-size: 16px;
-			a {
-			  padding: 14px;
-			  margin-block: 20px;
-			  display: block;
-			  border: 1px solid gray;
-			}
-		  }
-		}
-		.signup {
-		  width: 100%;
-		  text-align: center;
-		  font-size: 14px;
-		  color: #333;
-		  .signup_link {
-			// display: block;
-			font-size: 14px;
-			color: $main_color;
-		  }
-		}
-	  }
-	}
+      @include m() {
+        border: 1px solid black;
+        width: 30%;
+        padding: 30px;
+      }
+      .login_form {
+        position: relative;
+        .title {
+          margin-bottom: 40px;
+          h2 {
+            font-size: 35px;
+            font-weight: 700;
+          }
+          .bg_tag {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 45px;
+          }
+        }
+        .input_group {
+          position: relative;
+          margin-block-start: 35px;
+          border-bottom: 2px solid;
+          input {
+            width: 100%;
+            height: 40px;
+            font-size: 16px;
+            color: #333;
+            padding: 0 5px;
+            border: none;
+            outline: none;
+            &:focus ~ label {
+              color: $main_color;
+              top: -5px;
+            }
+            &:valid ~ label {
+              color: $main_color;
+              top: -5px;
+            }
+          }
+          label {
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            transform: translateY(-50%);
+            font-size: 16px;
+            pointer-events: none;
+            transition: 0.5s;
+            color: gray;
+          }
+          .psw {
+            color: rgba(255, 255, 255, 0);
+          }
+        }
+        .birth {
+          display: flex;
+          gap: 15px;
+          .input_group {
+            position: relative;
+            margin-block-start: 35px;
+            border-bottom: 2px solid;
+            &:nth-child(1) {
+              flex: 1;
+            }
+            &:nth-child(2) {
+              flex: 1;
+            }
+            &:nth-child(3) {
+              flex: 2;
+            }
+            input {
+              width: 100%;
+              height: 40px;
+              font-size: 16px;
+              color: #333;
+              padding: 0 5px;
+              border: none;
+              outline: none;
+              &:focus ~ label {
+                color: $main_color;
+                top: 0px;
+              }
+              &:valid ~ label {
+                color: $main_color;
+                top: 0px;
+              }
+            }
+            label {
+              position: absolute;
+              top: 50%;
+              left: 5px;
+              transform: translateY(-50%);
+              font-size: 16px;
+              pointer-events: none;
+              transition: 0.5s;
+              color: gray;
+            }
+          }
+        }
+        .remember {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin: 10px 0 15px 0;
+          font-size: 14px;
+          label {
+            font-size: 14px;
+          }
+          input {
+            accent-color: $main_color;
+          }
+          .forget_psw {
+            font-size: 14px;
+          }
+        }
+        .btn_s {
+          position: relative;
+          width: 100%;
+          height: 40px;
+          font-size: 16px;
+          line-height: 5px;
+          margin-bottom: 20px;
+          cursor: pointer;
+        }
+        .social_plarform {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          text-align: center;
+          width: 100%;
+          p {
+            font-size: 12px;
+            color: gray;
+          }
+          .social_icons {
+            font-size: 16px;
+            a {
+              padding: 14px;
+              margin-block: 20px;
+              display: block;
+              border: 1px solid gray;
+            }
+          }
+        }
+        .signup {
+          width: 100%;
+          text-align: center;
+          font-size: 14px;
+          color: #333;
+          .signup_link {
+            // display: block;
+            font-size: 14px;
+            color: $main_color;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -487,19 +518,19 @@ body {
           .sex {
             display: flex;
             justify-content: space-between;
-			input{
-				display: none;
-				&:checked + label{
-					background-color: $main-color;
-              		color: white;
-				}
-			}
-			.btn_nl{
-				padding: 15px 50px;
-				@include xl() {
-					padding: 15px 70px;
-				}
-			}
+            input {
+              display: none;
+              &:checked + label {
+                background-color: $main-color;
+                color: white;
+              }
+            }
+            .btn_nl {
+              padding: 15px 50px;
+              @include xl() {
+                padding: 15px 70px;
+              }
+            }
           }
           .my_body {
             // input group css
@@ -551,7 +582,7 @@ body {
               margin-top: 10px;
               width: 100%;
             }
-            input[type="range"]{
+            input[type="range"] {
               -webkit-appearance: none;
               width: 100%;
               height: 10px;
@@ -559,7 +590,7 @@ body {
               border-radius: 5px;
               outline: none;
             }
-            input[type="range"]::-webkit-slider-thumb{
+            input[type="range"]::-webkit-slider-thumb {
               -webkit-appearance: none;
               width: 30px;
               height: 15px;

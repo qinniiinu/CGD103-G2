@@ -51,7 +51,7 @@
 </template> 
 
 <script>
-import { BASE_URL } from "@/assets/js/common.js";
+// import { BASE_URL } from "@/assets/js/common.js";
 import BgTag from "@/components/mypage/BgTag.vue";
 export default {
   name: "SigninIn",
@@ -74,7 +74,11 @@ export default {
       formData.append("mem_mail", this.mem_mail);
       formData.append("mem_pwd", this.mem_pwd);
 
+<<<<<<< HEAD
       fetch(`/api_server/login.php`, {
+=======
+      fetch('/api_server/login.php', {
+>>>>>>> dae66536042c87cc6d8be6424632487ffbbe5a1c
         method: "post",
         body: formData,
       })
@@ -89,6 +93,7 @@ export default {
             alert("登入失敗，" + data.msg);
           } else {
             // console.log("登入成功：", data);
+            this.$store.state.user=data;
             this.$router.push({path:'/MyPage'});
           }
         })

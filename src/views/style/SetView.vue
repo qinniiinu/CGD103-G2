@@ -28,12 +28,12 @@
 		</div>
 		<div class="product-item-info">
 				<div class="look-item">
-					<div class="look-item-product" v-for="(product,index) of products" :key="index" >
-						<div class="look-item-pic"><img :src="product.src" alt=""></div>
+					<div class="look-item-product" v-for="(product,index) of productItem" :key="index" >
+						<div class="look-item-pic"><img :src="product.product_pic" alt=""></div>
 						<div class="look-item-content">
-							<h3>{{product.title}}</h3>
-							<p>{{product.text}}</p>
-							<p>$NT{{product.price}}</p>
+							<h3>{{product.product_name}}</h3>
+							<p>{{product.product_text}}</p>
+							<p>$NT{{product.unit_price}}</p>
 						</div>
 					</div>
 				</div>
@@ -74,6 +74,7 @@
 	import 'swiper/css/pagination';
 	import 'swiper/css/scrollbar';
 	import lookCard from "@/components/lookCard.vue";
+	import { BASE_URL } from "../../assets/js/common.js";
 
 	export default {
 		name: "Set",
@@ -101,6 +102,8 @@
 				ootd:{
 					id:666,pname:'都會簡約時尚穿搭',hashtags:['Outdoor','戶外穿搭','OOTD','橘色']
 				},
+				lookImg:[],
+				productItem:[],
 
 				productPics:[
 					{src:'look/look-info-pic1.png'},
@@ -113,7 +116,7 @@
 					{id:501,color:'brown',size:'s',src:'/product/look-item-1.png',title:'合身剪裁長版大衣',text:'一件剪裁考究的外套，可以根據您的著裝和溫度，將衣領向上或向下穿著',price:5590},
 					{id:502,color:'beige',size:'s',src:'/product/look-item-2.png',title:'簡約條紋襯衫',text:'舒適的棉質襯衫。設計點是清新的條紋圖案',price:1990},
 					{id:503,color:'beige',size:'s',src:'/product/look-item-3.png',title:'平紋針織高喬褲',text:'通過排列環，您可以享受直線和曲線的輪廓',price:1290},
-					{id:504,color:'black',size:'s',src:'/product/look-item-4.png',title:'時尚短靴',text:'從材料到細節，我們都非常注重細節，以實現舒適性和高設計性。',price:3990},
+					{id:504,color:'black',size:'s',src:'/product/look-item-4.png',title:'時尚短靴',text:'從材料到細節，我們都非常注重細節，以實現舒適性和高設計性',price:3990},
 				],
 				cols:[
 					{src:'/look/look-1.jpg',ootdName:'OOTD-001',tag:['#上班穿搭','＃沙漏形'],id:'01'},
@@ -129,6 +132,7 @@
 				],
 				lookmain:'',
 				cart:[],
+				page:909,
 				total:'',
 				swiperOptions: {
 						breakpoints: {   
@@ -160,7 +164,9 @@
 			
 		},
 		mounted () {
-
+			console.log(this.productItem)
+			this.getLookResource()
+			this.getProductResource()
 			this.lookmain=this.productPics[0].src 
 			this.total=this.products[0].price + this.products[1].price + this.products[2].price + this.products[3].price
 		},
@@ -219,6 +225,24 @@
             	const data = JSON.stringify(this.cart);
             	localStorage.setItem("cart", data);
         	},
+			getProductResource() {
+			//取得員工資料
+				this.axios.get(`${BASE_URL}/setproduct.php`).then((response) => {
+					console.log(response.data);
+					this.productItem = response.data;
+					console.log(this.page);
+                    if (productItem.combo_id == this.page){
+						
+					}
+                });
+			},
+			getLookResource() {
+			//取得員工資料
+				this.axios.get(`${BASE_URL}/setlook.php`).then((response) => {
+					console.log(response.data);
+					this.lookImg = response.data;
+				});
+			},
 			
 			
 		},
