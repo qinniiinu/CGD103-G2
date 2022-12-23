@@ -104,7 +104,7 @@
     </div>
 	<div class="contactUs"> <!-- 聯絡我們 -->
 		
-		<form class="container" id="insert_client" method="post" enctype="multipart/form-data">	
+		<div class="container" id="insert_client" method="post" action="/clientInsert.php">	
 			<div class="titleBox">
 				<h4>歡迎來信合作</h4>
 				<div class="order_title">#CONTACT</div>
@@ -113,8 +113,8 @@
 				<p>有關商品相關問題(例如：商品瑕疵)，請透過客服專線、電子郵件連繫我們，或到鄰近您的店舖洽詢。(店舖營業時間，請查看 FAQ)</p>
 				
 			</div>
-			<div class="inputBox">
-				<input class="inputBar" type="text" id="client_person" name="client_person"
+			<form class="inputBox"  @submit.prevent="checkLogin" id="insert_client" method="post" enctype="multipart/form-data" >
+				<input class="inputBar" type="text"  id="client_person" name="client_person"
 				placeholder="請輸入姓名">
 				<input class="inputBar" type="text" id="client_name" name="client_name" placeholder="請輸入公司名稱">
 				<input class="inputBar" type="email" 
@@ -123,11 +123,12 @@
 				<input class="inputText" type="textarea" id="client_meg" name="client_meg" placeholder="請輸入詢問內容">
 				<div class="sendOut">
 					<input class="check" type="checkbox">點擊「確定送出」即表示您同意我們的隱私權條款聲明
-				<button class="btn_ml" @click="insert()" id="update">確認送出</button>
+				<!-- <button class="btn_ml" @click="insert()" id="update">確認送出</button> -->
+				<button class="btn_ml" @click="insert()">送出</button>
 				</div>
 				
-			</div>
-		</form>
+			</form>
+		</div>
 		</div>
 		
 			
@@ -171,7 +172,7 @@
 </template>
 
 <script>
-
+import { BASE_URL } from "@/assets/js/common.js";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Header from "@/components/Header.vue";
@@ -235,28 +236,32 @@ export default {
 				que:"退換貨問題",
 				how:"如何退貨",
 				ans:"只要還沒剪標籤，都可以在十四日內郵寄退貨",
-				},
-				
-				
-			]
-		}
+				},	
+			],
+			client:[],
+		};
 	},
 	methods: {
-	  insert() {
-      //新增員工
-      let xhr = new XMLHttpRequest();
-      xhr.onload = function () {
-      let result = JSON.parse(xhr.responseText);alert(result.msg);
-      };
-      xhr.open("post", `${BASE_URL}/clientInsert.php`, true);
-      xhr.send(new FormData(document.getElementById("insert_client")));
+	checkLogin() {
+      if (!this.client_mail || !this.client_name ) {
+        alert("輸入成功！");
+        return;
+      }
+	
+    },
+		insert() {
+			fetch(`http://localhost/cgd103_g2_frontend/phpfile/clientInsert.php`,{
+				method:'post',
+				body:new FormData(document.querySelector('.inputBox'))
+			}).then((res)=>res.json())
+			.then((json)=>console.log(json))
+	  
 	}},
+	
 	mounted(){
-
-	gsap.to(".FAQcontainer",{
+		gsap.to(".FAQcontainer",{
 		    x:1000,
 		    duration:8,
-		
 		    scrollTrigger:{
 			trigger:".FAQRow",
 			start:"top 40%",

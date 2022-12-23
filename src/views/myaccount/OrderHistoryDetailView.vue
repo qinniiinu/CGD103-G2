@@ -3,20 +3,20 @@
 	<router-view/>
 	<div class="data">
 		<div class="Ordh_container"><!-- 訂單紀錄容器盒 -->
-			<div v-for="e in orders" :key="e.order_id" class="ord_detail_container">
+			<div v-if="orders.length" class="ord_detail_container">
 				<h3 class="ord_title">訂單詳情</h3>
 				<div class="ord_detail">
 					<div class="ord_condition">
 						<p>訂單編號：</p>
-						<p>{{e.order_id}}</p>
+						<p>{{orders[0].order_id}}</p>
 					</div>
 					<div class="ord_condition">
 						<p>訂單狀態：</p>
-						<p>{{e.order_con}}</p>
+						<p>{{orders[0].order_con}}</p>
 					</div>
 					<div class="ord_condition">
-						<p>收件人：{{e.ord_mem}}</p>
-						<p>電話：{{e.ord_phone}}</p> 
+						<p>收件人：{{orders[0].ord_mem}}</p>
+						<p>電話：{{orders[0].ord_phone}}</p> 
 						
 					</div>
 				</div>
@@ -28,7 +28,7 @@
 						</a></p>
 					</div>
 					<div class="ord_condition">
-						<p>送件地址：{{e.ord_addr}}</p>
+						<p>送件地址：{{orders[0].ord_addr}}</p>
 						
 					</div>
 				
