@@ -5,6 +5,7 @@
     img2="./pic/sport2.png"
     desc="運動休閒風日愈成為主流趨勢，從以前因運動需求才穿上運動裝，到現在運動裝已經普遍成為了一種常見的穿搭風格，大家對於運動休閒接受度越來越高，不僅不會覺得奇怪，甚至覺得穿上運動裝，就無形的展現著一種「對生活有紀律、有熱情」的生活態度。"
      />
+       <button class="btn_ns" @click="insert">記錄我的風格</button>
       <h3 class="recommend">推薦商品</h3>
     <section class="recommend_box">
       <div v-for="e in product" class="item" :key="e.product_pic" >

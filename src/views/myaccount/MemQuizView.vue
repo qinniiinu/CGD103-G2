@@ -1,44 +1,33 @@
 <template>
   <p class="title">我的風格</p>
   <div class="data">
-    <!-- 這裡開始寫 -->
-    <div class="wrap">
+    <!-- 有測驗紀錄 -->
+    <div class="wrap" v-if="style_id != ''">
       <section class="style">
         <div class="item">
           <p>屬於:</p>
-          <h2>#{{info.style_name}}</h2>
+          <h2>#{{ info.style_name }}</h2>
         </div>
         <div class="item">
           <img :src="`../pic/${info.style_pic}`" :alt="info.style_name" />
         </div>
         <div class="item">
-          <p>{{info.style_descrip}}</p>
-        </div>
-        <div class="item">
-          <router-link :to="{ name: 'Quiz' }"
-            ><button class="btn_s">重新測驗</button></router-link
-          >
+          <p>{{ info.style_descrip }}</p>
         </div>
       </section>
-      <!-- <img src="../../../public/pic/hipster1.png" alt=""> -->
-      <section class="recommend">
-        <h2>推薦穿搭</h2>
-        <div class="item">
-          <StylistLook
-            scardP="../pic/stylist-1.jpg"
-            stylistName="Kevin"
-            stylistInfo="擅長時尚風格,用前衛的單品,搭配出衝突的美感"
-          ></StylistLook>
+      <h3 class="recommend">推薦商品</h3>
+      <section class="recommend_box">
+        <div v-for="e in product" class="item" :key="e.product_pic">
+          <router-link :to="`/productDetails/${e.product_id}`">
+            <img :src="`../pic/${cut(e.product_pic)}`" />
+            <h4>{{ e.product_name }}</h4>
+          </router-link>
         </div>
-      </section>
-      <section class="recommend">
-        <h2>推薦單品</h2>
-        
       </section>
       <section class="deco">
-        <div class="decoration">#CASUAL</div>
+        <div class="decoration">#STYLE</div>
         <div class="btn_box">
-          <router-link :to="{ name: 'MyPage' }"
+          <router-link to="/MyPage"
             ><button class="btn_l">返回</button></router-link
           >
           <router-link :to="{ name: 'Quiz' }"
@@ -47,54 +36,86 @@
         </div>
       </section>
     </div>
+    <!-- 無測驗紀錄 -->
+    <div class="no_style" v-else>
+      <div class="item">
+        <h3 class="txt_box">尚未測驗</h3>
+        <div class="btn_box">
+          <router-link :to="{ name: 'Quiz' }"
+            ><button class="btn_s">測驗去</button></router-link
+          >
+          <router-link to="/MyPage"
+            ><button class="btn_l">返回</button></router-link
+          >
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
-import StylistLook from "@/components/StylistLook.vue";
 //引入BASE_URL參數
 import { BASE_URL } from "@/assets/js/common.js";
 export default {
   name: "MemQuiz",
-  components: {
-    StylistLook,
-  },
   data() {
     return {
-        info:[],
-        style_name:"",
+      info: [],
+      product: [],
+      style_id: "",
     };
   },
   created() {},
   mounted() {
     this.getResource();
+    this.getRecommend();
   },
   computed: {},
   methods: {
-    // getResource() {
-    //   //取得員工資料
-    //   this.axios.get(`${BASE_URL}/style.php`).then((response) => {
-    //     console.log(response);
-    //     // this.style = response.data;
-    //   });
-    // },
-     getResource() {
+    cut(x) {
+      if (x) return x.split(",")[0];
+    },
+    getResource() {
       this.axios.get(`/api_server/mem_style.php`).then((response) => {
-                this.info = response.data;
-                console.log(this.info.style_name);
-            });
+        this.info = response.data;
+        if (this.info.style_id !== null && this.info.style_id !== undefined) {
+          this.style_id = this.info.style_id;
+          this.getRecommend();
+        }
+      });
+    },
+    getRecommend() {
+      const data = {
+        style_id: this.style_id,
+      };
+      fetch(`${BASE_URL}/mem_styleREC.php`, {
+        method: "post",
+        body: new URLSearchParams(data),
+      })
+        .then((res) => res.json())
+        .then((json) => (this.product = json));
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/sass/quiz_result";
 .title {
   font-size: 24px;
   color: #292929;
   padding-bottom: $padding;
 }
 .wrap {
+  .txt_box {
+    padding: 50px;
+    color: $main_color;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 30px;
+  }
   .style {
     .item:nth-child(1) {
       //title
@@ -116,18 +137,13 @@ export default {
         vertical-align: top;
       }
     }
+    // descrip
     .item:nth-child(3) {
       padding: 20px 0;
       p {
         color: $text_color;
         line-height: 27px;
         font-size: 16px;
-      }
-    }
-    .item:nth-child(4) {
-      button {
-        display: block;
-        margin: 0 auto;
       }
     }
   }
@@ -147,21 +163,19 @@ export default {
       display: none;
     }
     .btn_box {
-      .btn_s {
-        display: none;
-      }
-      .btn_l {
-        margin-left: auto;
-        display: block;
-      }
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
     }
   }
 }
+
 @media screen and (min-width: 1024px) {
   .wrap {
     background-color: #fff;
     padding: 20px;
     border: 1px solid $title_color;
+    min-height: 500px;
     .style {
       display: grid;
       grid-template-columns: 60% 40%;
@@ -223,17 +237,51 @@ export default {
         right: 0;
         .btn_l {
           // 返回
-          margin-left: 0;
-          // display: block;
           display: inline-block;
           margin-right: 10px;
         }
         .btn_s {
           //重新測驗
           display: inline-block;
+          margin-right: 10px;
         }
       }
     }
   }
 }
+
+// 無測驗
+.no_style{
+  border: 1px $title_color solid;
+  min-height: 300px;
+  position: relative;
+  background-color: #fff;
+  .item{
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+  h3{
+    margin-bottom: 30px;
+    font-weight: 600;
+    color: $main_color;
+    font-size: 30px;
+    text-align: center;
+  }
+  .btn_box{
+      margin: 0 auto;
+      width: fit-content;
+      .btn_s{
+        margin-right: 10px;
+      }
+  }
+  }
+  
+}
+ @media screen and (min-width:1024px) {
+  .no_style{
+    min-height: 500px;
+  }
+ }
 </style>
