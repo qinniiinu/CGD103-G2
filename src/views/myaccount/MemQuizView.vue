@@ -9,7 +9,7 @@
           <h2>#{{info.style_name}}</h2>
         </div>
         <div class="item">
-          <img :src="`/pic/${info.style_pic}`" :alt="info.style_name" />
+          <img :src="`../pic/${info.style_pic}`" :alt="info.style_name" />
         </div>
         <div class="item">
           <p>{{info.style_descrip}}</p>
@@ -25,7 +25,7 @@
         <h2>推薦穿搭</h2>
         <div class="item">
           <StylistLook
-            scardP="/pic/stylist-1.jpg"
+            scardP="../pic/stylist-1.jpg"
             stylistName="Kevin"
             stylistInfo="擅長時尚風格,用前衛的單品,搭配出衝突的美感"
           ></StylistLook>
