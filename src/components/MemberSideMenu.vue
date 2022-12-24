@@ -15,7 +15,7 @@
                 <nav class="side_menu">
                     <ul>
                         <li v-for="option in options" :key="option.name">
-                            <router-link :to="option.url" exact-active-class="active">
+                            <router-link :to="option.url" :class="{active:isActive(option)}">
                                 <span class="side_menu_tag">#</span>
                                 {{ option.name }}
                             </router-link>
@@ -37,7 +37,6 @@
 
 <script>
 // import { BASE_URL } from "@/assets/js/common.js";
-// import axios from 'axios';
 export default {
 	name: "MemberSideMenu",
 	props: {
@@ -62,7 +61,6 @@ export default {
                 // mem_name:"王曉明",
                 // level_id: "101",
             },
-            // body:{}
         }
     },
     methods:{
@@ -82,11 +80,18 @@ export default {
             .catch((error) => {
                 console.log(error);
             });
+        },
+        isActive(option){ //判斷目前路徑位置
+            if(option.url === this.$route.path){
+                return true;
+            }else if(option.url === '/MyPage/OrderHistory' && this.$route.path.startsWith('/MyPage/OrderHistory')){
+                return true;
+            }
+            return false;
         }
 
     },
     created(){
-        // axios.get(`api_server/memberInfo.php`)
         this.axios.get('/api_server/memberInfo.php')
         .then(res =>this.member = res.data)
         .catch(error =>console.log(error));

@@ -7,8 +7,8 @@
                 <h4 class="tit">收藏穿搭</h4>
                 <router-link to="/Favorites">
                     <ul class="save_item">
-                        <li v-for="ootd in ootds" :key="ootd.combo_id">
-                            <img :src="ootd.combo_pic" alt="ootd.combo_id" />
+                        <li v-for="(combo_main_pic,index) in collect_combo.combo_main_pic" :key="collect_combo.combo_id[index]">
+                            <img :src="collect_combo.combo_main_pic[index]" :alt="collect_combo.combo_id[index]" />
                         </li>
                     </ul>
                 </router-link>
@@ -18,8 +18,8 @@
             <h4 class="tit">單品商品</h4>
                 <router-link to="/Favorites">
                     <ul class="save_item">
-                    <li v-for="product in products" :key="product.product_id">
-                        <img :src="product.product_pic" alt="product.product_id" />
+                    <li v-for="(product_pic,index) in collect_product.product_pic" :key="collect_product.product_id[index]">
+                        <img :src="collect_product.product_pic[index]" :alt="collect_product.product_id[index]" />
                     </li>
                     </ul>
                 </router-link>
@@ -36,35 +36,15 @@ export default {
   components: {},
   data() {
     return {
-      ootds: [
-        {
-          combo_id: 11111,
-          combo_pic: "./ootd-look-1.jpg",
-        },
-        {
-          combo_id: 22222,
-          combo_pic: "./ootd-look-2.jpg",
-        },
-        {
-          combo_id: 33333,
-          combo_pic: "./ootd-look-3.jpg",
-        },
-      ],
+      collect_combo: {
+          combo_id:[ 901,902,903],
+          combo_main_pic:["look/look-1.jpg","look/look-2.jpg","look/look-3.jpg"]
+      },
 
-      products: [
-        {
-          product_id: 11111,
-          product_pic: "./stylelist-look1.webp",
-        },
-        {
-          product_id: 22222,
-          product_pic: "./stylelist-look2.webp",
-        },
-        {
-          product_id: 33333,
-          product_pic: "./stylelist-look3.webp",
-        },
-      ],
+      collect_product: {
+          product_id:[101,102,103],
+          product_pic:["pic/F1_01_1.jpg", "pic/F1_02_1.jpg","pic/F1_03_1.jpg"]
+      },
     };
   },
 };
