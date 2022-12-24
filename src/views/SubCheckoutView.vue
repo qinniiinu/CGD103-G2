@@ -128,7 +128,7 @@ export default {
             console.log(this.subscribe);
         },
 		getResource() {
-            this.axios.get("/api_server/member.php").then((response) => {
+            this.axios.get("/api_server/login.php").then((response) => {
                 this.memInfo= response.data;
 				console.log(this.memInfo);
             });

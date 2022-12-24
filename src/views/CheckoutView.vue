@@ -121,6 +121,7 @@ export default {
 				this.inner[1]=this.memInfo.phone;
 				this.inner[2]=this.memInfo.mem_mail;
 				this.inner[3]=this.memInfo.address;
+				console.log(this.inner);
 			}
 			else{
 				this.inner=[];
@@ -132,7 +133,7 @@ export default {
 			this.order=data? data:[]
         },
 		getResource() {
-            this.axios.get("/api_server/member.php").then((response) => {
+            this.axios.get("/api_server/login.php").then((response) => {
                 this.memInfo= response.data;
 				console.log(this.memInfo);
             });
