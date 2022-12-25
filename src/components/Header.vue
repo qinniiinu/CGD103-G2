@@ -16,6 +16,7 @@
                         <router-link to="/FindStyle">找風格</router-link>
                         <ul class="sub">
                             <li><router-link to="/MulStyles">風格穿搭</router-link></li>
+                            <li><router-link to="/Wearing">穿搭列表</router-link></li>
                             <li><router-link to="/Quiz">風格測驗</router-link></li>
                             <li><router-link to="/Chat">風格諮詢</router-link></li>
                         </ul>

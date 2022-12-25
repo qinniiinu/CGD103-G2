@@ -1,7 +1,13 @@
 <template>
-	<div class="chat_cover">
-		<img src="chat-cover.png" alt="">
+	<div class="cover">
+		<!-- <h2>你有穿搭困擾嗎？</h2> -->
+		<video autoplay muted loop class="chat_cover">
+			
+			<source src="/pic/test_03.mp4" type="video/mp4">
+		</video>
 	</div>
+	
+	
 	<section>
 		<div class="trouble_part">
 			<h2>
@@ -272,15 +278,27 @@ export default {
 </script>
 <style lang="scss" scoped>
 	@import "@/assets/sass/main";
+	.cover{
+		position: relative;
+
+		// h2{
+		// 	text-align: center;
+		// 	color: $second_color;
+		// 	font-size:72px ;
+		// 	font-weight: 700;
+		// 	position: absolute;
+		// 	top: 0;
+		// 	bottom: 0;
+		// 	left:0; 
+		// 	right: 0;
+		// 	margin: auto;
+		// 	line-height: 100vh;
+		// }
+	}
 
 	.chat_cover{
 		width: 100%;
-		height: 100vh;
-		img{
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-		}
+		margin: auto;
 	}
 	.trouble_part{
 		display: flex;
