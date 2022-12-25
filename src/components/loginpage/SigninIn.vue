@@ -88,7 +88,7 @@ export default {
             // console.log(data.msg);
             alert("登入失敗，" + data.msg);
           } else {
-            // console.log("登入成功：", data);
+            console.log("登入成功：", data);
             this.$store.state.user=data;
             this.$router.push({path:'/MyPage'});
           }

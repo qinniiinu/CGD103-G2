@@ -44,7 +44,10 @@
 								<li scope="row" class="ord_history_content">{{e.order_time}}</li>
 								<li class="ord_history_content">{{e.order_id}}</li>
 								<li class="ord_history_content">{{e.total}}</li>
-								<li class="ord_history_content">{{e.order_con}}</li><!-- 訂單狀態 -->
+								<li class="ord_history_content">
+									<p v-if="e.order_con == 1">訂單取消</P>
+									<p v-else-if="e.order_con == 2">商品配送中</P>
+									<p v-else>商品已送達</p></li><!-- 訂單狀態 -->
 								<li class="ord_history_content" id="Q" >
 									<a class="transport_detail" href="">聯繫客服</a>
 								</li>									
@@ -63,7 +66,11 @@
 				<li v-for="item in orders" :key="item.order_id" class="item_num" >
 					<div class="item_num_row">
 						<div class="item_num_title">訂單編號： {{item.order_id}}</div>
-						<h2>{{item.order_con}}</h2>
+						<h2>
+							<p v-if="item.order_con == 1">訂單取消</P>
+							<p v-else-if="item.order_con == 2">商品配送中</P>
+							<p v-else>商品已送達</p>
+						</h2>
 					</div>
 
 					<div class="page_photo">
@@ -143,7 +150,7 @@ export default {
 			this.number =index;
 		},
 		getResource() {
-        this.axios.get(`${BASE_URL}/getOrder.php`).then((response) => {
+        this.axios.get(`http://localhost/cgd103_g2_frontend/phpfile/getOrder.php`).then((response) => {
 			    console.log(response.data);
 				this.orders = response.data;
             });

@@ -1,48 +1,18 @@
 <template>
-	<!-- 會員 container -->
-	<p class="title">訂閱服務</p>
-	<div class="data">
-		<!-- 這裡開始寫 -->
-		<div class="card">
-			<div v-if="showPanel==false" class="card-wrap">
-				<div class="card-v" v-for="sub in vip_level" :key="sub.level">
-					<div class="card-content">
-						<h2>#{{sub.level_name}}</h2>
-						<p>
-							<font-awesome-icon icon="fa-solid fa-check" />
-							每月專屬搭配<span>1</span>套
-                    	</p>
-						<span>{{sub.set_info}}</span>
-						<p>
-                        <font-awesome-icon icon="fa-solid fa-check" />
-							每月諮詢造型師<span>{{sub.monthConsult}}</span>次
-						</p>
-						<p>
-							<font-awesome-icon icon="fa-solid fa-check" />
-							每月免運費<span>{{sub.freeShipping}}</span>次
-						</p>
-						<p>
-							<font-awesome-icon icon="fa-solid fa-check" />
-							商品<span>{{sub.specialOffer}}</span>折優惠
-						</p>
-						<h3>NT$<span>{{sub.price}}</span>/月</h3>
-						<router-link to="/SubCheckout"><button @click="setStorage(index,sub)">訂閱</button></router-link>
-					</div>
-				</div>
-			</div>
-			<div v-else class="card-wrap">
-				<div v-if="view==1" class="card-sub">
-					<h2>您的訂閱方案</h2>
-					<p class="memlevel">#{{memSub.level_name}}</p>
-					<button @click="view=2">更改方案</button>
-				</div>
-				<div class="card-wrap" v-if="view==2">
+	<template v-if="load">loading...</template>
+	<template v-else>
+		<!-- 會員 container -->
+		<p class="title">訂閱服務</p>
+		<div class="data">
+			<!-- 這裡開始寫 -->
+			<div class="card">
+				<div v-if="showPanel==false" class="card-wrap">
 					<div class="card-v" v-for="sub in vip_level" :key="sub.level">
-						<div class="card-content" :class="{activestyle:isActive(sub.level_name)}">
+						<div class="card-content">
 							<h2>#{{sub.level_name}}</h2>
 							<p>
 								<font-awesome-icon icon="fa-solid fa-check" />
-								每月專屬搭配<span>{{sub.monthSet}}</span>套
+								每月專屬搭配<span>1</span>套
 							</p>
 							<span>{{sub.set_info}}</span>
 							<p>
@@ -58,42 +28,75 @@
 								商品<span>{{sub.specialOffer}}</span>折優惠
 							</p>
 							<h3>NT$<span>{{sub.price}}</span>/月</h3>
-							<p v-if="memSub.level_id==sub.level_id">訂閱日:{{memSub.sub_time}} </p>
-							<p v-if="memSub.level_id==sub.level_id">下次付款日:{{memSub.sub_deadline}} </p>
-							<router-link v-if="memSub.level_id!=sub.level_id" to="/SubCheckout"><button @click="setStorage(index,sub)">訂閱</button></router-link>
+							<router-link to="/SubCheckout"><button @click="setStorage(index,sub)">訂閱</button></router-link>
 						</div>
 					</div>
 				</div>
+				<div v-else class="card-wrap">
+					<div v-if="view==1" class="card-sub">
+						<h2>您的訂閱方案</h2>
+						<p class="memlevel">#{{memSub.level_name}}</p>
+						<button @click="view=2">更改方案</button>
+					</div>
+					<div class="card-wrap" v-if="view==2">
+						<div class="card-v" v-for="sub in vip_level" :key="sub.level">
+							<div class="card-content" :class="{activestyle:isActive(sub.level_name)}">
+								<h2>#{{sub.level_name}}</h2>
+								<p>
+									<font-awesome-icon icon="fa-solid fa-check" />
+									每月專屬搭配<span>{{sub.monthSet}}</span>套
+								</p>
+								<span>{{sub.set_info}}</span>
+								<p>
+								<font-awesome-icon icon="fa-solid fa-check" />
+									每月諮詢造型師<span>{{sub.monthConsult}}</span>次
+								</p>
+								<p>
+									<font-awesome-icon icon="fa-solid fa-check" />
+									每月免運費<span>{{sub.freeShipping}}</span>次
+								</p>
+								<p>
+									<font-awesome-icon icon="fa-solid fa-check" />
+									商品<span>{{sub.specialOffer}}</span>折優惠
+								</p>
+								<h3>NT$<span>{{sub.price}}</span>/月</h3>
+								<p v-if="memSub.level_id==sub.level_id">訂閱日:{{memSub.sub_time}} </p>
+								<p v-if="memSub.level_id==sub.level_id">下次付款日:{{memSub.sub_deadline}} </p>
+								<router-link v-if="memSub.level_id!=sub.level_id" to="/SubCheckout"><button @click="setStorage(index,sub)">訂閱</button></router-link>
+							</div>
+						</div>
+					</div>
+				</div>
+				<button class="cancel" v-if="view===2" @click="showPanel=false,view=1">取消訂閱</button>
+				<router-link to="/MyPage"><button v-if="view===1" class="back">返回</button></router-link>
+				<button v-if="view===2" class="back" @click="view=1">返回</button>
 			</div>
-			<button class="cancel" v-if="view===2" @click="showPanel=false,view=1">取消訂閱</button>
-			<router-link to="/MyPage"><button v-if="view===1" class="back">返回</button></router-link>
-			<button v-if="view===2" class="back" @click="view=1">返回</button>
+			<div class="decoration">
+				<bg-tag :Bgtag="'PREMIUM'"></bg-tag>
+			</div>
 		</div>
-		<div class="decoration">
-			#PREMIUM
-		</div>
-	</div>
+	</template>
 </template>
-
 <script>
+import BgTag from "@/components/mypage/BgTag.vue";
 export default {
 	name: "memSubscription",
 	components: {
+		BgTag,
 	},
 	data(){
 		return{
+			load: false,
+			memSub:[],
 			vip_level:[],
 			showPanel:'',
 			view:1,
-			sub_time:'2022/12/02',
-			sub_deadline:'2022/01/02',
 			subscribe:[],
-			active:true,
-			mem_level:'BASIC',
-			memSub:[],
+			active:true
 		}
 	},
 	created(){
+		this.load=true;
 		this.getResource();
 	},
 	computed:{
@@ -118,28 +121,26 @@ export default {
 			return e===this.memSub.level_name;
 		},
 		getResource() {
+			// 會員的資料
             this.axios.get("/api_server/subscription.php").then((response) => {
                 this.memSub= response.data;
 				console.log(this.memSub);
-				console.log(this.memSub.level_id);
-				if(this.memSub.level_id!=''){
+				if(this.memSub==false){ //判斷有沒有訂閱
+					this.showPanel=false;
+					console.log(this.showPanel);
+					this.load=false;
+				}else{
 					this.showPanel=true;
 					console.log(this.showPanel);
+					this.load=false;
 				}
             });
+			// 訂閱的資訊
             this.axios.get("/api_server/vip_level.php").then((response) => {
                 this.vip_level= response.data;
 				console.log(this.vip_level);
             });
         },
-		// isSub(){
-		// 	if(this.memSub.level_id!=''){
-		// 		showPanel=true;
-		// 		console.log(showPanel);
-		// 	}else{
-		// 		showPanel=false;
-		// 	}
-		// }
 	}
 };
 </script>

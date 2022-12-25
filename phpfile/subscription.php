@@ -9,8 +9,7 @@
         FROM member m
         JOIN vip_level v ON m.level_id=v.level_id
         JOIN vip_orders o ON m.level_id=o.level_id
-        where m.mem_id=:mem_id
-        ORDER BY level_id ASC;";
+        where m.mem_id=:mem_id;";
         $errMsg = "";
         $member_id = $_SESSION['member']['mem_id'];
         $level = $pdo->prepare($sql); //先編譯好

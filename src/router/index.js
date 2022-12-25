@@ -74,11 +74,6 @@ const routes = [
 		name: "fittingroom3",
 		component: () => import("../views/FittingRoom3View.vue"),
 	},
-	// {
-	// 	path: "/login",
-	// 	name: "login",
-	// 	component: () => import("../views/LoginView.vue"),
-	// },
 	{
 		path: "/login", //登入
 		name: "SigninIn",
@@ -88,11 +83,6 @@ const routes = [
 		path: "/Register", //註冊
 		name: "Register",
 		component: () => import("../components/loginpage/Register.vue"),
-	},
-	{
-		path: "/BodyTyping", //身形建置
-		name: "BodyTyping",
-		component: () => import("../components/loginpage/BodyTyping.vue"),
 	},
 	{
 		path: "/productdetails/:id",
@@ -159,6 +149,14 @@ const routes = [
 				path: "OrderHistory",
 				name: "OrderHistory",
 				component: () => import("../views/myaccount/OrderHistoryView.vue"),
+				// children: [ // 測試中 
+				// 	{
+				// 		path: ':orderId',
+				// 		name: "OrderHistoryDetail",
+				// 		component: () => import("../views/myaccount/OrderHistoryDetailView.vue"),
+				// 	},
+				// ]
+				// <!-- <router-link :to="{ name: 'OrderHistoryDetail', params: { orderId: e.order_id } }"> -->
 			},
 			{
 				path: "OrderHistoryDetail",
