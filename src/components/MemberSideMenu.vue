@@ -94,7 +94,7 @@ export default {
         }
 
     },
-    created(){
+    mounted(){
         this.axios.get('/api_server/memberInfo.php')
         .then(res => {
             this.member = res.data

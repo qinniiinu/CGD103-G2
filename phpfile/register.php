@@ -1,6 +1,7 @@
 <?php
 // 前台 會員註冊
 // //跨域(正式開發不能這樣)
+session_start();
 header('Access-Control-Allow-Origin:*');
 header("Content-Type:application/json;charset=utf-8");
 
@@ -13,13 +14,13 @@ try {
         $bday = $_POST["bday"];
 
         // 身形資料
+        $sex = $_POST["sex"];
         $chest = $_POST["chest"];
         $shoulder = $_POST["shoulder"];
         $waistline = $_POST["waistline"];
         $hip = $_POST["hip"];
         $clothes = $_POST["clothes"];
         $pants = $_POST["pants"];
-        $chest = $_POST["chest"];
         $shoesize = $_POST["shoesize"];
         $height = $_POST["height"];
         $weight = $_POST["weight"];
@@ -27,8 +28,8 @@ try {
         $errMsg = "";
         require_once("../connectBooks.php");
 
-        $sql = "INSERT INTO member (mem_mail, mem_pwd, mem_name, bday, mem_date, chest, shoulder, waistline, clothes, pants, shoesize, height, weight,hip)
-        VALUES (:mem_mail, :mem_pwd, :mem_name, :bday, CURRENT_DATE(),:chest, :shoulder, :waistline, :clothes, :pants, :shoesize, :height,:weight,:hip);";
+        $sql = "INSERT INTO member (mem_mail, mem_pwd, mem_name, bday, mem_date, chest, shoulder, waistline, hip, clothes, pants, shoesize, height, weight, body_id, sex)
+        VALUES (:mem_mail, :mem_pwd, :mem_name, :bday, CURRENT_DATE(),:chest, :shoulder, :waistline, :hip, :clothes, :pants, :shoesize, :height,:weight, 101, :sex);";
         
         $member = $pdo->prepare( $sql );
         $member->bindValue(":mem_mail", $mem_mail);
@@ -38,14 +39,33 @@ try {
         $member->bindValue(":chest", $chest);
         $member->bindValue(":shoulder", $shoulder);
         $member->bindValue(":waistline", $waistline);
+        $member->bindValue(":hip", $hip);
         $member->bindValue(":clothes", $clothes);
         $member->bindValue(":pants", $pants);
         $member->bindValue(":shoesize", $shoesize);
         $member->bindValue(":height", $height);
         $member->bindValue(":weight", $weight);
+        $member->bindValue(":sex", $sex);
 
         $member->execute();//執行之
-        $msg = "success";
+        if($member->rowCount() > 0) {// 註冊成功
+
+            require_once("../connectBooks.php");
+            $sql2= "SELECT * FROM member WHERE mem_mail = :mem_mail";
+            $stmt = $pdo->prepare($sql2);
+            $stmt->bindValue(":mem_mail", $_POST["mem_mail"]);
+            $stmt->execute();
+            $memberRow = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            // 帶入登入者資料 session
+            $_SESSION['member'] = $memberRow;
+            $msg = '註冊成功';
+            echo json_encode(["msg" => $msg]);
+            exit();
+        } else {// 註冊不成功
+            $errMsg = '錯誤:註冊失敗';
+            echo json_encode(["errMsg" => $errMsg]);
+            }
 
     }else if($_POST["action"] === "check_email"){ //檢查 email 是否已註冊
         require_once("../connectBooks.php");
@@ -62,8 +82,8 @@ try {
         }
     }
 } catch (PDOException $e) {
-    $msg = "錯誤 : ".$e -> getMessage();
-    $msg .= ", 行號 : ".$e -> getLine();
+    $errMsg = "錯誤 : ".$e -> getMessage();
+    $errMsg .= ", 行號 : ".$e -> getLine();
 }
 echo json_encode(["msg" => $msg , "errMsg" => $errMsg]);
 ?> 

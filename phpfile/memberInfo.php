@@ -5,11 +5,10 @@ header("Content-Type:application/json;charset=UTF-8");
 $errMsg = "";
 try {
     if (isset($_SESSION['member'])) { // 若會員已登入
-        // 取得已登入會員 身形 body、風格 style、訂閱訂單 vip_orders ;
+        // 取得已登入會員 member 身形 body、訂閱訂單 vip_orders ;
         require_once("../connectBooks.php");
-        $sql = "SELECT m.*, b.*, s.* ,v.* from member m JOIN body b on(m.body_id = b.body_id)  
-                                     JOIN style s on(m.style_id = s.style_id)
-                                     LEFT JOIN vip_orders v on(m.mem_id = v.mem_id)
+        $sql = "SELECT m.* , b.* ,v.* from member m JOIN body b on(m.body_id = b.body_id)
+                                    LEFT JOIN vip_orders v on(m.mem_id = v.mem_id)
         where m.mem_id=:mem_id;";
         $member_id = $_SESSION['member']['mem_id']; // 抓出 SESSION 中已登入者的 mem_id
         $member = $pdo->prepare($sql); //先編譯好
