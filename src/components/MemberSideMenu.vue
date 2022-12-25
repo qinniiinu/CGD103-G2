@@ -114,7 +114,7 @@ export default {
             }
         })
         .catch(error =>console.log(error));
-    console.log(this.levelInfo);
+        
         // fetch('/api_server/memberInfo.php',{
         // method: "get"
         // })
