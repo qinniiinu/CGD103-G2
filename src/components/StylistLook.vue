@@ -12,7 +12,7 @@
 
         <div class="look-item" v-for="lookItem of lookItems" :key="lookItem">
                 <img :src="lookItem.src" alt="">
-                <router-link to="/Set"><Button class="look_btn" content="查看更多"></Button></router-link> 
+                <router-link :to="`/Set/${lookItem.link}`"><Button class="look_btn" content="查看更多"></Button></router-link> 
         </div>
     </div>
 </div>
@@ -43,10 +43,10 @@ export default {
     	return {
          
             lookItems:[
-                {src:'/ootd-look-1.jpg'},
-                {src:'/ootd-look-2.jpg'},
-                {src:'/ootd-look-3.jpg'},
-                {src:'/ootd-look-2.jpg'},
+                {src:'/look/ootd-look-1.jpg',link:'908'},
+                {src:'/look/ootd-look-2.jpg',link:'905'},
+                {src:'/look/ootd-look-3.jpg',link:'903'},
+                {src:'/look/ootd-look-2.jpg',link:'904'},
 
             ],
     	} 

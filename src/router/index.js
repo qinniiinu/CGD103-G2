@@ -243,7 +243,7 @@ const routes = [
 		component: () => import("../views/style/quiz/ResultMinimalistView.vue"),
 	},
 	{
-		path: "/Set",
+		path: "/Set/:idlink",
 		name: "Set",
 		component: () => import("../views/style/SetView.vue"),
 	},

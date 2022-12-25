@@ -1,7 +1,9 @@
 <template>
     <div class="card">
         <div class="img_box">
-            <img :src="link" :alt="content">
+            <router-link :to="`/Set/${idlink}`">
+                <img :src="link" :alt="content">
+            </router-link>
 
             <label :for="heartId">
                 <input type="checkbox" :id="heartId">
@@ -9,9 +11,16 @@
             </label>
             
         </div>
-        <h3>{{ootdName}}</h3>
+        
+
+        <router-link :to="`/Set/${idlink}`">
+            <h3>{{ootdName}}</h3>
+        </router-link>
+
         <div class="hashtag">
-            <p v-for="(tag,index) of tags" :key="index">{{tag}}</p>
+            <p>{{tag1}}</p>
+            <p>{{tag2}}</p>
+            <p>{{tag3}}</p>
         </div>
        
     </div>
@@ -22,9 +31,12 @@
 export default {
     props: {
         link:String,
+        idlink:String,
         content: String,
         ootdName: String,
-        tag:Array,
+        tag1:String,
+        tag2:String,
+        tag3:String,
         heartId:String,
     },
 //     data(){
@@ -47,6 +59,7 @@ export default {
 
 <style lang="scss" scoped>
 .card{
+    
    
     width: 100%;
     .img_box{
@@ -66,6 +79,7 @@ export default {
                 position:absolute;
                 top: 5px  ;
                 right: 5px;
+                cursor: pointer;
 
                 // -webkit-text-stroke:2px $main_color;
                 // color: rbga(23,23,23,.3);
@@ -82,6 +96,14 @@ export default {
        
     }
     h3{
+        @include m{
+            font-size: 22px;
+        }
+        
+        @include l{
+            font-size: 20px;
+        }
+        
         font-size: 24px;
         font-weight: 700;
         line-height: 36px;

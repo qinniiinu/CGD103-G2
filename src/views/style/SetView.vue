@@ -2,18 +2,18 @@
 	<div class="product_main">
 		<div class="product-content">
 			<div class="product-name">
-				<h2>{{ootd.pname}}</h2>
-				<p v-for="(hashtag,index) of ootd.hashtags" :key="index">
-					{{hashtag}}
+				<h2>{{combo_name}}</h2>
+				<p v-for="(tag,index) of hashtag" :key="index">
+					{{tag}}
 				</p>
 			</div>
 			<div class="look-pic">
 				<div class="main-pic">
-					<img :src="String(lookmain)" alt="">
+					<img :src="`/look/${bigPicture}`" alt="">
 				</div>
 				<div class="sub-pic">
-					<div class="sub-pic-item" v-for="(productPic,index) of productPics " :key="index" @click="lookmain=productPic.src">
-						<img :src="productPic.src" alt="">
+					<div class="sub-pic-item" v-for="(pic,index) of combo_pic " :key="index" @click="this.bigPicture=pic">
+						<img :src="`/look/${pic}`" alt="">
 					</div>
 				</div>
 			</div>
@@ -28,17 +28,17 @@
 		</div>
 		<div class="product-item-info">
 				<div class="look-item">
-					<div class="look-item-product" v-for="(product,index) of productItem" :key="index" >
-						<div class="look-item-pic"><img :src="product.product_pic" alt=""></div>
+					<div class="look-item-product" v-for="(item,index) of productCombo" :key="index" >
+						<div class="look-item-pic"><img :src="`/pic/${item.product_pic}`" alt=""></div>
 						<div class="look-item-content">
-							<h3>{{product.product_name}}</h3>
-							<p>{{product.product_text}}</p>
-							<p>$NT{{product.unit_price}}</p>
+							<h3>{{item.product_name}}</h3>
+							<p>{{item.product_text}}</p>
+							<p>$NT{{item.unit_price}}</p>
 						</div>
 					</div>
 				</div>
 				<div class="totalPrice">
-					<p>整套售價:$NT{{total}}</p>
+					<p>整套售價:$NT{{combo_price}}</p>
 				</div>
 				<button class="btn_ns" @click="add()">加入購物車</button>
 		</div>
@@ -56,9 +56,10 @@
 			@swiper="onSwiper"
 			@slideChange="onSlideChange"
 		>
-			<swiper-slide class="swiper" v-for="(col,index) of cols" :key="index">
-				<lookCard class="swiper-item" :link="col.src" :tag="col.tag" :ootdName="col.ootdName" :heartId="col.id"></lookCard>
-			</swiper-slide>
+		  	<swiper-slide class="swiper" v-for="(look,index) of looks" :key="index">
+                <lookCard class="swiper-item" :link="`/look/${look.combo_main_pic}`" :tag1="cut1(look.hashtag)" :tag2="cut2(look.hashtag)" :tag3="cut3(look.hashtag)" :ootdName="look.combo_name" :heartId="look.combo_id"></lookCard>
+            </swiper-slide>
+
 			
 		
 		</swiper>
@@ -99,41 +100,21 @@
 
 		data(){
 			return{
-				ootd:{
-					id:666,pname:'都會簡約時尚穿搭',hashtags:['Outdoor','戶外穿搭','OOTD','橘色']
-				},
+				ggPicture:[],
+				bigPicture:'',
+				temp:{},
+				looks:[],
+				productCombo:[],
 				lookImg:[],
 				productItem:[],
-
-				productPics:[
-					{src:'look/look-info-pic1.png'},
-					{src:'look/look-info-pic2.png'},
-					{src:'look/look-info-pic3.png'},
-					{src:'look/look-info-pic4.png'},
-					{src:'look/look-info-pic5.png'},
-				],
-				products:[
-					{id:501,color:'brown',size:'s',src:'/product/look-item-1.png',title:'合身剪裁長版大衣',text:'一件剪裁考究的外套，可以根據您的著裝和溫度，將衣領向上或向下穿著',price:5590},
-					{id:502,color:'beige',size:'s',src:'/product/look-item-2.png',title:'簡約條紋襯衫',text:'舒適的棉質襯衫。設計點是清新的條紋圖案',price:1990},
-					{id:503,color:'beige',size:'s',src:'/product/look-item-3.png',title:'平紋針織高喬褲',text:'通過排列環，您可以享受直線和曲線的輪廓',price:1290},
-					{id:504,color:'black',size:'s',src:'/product/look-item-4.png',title:'時尚短靴',text:'從材料到細節，我們都非常注重細節，以實現舒適性和高設計性',price:3990},
-				],
-				cols:[
-					{src:'/look/look-1.jpg',ootdName:'OOTD-001',tag:['#上班穿搭','＃沙漏形'],id:'01'},
-					{src:'/look/look-2.jpg',ootdName:'OOTD-002',tag:['#約會穿搭','＃蘋果形'],id:'02'},
-					{src:'/look/look-3.jpg',ootdName:'OOTD-003',tag:['#上課穿搭','＃蘋果形'],id:'03'},
-					{src:'/look/look-4.jpg',ootdName:'OOTD-004',tag:['#上課穿搭','＃蘋果形'],id:'04'},
-					{src:'/look/look-5.jpg',ootdName:'OOTD-005',tag:['#開會穿搭','＃蘋果形'],id:'05'},
-					{src:'/look/look-6.jpg',ootdName:'OOTD-006',tag:['#旅行穿搭','＃蘋果形'],id:'06'},
-					{src:'/look/look-7.jpg',ootdName:'OOTD-007',tag:['#趴踢穿搭','＃蘋果形'],id:'07'},
-					{src:'/look/look-8.jpg',ootdName:'OOTD-008',tag:['#宴會穿搭','＃蘋果形'],id:'08'},
-					{src:'/look/look-9.jpg',ootdName:'OOTD-009',tag:['#運動穿搭','＃蘋果形'],id:'09'},
-						
-				],
 				lookmain:'',
 				cart:[],
 				page:901,
-				total:'',
+				all:'',
+				price1:'',
+				price2:'',
+				price3:'',
+				price4:'',
 				swiperOptions: {
 						breakpoints: {   
 							// 390:{       
@@ -160,17 +141,59 @@
 		},
 		computed: {
 			
-		
+			setpage(){
+
+				return this.temp;
+			},
+			combo_name(){
+				return this.setpage?.combo_name;
+			},
+			combo_main_pic(){
+				return this.setpage?.combo_main_pic;
+			},
+			hashtag(){
+			
+				return this.setpage?.hashtag.split(",");
+			},
+			combo_pic(){
+				return this.setpage?.combo_pic.split(",");
+			},
+			combo_price(){
+				return this.setpage?.combo_price;
+			},
+			
 			
 		},
 		mounted () {
-			console.log(this.productItem)
-			this.getLookResource()
-			this.getProductResource()
-			this.lookmain=this.productPics[0].src 
-			this.total=this.products[0].price + this.products[1].price + this.products[2].price + this.products[3].price
+			
+		
+			
 		},
 		methods:{
+			getResource() {
+				this.axios.get(`${BASE_URL}/look_detail.php`).then((response) => {
+
+					this.temp = response.data.find((e) => {
+						if (e.combo_id == this.$route.params.idlink) return e;
+					});
+					this.bigPicture = this.temp?.combo_main_pic;
+				});
+			},
+			getResourceswiper() {
+				this.axios.get(`${BASE_URL}/look_list.php`).then((response) => {
+                this.looks = response.data;
+                // this.resultproduct();
+            });
+			},
+			getResourceproduct() {
+				this.axios.get(`${BASE_URL}/look_join_product.php`, {
+					params: {
+						combo_id: this.$route.params.idlink,
+					},
+				}).then((response) => {
+					this.productCombo = response.data;
+				});
+			},
 			getStorage() {
 				let data = localStorage.getItem("cart");
 				if (data) data = JSON.parse(data);
@@ -179,34 +202,34 @@
 			add(){
 
 				this.cart.push({	// id: 
-                        title:this.products[0].title,
-                        image:this.products[0].src,
-                        price:this.products[0].price,
-                        color: this.products[0].color,
-                        size: this.products[0].size,
+                        title:this.productCombo[0].title,
+                        image:this.productCombo[0].src,
+                        price:this.productCombo[0].price,
+                        color: this.productCombo[0].color,
+                        size: this.productCombo[0].size,
                         count: 1,
                     },{	// id: 
-                        title:this.products[1].title,
-                        image:this.products[1].src,
-                        price:this.products[1].price,
-                        color: this.products[1].color,
-                        size: this.products[1].size,
+                        title:this.productCombo[1].title,
+                        image:this.productCombo[1].src,
+                        price:this.productCombo[1].price,
+                        color: this.productCombo[1].color,
+                        size: this.productCombo[1].size,
                         count: 1,
                     },
 					{	// id: 
-                        title:this.products[2].title,
-                        image:this.products[2].src,
-                        price:this.products[2].price,
-                        color: this.products[2].color,
-                        size: this.products[2].size,
+                        title:this.productCombo[2].title,
+                        image:this.productCombo[2].src,
+                        price:this.productCombo[2].price,
+                        color: this.productCombo[2].color,
+                        size: this.productCombo[2].size,
                         count: 1,
                     },
 					{	// id: 
-                        title:this.products[3].title,
-                        image:this.products[3].src,
-                        price:this.products[3].price,
-                        color: this.products[3].color,
-                        size: this.products[3].size,
+                        title:this.productCombo[3].title,
+                        image:this.productCombo[3].src,
+                        price:this.productCombo[3].price,
+                        color: this.productCombo[3].color,
+                        size: this.productCombo[3].size,
                         count: 1,
                     },
 					
@@ -225,30 +248,48 @@
             	const data = JSON.stringify(this.cart);
             	localStorage.setItem("cart", data);
         	},
-			getProductResource() {
-			//取得員工資料
-				this.axios.get(`${BASE_URL}/setproduct.php`).then((response) => {
-					console.log(response.data);
-					this.productItem = response.data;
-					console.log(this.page);
-                    if (productItem.combo_id == this.page){
-						
-					}
-                });
+			// getProductResource() {
+			// //取得員工資料
+			// 	this.axios.get(`${BASE_URL}/setproduct.php`).then((response) => {
+			// 		console.log(response.data);
+			// 		this.productItem = response.data;
+			// 		console.log(this.page);
+            //         if (productItem.combo_id == this.page){
+			// 			
+			// 		}
+            //     });
+			// },
+			// getLookResource() {
+			// //取得員工資料
+			// 	this.axios.get(`${BASE_URL}/setlook.php`).then((response) => {
+			// 		console.log(response.data);
+			// 		this.lookImg = response.data;
+			// 	});
+			// },
+			cut1(x) {
+                if (x) return x.split(",")[0];
 			},
-			getLookResource() {
-			//取得員工資料
-				this.axios.get(`${BASE_URL}/setlook.php`).then((response) => {
-					console.log(response.data);
-					this.lookImg = response.data;
-				});
+			cut2(x) {
+				if (x) return x.split(",")[1];
 			},
-			
+			cut3(x) {
+				if (x) return x.split(",")[2];
+			},
+			total(){
+				this.price1=this.productCombo[0].unit_price;
+				this.price2=this.productCombo[1].unit_price;
+				this.price3=this.productCombo[2].unit_price;
+				// this.price4=this.productCombo[3].unit_price;
+				this.all=Number(this.price1)+Number(this.price2)+Number(this.price3);
+			},
 			
 		},
 		created() {
-				// this.getResource();
+				this.getResource();
 				this.getStorage();
+				this.getResourceswiper();
+				this.getResourceproduct();
+				
 			},
 	};
 </script>

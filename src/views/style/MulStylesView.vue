@@ -5,7 +5,7 @@
 			<div :class="['cover_pic', { main:currentPic === coverPic}]" v-for="(coverPic,index) of coverPics" :key="index" @click="currentPic = coverPic">
 				<img :src="coverPic.src">
 				<h2>{{coverPic.text}}</h2>
-				<router-link to="/Set"><Button class="cover_btn btn_ns" content="查看更多"></Button></router-link>
+				<router-link :to="`/Set/${coverPic.link}`"><Button class="cover_btn btn_ns" content="查看更多"></Button></router-link>
 				
 			</div>
 		</div>
@@ -73,9 +73,9 @@
 		<div class="stylist_title">
 			<h2>精選造型師</h2>
 		</div>
-		<StylistLook class="stylistLook" scardP="./stylist-1.jpg" stylistName="Kevin" stylistInfo="擅長時尚風格,用前衛的單品,搭配出衝突的美感"></StylistLook>
+		<StylistLook class="stylistLook" scardP="./pic/stylist-1.jpg" stylistName="Kevin" stylistInfo="擅長時尚風格,用前衛的單品,搭配出衝突的美感"></StylistLook>
 
-		<StylistLook scardP="./stylist-2.jpg" stylistName="Molly" stylistInfo="擅長極簡風格,用簡單的單品,搭配出不一樣的風格"></StylistLook>
+		<StylistLook scardP="./pic/stylist-2.jpg" stylistName="Molly" stylistInfo="擅長極簡風格,用簡單的單品,搭配出不一樣的風格"></StylistLook>
 	</div>
 	
 </template>
@@ -97,14 +97,15 @@ export default {
   	data() {
     	return {
 			logoText:'RE:Outfit  ',
+			links:[901,902,903,904,905,906],
 		
 			coverPics:[
-				{src:'./look/cover_img1.jpg',text:'登山Outdoor風'},
-				{src:'./look/cover_img2.jpg',text:'居家健身風'},
-				{src:'./look/cover_img3.jpg',text:'都會Outdoor風'},
-				{src:'./look/cover_img4.jpg',text:'戶外Outdoor風'},
-				{src:'./look/cover_img5.jpg',text:'輕盈運動風'},
-				{src:'./look/cover_img9.jpg',text:'都會休閒風'},
+				{src:'./look/cover_img1.jpg',text:'登山Outdoor風',link:901},
+				{src:'./look/cover_img2.jpg',text:'居家健身風',link:902},
+				{src:'./look/cover_img3.jpg',text:'都會Outdoor風',link:903},
+				{src:'./look/cover_img4.jpg',text:'戶外Outdoor風',link:904},
+				{src:'./look/cover_img5.jpg',text:'輕盈運動風',link:905},
+				{src:'./look/cover_img9.jpg',text:'都會休閒風',link:906},
 			],
 			stylePics:[
 				{src:'./pic/mulstyle-1.jpg'},
@@ -117,85 +118,85 @@ export default {
 
 			imgs:[
 				[{src:'./look/look-1.jpg'},
-				{src:'./look/look-1.jpg'},
-				{src:'./look/look-1.jpg'},
-				{src:'./look/look-1.jpg'},
-				{src:'./look/look-1.jpg'},
-				{src:'./look/look-1.jpg'},
-				{src:'./look/look-1.jpg'},
-				{src:'./look/look-1.jpg'}],
-
-				[{src:'./look/look-2.jpg'},
 				{src:'./look/look-2.jpg'},
-				{src:'./look/look-2.jpg'},
-				{src:'./look/look-2.jpg'},
-				{src:'./look/look-2.jpg'},
-				{src:'./look/look-2.jpg'},
-				{src:'./look/look-2.jpg'},
-				{src:'./look/look-2.jpg'}],
-
-				[{src:'./look/look-3.jpg'},
 				{src:'./look/look-3.jpg'},
-				{src:'./look/look-3.jpg'},
-				{src:'./look/look-3.jpg'},
-				{src:'./look/look-3.jpg'},
-				{src:'./look/look-3.jpg'},
-				{src:'./look/look-3.jpg'},
-				{src:'./look/look-3.jpg'}],
-
-				[{src:'./look/look-4.jpg'},
 				{src:'./look/look-4.jpg'},
-				{src:'./look/look-4.jpg'},
-				{src:'./look/look-4.jpg'},
-				{src:'./look/look-4.jpg'},
-				{src:'./look/look-4.jpg'},
-				{src:'./look/look-4.jpg'},
-				{src:'./look/look-4.jpg'}],
-
-				[{src:'./look/look-5.jpg'},
 				{src:'./look/look-5.jpg'},
-				{src:'./look/look-5.jpg'},
-				{src:'./look/look-5.jpg'},
-				{src:'./look/look-5.jpg'},
-				{src:'./look/look-5.jpg'},
-				{src:'./look/look-5.jpg'},
-				{src:'./look/look-5.jpg'}],
-
-				[{src:'./look/look-6.jpg'},
 				{src:'./look/look-6.jpg'},
-				{src:'./look/look-6.jpg'},
-				{src:'./look/look-6.jpg'},
-				{src:'./look/look-6.jpg'},
-				{src:'./look/look-6.jpg'},
-				{src:'./look/look-6.jpg'},
-				{src:'./look/look-6.jpg'}],
-
-				[{src:'./look/look-7.jpg'},
 				{src:'./look/look-7.jpg'},
-				{src:'./look/look-7.jpg'},
-				{src:'./look/look-7.jpg'},
-				{src:'./look/look-7.jpg'},
-				{src:'./look/look-7.jpg'},
-				{src:'./look/look-7.jpg'},
-				{src:'./look/look-7.jpg'}],
-
-				[{src:'./look/look-8.jpg'},
-				{src:'./look/look-8.jpg'},
-				{src:'./look/look-8.jpg'},
-				{src:'./look/look-8.jpg'},
-				{src:'./look/look-8.jpg'},
-				{src:'./look/look-8.jpg'},
-				{src:'./look/look-8.jpg'},
 				{src:'./look/look-8.jpg'}],
 
 				[{src:'./look/look-9.jpg'},
+				{src:'./look/look-10.jpg'},
+				{src:'./look/look-11.jpg'},
+				{src:'./look/look-1.jpg'},
+				{src:'./look/look-2.jpg'},
+				{src:'./look/look-3.jpg'},
+				{src:'./look/look-4.jpg'},
+				{src:'./look/look-5.jpg'}],
+
+				[{src:'./look/look-6.jpg'},
+				{src:'./look/look-7.jpg'},
+				{src:'./look/look-8.jpg'},
 				{src:'./look/look-9.jpg'},
+				{src:'./look/look-10.jpg'},
+				{src:'./look/look-11.jpg'},
+				{src:'./look/look-1.jpg'},
+				{src:'./look/look-2.jpg'}],
+
+				[{src:'./look/look-4.jpg'},
+				{src:'./look/look-6.jpg'},
+				{src:'./look/look-2.jpg'},
+				{src:'./look/look-5.jpg'},
+				{src:'./look/look-8.jpg'},
+				{src:'./look/look-1.jpg'},
 				{src:'./look/look-9.jpg'},
+				{src:'./look/look-11.jpg'}],
+
+				[{src:'./look/look-10.jpg'},
+				{src:'./look/look-1.jpg'},
+				{src:'./look/look-3.jpg'},
+				{src:'./look/look-5.jpg'},
+				{src:'./look/look-7.jpg'},
 				{src:'./look/look-9.jpg'},
+				{src:'./look/look-8.jpg'},
+				{src:'./look/look-4.jpg'}],
+
+				[{src:'./look/look-2.jpg'},
+				{src:'./look/look-4.jpg'},
+				{src:'./look/look-6.jpg'},
+				{src:'./look/look-8.jpg'},
+				{src:'./look/look-10.jpg'},
+				{src:'./look/look-11.jpg'},
+				{src:'./look/look-1.jpg'},
+				{src:'./look/look-3.jpg'}],
+
+				[{src:'./look/look-7.jpg'},
+				{src:'./look/look-5.jpg'},
+				{src:'./look/look-6.jpg'},
+				{src:'./look/look-4.jpg'},
+				{src:'./look/look-8.jpg'},
+				{src:'./look/look-1.jpg'},
+				{src:'./look/look-3.jpg'},
+				{src:'./look/look-10.jpg'}],
+
+				[{src:'./look/look-8.jpg'},
 				{src:'./look/look-9.jpg'},
-				{src:'./look/look-9.jpg'},
-				{src:'./look/look-9.jpg'},
-				{src:'./look/look-9.jpg'}],
+				{src:'./look/look-10.jpg'},
+				{src:'./look/look-11.jpg'},
+				{src:'./look/look-7.jpg'},
+				{src:'./look/look-6.jpg'},
+				{src:'./look/look-1.jpg'},
+				{src:'./look/look-2.jpg'}],
+
+				[{src:'./look/look-9.jpg'},
+				{src:'./look/look-8.jpg'},
+				{src:'./look/look-7.jpg'},
+				{src:'./look/look-6.jpg'},
+				{src:'./look/look-5.jpg'},
+				{src:'./look/look-4.jpg'},
+				{src:'./look/look-3.jpg'},
+				{src:'./look/look-2.jpg'}],
 			],
 			// showimgs:[{src:'./look-1.jpg'},
 			// 	{src:'./look-1.jpg'},
