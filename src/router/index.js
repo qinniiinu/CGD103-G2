@@ -85,11 +85,6 @@ const routes = [
 		component: () => import("../components/loginpage/Register.vue"),
 	},
 	{
-		path: "/BodyTyping", //身形建置
-		name: "BodyTyping",
-		component: () => import("../components/loginpage/BodyTyping.vue"),
-	},
-	{
 		path: "/productdetails/:id",
 		component: () => import("../views/product/ProductDetailsView.vue"),
 	},
