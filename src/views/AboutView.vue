@@ -122,7 +122,8 @@
 				<input class="inputBar" type="text" id="client_phone" name="client_phone" placeholder="請輸入連絡電話">
 				<input class="inputText" type="textarea" id="client_meg" name="client_meg" placeholder="請輸入詢問內容">
 				<div class="sendOut">
-					<input class="check" type="checkbox">點擊「確定送出」即表示您同意我們的隱私權條款聲明
+					<input class="check" id="isCheck" type="checkbox">  <label for="isCheck">點擊「送出」即表示您同意我們的隱私權條款聲明</label>
+
 				<!-- <button class="btn_ml" @click="insert()" id="update">確認送出</button> -->
 				<button class="btn_ml" @click="insert()">送出</button>
 				</div>
