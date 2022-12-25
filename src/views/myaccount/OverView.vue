@@ -5,7 +5,7 @@
     <div class="box">
       <MemCard title="我的身型" class="card">
         <template #pic>
-          <img class="type_pic" src="body_hourglass.png" alt="body.type1" />
+          <img class="type_pic" src="/pic/body_hourglass.png" alt="body.type1" />
         </template>
         <type-tag :TypeTag="bodytypes.type1" class="type_tag"></type-tag>
         <bg-tag :Bgtag="body.type1" class="bgtag"></bg-tag>

@@ -8,8 +8,8 @@
                     </router-link>
                     <div class="name_level">
                         <span class="name">{{ member.mem_name }}</span>
-                        <span class="level">{{ member.level_name }} Account</span>
-                        <router-link to="/MyPage/memSubscription" class="level_up">立即升級</router-link>
+                        <span v-if="Iflevel" class="level">{{ levelInfo.level_name }} Account</span>
+                        <router-link v-if="!level_top" to="/MyPage/memSubscription" class="level_up">立即升級</router-link>
                     </div>
                 </div>
                 <nav class="side_menu">
@@ -60,7 +60,10 @@ export default {
                 // mem_pic:"/fashion2.png",
                 // mem_name:"王曉明",
                 // level_id: "101",
-            },
+                },
+            levelInfo:{},
+            Iflevel:true, //是否訂閱
+            level_top:false,
         }
     },
     methods:{
@@ -93,9 +96,25 @@ export default {
     },
     created(){
         this.axios.get('/api_server/memberInfo.php')
-        .then(res =>this.member = res.data)
+        .then(res => {
+            this.member = res.data
+            if (res.data.level_id) { //有訂閱，顯示帳號等級
+                this.Iflevel = true;
+                let formData = new FormData();
+                formData.append('level_id',res.data.level_id);
+                // 對照訂閱等級 vip_level 
+                this.axios.post('/api_server/member_level.php',formData)
+                .then(response=> this.levelInfo = response.data)
+                .catch(error =>console.log(error));
+                if(res.data.level_id===103){ //最高等級就隱藏 "立即升級"
+                    this.level_top = true;
+                }
+            } else { // 無訂閱，不顯示帳號等級
+                this.Iflevel = false;
+            }
+        })
         .catch(error =>console.log(error));
-
+    console.log(this.levelInfo);
         // fetch('/api_server/memberInfo.php',{
         // method: "get"
         // })
