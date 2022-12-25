@@ -5,7 +5,7 @@
     <div class="box">
       <MemCard title="我的身型" class="card">
         <template #pic>
-          <img class="type_pic" src="body_hourglass.png" alt="body.type1" />
+          <img class="type_pic" src="/pic/body_hourglass.png" alt="body.type1" />
         </template>
         <type-tag :TypeTag="bodytypes.type1" class="type_tag"></type-tag>
         <bg-tag :Bgtag="body.type1" class="bgtag"></bg-tag>
@@ -16,7 +16,7 @@
       </MemCard>
       <MemCard title="我的風格" class="card">
         <template #pic>
-          <img class="type_pic" src="hipster2.png" alt="styletypes.type1" />
+          <img class="type_pic" src="/pic/hipster2.png" alt="styletypes.type1" />
         </template>
         <type-tag :TypeTag="styletypes.type1" class="type_tag"></type-tag>
         <bg-tag :Bgtag="body.type1" class="bgtag"></bg-tag>
@@ -34,11 +34,7 @@
             <font-awesome-icon icon="fa-solid fa-angle-right" />
           </router-link>
         </SmallCard>
-        <SmallCard
-          title="風格諮詢"
-          Bgtag="#CONSULT"
-          more="立即諮詢"
-          class="consult"
+        <SmallCard title="風格諮詢" Bgtag="#CONSULT" more="立即諮詢" class="consult"
           >內容
           <router-link to="/Consultation" class="more">
             <span class="text">查看更多</span>

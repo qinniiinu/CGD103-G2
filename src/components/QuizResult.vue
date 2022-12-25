@@ -1,13 +1,13 @@
 <template>
-  <section v-if="count >= 0" class="loading"
-    :style="{ backgroundImage: 'url(' + require('@/assets/loading_bg.png') + ')' }">
+  <section v-show="count >= 0" id="loading"
+    :style="{ backgroundImage: 'url(./pic/loading_bg.png)'}">
     <div class="item">
       <p>結果產生中</p>
       <p class="text-loading-width">Loading</p>
     </div>
   </section>
   <!-- 時間到出現結果 -->
-  <div v-else>
+  <div v-show="count < 0">
     <section class="quiz_result">
       <div class="title_box">
         <p>你的測驗結果是</p>
@@ -21,33 +21,9 @@
         <div class="txt_box">
           <h3>適合您的穿搭公式</h3>
           <p>{{ desc }}</p>
-          <!-- <button class="btn_ns" @click="`${click}()`">記錄我的風格</button> -->
-          <!-- <button class="btn_ns" @click="click()">記錄我的風格</button> -->
         </div>
       </div>
     </section>
-    <!-- 推薦 -->
-    <!-- <h3 class="recommend">推薦商品</h3>
-    <section class="recommend_box">
-      <div v-for="e in product" class="item" :key="e.combo_pic" >
-        <img :src="require(`@/assets/product/${e.combo_pic}`)" />
-        <h4>{{ e.combo_name }}</h4>
-      </div>
-      <div v-for="e in product" class="item" :key="e.combo_pic" >
-        <img :src="require(`@/assets/product/${e.combo_pic}`)" />
-        <h4>{{ e.combo_name }}</h4>
-      </div>
-    </section> -->
-    <!-- <section class="recommend_box">
-      <div v-for="e in product" class="item" :key="e.combo_pic" >
-        <img :src="require(`@/assets/product/${img_url}`)" />
-        <h4>{{ e.combo_name }}</h4>
-      </div>
-      <div v-for="e in product" class="item" :key="e.combo_pic" >
-        <img :src="require(`@/assets/product/${img_url}`)" />
-        <h4>{{ e.combo_name }}</h4>
-      </div>
-    </section> -->
 
   </div>
 </template>
@@ -60,21 +36,18 @@ export default {
   name: "QuizResult",
   components: {
     StyleCard1,
-    // Button,
   },
   props: {
     result: String,
     img1: String,
     img2: String,
     desc: String,
-    // click:Function,
 
   },
   data() {
     return {
-      // count: 3,
-      count: -1,
-      // product:[],
+      count: 3,
+      // count: -1,
     }
   },
   methods: {
@@ -87,15 +60,8 @@ export default {
         this.countDown();
       }, 1000)
     },
-    // getResource() {
-    //   this.axios.get(`${BASE_URL}/quiz/style_recommend.php`).then((response) => {
-    //             this.product = response.data;
-    //             console.log(this.product);
-    //         });
-    // },
   },
   mounted() {
-    // this.getResource();
     this.countDown();
   }
 
@@ -108,16 +74,16 @@ export default {
 }
 
 // loading
-.loading {
+#loading {
   background-position: center;
   background-size: contain;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
 
   .item {
     position: absolute;
     transform: translate(-50%, -50%);
-    top: 50%;
+    top: 20%;
     left: 50%;
     text-align: center;
     border: 1px solid $title_color;

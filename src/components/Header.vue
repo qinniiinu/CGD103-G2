@@ -58,9 +58,12 @@
                 <router-link to="/Cart">
                     <font-awesome-icon icon="fa-solid fa-cart-shopping" />
                 </router-link>
-                <router-link to="/login">
+                <router-link to="" class="login" @click="CheckIfLogin">
                     <font-awesome-icon icon="fa-solid fa-user"/>
                 </router-link>
+                <!-- <router-link to="/login">
+                    <font-awesome-icon icon="fa-solid fa-user"/>
+                </router-link> -->
             </div>
             <!-- 漢堡 -->
             <label for="menu-switch" class="hb">
@@ -73,9 +76,30 @@
 
 </template>
 <script>
-
-
-
+export default {
+  methods: {
+    CheckIfLogin() {
+        fetch(`/api_server/If_Login.php`, {
+        method: "get",
+        })
+        .then((response) => {
+        return response.json();
+        })
+        .then((data) => {
+          if (data.msg) { // 已登入
+            // console.log("登入狀態:", data.msg);
+            this.$router.push({path:'/MyPage'});
+          } else { //未登入
+            // console.log("登入狀態:", data.errMsg);
+            this.$router.push({path:'/login'});
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+};
 
 
 </script>

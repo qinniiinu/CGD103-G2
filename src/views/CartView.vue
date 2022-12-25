@@ -16,7 +16,7 @@
 					</ul>
 					<ul v-if="cart.length>0" class="order-list">
 						<li class="item" v-for="item in cart" :key="item.id">
-							<div class="item-left"><img v-bind:alt="item.title"></div>
+							<div class="item-left"><img :src="`/pic/${item.image}`" v-bind:alt="item.title"></div>
 							<div class="item-right">
 								<div class="item-des">
 									<div>{{item.title}}</div>
@@ -139,6 +139,12 @@ export default {
 			this.cart.splice(item,1)
 			this.setStorage()
 		},
+		getResource() {
+            this.axios.get("/api_server/member.php").then((response) => {
+                this.memInfo= response.data;
+				console.log(this.memInfo);
+            });
+    	}
 	}
 };
 </script>

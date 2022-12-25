@@ -279,30 +279,6 @@ export default {
            
           ],
         },
-        // {
-        //   id: 11,
-        //   q_name: "當你有一筆錢吃飯，你會去?",
-        //   op: [
-        //     {
-        //       op_name: "吃到飽餐廳",
-        //       op_id: "buffet",
-        //     },
-        //     {
-        //       op_name: "咖啡廳",
-        //       op_id: "coffee_shop",
-        //     },
-        //     {
-        //       op_name: "自己煮",
-        //       op_id: "home",
-        //     },
-        //     {
-        //       op_name: "米其林餐廳",
-        //       op_id: "michelin",
-        //     },
-           
-        //   ],
-        // },
-        
       ],
     };
   },
@@ -324,7 +300,7 @@ export default {
       this.x -= 100; 
       let y = this.x + "vw";
       e.currentTarget.parentElement.parentElement.parentElement.style.transform = `translateX(${y})`; //抓上上上層 slider_box
-      console.log("y:", y);
+      // console.log("y:", y);
       // console.log("count:", this.count);
     },
     processForm() {
