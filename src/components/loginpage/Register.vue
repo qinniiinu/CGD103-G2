@@ -269,9 +269,12 @@ export default {
         })
         .then((data) =>{
 					// console.log(data)
-					if (data.msg) {
-						alert("data.msg");
-					}
+					if (data.msg) { //註冊成功
+						alert(data.msg);
+            this.$router.push({path:'/MyPage'});
+					}else {
+            alert(data.msg);
+          }
 				})
         .catch((error) => console.log(error));
     },
