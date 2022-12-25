@@ -1,6 +1,6 @@
 <template>
 	<div class="checkout">
-		<div class="paydetails">
+		<form class="paydetails" action="" @submit.prevent="orderSubmit()">
 			<h2>結帳</h2>
 			<div class="paytetails-wrap">
 				<div class="delivery">
@@ -14,13 +14,13 @@
 				<div class="buyer">
 					<h4>購買人資訊</h4>
 					<p>姓名</p>
-					<input class="memName" type="text" v-model="memInfo.mem_name">
+					<input class="memName" type="text" v-model="memInfo.mem_name" disabled>
 					<p>連絡電話</p>
-					<input class="phone" type="text" v-model="memInfo.phone">
-					<p>電子信箱</p>
-					<input class="email" type="text" v-model="memInfo.mem_mail">
+					<input class="phone" type="text" v-model="memInfo.phone" disabled>
+					<!-- <p>電子信箱</p>
+					<input class="email" type="text" v-model="memInfo.mem_mail" disabled> -->
 					<p>聯絡地址</p>
-					<input class="address" type="text" v-model="memInfo.address">
+					<input class="address" type="text" v-model="memInfo.address" disabled>
 				</div>
 				<div class="receiver">
 					<h4>收件人資訊</h4>
@@ -28,8 +28,8 @@
 					<input class="mem_name" type="text" v-model="inner[0]">
 					<p>連絡電話</p>
 					<input class="phone" type="text" v-model="inner[1]">
-					<p>電子信箱</p>
-					<input class="email" type="text" v-model="inner[2]">
+					<!-- <p>電子信箱</p>
+					<input class="email" type="text" v-model="inner[2]"> -->
 					<p>配送地址</p>
 					<input class="receive-address" v-model="inner[3]">
 					<label class="same" for="same"><input type="checkbox" id="same" @click="check()" >同購買人資訊</label>
@@ -42,15 +42,15 @@
 					</select>
 				</div>
 			</div>
-			<button>完成訂購</button>
-		</div>
+			<button type="submit">完成訂購</button>
+		</form>
 		<div class="list">
 			<h2>購物車</h2>
 			<div class="list-wrap">
 				<div class="items">
 				<div class="item" v-for="item in order" :key="item.id">
 					<div class="product">
-						<img v-bind:alt="item.title">
+						<img :src="`/pic/${item.image}`" v-bind:alt="item.title">
 						<div class="prod-detail">
 							<p>{{item.title}}</p>
 							<div class="spec">
@@ -67,8 +67,11 @@
 				</div>
 				<div class="detail">
 					<div>共 {{order.length}} 種商品</div>
-					<div>{{vip_level[0].level_name}} 會員等級折扣: -${{parseInt(total*(1-vip_level[0].discount))}}</div>
-					<div>總計: ${{parseInt(total*vip_level[0].discount)}}元</div>
+					<div v-if="subscribe !==false">
+						{{subscribe.level_name}}訂閱等級折扣: -${{parseInt(total*(1-subscribe.discount))}}
+					</div>
+					<div v-else>尚無訂閱等級折扣</div>
+					<div>總計: ${{total}}元</div>
 				</div>
 			</div>
 		</div>	
@@ -76,7 +79,6 @@
 </template>
 
 <script>
-import {vip_level} from'@/assets/config/setting.js'
 export default {
 	name: "Product",
 	components: {
@@ -89,7 +91,7 @@ export default {
 			order:[],
 			min:0,
 			max:0,
-			vip_level:vip_level,
+			subscribe:[],
 			memInfo:[],
 			inner:[]
 		}
@@ -100,17 +102,22 @@ export default {
 	},
 	computed:{
 		total(){
-			if(this.order.length>0){
-				let total=0
+			let total=0;
+			let distotal=0;
+			if(this.subscribe!=false){
+				for(const index in this.order){
+					distotal+=this.order[index]['count']*this.order[index]['price']*this.subscribe.discount
+				}
+				console.log(distotal);
+				return parseInt(distotal);
+			}else{
 				for(const index in this.order){
 					total+=this.order[index]['count']*this.order[index]['price']
 				}
 				console.log(total);
-				return parseInt(total)
-			}else{
-				return 0
+				return parseInt(total);
 			}
-		}
+		},
 	},
 	methods:{
 		check(){
@@ -133,11 +140,37 @@ export default {
 			this.order=data? data:[]
         },
 		getResource() {
-            this.axios.get("/api_server/login.php").then((response) => {
+            this.axios.get("/api_server/subscription.php").then((response) => {
+                this.subscribe= response.data;
+				console.log(this.subscribe);
+            });
+            this.axios.get("/api_server/subMemInfo.php").then((response) => {
                 this.memInfo= response.data;
 				console.log(this.memInfo);
             });
-    	}
+    	},
+		orderSubmit(){
+			// let formData = new FormData();
+			// formData.append("mem_id", this.subMemInfo.mem_id);
+			// formData.append("level_id",this.subOrder[0].id);
+			// formData.append("sub_paid", this.subOrder[0].price);
+			// formData.append("action", "subOrder");
+
+			// fetch("/api_server/inserSubOrder.php", {
+			// 	method: "post",
+			// 	body: formData,
+			// })
+			// .then((response) => {
+			// 	return response.json();
+			// })
+			// .then((data) =>{
+			// 	console.log(data);
+			// 	if (data.msg) {
+			// 		alert("data.msg");
+			// 	}
+			// })
+			// .catch((error) => console.log(error));
+		}
 	}
 };
 </script>
@@ -248,7 +281,10 @@ export default {
 					font-size: 16px;
 				}
 				.items{
-					height:450px;
+					height:270px;
+					@include m{
+						height:450px;
+					}
 					overflow-y: scroll;
 					scrollbar-width: auto;
 					scrollbar-color: #4673fb #ffffff;
@@ -283,10 +319,10 @@ export default {
 							gap: 10px;
 							img{
 							width: 65px;
-							height: 85px;
+							height: 65px;
 							@include m{
-								width: 130px;
-								height: 170px;
+								width: 150px;
+								height: 150px;
 							}
 						}
 							.prod-detail{
@@ -294,9 +330,6 @@ export default {
 								flex-direction: column;
 								gap:10px;
 								width:150px;
-									@include m{
-
-									}
 								.spec{
 									display: flex;
 									justify-content: space-between;

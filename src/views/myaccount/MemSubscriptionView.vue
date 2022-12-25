@@ -6,6 +6,7 @@
 		<div class="data">
 			<!-- 這裡開始寫 -->
 			<div class="card">
+				<!-- 沒訂閱 -->
 				<div v-if="showPanel==false" class="card-wrap">
 					<div class="card-v" v-for="sub in vip_level" :key="sub.level">
 						<div class="card-content">
@@ -32,10 +33,11 @@
 						</div>
 					</div>
 				</div>
+				<!-- 有訂閱 -->
 				<div v-else class="card-wrap">
 					<div v-if="view==1" class="card-sub">
 						<h2>您的訂閱方案</h2>
-						<p class="memlevel">#{{memSub.level_name}}</p>
+						<p class="memlevel">#{{subscribe.level_name}}</p>
 						<button @click="view=2">更改方案</button>
 					</div>
 					<div class="card-wrap" v-if="view==2">
@@ -60,14 +62,14 @@
 									商品<span>{{sub.specialOffer}}</span>折優惠
 								</p>
 								<h3>NT$<span>{{sub.price}}</span>/月</h3>
-								<p v-if="memSub.level_id==sub.level_id">訂閱日:{{memSub.sub_time}} </p>
-								<p v-if="memSub.level_id==sub.level_id">下次付款日:{{memSub.sub_deadline}} </p>
-								<router-link v-if="memSub.level_id!=sub.level_id" to="/SubCheckout"><button @click="setStorage(index,sub)">訂閱</button></router-link>
+								<p v-if="subscribe.level_id==sub.level_id">訂閱日:{{subscribe.sub_time}} </p>
+								<p class="bold" v-if="subscribe.level_id==sub.level_id">下個付款日期:{{subscribe.sub_deadline}} </p>
+								<button v-show="subscribe.level_id!=sub.level_id" @click="setStorage(index,sub)">訂閱</button>
 							</div>
 						</div>
 					</div>
 				</div>
-				<button class="cancel" v-if="view===2" @click="showPanel=false,view=1">取消訂閱</button>
+				<button type="submit" class="cancel" v-if="view===2" @click="showPanel=false,cancelSub()">取消訂閱</button> <!-- showPanel=false,cancelSub() -->
 				<router-link to="/MyPage"><button v-if="view===1" class="back">返回</button></router-link>
 				<button v-if="view===2" class="back" @click="view=1">返回</button>
 			</div>
@@ -87,12 +89,13 @@ export default {
 	data(){
 		return{
 			load: false,
-			memSub:[],
+			subOrder:[],
 			vip_level:[],
+			subscribe:[],
+			submemInfo:[],
 			showPanel:'',
 			view:1,
-			subscribe:[],
-			active:true
+			active:true,
 		}
 	},
 	created(){
@@ -105,34 +108,49 @@ export default {
 	methods:{
 		setStorage(index,sub){
             console.log(sub);
-            this.subscribe.push({
-                level:sub.level_name,
-                price:sub.price,
-                monthSet:sub.monthSet,
-                monthConsult:sub.monthConsult,
-                freeShipping:sub.freeShipping,
-                specialOffer:sub.specialOffer,
-            })
-            const data=JSON.stringify(this.subscribe);
-            console.log(data);
-            localStorage.setItem('subscribe',data);
+			if(this.subscribe!=''){
+				alert('您已訂閱，如需更改訂閱方案請先取消訂閱')
+				this.$router.push({ path: "/MyPage/memSubscription"});
+			}else{
+				this.subOrder.push({
+					id:sub.level_id,
+					level:sub.level_name,
+					price:sub.price,
+					monthSet:sub.monthSet,
+					set_info:sub.set_info,
+					monthConsult:sub.monthConsult,
+					freeShipping:sub.freeShipping,
+					specialOffer:sub.specialOffer,
+				})
+				const data=JSON.stringify(this.subOrder);
+				console.log(data);
+				localStorage.setItem('subOrder',data);
+				this.$router.push({ path: "/SubCheckout"});
+			}
         },
 		isActive(e){
-			return e===this.memSub.level_name;
+			return e===this.subscribe.level_name;
 		},
 		getResource() {
-			// 會員的資料
-            this.axios.get("/api_server/subscription.php").then((response) => {
-                this.memSub= response.data;
-				console.log(this.memSub);
-				if(this.memSub==false){ //判斷有沒有訂閱
-					this.showPanel=false;
-					console.log(this.showPanel);
-					this.load=false;
-				}else{
-					this.showPanel=true;
-					console.log(this.showPanel);
-					this.load=false;
+			this.axios.get("/api_server/subMemInfo.php").then((response) => { // 會員資料
+				console.log(response.data);
+				this.submemInfo= response.data;
+				console.log(this.submemInfo);
+				if(this.submemInfo!==false && this.submemInfo.msg!=='請先登入'){ //有登入
+					this.axios.get("/api_server/subscription.php").then((response) => { //訂閱等級
+						this.subscribe= response.data;
+						console.log(this.subscribe);
+						//判斷有沒有訂閱
+						if(this.subscribe==false){ //沒訂閱
+							this.showPanel=false;
+							console.log(this.showPanel);
+							this.load=false;
+						}else{ //有訂閱
+							this.showPanel=true;
+							console.log(this.showPanel);
+							this.load=false;
+						}
+					});
 				}
             });
 			// 訂閱的資訊
@@ -141,6 +159,39 @@ export default {
 				console.log(this.vip_level);
             });
         },
+		cancelSub(){
+			// 先寫一支vip_orders
+			// 取下orders session
+			// 在這直接fetch執行取消訂單
+
+			let xhr= new XMLHttpRequest();
+			xhr.onload=function(){
+				console.log(xhr.responseText);
+				let result=JSON.parse(xhr.responseText);
+				alert('已取消訂閱');
+				location.reload();
+			};
+			xhr.open("post",`/api_server/cancelSubOrder.php`,true);
+			xhr.send(null);
+			// this.getResource();
+			// let data={
+			// 	mem_id:''
+			// }
+			// fetch("/api_server/cancelSubOrder.php", {
+			// 	method: "POST",
+			// 	body: JSON.stringify(data)
+			// })
+			// .then((response) => {
+			// 	return response.json();
+			// })
+			// .then((data) =>{
+			// 	console.log(data);
+			// 	if (data.msg) {
+			// 		alert("data.msg");
+			// 	}
+			// })
+			// .catch((error) => console.log(error));
+		}
 	}
 };
 </script>
@@ -249,9 +300,13 @@ export default {
 					font-weight: bold;
 					margin: 20px;
 				}
+				.bold{
+						font-weight: bold;
+					}
 				p {
 					color: $text_color;
 					font-size: 14px;
+					
 				}
 				span {
 					font-size: 32px;
