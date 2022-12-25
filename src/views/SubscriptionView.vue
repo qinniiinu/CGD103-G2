@@ -33,7 +33,8 @@
                         <font-awesome-icon icon="fa-solid fa-check" />
                         商品<span>{{sub.specialOffer}}</span>折優惠
                     </p>
-                    <router-link to="/SubCheckout"><button @click="setStorage(index,sub)">訂閱</button></router-link>
+                    <!-- <router-link to="/SubCheckout"><button @click="setStorage(index,sub)">訂閱</button></router-link> -->
+                    <button @click="setStorage(index,sub),isSub()">訂閱</button>
                 </div>
             </div>
         </div>
@@ -50,18 +51,33 @@ export default {
 		return{
 			vip_level:[],
             subscribe:[],
+            submemInfo:[],
+            subOrder:[],
+            sub:[]
 		}
 	},
 	created(){
 		this.getResource();
+        // this.subscribe=this.$store.state.sub
 	},
 	computed:{
 		
 	},
 	methods:{
+        // 訂閱訂單
         setStorage(index,sub){
-            console.log(sub);
-            this.subscribe.push({
+            // console.log(sub);
+            // this.$store.dispatch("setCart",{
+            //     level:sub.level_name,
+            //     price:sub.price,
+            //     monthSet:sub.monthSet,
+            //     set_info:sub.set_info,
+            //     monthConsult:sub.monthConsult,
+            //     freeShipping:sub.freeShipping,
+            //     specialOffer:sub.specialOffer
+            // })
+            this.subOrder.push({
+                id:sub.level_id,
                 level:sub.level_name,
                 price:sub.price,
                 monthSet:sub.monthSet,
@@ -70,16 +86,42 @@ export default {
                 freeShipping:sub.freeShipping,
                 specialOffer:sub.specialOffer
             })
-            const data=JSON.stringify(this.subscribe);
-            console.log(data);
-            localStorage.setItem('subscribe',data);
+            const data=JSON.stringify(this.subOrder);
+            // console.log(data);
+            localStorage.setItem('subOrder',data);
         },
         getResource() {
+            // 訂閱等級卡片
             this.axios.get("/api_server/vip_level.php").then((response) => {
                 this.vip_level= response.data;
-				console.log(this.vip_level);
+				// console.log(this.vip_level);
+            });
+            this.axios.get("/api_server/subMemInfo.php").then((response) => { //會員的資料
+				console.log(response.data);
+				this.submemInfo= response.data;
+				// console.log(this.submemInfo);
+				if(this.submemInfo!==false && this.submemInfo.msg!=='請先登入'){ //確定有登入
+					this.axios.get("/api_server/subscription.php").then((response) => { //確認訂閱等級
+						this.subscribe= response.data;
+						// console.log(this.subscribe);
+					});
+				}
             });
         },
+        isSub(){
+            if(this.submemInfo!==false && this.submemInfo.msg!=='請先登入'){ //有登入
+                if(this.subscribe!=''){
+                    alert('您已訂閱，如需更改訂閱方案請先至會員專區取消訂閱')
+                    this.$router.push({ path: "/MyPage/memSubscription"});
+                }else{
+                    this.$router.push({ path: "/SubCheckout"});
+                }
+            }else{ //沒登入
+                alert('請先登入')
+                this.$router.push({ path: "/login" });
+            }
+            
+        }
 	}
 };
 </script>
@@ -89,19 +131,18 @@ export default {
     .wrap {
         @include l{
             height: 600px;
-        }
-        height:380px;
-        display: flex;
-        justify-content: center;
-        background: linear-gradient(
+            background: linear-gradient(
                     350deg,
                     rgb(255, 255, 255) 40%,
                     transparent 40%
                 )
                 left bottom,
             url(/public/pic/subpageimg.png) no-repeat fixed left top;
-        background-color: RGB(245, 245, 245);
-        
+            background-color: RGB(245, 245, 245);
+        }
+        height:352px;
+        display: flex;
+        justify-content: center;
         .left {
             width: 300px;
             height: auto;
@@ -141,8 +182,8 @@ export default {
         margin-bottom: 0px;
         .subcard {
         -webkit-transform: skew(-5deg);
-        -moz-transform: skew(-5deg);
-        -o-transform: skew(-5deg);
+        // -moz-transform: skew(-5deg);
+        // -o-transform: skew(-5deg);
         position: absolute;
         border: 1px solid black;
         &:nth-child(1) {
@@ -164,8 +205,8 @@ export default {
                 margin: auto;
             }
         -webkit-transform: skew(-5deg);
-        -moz-transform: skew(-5deg);
-        -o-transform: skew(-5deg);
+        // -moz-transform: skew(-5deg);
+        // -o-transform: skew(-5deg);
         // position: absolute;
         border: 1px solid black;
         // &:nth-child(1) {
@@ -222,24 +263,25 @@ export default {
                     font-size: 20px;
                     position: absolute;
                     right: -40px;
-                    top: -50px;
+                    top: -70px;
                 }
-                a{
+                // a{
                     margin: auto;
                     margin-top: 20px;
                     button {
-                    cursor: pointer;
-                    background-color: $main_color;
-                    color: white;
-                    border: 1px solid $main_color;
-                    padding: 5px 20px;
-                    &:hover {
-                        background-color: $bg_blue;
-                        color: $main_color;
+
+                        cursor: pointer;
+                        background-color: $main_color;
+                        color: white;
                         border: 1px solid $main_color;
+                        padding: 5px 20px;
+                        &:hover {
+                            background-color: $bg_blue;
+                            color: $main_color;
+                            border: 1px solid $main_color;
+                        }
                     }
-                }
-                }
+                // }
                 
             }
             &:after {
