@@ -24,6 +24,14 @@
       </router-link>
     </div>
   </section>
+  <div class="check_complete" v-show="record">
+    <h3>記錄成功</h3>
+      <div class="close" @click="record = false">確認</div>
+  </div>
+  <div class="check_login" v-show="not_record">
+    <h3>請先登入</h3>
+      <div class="close" @click="not_record = false">確認</div>
+  </div>
 </template>
 
 <script>
@@ -39,6 +47,8 @@ export default {
       product: [],
       combo_product: [],
       style_id: 103,
+      record:false,
+			not_record:false,
     };
   },
   methods: {
@@ -58,18 +68,25 @@ export default {
         .then((json) => (this.product = json));
     },
     // 記錄風格
+    // 記錄風格
     record_style() {
-      const data = {
-        style_id: this.style_id,
-        mem_id: this.$store.state.user.mem_id,
-      };
-      fetch(`${BASE_URL}/mem_styleUPD.php`, {
-        method: "post",
-        body: new URLSearchParams(data),
-      })
-        .then((res) => res.json())
-        .then((json) => console.log(json));
-      alert("記錄成功");
+      if (this.$store.state.user != null) {
+        const data = {
+          style_id: this.style_id,
+          mem_id: this.$store.state.user.mem_id,
+        };
+        fetch(`${BASE_URL}/mem_styleUPD.php`, {
+          method: "post",
+          body: new URLSearchParams(data),
+        })
+          .then((res) => res.json())
+          .then((json) => console.log(json));
+          alert("ok");
+        this.record = true;
+      } else {
+        alert("not ok");
+        this.not_record = true;
+      }
     },
     // 組合商品推薦
     getComboRecommend() {
