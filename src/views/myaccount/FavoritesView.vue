@@ -1,6 +1,8 @@
 <template>
     <p class="title">我的收藏</p>
     <div class="data">
+        <div class="decoration">#Favorite</div>
+
         <div class="card">
             <ProductCard
                 :id="e.product_id"
@@ -12,8 +14,12 @@
                 v-for="e in product"
                 :key="e.product_id"
             />
+            <div class="btnbox">
+                <router-link to="/ProductList">
+                    <button class="btn_s">去逛逛</button>
+                </router-link>
+            </div>
         </div>
-        <div class="decoration">#Favorite</div>
     </div>
 </template>
 <script>
@@ -39,8 +45,6 @@ export default {
         getResource() {
             this.axios.get(`${BASE_URL}/favorlist.php`).then((response) => {
                 this.product = response.data;
-
-                console.log(this.product.product_pic);
             });
             this.product.forEach((e) => {
                 e.coll = false;
@@ -85,6 +89,11 @@ export default {
                 width: 33.333333%;
             }
         }
+        .btnbox {
+            text-align: center;
+            width: 100%;
+            padding: 20px 0;
+        }
     }
     .decoration {
         left: 20px;
@@ -93,7 +102,7 @@ export default {
         font-weight: bolder;
         font-style: italic;
         position: absolute;
-        z-index: -1;
+        z-index: 1;
         color: $secondary;
         @include s() {
             display: none;
