@@ -116,6 +116,16 @@ export default {
                         return e.product_type == this.$route.query.T;
                     });
                 }
+                if (this.$route.query.S) {
+                    this.product = this.product.filter((e) => {
+                        if (
+                            JSON.stringify(e).indexOf(this.$route.query.S) !==
+                            -1
+                        ) {
+                            return e;
+                        }
+                    });
+                }
             } else {
                 this.product = this.tmp;
             }
