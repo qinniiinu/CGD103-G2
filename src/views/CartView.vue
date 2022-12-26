@@ -38,12 +38,16 @@
 						</li>
 						<div class="detail">
 							<div>共 {{cart.length}} 種商品</div>
-							<div>{{vip_level[0].level_name}} 會員等級折扣: -${{parseInt(total*(1-vip_level[0].discount))}}</div>
-							<div>總計: ${{parseInt(total*vip_level[0].discount)}}元</div>
+							<div v-if="this.subMemInfo!==false && this.subMemInfo.msg!=='請先登入' &&this.subscribe!==false">
+								{{subscribe.level_name}}訂閱等級折扣: -${{parseInt(total*(1-subscribe.discount))}}
+							</div>
+							<div v-else>尚無訂閱等級折扣</div>
+							<div>總計: ${{total}}元</div>
 						</div>
 						<div class="nextbtn">
 							<router-link to="/ProductList" ><button>繼續逛逛</button></router-link>
-							<router-link to="/Checkout"><button>去付款</button></router-link>
+							<!-- <router-link to="/Checkout"><button @click="ifLogin()">去付款</button></router-link> -->
+							<button @click="isLogin()">去付款</button>
 						</div>
 					</ul>
 					<ul v-else class="none-list">
@@ -57,7 +61,6 @@
 </template>
 
 <script>
-import {vip_level} from'@/assets/config/setting.js';
 
 export default {
 	name: "Cart",
@@ -71,40 +74,42 @@ export default {
 			cart:[],
 			min:0,
 			max:0,
-			memLevel:'BASIC',
-			discount:0.05,
-			vip_level:vip_level,
-			ProductsList:[],
+			subscribe:[],
+			subMemInfo:[],
 		}
 	},
 	created(){
 		this.getStorage();
+		this.getResource();
 	},
 	computed:{
-		total(index,item){
+		total(){
 			if(this.cart.length>0){
-				let total=0
-				for(const index in this.cart){
-					total+=this.cart[index]['count']*this.cart[index]['price']
+				let total=0;
+				if(this.subMemInfo!==false && this.subMemInfo.msg!=='請先登入'){
+					if(this.subscribe){
+						for(const index in this.cart){
+							total+=this.cart[index]['count']*this.cart[index]['price']*this.subscribe.discount
+						}
+						console.log(total);
+						return parseInt(total);
+					}else{
+						for(const index in this.cart){
+							total+=this.cart[index]['count']*this.cart[index]['price']
+						}
+						console.log(total);
+						return parseInt(total);
+					}
+				}else{
+					for(const index in this.cart){
+						total+=this.cart[index]['count']*this.cart[index]['price']
+						return parseInt(total);
+					}
 				}
-				console.log(total);
-				return parseInt(total)
 			}else{
-				return 0
+				return 0;
 			}
 		},
-		aftertotal(index,item){
-			if(this.cart.length>0){
-				let aftertotal=0
-				for(const index in this.cart){
-					aftertotal+=(this.cart[index]['count']*this.cart[index]['price'])*0.95
-				}
-				console.log(aftertotal);
-				return parseInt(aftertotal);
-			}else{
-				return 0
-			}
-		}
 	},
 	methods:{
 		setStorage(){
@@ -117,6 +122,7 @@ export default {
 			data=JSON.parse(data)
 			this.cart=data? data:[]
 			console.log(this.cart);
+			if(this.subMemInfo)
 			this.load=false;
         },
 		addCount(index,item){
@@ -140,11 +146,27 @@ export default {
 			this.setStorage()
 		},
 		getResource() {
-            this.axios.get("/api_server/member.php").then((response) => {
-                this.memInfo= response.data;
-				console.log(this.memInfo);
+            this.axios.get("/api_server/subMemInfo.php").then((response) => {
+				console.log(response.data.state);
+				this.subMemInfo= response.data;
+				console.log(this.subMemInfo);
+				if(this.subMemInfo!==false && this.subMemInfo.msg!=='請先登入'){
+					this.axios.get("/api_server/subscription.php").then((response) => {
+						this.subscribe= response.data;
+						console.log(this.subscribe);
+					});
+				}
             });
-    	}
+			
+    	},
+		isLogin(){
+			if(this.subMemInfo!==false && this.subMemInfo.msg!=='請先登入'){
+				this.$router.push({ path: "/checkout" });
+			}else{
+				alert('請先登入會員')
+				this.$router.push({ path: "/login" });
+			}
+		}
 	}
 };
 </script>
@@ -229,10 +251,10 @@ h2{
 				.item-left{
 					img{
 						width: 65px;
-						height: 85px;
+						height: 65px;
 						@include m{
 							width: 150px;
-							height: 190px;
+							height: 150px;
 						}
 					}
 				}
@@ -328,108 +350,8 @@ h2{
 				}
 			}
 		}
-		.none-list{
-			
-		}
 	}
 }
-// .cart{
-// 	width: 100%;
-// 	min-height: 500px;
-// 	margin:auto;
-// 	.cart-wrap{
-// 		max-width: 940px;
-// 		margin: auto;
-// 		padding: 10px 20px;
-// 		.cart-title{
-// 			color: rgb(80, 80, 80);
-// 			display: flex;
-// 			padding: 10px 20px;
-// 			:nth-child(1){
-// 				width:200px;
-// 			}
-// 			:nth-child(2){
-// 				width: 140px;
-// 			}
-// 			:nth-child(3){
-// 				width:100px;
-// 			}
-// 			:nth-child(4),:nth-child(5),:nth-child(6),:nth-child(7){
-// 				width:120px;
-// 			}
-// 		}
-// 	}
-// 	.order-list{
-// 		margin: auto;
-// 		padding: 10px 20px;
-// 		.item{
-// 			color: $text_color;
-// 			display: flex;
-// 			align-items:center;
-// 			margin-top: 20px;
-// 			padding-bottom: 15px;
-// 			border-bottom: 1px solid $text_color;
-// 			:first-child{
-// 				width: 200px;
-// 				img{
-// 					width:150px;
-// 					height:150px;
-// 				}
-// 			}
-// 			:nth-child(5){
-// 				width:120px;
-// 				span{
-// 					padding: 0 10px;
-// 				}
-// 				button{
-// 					font-size: 16px;
-// 					background: none;
-// 					border: none;
-// 					width: 20px;
-// 					height: 20px;
-// 				}
-// 			}
-// 			:nth-child(2){
-// 				width:140px;
-// 			}
-// 			:nth-child(3){
-// 				width:100px;
-// 			}
-// 			:nth-child(4),:nth-child(6),:nth-child(7){
-// 				width:120px;
-// 			}
-// 			:last-child{
-// 				font-size: 16px;
-// 				height: 20px;
-// 				width:20px;
-// 				background: none;
-// 				border:none;
-// 			}
-// 		}
-// 		.detail{
-// 			text-align: right;
-// 			margin-top: 20px;
-// 			display: flex;
-// 			flex-direction: column;
-// 			gap:10px;
-// 			margin-bottom: 20px;
-// 		}
-// 		.payment{
-// 			display: flex;
-// 			justify-content: space-between;
-// 			margin-bottom: 200px;
-// 			button{
-// 				background: $main_color;
-// 				color: white;
-// 				padding: 8px 12px;
-// 				border: 1px solid $main_color;
-// 				&:hover{
-// 					background-color: white;
-// 					color:$main_color;
-// 				}
-// 			}
-// 		}
-// 	}
 	.none-list{
 		height: 200px;
 		border-bottom: 1px solid $text_color;

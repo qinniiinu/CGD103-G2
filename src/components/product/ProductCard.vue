@@ -2,12 +2,14 @@
     <div class="product_card">
         <div class="box">
             <router-link :to="`/productDetails/${id}`">
-                <img :src="`pic/${imgURL}`" />
+                <img :src="`/pic/${imgURL}`" />
             </router-link>
 
-            <div class="icon" @click="iconChange = !iconChange">
-                <font-awesome-icon icon="fa-solid fa-heart" v-if="iconChange" />
-                <font-awesome-icon icon="fa-solid fa-plus" v-else />
+            <div class="icon" @click="clloectchange()">
+                <font-awesome-icon
+                    icon="fa-solid fa-heart"
+                    :class="{ gray: !clloect }"
+                />
             </div>
         </div>
         <router-link :to="`/productDetails/${id}`">
@@ -32,6 +34,9 @@
             padding: 5px;
             cursor: pointer;
         }
+        .gray {
+            color: $second_color;
+        }
         img {
             width: 100%;
             height: 100%;
@@ -51,6 +56,8 @@
 </style>
 
 <script>
+import { BASE_URL } from "@/assets/js/common.js";
+
 export default {
     data() {
         return {
@@ -62,6 +69,21 @@ export default {
         title: { String, default: "404" },
         price: { String, default: "404" },
         imgURL: { String, default: "test_01_1.jpg" },
+        clloect: { Boolean, default: "false" },
+    },
+    methods: {
+        clloectchange() {
+            this.$emit("clloectchange");
+            fetch(`${BASE_URL}/collect_prodAdd.php`, {
+                method: "POST",
+                body: JSON.stringify({ id: this.id }),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    // 在這裡處理服務器返回的數據
+                    alert(data.msg);
+                });
+        },
     },
 };
 </script>

@@ -81,6 +81,8 @@
                 :price="e.unit_price"
                 :imgURL="cut(e.product_pic)"
                 v-for="e in product"
+                :clloect="e.coll"
+                @clloectchange="collchange(e)"
                 :key="e.product_id"
             />
         </div>
@@ -93,6 +95,8 @@
 </template>
 
 <script>
+import { BASE_URL } from "@/assets/js/common.js";
+
 import ProductMenu from "@/components/product/ProductMenu.vue";
 import ProductCard from "@/components/product/ProductCard.vue";
 import ProductFitting from "@/components/product/ProductFitting.vue";
@@ -108,6 +112,7 @@ export default {
     data() {
         return {
             product: [],
+            favorite: [],
         };
     },
 
@@ -116,12 +121,32 @@ export default {
             if (x) return x.split(",")[0];
         },
         getResource() {
-            this.axios.get("/api_server/mainproduct.php").then((response) => {
+            this.axios.get(`${BASE_URL}/mainproduct.php`).then((response) => {
                 this.product = response.data;
+                this.product.forEach((e) => {
+                    e.coll = false;
+                });
+                this.product.forEach((item1) => {
+                    this.favorite.forEach((item2) => {
+                        if (item1.product_id === item2.product_id) {
+                            item1.coll = true;
+                        }
+                    });
+                });
             });
+        },
+        getFavorite() {
+            this.axios.get(`${BASE_URL}/collect_prod.php`).then((response) => {
+                this.favorite = response.data;
+            });
+        },
+        collchange(e) {
+            e.coll = !e.coll;
         },
     },
     created() {
+        this.getFavorite();
+
         this.getResource();
     },
 };

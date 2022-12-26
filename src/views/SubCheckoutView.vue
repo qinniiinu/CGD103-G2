@@ -1,6 +1,6 @@
 <template>
 	<div class="checkout">
-		<div class="paydetails">
+		<form class="paydetails" action="" @submit.prevent="subOrdersubmit()">
 			<h2>結帳</h2>
 			<div class="paytetails-wrap">
 				<div class="delivery">
@@ -14,15 +14,15 @@
 				<div class="buyer">
 					<h4>購買人資訊</h4>
 					<p>姓名</p>
-					<input class="memName" type="text" v-model="memInfo.mem_name">
+					<input class="memName" type="text" v-model="subMemInfo.mem_name" disabled>
 					<p>連絡電話</p>
-					<input class="phone" type="text" v-model="memInfo.phone">
-					<p>電子信箱</p>
-					<input class="email" type="text" v-model="memInfo.mem_mail">
-					<p>聯絡地址</p>
-					<input class="address" type="text" v-model="memInfo.address">
+					<input class="phone" type="text" v-model="subMemInfo.phone" disabled>
+					<!-- <p>電子信箱</p>
+					<input class="email" type="text" v-model="subMemInfo.mem_mail" disabled> -->
+					<p>收件地址</p>
+					<input class="address" type="text" v-model="subMemInfo.address" disabled>
 				</div>
-				<div class="receiver">
+				<!-- <div class="receiver">
 					<h4>收件人資訊</h4>
 					<p>姓名</p>
 					<input class="mem_name" type="text" v-model="inner[0]">
@@ -33,7 +33,7 @@
 					<p>配送地址</p>
 					<input class="receive-address" v-model="inner[3]">
 					<label class="same" for="same"><input type="checkbox" id="same" @click="check()" >同購買人資訊</label>
-				</div>
+				</div> -->
 				<div class="payment">
 					<h4>付款方式</h4>
 					<select name="" id="">
@@ -42,47 +42,45 @@
 					</select>
 				</div>
 			</div>
-			<button>完成訂購</button>
-		</div>
+			<button type="submit">完成訂購</button>
+		</form>
         <div class="list">
             <h2>購物車</h2>
             <div class="sub-plan">
-                <div class="subcard" v-for="detail in subscribe" :key="detail">
+                <div class="subcard" v-for="sub in subOrder" :key="sub.level">
                     <div class="card-wrap">
                         <div class="card-content">
-                            <div class="level">#{{detail.level}}</div>
-                            <h2>NT$<span>{{detail.price}}</span>/月</h2>
+                            <div class="level">#{{sub.level}}</div>
+                            <h2>NT$<span>{{sub.price}}</span>/月</h2>
                             <p>
                                 <font-awesome-icon icon="fa-solid fa-check" />
                                 每月專屬搭配<span>1</span>套
                             </p>
-                            <span>{{detail.set_info}}</span>
+                            <span>{{sub.set_info}}</span>
                             <p>
                                 <font-awesome-icon icon="fa-solid fa-check" />
-                                每月諮詢造型師<span>{{detail.monthConsult}}</span>次
+                                每月諮詢造型師<span>{{sub.monthConsult}}</span>次
                             </p>
                             <p>
                                 <font-awesome-icon icon="fa-solid fa-check" />
-                                每月免運費<span>{{detail.freeShipping}}</span>次
+                                每月免運費<span>{{sub.freeShipping}}</span>次
                             </p>
                             <p>
                                 <font-awesome-icon icon="fa-solid fa-check" />
-                                商品<span>{{detail.specialOffer}}</span>折優惠
+                                商品<span>{{sub.specialOffer}}</span>折優惠
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="detail" v-for="detail in subscribe" :key="detail">
-                <div>總計: ${{detail.price}}元</div>
+            <div class="detail" v-for="sub in subOrder" :key="sub">
+                <div>總計: ${{sub.price}}元</div>
             </div>
 		</div>	
 	</div>
 </template>
 
 <script>
-import {subinfo} from'@/assets/config/setting.js'
-import {vip_level} from'@/assets/config/setting.js'
 export default {
 	name: "SubCheckoutView",
 	components: {
@@ -93,11 +91,11 @@ export default {
 			count:[],
 			min:0,
 			max:0,
-			inner:[],
-			vip_level:vip_level,
-            subinfo:subinfo,
+			// inner:[],
+			vip_level:[],
             subscribe:[],
-			memInfo:[]
+			subMemInfo:[],
+			subOrder:[]
 		}
 	},
 	created(){
@@ -108,6 +106,32 @@ export default {
 		
 	},
 	methods:{
+		subOrdersubmit(){
+			let formData = new FormData();
+			formData.append("mem_id", this.subMemInfo.mem_id);
+			// const obj = {...this.subOrder};
+			// console.log(obj);
+			formData.append("level_id",this.subOrder[0].id);
+			formData.append("sub_paid", this.subOrder[0].price);
+			formData.append("action", "subOrder");
+
+			fetch("/api_server/inserSubOrder.php", {
+				method: "post",
+				body: formData,
+			})
+			.then((response) => {
+				return response.json();
+			})
+			.then((data) =>{
+				console.log(data);
+				alert("訂閱成功");
+				this.$router.push({ path: "/MyPage/memSubscription"});
+				// if (data.msg) {
+				// 	alert("data.msg");
+				// }
+			})
+			.catch((error) => console.log(error));
+		},
 		check(){
 			this.isChecked = !this.isChecked;
 			console.log(this.isChecked);
@@ -122,15 +146,19 @@ export default {
 			}
 		},
 		getStorage(){
-			let data =localStorage.getItem('subscribe');
+			let data =localStorage.getItem('subOrder');
 			data=JSON.parse(data)
-			this.subscribe=data? data:[]
-            console.log(this.subscribe);
+			this.subOrder=data? data:[]
+            console.log(this.subOrder);
         },
 		getResource() {
-            this.axios.get("/api_server/login.php").then((response) => {
-                this.memInfo= response.data;
-				console.log(this.memInfo);
+            this.axios.get("/api_server/subMemInfo.php").then((response) => {
+                this.subMemInfo= response.data;
+				console.log(this.subMemInfo);
+            });
+			this.axios.get("/api_server/vip_level.php").then((response) => {
+                this.vip_level= response.data;
+				console.log(this.vip_level);
             });
     	}
 	}
@@ -193,7 +221,7 @@ export default {
 				}
 			}
 			.paytetails-wrap{
-                height: 450px;
+                height: 370px;
                 overflow-y: scroll;
                 scrollbar-width: auto;
                 scrollbar-color: #4673fb #ffffff;
@@ -231,76 +259,6 @@ export default {
 				}
 			}
 		}
-		// .list{
-		// 	width: 100%;
-		// 	display: flex;
-		// 	flex-direction: column;
-		// 	.detail{
-		// 		display: flex;
-		// 		flex-direction: column;
-		// 		gap: 5px;
-		// 		align-self: flex-end;
-		// 		text-align: right;
-		// 	}
-		// 	.list-wrap{
-		// 		display: flex;
-		// 		flex-direction: column;
-		// 		margin: 20px;
-		// 		font-size: 12px;
-		// 		@include m{
-		// 			margin: 0px;
-		// 			font-size: 16px;
-		// 		}
-		// 		.items{
-		// 			height:450px;
-		// 			overflow-y: scroll;
-		// 			margin:20px 0;
-		// 			display: flex;
-		// 			flex-direction: column;
-		// 			border-top: 1px solid $text_color;
-		// 			border-bottom: 1px solid $text_color;
-		// 			.item{
-		// 				display: flex;
-		// 				gap:5px;
-		// 				justify-content: space-between;
-		// 				align-items: center;
-		// 				padding: 15px;
-		// 				border-bottom: 1px solid $text_color;
-		// 				&:last-child{
-		// 					border: none;
-		// 				}
-		// 				.product{
-		// 					display: flex;
-		// 					gap: 10px;
-		// 					img{
-		// 						width:80px;
-		// 						height:80px;
-		// 						@include m{
-		// 							width: 150px;
-		// 							height: 150px;
-		// 						}
-		// 					}
-		// 					.prod-detail{
-		// 						display: flex;
-		// 						flex-direction: column;
-		// 						gap:10px;
-		// 						width:150px;
-		// 							@include m{
-
-		// 							}
-		// 						.spec{
-		// 							display: flex;
-		// 							justify-content: space-between;
-		// 						}
-		// 						:last-child{
-		// 							text-align: right;
-		// 						}
-		// 					}
-		// 				}
-		// 			}
-		// 		}
-		// 	}
-		// }
         .list{
 			width: 100%;
 			display: flex;
