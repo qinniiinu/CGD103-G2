@@ -56,7 +56,8 @@
 			@slideChange="onSlideChange"
 		>
 		  	<swiper-slide class="swiper" v-for="(look,index) of looks" :key="index">
-                <lookCard class="swiper-item" :link="`../look/${look.combo_main_pic}`" :tag1="cut1(look.hashtag)" :tag2="cut2(look.hashtag)" :tag3="cut3(look.hashtag)" :ootdName="look.combo_name" :heartId="look.combo_id"></lookCard>
+                <lookCard class="swiper-item" :link="`../look/${look.combo_main_pic}`" :tag1="cut1(look.hashtag)" :tag2="cut2(look.hashtag)" :tag3="cut3(look.hashtag)" :ootdName="look.combo_name" :heartId="look.combo_id" :idlink="look.combo_id">
+				</lookCard>
             </swiper-slide>
 
 			

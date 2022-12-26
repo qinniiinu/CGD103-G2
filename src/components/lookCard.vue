@@ -63,6 +63,7 @@ export default {
    
     width: 100%;
     .img_box{
+        cursor: pointer;
         border: 1px solid $title_color;
         width: 100%;
         position: relative;

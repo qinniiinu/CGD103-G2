@@ -258,7 +258,9 @@ export default {
 	@import "@/assets/sass/grid";
 
 
-
+	button{
+		cursor: pointer;
+	}
 	.cover_btn{
 		position:absolute;
 		bottom: 20px;
