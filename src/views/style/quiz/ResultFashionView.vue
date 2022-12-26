@@ -31,12 +31,6 @@ export default {
       style_id: 103,
     };
   },
-  //   computed: {
-  //   user() {
-  //     return this.$store.state.user;
-  //     // console.log(this.$store.state.user);
-  //   }
-  // },
   methods: {
     cut(x) {
       if (x) return x.split(",")[0];
@@ -63,16 +57,25 @@ export default {
       })
         .then((res) => res.json())
         .then((json) => (this.product = json));
-      // console.log(this.product);
     },
-    // user() {
-    //   return this.$store.state.user;
-    // },
+     record_style() {
+      const data = {
+        style_id: this.style_id,
+        mem_id: this.$store.state.user.mem_id,
+      };
+      fetch(`${BASE_URL}/mem_styleUPD.php`, {
+        method: "post",
+        body: new URLSearchParams(data),
+      })
+        .then((res) => res.json())
+        .then((json) => console.log(json));
+      alert("記錄成功");
+    },
+   
   },
   
   mounted() {
     this.getRecommend();
-    // this.user();
   },
 };
 </script>

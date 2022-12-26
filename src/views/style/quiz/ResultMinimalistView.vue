@@ -50,11 +50,16 @@ export default {
      record_style() {
       const data = {
         style_id: this.style_id,
+        mem_id:this.$store.state.user.mem_id,
       };
       fetch(`${BASE_URL}/mem_styleUPD.php`, {
         method: "post",
         body: new URLSearchParams(data),
-      })
+      }) 
+      // fetch(`http://localhost/cgd103_g2_frontend/phpfile/mem_styleUPD.php`, {
+      //   method: "post",
+      //   body: new URLSearchParams(data),
+      // })
         .then((res) => res.json())
         .then((json) => console.log(json));
         alert("記錄成功");
