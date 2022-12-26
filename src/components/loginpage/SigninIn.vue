@@ -1,5 +1,5 @@
 <template>
-  <router-link to="/MyPage" class="btn_s">會員頁</router-link>
+  <!-- <router-link to="/MyPage" class="btn_s">會員頁</router-link> -->
   <div class="wrapper">
     <div class="form_wrapper sign_in">
       <form @submit.prevent="checkLogin" class="login_form">

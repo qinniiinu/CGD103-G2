@@ -10,7 +10,6 @@
   </section>
 </template> 
 
-
 <script>
 export default {
   props: {
@@ -36,6 +35,7 @@ export default {
     display: flex;
     justify-content: space-between;
     .tit {
+      z-index: 1;
       font-size: 24px;
       font-weight: 700;
       color: $title_color;
@@ -45,6 +45,8 @@ export default {
     }
     .bg_tag {
       color: $bg_violet;
+      position: absolute;
+      right: 20px;
       @include font_set($second_font, $null, 900, italic);
       @include s() {
         font-size: 30px;
@@ -60,16 +62,23 @@ export default {
   }
   .data {
     padding: 10px;
-  }
-  .more {
-    display: flex;
-    position: absolute;
-    align-items: center;
-    right: $padding;
-    bottom: $padding;
-    .text {
-      font-family: $main_font;
-      padding-right: 5px;
+    .content{
+      margin: auto;
+      span{
+        font-weight: 500px;
+      }
+    }
+
+    .more {
+      display: flex;
+      position: absolute;
+      align-items: center;
+      right: $padding;
+      bottom: $padding;
+      .text {
+        font-family: $main_font;
+        padding-right: 5px;
+      }
     }
   }
 }
