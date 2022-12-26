@@ -7,7 +7,8 @@ $errMsg = "";
     $style_id = (int)$_POST['style_id'];
     // 抓不到 store*****
     // $member_id = (int)$_REQUEST['mem_id']; 
-    $member_id = 117; 
+    $member_id = $_SESSION['member']['mem_id']; 
+    // $member_id = 117; 
     $sql = "update member set style_id = $style_id where mem_id = $member_id;";
     $products = $pdo->prepare($sql);	
     $products->execute();
