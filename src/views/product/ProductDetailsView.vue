@@ -1,4 +1,6 @@
 <script>
+import { BASE_URL } from "@/assets/js/common.js";
+
 import ProductMenu from "@/components/product/ProductMenu.vue";
 import Breadcrumb from "@/components/product/Breadcrumb.vue";
 import ProductCard from "@/components/product/ProductCard.vue";
@@ -79,7 +81,7 @@ export default {
     },
     methods: {
         getResource() {
-            this.axios.get("/api_server/list.php").then((response) => {
+            this.axios.get(`${BASE_URL}/list.php`).then((response) => {
                 this.temp = response.data.find((e) => {
                     if (e.product_id == this.$route.params.id) return e;
                 });

@@ -7,7 +7,7 @@ require_once("../connectBooks.php");
 
 $sql = "select * from `product` where product_state=1 && product_name is not null";
 $book = $pdo->query($sql);
-$books = $book->fetchAll();
+$books = $book->fetchAll(PDO::FETCH_ASSOC);
 $data = [];
 foreach ($books as $i => $page) {
     $data[] = $page;

@@ -1,35 +1,67 @@
 <template>
     <p class="title">我的收藏</p>
     <div class="data">
-        <!-- 這裡開始寫 -->
         <div class="card">
-            <productCard></productCard>
-            <productCard></productCard>
-            <productCard></productCard>
-            <productCard></productCard>
-            <productCard></productCard>
-            <productCard></productCard>
-            <productCard></productCard>
-            <productCard></productCard>
+            <ProductCard
+                :id="e.product_id"
+                :title="e.product_name"
+                :price="e.unit_price"
+                :imgURL="cut(e.product_pic)"
+                :clloect="e.coll"
+                @clloectchange="collchange(e)"
+                v-for="e in product"
+                :key="e.product_id"
+            />
         </div>
         <div class="decoration">#Favorite</div>
     </div>
 </template>
 <script>
-import productCard from "@/components/product/ProductCard.vue";
+import { BASE_URL } from "@/assets/js/common.js";
+import ProductCard from "@/components/product/ProductCard.vue";
 export default {
     name: "Favorites",
     components: {
-        productCard,
+        ProductCard,
+    },
+    data() {
+        return {
+            product: [],
+        };
+    },
+    methods: {
+        collchange(e) {
+            e.coll = !e.coll;
+        },
+        cut(x) {
+            if (x) return x.split(",")[0];
+        },
+        getResource() {
+            this.axios.get(`${BASE_URL}/favorlist.php`).then((response) => {
+                this.product = response.data;
+
+                console.log(this.product.product_pic);
+            });
+            this.product.forEach((e) => {
+                e.coll = false;
+            });
+        },
+
+        collchange(e) {
+            e.coll = !e.coll;
+        },
+    },
+    created() {
+        this.getResource();
     },
 };
 </script>
 
 <style lang="scss" scoped>
 .title {
-  font-size: 24px;
-  color: #292929;
-  padding-bottom: $padding;
+    font-size: 24px;
+    color: #292929;
+    padding-bottom: $padding;
 }
 .mem_container {
     background-color: $bg_gray;

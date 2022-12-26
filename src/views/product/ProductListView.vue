@@ -1,4 +1,5 @@
 <script>
+import { BASE_URL } from "@/assets/js/common.js";
 import ProductMenu from "@/components/product/ProductMenu.vue";
 import BestSeller from "@/components/product/BestSeller.vue";
 import SearchBar from "@/components/product/SearchBar.vue";
@@ -24,6 +25,7 @@ export default {
             searchinput: "",
             tmp: [],
             product: [],
+            favorite: [],
         };
     },
     computed: {
@@ -121,21 +123,41 @@ export default {
             const height =
                 window.innerWidth >= 500 ? 650 : window.innerWidth * 0.85;
             window.scrollTo({
-                top: height,
+                top: 0,
                 behavior: "smooth",
             });
         },
         getResource() {
-            this.axios.get("/api_server/list.php").then((response) => {
-                this.product = this.tmp = response.data;
+            this.axios.get(`${BASE_URL}/list.php`).then((response) => {
+                this.tmp = response.data;
+                this.tmp.forEach((e) => {
+                    e.coll = false;
+                });
+                this.tmp.forEach((item1) => {
+                    this.favorite.forEach((item2) => {
+                        if (item1.product_id === item2.product_id) {
+                            item1.coll = true;
+                        }
+                    });
+                });
+                this.product = this.tmp;
                 this.resultproduct();
+            });
+        },
+        getFavorite() {
+            this.axios.get(`${BASE_URL}/collect_prod.php`).then((response) => {
+                this.favorite = response.data;
             });
         },
         cut(x) {
             if (x) return x.split(",")[0];
         },
+        collchange(e) {
+            e.coll = !e.coll;
+        },
     },
     created() {
+        this.getFavorite();
         this.getResource();
     },
 };
@@ -166,6 +188,8 @@ export default {
                         :title="e.product_name"
                         :price="e.unit_price"
                         :imgURL="cut(e.product_pic)"
+                        :clloect="e.coll"
+                        @clloectchange="collchange(e)"
                         v-for="e in product"
                         :key="e.product_id"
                     />
