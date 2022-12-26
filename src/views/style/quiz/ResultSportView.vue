@@ -58,6 +58,19 @@ export default {
         .then((res) => res.json())
         .then((json) => (this.product = json));
     },
+     record_style() {
+      const data = {
+        style_id: this.style_id,
+        mem_id: this.$store.state.user.mem_id,
+      };
+      fetch(`${BASE_URL}/mem_styleUPD.php`, {
+        method: "post",
+        body: new URLSearchParams(data),
+      })
+        .then((res) => res.json())
+        .then((json) => console.log(json));
+      alert("記錄成功");
+    },
   },
    mounted() {
     this.getRecommend();
