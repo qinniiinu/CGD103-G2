@@ -24,6 +24,15 @@
           </router-link>
         </div>
       </section>
+      <h3 class="recommend">推薦穿搭</h3>
+      <section class="recommend_box">
+        <div v-for="e in combo_product" class="item" :key="e.combo_pic">
+          <router-link :to="`/Set/${e.combo_id}`">
+            <img :src="`../look/${cut(e.combo_pic)}`" />
+            <h4>{{ e.combo_name }}</h4>
+          </router-link>
+        </div>
+      </section>
       <section class="deco">
         <div class="decoration">#STYLE</div>
         <div class="btn_box">
@@ -50,7 +59,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -63,6 +71,7 @@ export default {
     return {
       info: [],
       product: [],
+      combo_product: [],
       style_id: "",
     };
   },
@@ -70,6 +79,7 @@ export default {
   mounted() {
     this.getResource();
     this.getRecommend();
+    this.getComboRecommend();
   },
   computed: {},
   methods: {
@@ -79,9 +89,11 @@ export default {
     getResource() {
       this.axios.get(`/api_server/mem_style.php`).then((response) => {
         this.info = response.data;
+        console.log(response);
         if (this.info.style_id !== null && this.info.style_id !== undefined) {
           this.style_id = this.info.style_id;
           this.getRecommend();
+          this.getComboRecommend();
         }
       });
     },
@@ -89,12 +101,24 @@ export default {
       const data = {
         style_id: this.style_id,
       };
-      fetch(`/api_server/mem_styleREC.php`, {
+      fetch(`${BASE_URL}/quiz/prod_recommend.php`, {
         method: "post",
         body: new URLSearchParams(data),
       })
         .then((res) => res.json())
         .then((json) => (this.product = json));
+    },
+    // 組合商品推薦
+    getComboRecommend() {
+      const data = {
+        style_id: this.style_id,
+      };
+      fetch(`${BASE_URL}/quiz/combo_prod_recommend.php`, {
+        method: "post",
+        body: new URLSearchParams(data),
+      })
+        .then((res) => res.json())
+        .then((json) => (this.combo_product = json));
     },
   },
 };
@@ -251,37 +275,36 @@ export default {
 }
 
 // 無測驗
-.no_style{
+.no_style {
   border: 1px $title_color solid;
   min-height: 300px;
   position: relative;
   background-color: #fff;
-  .item{
+  .item {
     transform: translate(-50%, -50%);
     position: absolute;
     top: 50%;
     left: 50%;
     width: 90%;
-  h3{
-    margin-bottom: 30px;
-    font-weight: 600;
-    color: $main_color;
-    font-size: 30px;
-    text-align: center;
-  }
-  .btn_box{
+    h3 {
+      margin-bottom: 30px;
+      font-weight: 600;
+      color: $main_color;
+      font-size: 30px;
+      text-align: center;
+    }
+    .btn_box {
       margin: 0 auto;
       width: fit-content;
-      .btn_s{
+      .btn_s {
         margin-right: 10px;
       }
+    }
   }
-  }
-  
 }
- @media screen and (min-width:1024px) {
-  .no_style{
+@media screen and (min-width: 1024px) {
+  .no_style {
     min-height: 500px;
   }
- }
+}
 </style>
