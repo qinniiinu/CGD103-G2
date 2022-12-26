@@ -365,6 +365,7 @@ export default {
                     if (data.msg) {
                         //註冊成功
                         alert(data.msg);
+                        this.$store.state.user=data.member;
                         this.$router.push({ path: "/MyPage" });
                     } else {
                         alert(data.msg);
