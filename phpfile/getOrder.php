@@ -5,7 +5,7 @@ header("Content-Type:application/json;charset=utf-8");
 
 require_once("../connectBooks.php");
 
-$sql = "SELECT * FROM `orders`;";
+$sql = "SELECT * FROM `orders` where mem_id=101;";
 $memSub = $pdo->query($sql);
 $memSubAll = $memSub->fetchAll();
 $data = [];
