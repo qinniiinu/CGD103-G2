@@ -66,7 +66,9 @@ export default {
     },
     watch: {
         $route: function () {
-            this.getResource();
+            if (JSON.stringify(this.$route.query) == "{}") {
+                this.getResource();
+            }
         },
     },
     methods: {
@@ -79,7 +81,7 @@ export default {
                         return e;
                     }
                 });
-                this.$router.push(`/productlist?${query_current}&S=${val}`);
+                this.$router.push(`/productlist?S=${val}`);
             } else {
                 this.$router.push(`/productlist?${query_current}`);
             }

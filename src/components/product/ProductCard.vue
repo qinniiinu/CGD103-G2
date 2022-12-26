@@ -2,7 +2,7 @@
     <div class="product_card">
         <div class="box">
             <router-link :to="`/productDetails/${id}`">
-                <img :src="`/pic/${imgURL}`" />
+                <img :src="`./pic/${imgURL}`" />
             </router-link>
 
             <div class="icon" @click="clloectchange()">

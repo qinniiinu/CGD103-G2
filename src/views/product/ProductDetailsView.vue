@@ -64,6 +64,9 @@ export default {
         color() {
             return this.product_details?.product_color?.split(",");
         },
+        color_name() {
+            return this.product_details?.product_color_name?.split(",");
+        },
         size() {
             return this.product_details?.product_size?.split(",");
         },
@@ -278,35 +281,16 @@ export default {
             </div>
         </div>
     </div>
-    <!-- 
-    <div class="dressingGuide">
-        <h2>穿搭指南</h2>
-        <div class="leftright">
-            <div class="image">
-                <img src="https://fakeimg.pl/400x600/200" />
-            </div>
 
-            <div class="right">
-                <p class="dressingGuideTitle">H&M 襯衫</p>
-                <p class="content">
-                    Lorem Ipsum has been the industry's standard dummy text ever
-                    since the 1500s, when an unknown printer took a galley of
-                    type and scrambled it to make a type specimen book.
-                </p>
-            </div>
+    <div class="dressingGuide">
+        <h2>你可能也會喜歡</h2>
+        <div class="matchingProducts_box">
+            <product-card></product-card>
+            <product-card></product-card>
+            <product-card></product-card>
         </div>
-        <div class="matchingProducts">
-            <h3>搭配的商品</h3>
-            <div class="matchingProducts_box">
-                <product-card></product-card>
-                <product-card></product-card>
-                <product-card></product-card>
-            </div>
-        </div>
-        <div class="likeAlso">
-            <h3>你可能也會喜歡</h3>
-        </div>
-    </div> -->
+    </div>
+
     <Alert :msg="msg" @closeAlert="tab" v-show="alert"></Alert>
 </template>
 
@@ -340,7 +324,7 @@ export default {
     transition: opacity 400ms;
 }
 .product_details {
-    max-width: $max-width;
+    max-width: $max_width;
     margin: auto;
     padding-bottom: 20px;
     border-bottom: $line solid $text_color;
@@ -387,8 +371,7 @@ export default {
             @include m() {
                 width: 50%;
             }
-            // .rightTop {
-            // }
+
             color: $text_color;
             padding: 10px;
             .title {
@@ -544,7 +527,7 @@ export default {
     }
 }
 .dressingGuide {
-    max-width: $max-width;
+    max-width: $max_width;
     margin: auto;
     padding-bottom: 20px;
     border-bottom: $line solid $text_color;
@@ -628,9 +611,10 @@ export default {
                 padding: 50px;
             }
         }
-        .matchingProducts_box {
-            display: flex;
-        }
+    }
+    .matchingProducts_box {
+        display: flex;
+        width: 100%;
     }
     .likeAlso {
         h3 {
