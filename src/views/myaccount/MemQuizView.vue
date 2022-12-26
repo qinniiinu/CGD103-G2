@@ -89,7 +89,7 @@ export default {
       const data = {
         style_id: this.style_id,
       };
-      fetch(`${BASE_URL}/mem_styleREC.php`, {
+      fetch(`/api_server/mem_styleREC.php`, {
         method: "post",
         body: new URLSearchParams(data),
       })
