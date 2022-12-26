@@ -15,6 +15,15 @@
       </router-link>
     </div>
   </section>
+  <h3 class="recommend">推薦穿搭</h3>
+  <section class="recommend_box">
+    <div v-for="e in combo_product" class="item" :key="e.combo_pic">
+      <router-link :to="`/Set/${e.combo_id}`">
+        <img :src="`./look/${cut(e.combo_pic)}`" />
+        <h4>{{ e.combo_name }}</h4>
+      </router-link>
+    </div>
+  </section>
 </template>
 
 
@@ -29,6 +38,7 @@ export default {
   data() {
     return {
       product: [],
+      combo_product: [],
       style_id: 104,
     };
   },
@@ -47,6 +57,7 @@ export default {
     //     body: new URLSearchParams(`mem_style_id= 123`),
     //   });
     // },
+    // 記錄風格
      record_style() {
       const data = {
         style_id: this.style_id,
@@ -64,6 +75,7 @@ export default {
         .then((json) => console.log(json));
         alert("記錄成功");
     },
+    // 單品推薦
      getRecommend() {
       const data = {
         style_id: this.style_id,
@@ -75,9 +87,22 @@ export default {
         .then((res) => res.json())
         .then((json) => (this.product = json));
     },
+    // 組合商品推薦
+    getComboRecommend() {
+      const data = {
+        style_id: this.style_id,
+      };
+      fetch(`${BASE_URL}/quiz/combo_prod_recommend.php`, {
+        method: "post",
+        body: new URLSearchParams(data),
+      })
+        .then((res) => res.json())
+        .then((json) => (this.combo_product = json));
+    },
   },
   mounted() {
     this.getRecommend();
+    this.getComboRecommend();
   },
 };
 </script>
