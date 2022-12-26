@@ -5,7 +5,7 @@
 			<div :class="['cover_pic', { main:currentPic === coverPic}]" v-for="(coverPic,index) of coverPics" :key="index" @click="currentPic = coverPic">
 				<img :src="coverPic.src">
 				<h2>{{coverPic.text}}</h2>
-				<router-link :to="`/Set/${coverPic.link}`"><Button class="cover_btn btn_ns" content="查看更多"></Button></router-link>
+				<router-link :to="`./Set/${coverPic.link}`"><Button class="cover_btn btn_ns" content="查看更多"></Button></router-link>
 				
 			</div>
 		</div>

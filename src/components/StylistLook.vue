@@ -43,10 +43,10 @@ export default {
     	return {
          
             lookItems:[
-                {src:'/look/ootd-look-1.jpg',link:'908'},
-                {src:'/look/ootd-look-2.jpg',link:'905'},
-                {src:'/look/ootd-look-3.jpg',link:'903'},
-                {src:'/look/ootd-look-2.jpg',link:'904'},
+                {src:'./look/ootd-look-1.jpg',link:'908'},
+                {src:'./look/ootd-look-2.jpg',link:'905'},
+                {src:'./look/ootd-look-3.jpg',link:'903'},
+                {src:'./look/ootd-look-2.jpg',link:'904'},
 
             ],
     	} 

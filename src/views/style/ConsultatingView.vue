@@ -104,6 +104,26 @@
 				<Button class="btn_l" @click="backStep2()">上一步</Button>
 				<Button class="btn_s" @click="insert()">完成</Button>
 			</div>
+			<div class="check_complete" v-show="step4">
+				<h3>
+					預約成功
+				</h3>
+				<router-link to="/Chat">
+					<div class="close">
+						確認
+					</div>
+				</router-link>
+			</div>
+			<div class="check_login" v-show="step5">
+				<h3>
+					請先登入
+				</h3>
+				<router-link to="/login">
+					<div class="close">
+						確認
+					</div>
+				</router-link>
+			</div>
 		</div>
 	</div>
 
@@ -161,6 +181,8 @@ export default {
 			step1:true,
 			step2:false,
 			step3:false,
+			step4:false,
+			step5:false,
 			btncheck:'qabtn-box',
 			stepPrompt:'至少選一個',
 			isprompt:false,
@@ -271,30 +293,25 @@ export default {
 				})
         },
 		insert() {
-			// console.log(this.qaBtncheck.toString());
-			const payload={
-				mem_id:this.$store.state.user.mem_id,
-				appointment_date:this.date,
-				appointment_time:this.qatime,
-				appointment_qa:this.qaBtncheck.toString(),
-				appointment_qatext:this.qatextarea
+			if(this.$store.state.user.mem_id!=null){
+				
+				this.step4=true;
+				const payload={
+					mem_id:this.$store.state.user.mem_id,
+					appointment_date:this.date,
+					appointment_time:this.qatime,
+					appointment_qa:this.qaBtncheck.toString(),
+					appointment_qatext:this.qatextarea
+				}
+				fetch(`${BASE_URL}/chat_qa.php`,{
+					method:'post',
+					body:new URLSearchParams(payload)
+				}).then((res)=>res.json()).then((json)=>console.log(json));
+				
+			}else{
+				this.step5=true;
 			}
-			fetch(`${BASE_URL}/chat_qa.php`,{
-				method:'post',
-				body:new URLSearchParams(payload)
-			}).then((res)=>res.json()).then((json)=>console.log(json));
-			// .then(response=>console.log(response));
-
-
-
-			/* let xhr = new XMLHttpRequest();
-			xhr.onload = function () {
-				let result = JSON.parse(xhr.responseText);
-				alert(result.msg);
-			};
-			xhr.open("post", `${BASE_URL}/chat_qa.php`, true);
-			xhr.send(new FormData(document.getElementById("add_employee"))); */
-			// lightbox.classList.remove("active"); // 關新增燈箱
+		
 		},
 
 	}
@@ -444,6 +461,7 @@ export default {
 
 			}
 			Button{
+				cursor: pointer;
 				text-align: center;
 				display: block;
 				margin: 20px auto;
@@ -646,6 +664,7 @@ export default {
 			// margin: auto;
 			text-align: center;
 			button{
+				cursor: pointer;
 				display: inline-block;
 				margin: 10px;
 				@include m{
@@ -771,7 +790,9 @@ export default {
 			.check-btn{
 				margin:50px auto 20px;
 				text-align: center;
+				
 				button{
+					cursor: pointer;
 					// display: inline-block;
 					@include m{
 						width: 120px;
@@ -779,6 +800,68 @@ export default {
 						line-height: 36px;
 					}
 					margin: 10px;
+				}
+			}
+			.check_complete{
+				position: fixed;
+				width: 300px;
+				height: 300px;
+				border: 1px solid $main_color;
+				background-color:rgb(255,255,255,.9) ;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+				display: flex;
+				gap: 50px;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				h3{
+					font-weight: 700;
+					font-size:32px ;
+					// margin: auto;
+				}
+				.close{
+					color:$second_color;
+					font-weight:500;
+					width: fit-content;
+					height: fit-content;
+					background-color: $main_color;
+					padding: 10px 15px;
+					cursor: pointer;
+				}
+			}
+			.check_login{
+				position: fixed;
+				width: 300px;
+				height: 300px;
+				border: 1px solid $main_color;
+				background-color:rgb(255,255,255,.9) ;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+				display: flex;
+				gap: 50px;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				h3{
+					font-weight: 700;
+					font-size:32px ;
+					// margin: auto;
+				}
+				.close{
+					color:$second_color;
+					font-weight:500;
+					width: fit-content;
+					height: fit-content;
+					background-color: $main_color;
+					padding: 10px 15px;
+					cursor: pointer;
 				}
 			}
 			

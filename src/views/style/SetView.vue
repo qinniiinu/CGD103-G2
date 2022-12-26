@@ -9,11 +9,11 @@
 			</div>
 			<div class="look-pic">
 				<div class="main-pic">
-					<img :src="`/look/${bigPicture}`" alt="">
+					<img :src="`../look/${bigPicture}`" alt="">
 				</div>
 				<div class="sub-pic">
 					<div class="sub-pic-item" v-for="(pic,index) of combo_pic " :key="index" @click="this.bigPicture=pic">
-						<img :src="`/look/${pic}`" alt="">
+						<img :src="`../look/${pic}`" alt="">
 					</div>
 				</div>
 			</div>
@@ -29,7 +29,7 @@
 		<div class="product-item-info">
 				<div class="look-item">
 					<div class="look-item-product" v-for="(item,index) of productCombo" :key="index" >
-						<div class="look-item-pic"><img :src="`/pic/${item.product_pic}`" alt=""></div>
+						<div class="look-item-pic"><img :src="`../pic/${item.product_pic}`" alt=""></div>
 						<div class="look-item-content">
 							<h3>{{item.product_name}}</h3>
 							<p>{{item.product_text}}</p>
@@ -38,7 +38,7 @@
 					</div>
 				</div>
 				<div class="totalPrice">
-					<p>整套售價:$NT{{combo_price}}</p>
+					<p>整套售價:$NT{{totalPrice}}</p>
 				</div>
 				<button class="btn_ns" @click="add()">加入購物車</button>
 		</div>
@@ -48,7 +48,6 @@
 		<h2>你可能也喜歡</h2>
 		<swiper
 			:modules="modules"
-			
 			:space-between="0"
 			navigation
 			:pagination="{ clickable: true }"
@@ -57,7 +56,7 @@
 			@slideChange="onSlideChange"
 		>
 		  	<swiper-slide class="swiper" v-for="(look,index) of looks" :key="index">
-                <lookCard class="swiper-item" :link="`/look/${look.combo_main_pic}`" :tag1="cut1(look.hashtag)" :tag2="cut2(look.hashtag)" :tag3="cut3(look.hashtag)" :ootdName="look.combo_name" :heartId="look.combo_id"></lookCard>
+                <lookCard class="swiper-item" :link="`../look/${look.combo_main_pic}`" :tag1="cut1(look.hashtag)" :tag2="cut2(look.hashtag)" :tag3="cut3(look.hashtag)" :ootdName="look.combo_name" :heartId="look.combo_id"></lookCard>
             </swiper-slide>
 
 			
@@ -152,7 +151,6 @@
 				return this.setpage?.combo_main_pic;
 			},
 			hashtag(){
-			
 				return this.setpage?.hashtag.split(",");
 			},
 			combo_pic(){
@@ -161,7 +159,13 @@
 			combo_price(){
 				return this.setpage?.combo_price;
 			},
-			
+			totalPrice(){
+				let sum=0
+				this.productCombo.forEach(item=>{
+					sum+=parseInt(item.unit_price);
+				})
+				return sum
+			}
 			
 		},
 		mounted () {
@@ -176,7 +180,7 @@
 					this.temp = response.data.find((e) => {
 						if (e.combo_id == this.$route.params.idlink) return e;
 					});
-					this.bigPicture = this.temp?.combo_main_pic;
+					this.bigPicture = this.temp?.combo_pic.split(",")[0];
 				});
 			},
 			getResourceswiper() {
@@ -235,37 +239,13 @@
 					
 				);
 					this.setStorage();
-					
-
-				// 	if(this.cartempty<1){
-				// 
-				// }
-				// this.cartempty+=1
-
+		
 				
 			},
 			setStorage() {
             	const data = JSON.stringify(this.cart);
             	localStorage.setItem("cart", data);
         	},
-			// getProductResource() {
-			// //取得員工資料
-			// 	this.axios.get(`${BASE_URL}/setproduct.php`).then((response) => {
-			// 		console.log(response.data);
-			// 		this.productItem = response.data;
-			// 		console.log(this.page);
-            //         if (productItem.combo_id == this.page){
-			// 			
-			// 		}
-            //     });
-			// },
-			// getLookResource() {
-			// //取得員工資料
-			// 	this.axios.get(`${BASE_URL}/setlook.php`).then((response) => {
-			// 		console.log(response.data);
-			// 		this.lookImg = response.data;
-			// 	});
-			// },
 			cut1(x) {
                 if (x) return x.split(",")[0];
 			},
@@ -275,13 +255,7 @@
 			cut3(x) {
 				if (x) return x.split(",")[2];
 			},
-			total(){
-				this.price1=this.productCombo[0].unit_price;
-				this.price2=this.productCombo[1].unit_price;
-				this.price3=this.productCombo[2].unit_price;
-				// this.price4=this.productCombo[3].unit_price;
-				this.all=Number(this.price1)+Number(this.price2)+Number(this.price3);
-			},
+	
 			
 		},
 		created() {
@@ -619,6 +593,7 @@
 		}
 
 	}
+
 	.maybeLike{
 		width: 90%;
 		max-width: 1200px;
@@ -631,12 +606,12 @@
 			color: $title_color;
 			text-align: center;
 		}
+		
 		.swiper{
-			margin-bottom: 80px;
+			margin-bottom: 50px;
 			.swiper-item{
 				width: 60%;
 				margin: auto;
-				
 			}
 		}
 	}

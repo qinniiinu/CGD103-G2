@@ -103,10 +103,10 @@ export default {
 				'不知道要買什麼衣服',
 			],
 			consultPics:[
-				{src:'/pic/trouble_pic1.jpg'},
-				{src:'/pic/trouble_pic2.jpg'},
-				{src:'/pic/trouble_pic3.jpg'},
-				{src:'/pic/trouble_pic4.jpg'},
+				{src:'./pic/trouble_pic1.jpg'},
+				{src:'./pic/trouble_pic2.jpg'},
+				{src:'./pic/trouble_pic3.jpg'},
+				{src:'./pic/trouble_pic4.jpg'},
 			],
 			consultText:[
 				'建立基本風格確實需要勇氣，同時也要對現今的自己有正確的接納與理解。除了自己的風格，也必須認識其他的品味。',
