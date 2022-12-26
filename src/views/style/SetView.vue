@@ -41,6 +41,14 @@
 					<p>整套售價:$NT{{totalPrice}}</p>
 				</div>
 				<button class="btn_ns" @click="add()">加入購物車</button>
+				<div class="check_add" v-show="addok">
+				<h3>
+					加入成功
+				</h3>
+					<div class="close" @click="this.addok=false">
+						確認
+					</div>
+				</div>
 		</div>
 	</div>
 
@@ -115,6 +123,7 @@
 				price2:'',
 				price3:'',
 				price4:'',
+				addok:false,
 				swiperOptions: {
 						breakpoints: {   
 							// 390:{       
@@ -206,41 +215,42 @@
 			},
 			add(){
 
-				this.cart.push({	// id: 
-                        title:this.productCombo[0].title,
-                        image:this.productCombo[0].src,
-                        price:this.productCombo[0].price,
+			/* 	this.cart.push({	// id: 
+                        title:this.productCombo[0].product_name,
+                        image:this.productCombo[0].product_pic,
+                        price:this.productCombo[0].unit_price,
                         color: this.productCombo[0].color,
                         size: this.productCombo[0].size,
                         count: 1,
-                    },{	// id: 
-                        title:this.productCombo[1].title,
-                        image:this.productCombo[1].src,
-                        price:this.productCombo[1].price,
-                        color: this.productCombo[1].color,
-                        size: this.productCombo[1].size,
-                        count: 1,
-                    },
-					{	// id: 
-                        title:this.productCombo[2].title,
-                        image:this.productCombo[2].src,
-                        price:this.productCombo[2].price,
-                        color: this.productCombo[2].color,
-                        size: this.productCombo[2].size,
-                        count: 1,
-                    },
-					{	// id: 
-                        title:this.productCombo[3].title,
-                        image:this.productCombo[3].src,
-                        price:this.productCombo[3].price,
-                        color: this.productCombo[3].color,
-                        size: this.productCombo[3].size,
-                        count: 1,
-                    },
+                    }
 					
-				);
+				); */
+				
+				this.productCombo.forEach((item)=>{
+					// 假設購物車為空時，才可以加入商品
+					let getProdIndex=this.cart.findIndex((Qitem)=>{
+						return Qitem.title===item.product_name 
+							&& Qitem.color===item.product_color_name
+							// && Qitem.id===item.product_id 
+					})
+					console.log(getProdIndex);
+					if(getProdIndex<0){
+						this.cart.push({
+						id:item.product_id,
+						title:item.product_name,
+						image:item.product_pic,
+						price:Number(item.unit_price),
+						color:item.product_color_name,
+						size:'M',
+						count:1
+						})
+					}else{
+						this.cart[getProdIndex].count+=1
+					}
+					
+				})
 					this.setStorage();
-		
+					this.addok=true;
 				
 			},
 			setStorage() {
@@ -616,4 +626,36 @@
 			}
 		}
 	}
+	.check_add{
+				position: fixed;
+				width: 300px;
+				height: 300px;
+				border: 1px solid $main_color;
+				background-color:rgb(255,255,255,.9) ;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+				display: flex;
+				gap: 50px;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				z-index: 999;
+				h3{
+					font-weight: 700;
+					font-size:32px ;
+					// margin: auto;
+				}
+				.close{
+					color:$second_color;
+					font-weight:500;
+					width: fit-content;
+					height: fit-content;
+					background-color: $main_color;
+					padding: 10px 15px;
+					cursor: pointer;
+				}
+			}
 </style>

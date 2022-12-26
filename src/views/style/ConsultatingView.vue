@@ -293,7 +293,7 @@ export default {
 				})
         },
 		insert() {
-			if(this.$store.state.user.mem_id!=null){
+			if(this.$store.state.user!=null){
 				
 				this.step4=true;
 				const payload={
@@ -818,6 +818,7 @@ export default {
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
+				z-index: 999;
 				h3{
 					font-weight: 700;
 					font-size:32px ;
@@ -849,6 +850,7 @@ export default {
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
+				z-index: 999;
 				h3{
 					font-weight: 700;
 					font-size:32px ;
