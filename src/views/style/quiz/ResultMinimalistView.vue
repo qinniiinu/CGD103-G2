@@ -37,16 +37,16 @@ export default {
       if (x) return x.split(",")[0];
     },
     // ******待修正
-    insert() {
-      // const data = {
-      //   mem_style_id: this.style_id,
-      // } 
+    // insert() {
+    //   // const data = {
+    //   //   mem_style_id: this.style_id,
+    //   // } 
 
-      fetch(`${BASE_URL}/record_style.php`, {
-        method: "POST",
-        body: new URLSearchParams(`mem_style_id= 123`),
-      });
-    },
+    //   fetch(`${BASE_URL}/record_style.php`, {
+    //     method: "POST",
+    //     body: new URLSearchParams(`mem_style_id= 123`),
+    //   });
+    // },
      record_style() {
       const data = {
         style_id: this.style_id,
