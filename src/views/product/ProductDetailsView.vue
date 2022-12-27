@@ -89,6 +89,10 @@ export default {
     watch: {
         $route: function () {
             this.getResource();
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
         },
     },
     methods: {
@@ -224,7 +228,9 @@ export default {
         <div class="leftright">
             <div class="left">
                 <div class="bigPic">
-                    <img :src="`/pic/${bigPicture}`" />
+                    <img
+                        :src="`https://tibamef2e.com/cgd103/g2/front/pic/${bigPicture}`"
+                    />
                 </div>
                 <div class="leftDown">
                     <div
