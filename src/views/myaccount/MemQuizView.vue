@@ -87,7 +87,7 @@ export default {
       if (x) return x.split(",")[0];
     },
     getResource() {
-      this.axios.get(`/api_server/mem_style.php`).then((response) => {
+      this.axios.get(`${BASE_URL}/mem_style.php`).then((response) => {
         this.info = response.data;
         console.log(response);
         if (this.info.style_id !== null && this.info.style_id !== undefined) {

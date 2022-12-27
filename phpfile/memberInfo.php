@@ -9,8 +9,6 @@ try {
         require_once("../connectBooks.php");
         $sql = "SELECT m.* , b.* ,v.* from member m JOIN body b on(m.body_id = b.body_id)
                                     LEFT JOIN vip_orders v on(m.mem_id = v.mem_id)
-                
-
         where m.mem_id=:mem_id;";
         $member_id = $_SESSION['member']['mem_id']; // 抓出 SESSION 中已登入者的 mem_id
         $member = $pdo->prepare($sql); //先編譯好
@@ -18,8 +16,8 @@ try {
         $member->execute(); //執行之
         $memberRow = $member->fetch(PDO::FETCH_ASSOC);
         echo json_encode($memberRow);
-    }
-    else{//尚未登入，
+        
+    } else{//尚未登入，
         $errMsg .= "請先登入";
         echo json_encode(["msg"=>$errMsg]);
     }
