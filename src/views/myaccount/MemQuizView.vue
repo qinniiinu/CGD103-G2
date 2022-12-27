@@ -1,8 +1,8 @@
 <template>
-  <p class="title">我的風格</p>
+  <p class="title">我的風格{{ style_id }}</p>
   <div class="data">
     <!-- 有測驗紀錄 -->
-    <div class="wrap" v-if="style_id != ''">
+    <div class="wrap" v-if="typeof style_id === 'number'">
       <section class="style">
         <div class="item">
           <p>屬於:</p>
@@ -13,6 +13,7 @@
         </div>
         <div class="item">
           <p>{{ info.style_descrip }}</p>
+          <p>{{ style_id }}</p>
         </div>
       </section>
       <h3 class="recommend">推薦商品</h3>
@@ -36,12 +37,8 @@
       <section class="deco">
         <div class="decoration">#STYLE</div>
         <div class="btn_box">
-          <router-link to="/MyPage"
-            ><button class="btn_l">返回</button></router-link
-          >
-          <router-link :to="{ name: 'Quiz' }"
-            ><button class="btn_s">重新測驗</button></router-link
-          >
+          <router-link to="/MyPage"><button class="btn_l">返回</button></router-link>
+          <router-link :to="{ name: 'Quiz' }"><button class="btn_s">重新測驗</button></router-link>
         </div>
       </section>
     </div>
@@ -50,12 +47,8 @@
       <div class="item">
         <h3 class="txt_box">尚未測驗</h3>
         <div class="btn_box">
-          <router-link :to="{ name: 'Quiz' }"
-            ><button class="btn_s">測驗去</button></router-link
-          >
-          <router-link to="/MyPage"
-            ><button class="btn_l">返回</button></router-link
-          >
+          <router-link :to="{ name: 'Quiz' }"><button class="btn_s">測驗去</button></router-link>
+          <router-link to="/MyPage"><button class="btn_l">返回</button></router-link>
         </div>
       </div>
     </div>
@@ -75,11 +68,9 @@ export default {
       style_id: "",
     };
   },
-  created() {},
+  created() { },
   mounted() {
     this.getResource();
-    this.getRecommend();
-    this.getComboRecommend();
   },
   computed: {},
   methods: {
@@ -87,16 +78,26 @@ export default {
       if (x) return x.split(",")[0];
     },
     getResource() {
-      this.axios.get(`/api_server/mem_style.php`).then((response) => {
-        this.info = response.data;
-        console.log(response);
-        if (this.info.style_id !== null && this.info.style_id !== undefined) {
-          this.style_id = this.info.style_id;
-          this.getRecommend();
-          this.getComboRecommend();
-        }
-      });
+      const data = {
+        mem_id: this.$store.state.user.mem_id,
+      };
+      fetch(`${BASE_URL}/mem_style.php`, {
+        method: "post",
+        body: new URLSearchParams(data),
+      })
+        .then((res) => res.json())
+        .then((json) => {
+          this.info = json
+          this.style_id = json.style_id;
+          // 判斷是否有測驗紀錄
+          if (typeof json.style_id === 'number') {
+            this.getRecommend();
+            this.getComboRecommend();
+          }
+        });
+
     },
+    // 單品商品推薦
     getRecommend() {
       const data = {
         style_id: this.style_id,
@@ -126,11 +127,13 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/sass/quiz_result";
+
 .title {
   font-size: 24px;
   color: #292929;
   padding-bottom: $padding;
 }
+
 .wrap {
   .txt_box {
     padding: 50px;
@@ -140,30 +143,37 @@ export default {
     text-align: center;
     margin-bottom: 30px;
   }
+
   .style {
     .item:nth-child(1) {
       //title
       padding: 20px 0;
+
       h2 {
         font-size: 32px;
         font-weight: 600;
         text-align: center;
       }
+
       p {
         display: none;
       }
     }
+
     .item:nth-child(2) {
       //image
       position: relative;
+
       img {
         width: 100%;
         vertical-align: top;
       }
     }
+
     // descrip
     .item:nth-child(3) {
       padding: 20px 0;
+
       p {
         color: $text_color;
         line-height: 27px;
@@ -171,21 +181,26 @@ export default {
       }
     }
   }
+
   .recommend {
     margin: 50px 0;
+
     h2 {
       font-size: 20px;
       color: $title_color;
       margin: 10px 0;
     }
+
     .item {
       border: 1px solid $title_color;
     }
   }
+
   .deco {
     .decoration {
       display: none;
     }
+
     .btn_box {
       display: flex;
       align-items: center;
@@ -200,40 +215,48 @@ export default {
     padding: 20px;
     border: 1px solid $title_color;
     min-height: 500px;
+
     .style {
       display: grid;
       grid-template-columns: 60% 40%;
       grid-template-rows: auto auto;
       align-items: center;
+
       .item:nth-child(1) {
         //title
         padding: 20px 0;
         grid-area: 1/1/2/2;
+
         h2 {
           font-size: 66px;
           text-align: left;
           width: 90%;
           margin-left: auto;
         }
+
         p {
           display: block;
           color: $title_color;
           font-size: 32px;
         }
       }
+
       .item:nth-child(2) {
         //image
         grid-area: 1/2/3/3;
         position: relative;
+
         img {
           width: 80%;
           margin: auto;
           display: block;
         }
       }
+
       .item:nth-child(3) {
         grid-area: 2/1/3/2;
         padding: 20px 0;
+
         p {
           color: $text_color;
           line-height: 27px;
@@ -241,13 +264,16 @@ export default {
           width: 80%;
         }
       }
+
       .item:nth-child(4) {
         display: none;
       }
     }
+
     // === recommend ===
     .deco {
       position: relative;
+
       .decoration {
         display: inline-block;
         font-size: 72px;
@@ -255,15 +281,18 @@ export default {
         font-style: italic;
         color: $secondary;
       }
+
       .btn_box {
         display: inline-block;
         position: absolute;
         right: 0;
+
         .btn_l {
           // 返回
           display: inline-block;
           margin-right: 10px;
         }
+
         .btn_s {
           //重新測驗
           display: inline-block;
@@ -280,12 +309,14 @@ export default {
   min-height: 300px;
   position: relative;
   background-color: #fff;
+
   .item {
     transform: translate(-50%, -50%);
     position: absolute;
     top: 50%;
     left: 50%;
     width: 90%;
+
     h3 {
       margin-bottom: 30px;
       font-weight: 600;
@@ -293,15 +324,18 @@ export default {
       font-size: 30px;
       text-align: center;
     }
+
     .btn_box {
       margin: 0 auto;
       width: fit-content;
+
       .btn_s {
         margin-right: 10px;
       }
     }
   }
 }
+
 @media screen and (min-width: 1024px) {
   .no_style {
     min-height: 500px;
