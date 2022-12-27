@@ -4,7 +4,7 @@ header("Content-Type:application/json;charset=utf-8");
 
 require_once("../connectBooks.php");
 
-$sql = "SELECT `weeklywear_pic` FROM `weeklywear` ;";
+$sql = "SELECT weeklywear_pic FROM weeklywear ORDER BY weeklywear_id DESC LIMIT 12  ;";
 $book = $pdo->query($sql);
 $books = $book->fetchAll();
 $data = [];

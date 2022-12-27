@@ -1,186 +1,46 @@
 <template>
   <div class="weeklywear">
     <!-- <BreadCrumbs></BreadCrumbs> -->
-    <h1 class="title">一週穿搭公式<br />讓你/妳有更多穿搭靈感</h1>
+    <div class="title_box">
+      <div class="img_box">
+        <img class="deco1" src="/weeklywear_pic/deco01.png" />
+      </div>
+      <h1 class="title">一週穿搭公式<br />讓你/妳有更多穿搭靈感</h1>
+      <div class="img_box">
+        <img class="deco2" src="/weeklywear_pic/deco02.png" />
+      </div>
+    </div>
+
     <section class="section_one">
-      <img class="deco1" src="../assets/weeklywear_pic/deco01.png" alt="" />
-      <img class="deco2" src="../assets/weeklywear_pic/deco02.png" alt="" />
       <ul class="weekbox">
-        <li @click="Mon = !Mon">
-          <label for="Mon">
-            <input
-              class="input"
-              type="radio"
-              id="Mon"
-              v-model="picked"
-              value="Mon"
-            />Monday
-          </label>
-        </li>
-
-        <li @click="Tue = !Tue">
-          <label for="Tue">
-            <input
-              class="input"
-              type="radio"
-              id="Tue"
-              v-model="picked"
-              value="Tue"
-            />Tuesday
-          </label>
-        </li>
-
-        <li @click="Wed = !Wed">
-          <label for="Wed">
-            <input
-              class="input"
-              type="radio"
-              id="Wed"
-              v-model="picked"
-              value="Wed"
-            />Wednesday
-          </label>
-        </li>
-
-        <li @click="Thur = !Thur">
-          <label for="Thur">
-            <input
-              class="input"
-              type="radio"
-              id="Thur"
-              v-model="picked"
-              value="Thur"
-            />Thursday
-          </label>
-        </li>
-
-        <li @click="Fri = !Fri">
-          <label for="Fri">
-            <input
-              class="input"
-              type="radio"
-              id="Fri"
-              v-model="picked"
-              value="Fri"
-            />Friday
-          </label>
-        </li>
-
-        <li @click="End = !End">
-          <label for="End">
-            <input
-              class="input"
-              type="radio"
-              id="End"
-              v-model="picked"
-              value="End"
-            />Weekend
-          </label>
-        </li>
+        <template v-for="day in days" :key="day.name">
+          <li @click="day.selected = !day.selected">
+            <label :for="day.name">
+              <input
+                class="input"
+                type="radio"
+                :id="day.name"
+                v-model="picked"
+                :value="day.name"
+              />{{ day.name }}
+            </label>
+          </li>
+        </template>
       </ul>
-
       <div class="imgbox">
-        <transition-group class="left" name="slideDown">
-          <!-- <img
-            :src="require(`@/assets/weeklywear_pic/${e.weeklywear_pic}`)"
-            v-for="e in weeklywear"
-            class="items"
-            :key="e.weeklywear_pic_id"
-          /> -->
+        <transition name="slideDown">
+          <img class="img_left" v-bind:src="imageUrlGirl" :key="imageUrlGirl" />
+        </transition>
 
-          
-          <img
-            class="img_left"
-            v-for="e in weeklywear"
-            :key="e.weeklywear_id"
-            :src="require(`@/assets/weeklywear_pic/${e.weeklywear_pic}`)"
-          />
-
-
-          <!--<img
-            class="img_left"
-            v-if="picked === 'Tue'"
-            src="../assets/weeklywear_pic/female03.jpg"
-            alt="女裝01"
-          />
-          <img
-            class="img_left"
-            v-if="picked === 'Wed'"
-            src="../assets/weeklywear_pic/female01.jpg"
-            alt="女裝01"
-          />
-          <img
-            class="img_left"
-            v-if="picked === 'Thur'"
-            src="../assets/weeklywear_pic/female04.jpg"
-            alt="女裝01"
-          />
-          <img
-            class="img_left"
-            v-if="picked === 'Fri'"
-            src="../assets/weeklywear_pic/female05.jpg"
-            alt="女裝01"
-          />
-          <img
-            class="img_left"
-            v-if="picked === 'End'"
-            src="../assets/weeklywear_pic/female06.jpg"
-            alt="女裝01"
-          /> -->
-        </transition-group>
-
-        <transition-group class="right" name="slideUp">
-          <img
-            class="img_right"
-            v-if="picked === 'Mon'"
-            src="../assets/weeklywear_pic/male03.jpg"
-            alt="女裝01"
-          />
-          <img
-            class="img_right"
-            v-if="picked === 'Tue'"
-            src="../assets/weeklywear_pic/male02.jpg"
-            alt="女裝01"
-          />
-          <img
-            class="img_right"
-            v-if="picked === 'Wed'"
-            src="../assets/weeklywear_pic/male01.jpg"
-            alt="女裝01"
-          />
-          <img
-            class="img_right"
-            v-if="picked === 'Thur'"
-            src="../assets/weeklywear_pic/male04.jpg"
-            alt="女裝01"
-          />
-          <img
-            class="img_right"
-            v-if="picked === 'Fri'"
-            src="../assets/weeklywear_pic/male05.jpg"
-            alt="女裝01"
-          />
-          <img
-            class="img_right"
-            v-if="picked === 'End'"
-            src="../assets/weeklywear_pic/male06.jpg"
-            alt="女裝01"
-          />
-        </transition-group>
+        <transition name="slideUp">
+          <img class="img_right" v-bind:src="imageUrlBoy" :key="imageUrlBoy" />
+        </transition>
       </div>
 
       <div class="bgpic">
         <div class="line"></div>
-        <img
-          class="bg_right"
-          src="../assets/weeklywear_pic/bg_blue.png"
-          alt="背景圖"
-        />
-        <img
-          class="bg_left"
-          src="../assets/weeklywear_pic/bg_blue.png"
-          alt="背景圖"
-        />
+        <img class="bg_right" src="/weeklywear_pic/bg_blue.png" alt="背景圖" />
+        <img class="bg_left" src="/weeklywear_pic/bg_blue.png" alt="背景圖" />
       </div>
     </section>
 
@@ -221,11 +81,7 @@
             ></iframe>
           </div>
         </div>
-        <img
-          class="img_female"
-          src="../assets/weeklywear_pic/female.jpg"
-          alt="女裝"
-        />
+        <img class="img_female" src="/weeklywear_pic/female.jpg" alt="女裝" />
       </div>
     </section>
 
@@ -266,11 +122,7 @@
             ></iframe>
           </div>
         </div>
-        <img
-          class="img_female"
-          src="../assets/weeklywear_pic/male.jpg"
-          alt="男裝"
-        />
+        <img class="img_female" src="/weeklywear_pic/male.jpg" alt="男裝" />
       </div>
     </section>
   </div>
@@ -288,15 +140,55 @@ export default {
 
   data() {
     return {
+      picked: "Monday",
+      days: [
+        { name: "Monday" },
+        { name: "Tuesday" },
+        { name: "Wednesday" },
+        { name: "Thursday" },
+        { name: "Friday" },
+        { name: "Weekend" },
+      ],
       weeklywear: [],
-      Wed: true,
-      Mon: false,
-      Tue: false,
-      Thur: false,
-      Fri: false,
-      End: false,
-      picked: "Wed",
     };
+  },
+
+  computed: {
+    imageUrlGirl() {
+      if (this.picked === "Monday") {
+        return "./weeklywear_pic/" + this.weeklywear[6]?.weeklywear_pic;
+      } else if (this.picked === "Tuesday") {
+        return "./weeklywear_pic/" + this.weeklywear[7]?.weeklywear_pic;
+      } else if (this.picked === "Wednesday") {
+        return "./weeklywear_pic/" + this.weeklywear[8]?.weeklywear_pic;
+      } else if (this.picked === "Thursday") {
+        return "./weeklywear_pic/" + this.weeklywear[9]?.weeklywear_pic;
+      } else if (this.picked === "Friday") {
+        return "./weeklywear_pic/" + this.weeklywear[10]?.weeklywear_pic;
+      } else if (this.picked === "Weekend") {
+        return "./weeklywear_pic/" + this.weeklywear[11]?.weeklywear_pic;
+      } else {
+        return "";
+      }
+    },
+
+    imageUrlBoy() {
+      if (this.picked === "Monday") {
+        return "./weeklywear_pic/" + this.weeklywear[0]?.weeklywear_pic;
+      } else if (this.picked === "Tuesday") {
+        return "./weeklywear_pic/" + this.weeklywear[1]?.weeklywear_pic;
+      } else if (this.picked === "Wednesday") {
+        return "./weeklywear_pic/" + this.weeklywear[2]?.weeklywear_pic;
+      } else if (this.picked === "Thursday") {
+        return "./weeklywear_pic/" + this.weeklywear[3]?.weeklywear_pic;
+      } else if (this.picked === "Friday") {
+        return "./weeklywear_pic/" + this.weeklywear[4]?.weeklywear_pic;
+      } else if (this.picked === "Weekend") {
+        return "./weeklywear_pic/" + this.weeklywear[5]?.weeklywear_pic;
+      } else {
+        return "";
+      }
+    },
   },
 
   methods: {
@@ -353,27 +245,30 @@ export default {
     margin: 50px auto;
     color: $title_color;
   }
+  .title_box {
+    display: flex;
+    width: 70%;
+    margin: auto;
+  }
+  .title_box .img_box {
+    width: 26%;
+  }
+
+  .title_box .img_box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: translatey(0px);
+    animation: float 4s ease-in-out infinite;
+  }
+
   .section_one {
     height: 500px;
     margin: 100px auto 300px auto;
     position: relative;
-    .deco1 {
-      position: absolute;
-      top: -220px;
-      left: 380px;
-      width: 8%;
-      transform: translatey(0px);
-      animation: float 4s ease-in-out infinite;
     }
-    .deco2 {
-      position: absolute;
-      top: -160px;
-      right: 400px;
-      width: 8%;
-      transform: translatey(0px);
-      animation: float 4s ease-in-out infinite;
-    }
-    .imgbox {
+
+  .imgbox {
       display: flex;
       position: relative;
       width: 100%;
@@ -450,6 +345,7 @@ export default {
         }
       }
     }
+
     .bgpic {
       display: flex;
       overflow: hidden;
@@ -520,13 +416,12 @@ export default {
       }
     }
   }
-}
 
 //  ============================ 手機 ============================
 @media screen and (max-width: 767px) {
   .weeklywear {
     .title {
-      font-size: 32px;
+      font-size: 28px;
     }
     .section_one {
       height: 500px;
