@@ -4,8 +4,8 @@
     header("Content-Type:application/json;charset=utf-8");
     $json = file_get_contents("php://input");
     $datas = json_decode($json, true);
-    var_dump($json); echo "-------";
-    var_dump($datas); exit();
+    //var_dump($json); echo "-------";  //----------
+    //var_dump($datas); exit();         //---------
     // if(empty($datas)){
     //     $errMsg = "QQ,wrong";
     //     echo echo json_encode(["msg"=>$errMsg]);
@@ -38,13 +38,13 @@
             $orders->bindValue(":ord_mem",$ord_mem);
             $orders->bindValue(":ord_phone",$ord_phone);
             $orders->execute(); //執行之
-            $orderRow = $orders->fetch(PDO::FETCH_ASSOC);
+            // $orderRow = $orders->fetch(PDO::FETCH_ASSOC);
             // $pdo->commit(); //提交交易
 
-            if ($orders->rowCount() > 0) { 
-                $msg = "訂單成功";
+            //if ($orders->rowCount() > 0) { 
+                $msg = "訂單主檔成功";//-----
 
-                $order_id = $pdo->last_insert_id(); //最新那筆
+                $order_id = $pdo->lastInsertId();; //最新那筆
                 $sql2 = "INSERT INTO order_item (order_id,product_id,quantity,item_price,size,color)
                 VALUES (:ord_id,:product_id,:quantity,:item_price,:size,:color);";
                 $order_item=$pdo->prepare($sql2);
@@ -59,10 +59,10 @@
                     $order_item->bindValue(":color",$item["color"]);
                     $order_item->execute(); //執行之
                 }
-            }else{
-                $errMsg = "失敗";
+            //}else{
+                $errMsg .= "訂單明細成功"; //-----------
                 echo json_encode(["msg" => $errMsg]);
-            }
+            //}
         } catch (PDOException $e) {
             $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
             $errMsg .= "行號 : ".$e -> getLine()."<br>";
