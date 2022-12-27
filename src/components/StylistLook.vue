@@ -12,7 +12,7 @@
 
         <div class="look-item" v-for="lookItem of lookItems" :key="lookItem">
                 <img :src="lookItem.src" alt="">
-                <router-link :to="`/Set/${lookItem.link}`"><Button class="look_btn" content="查看更多"></Button></router-link> 
+                <router-link :to="`/Set/${lookItem.link}`"><button class="look_btn btn_ns">查看更多 </button></router-link> 
         </div>
     </div>
 </div>
@@ -24,12 +24,12 @@
 
 
 <script>
-import Button from "@/components/Button.vue"; 
+
 export default {
 	name: "StylistLook",
 
     components: {
-        Button,
+
 	},
 
     props:{
@@ -43,10 +43,10 @@ export default {
     	return {
          
             lookItems:[
-                {src:'./look/ootd-look-1.jpg',link:'908'},
-                {src:'./look/ootd-look-2.jpg',link:'905'},
-                {src:'./look/ootd-look-3.jpg',link:'903'},
-                {src:'./look/ootd-look-2.jpg',link:'904'},
+                {src:'/look/ootd-look-1.jpg',link:'908'},
+                {src:'/look/ootd-look-2.jpg',link:'905'},
+                {src:'/look/ootd-look-3.jpg',link:'903'},
+                {src:'/look/ootd-look-2.jpg',link:'904'},
 
             ],
     	} 
@@ -78,11 +78,14 @@ export default {
             margin: 0px auto;
             gap: 10px;
             justify-content: space-between;
-            width: 80%;
+            width: 60%;
             max-width: 960px;
             display: flex;
             flex-wrap: wrap;
             align-content: stretch;
+            @include m{
+                width: 90%;
+            }
             
 
 
@@ -192,8 +195,13 @@ export default {
         left: 0;
         right: 0;
         margin: auto;
-        font-size: 14px;
-        width:100px ;
-        line-height:30px ; 
+        font-size: 16px;
+        padding: 10px 15px;
+        @include m{
+            font-size: 14px;
+            padding: 5px 5px;
+        }
+      
+
     }
 </style>
