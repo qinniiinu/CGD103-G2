@@ -77,6 +77,7 @@ export default {
       if (x) return x.split(",")[0];
     },
     getResource() {
+<<<<<<< HEAD
       const data = {
         mem_id: this.$store.state.user.mem_id,
       };
@@ -95,6 +96,17 @@ export default {
           }
         });
 
+=======
+      this.axios.get(`${BASE_URL}/mem_style.php`).then((response) => {
+        this.info = response.data;
+        console.log(response);
+        if (this.info.style_id !== null && this.info.style_id !== undefined) {
+          this.style_id = this.info.style_id;
+          this.getRecommend();
+          this.getComboRecommend();
+        }
+      });
+>>>>>>> Jasmine
     },
     // 單品商品推薦
     getRecommend() {

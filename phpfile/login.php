@@ -1,9 +1,9 @@
 
 <?php
-    session_start();
     // //跨域(正式開發不能這樣)
     header('Access-Control-Allow-Origin:*');
     header("Content-Type:application/json;charset=UTF-8");
+    session_start();
 try {
     require_once("../connectBooks.php");
     $sql = "select * from `member` where mem_mail=:mem_mail and mem_pwd=:mem_pwd;";
@@ -30,7 +30,7 @@ try {
     
             // 將會員資料輸出為 JSON 格式
             echo json_encode($memRow);
-            exit();
+            // exit();
         }
     } else {
         // 表單未提交或缺少必填字段
