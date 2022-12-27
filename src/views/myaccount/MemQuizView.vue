@@ -1,5 +1,5 @@
 <template>
-  <p class="title">我的風格{{ style_id }}</p>
+  <p class="title">我的風格</p>
   <div class="data">
     <!-- 有測驗紀錄 -->
     <div class="wrap" v-if="typeof style_id === 'number'">
@@ -13,7 +13,6 @@
         </div>
         <div class="item">
           <p>{{ info.style_descrip }}</p>
-          <p>{{ style_id }}</p>
         </div>
       </section>
       <h3 class="recommend">推薦商品</h3>
