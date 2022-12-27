@@ -44,7 +44,7 @@
             //if ($orders->rowCount() > 0) { 
                 $msg = "訂單主檔成功";//-----
 
-                $order_id = $pdo->lastInsertId();; //最新那筆
+                $order_id = $pdo->lastInsertId();
                 $sql2 = "INSERT INTO order_item (order_id,product_id,quantity,item_price,size,color)
                 VALUES (:ord_id,:product_id,:quantity,:item_price,:size,:color);";
                 $order_item=$pdo->prepare($sql2);
@@ -54,7 +54,6 @@
                     $order_item->bindValue(":product_id",$item["id"]);
                     $order_item->bindValue(":quantity",$item["count"]);
                     $order_item->bindValue(":item_price",$item["price"]);
-                    // $order_item->bindValue(":item_total",$item["count"]*$item["price"]); //這個怎麼辦(?)
                     $order_item->bindValue(":size",$item["size"]);
                     $order_item->bindValue(":color",$item["color"]);
                     $order_item->execute(); //執行之
