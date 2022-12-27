@@ -16,11 +16,18 @@ try {
     // ;";
 
     $sql = "SELECT *
-    FROM orders
-    INNER JOIN order_qa
-    ON orders.mem_id=order_qa.mem_id
-    where orders.mem_id=:mem_id and order_qa.meg_status = 0
-    order by order_qa.meg_time";
+                FROM (
+                    (orders
+                    INNER JOIN order_qa
+                    ON orders.mem_id=order_qa.mem_id
+                     )
+            INNER JOIN order_item
+            ON orders.order_id=order_item.order_id
+            )
+    INNER JOIN product
+    ON order_item.product_id=product.product_id        
+    where orders.mem_id=:mem_id 
+    order by order_qa.meg_time DESC";
 
 
     $member_id = $_SESSION['member']['mem_id']; // 抓出 SESSION 中已登入者的 mem_id
