@@ -77,10 +77,11 @@
 
 </template>
 <script>
+import { BASE_URL } from "@/assets/js/common.js";
 export default {
   methods: {
     CheckIfLogin() {
-        fetch(`/api_server/If_Login.php`, {
+        fetch(`${BASE_URL}/If_Login.php`, {
         method: "get",
         })
         .then((response) => {
