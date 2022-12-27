@@ -1,6 +1,6 @@
 <template>
 	<div class="checkout">
-		<form class="paydetails" action="" @submit.prevent="orderSubmit(i)">
+		<form class="paydetails" @submit.prevent="orderSubmit()">
 			<h2>結帳</h2>
 			<div class="paytetails-wrap">
 				<div class="delivery">
@@ -176,11 +176,8 @@ export default {
 				datas.ord_paid=total;
 			}
 			console.log(datas);
-			fetch("/api_server/insertOrder_v1.php",{
+			fetch("/api_server/insertOrder_2.php",{
 				method:"post",
-				// headers:{
-				// 	'Content-Type':'application/json'
-				// },
 				body:JSON.stringify(datas),
 			})
 			.then((response) => {
