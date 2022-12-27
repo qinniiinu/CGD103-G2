@@ -102,8 +102,7 @@
 				<div class="square2"></div>
 			</div> -->
     </div>
-	<div class="contactUs"> <!-- 聯絡我們 -->
-		
+	<div class="contactUs" id="contactMe"> <!-- 聯絡我們 -->		
 		<div class="container" id="insert_client" method="post" action="/clientInsert.php">	
 			<div class="titleBox">
 				<h4>歡迎來信合作</h4>

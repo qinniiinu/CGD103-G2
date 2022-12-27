@@ -48,9 +48,9 @@
                     <li class="main_list">
                         <router-link to="/about">關於我們</router-link>
                         <ul class="sub">
-                            <li><router-link to="/">品牌精神</router-link></li>
-                            <li><router-link to="/">廠商洽談</router-link></li>
-                            <li><router-link to="/">FAQ</router-link></li>
+                            <li><router-link to="/about">品牌精神</router-link></li>
+                            <li><router-link to="/about/#contactMe">廠商洽談</router-link></li>
+                            <li><router-link to="/Faq">FAQ</router-link></li>
                         </ul>
                     </li>
                 </ul>
