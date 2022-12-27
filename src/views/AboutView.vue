@@ -17,7 +17,7 @@
 				</div>
 			</div>
 			<div class="box" style="height: 1200px; position: relative;">
-				<div style="height: 200px; position: sticky; top: 0;">
+				<div style="height: 50vh; position: sticky; top: 0;">
 					<div class="introBox">
 		
 						<h2>一個，讓過剩衣服<br>再利用的<br>時尚服飾品牌</h2>
@@ -27,7 +27,7 @@
 			</div>
 			<div class="box" style="height: 1200px; position: relative;">
 				
-				<div style="height: 200px; position: sticky; top: 0;">
+				<div style="height: 50vh; position: sticky; top: 0;">
 					<div class="introBox">
 						<h2>您的支持，減少了每年<br>{{waste}}的浪費</h2>
 						<!-- <div class="textPart">
@@ -40,9 +40,9 @@
 			</div>
 			<div class="box" style="height: 1200px; position: relative;">
 			<video autoplay muted loop>
-			<source src="../assets/video/pexels-artem-podrez-7048759.mp4" type="video/mp4">
+			<source src="../assets/video/1752669109.mp4" type="video/mp4">
 			</video>
-				<div style="height: 200px; position: sticky; top: 0;">
+				<div style="height: 50vh; position: sticky; top: 0;">
 					<div class="introBox">
 						<h2>這些衣服來自於<br>大量生產過剩的衣服</h2>
 						<!-- <div class="textPart">
@@ -53,7 +53,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="box" style="height: 1200px; position: relative;">
+			<div class="box" >
 				<div style="height: 200px; position: sticky; top: 0;">
 					<div class="introBox">
 						<h2>我們不斷思考<br>如何再利用這些衣服？</h2>
@@ -71,7 +71,7 @@
 			</video>
 				<div style="height: 200px; position: sticky; top: 0;">
 					<div class="introBox">
-						<h2>於是建立一個讓過季衣服的<br>整合平台，<br>成為我們的時尚。</h2>
+						<h2>於是建立一個過季衣服的<br>整合平台，<br>成為我們的時尚。</h2>
 						<!-- <div class="textPart">
 							<p>
 								
@@ -310,6 +310,13 @@ export default {
 	scroll-snap-type: mandatory;
 }
 
+button.btn_ml{
+	margin-right: 0;
+}
+
+video{
+	width:100%;
+}
 
 .btn_ml{
 	margin: 20px;
@@ -328,7 +335,7 @@ export default {
         transform: rotate(359deg);
     }}
 	@include b(){
-		margin-bottom: 0vh;	
+		margin-bottom: -5vh;	
 	}
 }
 
@@ -353,13 +360,15 @@ video{
 		display: grid;
 		place-items: center;
 		align-content: center;
-     
-	 .intro_container{
+		height: 1200px; 
+		position: relative;
+	 	.intro_container{
 		width:90%;
 		display: flex;
 
 		@include b(){
 			display: block;
+			height: 300px;
 		}
 		}
 	 }
@@ -374,7 +383,10 @@ video{
 		font-weight:900;
 		text-align: left;
 		line-height: 30vh;
-	 }
+		@include b(){
+			line-height: 10vh;	
+		}
+	 	}
 	 }
 	 .introBox{
 		padding-left: 5%;
@@ -382,13 +394,14 @@ video{
 		align-items: flex-end;
 		min-width: 70vw;
 		h2{
-			font-size: 6rem;
+			font-size: 5vw;
 			font-weight: bold;
 			color: aliceblue;
 			line-height: 20vh;
 			@include b(){
-				font-size: 6rem;
+				line-height: 5vh;
 		}
+			
 		}
 		.textPart{
 			outline: 1px solid hsl(208, 100%, 97%);
@@ -465,7 +478,8 @@ video{
 				display: flex;
 				justify-content: right;
 				align-items: center;
-				flex-wrap: wrap;
+				// flex-wrap: wrap;
+				margin-right: -17px;
 			}
 }
 			
@@ -473,6 +487,7 @@ video{
 	width: 60%;
 	margin: auto;
 	margin-top: 100px;
+	
 	h1{
 			font-size: 40px;
 			margin: 10px;
