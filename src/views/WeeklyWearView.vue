@@ -3,11 +3,11 @@
     <!-- <BreadCrumbs></BreadCrumbs> -->
     <div class="title_box">
       <div class="img_box">
-        <img class="deco1" src="/weeklywear_pic/deco01.png" />
+        <img class="deco1" src="./weeklywear_pic/deco01.png" />
       </div>
       <h1 class="title">一週穿搭公式<br />讓你/妳有更多穿搭靈感</h1>
       <div class="img_box">
-        <img class="deco2" src="/weeklywear_pic/deco02.png" />
+        <img class="deco2" src="./weeklywear_pic/deco02.png" />
       </div>
     </div>
 
@@ -39,8 +39,8 @@
 
       <div class="bgpic">
         <div class="line"></div>
-        <img class="bg_right" src="/weeklywear_pic/bg_blue.png" alt="背景圖" />
-        <img class="bg_left" src="/weeklywear_pic/bg_blue.png" alt="背景圖" />
+        <img class="bg_right" src="./weeklywear_pic/bg_blue.png" alt="背景圖" />
+        <img class="bg_left" src="./weeklywear_pic/bg_blue.png" alt="背景圖" />
       </div>
     </section>
 
@@ -81,7 +81,7 @@
             ></iframe>
           </div>
         </div>
-        <img class="img_female" src="/weeklywear_pic/female.jpg" alt="女裝" />
+        <img class="img_female" src="./weeklywear_pic/female.jpg" alt="女裝" />
       </div>
     </section>
 
@@ -122,7 +122,7 @@
             ></iframe>
           </div>
         </div>
-        <img class="img_female" src="/weeklywear_pic/male.jpg" alt="男裝" />
+        <img class="img_female" src="./weeklywear_pic/male.jpg" alt="男裝" />
       </div>
     </section>
   </div>
