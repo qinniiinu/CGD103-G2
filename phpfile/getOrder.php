@@ -1,16 +1,37 @@
 <?php
 // //跨域(正式開發不能這樣)
+
+session_start();
 header('Access-Control-Allow-Origin:*');
 header("Content-Type:application/json;charset=utf-8");
+$errMsg = "";
 
-require_once("../connectBooks.php");
 
-$sql = "SELECT * FROM `orders` where mem_id=101;";
-$memSub = $pdo->query($sql);
-$memSubAll = $memSub->fetchAll();
-$data = [];
-foreach ($memSubAll as $i => $page) {
-    $data[] = $page;
+try {
+
+    require_once("../connectBooks.php");
+
+
+    $sql = "SELECT *
+    FROM (orders INNER JOIN order_item  ON orders.order_id= order_item.order_id)
+    INNER JOIN product
+    ON order_item.product_id=product.product_id
+    where orders.mem_id=:mem_id;";
+
+
+
+    // $sql = "SELECT * FROM (orders INNER JOIN product on orders.product_id = product.product_id) where mem_id=:mem_id;";
+
+
+    $member_id = $_SESSION['member']['mem_id']; // 抓出 SESSION 中已登入者的 mem_id
+    $member = $pdo->prepare($sql); //先編譯好
+    $member->bindValue(":mem_id", $member_id); //代入資料
+    $member->execute(); //執行之
+    $memberRow = $member->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($memberRow);
+}catch (PDOException $e) {
+    $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
+    $errMsg .= "行號 : ".$e -> getLine()."<br>";
+    echo json_encode(["msg"=>$errMsg]);
 }
-echo json_encode($data);
 ?>

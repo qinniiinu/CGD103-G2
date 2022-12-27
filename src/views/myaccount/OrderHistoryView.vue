@@ -38,7 +38,7 @@
 				</ul>
 
 				<ul class="ord_history_content"><!-- 選單內容加scroll bar -->
-					<li v-for="e in orders" :key="e.order_id"  class="ord_history_content_word">
+					<li v-for="e in orders" :key="e.order_item_id"  class="ord_history_content_word">
 						<router-link to="/MyPage/OrderHistoryDetail">
 							<ul class="content_row">
 								<li scope="row" class="ord_history_content">{{e.order_time}}</li>
@@ -76,12 +76,10 @@
 					<div class="page_photo">
 						<div class="page_photo_box">
 							<div class="item_page_photo">
-							<img :src="item.img_link" alt="">
-						</div>
-						<div class="item_page_photo">
-							<img :src="item.img_link" alt="">
-						</div>
-						</div>
+								<img :src="`../pic/${(item.product_pic)}`" />
+							</div>
+					
+					</div>
 						
 						<div class="item_money">
 							<p>共{{item.item_product}}件商品</p>
@@ -115,33 +113,7 @@ export default {
 		return{
 			number:0,//用來切換子頁面的值
 			orders:[],
-			product:[
-			// {
-			// 	 	id:1,
-			// 	 	ord_num:1201201,
-			//          ord_condtion:"已出貨",
-			// 	 	img_link:"../style1.png",
-			// 	 	item_product:2,
-			//          sum_price:8888,
-			// 	 },
-			// 	 {
-			// 	 	id:2,
-			// 	 	ord_num:1201201,
-			//          ord_condtion:"已出貨",
-			// 	 	img_link:"../style2.png",
-			// 	 	item_product:2,
-			//          sum_price:8888,
-			// 	 },
-			// 	 {
-			// 	 	id:3,
-			// 	 	ord_num:1201201,
-			//          ord_condtion:"已出貨",
-			// 	 	img_link:"../style3.png",
-			// 	 	item_product:2,
-			//          sum_price:8888,
-			// 	 },
-			
-			],
+			product:[],
 			
 		}
 	},
@@ -150,9 +122,11 @@ export default {
 			this.number =index;
 		},
 		getResource() {
-        this.axios.get(`http://localhost/cgd103_g2_frontend/phpfile/getOrder.php`).then((response) => {
+        this.axios.get(`/api_server/getOrder.php`).then((response) => {
 			    console.log(response.data);
 				this.orders = response.data;
+				this.product = response.data;
+				this.order_item = response.data;
             });
         },
 	},

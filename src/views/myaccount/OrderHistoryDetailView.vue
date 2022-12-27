@@ -40,12 +40,12 @@
 			
 			<div class="ord_recipt">
 				<h3 class="ord_title">訂單明細</h3>
-					<div v-if="order_item.length" class="prod_item_row"><!-- 訂單商品列 -->
+					<div v-for="e in order_item" :key="e.order_id" class="prod_item_row"><!-- 訂單商品列 -->
 						<img class="prod_pic" src="https://cf.shopee.tw/file/df4b87d6f94bb46bff2b209ed4047c27_tn" alt="">
-						<div class="item_name">{{order_item[this.order_item.length-1].product_id}}</div>
-						<div class="item_name">${{order_item[this.order_item.length-1].item_price}}</div>
-						<div class="item_name">{{order_item[this.order_item.length-1].size}}</div>
-						<div class="item_name">X {{order_item[this.order_item.length-1].quantity}}</div>
+						<div class="item_name">{{e.product_id}}</div>
+						<div class="item_name">${{e.item_price}}</div>
+						<div class="item_name">{{e.size}}</div>
+						<div class="item_name">X {{e.quantity}}</div>
 					</div>
 				
 					<div class="sum_money">
@@ -86,7 +86,7 @@
 					<input class="text_box" id="meg_cont" name="meg_cont" type="textarea" placeholder="親愛的客人歡迎在此留言詢問問題">
 					<div class="msg_button_container">
 						<button type="" class="btn_ms">取消</button>
-						<button type="submit" class="btn_ml" @click="insert">送出</button>
+						<button type="button" class="btn_ml" @click="insert">送出</button>
 					</div>
 				</form>
 			</div>
@@ -117,8 +117,8 @@ export default {
 	},
 	methods:{
 		getResource() {
-       		this.axios.get(`http://localhost/cgd103_g2_frontend/phpfile/getOrderDetail.php`).then((response) => {
-				console.log(response.data);
+       		this.axios.get(`/api_server/getOrderDetail.php`).then((response) => {
+				console.log("-----------",response.data);
 				this.orders = response.data;
 				this.order_item = response.data;
 				this.order_qa = response.data;
@@ -127,11 +127,16 @@ export default {
 		insert() {
 			if (!this.meg_cont ) {
         		alert("輸入成功！");
-				fetch(`http://localhost/cgd103_g2_frontend/phpfile/msgInsert.php`,{
+				let myVue = this;
+				fetch(`/api_server/msgInsert.php`,{
 					method:'post',
 					body:new FormData(document.getElementById('insert_msg'))
 				}).then((res)=>res.json())
-				  .then((json)=>console.log(json))
+				  .then((json)=>{
+					console.log("===========");
+					console.log(json);
+					myVue.getResource();
+					})
       			}
 			
 		},
@@ -150,6 +155,8 @@ export default {
   color: #292929;
   padding-bottom: $padding;
 }
+
+
 
 @mixin b() {
 	@media screen and (max-width: 1023px) {
