@@ -66,9 +66,7 @@ export default {
     },
     watch: {
         $route: function () {
-            if (JSON.stringify(this.$route.query) == "{}") {
-                this.getResource();
-            }
+            this.getResource();
         },
     },
     methods: {
@@ -98,42 +96,32 @@ export default {
             }
         },
         resultproduct() {
-            if (location.search !== "") {
-                this.scrollBlock();
-                let result = this.tmp;
-                if (this.$route.query.G) {
-                    this.product = this.product.filter((e) => {
-                        return e.product_gender == this.$route.query.G;
-                    });
-                }
-                if (this.$route.query.M) {
-                    this.product = this.product.filter((e) => {
-                        return e.product_maintype == this.$route.query.M;
-                    });
-                }
-                if (this.$route.query.T) {
-                    this.product = this.product.filter((e) => {
-                        return e.product_type == this.$route.query.T;
-                    });
-                }
-                if (this.$route.query.S) {
-                    this.product = this.product.filter((e) => {
-                        if (
-                            JSON.stringify(e).indexOf(this.$route.query.S) !==
-                            -1
-                        ) {
-                            return e;
-                        }
-                    });
-                }
-            } else {
-                this.product = this.tmp;
+            this.scrollBlock();
+            let result = this.tmp;
+            if (this.$route.query.G) {
+                this.product = this.product.filter((e) => {
+                    return e.product_gender == this.$route.query.G;
+                });
+            }
+            if (this.$route.query.M) {
+                this.product = this.product.filter((e) => {
+                    return e.product_maintype == this.$route.query.M;
+                });
+            }
+            if (this.$route.query.T) {
+                this.product = this.product.filter((e) => {
+                    return e.product_type == this.$route.query.T;
+                });
+            }
+            if (this.$route.query.S) {
+                this.product = this.product.filter((e) => {
+                    if (JSON.stringify(e).indexOf(this.$route.query.S) !== -1) {
+                        return e;
+                    }
+                });
             }
         },
         scrollBlock() {
-            console.log(window.innerWidth);
-            const height =
-                window.innerWidth >= 500 ? 650 : window.innerWidth * 0.85;
             window.scrollTo({
                 top: 0,
                 behavior: "smooth",
