@@ -17,8 +17,6 @@
 					<input class="memName" type="text" v-model="subMemInfo.mem_name" disabled>
 					<p>連絡電話</p>
 					<input class="phone" type="text" v-model="subMemInfo.phone" disabled>
-					<!-- <p>電子信箱</p>
-					<input class="email" type="text" v-model="memInfo.mem_mail" disabled> -->
 					<p>聯絡地址</p>
 					<input class="address" type="text" v-model="subMemInfo.address" disabled>
 				</div>
@@ -28,8 +26,6 @@
 					<input class="mem_name" type="text" v-model="ord_mem">
 					<p>連絡電話</p>
 					<input class="phone" type="text" v-model="ord_phone">
-					<!-- <p>電子信箱</p>
-					<input class="email" type="text" v-model="inner[2]"> -->
 					<p>配送地址</p>
 					<input class="receive-address" v-model="ord_addr">
 					<label class="same" for="same"><input type="checkbox" id="same" @click="check()" >同購買人資訊</label>
@@ -59,7 +55,6 @@
 							</div>
 							<div class="price">
 								<p>${{i.price}}元</p>
-								<!-- <p>${{item.price*item.count}}元</p> -->
 							</div>
 						</div>
 					</div>
@@ -100,7 +95,6 @@ export default {
 			ord_mem:'',
 			ord_phone:'',
 			ord_addr:''
-			// total:0
 		}
 	},
 	created(){
@@ -166,11 +160,11 @@ export default {
 			datas.ord_mem = this.ord_mem;
 			datas.ord_phone = this.ord_phone;
 			datas.ord_addr = this.ord_addr;
-			datas.total = total; //原總價
+			datas.total = total;
 			if(this.subscribe!=false&&this.subscribe!=''){
 				datas.discount = this.subscribe.discount;
-				datas.ord_paid = total*this.subscribe.discount; //折扣後總價
-				// datas.item_total = this.order.count*this.order.price; //單品總價
+				datas.ord_paid = total*this.subscribe.discount;
+				
 			}else{
 				datas.discount=1;
 				datas.ord_paid=total;
@@ -186,7 +180,7 @@ export default {
 			.then((data) =>{
 				console.log(data);
 				if (data.msg) {
-					alert("已成功送出");
+					alert("已成功下單");
 				}
 			})
 			.catch((error) => console.log(error));
