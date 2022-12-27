@@ -114,16 +114,13 @@ body {
     .form_wrapper {
       background-color: white;
       height: fit-content;
-      @include s() {
-        width: 100%;
-        padding: 30px;
-      }
-
-      @include m() {
-        border: 1px solid black;
-        width: 28%;
-        padding: 30px;
-      }
+      width: 80%;
+      max-width:360px ;
+      min-width:330px ;
+      border: 1px solid black;
+      padding: 30px;
+      box-sizing: border-box;
+    
       .login_form {
         position: relative;
         .title {

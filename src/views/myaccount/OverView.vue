@@ -170,9 +170,11 @@ export default {
 			// this.axios.get('/api_server/memberInfo.php')
     	.then(res => {
 			this.member = res.data
-				if(res.data.style_id){ //有風格測驗
-					this.style_id = res.data.style_id;
-					this.axios.get(`${BASE_URL}/mem_style.php`)
+				if(this.member.style_id){ //有風格測驗
+					this.style_id = this.member.style_id;
+          let formData = new FormData();
+          formData.append('style_id',this.member.style_id);
+					this.axios.post(`${BASE_URL}/getmem_style.php`,formData)
 					// this.axios.get(`/api_server/mem_style.php`)
 					.then((res) => this.style = res.data)
 					.catch(error =>console.log(error));

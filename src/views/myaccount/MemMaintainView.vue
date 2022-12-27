@@ -59,7 +59,6 @@
 					<div class="decoration">#ACCOUNT</div>
 				</div>
 			</section>
-
 		</div>
 	</div>
 </template>
@@ -67,7 +66,7 @@
 <script>
 import { BASE_URL } from "@/assets/js/common.js";
 export default {
-	name: "MemQuiz",
+	name: "MemMaintainView",
 	components: {
 	},
 	data() {
@@ -75,7 +74,6 @@ export default {
 			member:{
 				mem_name:"",
 				mem_mail:"",
-				mem_pwd:"",
 				phone:"",
 				address:"",
 				
@@ -84,6 +82,7 @@ export default {
 				bday_d: "",
 				bday_y: "",
 
+				mem_pwd:"",
 				mem_pic:"",				
 			},
 			update:false,
@@ -104,7 +103,7 @@ export default {
 			this.update=!this.update;
 		},
        
-		save(){
+		save(){ //確定更改資訊
 			this.update=!this.update;
             let formData = new FormData();
             formData.append("mem_name", this.member.mem_name);
@@ -114,17 +113,16 @@ export default {
             formData.append("bday", this.combineDate());
 
 			// 會員照片
-            formData.append("mem_pic", this.member.mem_pic);
+            // formData.append("mem_pic", this.member.mem_pic);
 			// 更改密碼
-			formData.append("mem_pwd", this.member.mem_pwd);
+			// formData.append("mem_pwd", this.member.mem_pwd);
 
 			this.axios.post(`${BASE_URL}/update_member.php`,formData)
 			.then(res => {
 				res.data;
-				getResource();
+				this.getResource();
 			})
 			.catch(error =>console.log(error));
-			console.log(this.member);
 		},
 		getResource() {
 			this.axios.get(`${BASE_URL}/memberInfo.php`)

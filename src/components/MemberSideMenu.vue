@@ -142,6 +142,7 @@ export default {
 
 // MemberSideMenu.Vue
 .mem_container {
+    background-color: #f1f1f1;
     width: 100%;
     @include m() {
 		display: flex;
