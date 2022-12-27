@@ -12,7 +12,7 @@
       <div id="wrap2" class="products">
         <!-- <img src="https://picsum.photos/100/100/?random=10" @click="copy($event)"> -->
         <img
-          :src="require(`@/assets/product/${cut(e.product_pic)}`)"
+          :src="`./pic/${cut(e.product_pic)}`"
           v-for="e in product"
           class="items"
           :key="e.product_id"
@@ -38,15 +38,7 @@ export default {
 
   data() {
     return {
-      product: [
-        // { id: 1, image: require("@/assets/fittingroom/item001.png") },
-        // { id: 2, image: require("@/assets/fittingroom/item002.png") },
-        // { id: 3, image: require("@/assets/fittingroom/item003.png") },
-        // { id: 4, image: require("@/assets/fittingroom/item004.png") },
-        // { id: 5, image: require("@/assets/fittingroom/item005.png") },
-        // { id: 6, image: require("@/assets/fittingroom/item006.png") },
-        // { id: 7, image: require("@/assets/fittingroom/item007.png") },
-      ],
+      product: [],
     };
   },
 
@@ -73,39 +65,43 @@ export default {
       this.drag(new_item);
     },
 
-
+    drag(obj) {
+      if (window.innerWidth > 1200) {
+        this.dragD(obj);
+      } else {
+        this.dragM(obj);
+      }
+    },
 
     //圖片拖曳(touch)
-    // drag(obj) {
-    //   obj.addEventListener("touchstart", function (event) {
-    //     event = event || window.event;
+    dragM(obj) {
+      obj.addEventListener("touchstart", function (event) {
+        event = event || window.event;
 
-    //     var ol = event.touches[0].clientX - obj.offsetLeft;
-    //     var ot = event.touches[0].clientY - obj.offsetTop;
+        var ol = event.touches[0].clientX - obj.offsetLeft;
+        var ot = event.touches[0].clientY - obj.offsetTop;
 
-    //     obj.addEventListener("touchmove", function (event) {
-    //       event = event || window.event;
+        obj.addEventListener("touchmove", function (event) {
+          event = event || window.event;
 
-    //       var left = event.touches[0].clientX - ol;
-    //       var top = event.touches[0].clientY - ot;
+          var left = event.touches[0].clientX - ol;
+          var top = event.touches[0].clientY - ot;
 
-    //       obj.style.left = left + "px";
-    //       obj.style.top = top + "px";
-    //     });
+          obj.style.left = left + "px";
+          obj.style.top = top + "px";
+        });
 
-    //     obj.addEventListener("touchend", function () {
-    //       obj.removeEventListener("touchmove");
-    //       obj.removeEventListener("touchend");
-    //     });
+        obj.addEventListener("touchend", function () {
+          obj.removeEventListener("touchmove");
+          obj.removeEventListener("touchend");
+        });
 
-    //     event.preventDefault();
-    //   });
-    // },
-
+        event.preventDefault();
+      });
+    },
 
     // 圖片拖曳(mouse)
-    drag(obj) {
-      // obj.preventDefault();
+    dragD(obj) {
       obj.onmousedown = function (event) {
         event = event || window.event;
 
@@ -134,7 +130,6 @@ export default {
 
     remove(e) {
       let setThis = e.target.parentNode;
-      // console.log(setThis.lastChild);
       setThis.removeChild(setThis.childNodes[1]);
     },
   },
@@ -165,7 +160,7 @@ export default {
   width: 100%;
   position: relative;
   border: 1px solid gray;
-  background-image: url(../assets/fittingroom/reoutfit.png);
+  background-image: url(/public/fittingroom/reoutfit.png);
   background-repeat: no-repeat;
   background-position: center;
   min-height: 500px;
@@ -193,22 +188,26 @@ export default {
 }
 
 .item {
-  width: 120px;
-  height: 120px;
   position: absolute;
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
+  resize: both;
+  width: 120px;
+  min-width: 120px;
+  min-height: 100px;
+  overflow: hidden;
 }
 
 .item img {
   width: 100%;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
 }
 
 #wrap2 {
   width: 100%;
-  height: 20%;
+  height: auto;
   border: 1px solid gray;
   display: flex;
   flex-wrap: wrap;

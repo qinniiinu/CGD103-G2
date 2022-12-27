@@ -1,6 +1,6 @@
 <template>
 	<div class="checkout">
-		<form class="paydetails" action="" @submit.prevent="orderSubmit()">
+		<form class="paydetails" @submit.prevent="orderSubmit()">
 			<h2>結帳</h2>
 			<div class="paytetails-wrap">
 				<div class="delivery">
@@ -14,24 +14,24 @@
 				<div class="buyer">
 					<h4>購買人資訊</h4>
 					<p>姓名</p>
-					<input class="memName" type="text" v-model="memInfo.mem_name" disabled>
+					<input class="memName" type="text" v-model="subMemInfo.mem_name" disabled>
 					<p>連絡電話</p>
-					<input class="phone" type="text" v-model="memInfo.phone" disabled>
+					<input class="phone" type="text" v-model="subMemInfo.phone" disabled>
 					<!-- <p>電子信箱</p>
 					<input class="email" type="text" v-model="memInfo.mem_mail" disabled> -->
 					<p>聯絡地址</p>
-					<input class="address" type="text" v-model="memInfo.address" disabled>
+					<input class="address" type="text" v-model="subMemInfo.address" disabled>
 				</div>
 				<div class="receiver">
 					<h4>收件人資訊</h4>
 					<p>姓名</p>
-					<input class="mem_name" type="text" v-model="inner[0]">
+					<input class="mem_name" type="text" v-model="ord_mem">
 					<p>連絡電話</p>
-					<input class="phone" type="text" v-model="inner[1]">
+					<input class="phone" type="text" v-model="ord_phone">
 					<!-- <p>電子信箱</p>
 					<input class="email" type="text" v-model="inner[2]"> -->
 					<p>配送地址</p>
-					<input class="receive-address" v-model="inner[3]">
+					<input class="receive-address" v-model="ord_addr">
 					<label class="same" for="same"><input type="checkbox" id="same" @click="check()" >同購買人資訊</label>
 				</div>
 				<div class="payment">
@@ -48,20 +48,23 @@
 			<h2>購物車</h2>
 			<div class="list-wrap">
 				<div class="items">
-				<div class="item" v-for="item in order" :key="item.id">
+				<div class="item" v-for="i in order" :key="i">
 					<div class="product">
-						<img :src="`/pic/${item.image}`" v-bind:alt="item.title">
+						<img :src="`/pic/${i.image}`" v-bind:alt="i.title">
 						<div class="prod-detail">
-							<p>{{item.title}}</p>
+							<p>{{i.title}}</p>
 							<div class="spec">
-								<p>{{item.color}}</p>
-								<p>{{item.size}}</p>
-								<p>${{item.price*item.count}}元</p>
+								<p>{{i.color}}</p>
+								<p>{{i.size}}</p>
+							</div>
+							<div class="price">
+								<p>${{i.price}}元</p>
+								<!-- <p>${{item.price*item.count}}元</p> -->
 							</div>
 						</div>
 					</div>
 					<div class="count">
-						<p>x{{item.count}}</p>
+						<p>x{{i.count}}</p>
 					</div>
 				</div>
 				</div>
@@ -80,7 +83,7 @@
 
 <script>
 export default {
-	name: "Product",
+	name: "checkout",
 	components: {
 	},
 	data(){
@@ -92,8 +95,12 @@ export default {
 			min:0,
 			max:0,
 			subscribe:[],
-			memInfo:[],
-			inner:[]
+			subMemInfo:[],
+			inner:[],
+			ord_mem:'',
+			ord_phone:'',
+			ord_addr:''
+			// total:0
 		}
 	},
 	created(){
@@ -124,20 +131,22 @@ export default {
 			this.isChecked = !this.isChecked;
 			console.log(this.isChecked);
 			if(this.isChecked==true){
-				this.inner[0]=this.memInfo.mem_name;
-				this.inner[1]=this.memInfo.phone;
-				this.inner[2]=this.memInfo.mem_mail;
-				this.inner[3]=this.memInfo.address;
+				this.ord_mem=this.subMemInfo.mem_name;
+				this.ord_phone=this.subMemInfo.phone;
+				this.ord_addr=this.subMemInfo.address;
 				console.log(this.inner);
 			}
 			else{
-				this.inner=[];
+				this.ord_mem='';
+				this.ord_phone='';
+				this.ord_addr='';
 			}
 		},
 		getStorage(){
 			let data =localStorage.getItem('cart');
 			data=JSON.parse(data)
 			this.order=data? data:[]
+			console.log(this.order);
         },
 		getResource() {
             this.axios.get("/api_server/subscription.php").then((response) => {
@@ -145,31 +154,42 @@ export default {
 				console.log(this.subscribe);
             });
             this.axios.get("/api_server/subMemInfo.php").then((response) => {
-                this.memInfo= response.data;
-				console.log(this.memInfo);
+                this.subMemInfo= response.data;
+				console.log(this.subMemInfo);
             });
     	},
 		orderSubmit(){
-			// let formData = new FormData();
-			// formData.append("mem_id", this.subMemInfo.mem_id);
-			// formData.append("level_id",this.subOrder[0].id);
-			// formData.append("sub_paid", this.subOrder[0].price);
-			// formData.append("action", "subOrder");
-
-			// fetch("/api_server/inserSubOrder.php", {
-			// 	method: "post",
-			// 	body: formData,
-			// })
-			// .then((response) => {
-			// 	return response.json();
-			// })
-			// .then((data) =>{
-			// 	console.log(data);
-			// 	if (data.msg) {
-			// 		alert("data.msg");
-			// 	}
-			// })
-			// .catch((error) => console.log(error));
+			const total=this.order.reduce((acc,cur)=> acc += cur.count* cur.price, 0);
+			let datas ={};
+			datas.order = this.order;
+			datas.mem_id = this.subMemInfo.mem_id;
+			datas.ord_mem = this.ord_mem;
+			datas.ord_phone = this.ord_phone;
+			datas.ord_addr = this.ord_addr;
+			datas.total = total; //原總價
+			if(this.subscribe!=false&&this.subscribe!=''){
+				datas.discount = this.subscribe.discount;
+				datas.ord_paid = total*this.subscribe.discount; //折扣後總價
+				// datas.item_total = this.order.count*this.order.price; //單品總價
+			}else{
+				datas.discount=1;
+				datas.ord_paid=total;
+			}
+			console.log(datas);
+			fetch("/api_server/insertOrder_2.php",{
+				method:"post",
+				body:JSON.stringify(datas),
+			})
+			.then((response) => {
+				return response.json();
+			})
+			.then((data) =>{
+				console.log(data);
+				if (data.msg) {
+					alert("已成功送出");
+				}
+			})
+			.catch((error) => console.log(error));
 		}
 	}
 };
@@ -330,7 +350,7 @@ export default {
 								flex-direction: column;
 								gap:10px;
 								width:150px;
-								.spec{
+								.spec,.price{
 									display: flex;
 									justify-content: space-between;
 								}

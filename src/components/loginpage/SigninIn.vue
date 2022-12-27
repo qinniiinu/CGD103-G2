@@ -51,7 +51,7 @@
 </template> 
 
 <script>
-// import { BASE_URL } from "@/assets/js/common.js";
+import { BASE_URL } from "@/assets/js/common.js";
 import BgTag from "@/components/mypage/BgTag.vue";
 export default {
   name: "SigninIn",
@@ -74,7 +74,8 @@ export default {
       formData.append("mem_mail", this.mem_mail);
       formData.append("mem_pwd", this.mem_pwd);
 
-      fetch(`/api_server/login.php`, {
+      // fetch(`/api_server/login.php`, {
+      fetch(`${BASE_URL}/login.php`, {
         method: "post",
         body: formData,
       })
@@ -113,16 +114,13 @@ body {
     .form_wrapper {
       background-color: white;
       height: fit-content;
-      @include s() {
-        width: 100%;
-        padding: 30px;
-      }
-
-      @include m() {
-        border: 1px solid black;
-        width: 28%;
-        padding: 30px;
-      }
+      width: 80%;
+      max-width:360px ;
+      min-width:330px ;
+      border: 1px solid black;
+      padding: 30px;
+      box-sizing: border-box;
+    
       .login_form {
         position: relative;
         .title {

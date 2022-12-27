@@ -5,7 +5,7 @@
                 type="search"
                 placeholder="Search.."
                 :value="searchVal"
-                @keyup.enter="changesearch($event)"
+                @change="changesearch($event)"
             />
         </div>
         <select :value="sort" @change="changesort($event)">

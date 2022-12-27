@@ -6,7 +6,7 @@ header("Content-Type:application/json;charset=utf-8");
 
 try{
     require_once("../connectBooks.php");
-    $sql = "insert into order_qa values (null, 101, CURRENT_TIMESTAMP, 0, :meg_cont, 101,null)";
+    $sql = "insert into order_qa values (null, 101, CURRENT_TIMESTAMP, 1, :meg_cont, 101,null)";
     
     // 編譯
     $client = $pdo->prepare($sql);

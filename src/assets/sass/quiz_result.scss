@@ -12,19 +12,22 @@
   justify-content: space-between;
   padding: 10px;
   .item {
-    width: 49%;
+    width: 30%;
     margin-bottom: 20px;
     padding: 10px;
-    border: 1px solid #000;
+    // border: 1px solid #000;
 
     img {
       width: 100%;
+      border: 1px solid $title_color;
     }
 
     h4 {
-      text-align: center;
+      text-align: left;
       color: $text_color;
       padding: 10px;
+      font-size: 12px;
+      font-weight: 600;
     }
   }
 }
@@ -34,24 +37,25 @@
     display: flex;
     flex-wrap: wrap;
     // flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    // justify-content: space-evenly;
     padding: 10px;
 
     // border: 1px solid red;
     .item {
-      width: 23%;
+      width: 28%;
       margin-bottom: 20px;
       padding: 10px;
-      border: 1px solid #000;
+      // border: 1px solid $title_color;
 
       img {
         width: 100%;
       }
 
       h4 {
-        text-align: center;
         color: $text_color;
         padding: 10px;
+        font-size: 22px;
       }
     }
   }
@@ -78,5 +82,70 @@
 @media screen and (min-width:768px) {
   .recommend {
     font-size: 24px;
+  }
+}
+.check_complete{
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border: 1px solid $main_color;
+  background-color:rgb(255,255,255,.9) ;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  gap: 50px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  h3{
+    font-weight: 700;
+    font-size:32px ;
+    // margin: auto;
+  }
+  .close{
+    color:$second_color;
+    font-weight:500;
+    width: fit-content;
+    height: fit-content;
+    background-color: $main_color;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+}
+// ====燈箱===
+.check_login{
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border: 1px solid $main_color;
+  background-color:rgb(255,255,255,.9) ;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  gap: 50px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  h3{
+    font-weight: 700;
+    font-size:32px ;
+    // margin: auto;
+  }
+  .close{
+    color:$second_color;
+    font-weight:500;
+    width: fit-content;
+    height: fit-content;
+    background-color: $main_color;
+    padding: 10px 15px;
+    cursor: pointer;
   }
 }

@@ -16,11 +16,8 @@ if (isset($_SESSION['member'])) {
 
     $book = $pdo->query($sql);
     $books = $book->fetchAll(PDO::FETCH_ASSOC);
-    $data = [];
-    foreach ($books as $i => $page) {
-        $data[] = $page;
-    }
-    echo json_encode($data);
+
+    echo json_encode($books);
 
 
 } else {

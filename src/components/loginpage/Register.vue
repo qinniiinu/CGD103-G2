@@ -244,6 +244,7 @@
 </template> 
 
 <script>
+import { BASE_URL } from "@/assets/js/common.js";
 import BgTag from "@/components/mypage/BgTag.vue";
 export default {
     name: "Register",
@@ -353,7 +354,8 @@ export default {
             formData.append("chest", this.chest);
             formData.append("action", "register");
 
-            fetch("/api_server/register.php", {
+            fetch(`${BASE_URL}/register.php`, {
+            // fetch("/api_server/register.php", {
                 method: "post",
                 body: formData,
             })
@@ -365,6 +367,7 @@ export default {
                     if (data.msg) {
                         //註冊成功
                         alert(data.msg);
+                        this.$store.state.user=data.member;
                         this.$router.push({ path: "/MyPage" });
                     } else {
                         alert(data.msg);
@@ -395,7 +398,8 @@ export default {
                 let formData = new FormData();
                 formData.append("mem_mail", this.mem_mail);
                 formData.append("action", "check_email");
-                fetch("/api_server/register.php", {
+                fetch(`${BASE_URL}/register.php`, {
+                // fetch("/api_server/register.php", {
                     method: "post",
                     body: formData,
                 })
@@ -655,16 +659,12 @@ body {
     .form_wrapper {
         background-color: white;
         height: fit-content;
-        @include s() {
-            width: 100%;
-            padding: 30px;
-        }
-
-        @include m() {
-            border: 1px solid black;
-            width: 30%;
-            padding: 30px;
-        }
+        width: 80%;
+        max-width:360px ;
+        min-width:330px ;
+        border: 1px solid black;
+        padding: 30px;
+        box-sizing: border-box;
         .bodyset_form {
             position: relative;
             .title {

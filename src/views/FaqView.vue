@@ -1,13 +1,14 @@
 <template>
     <div  class="data">
-        <div class="asideBar" :class="`${is_expanded ? 'is-expanded' : ''}`"><!-- 側邊欄 -->
-        
-            <div class="menu-toggle-wrap"><!-- 側邊欄按鍵 -->
-			<button class="menu-toggle" @click="ToggleMenu">
-				<span class="material-icons">
-                    <font-awesome-icon icon="fa-solid fa-arrow-right" />
+        <div class="menu-toggle-wrap"><!-- 側邊欄按鍵 -->
+            <button class="menu-toggle" v-on:click="isCollapsed = !isCollapsed">
+                <span class="material-icons">
+                    <font-awesome-icon class="icon" icon="fa-solid fa-arrow-right" />
                 </span>
-			</button>
+            </button>
+        </div>
+
+        <div class="asideBar" v-bind:class="{ collapsed: isCollapsed }"><!-- 側邊欄 -->
             <div class="titleBox">
                 <h1>退換貨須知</h1>
                 <h2>購物問題</h2>
@@ -24,12 +25,6 @@
                 <h2>合作店面</h2>
                 <h2>聯絡方式</h2>
             </div> 
-
-
-
-        </div>
-
-           
 		</div>
         
         <div class="FAQ"><!-- 常見問題 -->
@@ -80,7 +75,7 @@
                     <li class="FAQLine" >
                         <div class="QA" tabindex="0">
                             <div class="QABox" >
-                                <p>Q1 如何退換商品</p> 
+                                <p>Q2 如何退換商品</p> 
                                 <font-awesome-icon class="icon"  icon="fa-solid fa-plus" />
                             
                             </div>
@@ -112,7 +107,7 @@
                     <li class="FAQLine" >
                         <div class="QA" tabindex="0">
                             <div class="QABox" >
-                                <p>Q1 如何退換商品</p> 
+                                <p>Q3 如何退換商品</p> 
                                 <font-awesome-icon class="icon"  icon="fa-solid fa-plus" />
                             
                             </div>
@@ -144,7 +139,7 @@
                     <li class="FAQLine" >
                         <div class="QA" tabindex="0">
                             <div class="QABox" >
-                                <p>Q1 如何退換商品</p> 
+                                <p>Q4 如何退換商品</p> 
                                 <font-awesome-icon class="icon"  icon="fa-solid fa-plus" />
                             
                             </div>
@@ -176,7 +171,7 @@
                     <li class="FAQLine" >
                         <div class="QA" tabindex="0">
                             <div class="QABox" >
-                                <p>Q1 如何退換商品</p> 
+                                <p>Q5 如何退換商品</p> 
                                 <font-awesome-icon class="icon"  icon="fa-solid fa-plus" />
                             
                             </div>
@@ -208,7 +203,7 @@
                     <li class="FAQLine" >
                         <div class="QA" tabindex="0">
                             <div class="QABox" >
-                                <p>Q1 如何退換商品</p> 
+                                <p>Q6 如何退換商品</p> 
                                 <font-awesome-icon class="icon"  icon="fa-solid fa-plus" />
                             
                             </div>
@@ -240,7 +235,7 @@
                     <li class="FAQLine" >
                         <div class="QA" tabindex="0">
                             <div class="QABox" >
-                                <p>Q1 如何退換商品</p> 
+                                <p>Q7 如何退換商品</p> 
                                 <font-awesome-icon class="icon"  icon="fa-solid fa-plus" />
                             
                             </div>
@@ -272,7 +267,7 @@
                     <li class="FAQLine" >
                         <div class="QA" tabindex="0">
                             <div class="QABox" >
-                                <p>Q1 如何退換商品</p> 
+                                <p>Q8 如何退換商品</p> 
                                 <font-awesome-icon class="icon"  icon="fa-solid fa-plus" />
                             
                             </div>
@@ -335,7 +330,8 @@ export default {
 		Button,
 	},data(){
         return{
-            isShow:true
+            isShow:true,
+            isCollapsed: false
         }
     }
 };
@@ -354,10 +350,6 @@ export default {
 }
 
 button{
-
-    display: none;
-
-    @include b(){
     border-radius: 50px;
     width: 50px;
     height: 50px;
@@ -365,30 +357,39 @@ button{
     align-items: center;
     justify-content: center;
     transition:  .5 ease;
-    }
+    position: fixed;
+    z-index: 99;
+    background-color: $main_color;
+    border: 0;    
+    cursor: pointer;
 }
 .data{
     display: flex;
     margin: auto;
     width: 100%;
     max-width: 1200px;
+   
 }
 
 .is-expanded {
 		width: 20%;
         min-width: 200px;
         transition: all .5 ease-in-out;
+        
 		.menu-toggle-wrap {
 			top: -3rem;
             width: 900px;
-            transition: all .5 ease-in-out;
-
-         
-			.menu-toggle {
-				transform: rotate(-180deg);
+           
+            // position: relative;
+            // z-index: 99;
+            .icon{
+                color:$second_color ;
+                transform: rotate(-180deg);
+                // color:$second_color ;
+                transition: all .5 ease-in-out;
                 }
-			}
-		}
+            }
+        }
 
 
 
@@ -398,17 +399,15 @@ button{
     z-index: 99;
     transition: 1s ease-out;
     position: relative;
-    // background-color:#cacfff ;
+    background-color:$second_color ;
     overflow: hidden;
     @include b(){
         display: none;
     }
     .titleBox{
         width: 100%;
-        margin-top: 3rem;
-        position: relative;
-        margin-left: -300px;
-        z-index: 99;
+        margin-top: 12vh;
+       
         
         h1{
             font-size: 30px;
@@ -429,7 +428,7 @@ button{
 	width: 70%;
 	margin: auto;
 	margin-top: 100px;
-  
+    margin-bottom: 20vh;
 	h1{
 			font-size: 60px;
 			margin: 10px;

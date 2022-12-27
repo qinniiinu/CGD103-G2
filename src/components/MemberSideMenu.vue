@@ -36,7 +36,7 @@
 </template>
 
 <script>
-// import { BASE_URL } from "@/assets/js/common.js";
+import { BASE_URL } from "@/assets/js/common.js";
 export default {
 	name: "MemberSideMenu",
 	props: {
@@ -69,7 +69,8 @@ export default {
     methods:{
         // 登出
         Logout(){
-            fetch(`/api_server/logout.php`)
+            fetch(`${BASE_URL}/logout.php`)
+            // fetch(`/api_server/logout.php`)
             .then((response) => {
                 return response.json();
             })
@@ -91,29 +92,35 @@ export default {
                 return true;
             }
             return false;
+        },
+        getResourse(){
+            this.axios.get(`${BASE_URL}/memberInfo.php`)
+            // this.axios.get('/api_server/memberInfo.php')
+            .then(res => {
+                this.member = res.data
+                if (res.data.level_id) { //有訂閱，顯示帳號等級
+                    this.Iflevel = true;
+                    let formData = new FormData();
+                    formData.append('level_id',res.data.level_id);
+                    // 對照訂閱等級 vip_level 
+                    this.axios.post(`${BASE_URL}/member_level.php`,formData)
+                    // this.axios.post('/api_server/member_level.php',formData)
+                    .then(response=> this.levelInfo = response.data)
+                    .catch(error =>console.log(error));
+                    if(res.data.level_id===103){ //最高等級就隱藏 "立即升級"
+                        this.level_top = true;
+                    }
+                } else { // 無訂閱，不顯示帳號等級
+                    this.Iflevel = false;
+                }
+            })
+            .catch(error =>console.log(error));
         }
 
     },
-    mounted(){
-        this.axios.get('/api_server/memberInfo.php')
-        .then(res => {
-            this.member = res.data
-            if (res.data.level_id) { //有訂閱，顯示帳號等級
-                this.Iflevel = true;
-                let formData = new FormData();
-                formData.append('level_id',res.data.level_id);
-                // 對照訂閱等級 vip_level 
-                this.axios.post('/api_server/member_level.php',formData)
-                .then(response=> this.levelInfo = response.data)
-                .catch(error =>console.log(error));
-                if(res.data.level_id===103){ //最高等級就隱藏 "立即升級"
-                    this.level_top = true;
-                }
-            } else { // 無訂閱，不顯示帳號等級
-                this.Iflevel = false;
-            }
-        })
-        .catch(error =>console.log(error));
+    created(){
+        this.getResourse();
+        
         
         // fetch('/api_server/memberInfo.php',{
         // method: "get"
@@ -135,6 +142,7 @@ export default {
 
 // MemberSideMenu.Vue
 .mem_container {
+    background-color: #f1f1f1;
     width: 100%;
     @include m() {
 		display: flex;

@@ -18,6 +18,7 @@ export default {
     data() {
         return {
             temp: {},
+            radom: [],
             bigPicture: "",
             pickedColor: "",
             pickedSize: "",
@@ -29,6 +30,8 @@ export default {
             alert: false,
             msg: "",
             bigPicture: "test_01_1.jpg",
+            colorArr: [],
+            color_nameArr: [],
         };
     },
     computed: {
@@ -64,6 +67,10 @@ export default {
         color() {
             return this.product_details?.product_color?.split(",");
         },
+        color_name() {
+            return this.product_details?.product_color_name?.split(",");
+        },
+
         size() {
             return this.product_details?.product_size?.split(",");
         },
@@ -79,13 +86,52 @@ export default {
             }
         },
     },
+    watch: {
+        $route: function () {
+            this.getResource();
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        },
+    },
     methods: {
+        color_arr() {
+            const X = this.color;
+            const Y = this.color_name;
+
+            this.colorArr = X.map((key, index) => ({
+                [key]: Y[index],
+            }));
+        },
+        cut(x) {
+            if (x) return x.split(",")[0];
+        },
+        getRandomItems(items, X) {
+            let randomItems = [];
+            while (randomItems.length < 3) {
+                let randomIndex = Math.floor(Math.random() * items.length);
+                let randomItem = items[randomIndex];
+                randomItem.coll = false;
+                if (
+                    randomItem?.product_id !== X &&
+                    !randomItems.includes(randomItem)
+                ) {
+                    randomItems.push(randomItem);
+                }
+            }
+            this.radom = randomItems;
+        },
         getResource() {
             this.axios.get(`${BASE_URL}/list.php`).then((response) => {
+                console.log(response.data.length);
                 this.temp = response.data.find((e) => {
+                    console.log(e);
                     if (e.product_id == this.$route.params.id) return e;
                 });
+                this.getRandomItems(response.data, this.$route.params.id);
                 this.bigPicture = this.temp?.product_pic.split(",")[0];
+                this.color_arr();
             });
         },
         getStorage() {
@@ -93,7 +139,7 @@ export default {
             if (data) data = JSON.parse(data);
             this.cart = data ? data : [];
         },
-        addCart(e, i) {
+        addCart() {
             if (this.pickedColor == "" || this.pickedSize == "") {
                 this.alert = true;
                 this.msg =
@@ -104,10 +150,14 @@ export default {
                         : "";
                 return;
             } else {
+                const color = this.colorArr.find(
+                    (color) => Object.keys(color)[0] === this.pickedColor
+                );
+                const value = Object.values(color)[0];
                 const prodIndex = this.cart.findIndex((cartItem) => {
                     return (
                         cartItem.id === this.product_details.product_id &&
-                        cartItem.color === this.pickedColor &&
+                        cartItem.color === value &&
                         cartItem.size === this.pickedSize
                     );
                 });
@@ -124,7 +174,7 @@ export default {
                         title: this.product_name,
                         image: this.temp?.product_pic.split(",")[0],
                         price: this.unit_price,
-                        color: this.pickedColor,
+                        color: value,
                         size: this.pickedSize,
                         count: this.number,
                     });
@@ -140,7 +190,7 @@ export default {
         },
         goCart() {
             this.addCart();
-            if (localStorage.getItem(JSON.stringify(this.cartItem))) {
+            if (this.msg === "加入成功") {
                 this.$router.push({ path: "/cart" });
             }
         },
@@ -178,7 +228,9 @@ export default {
         <div class="leftright">
             <div class="left">
                 <div class="bigPic">
-                    <img :src="`/pic/${bigPicture}`" />
+                    <img
+                        :src="`https://tibamef2e.com/cgd103/g2/front/pic/${bigPicture}`"
+                    />
                 </div>
                 <div class="leftDown">
                     <div
@@ -190,6 +242,7 @@ export default {
                         <img :src="`/pic/${e}`" />
                     </div>
                 </div>
+                <!-- {{ colorArr }} -->
             </div>
             <div class="right">
                 <div class="rightTop">
@@ -278,35 +331,23 @@ export default {
             </div>
         </div>
     </div>
-    <!-- 
-    <div class="dressingGuide">
-        <h2>穿搭指南</h2>
-        <div class="leftright">
-            <div class="image">
-                <img src="https://fakeimg.pl/400x600/200" />
-            </div>
 
-            <div class="right">
-                <p class="dressingGuideTitle">H&M 襯衫</p>
-                <p class="content">
-                    Lorem Ipsum has been the industry's standard dummy text ever
-                    since the 1500s, when an unknown printer took a galley of
-                    type and scrambled it to make a type specimen book.
-                </p>
-            </div>
+    <div class="dressingGuide">
+        <h2>你可能也會喜歡</h2>
+        <div class="matchingProducts_box">
+            <ProductCard
+                :id="e.product_id"
+                :title="e.product_name"
+                :price="e.unit_price"
+                :imgURL="cut(e.product_pic)"
+                :clloect="e.coll"
+                @clloectchange="collchange(e)"
+                v-for="e in radom"
+                :key="e.product_id"
+            />
         </div>
-        <div class="matchingProducts">
-            <h3>搭配的商品</h3>
-            <div class="matchingProducts_box">
-                <product-card></product-card>
-                <product-card></product-card>
-                <product-card></product-card>
-            </div>
-        </div>
-        <div class="likeAlso">
-            <h3>你可能也會喜歡</h3>
-        </div>
-    </div> -->
+    </div>
+
     <Alert :msg="msg" @closeAlert="tab" v-show="alert"></Alert>
 </template>
 
@@ -340,7 +381,7 @@ export default {
     transition: opacity 400ms;
 }
 .product_details {
-    max-width: $max-width;
+    max-width: $max_width;
     margin: auto;
     padding-bottom: 20px;
     border-bottom: $line solid $text_color;
@@ -387,8 +428,7 @@ export default {
             @include m() {
                 width: 50%;
             }
-            // .rightTop {
-            // }
+
             color: $text_color;
             padding: 10px;
             .title {
@@ -544,7 +584,7 @@ export default {
     }
 }
 .dressingGuide {
-    max-width: $max-width;
+    max-width: $max_width;
     margin: auto;
     padding-bottom: 20px;
     border-bottom: $line solid $text_color;
@@ -628,8 +668,12 @@ export default {
                 padding: 50px;
             }
         }
-        .matchingProducts_box {
-            display: flex;
+    }
+    .matchingProducts_box {
+        display: flex;
+        justify-content: center;
+        .product_card {
+            width: 20%;
         }
     }
     .likeAlso {

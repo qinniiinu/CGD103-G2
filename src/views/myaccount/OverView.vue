@@ -130,6 +130,7 @@
 </template>
 
 <script>
+import { BASE_URL } from "@/assets/js/common.js";
 import BgTag from "@/components/mypage/BgTag.vue";
 import TypeTag from "@/components/mypage/TypeTag.vue";
 // import MemCard from "@/components/mypage/MemCard.vue";
@@ -165,12 +166,16 @@ export default {
   },
   methods:{
     getResource() {
-			this.axios.get('/api_server/memberInfo.php')
+			this.axios.get(`${BASE_URL}/memberInfo.php`)
+			// this.axios.get('/api_server/memberInfo.php')
     	.then(res => {
 			this.member = res.data
-				if(res.data.style_id){ //有風格測驗
-					this.style_id = res.data.style_id;
-					this.axios.get(`/api_server/mem_style.php`)
+				if(this.member.style_id){ //有風格測驗
+					this.style_id = this.member.style_id;
+          let formData = new FormData();
+          formData.append('style_id',this.member.style_id);
+					this.axios.post(`${BASE_URL}/getmem_style.php`,formData)
+					// this.axios.get(`/api_server/mem_style.php`)
 					.then((res) => this.style = res.data)
 					.catch(error =>console.log(error));
 				}else{//無風格測驗
@@ -180,7 +185,8 @@ export default {
 			.catch(error =>console.log(error));
 
       // 諮詢紀錄
-      this.axios.get('/api_server/member_appointment.php')
+      this.axios.get(`${BASE_URL}/member_appointment.php`)
+      // this.axios.get(`/api_server/member_appointment.php`)
     	.then(res => {
         if(res.data.appointment_id){ //有預約紀錄
           this.appointment = res.data;

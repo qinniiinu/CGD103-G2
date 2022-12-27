@@ -146,6 +146,7 @@
 </template>
 
 <script>
+import { BASE_URL } from "@/assets/js/common.js";
 import TypeTag from "@/components/mypage/TypeTag.vue";
 export default {
     name: "BodyType",
@@ -186,7 +187,8 @@ export default {
     methods: {
         getResource() {
             this.axios
-                .get("/api_server/memberInfo.php")
+                .get(`${BASE_URL}/memberInfo.php`)
+                // .get("/api_server/memberInfo.php")
                 .then((res) => {
                     this.tmp = res.data;
 
@@ -265,7 +267,7 @@ export default {
             formData.append("pants", this.member.pants);
             formData.append("chest", this.member.chest);
 
-            fetch("/api_server/bodysizechange.php", {
+            fetch(`${BASE_URL}/bodysizechange.php`, {
                 method: "post",
                 body: formData,
             });

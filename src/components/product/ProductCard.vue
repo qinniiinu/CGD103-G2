@@ -2,7 +2,9 @@
     <div class="product_card">
         <div class="box">
             <router-link :to="`/productDetails/${id}`">
-                <img :src="`/pic/${imgURL}`" />
+                <img
+                    :src="`https://tibamef2e.com/cgd103/g2/front/pic/${imgURL}`"
+                />
             </router-link>
 
             <div class="icon" @click="clloectchange()">

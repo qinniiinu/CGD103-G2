@@ -15,7 +15,7 @@
   </div>
   <!-- <img src="https://picsum.photos/300/200/?random=10"> -->
 </template>
-<script>
+// <script>
 // import { fit } from "@/assets/config/setting.js";
 export default {
   data() {
@@ -27,7 +27,7 @@ export default {
         },
         {
           id: 2,
-          image: require("@/assets/fittingroom/item001.png"),
+          // image: require("@/assets/fittingroom/item001.png"),
         },
         {
           id: 3,
