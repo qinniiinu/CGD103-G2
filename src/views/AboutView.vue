@@ -49,7 +49,11 @@
       </div>
       <div class="box" style="height: 1200px; position: relative">
         <video autoplay muted loop>
-          <source src="../assets/video/1752669109.mp4" type="video/mp4" />
+          <source
+            class="waste"
+            src="../assets/video/1752669109.mp4"
+            type="video/mp4"
+          />
         </video>
         <div style="height: 50vh; position: sticky; top: 0">
           <div class="introBox">
@@ -480,15 +484,15 @@ video {
       color: rgb(156, 156, 167);
       @include font_set($second_font, $null, 900, italic);
       @include s() {
-        font-size: 56px;
+        font-size: 35px;
       }
       @include m() {
-        font-size: 96px;
+        font-size: 50px;
       }
       position: absolute;
       z-index: -1;
       left: 30%;
-      font-size: 120px;
+      font-size: 60px;
       opacity: 0.5;
     }
   }
