@@ -9,6 +9,11 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 /* import font awesome icon component */
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
+/* 商品組件 */
+import ProductCard from "@/components/product/ProductCard.vue";
+import ProductMenu from "@/components/product/ProductMenu.vue";
+
+
 /* import specific icons */
 import {
 	faUserSecret,
@@ -70,4 +75,6 @@ createApp(App)
 	.use(router)
 	.use(VueAxios, axios)
 	.component("font-awesome-icon", FontAwesomeIcon)
+	.component("ProductCard", ProductCard)
+	.component("ProductMenu", ProductMenu)
 	.mount("#app");
