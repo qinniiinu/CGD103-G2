@@ -17,7 +17,6 @@ module.exports = defineConfig({
 		proxy: {
 			'/api_server': {
 				target: 'https://tibamef2e.com/cgd103/g2/front/phpfile',
-				// target: 'http://localhost/cgd103_g2_frontend/phpfile',
 				changeOrigin: true,
 				pathRewrite: {
 					'^/api_server': ''
