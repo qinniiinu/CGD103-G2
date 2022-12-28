@@ -138,6 +138,14 @@ export default {
         console.log("-----------", response.data);
         this.orders = response.data;
 
+        // this.temp = response.data.find((e) => {
+        //   console.log(e);
+        //   if (e.order_id == this.$route.params.id) return e;
+        // });
+        // this.getRandomItems(response.data, this.$route.params.id);
+
+        //嘗試連到每筆訂單的路由
+
         const groupBy = (array, key) =>
           array.reduce((objectsByKeyValue, obj) => {
             const value = obj[key];

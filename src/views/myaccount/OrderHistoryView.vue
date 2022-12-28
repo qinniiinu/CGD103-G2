@@ -59,13 +59,13 @@
             :key="e[0].order_id"
             class="ord_history_content_word"
           >
-            <router-link to="/MyPage/OrderHistoryDetail">
+            <router-link :to="`/MyPage/OrderHistoryDetail/${id}`">
               <ul class="content_row">
                 <li scope="row" class="ord_history_content">
                   {{ e[0].order_time }}
                 </li>
                 <li class="ord_history_content">{{ e[0].order_id }}</li>
-                <li class="ord_history_content">{{ e[0].total }}</li>
+                <li class="ord_history_content">{{ e[0].order_paid }}</li>
                 <li class="ord_history_content">
                   <p v-if="e[0].order_con == 1">訂單取消</p>
                   <p v-else-if="e[0].order_con == 2">商品配送中</p>
@@ -111,8 +111,8 @@
             </div>
 
             <div class="item_money">
-              <p>共{{ item[0].item_product }}件商品</p>
-              <h2>訂單金額 ${{ item[0].unit_price }}</h2>
+              <p>共{{ item[0].order_item_id }}件商品</p>
+              <h2>訂單金額 ${{ item[0].order_paid }}</h2>
             </div>
           </div>
         </li>
@@ -157,9 +157,10 @@ export default {
     getResource() {
       this.axios.get(`/api_server/getOrder.php`).then((response) => {
         console.log(response.data);
+
         this.orders = response.data;
         this.product = response.data;
-        this.product = this.product.slice(0, 3);
+        this.product = this.product.slice(0, 2);
         console.log(this.product);
         this.order_item = response.data;
 

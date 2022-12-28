@@ -306,7 +306,7 @@ export default {
 
   mounted() {
     gsap.to(".FAQcontainer", {
-      x: 1000,
+      x: 200,
       duration: 8,
       scrollTrigger: {
         trigger: ".FAQRow",
@@ -562,22 +562,22 @@ video {
     overscroll-behavior: auto;
     scroll-snap-type: inline mandatory;
     scroll-snap-align: end;
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    // &::-webkit-scrollbar {
+    //   display: none;
+    // }
 
-    // scrollbar-color: #4673fb #ffffff;
-    //     &::-webkit-scrollbar {
-    //         width: 14px;
-    //     }
-    //     &::-webkit-scrollbar-track {
-    //         background:transparent;
-    //     }
-    //     &::-webkit-scrollbar-thumb {
-    //         background-color: #4673fb;
-    //         border-radius: 10px;
-    //         border: 3px solid #ffffff;
-    //     }
+    scrollbar-color: #4673fb #ffffff;
+    &::-webkit-scrollbar {
+      width: 14px;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #4673fb;
+      border-radius: 10px;
+      border: 3px solid #ffffff;
+    }
   }
   .FAQcontainer {
     width: 300px;
@@ -589,7 +589,7 @@ video {
       font-size: 30px;
       margin: 10px;
       padding-top: 10px;
-      text-shadow: 5px -5px #b6c8f3;
+      text-shadow: 5px -5px #dae5ff;
       border: 1px s;
     }
     p {

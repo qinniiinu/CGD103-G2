@@ -1,31 +1,32 @@
 <template>
   <div class="data">
-    <div class="menu-toggle-wrap">
-      <!-- 側邊欄按鍵 -->
-      <button class="menu-toggle" v-on:click="is_expanded = !is_expanded">
-        <span class="material-icons">
-          <font-awesome-icon class="icon" icon="fa-solid fa-arrow-right" />
-        </span>
-      </button>
-    </div>
-
-    <div class="asideBar" :class="{ expanded: is_expanded }">
+    <button class="menu-toggle" @click="ToggleMenu">
+      <span class="material-icons">
+        <font-awesome-icon class="icon" icon="fa-solid fa-arrow-right" />
+      </span>
+    </button>
+    <div class="asideBar" :class="`${is_expanded ? 'is-expanded' : ''}`">
       <!-- 側邊欄 -->
-      <div class="titleBox">
-        <h1>退換貨須知</h1>
-        <h2>購物問題</h2>
-        <h2>取消訂閱</h2>
-        <h2>確認衣物</h2>
-        <h2>合作店面</h2>
-        <h2>聯絡方式</h2>
-      </div>
-      <div class="titleBox">
-        <h1>退換貨須知</h1>
-        <h2>購物問題</h2>
-        <h2>取消訂閱</h2>
-        <h2>確認衣物</h2>
-        <h2>合作店面</h2>
-        <h2>聯絡方式</h2>
+
+      <div class="menu-toggle-wrap">
+        <!-- 側邊欄按鍵 -->
+
+        <div class="titleBox">
+          <h1>退換貨須知</h1>
+          <h2>購物問題</h2>
+          <h2>取消訂閱</h2>
+          <h2>確認衣物</h2>
+          <h2>合作店面</h2>
+          <h2>聯絡方式</h2>
+        </div>
+        <div class="titleBox">
+          <h1>退換貨須知</h1>
+          <h2>購物問題</h2>
+          <h2>取消訂閱</h2>
+          <h2>確認衣物</h2>
+          <h2>合作店面</h2>
+          <h2>聯絡方式</h2>
+        </div>
       </div>
     </div>
 
@@ -264,7 +265,6 @@ export default {
   data() {
     return {
       isShow: true,
-      isCollapsed: false,
     };
   },
 };
@@ -291,8 +291,14 @@ button {
   position: fixed;
   z-index: 99;
   background-color: $main_color;
+  color: $second_color;
   border: 0;
   cursor: pointer;
+  transition: all 0.5 ease-in-out;
+  //   display: none;
+  //   @include b() {
+  //     display: block;
+  //   }
 }
 .data {
   display: flex;
@@ -303,15 +309,16 @@ button {
 
 .is-expanded {
   width: 20%;
-  min-width: 200px;
+
   transition: all 0.5 ease-in-out;
 
   .menu-toggle-wrap {
     top: -3rem;
-    width: 900px;
+    min-width: 900px;
 
-    // position: relative;
-    // z-index: 99;
+    // color: $second_color;
+    // background-color: $second_color;
+
     .icon {
       color: $second_color;
       transform: rotate(-180deg);
@@ -322,18 +329,19 @@ button {
 }
 
 .asideBar {
-  width: 20%;
-  z-index: 99;
+  min-width: 300px;
+  position: absolute;
+  height: 800px;
   transition: 1s ease-out;
-  position: relative;
-  background-color: $second_color;
+  //   background-color: $second_color;
   overflow: hidden;
-  @include b() {
-    display: none;
-  }
+  //   @include b() {
+  //     display: none;
+  //   }
   .titleBox {
+    min-width: 300px;
     width: 100%;
-    margin-top: 12vh;
+    margin-top: 3rem;
 
     h1 {
       font-size: 30px;
@@ -350,7 +358,7 @@ button {
   }
 }
 .FAQ {
-  width: 70%;
+  width: 60%;
   margin: auto;
   margin-top: 100px;
   margin-bottom: 20vh;
@@ -358,6 +366,10 @@ button {
     font-size: 60px;
     margin: 10px;
     font-weight: bold;
+    @include b() {
+      display: block;
+      font-size: 40px;
+    }
   }
   p {
     margin: 10px;
