@@ -126,6 +126,7 @@ export default {
 			.then((data) =>{
 				console.log(data);
 				alert("訂閱成功");
+				localStorage.clear();
 				this.$router.push({ path: "/MyPage/memSubscription"});
 				// if (data.msg) {
 				// 	alert("data.msg");

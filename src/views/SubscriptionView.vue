@@ -131,6 +131,7 @@ export default {
 .subscription {
     width: 100%;
     .wrap {
+        background-color: $bg_violet;
         @include l{
             height: 600px;
             background: linear-gradient(
@@ -164,11 +165,15 @@ export default {
                 margin-top: 20px;
                 line-height: 25px;
             }
+            @include s{
+                width: 550px;
+                margin: 5vh;
+            }
         }
     }
 }
 .sub-plan {
-    height: 100%;
+    height: 950px;
     width: 250px;
     margin: auto;
     display: flex;
@@ -182,137 +187,162 @@ export default {
         height: 200px;
         flex-direction: row;
         margin-bottom: 0px;
-        .subcard {
-        -webkit-transform: skew(-5deg);
-        // -moz-transform: skew(-5deg);
-        // -o-transform: skew(-5deg);
-        position: absolute;
-        border: 1px solid black;
-        &:nth-child(1) {
-            top: -200px;
-            left: 12vw;
-        }
-        &:nth-child(2) {
-            top: -250px;
-            left: 40vw;
-        }
-        &:nth-child(3) {
-            top: -300px;
-            left: 68vw;
-        }
-        }
     }
         .subcard {
+            position: absolute;
+            -webkit-transform: skew(-5deg);
+            position: absolute;
+            border: 1px solid black;
             @include l{
                 margin: auto;
+                // width: 100%;
+                // -webkit-transform: skew(-5deg);
+                &:nth-child(1) {
+                    top: -200px;
+                    left: 12vw;
+                }
+                &:nth-child(2) {
+                    top: -250px;
+                    left: 40vw;
+                }
+                &:nth-child(3) {
+                    top: -300px;
+                    left: 68vw;
+                }
             }
-        -webkit-transform: skew(-5deg);
-        // -moz-transform: skew(-5deg);
-        // -o-transform: skew(-5deg);
-        // position: absolute;
-        border: 1px solid black;
-        // &:nth-child(1) {
-        //     top: -200px;
-        //     left: 12vw;
-        // }
-        // &:nth-child(2) {
-        //     top: -250px;
-        //     left: 40vw;
-        // }
-        // &:nth-child(3) {
-        //     top: -300px;
-        //     left: 68vw;
-        // }
-        .card-wrap {
-            @include l{
-                width: 225px;
+            @include s{
+                &:nth-child(1) {
+                    top: -80px;
+                    width: 230px;
+                }
+                &:nth-child(2) {
+                    top: 270px;
+                    width: 230px;
+                }
+                &:nth-child(3) {
+                    bottom: 30px;
+                    width: 230px;
+                }
             }
-            // width: 225px;
-            background: white;
-            padding: 30px 15px;
-            color: $main_color;
-            .card-content {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-                text-align: left;
-                position: relative;
-                z-index: 1;
-                transition: all 0.3s ease-in;
-                h2 {
-                    color: $title_color;
-                    font-size: 20px;
-                    font-weight: bold;
-                    margin: auto;
-                    margin-bottom: 10px;
+            
+            .card-wrap {
+                @include l{
+                    width: 225px;
                 }
-                p {
-                    color: $text_color;
-                    font-size: 14px;
-                }
-                span {
-                    font-size: 32px;
-                }
-                :first-child ~ span {
-                    font-size: 14px;
-                    font-weight: bold;
-                }
-                .level {
-                    padding: 10px 30px;
-                    background-color: $main_color;
-                    color: white;
-                    font-weight: bold;
-                    font-size: 20px;
-                    position: absolute;
-                    right: -40px;
-                    top: -70px;
-                }
-                // a{
-                    margin: auto;
-                    margin-top: 20px;
-                    button {
-
-                        cursor: pointer;
+                // width: 225px;
+                background: white;
+                padding: 30px 15px;
+                color: $main_color;
+                .card-content {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    text-align: left;
+                    position: relative;
+                    z-index: 1;
+                    transition: all 0.3s ease-in;
+                    h2 {
+                        color: $title_color;
+                        font-size: 20px;
+                        font-weight: bold;
+                        margin: auto;
+                        margin-bottom: 10px;
+                    }
+                    p {
+                        color: $text_color;
+                        font-size: 14px;
+                    }
+                    span {
+                        font-size: 32px;
+                    }
+                    :first-child ~ span {
+                        font-size: 14px;
+                        font-weight: bold;
+                    }
+                    .level {
+                        padding: 10px 30px;
                         background-color: $main_color;
                         color: white;
-                        border: 1px solid $main_color;
-                        padding: 5px 20px;
-                        &:hover {
-                            background-color: $bg_blue;
-                            color: $main_color;
+                        font-weight: bold;
+                        font-size: 20px;
+                        position: absolute;
+                        right: -40px;
+                        top: -70px;
+                    }
+                    // a{
+                        margin: auto;
+                        margin-top: 20px;
+                        button {
+
+                            cursor: pointer;
+                            background-color: $main_color;
+                            color: white;
                             border: 1px solid $main_color;
+                            padding: 5px 20px;
+                            &:hover {
+                                background-color: $bg_blue;
+                                color: $main_color;
+                                border: 1px solid $main_color;
+                            }
+                        }
+                    // }
+                    
+                }
+                &:after {
+                    content: "";
+                    background: $main_color;
+                    height: 100%;
+                    width: 100%;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    z-index: 0;
+                    clip-path: circle(0% at 0% 0%);
+                    transition: all 0.4s ease-in;
+                }
+                &:hover {
+                    &:after {
+                        clip-path: circle(100%);
+                        opacity: 0.05;
+                    }
+                    .card-content {
+                        h2,
+                        p {
+                            color: $main_color;
                         }
                     }
-                // }
-                
-            }
-            &:after {
-                content: "";
-                background: $main_color;
-                height: 100%;
-                width: 100%;
-                position: absolute;
-                left: 0;
-                top: 0;
-                z-index: 0;
-                clip-path: circle(0% at 0% 0%);
-                transition: all 0.4s ease-in;
-            }
-            &:hover {
-                &:after {
-                    clip-path: circle(100%);
-                    opacity: 0.05;
                 }
-                .card-content {
-                    h2,
-                    p {
-                        color: $main_color;
-                    }
-                }
+            
             }
         }
-    }
 }
+    // }
+        // .subcard {
+            
+        //     // -webkit-transform: skew(-5deg);
+        //     // -moz-transform: skew(-5deg);
+        //     // -o-transform: skew(-5deg);
+        //     // position: absolute;
+        //     border: 1px solid black;
+        //     &:nth-child(1) {
+        //         top: -80px;
+        //         width: 230px;
+        //         // left: 12vw;
+        //     }
+        //     &:nth-child(2) {
+        //         top: 300px;
+        //         width: 230px;
+        //         // left: 40vw;
+        //     }
+        //     &:nth-child(3) {
+        //         bottom: 30px;
+        //         width: 230px;
+        //         // left: 68vw;
+        //     }
+            
+//             }
+//         }
+// }
 
 
 </style>
