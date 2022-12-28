@@ -63,12 +63,20 @@
 					</div>
 				</div>
 				</div>
-				<div class="detail">
+				<div class="detail" v-if="subscribe !==false">
 					<div>共 {{order.length}} 種商品</div>
-					<div v-if="subscribe !==false">
-						{{subscribe.level_name}}訂閱等級折扣: -${{parseInt(total*(1-subscribe.discount))}}
+					<div >
+						{{subscribe.level_name}}訂閱等級折扣: -${{total-distotal}}
 					</div>
-					<div v-else>尚無訂閱等級折扣</div>
+					<!-- <div >尚無訂閱等級折扣</div> -->
+					<div>總計: ${{distotal}}元</div>
+				</div>
+				<div class="detail" v-else>
+					<div>共 {{order.length}} 種商品</div>
+					<!-- <div >
+						{{subscribe.level_name}}訂閱等級折扣: -${{parseInt(total-distotal)}}
+					</div> -->
+					<div >尚無訂閱等級折扣</div>
 					<div>總計: ${{total}}元</div>
 				</div>
 			</div>
@@ -96,7 +104,7 @@ export default {
 			inner:[],
 			ord_mem:'',
 			ord_phone:'',
-			ord_addr:''
+			ord_addr:'',
 		}
 	},
 	created(){
@@ -106,20 +114,19 @@ export default {
 	computed:{
 		total(){
 			let total=0;
-			let distotal=0;
-			if(this.subscribe!=false){
-				for(const index in this.order){
-					distotal+=this.order[index]['count']*this.order[index]['price']*this.subscribe.discount
-				}
-				console.log(distotal);
-				return parseInt(distotal);
-			}else{
-				for(const index in this.order){
-					total+=this.order[index]['count']*this.order[index]['price']
-				}
-				console.log(total);
-				return parseInt(total);
+			for(const index in this.order){
+				total+=this.order[index]['count']*this.order[index]['price']
 			}
+			console.log(total);
+			return parseInt(total);
+		},
+		distotal(){
+			let distotal=0;
+			for(const index in this.order){
+				distotal+=this.order[index]['count']*this.order[index]['price']*this.subscribe.discount
+			}
+			console.log(distotal);
+			return parseInt(distotal);
 		},
 	},
 	methods:{
@@ -164,11 +171,11 @@ export default {
 			datas.ord_addr = this.ord_addr;
 			datas.total = total;
 			if(this.subscribe!=false&&this.subscribe!=''){
-				datas.discount = this.subscribe.discount;
+				datas.discount = parseInt(total*(1-this.subscribe.discount));
 				datas.ord_paid = total*this.subscribe.discount;
 				
 			}else{
-				datas.discount=1;
+				datas.discount=0;
 				datas.ord_paid=total;
 			}
 			console.log(datas);
@@ -184,6 +191,8 @@ export default {
 				if (data.msg) {
 					alert("已成功下單");
 				}
+				localStorage.clear();
+				this.$router.push({ path: "/MyPage/OrderHistory"});
 			})
 			.catch((error) => console.log(error));
 		}
@@ -344,8 +353,9 @@ export default {
 							.prod-detail{
 								display: flex;
 								flex-direction: column;
+								justify-content: space-evenly;
 								gap:10px;
-								width:150px;
+								width:100px;
 								.spec,.price{
 									display: flex;
 									justify-content: space-between;
