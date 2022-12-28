@@ -8,6 +8,7 @@ header("Access-Control-Allow-Methods:POST,GET,OPTIONS");
 // 跨域访问是否允许带cookie的发送
 header("Access-Control-Allow-Credentials:true");
 header("Content-Type:application/json;charset=UTF-8");
+
 if (isset($_SESSION['member'])) {
     require_once("../connectBooks.php");
     $data = json_decode(file_get_contents('php://input'));
@@ -20,7 +21,7 @@ if (isset($_SESSION['member'])) {
     $rowCount = $rows[0];
 
 
-    if ($rowCount === 0) {
+    if ($rowCount == 0) {
         $stmt = $pdo->prepare("INSERT INTO  `collect_product`( mem_id ,product_id) VALUES( :id , :prod);");
         $stmt->bindValue(':prod', $prod, PDO::PARAM_INT);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
