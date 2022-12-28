@@ -68,16 +68,6 @@ export default {
 	methods:{
         // 訂閱訂單
         setStorage(index,sub){
-            // console.log(sub);
-            // this.$store.dispatch("setCart",{
-            //     level:sub.level_name,
-            //     price:sub.price,
-            //     monthSet:sub.monthSet,
-            //     set_info:sub.set_info,
-            //     monthConsult:sub.monthConsult,
-            //     freeShipping:sub.freeShipping,
-            //     specialOffer:sub.specialOffer
-            // })
             this.subOrder.push({
                 id:sub.level_id,
                 level:sub.level_name,
@@ -152,6 +142,12 @@ export default {
             @include s{
                 display: none;
             }
+            @include m{
+                display: none;
+            }
+            @include l{
+                display: inline-block;
+            }
         }
         .right {
             width: 550px;
@@ -174,7 +170,7 @@ export default {
 }
 .sub-plan {
     height: 950px;
-    width: 250px;
+    width: 100%;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -184,52 +180,96 @@ export default {
     margin-bottom: 100px;
     @include l{
         width: 100%;
+        // width: 100%;
         height: 200px;
         flex-direction: row;
         margin-bottom: 0px;
     }
         .subcard {
+            width: 100%;
             position: absolute;
             -webkit-transform: skew(-5deg);
             position: absolute;
             border: 1px solid black;
+            &:nth-child(1) {
+                top: -50px;
+                left: 5vw;
+                width: 225px;
+            }
+            &:nth-child(2) {
+                top: -70px;
+                left: 35vw;
+                width: 225px;
+            }
+            &:nth-child(3) {
+                top: -90px;
+                left: 55vw;
+                width: 225px;
+            }
+            @include m{
+                margin: auto;
+                width: 100%;
+                // -webkit-transform: skew(-5deg);
+                &:nth-child(1) {
+                    top: -50px;
+                    left: 8vw;
+                    width: 225px;
+                }
+                &:nth-child(2) {
+                    top: -70px;
+                    left: 36vw;
+                    width: 225px;
+                }
+                &:nth-child(3) {
+                    top: -90px;
+                    left: 65vw;
+                    width: 225px;
+                }
+            }
             @include l{
                 margin: auto;
-                // width: 100%;
+                width: 100%;
                 // -webkit-transform: skew(-5deg);
                 &:nth-child(1) {
                     top: -200px;
                     left: 12vw;
+                    width: 240px;
                 }
                 &:nth-child(2) {
                     top: -250px;
                     left: 40vw;
+                    width: 240px;
                 }
                 &:nth-child(3) {
                     top: -300px;
                     left: 68vw;
+                    width: 240px;
                 }
             }
             @include s{
                 &:nth-child(1) {
                     top: -80px;
-                    width: 230px;
+                    // width: 230px;
+                    left: 65px;
                 }
                 &:nth-child(2) {
                     top: 270px;
-                    width: 230px;
+                    // width: 230px;
+                    left: 65px;
                 }
                 &:nth-child(3) {
-                    bottom: 30px;
-                    width: 230px;
+                    // bottom: 30px;
+                    top: 610px;
+                    // width: 230px;
+                    left: 65px;
                 }
             }
             
             .card-wrap {
                 @include l{
-                    width: 225px;
+                    // width: 230px;
                 }
-                // width: 225px;
+                // width: 230px;
                 background: white;
                 padding: 30px 15px;
                 color: $main_color;
@@ -316,33 +356,4 @@ export default {
             }
         }
 }
-    // }
-        // .subcard {
-            
-        //     // -webkit-transform: skew(-5deg);
-        //     // -moz-transform: skew(-5deg);
-        //     // -o-transform: skew(-5deg);
-        //     // position: absolute;
-        //     border: 1px solid black;
-        //     &:nth-child(1) {
-        //         top: -80px;
-        //         width: 230px;
-        //         // left: 12vw;
-        //     }
-        //     &:nth-child(2) {
-        //         top: 300px;
-        //         width: 230px;
-        //         // left: 40vw;
-        //     }
-        //     &:nth-child(3) {
-        //         bottom: 30px;
-        //         width: 230px;
-        //         // left: 68vw;
-        //     }
-            
-//             }
-//         }
-// }
-
-
 </style>
