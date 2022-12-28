@@ -17,10 +17,10 @@
                     />
                     <label for="">電子郵件</label>
                 </div>
+                 <!-- 警示帳號存在 -->
                 <div v-if="emailExists" class="emailExists">此帳號已註冊</div>
-                <div v-if="emailUnForm" class="emailUnForm">
-                    Email 格式不正確
-                </div>
+                <!-- 警示帳號格式不正確 -->
+                <div v-if="emailUnForm" class="emailUnForm">Email 格式不正確</div>
                 <div class="input_group">
                     <input
                         maxlength="10"
@@ -35,11 +35,15 @@
                     <input
                         type="password"
                         maxlength="10"
-                        v-model="psd_confirm"
+                        v-model="pwd_confirm"
+                        @blur="pwdConfirm"
                         required
                     />
                     <label for="">密碼確認</label>
                 </div>
+                <!-- 密碼不相符 -->
+                <div v-if="pwdNotSame" class="pwdNotSame">密碼不相符</div>
+                
                 <div class="input_group">
                     <input
                         type="text"
@@ -230,13 +234,13 @@
                     </div>
                 </div>
 
-                <div class="remember">
+                <!-- <div class="remember">
                     <label
                         ><input
                             type="checkbox"
                         />我同意本網站的隱私權政策，並同意Urstyle收集及使用我的個人資料以處理訂單。</label
                     >
-                </div>
+                </div> -->
                 <button type="submit" class="btn_s">註冊</button>
             </form>
         </div>
@@ -257,7 +261,7 @@ export default {
             // 註冊
             mem_mail: "",
             mem_pwd: "",
-            psd_confirm: "",
+            pwd_confirm: "",
             mem_name: "",
             bday_m: "",
             bday_d: "",
@@ -276,6 +280,7 @@ export default {
             goType: false, // 切換註冊 / 身形建置
             emailExists: false, // email 是否已註冊
             emailUnForm: false, // emamil 格式
+            pwdNotSame: false, // 密碼確認
             notSubmit: false,
             checked: false,
         };
@@ -357,6 +362,7 @@ export default {
             fetch(`${BASE_URL}/register.php`, {
             // fetch("/api_server/register.php", {
                 method: "post",
+                credentials: 'include',
                 body: formData,
             })
                 .then((response) => {
@@ -374,6 +380,16 @@ export default {
                     }
                 })
                 .catch((error) => console.log(error));
+        },
+        // 密碼不相符，出現div ，且無法送出
+        pwdConfirm() {
+            if(this.pwd_confirm !== this.mem_pwd){
+                this.pwdNotSame = true;
+                this.notSubmit = true;
+            }else{
+                this.pwdNotSame = false;
+                this.notSubmit = false;
+            }
         },
         // email 格式不正確，出現div ，且無法送出
         IfemailUnForm() {
@@ -401,6 +417,7 @@ export default {
                 fetch(`${BASE_URL}/register.php`, {
                 // fetch("/api_server/register.php", {
                     method: "post",
+                    credentials: 'include',
                     body: formData,
                 })
                     .then((response) => {
@@ -427,7 +444,7 @@ export default {
             if (
                 !this.mem_mail ||
                 !this.mem_pwd ||
-                !this.psd_confirm ||
+                !this.pwd_confirm ||
                 !this.mem_name ||
                 !this.bday_m ||
                 !this.bday_d ||
@@ -466,12 +483,8 @@ export default {
 <style lang="scss" scoped>
 // 會員註冊
 body {
-    .emailExists {
-        // 警示帳號存在
-        color: red;
-    }
-    .emailUnForm {
-        // 警示帳號格是不正確
+    .emailExists,.emailUnForm ,.pwdNotSame {
+        // 警示帳號存在  // 警示帳號格是不正確 //密碼不相符
         color: red;
     }
     .signup_wrapper {
@@ -741,7 +754,7 @@ body {
                 &:nth-child(3) {
                     display: flex;
                     flex-direction: column;
-                    margin-top: 20px;
+                    margin:20px 0;
                     .rage_group {
                         margin-block: 15px;
                         span {

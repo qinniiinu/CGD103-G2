@@ -9,7 +9,7 @@
                     <h2>{{ body.body_shape }}</h2>
                 </div>
                 <div class="item">
-                    <img :src="`/pic/${body.body_pic}`" alt="body.body_shape" />
+                    <img :src="`../pic/${body.body_pic}`" :alt="body.body_shape" />
                 </div>
                 <div class="item">
                     <p>{{ body.body_descrip }}</p>
@@ -20,14 +20,14 @@
                         <button
                             class="btn_l"
                             @click="member.sex = 1"
-                            :class="{ active: member.sex === 1 }"
+                            :class="{ active: member.sex === '1' }"
                         >
                             男
                         </button>
                         <button
                             class="btn_l"
                             @click="member.sex = 0"
-                            :class="{ active: member.sex === 0 }"
+                            :class="{ active: member.sex === '0' }"
                         >
                             女
                         </button>
@@ -187,7 +187,8 @@ export default {
     methods: {
         getResource() {
             this.axios
-                .get(`${BASE_URL}/memberInfo.php`)
+                .get(`${BASE_URL}/memberInfo.php`,
+                {credentials: 'include'})
                 // .get("/api_server/memberInfo.php")
                 .then((res) => {
                     this.tmp = res.data;
@@ -269,6 +270,7 @@ export default {
 
             fetch(`${BASE_URL}/bodysizechange.php`, {
                 method: "post",
+                credentials: 'include',
                 body: formData,
             });
             this.$router.push("/MyPage");

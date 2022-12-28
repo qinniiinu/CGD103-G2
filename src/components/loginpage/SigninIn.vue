@@ -1,5 +1,4 @@
 <template>
-  <!-- <router-link to="/MyPage" class="btn_s">會員頁</router-link> -->
   <div class="wrapper">
     <div class="form_wrapper sign_in">
       <form @submit.prevent="checkLogin" class="login_form">
@@ -77,6 +76,7 @@ export default {
       // fetch(`/api_server/login.php`, {
       fetch(`${BASE_URL}/login.php`, {
         method: "post",
+        credentials: 'include',
         body: formData,
       })
         .then((response) => {

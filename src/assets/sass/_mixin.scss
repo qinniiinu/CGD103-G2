@@ -1,5 +1,5 @@
 @mixin xs() {
-	@media screen and (max-width: 389px) {
+	@media screen and (max-width: 399px) {
 		@content;
 	}
 }
@@ -27,6 +27,7 @@
 		@content;
 	}
 }
+
 @mixin xl() {
 	@media screen and (min-width: 1200px) {
 		@content;
@@ -37,14 +38,13 @@
 	color: $color;
 	background-color: $bg_color;
 }
-@mixin font_set(
-	$font,
+
+@mixin font_set($font,
 	$size,
 	$weight: $null,
 	$style: normal,
 	$color: $null,
-	$bg_color: $null
-) {
+	$bg_color: $null) {
 	font-family: $font;
 	font-size: $size;
 	font-weight: $weight;

@@ -117,7 +117,7 @@ export default {
 			// 更改密碼
 			// formData.append("mem_pwd", this.member.mem_pwd);
 
-			this.axios.post(`${BASE_URL}/update_member.php`,formData)
+			this.axios.post(`${BASE_URL}/update_member.php`,formData,{credentials: 'include'})
 			.then(res => {
 				res.data;
 				this.getResource();
@@ -125,7 +125,7 @@ export default {
 			.catch(error =>console.log(error));
 		},
 		getResource() {
-			this.axios.get(`${BASE_URL}/memberInfo.php`)
+			this.axios.get(`${BASE_URL}/memberInfo.php`,{credentials: 'include'})
 			// this.axios.get('/api_server/memberInfo.php')
 			.then(res => {
 				this.member = res.data;
