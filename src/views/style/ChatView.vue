@@ -1,11 +1,5 @@
 <template>
-	<div class="cover">
-		<!-- <h2>你有穿搭困擾嗎？</h2> -->
-		<video autoplay muted loop class="chat_cover">
-			
-			<source src="/pic/test_03.mp4" type="video/mp4">
-		</video>
-	</div>
+<div style="width:100%;height:0px;position:relative;padding-bottom:52.739%;"><iframe src="https://streamable.com/e/iaiprf?autoplay=1&nocontrols=1" frameborder="0" width="100%" height="100%" allowfullscreen allow="autoplay" style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"></iframe></div>
 	
 	
 	<section>
