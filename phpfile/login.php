@@ -2,7 +2,7 @@
     session_start();
     $Origin = isset($_SERVER['HTTP_ORIGIN'])?$_SERVER['HTTP_ORIGIN']:"*"; 
     // 如果$origin为*号时,则跨域访问不支持cookie的发送
-    header("Access-Control-Allow-Origin: {$Origin}");           
+    header("Access-Control-Allow-Origin:{$Origin}");           
     // 允许请求的类型
     header("Access-Control-Allow-Methods:POST,GET,OPTIONS");    
     // 跨域访问是否允许带cookie的发送
@@ -41,8 +41,8 @@ try {
     }
   
 } catch (PDOException $e) {
-    $errMsg .= "錯誤 : ".$e -> getMessage()."<br>";
-    $errMsg .= "行號 : ".$e -> getLine()."<br>";
+    $errMsg .= "錯誤 : ".$e -> getMessage();
+    $errMsg .= "行號 : ".$e -> getLine();
     echo json_encode(["msg"=>$errMsg]);
 }
 ?>

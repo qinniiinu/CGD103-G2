@@ -9,7 +9,7 @@
                     <h2>{{ body.body_shape }}</h2>
                 </div>
                 <div class="item">
-                    <img :src="`./pic/${body.body_pic}`" alt="body.body_shape" />
+                    <img :src="`../pic/${body.body_pic}`" :alt="body.body_shape" />
                 </div>
                 <div class="item">
                     <p>{{ body.body_descrip }}</p>
@@ -20,14 +20,14 @@
                         <button
                             class="btn_l"
                             @click="member.sex = 1"
-                            :class="{ active: member.sex === 1 }"
+                            :class="{ active: member.sex === '1' }"
                         >
                             男
                         </button>
                         <button
                             class="btn_l"
                             @click="member.sex = 0"
-                            :class="{ active: member.sex === 0 }"
+                            :class="{ active: member.sex === '0' }"
                         >
                             女
                         </button>
