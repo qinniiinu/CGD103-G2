@@ -33,13 +33,14 @@
 							<label for="">年</label>
 						</div>
 					</div>
-					<div class="password">
+					<!-- 密碼 修改密碼 -->
+					<!-- <div class="password">
 						<div class="input_group">
 							<input type="password"  v-model="member.mem_pwd" required :disabled="!update"/>
 							<label for="">密碼</label>
 						</div>
 						<button v-if="update" class="btn_s">修改密碼</button>
-					</div>
+					</div> -->
 					<div class="input_group">
 						<input type="mail" v-model="member.mem_mail" required :disabled="!update"/>
 						<label for="">電子郵件</label>
