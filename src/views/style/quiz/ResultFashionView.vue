@@ -81,10 +81,8 @@ export default {
         })
           .then((res) => res.json())
           .then((json) => console.log(json));
-          alert("ok");
         this.record = true;
       } else {
-        alert("not ok");
         this.not_record = true;
       }
     },
