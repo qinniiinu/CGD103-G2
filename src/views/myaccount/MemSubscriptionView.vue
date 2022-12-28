@@ -81,6 +81,8 @@
 </template>
 <script>
 import BgTag from "@/components/mypage/BgTag.vue";
+import { BASE_URL } from "@/assets/js/common.js";
+
 export default {
 	name: "memSubscription",
 	components: {
@@ -132,7 +134,7 @@ export default {
 			return e===this.subscribe.level_name;
 		},
 		getResource() {
-			this.axios.get("/api_server/subMemInfo.php").then((response) => { // 會員資料
+			this.axios.get(`${BASE_URL}/subMemInfo.php`).then((response) => { // 會員資料
 				console.log(response.data);
 				this.submemInfo= response.data;
 				console.log(this.submemInfo);
@@ -154,7 +156,7 @@ export default {
 				}
             });
 			// 訂閱的資訊
-            this.axios.get("/api_server/vip_level.php").then((response) => {
+            this.axios.get(`${BASE_URL}/vip_level.php`).then((response) => {
                 this.vip_level= response.data;
 				console.log(this.vip_level);
             });
@@ -171,7 +173,7 @@ export default {
 				alert('已取消訂閱');
 				location.reload();
 			};
-			xhr.open("post",`/api_server/cancelSubOrder.php`,true);
+			xhr.open("post",`${BASE_URL}/cancelSubOrder.php`,true);
 			xhr.send(null);
 			// this.getResource();
 			// let data={

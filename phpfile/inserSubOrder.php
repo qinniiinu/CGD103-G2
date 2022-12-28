@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    // session_start();
     // //跨域(正式開發不能這樣)
     header('Access-Control-Allow-Origin:*');
     header("Content-Type:application/json;charset=utf-8");
@@ -10,8 +10,8 @@
 
         require_once("../connectBooks.php");
 
-        $sql = "INSERT INTO vip_orders (mem_id,level_id,sub_paid,sub_time,sub_deadline)
-        VALUES (:mem_id,:level_id,:sub_paid,CURRENT_TIMESTAMP(),TIMESTAMPADD(MONTH,1,sub_time));";
+        $sql = "INSERT INTO vip_orders (mem_id,level_id,sub_paid,sub_time,sub_deadline,sub_status)
+        VALUES (:mem_id,:level_id,:sub_paid,CURRENT_TIMESTAMP(),TIMESTAMPADD(MONTH,1,sub_time),1);";
 
         $subOrder = $pdo->prepare($sql); //先編譯好
         $subOrder->bindValue(":mem_id", $_POST["mem_id"]); //代入資料

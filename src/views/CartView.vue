@@ -61,7 +61,7 @@
 </template>
 
 <script>
-
+import { BASE_URL } from "@/assets/js/common.js";
 export default {
 	name: "Cart",
 	components: {
@@ -146,7 +146,7 @@ export default {
 			this.setStorage()
 		},
 		getResource() {
-            this.axios.get("/api_server/subMemInfo.php").then((response) => {
+            this.axios.get(`${BASE_URL}/subMemInfo.php`).then((response) => {
 				console.log(response.data.state);
 				this.subMemInfo= response.data;
 				console.log(this.subMemInfo);
