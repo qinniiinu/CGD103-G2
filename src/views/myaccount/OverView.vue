@@ -1,5 +1,10 @@
 <template>
-  <p class="title">{{member.mem_name}}, 歡迎回來</p>
+  <div class="welcome">
+    <p class="title">{{member.mem_name}}, 歡迎回來</p>
+    <button class="btn_ns logout" @click="Logout">
+      登出
+    </button>
+  </div>
     <div class="data">
       <!-- 這裡開始寫 -->
       <div class="box">
@@ -7,7 +12,6 @@
         <!-- 我的身型 -->
         <section class="body_style card">
           <div class="pic">
-            <!-- <img :src="typeimg" alt=""> -->
             <img class="type_pic" :src="`./pic/${member.body_pic}`" :alt="member.body_shape" />
           </div>
           <div class="text">
@@ -133,7 +137,6 @@
 import { BASE_URL } from "@/assets/js/common.js";
 import BgTag from "@/components/mypage/BgTag.vue";
 import TypeTag from "@/components/mypage/TypeTag.vue";
-// import MemCard from "@/components/mypage/MemCard.vue";
 import SmallCard from "@/components/mypage/SmallCard.vue";
 import OrderCard from "@/components/mypage/OrderCard.vue";
 import OrdHisCard from "@/components/mypage/OrdHisCard.vue";
@@ -143,7 +146,6 @@ export default {
   components: {
     BgTag,
     TypeTag,
-    // MemCard,
     SmallCard,
     OrderCard,
     OrdHisCard,
@@ -159,10 +161,6 @@ export default {
   },
   mounted(){
     this.getResource();
-
-    // this.axios.get('/api_server/memberInfo.php')
-    // .then(res => this.member = res.data)
-    // .catch(error =>console.log(error));
   },
   methods:{
     getResource() {
@@ -197,17 +195,46 @@ export default {
         }
       })
 			.catch(error =>console.log(error));
-    }
+    },
+    // 登出
+    Logout() {
+      fetch(`${BASE_URL}/logout.php`,{credentials:"include" })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          if (data.msg) {
+            this.$router.push({ path: "/login" });
+          } else {
+            alert(errMsg);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   }  
 };
 </script>
 <style lang="scss" scoped>
 
-.title {
+.welcome{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: $padding;
+  .title {
   font-size: 24px;
   color: #292929;
-  padding-bottom: $padding;
+  }
+  .btn_ns{
+    color: #fff;
+    @include m() {
+      display: none;
+    }
+  }
 }
+
 .more {
   display: flex;
   position: absolute;
