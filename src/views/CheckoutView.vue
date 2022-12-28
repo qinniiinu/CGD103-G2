@@ -77,6 +77,8 @@
 </template>
 
 <script>
+import { BASE_URL } from "@/assets/js/common.js";
+
 export default {
 	name: "checkout",
 	components: {
@@ -143,11 +145,11 @@ export default {
 			console.log(this.order);
         },
 		getResource() {
-            this.axios.get("/api_server/subscription.php").then((response) => {
+            this.axios.get(`${BASE_URL}/subscription.php`).then((response) => {
                 this.subscribe= response.data;
 				console.log(this.subscribe);
             });
-            this.axios.get("/api_server/subMemInfo.php").then((response) => {
+            this.axios.get(`${BASE_URL}/subMemInfo.php`).then((response) => {
                 this.subMemInfo= response.data;
 				console.log(this.subMemInfo);
             });
@@ -170,7 +172,7 @@ export default {
 				datas.ord_paid=total;
 			}
 			console.log(datas);
-			fetch("/api_server/insertOrder_2.php",{
+			fetch(`${BASE_URL}/insertOrder_2.php`,{
 				method:"post",
 				body:JSON.stringify(datas),
 			})

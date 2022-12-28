@@ -48,7 +48,7 @@ export default {
             2: "備貨中",
             3: "已出貨",
           },
-          product_pic: ["../pic/style1.png", "../pic/style2.png"],
+          product_pic: ["./pic/style1.png", "./pic/style2.png"],
           quantity: 2,
           total: 888,
         },

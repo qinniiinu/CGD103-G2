@@ -1,5 +1,10 @@
 <template>
-  <p class="title">{{member.mem_name}}, 歡迎回來</p>
+  <div class="welcome">
+    <p class="title">{{member.mem_name}}, 歡迎回來</p>
+    <button class="btn_ns logout" @click="Logout">
+      登出
+    </button>
+  </div>
     <div class="data">
       <!-- 這裡開始寫 -->
       <div class="box">
@@ -7,7 +12,6 @@
         <!-- 我的身型 -->
         <section class="body_style card">
           <div class="pic">
-            <!-- <img :src="typeimg" alt=""> -->
             <img class="type_pic" :src="`./pic/${member.body_pic}`" :alt="member.body_shape" />
           </div>
           <div class="text">
@@ -111,13 +115,38 @@
         </section>
 
         <!-- 訂閱服務 -->
-        <SmallCard title="訂閱服務" Bgtag="#PREMIUM" more="更改訂閱" class="premium">
-          內容
-          <router-link to="/MyPage/memSubscription" class="more">
-            <span class="text">查看更多</span>
-            <font-awesome-icon icon="fa-solid fa-angle-right" />
-          </router-link>
-        </SmallCard>
+        <section class="samll_card premium">
+          <div class="title">
+            <h3 class="tit">訂閱服務</h3>
+            <span class="bg_tag">#PREMIUM</span>
+          </div>
+          <div class="data">
+            <!-- 無訂閱 -->
+            <div v-if="subscribe_id==''" class="content">
+              <div class="txt norecord">
+                <span class="highlight">您目前無訂閱</span>
+              </div>
+              <div class="btn_box">
+                <router-link to="/MyPage/MemSubscription">
+                  <button class="btn_s">前往訂閱</button>
+                </router-link>
+              </div>
+            </div>
+            <!-- 有訂閱 -->
+            <div v-else class="content appointment">
+              <div class="txt"><span class="highlight">您的訂閱</span></div>
+              <div class="date_time">
+                <p>
+                  <span class="memlevel">#{{subscribe.level_name}}</span>
+                </p>
+              </div>
+              <router-link to="/MyPage/MemSubscription" class="more">
+                <span class="text">查看訂閱</span>
+                <font-awesome-icon icon="fa-solid fa-angle-right" />
+              </router-link>
+            </div>
+          </div>
+        </section>
 
         <!-- 訂單紀錄 -->
         <OrderCard title="訂單紀錄" class="order">
@@ -133,7 +162,6 @@
 import { BASE_URL } from "@/assets/js/common.js";
 import BgTag from "@/components/mypage/BgTag.vue";
 import TypeTag from "@/components/mypage/TypeTag.vue";
-// import MemCard from "@/components/mypage/MemCard.vue";
 import SmallCard from "@/components/mypage/SmallCard.vue";
 import OrderCard from "@/components/mypage/OrderCard.vue";
 import OrdHisCard from "@/components/mypage/OrdHisCard.vue";
@@ -143,7 +171,6 @@ export default {
   components: {
     BgTag,
     TypeTag,
-    // MemCard,
     SmallCard,
     OrderCard,
     OrdHisCard,
@@ -155,14 +182,11 @@ export default {
       style:{},
       style_id:'', //是否風格測驗
       appointment_id : '', //是否預約
+      subscribe_id : '', //是否訂閱
     };
   },
   mounted(){
     this.getResource();
-
-    // this.axios.get('/api_server/memberInfo.php')
-    // .then(res => this.member = res.data)
-    // .catch(error =>console.log(error));
   },
   methods:{
     getResource() {
@@ -189,7 +213,7 @@ export default {
       this.axios.get(`${BASE_URL}/member_appointment.php`,{credentials: 'include'})
       // this.axios.get(`/api_server/member_appointment.php`)
     	.then(res => {
-        if(res.data.appointment_id){ //有預約紀錄
+        if(res.data.subscribe_id){ //有預約紀錄
           this.appointment = res.data;
           this.appointment_id = res.data.appointment_id;
         }else{ //無預約紀錄
@@ -197,17 +221,59 @@ export default {
         }
       })
 			.catch(error =>console.log(error));
+      
+      // 訂閱服務
+      this.axios.get(`${BASE_URL}/subscription.php`,{credentials: 'include'})
+      // this.axios.get(`/api_server/member_appointment.php`)
+    	.then(res => {
+        if(res.data.level_id){ //訂閱紀錄
+          this.subscribe = res.data;
+          this.subscribe_id = res.data.level_id;
+        }else{ //無訂閱紀錄
+          this.subscribe_id = '';
+        }
+      })
+			.catch(error =>console.log(error));
+    },
+    // 登出
+    Logout() {
+      fetch(`${BASE_URL}/logout.php`,{credentials:"include" })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          if (data.msg) {
+            this.$router.push({ path: "/login" });
+          } else {
+            alert(errMsg);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   }  
 };
 </script>
 <style lang="scss" scoped>
 
-.title {
+.welcome{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: $padding;
+  .title {
   font-size: 24px;
   color: #292929;
-  padding-bottom: $padding;
+  }
+  .btn_ns{
+    color: #fff;
+    @include m() {
+      display: none;
+    }
+  }
 }
+
 .more {
   display: flex;
   position: absolute;
@@ -322,6 +388,11 @@ export default {
           .time{
           font-weight: 700px;
           margin-inline: 10px;
+        }
+        .memlevel{
+          color:$main_color;
+          font-size: 32px;
+          font-weight: 700;
         }
         }
 

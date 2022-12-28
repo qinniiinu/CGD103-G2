@@ -6,8 +6,7 @@
 			<section class="maintain">
 				<div class="img_box">
 					<div class="mempic">
-						<img src="https://picsum.photos/300/200/?random=10">
-						<!-- <img :src="member.mem_pic" :alt="member.mem_name"> -->
+						<img :src="member.mem_pic" :alt="member.mem_name">
 						<button v-if="update" class="btn_s">更換頭貼</button>
 					</div>
 				</div>
@@ -52,7 +51,7 @@
 				</div>
 				<div class="deco">
 					<div class="btn_box">
-						<router-link :to="{ name:'MyPage'}"><button class="btn_nl">返回</button></router-link>
+						<router-link to="/MyPage"><button class="btn_nl">返回</button></router-link>
 						<button v-if="update" class="btn_ns" @click="save">儲存</button>
 						<button v-else class="btn_ns" @click="Ifupdate">修改</button>
 					</div>
@@ -126,13 +125,19 @@ export default {
 		},
 		getResource() {
 			this.axios.get(`${BASE_URL}/memberInfo.php`,{credentials: 'include'})
-			// this.axios.get('/api_server/memberInfo.php')
 			.then(res => {
 				this.member = res.data;
 				let date = new Date(res.data.bday);
 				this.member.bday_m = date.getMonth()+1;
 				this.member.bday_d = date.getDate();
 				this.member.bday_y = date.getFullYear();
+				// 會員圖片
+				if (res.data.mem_pic !== null) { // 有大頭照
+					this.member.mem_pic = res.data.mem_pic;
+				} else { // 無大頭照
+					this.member.mem_pic =
+					'https://tibamef2e.com/cgd103/g2/front/pic/default_mempic.jpg';
+				}
 			})
 			.catch(error =>console.log(error));
 			console.log(this.member);
