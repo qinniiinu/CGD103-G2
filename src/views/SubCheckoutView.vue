@@ -116,7 +116,7 @@ export default {
 			formData.append("sub_paid", this.subOrder[0].price);
 			formData.append("action", "subOrder");
 
-			fetch("/api_server/inserSubOrder.php", {
+			fetch(`${BASE_URL}/inserSubOrder.php`, {
 				method: "post",
 				body: formData,
 			})

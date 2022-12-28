@@ -139,7 +139,7 @@ export default {
 				this.submemInfo= response.data;
 				console.log(this.submemInfo);
 				if(this.submemInfo!==false && this.submemInfo.msg!=='請先登入'){ //有登入
-					this.axios.get("/api_server/subscription.php").then((response) => { //訂閱等級
+					this.axios.get(`${BASE_URL}/subscription.php`).then((response) => { //訂閱等級
 						this.subscribe= response.data;
 						console.log(this.subscribe);
 						//判斷有沒有訂閱
