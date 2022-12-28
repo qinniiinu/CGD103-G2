@@ -37,11 +37,6 @@ const routes = [
 		component: () => import("../views/FindStyleView.vue"),
 	},
 	{
-		path: "/test",
-		name: "test",
-		component: () => import("../views/TestView.vue"),
-	},
-	{
 		path: "/MulStylesView",
 		name: "MulStylesView",
 		component: () => import("../views/style/MulStylesView.vue"),

@@ -2,23 +2,17 @@
 import Slider from "@vueform/slider";
 
 import { BASE_URL } from "@/assets/js/common.js";
-import ProductMenu from "@/components/product/ProductMenu.vue";
 import BestSeller from "@/components/product/BestSeller.vue";
 import SearchBar from "@/components/product/SearchBar.vue";
-import ProductCard from "@/components/product/ProductCard.vue";
 import ProductSideMenu from "@/components/product/ProductSideMenu.vue";
-import HashTag from "@/components/product/HashTag.vue";
 import Breadcrumb from "@/components/product/Breadcrumb.vue";
 
 export default {
     name: "Product",
     components: {
-        ProductMenu,
         BestSeller,
         SearchBar,
-        ProductCard,
         ProductSideMenu,
-        HashTag,
         Breadcrumb,
         Slider,
     },

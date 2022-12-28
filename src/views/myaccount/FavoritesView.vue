@@ -24,12 +24,9 @@
 </template>
 <script>
 import { BASE_URL } from "@/assets/js/common.js";
-import ProductCard from "@/components/product/ProductCard.vue";
 export default {
     name: "Favorites",
-    components: {
-        ProductCard,
-    },
+    components: {},
     data() {
         return {
             product: [],
