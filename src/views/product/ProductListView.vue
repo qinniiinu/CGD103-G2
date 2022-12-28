@@ -2,23 +2,17 @@
 import Slider from "@vueform/slider";
 
 import { BASE_URL } from "@/assets/js/common.js";
-import ProductMenu from "@/components/product/ProductMenu.vue";
 import BestSeller from "@/components/product/BestSeller.vue";
 import SearchBar from "@/components/product/SearchBar.vue";
-import ProductCard from "@/components/product/ProductCard.vue";
 import ProductSideMenu from "@/components/product/ProductSideMenu.vue";
-import HashTag from "@/components/product/HashTag.vue";
 import Breadcrumb from "@/components/product/Breadcrumb.vue";
 
 export default {
     name: "Product",
     components: {
-        ProductMenu,
         BestSeller,
         SearchBar,
-        ProductCard,
         ProductSideMenu,
-        HashTag,
         Breadcrumb,
         Slider,
     },
@@ -222,7 +216,9 @@ export default {
                     />
                 </div>
                 <div v-if="product.length === 0" class="productCard_box">
-                    <p class="center">很抱歉，商品類別已售完。</p>
+                    <p class="center">
+                        <!-- {{ product.length }}很抱歉，商品類別已售完。 -->
+                    </p>
                 </div>
                 <div class="productCard_box">
                     <ProductCard
@@ -262,6 +258,7 @@ export default {
 .product_list {
     max-width: $max-width;
     margin: auto;
+    margin-bottom: 30px;
 
     .bestseller_box {
         @include xs() {

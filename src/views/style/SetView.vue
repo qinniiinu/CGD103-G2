@@ -28,14 +28,18 @@
 		</div>
 		<div class="product-item-info">
 				<div class="look-item">
-					<div class="look-item-product" v-for="(item,index) of productCombo" :key="index" >
-						<div class="look-item-pic"><img :src="`../pic/${item.product_pic}`" alt=""></div>
-						<div class="look-item-content">
-							<h3>{{item.product_name}}</h3>
-							<p>{{item.product_text}}</p>
-							<p>$NT{{item.unit_price}}</p>
+					<router-link :to="`/productDetails/${item.product_id}`"  v-for="(item,index) of productCombo" :key="index"> 
+						<div class="look-item-product"  >
+							
+								<div class="look-item-pic"><img :src="`../pic/${item.product_pic}`" alt=""></div>
+								<div class="look-item-content">
+									<h3>{{item.product_name}}</h3>
+									<p>{{item.product_text}}</p>
+									<p>$NT{{item.unit_price}}</p>
+								</div>
+							
 						</div>
-					</div>
+					</router-link> 
 				</div>
 				<div class="totalPrice">
 					<p>整套售價:$NT{{totalPrice}}</p>

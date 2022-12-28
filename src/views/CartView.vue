@@ -16,7 +16,7 @@
 					</ul>
 					<ul v-if="cart.length>0" class="order-list">
 						<li class="item" v-for="item in cart" :key="item.id">
-							<div class="item-left"><img :src="`/pic/${item.image}`" v-bind:alt="item.title"></div>
+							<div class="item-left"><img :src="`./pic/${item.image}`" v-bind:alt="item.title"></div>
 							<div class="item-right">
 								<div class="item-des">
 									<div>{{item.title}}</div>
@@ -36,14 +36,22 @@
 								
 							</div>
 						</li>
-						<div class="detail">
+						<div class="detail" v-if="subscribe !==false&&subscribe!=''">
 							<div>共 {{cart.length}} 種商品</div>
+							<div>{{subscribe.level_name}} 訂閱等級折扣: -${{total-distotal}}</div>
+							<div>總計: ${{distotal}}元</div>
+						</div>
+						<div class="detail" v-else>
+							<div>共 {{cart.length}} 種商品</div>
+							<div >尚無訂閱等級折扣</div>
+							<div>總計: ${{total}}元</div>
+						</div>
+							<!-- <div>共 {{cart.length}} 種商品</div>
 							<div v-if="this.subMemInfo!==false && this.subMemInfo.msg!=='請先登入' &&this.subscribe!==false">
 								{{subscribe.level_name}}訂閱等級折扣: -${{parseInt(total*(1-subscribe.discount))}}
 							</div>
 							<div v-else>尚無訂閱等級折扣</div>
-							<div>總計: ${{total}}元</div>
-						</div>
+							<div>總計: ${{total}}元</div> -->
 						<div class="nextbtn">
 							<router-link to="/ProductList" ><button>繼續逛逛</button></router-link>
 							<!-- <router-link to="/Checkout"><button @click="ifLogin()">去付款</button></router-link> -->
@@ -84,32 +92,48 @@ export default {
 	},
 	computed:{
 		total(){
-			if(this.cart.length>0){
-				let total=0;
-				if(this.subMemInfo!==false && this.subMemInfo.msg!=='請先登入'){
-					if(this.subscribe){
-						for(const index in this.cart){
-							total+=this.cart[index]['count']*this.cart[index]['price']*this.subscribe.discount
-						}
-						console.log(total);
-						return parseInt(total);
-					}else{
-						for(const index in this.cart){
-							total+=this.cart[index]['count']*this.cart[index]['price']
-						}
-						console.log(total);
-						return parseInt(total);
-					}
-				}else{
-					for(const index in this.cart){
-						total+=this.cart[index]['count']*this.cart[index]['price']
-						return parseInt(total);
-					}
-				}
-			}else{
-				return 0;
+			let total=0;
+			for(const index in this.cart){
+				total+=this.cart[index]['count']*this.cart[index]['price']
 			}
+			console.log(total);
+			return parseInt(total);
 		},
+		distotal(){
+			let distotal=0;
+			for(const index in this.cart){
+				distotal+=this.cart[index]['count']*this.cart[index]['price']*this.subscribe.discount
+			}
+			console.log(distotal);
+			return parseInt(distotal);
+		},
+		// total(){
+		// 	if(this.cart.length>0){
+		// 		let total=0;
+		// 		if(this.subMemInfo!==false && this.subMemInfo.msg!=='請先登入'){
+		// 			if(this.subscribe){
+		// 				for(const index in this.cart){
+		// 					total+=this.cart[index]['count']*this.cart[index]['price']*this.subscribe.discount
+		// 				}
+		// 				console.log(total);
+		// 				return parseInt(total);
+		// 			}else{
+		// 				for(const index in this.cart){
+		// 					total+=this.cart[index]['count']*this.cart[index]['price']
+		// 				}
+		// 				console.log(total);
+		// 				return parseInt(total);
+		// 			}
+		// 		}else{
+		// 			for(const index in this.cart){
+		// 				total+=this.cart[index]['count']*this.cart[index]['price']
+		// 				return parseInt(total);
+		// 			}
+		// 		}
+		// 	}else{
+		// 		return 0;
+		// 	}
+		// },
 	},
 	methods:{
 		setStorage(){
@@ -151,7 +175,7 @@ export default {
 				this.subMemInfo= response.data;
 				console.log(this.subMemInfo);
 				if(this.subMemInfo!==false && this.subMemInfo.msg!=='請先登入'){
-					this.axios.get("/api_server/subscription.php").then((response) => {
+					this.axios.get(`${BASE_URL}/subscription.php`).then((response) => {
 						this.subscribe= response.data;
 						console.log(this.subscribe);
 					});
@@ -201,7 +225,7 @@ h2{
 		}
 }
 .cart{
-	margin: auto;
+	// margin: auto;
 	h2{
 		font-size: 18px;
 		@include m{
@@ -211,7 +235,8 @@ h2{
 	.cart-wrap{
 		margin:20px;
 		@include m{
-			margin:50px 100px 100px 100px;
+			margin:15%;
+			margin-top: 50px;
 		}
 		.cart-title{
 			color: #777;
@@ -268,11 +293,11 @@ h2{
 					@include m{
 						flex-direction: row;
 						justify-content: flex-start;
-						width: 42%;
+						width: 50%;
 						font-size: 16px;
 					}
 					.item-des{
-						width: 100%;
+						width: 90%;
 						display: flex;
 						:first-child(){
 							min-width: 100px;
@@ -288,7 +313,7 @@ h2{
 						}
 					}
 					.item-p{
-						width: 100%;
+						width: 90%;
 						display: flex;
 						align-items: center;
 						:last-child>button{

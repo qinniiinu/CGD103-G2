@@ -1,17 +1,13 @@
 <script>
-import ProductMenu from "@/components/product/ProductMenu.vue";
-import ProductCard from "@/components/product/ProductCard.vue";
 import HashTag from "@/components/product/HashTag.vue";
 export default {
     name: "Product",
     components: {
-        ProductMenu,
-        ProductCard,
         HashTag,
     },
     data() {
         return {
-            count:[],
+            count: [],
             temp: {},
             bigPicture: "",
             pickedColor: "",
@@ -85,7 +81,7 @@ export default {
                     id: this.product_details.product_id,
                     color: this.pickedColor,
                     size: this.pickedSize,
-                    count:1
+                    count: 1,
                 };
                 // let cartItemKey = JSON.stringify(this.cartItem);
                 // if (localStorage.getItem(cartItemKey)) {
