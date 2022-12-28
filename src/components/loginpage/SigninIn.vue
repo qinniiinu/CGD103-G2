@@ -28,16 +28,16 @@
           <label for="mem_pwd" class="psw">密碼</label>
         </div>
         <div class="remember">
-          <label><input type="checkbox" />記住我</label>
-          <a class="forget_psw" href="#">忘記密碼?</a>
+          <!-- <label><input type="checkbox" />記住我</label> -->
+          <!-- <a class="forget_psw" href="#">忘記密碼?</a> -->
         </div>
         <button class="btn_s" type="submit">登入</button>
         <div class="social_plarform">
-          <p>or</p>
+          <!-- <p>or</p>
           <div class="social_icons">
             <a href="#">google 登入</a>
             <a href="#">line 登入</a>
-          </div>
+          </div> -->
         </div>
         <div class="signup">
           <router-link to="/Register" class="signup_link">
