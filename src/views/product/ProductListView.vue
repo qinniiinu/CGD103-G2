@@ -173,9 +173,11 @@ export default {
             });
         },
         getFavorite() {
-            this.axios.get(`${BASE_URL}/collect_prod.php`).then((response) => {
-                this.favorite = response.data;
-            });
+            this.axios
+                .get(`${BASE_URL}/collect_prod.php`, { credentials: "include" })
+                .then((response) => {
+                    this.favorite = response.data;
+                });
         },
         cut(x) {
             if (x) return x.split(",")[0];

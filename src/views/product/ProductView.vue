@@ -136,9 +136,11 @@ export default {
             });
         },
         getFavorite() {
-            this.axios.get(`${BASE_URL}/collect_prod.php`).then((response) => {
-                this.favorite = response.data;
-            });
+            this.axios
+                .get(`${BASE_URL}/collect_prod.php`, { credentials: "include" })
+                .then((response) => {
+                    this.favorite = response.data;
+                });
         },
         collchange(e) {
             e.coll = !e.coll;

@@ -28,13 +28,13 @@
               <li><router-link to="/WeeklyWear">一周穿搭</router-link></li>
             </ul>
           </li>
-          <li class="main_list">
+          <!-- <li class="main_list">
             <router-link to="/">風格牆</router-link>
             <ul class="sub">
               <li><router-link to="/">OOTD</router-link></li>
               <li><router-link to="/">我的OOTD</router-link></li>
             </ul>
-          </li>
+          </li> -->
           <li class="main_list">
             <router-link to="/subscription">穿搭訂閱</router-link>
             <ul class="sub">

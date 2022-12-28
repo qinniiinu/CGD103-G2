@@ -86,6 +86,7 @@ export default {
             this.$emit("clloectchange");
             fetch(`${BASE_URL}/collect_prodAdd.php`, {
                 method: "POST",
+                credentials: "include",
                 body: JSON.stringify({ id: this.id }),
             })
                 .then((response) => response.json())

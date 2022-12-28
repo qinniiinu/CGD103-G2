@@ -28,19 +28,7 @@
 							<li><router-link to="/ProductList">商品列表</router-link></li>
 							<li><router-link to="/FittingRoom">線上試衣間</router-link></li>
 							<li><router-link to="/WeeklyWear">一周穿搭</router-link></li>
-						</ul>
-					</li>
-				</div>
-				<div class="main_list_outside">
-					<li class="main_list">
-						<div class="main_list_box" tabindex="0">
-							<p class="bg_tag">#OOTD</p>
-							<p class="name">風格牆</p>
-							<div class="icon"><font-awesome-icon icon="fa-solid fa-plus" /></div>
-						</div>
-						<ul class="sub">
-							<li><router-link to="/">OOTD</router-link></li>
-							<li><router-link to="/">我的OOTD</router-link></li>
+							<li></li>
 						</ul>
 					</li>
 				</div>
@@ -54,6 +42,8 @@
 						<ul class="sub">
 							<li><router-link to="/">訂閱選擇</router-link></li>
 							<li><router-link to="/">訂閱說明</router-link></li>
+							<li></li>
+							<li></li>
 						</ul>
 					</li>
 				</div>
@@ -68,6 +58,7 @@
 							<li><a href="#">品牌精神</a></li>
 							<li><a href="#">廠商洽談</a></li>
 							<li><a href="#">FAQ</a></li>
+							<li></li>
 						</ul>
 					</li>
 				</div>
@@ -189,7 +180,8 @@
 								transition: all 0.5s;
 							}
 							@include m() {
-								width: 33.3333333%;
+								width: 0px;
+								flex-grow: 1;
 								text-align: left;
 							}
 							a {
@@ -202,7 +194,7 @@
 								}
 								@include m() {
 									display: inline-block;
-									width: 160px;
+									padding: 0 20px;
 									line-height: 60px;
 									margin: auto;
 									color: $main-color;
