@@ -149,14 +149,7 @@ const routes = [
 				path: "OrderHistory",
 				name: "OrderHistory",
 				component: () => import("../views/myaccount/OrderHistoryView.vue"),
-				// children: [ // 測試中 
-				// 	{
-				// 		path: ':orderId',
-				// 		name: "OrderHistoryDetail",
-				// 		component: () => import("../views/myaccount/OrderHistoryDetailView.vue"),
-				// 	},
-				// ]
-				// <!-- <router-link :to="{ name: 'OrderHistoryDetail', params: { orderId: e.order_id } }"> -->
+
 			},
 			{
 				path: "OrderHistoryDetail/:id",

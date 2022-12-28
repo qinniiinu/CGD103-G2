@@ -5,12 +5,12 @@
       <!-- 訂單紀錄容器盒 -->
       <div class="ord_condition_box">
         <!-- 右上角功能盒 -->
-        <select class="ord_sel" name="" id="">
+        <!-- <select class="ord_sel" name="" id="">
           <option>訂單狀態</option>
           <option>已出貨</option>
           <option>運送中</option>
           <option>尚未出貨</option>
-        </select>
+        </select> -->
         <div class="ham">
           <!-- 以下設定頁面切換 -->
           <font-awesome-icon
@@ -39,7 +39,7 @@
             <p>訂單編號</p>
           </li>
           <li class="ord_history_toplist_title">
-            <p>金額</p>
+            <p>訂單總額</p>
           </li>
           <li class="ord_history_toplist_title">
             <p>訂單狀態</p>
@@ -59,7 +59,7 @@
             :key="e[0].order_id"
             class="ord_history_content_word"
           >
-            <router-link :to="`/MyPage/OrderHistoryDetail/${id}`">
+            <router-link :to="`/MyPage/OrderHistoryDetail/${e[0].order_id}`">
               <ul class="content_row">
                 <li scope="row" class="ord_history_content">
                   {{ e[0].order_time }}
@@ -71,6 +71,7 @@
                   <p v-else-if="e[0].order_con == 2">商品配送中</p>
                   <p v-else>商品已送達</p>
                 </li>
+
                 <!-- 訂單狀態 -->
                 <li class="ord_history_content" id="Q">
                   <a class="transport_detail" href="">聯繫客服</a>
@@ -89,9 +90,7 @@
 
         <li v-for="item in orders" :key="item.order_id" class="item_num">
           <div class="item_num_row">
-            <div class="item_num_title">
-              訂單編號： {{ item[0].order_item_id }}
-            </div>
+            <div class="item_num_title">訂單編號： {{ item[0].order_id }}</div>
             <h2>
               <p v-if="item[0].order_con == 1">訂單取消</p>
               <p v-else-if="item[0].order_con == 2">商品配送中</p>
@@ -103,15 +102,19 @@
             <div class="page_photo_box">
               <div
                 class="item_page_photo"
-                v-for="e in product"
+                v-for="e in item"
                 :key="e.product_id"
               >
-                <img :src="`../pic/${cut(e.product_pic)}`" />
+                <img
+                  :src="`https://tibamef2e.com/cgd103/g2/front/pic/${cut(
+                    e.product_pic
+                  )}`"
+                />
               </div>
             </div>
 
             <div class="item_money">
-              <p>共{{ item[0].order_item_id }}件商品</p>
+              <p>共{{ item.length }}件商品</p>
               <h2>訂單金額 ${{ item[0].order_paid }}</h2>
             </div>
           </div>
@@ -211,13 +214,7 @@ export default {
     padding: 0%;
   }
 }
-body {
-  @include b() {
-    p {
-      font-size: 12px;
-    }
-  }
-}
+
 .Ordh_container {
   width: 100%;
   outline: solid 1px black;
@@ -240,9 +237,6 @@ body {
   cursor: pointer;
   margin: 10px;
   margin-right: 7%;
-  @include b() {
-    display: none;
-  }
 }
 
 .ord_history_box {
@@ -251,7 +245,9 @@ body {
   height: 50vh;
   margin: auto;
   padding-bottom: 10%;
-  overflow: scroll;
+  overflow: hidden;
+  overflow-y: scroll;
+
   scrollbar-width: auto;
   scrollbar-color: #4673fb #ffffff;
   &::-webkit-scrollbar {
@@ -269,13 +265,15 @@ body {
   @include b() {
     width: 100%;
     outline: none;
+    p {
+      font-size: 12px;
+    }
   }
 }
 .ord_history_toplist {
   display: flex;
   justify-content: center;
-  width: 80%;
-  padding-left: 10%;
+  width: 100%;
   @include b() {
     width: 100%;
     padding-left: 0%;
@@ -334,7 +332,7 @@ body {
   color: $secondary;
   @include font_set($second_font, $null, 900, italic);
   @include s() {
-    font-size: 56px;
+    font-size: 30px;
   }
   @include m() {
     font-size: 96px;
@@ -347,10 +345,23 @@ body {
 }
 
 .item_num {
-  width: 90%;
+  width: 100%;
   margin: 20px;
   background-color: $second_color;
-
+  overflow: scroll;
+  scrollbar-width: auto;
+  scrollbar-color: #4673fb #ffffff;
+  &::-webkit-scrollbar {
+    width: 14px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #4673fb;
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+  }
   .page_photo {
     display: flex;
     width: 100%;
@@ -363,6 +374,7 @@ body {
     .item_money {
       margin: 10px;
       text-align: right;
+      min-width: 200px;
       p {
         margin: 10px;
       }
@@ -379,7 +391,16 @@ body {
     overflow: hidden;
     padding: 20px;
     display: flex;
+    image {
+      @include b() {
+        display: block;
+      }
+    }
   }
+}
+
+.btn_l {
+  margin: 0;
 }
 
 .item_num_row {

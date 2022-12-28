@@ -359,7 +359,7 @@ button.btn_ml {
 }
 
 video {
-  width: 100%;
+  width: 110%;
 }
 
 .btn_ml {
@@ -387,7 +387,9 @@ video {
 video {
   position: absolute;
   top: 0;
-  right: 0;
+  @include b() {
+    width: 1700px;
+  }
 }
 
 .landing_page_photo {
@@ -402,6 +404,7 @@ video {
     align-content: center;
     height: 1200px;
     position: relative;
+
     .intro_container {
       width: 90%;
       display: flex;
@@ -431,14 +434,16 @@ video {
     padding-left: 5%;
     display: flex;
     align-items: flex-end;
-    min-width: 70vw;
+    min-width: 90vw;
     h2 {
       font-size: 5vw;
       font-weight: bold;
       color: aliceblue;
-      line-height: 20vh;
+      line-height: 15vh;
+
       @include b() {
-        line-height: 5vh;
+        line-height: 8vh;
+        font-size: 8vw;
       }
     }
     .textPart {
