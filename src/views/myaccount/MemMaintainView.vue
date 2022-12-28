@@ -130,7 +130,7 @@ export default {
 			.then(res => {
 				this.member = res.data;
 				let date = new Date(res.data.bday);
-				this.member.bday_m = date.getMonth();
+				this.member.bday_m = date.getMonth()+1;
 				this.member.bday_d = date.getDate();
 				this.member.bday_y = date.getFullYear();
 			})
