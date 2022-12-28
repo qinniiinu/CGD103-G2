@@ -3,6 +3,135 @@
     <!-- <BreadCrumbs></BreadCrumbs> -->
     <div class="title_box">
       <div class="img_box">
+        <img class="deco1" src="weeklywear_pic/deco01.png" />
+      </div>
+      <h1 class="title">一週穿搭公式<br/>讓你/妳有更多穿搭靈感</h1>
+      <div class="img_box">
+        <img class="deco2" src="weeklywear_pic/deco02.png" />
+      </div>
+    </div>
+
+    <section class="section_one">
+      <ul class="weekbox">
+        <template v-for="day in days" :key="day.name">
+          <li @click="day.selected = !day.selected">
+            <label :for="day.name">
+              <input
+                class="input"
+                type="radio"
+                :id="day.name"
+                v-model="picked"
+                :value="day.name"
+              />{{ day.name }}
+            </label>
+          </li>
+        </template>
+      </ul>
+      <div class="imgbox">
+        <transition name="slideDown">
+          <img class="img_left" v-bind:src="imageUrlGirl" :key="imageUrlGirl" />
+        </transition>
+
+        <transition name="slideUp">
+          <img class="img_right" v-bind:src="imageUrlBoy" :key="imageUrlBoy" />
+        </transition>
+      </div>
+
+      <div class="bgpic">
+        <div class="line"></div>
+        <img class="bg_right" src="weeklywear_pic/bg_blue.png" alt="背景圖" />
+        <img class="bg_left" src="weeklywear_pic/bg_blue.png" alt="背景圖" />
+      </div>
+    </section>
+
+    <section class="section_two">
+      <h2 class="subtitle">利用多層次搭配，即使是寒冷季節也能穿出輕盈感</h2>
+      <p class="text">
+        輕盈溫暖的夾層外套，本季依然大受歡迎。
+        衣寬恰到好處，內搭針織上衣也不顯臃腫，
+        適合搭配各種下半身單品的衣長設計更是加分。
+        能穿出高品味的優美色調，搭配白色讓冬季造型也擁有輕快氣息。
+      </p>
+      <div class="line_second"></div>
+      <div class="box_videonpic">
+        <div class="videobox">
+          <div
+            style="
+              width: 100%;
+              height: 0px;
+              position: relative;
+              padding-bottom: 189.947%;
+            "
+          >
+            <iframe
+              src="https://streamable.com/e/n1flxb?autoplay=1&nocontrols=1"
+              frameborder="0"
+              width="100%"
+              height="100%"
+              allowfullscreen
+              allow="autoplay"
+              style="
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                overflow: hidden;
+              "
+            ></iframe>
+          </div>
+        </div>
+        <img class="img_female" src="weeklywear_pic/female.jpg" alt="女裝" />
+      </div>
+    </section>
+
+    <section class="section_two">
+      <h2 class="subtitle">利用多層次搭配，即使是寒冷季節也能穿出輕盈感</h2>
+      <p class="text">
+        輕盈溫暖的夾層外套，本季依然大受歡迎。
+        衣寬恰到好處，內搭針織上衣也不顯臃腫，
+        適合搭配各種下半身單品的衣長設計更是加分。
+        能穿出高品味的優美色調，搭配白色讓冬季造型也擁有輕快氣息。
+      </p>
+      <div class="line_second"></div>
+      <div class="box_videonpic">
+        <div class="videobox">
+          <div
+            style="
+              width: 100%;
+              height: 0px;
+              position: relative;
+              padding-bottom: 189.947%;
+            "
+          >
+            <iframe
+              src="https://streamable.com/e/6fcuis?autoplay=1&nocontrols=1"
+              frameborder="0"
+              width="100%"
+              height="100%"
+              allowfullscreen
+              allow="autoplay"
+              style="
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                overflow: hidden;
+              "
+            ></iframe>
+          </div>
+        </div>
+        <img class="img_female" src="weeklywear_pic/male.jpg" alt="男裝" />
+      </div>
+    </section>
+  </div>
+</template>
+<!--原檔案 -->
+<!-- <template>
+  <div class="weeklywear">
+    <div class="title_box">
+      <div class="img_box">
         <img class="deco1" src="./weeklywear_pic/deco01.png" />
       </div>
       <h1 class="title">一週穿搭公式<br />讓你/妳有更多穿搭靈感</h1>
@@ -126,7 +255,7 @@
       </div>
     </section>
   </div>
-</template>
+</template> -->
  
 <script>
 import BreadCrumbs from "@/components/BreadCrumbs.vue";

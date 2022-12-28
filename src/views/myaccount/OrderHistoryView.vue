@@ -112,7 +112,7 @@
 
             <div class="item_money">
               <p>共{{ item[0].item_product }}件商品</p>
-              <h2>訂單金額 ${{ item[0].total }}</h2>
+              <h2>訂單金額 ${{ item[0].unit_price }}</h2>
             </div>
           </div>
         </li>
