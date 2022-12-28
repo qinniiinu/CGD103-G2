@@ -59,9 +59,9 @@
                 <router-link to="/Cart">
                     <font-awesome-icon icon="fa-solid fa-cart-shopping" />
                 </router-link>
-                <router-link to="" class="login" @click="CheckIfLogin">
+                <div class="login" @click="CheckIfLogin">
                     <font-awesome-icon icon="fa-solid fa-user"/>
-                </router-link>
+                </div>
                 <!-- <router-link to="/login">
                     <font-awesome-icon icon="fa-solid fa-user"/>
                 </router-link> -->
@@ -83,6 +83,7 @@ export default {
     CheckIfLogin() {
         fetch(`${BASE_URL}/If_Login.php`, {
         method: "get",
+        credentials: 'include',
         })
         .then((response) => {
         return response.json();
@@ -209,10 +210,15 @@ export default {
             }
 
             .main_nav_icon {
+                display: flex;
                 @include s() {
                     text-align: right;
+                    justify-content: right;
                     // outline: 1px solid red;
                     flex-grow: 1;
+                }
+                .login{
+                    cursor: pointer;
                 }
             }
 
