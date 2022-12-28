@@ -76,6 +76,7 @@ export default {
       // fetch(`/api_server/login.php`, {
       fetch(`${BASE_URL}/login.php`, {
         method: "post",
+        credentials: 'include',
         body: formData,
       })
         .then((response) => {

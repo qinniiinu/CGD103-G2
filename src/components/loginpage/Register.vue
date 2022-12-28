@@ -357,6 +357,7 @@ export default {
             fetch(`${BASE_URL}/register.php`, {
             // fetch("/api_server/register.php", {
                 method: "post",
+                credentials: 'include',
                 body: formData,
             })
                 .then((response) => {
@@ -401,6 +402,7 @@ export default {
                 fetch(`${BASE_URL}/register.php`, {
                 // fetch("/api_server/register.php", {
                     method: "post",
+                    credentials: 'include',
                     body: formData,
                 })
                     .then((response) => {

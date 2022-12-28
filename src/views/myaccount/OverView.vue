@@ -166,7 +166,8 @@ export default {
   },
   methods:{
     getResource() {
-			this.axios.get(`${BASE_URL}/memberInfo.php`,        {credentials: 'include'})
+			this.axios.get(`${BASE_URL}/memberInfo.php`,
+      {credentials: 'include'})
 			// this.axios.get('/api_server/memberInfo.php')
     	.then(res => {
 			this.member = res.data
