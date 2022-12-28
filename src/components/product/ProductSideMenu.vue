@@ -3,13 +3,18 @@
         <p class="block">服飾總覽</p>
         <div class="ProductSideMenu">
             <div v-for="item in main_list" :key="item.id" class="main">
-                <label :for="item.id">
+                <label
+                    :for="item.id"
+                    @click="$router.push(`/productlist?G=${item.id}`)"
+                >
                     <div class="left_right">
-                        <p>{{ item.sex }}</p>
+                        <p :class="{ blod: $route.query.G === item.id }">
+                            {{ item.sex }}
+                        </p>
                         <p>
                             <font-awesome-icon
                                 icon="fa-solid fa-plus"
-                                v-show="find(item.sex) != item.sex"
+                                v-show="find(item.id) != item.id"
                             />
                         </p>
                     </div>
@@ -17,18 +22,33 @@
                 <input
                     type="checkbox"
                     :id="item.id"
-                    :value="item.sex"
+                    :value="item.id"
                     v-model="main"
                 />
                 <div
-                    v-show="find(item.sex) == item.sex"
+                    v-show="find(item.id) == item.id"
                     class="sub_list"
                     v-for="e in item.list"
                     :key="e.id"
                 >
-                    <label :for="e.id">
+                    <label
+                        :for="e.id"
+                        @click="
+                            $router.push(
+                                `/productlist?G=${item.id}&M=${e.id.slice(1)}`
+                            )
+                        "
+                    >
                         <div class="left_right">
-                            <p>{{ e.name }}</p>
+                            <p
+                                :class="{
+                                    blod:
+                                        $route.query.M === e.id.slice(1) &&
+                                        $route.query.G === item.id,
+                                }"
+                            >
+                                {{ e.name }}
+                            </p>
                             <p>
                                 <font-awesome-icon
                                     icon="fa-solid fa-plus"
@@ -48,30 +68,52 @@
                         v-for="(item3, index) in e.sub_list"
                         :key="index"
                         v-show="openList(e.id)"
+                        @click="
+                            $router.push(
+                                `/productlist?G=${item.id}&M=${e.id.slice(
+                                    1
+                                )}&T=${item3.name}`
+                            )
+                        "
                     >
-                        <p>{{ item3.name }}</p>
+                        <p
+                            :class="{
+                                blod: $route.query.T === item3.name,
+                            }"
+                        >
+                            {{ item3.name }}
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-        <p class="block">尺寸</p>
+        <!-- <p class="block">尺寸</p>
         <i>XS</i>
         <i>S</i>
         <i>M</i>
         <i>L</i>
-        <i>XL</i>
+        <i>XL</i> -->
         <p class="block">價格區間</p>
-        <p class="block">#HashTag</p>
+        <!-- <Slider
+            v-model="value"
+            class="slider-blue"
+            :format="format"
+            :max="5000"
+            @change="$emit('price', value)"
+        /> -->
     </div>
 </template>
 <script>
+import router from "@/router";
+
+// import Slider from "@vueform/slider";
 const productside = [
     {
-        id: "W",
-        sex: "女",
+        id: "0",
+        sex: "女裝",
         list: [
             {
-                id: "Wtop",
+                id: "0上身",
                 name: "上身",
                 sub_list: [
                     { name: "短袖" },
@@ -80,7 +122,7 @@ const productside = [
                 ],
             },
             {
-                id: "Wdown",
+                id: "0下身",
                 name: "下身",
                 sub_list: [
                     { name: "短褲" },
@@ -89,7 +131,7 @@ const productside = [
                 ],
             },
             {
-                id: "Wshoes",
+                id: "0鞋款",
                 name: "鞋款",
                 sub_list: [
                     { name: "皮鞋" },
@@ -98,18 +140,18 @@ const productside = [
                 ],
             },
             {
-                id: "Wother",
+                id: "0配件",
                 name: "配件",
                 sub_list: [{ name: "包款" }, { name: "配件" }],
             },
         ],
     },
     {
-        id: "F",
-        sex: "男",
+        id: "1",
+        sex: "男裝",
         list: [
             {
-                id: "Ftop",
+                id: "1上身",
                 name: "上身",
                 sub_list: [
                     { name: "短袖" },
@@ -118,17 +160,17 @@ const productside = [
                 ],
             },
             {
-                id: "Fdown",
+                id: "1下身",
                 name: "下身",
                 sub_list: [{ name: "短褲" }, { name: "長褲" }],
             },
             {
-                id: "Fshoes",
+                id: "1鞋款",
                 name: "鞋款",
                 sub_list: [{ name: "皮鞋" }, { name: "運動鞋" }],
             },
             {
-                id: "Fother",
+                id: "1配件",
                 name: "配件",
                 sub_list: [{ name: "包款" }, { name: "配件" }],
             },
@@ -137,13 +179,18 @@ const productside = [
 ];
 export default {
     name: "ProductMenu",
-    data() {
-        return {
-            main_list: productside,
-            main: [],
-            sub: [],
-        };
-    },
+    // components: { Slider },
+
+    data: () => ({
+        // value: [20, 4000],
+        // format: {
+        //     prefix: "$",
+        // },
+
+        main_list: productside,
+        main: [],
+        sub: [],
+    }),
     methods: {
         openList(X) {
             let cc = false;
@@ -160,9 +207,24 @@ export default {
             return this.main.find((e) => e == X);
         },
     },
+    mounted() {
+        if (this.$route.query.G) {
+            this.main[0] = this.$route.query.G;
+            if (this.$route.query.M)
+                this.sub[0] = `${this.main[0]}${this.$route.query.M}`;
+        }
+    },
 };
 </script>
 <style lang="scss" scoped>
+// .slider-blue {
+//     --slider-connect-bg: #495bff;
+//     --slider-tooltip-bg: #495bff;
+//     --slider-handle-ring-color: #3b82f630;
+//     margin: 50px 10px 0;
+// }
+// @import url(@vueform/slider/themes/default.scss);
+
 .outside {
     @include s() {
         display: none;
@@ -198,6 +260,12 @@ export default {
             .sub_list {
                 padding-left: 20px;
             }
+        }
+        p {
+            cursor: pointer;
+        }
+        p.blod {
+            color: $text_color;
         }
     }
 

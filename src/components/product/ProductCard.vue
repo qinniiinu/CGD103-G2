@@ -26,7 +26,8 @@
     .box {
         margin: 5px;
         border: $line solid $title_color;
-        aspect-ratio: 1/1;
+        aspect-ratio: 1 /1;
+        overflow: hidden;
         position: relative;
         .icon {
             position: absolute;
@@ -42,7 +43,8 @@
         img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
+            object-position: center;
         }
     }
     p {
@@ -52,6 +54,12 @@
         padding: 5px;
         @include m() {
             font-size: 20px;
+        }
+    }
+    p.price {
+        font-size: 12px;
+        @include m() {
+            font-size: 16px;
         }
     }
 }

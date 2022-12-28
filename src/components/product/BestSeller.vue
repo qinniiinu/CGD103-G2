@@ -73,7 +73,7 @@ export default {
     z-index: -1;
 }
 .swiper.disp {
-    @include m() {
+    @include ss() {
         display: none;
     }
 }

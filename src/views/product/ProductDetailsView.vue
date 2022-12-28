@@ -96,6 +96,9 @@ export default {
         },
     },
     methods: {
+        collchange(e) {
+            e.coll = !e.coll;
+        },
         color_arr() {
             const X = this.color;
             const Y = this.color_name;
@@ -239,7 +242,9 @@ export default {
                         :key="i"
                         @click="changeBicPicture(e)"
                     >
-                        <img :src="`/pic/${e}`" />
+                        <img
+                            :src="`https://tibamef2e.com/cgd103/g2/front/pic/${e}`"
+                        />
                     </div>
                 </div>
                 <!-- {{ colorArr }} -->
