@@ -2,7 +2,7 @@
     <p class="title">我的風格</p>
     <div class="data">
         <!-- 有測驗紀錄 -->
-        <div class="wrap" v-if="typeof style_id === 'number'">
+        <div class="wrap" v-if="typeof style_id === 'string'">
             <section class="style">
                 <div class="item">
                     <p>屬於:</p>
@@ -50,6 +50,7 @@
         </div>
         <!-- 無測驗紀錄 -->
         <div class="no_style" v-else>
+            {{style_id}}
             <div class="item">
                 <h3 class="txt_box">尚未測驗</h3>
                 <div class="btn_box">
@@ -88,6 +89,7 @@ export default {
             if (x) return x.split(",")[0];
         },
         getResource() {
+            console.log("store",this.$store.state.user.mem_id);
             const data = {
                 mem_id: this.$store.state.user.mem_id,
             };
@@ -97,10 +99,11 @@ export default {
             })
                 .then((res) => res.json())
                 .then((json) => {
+                    // console.log(typeof json.style_id);
                     this.info = json;
                     this.style_id = json.style_id;
                     // 判斷是否有測驗紀錄
-                    if (typeof json.style_id === "number") {
+                    if (typeof json.style_id === "string") {
                         this.getRecommend();
                         this.getComboRecommend();
                     }
