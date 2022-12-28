@@ -1,5 +1,5 @@
 <template>
-  <input type="checkbox" name="" id="menu-switch" />
+  <input type="checkbox" name="" id="menu-switch" v-model="check" />
   <header>
     <div class="header_box">
       <!-- logo -->
@@ -10,7 +10,7 @@
       <nav class="main_nav">
         <ul class="main">
           <li class="main_list">
-            <router-link to="/FindStyle">找風格</router-link>
+            <router-link to="/FindStyle" @click="check=false">找風格</router-link>
             <ul class="sub">
               <li><router-link to="/MulStyles">風格穿搭</router-link></li>
               <li><router-link to="/Wearing">穿搭列表</router-link></li>
@@ -19,7 +19,7 @@
             </ul>
           </li>
           <li class="main_list">
-            <router-link to="/product">逛商品</router-link>
+            <router-link to="/product" @click="check=false">逛商品</router-link>
             <ul class="sub">
               <li><router-link to="/ProductList">商品列表</router-link></li>
               <li>
@@ -36,14 +36,14 @@
             </ul>
           </li> -->
           <li class="main_list">
-            <router-link to="/subscription">穿搭訂閱</router-link>
+            <router-link to="/subscription" @click="check=false">穿搭訂閱</router-link>
             <ul class="sub">
               <li><router-link to="/">訂閱選擇</router-link></li>
               <li><router-link to="/">訂閱說明</router-link></li>
             </ul>
           </li>
           <li class="main_list">
-            <router-link to="/about">關於我們</router-link>
+            <router-link to="/about" @click="check=false">關於我們</router-link>
             <ul class="sub">
               <li><router-link to="/about">品牌精神</router-link></li>
               <li>
@@ -77,6 +77,11 @@
 <script>
 import { BASE_URL } from "@/assets/js/common.js";
 export default {
+  data(){
+    return{
+      check:false,
+    }
+  },
   methods: {
     CheckIfLogin() {
       fetch(`${BASE_URL}/If_Login.php`, {
