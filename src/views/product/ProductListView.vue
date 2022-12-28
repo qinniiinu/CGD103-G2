@@ -222,7 +222,9 @@ export default {
                     />
                 </div>
                 <div v-if="product.length === 0" class="productCard_box">
-                    <p class="center">很抱歉，商品類別已售完。</p>
+                    <p class="center">
+                        <!-- {{ product.length }}很抱歉，商品類別已售完。 -->
+                    </p>
                 </div>
                 <div class="productCard_box">
                     <ProductCard
@@ -262,6 +264,7 @@ export default {
 .product_list {
     max-width: $max-width;
     margin: auto;
+    margin-bottom: 30px;
 
     .bestseller_box {
         @include xs() {
