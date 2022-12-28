@@ -33,15 +33,15 @@ export default {
 </script>
 <style lang="scss" scoped>
 .left_right {
-    padding: 10px;
+    padding: 10px 10px 10px 0;
     gap: 10px;
     justify-content: flex-end;
     .search {
         max-width: 250px;
-        min-width: 150px;
         position: relative;
         input {
             width: 100%;
+            min-width: 100px;
             height: 30px;
             border: $line solid $title_color;
         }

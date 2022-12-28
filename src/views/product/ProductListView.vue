@@ -1,4 +1,6 @@
 <script>
+import Slider from "@vueform/slider";
+
 import { BASE_URL } from "@/assets/js/common.js";
 import ProductMenu from "@/components/product/ProductMenu.vue";
 import BestSeller from "@/components/product/BestSeller.vue";
@@ -18,14 +20,22 @@ export default {
         ProductSideMenu,
         HashTag,
         Breadcrumb,
+        Slider,
     },
     data() {
         return {
-            sortinput: "",
-            searchinput: "",
+            searchVal: "",
+            sortVal: "",
+
             tmp: [],
             product: [],
+            result: [],
             favorite: [],
+            value: [1, 5000],
+            format: {
+                prefix: "$",
+                decimals: 0,
+            },
         };
     },
     computed: {
@@ -66,10 +76,28 @@ export default {
     },
     watch: {
         $route: function () {
-            this.getResource();
+            this.product = this.tmp;
+            this.searchVal = this.sortVal = "";
+            this.value = [1, 5000];
+            this.resultproduct();
+            this.price_filter();
+        },
+        value: function () {
+            this.price_filter();
+            this.sort(this.sortVal);
         },
     },
     methods: {
+        price_filter() {
+            this.result = this.product.filter((e) => {
+                if (
+                    e.unit_price >= this.value[0] &&
+                    e.unit_price <= this.value[1]
+                ) {
+                    return e;
+                }
+            });
+        },
         search(val) {
             const query_current = location.search;
 
@@ -86,17 +114,16 @@ export default {
         },
         sort(val) {
             if (val == "StoB") {
-                this.product = this.product.sort(function (a, b) {
+                this.result = this.result.sort(function (a, b) {
                     return a.unit_price - b.unit_price;
                 });
-            } else {
-                this.product = this.product.sort(function (a, b) {
+            } else if (val == "BtoS") {
+                this.result = this.result.sort(function (a, b) {
                     return b.unit_price - a.unit_price;
                 });
             }
         },
         resultproduct() {
-            this.scrollBlock();
             let result = this.tmp;
             if (this.$route.query.G) {
                 this.product = this.product.filter((e) => {
@@ -142,6 +169,7 @@ export default {
                 });
                 this.product = this.tmp;
                 this.resultproduct();
+                this.price_filter();
             });
         },
         getFavorite() {
@@ -166,22 +194,34 @@ export default {
     <div class="product_list">
         <ProductMenu />
         <div class="left_right bestseller_box">
-            <img src="@/assets/product/bestseller_01.jpg" alt="" />
             <img src="@/assets/product/bestseller_02.jpg" alt="" />
+            <img src="@/assets/product/bestseller_01.jpg" alt="" />
         </div>
         <BestSeller />
         <div class="divider"></div>
         <div class="leftright">
             <div class="Sidebar">
-                <ProductSideMenu></ProductSideMenu>
-                <HashTag></HashTag>
+                <ProductSideMenu @price="price_filter(val)"></ProductSideMenu>
+                <Slider
+                    v-model="value"
+                    class="slider-blue"
+                    :format="format"
+                    :max="5000"
+                />
             </div>
             <div id="list">
-                <div class="leftright space_between">
+                <div class="leftright space_between .mb_30">
                     <Breadcrumb :arr="bread"></Breadcrumb>
-                    <SearchBar @update:searchVal="search" @update:sort="sort" />
+                    <SearchBar
+                        v-model:searchVal="searchVal"
+                        v-model:sort="sortVal"
+                        @update:searchVal="search"
+                        @update:sort="sort"
+                    />
                 </div>
-
+                <div v-if="product.length === 0" class="productCard_box">
+                    <p class="center">很抱歉，商品類別已售完。</p>
+                </div>
                 <div class="productCard_box">
                     <ProductCard
                         :id="e.product_id"
@@ -190,7 +230,7 @@ export default {
                         :imgURL="cut(e.product_pic)"
                         :clloect="e.coll"
                         @clloectchange="collchange(e)"
-                        v-for="e in product"
+                        v-for="e in result"
                         :key="e.product_id"
                     />
                 </div>
@@ -200,15 +240,32 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.productMenuOutside {
+    @include m() {
+        display: none;
+    }
+}
+.slider-blue {
+    --slider-connect-bg: #495bff;
+    --slider-tooltip-bg: #495bff;
+    --slider-handle-ring-color: #3b82f630;
+    margin: 50px 20px 0;
+}
+@import url(@vueform/slider/themes/default.scss);
+.Sidebar {
+    @include s() {
+        display: none;
+    }
+}
 .product_list {
     max-width: $max-width;
     margin: auto;
 
     .bestseller_box {
-        @include s() {
+        @include xs() {
             display: none;
         }
-        @include m() {
+        @include ss() {
             & > img {
                 width: 50%;
             }
@@ -234,10 +291,21 @@ export default {
             align-items: flex-start;
             & > * {
                 @include s() {
+                    width: 33.333333%;
+                }
+                @include xs() {
                     width: 50%;
                 }
+
                 @include m() {
                     width: 33.333333%;
+                }
+                @include xl() {
+                    width: 25%;
+                }
+                .center {
+                    text-align: center;
+                    width: 100%;
                 }
             }
         }
@@ -251,9 +319,11 @@ export default {
 
 .space_between {
     justify-content: space-between;
-    flex-wrap: wrap;
 }
 .searchbar {
     align-items: flex-end;
+}
+.mb_30 {
+    padding-bottom: 30px;
 }
 </style>
