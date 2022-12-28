@@ -43,9 +43,11 @@ export default {
             if (x) return x.split(",")[0];
         },
         getResource() {
-            this.axios.get(`${BASE_URL}/favorlist.php`).then((response) => {
-                this.product = response.data;
-            });
+            this.axios
+                .get(`${BASE_URL}/favorlist.php`, { credentials: "include" })
+                .then((response) => {
+                    this.product = response.data;
+                });
             this.product.forEach((e) => {
                 e.coll = false;
             });
