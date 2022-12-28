@@ -1,9 +1,13 @@
-
 <?php
-    // //跨域(正式開發不能這樣)
-    header('Access-Control-Allow-Origin:*');
-    header("Content-Type:application/json;charset=UTF-8");
     session_start();
+    $Origin = isset($_SERVER['HTTP_ORIGIN'])?$_SERVER['HTTP_ORIGIN']:"*"; 
+    // 如果$origin为*号时,则跨域访问不支持cookie的发送
+    header("Access-Control-Allow-Origin: {$Origin}");           
+    // 允许请求的类型
+    header("Access-Control-Allow-Methods:POST,GET,OPTIONS");    
+    // 跨域访问是否允许带cookie的发送
+    header("Access-Control-Allow-Credentials:true");
+    header("Content-Type:application/json;charset=UTF-8");
 try {
     require_once("../connectBooks.php");
     $sql = "select * from `member` where mem_mail=:mem_mail and mem_pwd=:mem_pwd;";
@@ -27,7 +31,6 @@ try {
 
             //將登入者的資料寫入session
             $_SESSION['member'] = $memRow;
-    
             // 將會員資料輸出為 JSON 格式
             echo json_encode($memRow);
             // exit();
@@ -42,7 +45,4 @@ try {
     $errMsg .= "行號 : ".$e -> getLine()."<br>";
     echo json_encode(["msg"=>$errMsg]);
 }
- //使用 filter_input 函數來確保輸入資料的安全性。
-// $mem_mail = filter_input(INPUT_POST, 'mem_mail', FILTER_SANITIZE_EMAIL);
-// 這樣可以過濾掉不合法的電子郵件格式。
 ?>

@@ -166,7 +166,7 @@ export default {
   },
   methods:{
     getResource() {
-			this.axios.get(`${BASE_URL}/memberInfo.php`)
+			this.axios.get(`${BASE_URL}/memberInfo.php`,        {credentials: 'include'})
 			// this.axios.get('/api_server/memberInfo.php')
     	.then(res => {
 			this.member = res.data
@@ -174,7 +174,7 @@ export default {
 					this.style_id = this.member.style_id;
           let formData = new FormData();
           formData.append('style_id',this.member.style_id);
-					this.axios.post(`${BASE_URL}/getmem_style.php`,formData)
+					this.axios.post(`${BASE_URL}/getmem_style.php`,formData,{credentials: 'include'})
 					// this.axios.get(`/api_server/mem_style.php`)
 					.then((res) => this.style = res.data)
 					.catch(error =>console.log(error));
@@ -185,7 +185,7 @@ export default {
 			.catch(error =>console.log(error));
 
       // 諮詢紀錄
-      this.axios.get(`${BASE_URL}/member_appointment.php`)
+      this.axios.get(`${BASE_URL}/member_appointment.php`,{credentials: 'include'})
       // this.axios.get(`/api_server/member_appointment.php`)
     	.then(res => {
         if(res.data.appointment_id){ //有預約紀錄
