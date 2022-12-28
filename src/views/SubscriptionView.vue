@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import { BASE_URL } from "@/assets/js/common.js";
+
 export default {
     name: "Subscription",
     components: {
@@ -92,16 +94,16 @@ export default {
         },
         getResource() {
             // 訂閱等級卡片
-            this.axios.get("/api_server/vip_level.php").then((response) => {
+            this.axios.get(`${BASE_URL}/vip_level.php`).then((response) => {
                 this.vip_level= response.data;
 				// console.log(this.vip_level);
             });
-            this.axios.get("/api_server/subMemInfo.php").then((response) => { //會員的資料
+            this.axios.get(`${BASE_URL}subMemInfo.php`).then((response) => { //會員的資料
 				console.log(response.data);
 				this.submemInfo= response.data;
 				// console.log(this.submemInfo);
 				if(this.submemInfo!==false && this.submemInfo.msg!=='請先登入'){ //確定有登入
-					this.axios.get("/api_server/subscription.php").then((response) => { //確認訂閱等級
+					this.axios.get(`${BASE_URL}/subscription.php`).then((response) => { //確認訂閱等級
 						this.subscribe= response.data;
 						// console.log(this.subscribe);
 					});

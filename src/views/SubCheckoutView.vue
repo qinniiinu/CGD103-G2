@@ -81,6 +81,7 @@
 </template>
 
 <script>
+import { BASE_URL } from "@/assets/js/common.js";
 export default {
 	name: "SubCheckoutView",
 	components: {
@@ -152,11 +153,11 @@ export default {
             console.log(this.subOrder);
         },
 		getResource() {
-            this.axios.get("/api_server/subMemInfo.php").then((response) => {
+            this.axios.get(`${BASE_URL}/subMemInfo.php`).then((response) => {
                 this.subMemInfo= response.data;
 				console.log(this.subMemInfo);
             });
-			this.axios.get("/api_server/vip_level.php").then((response) => {
+			this.axios.get(`${BASE_URL}/vip_level.php`).then((response) => {
                 this.vip_level= response.data;
 				console.log(this.vip_level);
             });
