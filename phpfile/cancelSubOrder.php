@@ -12,7 +12,7 @@
     header("Content-Type:application/json;charset=utf-8");
     try{
         require_once("../connectBooks.php");
-        $sql = "UPDATE vip_orders SET level_id=NULL,sub_deadline=CURRENT_TIMESTAMP()
+        $sql = "UPDATE vip_orders SET mem_id=NULL,sub_deadline=CURRENT_TIMESTAMP()
         WHERE sub_id=:sub_id;";
 
         // $sub_id = $_SESSION['subscribe']['sub_id'];

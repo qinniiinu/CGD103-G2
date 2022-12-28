@@ -46,7 +46,7 @@
 				<div class="items">
 				<div class="item" v-for="i in order" :key="i">
 					<div class="product">
-						<img :src="`/pic/${i.image}`" v-bind:alt="i.title">
+						<img :src="`./pic/${i.image}`" v-bind:alt="i.title">
 						<div class="prod-detail">
 							<p>{{i.title}}</p>
 							<div class="spec">
