@@ -5,20 +5,13 @@
         <font-awesome-icon class="icon" icon="fa-solid fa-arrow-right" />
       </span>
     </button>
+
     <div class="asideBar" :class="`${is_expanded ? 'is-expanded' : ''}`">
       <!-- 側邊欄 -->
 
       <div class="menu-toggle-wrap">
         <!-- 側邊欄按鍵 -->
 
-        <div class="titleBox">
-          <h1>退換貨須知</h1>
-          <h2>購物問題</h2>
-          <h2>取消訂閱</h2>
-          <h2>確認衣物</h2>
-          <h2>合作店面</h2>
-          <h2>聯絡方式</h2>
-        </div>
         <div class="titleBox">
           <h1>退換貨須知</h1>
           <h2>購物問題</h2>
@@ -284,6 +277,7 @@ button {
   border-radius: 50px;
   width: 50px;
   height: 50px;
+  margin-top: 7vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -295,10 +289,10 @@ button {
   border: 0;
   cursor: pointer;
   transition: all 0.5 ease-in-out;
-  //   display: none;
-  //   @include b() {
-  //     display: block;
-  //   }
+  display: none;
+  @include b() {
+    display: block;
+  }
 }
 .data {
   display: flex;
@@ -307,59 +301,58 @@ button {
   max-width: 1200px;
 }
 
-.is-expanded {
-  width: 20%;
+.icon {
+  transition: all 0.5 ease-in-out;
+  transform: rotate(-180deg);
+}
 
+.is-expanded {
   transition: all 0.5 ease-in-out;
 
   .menu-toggle-wrap {
     top: -3rem;
-    min-width: 900px;
+    display: none;
 
     // color: $second_color;
     // background-color: $second_color;
-
-    .icon {
-      color: $second_color;
-      transform: rotate(-180deg);
-      // color:$second_color ;
-      transition: all 0.5 ease-in-out;
-    }
   }
 }
 
 .asideBar {
-  min-width: 300px;
   position: absolute;
   height: 800px;
   transition: 1s ease-out;
-  //   background-color: $second_color;
   overflow: hidden;
-  //   @include b() {
-  //     display: none;
-  //   }
-  .titleBox {
-    min-width: 300px;
-    width: 100%;
-    margin-top: 3rem;
-
-    h1 {
-      font-size: 30px;
-      font-weight: bold;
-      text-align: center;
-      margin-right: 60px;
-    }
-    h2 {
-      margin-left: 4rem;
-      font-size: 18px;
-      margin: 30px;
-      text-align: center;
-    }
+  background-color: transparent;
+  @include b() {
+    background-color: $second_color;
   }
 }
+//   @include b() {
+//     display: none;
+//   }
+.titleBox {
+  min-width: 300px;
+  width: 100%;
+  margin-top: 17vh;
+
+  h1 {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin-right: 60px;
+  }
+  h2 {
+    margin-left: 4rem;
+    font-size: 18px;
+    margin: 30px;
+    text-align: center;
+  }
+}
+
 .FAQ {
-  width: 60%;
-  margin: auto;
+  width: 70%;
+  margin-left: 20%;
   margin-top: 100px;
   margin-bottom: 20vh;
   h1 {

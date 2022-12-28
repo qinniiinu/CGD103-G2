@@ -39,11 +39,7 @@
         <h3 class="ord_title">訂單明細</h3>
         <div v-for="e in order_item" :key="e[0].order_id" class="prod_item_row">
           <!-- 訂單商品列 -->
-          <img
-            class="prod_pic"
-            :src="`../pic/${cut(e[0].product_pic)}`"
-            alt=""
-          />
+          <img class="prod_pic" :src="`../pic/${cut(e.product_pic)}`" alt="" />
           <div class="item_name">{{ e[0].product_id }}</div>
           <div class="item_name">${{ e[0].unit_price }}</div>
           <div class="item_name">{{ e[0].size }}</div>
@@ -118,7 +114,7 @@
 </template>
 
 <script>
-import { BASE_URL } from "../../assets/js/common.js";
+import { BASE_URL } from "@/assets/js/common.js";
 import Button from "@/components/Button.vue";
 export default {
   name: "OrderHistoryDetail",
@@ -134,30 +130,33 @@ export default {
   },
   methods: {
     getResource() {
-      this.axios.get(`/api_server/getOrderDetail.php`).then((response) => {
-        console.log("-----------", response.data);
-        this.orders = response.data;
+      this.axios
+        .get(`${BASE_URL}/getOrderDetail.php`, { credentials: "include" })
+        // .get(`${BASE_URL}/getOrderDetail.php`, { credentials: "include" })
+        .then((response) => {
+          console.log("-----------", response.data);
+          this.orders = response.data;
 
-        // this.temp = response.data.find((e) => {
-        //   console.log(e);
-        //   if (e.order_id == this.$route.params.id) return e;
-        // });
-        // this.getRandomItems(response.data, this.$route.params.id);
+          // this.temp = response.data.find((e) => {
+          //   console.log(e);
+          //   if (e.order_id == this.$route.params.id) return e;
+          // });
+          // this.getRandomItems(response.data, this.$route.params.id);
 
-        //嘗試連到每筆訂單的路由
+          //嘗試連到每筆訂單的路由
 
-        const groupBy = (array, key) =>
-          array.reduce((objectsByKeyValue, obj) => {
-            const value = obj[key];
-            objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(
-              obj
-            );
-            return objectsByKeyValue;
-          }, {});
+          const groupBy = (array, key) =>
+            array.reduce((objectsByKeyValue, obj) => {
+              const value = obj[key];
+              objectsByKeyValue[value] = (
+                objectsByKeyValue[value] || []
+              ).concat(obj);
+              return objectsByKeyValue;
+            }, {});
 
-        this.order_item = groupBy(this.orders, "product_id");
-        this.order_qa = groupBy(this.orders, "meg_cont");
-      });
+          this.order_item = groupBy(this.orders, "product_id");
+          this.order_qa = groupBy(this.orders, "meg_cont");
+        });
     },
     cut(x) {
       if (x) return x.split(",")[0];
@@ -254,7 +253,7 @@ export default {
 p {
   margin: 5px;
   color: #444;
-  font-size: 12px;
+  font-size: 16px;
 }
 .ord_condition {
   display: flex;

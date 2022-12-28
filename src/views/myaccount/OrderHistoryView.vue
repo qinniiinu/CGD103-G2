@@ -133,13 +133,11 @@
 </template>
 
 <script>
-import Button from "@/components/Button.vue";
-import { BASE_URL } from "../../assets/js/common.js";
+import Button from "@/assets/js/common.js";
+import { BASE_URL } from "@/assets/js/common.js";
 export default {
   name: "OrderHistory",
-  components: {
-    Button,
-  },
+  components: {},
   data() {
     return {
       number: 0, //用來切換子頁面的值
@@ -155,26 +153,28 @@ export default {
       if (x) return x.split(",")[0];
     },
     getResource() {
-      this.axios.get(`/api_server/getOrder.php`).then((response) => {
-        console.log(response.data);
+      this.axios
+        .get(`${BASE_URL}/getOrder.php`, { credentials: "include" })
+        .then((response) => {
+          console.log(response.data);
 
-        this.orders = response.data;
-        this.product = response.data;
-        this.product = this.product.slice(0, 2);
-        console.log(this.product);
-        this.order_item = response.data;
+          this.orders = response.data;
+          this.product = response.data;
+          this.product = this.product.slice(0, 2);
+          console.log(this.product);
+          this.order_item = response.data;
 
-        const groupBy = (array, key) =>
-          array.reduce((objectsByKeyValue, obj) => {
-            const value = obj[key];
-            objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(
-              obj
-            );
-            return objectsByKeyValue;
-          }, {});
+          const groupBy = (array, key) =>
+            array.reduce((objectsByKeyValue, obj) => {
+              const value = obj[key];
+              objectsByKeyValue[value] = (
+                objectsByKeyValue[value] || []
+              ).concat(obj);
+              return objectsByKeyValue;
+            }, {});
 
-        this.orders = groupBy(this.orders, "order_id");
-      });
+          this.orders = groupBy(this.orders, "order_id");
+        });
     },
   },
   mounted() {
