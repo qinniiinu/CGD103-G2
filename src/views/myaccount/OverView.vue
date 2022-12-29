@@ -62,7 +62,7 @@
         <!-- 帳號資料  -->
         <section class="samll_card account">
           <div class="title">
-            <h3 class="tit">帳號資料</h3>
+            <h3 class="tit">個人資訊</h3>
             <span class="bg_tag">#ACCOUNT</span>
           </div>
           <div class="data">
