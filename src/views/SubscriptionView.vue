@@ -102,7 +102,7 @@ export default {
         },
         isSub(){
             if(this.submemInfo!==false && this.submemInfo.msg!=='請先登入'){ //有登入
-                if(this.subscribe!=''){
+                if(this.subscribe!=''||this.subscribe!=false){
                     alert('您已訂閱，如需更改訂閱方案請先至會員專區取消訂閱')
                     this.$router.push({ path: "/MyPage/memSubscription"});
                 }else{
