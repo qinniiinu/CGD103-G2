@@ -156,7 +156,7 @@ export default {
                 this.subscribe= response.data;
 				console.log(this.subscribe);
             });
-            this.axios.get(`${BASE_URL}/memberInfo.php`).then((response) => {
+            this.axios.get(`${BASE_URL}/subMemInfo.php`).then((response) => {
                 this.subMemInfo= response.data;
 				console.log(this.subMemInfo);
             });

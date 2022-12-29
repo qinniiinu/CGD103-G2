@@ -149,7 +149,7 @@ export default {
 			if(this.subMemInfo)
 			this.load=false;
         },
-		addCount(item,index){
+		addCount(item){
 			console.log(item.count);
 			item.count+=1;
 			this.setStorage()
@@ -170,7 +170,7 @@ export default {
 			this.setStorage()
 		},
 		getResource() {
-            this.axios.get(`${BASE_URL}/memberInfo.php`).then((response) => {
+            this.axios.get(`${BASE_URL}/subMemInfo.php`).then((response) => {
 				console.log(response.data.state);
 				this.subMemInfo= response.data;
 				console.log(this.subMemInfo);

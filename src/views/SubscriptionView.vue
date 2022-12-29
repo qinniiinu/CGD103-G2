@@ -88,7 +88,7 @@ export default {
                 this.vip_level= response.data;
 				// console.log(this.vip_level);
             });
-            this.axios.get(`${BASE_URL}/memberInfo.php`).then((response) => { //會員的資料
+            this.axios.get(`${BASE_URL}/subMemInfo.php`).then((response) => { //會員的資料
 				console.log(response.data);
 				this.submemInfo= response.data;
 				// console.log(this.submemInfo);
