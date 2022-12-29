@@ -15,7 +15,7 @@
 						<section class="recommend">
 											<h2>推薦穿搭</h2>
 											<div class="item">
-								<StylistLook class="stylistLook" scardP="/pic/stylist-1.jpg" stylistName="Kevin" stylistInfo="擅長時尚風格,用前衛的單品,搭配出衝突的美感"></StylistLook>
+								<StylistLook3 class="stylistLook" scardP="../pic/stylist-1.jpg" stylistName="Kevin" stylistInfo="擅長時尚風格,用前衛的單品,搭配出衝突的美感"></StylistLook3>
 											</div>
 										</section>
 										<section class="deco">
@@ -50,12 +50,12 @@
 
 <script>
 
-import StylistLook from "@/components/StylistLook.vue";
+import StylistLook3 from "@/components/StylistLook3.vue";
 import { BASE_URL } from "@/assets/js/common.js";
 export default {
 	name: "Consultation",
 	components: {
-		StylistLook,
+		StylistLook3,
 		BASE_URL
 	},
 	data(){
