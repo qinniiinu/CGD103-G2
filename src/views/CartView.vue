@@ -36,7 +36,7 @@
 								
 							</div>
 						</li>
-						<div class="detail" v-if="subscribe !==false&&subscribe!=''">
+						<div class="detail" v-if="subscribe !==false">
 							<div>共 {{cart.length}} 種商品</div>
 							<div>{{subscribe.level_name}} 訂閱等級折扣: -${{total-distotal}}</div>
 							<div>總計: ${{distotal}}元</div>
@@ -170,7 +170,7 @@ export default {
 			this.setStorage()
 		},
 		getResource() {
-            this.axios.get(`${BASE_URL}/subMemInfo.php`).then((response) => {
+            this.axios.get(`${BASE_URL}/memberInfo.php`).then((response) => {
 				console.log(response.data.state);
 				this.subMemInfo= response.data;
 				console.log(this.subMemInfo);

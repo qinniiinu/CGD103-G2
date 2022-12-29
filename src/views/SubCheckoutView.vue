@@ -14,13 +14,13 @@
 				<div class="buyer">
 					<h4>購買人資訊</h4>
 					<p>姓名</p>
-					<input class="memName" type="text" v-model="subMemInfo.mem_name" disabled>
+					<input class="memName" type="text" v-model="subMemInfo.mem_name">
 					<p>連絡電話</p>
-					<input class="phone" type="text" v-model="subMemInfo.phone" disabled>
+					<input class="phone" type="text" v-model="subMemInfo.phone">
 					<!-- <p>電子信箱</p>
 					<input class="email" type="text" v-model="subMemInfo.mem_mail" disabled> -->
 					<p>收件地址</p>
-					<input class="address" type="text" v-model="subMemInfo.address" disabled>
+					<input class="address" type="text" v-model="subMemInfo.address">
 				</div>
 				<!-- <div class="receiver">
 					<h4>收件人資訊</h4>
@@ -154,7 +154,7 @@ export default {
             console.log(this.subOrder);
         },
 		getResource() {
-            this.axios.get(`${BASE_URL}/subMemInfo.php`).then((response) => {
+            this.axios.get(`${BASE_URL}/memberInfo.php`).then((response) => {
                 this.subMemInfo= response.data;
 				console.log(this.subMemInfo);
             });

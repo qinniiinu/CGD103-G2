@@ -134,7 +134,7 @@ export default {
 			return e===this.subscribe.level_name;
 		},
 		getResource() {
-			this.axios.get(`${BASE_URL}/subMemInfo.php`).then((response) => { // 會員資料
+			this.axios.get(`${BASE_URL}/memberInfo.php`).then((response) => { // 會員資料
 				console.log(response.data);
 				this.submemInfo= response.data;
 				console.log(this.submemInfo);
