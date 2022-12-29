@@ -61,7 +61,7 @@
         <div v-if="orders.length" class="sum_money">
           <div class="money_detail">
             <li class="money_word">
-              共{{ orders.length / 4 }}種商品<!--  商品金額 {{}} -->
+              共{{ orders.length / 5 }}種商品<!--  商品金額 {{}} -->
             </li>
             <li class="money_word">
               折扣折抵-{{ orders[orders.length - 1].discount }}
