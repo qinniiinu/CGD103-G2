@@ -93,7 +93,7 @@
             <div class="item_num_title">訂單編號： {{ item[0].order_id }}</div>
             <h2>
               <p v-if="item[0].order_con == 1">訂單取消</p>
-              <p v-else-if="item[0].order_con == 2">商品配送中</p>
+              <p v-else-if="item[0].order_con == 2">商品備貨中</p>
               <p v-else>商品已送達</p>
             </h2>
           </div>
