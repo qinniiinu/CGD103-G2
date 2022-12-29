@@ -488,7 +488,7 @@
 				.look-item-product{
 					margin: 20px auto ;
 					border: 1px solid $title_color; 
-					width:45% ;
+					width:100% ;
 					box-sizing: border-box;
 					@include l{
 						margin: 20px 30px ;
@@ -504,7 +504,7 @@
 						padding: 12px ;
 						width: 80%;
 						@include m{
-							margin: auto 0;
+							margin: auto ;
 						}
 						@include l{
 							width: 30%;
@@ -523,10 +523,10 @@
 						display: flex;
 						flex-direction: column;
 						margin-bottom: 15px;
-						
+						margin:auto;
 						@include m{
 							display: block;
-							margin:0px;
+							margin:auto;
 						}
 						// justify-content: space-between;
 						// align-content: stretch;
@@ -553,10 +553,14 @@
 							@include m{
 								line-height:21px; 
 								font-size: 14px;
+
 							}
 							font-size:12px;
 							letter-spacing: .5px;
-							text-align: justify;
+							text-align: center;
+							@include xl{
+								text-align: justify;
+							}
 						}
 						p:last-child{
 							color:$title_color;
@@ -567,10 +571,14 @@
 							font-weight: 700;
 							margin-top: 10px;
 							text-align: center;
+							margin-bottom: 10px;
 							@include l{
 								margin-top: 40px;
 								margin-bottom: 0;
 								text-align: end;
+							}
+							@include xl{
+								margin-bottom: 0px;
 							}
 						}
 					}

@@ -174,7 +174,7 @@ export default {
 		}
 	
 		width: 75%;
-
+		margin: auto;
 		.searchbar{
 			margin-right: 30px;
 			@include m{
