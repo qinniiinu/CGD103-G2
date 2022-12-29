@@ -15,19 +15,19 @@ export default {
         return {
             temp: {},
             radom: [],
-            bigPicture: "",
+            cart: [],
+            alert: false,
+            msg: "",
+            //
             pickedColor: "",
             pickedSize: "",
             colorClick: [],
             number: 1,
-            cart: [],
             sizeClick: [],
+
             cartItem: {},
-            alert: false,
-            msg: "",
             bigPicture: "test_01_1.jpg",
             colorArr: [],
-            color_nameArr: [],
         };
     },
     computed: {
@@ -84,6 +84,11 @@ export default {
     },
     watch: {
         $route: function () {
+            this.pickedColor = "";
+            this.pickedSize = "";
+            this.colorClick = [];
+            this.number = 1;
+            this.sizeClick = [];
             this.getResource();
             window.scrollTo({
                 top: 0,
@@ -123,9 +128,7 @@ export default {
         },
         getResource() {
             this.axios.get(`${BASE_URL}/list.php`).then((response) => {
-                console.log(response.data.length);
                 this.temp = response.data.find((e) => {
-                    console.log(e);
                     if (e.product_id == this.$route.params.id) return e;
                 });
                 this.getRandomItems(response.data, this.$route.params.id);
