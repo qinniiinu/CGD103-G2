@@ -15,7 +15,7 @@
 						<div>總價</div>
 					</ul>
 					<ul v-if="cart.length>0" class="order-list">
-						<li class="item" v-for="item in cart" :key="item.id">
+						<li class="item" v-for="(item,index) of cart" :key="index">
 							<div class="item-left"><img :src="`./pic/${item.image}`" v-bind:alt="item.title"></div>
 							<div class="item-right">
 								<div class="item-des">
@@ -36,7 +36,7 @@
 								
 							</div>
 						</li>
-						<div class="detail" v-if="subscribe !==false">
+						<div class="detail" v-if="subscribe !==false || subMemInfo!==false">
 							<div>共 {{cart.length}} 種商品</div>
 							<div>{{subscribe.level_name}} 訂閱等級折扣: -${{total-distotal}}</div>
 							<div>總計: ${{distotal}}元</div>
@@ -149,12 +149,12 @@ export default {
 			if(this.subMemInfo)
 			this.load=false;
         },
-		addCount(index,item){
+		addCount(item,index){
 			console.log(item.count);
 			item.count+=1;
 			this.setStorage()
 		},
-		reduceCount(index,item){
+		reduceCount(item,index){
 			console.log(item.count);
 			if(item.count<0) return;
 			if(item.count>1){
@@ -164,7 +164,7 @@ export default {
 			}
 			this.setStorage()
 		},
-		dele(index,item){
+		dele(item,index){
 			if(item.count<0) return;
 			this.cart.splice(item,1)
 			this.setStorage()
@@ -174,7 +174,7 @@ export default {
 				console.log(response.data.state);
 				this.subMemInfo= response.data;
 				console.log(this.subMemInfo);
-				if(this.subMemInfo!==false && this.subMemInfo.msg!=='請先登入'){
+				if(this.subMemInfo!==false || this.subMemInfo.msg !=='請先登入'){
 					this.axios.get(`${BASE_URL}/subscription.php`).then((response) => {
 						this.subscribe= response.data;
 						console.log(this.subscribe);
@@ -291,29 +291,51 @@ h2{
 					text-align: center;
 					width: 100%;
 					@include m{
+
 						flex-direction: row;
 						justify-content: flex-start;
-						width: 50%;
+						width: 0;
 						font-size: 16px;
+						flex-grow: 1;
 					}
 					.item-des{
-						width: 90%;
+						width: 100%;
 						display: flex;
+							@include m{
+								width: 0;
+								flex-grow: 1;
+								// width: 150px;
+							}
 						:first-child(){
 							min-width: 100px;
 							@include m{
-								width: 150px;
+								// width: 0;
+								// flex-grow: 1;
+								// width: 150px;
 							}
 						}
 						:nth-child(n){
-							width: 80px;
+							width: 0px;
+							flex-grow: 1;
 							@include m{
-								width: 150px;
+								// width: 150px;
+								width: 0;
+								flex-grow: 1;
+
 							}
 						}
 					}
 					.item-p{
-						width: 90%;
+						width: 100%;
+						:nth-child(n){
+							width: 0px;
+							flex-grow: 1;
+						
+						}
+						@include m{
+							width: 0;
+							flex-grow: 1;
+						}
 						display: flex;
 						align-items: center;
 						:last-child>button{
