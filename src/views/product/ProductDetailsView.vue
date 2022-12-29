@@ -1,17 +1,13 @@
 <script>
 import { BASE_URL } from "@/assets/js/common.js";
 
-import ProductMenu from "@/components/product/ProductMenu.vue";
 import Breadcrumb from "@/components/product/Breadcrumb.vue";
-import ProductCard from "@/components/product/ProductCard.vue";
 import HashTag from "@/components/product/HashTag.vue";
 import Alert from "@/components/Alert.vue";
 export default {
     name: "Product",
     components: {
         Breadcrumb,
-        ProductMenu,
-        ProductCard,
         HashTag,
         Alert,
     },

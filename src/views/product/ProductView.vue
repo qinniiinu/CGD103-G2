@@ -97,16 +97,12 @@
 <script>
 import { BASE_URL } from "@/assets/js/common.js";
 
-import ProductMenu from "@/components/product/ProductMenu.vue";
-import ProductCard from "@/components/product/ProductCard.vue";
 import ProductFitting from "@/components/product/ProductFitting.vue";
 
 export default {
     name: "Product",
 
     components: {
-        ProductMenu,
-        ProductCard,
         ProductFitting,
     },
     data() {

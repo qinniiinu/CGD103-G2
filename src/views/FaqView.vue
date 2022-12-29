@@ -1,9 +1,10 @@
 <template>
   <div class="data">
     <button class="menu-toggle" @click="ToggleMenu">
-      <span class="material-icons">
-        <font-awesome-icon class="icon" icon="fa-solid fa-arrow-right" />
-      </span>
+      <font-awesome-icon
+        class="material-icons"
+        icon="fa-solid fa-arrow-right"
+      />
     </button>
 
     <div class="asideBar" :class="`${is_expanded ? 'is-expanded' : ''}`">
@@ -287,6 +288,9 @@ button {
   background-color: $main_color;
   color: $second_color;
   border: 0;
+  &:hover {
+    transform: rotate(-180deg);
+  }
   cursor: pointer;
   transition: all 0.5 ease-in-out;
   display: none;
@@ -301,18 +305,12 @@ button {
   max-width: 1200px;
 }
 
-.icon {
-  transition: all 0.5 ease-in-out;
-  transform: rotate(-180deg);
-}
-
 .is-expanded {
   transition: all 0.5 ease-in-out;
 
   .menu-toggle-wrap {
     top: -3rem;
     display: none;
-
     // color: $second_color;
     // background-color: $second_color;
   }

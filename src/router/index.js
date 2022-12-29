@@ -37,11 +37,6 @@ const routes = [
 		component: () => import("../views/FindStyleView.vue"),
 	},
 	{
-		path: "/test",
-		name: "test",
-		component: () => import("../views/TestView.vue"),
-	},
-	{
 		path: "/MulStylesView",
 		name: "MulStylesView",
 		component: () => import("../views/style/MulStylesView.vue"),
@@ -149,14 +144,7 @@ const routes = [
 				path: "OrderHistory",
 				name: "OrderHistory",
 				component: () => import("../views/myaccount/OrderHistoryView.vue"),
-				// children: [ // 測試中 
-				// 	{
-				// 		path: ':orderId',
-				// 		name: "OrderHistoryDetail",
-				// 		component: () => import("../views/myaccount/OrderHistoryDetailView.vue"),
-				// 	},
-				// ]
-				// <!-- <router-link :to="{ name: 'OrderHistoryDetail', params: { orderId: e.order_id } }"> -->
+
 			},
 			{
 				path: "OrderHistoryDetail/:id",

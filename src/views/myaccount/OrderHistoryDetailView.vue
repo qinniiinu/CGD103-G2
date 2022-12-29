@@ -39,20 +39,36 @@
         <h3 class="ord_title">訂單明細</h3>
         <div v-for="e in order_item" :key="e[0].order_id" class="prod_item_row">
           <!-- 訂單商品列 -->
-          <img class="prod_pic" :src="`../pic/${cut(e.product_pic)}`" alt="" />
-          <div class="item_name">{{ e[0].product_id }}</div>
-          <div class="item_name">${{ e[0].unit_price }}</div>
-          <div class="item_name">{{ e[0].size }}</div>
-          <div class="item_name">X {{ e[0].quantity }}</div>
+          <img
+            class="prod_pic"
+            :src="`https://tibamef2e.com/cgd103/g2/front/pic/${cut(
+              e[0].product_pic
+            )}`"
+            alt=""
+          />
+          <div class="item_word">
+            <div class="item_word_row">
+              <div class="item_name">商品編號：{{ e[0].product_id }}</div>
+              <div class="item_name">總金額${{ e[0].unit_price }}</div>
+            </div>
+            <div class="item_word_row">
+              <div class="item_name">尺寸：{{ e[0].size }}</div>
+              <div class="item_name">數量X {{ e[0].quantity }}</div>
+            </div>
+          </div>
         </div>
 
-        <div class="sum_money">
+        <div v-if="orders.length" class="sum_money">
           <div class="money_detail">
             <li class="money_word">
-              共{{ order_item.length }}種商品<!--  商品金額 {{}} -->
+              共{{ orders.length / 4 }}種商品<!--  商品金額 {{}} -->
             </li>
-            <li class="money_word">折扣 {{ parseInt(orders.discount) }}</li>
-            <li class="total_money">訂單總額 {{ orders.total }}</li>
+            <li class="money_word">
+              折扣折抵-{{ orders[orders.length - 1].discount }}
+            </li>
+            <li class="total_money">
+              訂單總額 {{ orders[orders.length - 1].order_paid }}
+            </li>
           </div>
         </div>
       </div>
@@ -60,7 +76,9 @@
       <!-- <div v-if="order_qa.length" class="ord_msg"> 只跑出一個欄位的寫法-->
 
       <div class="ord_msg">
-        <h2 class="ord_title">訂單留言</h2>
+        <h2 class="ord_title">
+          訂單留言<span style="color: brown">　（歡迎在此詢問客服問題）</span>
+        </h2>
         <div v-for="q in order_qa" :key="q[0].meg_id" class="ord_msg_box">
           <div class="msg_title">
             <h4 v-if="q[0].meg_status == 1">您的留言紀錄</h4>
@@ -154,6 +172,10 @@ export default {
               return objectsByKeyValue;
             }, {});
 
+          this.orders = this.orders.filter((e) => {
+            return e.order_id == this.$route.params.id;
+          });
+
           this.order_item = groupBy(this.orders, "product_id");
           this.order_qa = groupBy(this.orders, "meg_cont");
         });
@@ -212,7 +234,6 @@ export default {
 
 .ord_detail_container {
   width: 100%;
-
   background-color: $second_color;
   border: 1px solid rgb(162, 162, 162);
   p {
@@ -267,18 +288,27 @@ p {
   background-color: $second_color;
   border: 1px solid rgb(162, 162, 162);
   @include b() {
-    display: block;
     border: 0;
+    p {
+      font-size: 12px;
+    }
   }
 }
 
 .prod_item_row {
-  margin: 50px;
   display: flex;
-  justify-content: space-around;
-  @include b() {
-    display: block;
+  justify-content: center;
+  .item_word {
+    display: flex;
+    .item_word_row {
+      display: flex;
+      text-align: left;
+      @include b() {
+        display: block;
+      }
+    }
   }
+
   // .item_block{
   // 	@include b(){
   // display:flex;
@@ -295,6 +325,9 @@ p {
 .item_name {
   margin: 20px;
   color: #444;
+  @include b() {
+    margin: 3px;
+  }
 }
 
 .prod_item_row {
@@ -370,6 +403,7 @@ h3 {
   display: flex;
   justify-content: right;
   margin: 20px;
+  padding-right: 30px;
 }
 
 .sm-b {

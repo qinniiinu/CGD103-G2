@@ -3,14 +3,12 @@
     <div class="sideMenu">
       <ProductSideMenu></ProductSideMenu>
       <HashTag></HashTag>
-      <!-- <BreadCrumbs></BreadCrumbs> -->
     </div>
     <div class="fittingArea">
       <div id="panel" class="wrap1">
         <button @click="remove" class="remove">刪除圖片</button>
       </div>
       <div id="wrap2" class="products">
-        <!-- <img src="https://picsum.photos/100/100/?random=10" @click="copy($event)"> -->
         <img
           :src="`./pic/${cut(e.product_pic)}`"
           v-for="e in product"
@@ -27,13 +25,11 @@
 import ProductSideMenu from "@/components/product/ProductSideMenu.vue";
 import HashTag from "@/components/product/HashTag.vue";
 import { BASE_URL } from "../assets/js/common.js";
-// import BreadCrumbs from "@/components/BreadCrumbs.vue";
 export default {
   name: "Product",
   components: {
     ProductSideMenu,
     HashTag,
-    // BreadCrumbs,
   },
 
   data() {
@@ -139,7 +135,6 @@ export default {
   },
 };
 </script>
-
 
 <style lang="scss" scope>
 .fittingroom {

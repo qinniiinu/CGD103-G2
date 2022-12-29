@@ -285,17 +285,17 @@ export default {
   computed: {
     imageUrlGirl() {
       if (this.picked === "Monday") {
-        return "/weeklywear_pic/" + this.weeklywear[6]?.weeklywear_pic;
+        return "./weeklywear_pic/" + this.weeklywear[6]?.weeklywear_pic;
       } else if (this.picked === "Tuesday") {
-        return "/weeklywear_pic/" + this.weeklywear[7]?.weeklywear_pic;
+        return "./weeklywear_pic/" + this.weeklywear[7]?.weeklywear_pic;
       } else if (this.picked === "Wednesday") {
-        return "/weeklywear_pic/" + this.weeklywear[8]?.weeklywear_pic;
+        return "./weeklywear_pic/" + this.weeklywear[8]?.weeklywear_pic;
       } else if (this.picked === "Thursday") {
-        return "/weeklywear_pic/" + this.weeklywear[9]?.weeklywear_pic;
+        return "./weeklywear_pic/" + this.weeklywear[9]?.weeklywear_pic;
       } else if (this.picked === "Friday") {
-        return "/weeklywear_pic/" + this.weeklywear[10]?.weeklywear_pic;
+        return "./weeklywear_pic/" + this.weeklywear[10]?.weeklywear_pic;
       } else if (this.picked === "Weekend") {
-        return "/weeklywear_pic/" + this.weeklywear[11]?.weeklywear_pic;
+        return "./weeklywear_pic/" + this.weeklywear[11]?.weeklywear_pic;
       } else {
         return "";
       }

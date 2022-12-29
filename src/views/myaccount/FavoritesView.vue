@@ -24,12 +24,9 @@
 </template>
 <script>
 import { BASE_URL } from "@/assets/js/common.js";
-import ProductCard from "@/components/product/ProductCard.vue";
 export default {
     name: "Favorites",
-    components: {
-        ProductCard,
-    },
+    components: {},
     data() {
         return {
             product: [],
@@ -47,10 +44,10 @@ export default {
                 .get(`${BASE_URL}/favorlist.php`, { credentials: "include" })
                 .then((response) => {
                     this.product = response.data;
+                    this.product.forEach((e) => {
+                        e.coll = true;
+                    });
                 });
-            this.product.forEach((e) => {
-                e.coll = false;
-            });
         },
 
         collchange(e) {
@@ -78,28 +75,38 @@ export default {
     position: relative;
     .card {
         width: 100%;
-        min-height: 600px;
         background-color: #fff;
         border: 1px solid $text_color;
         display: flex;
         flex-wrap: wrap;
         .product_card {
             @include s() {
+                width: 33.333333%;
+            }
+            @include xs() {
                 width: 50%;
             }
             @include m() {
                 width: 33.333333%;
             }
+            @include l() {
+                width: 25%;
+            }
+            @include xl() {
+                width: 20%;
+            }
         }
         .btnbox {
             text-align: center;
             width: 100%;
+            z-index: 2;
             padding: 20px 0;
         }
     }
     .decoration {
         left: 20px;
         bottom: 20px;
+        // z-index: -5;
         font-size: 72px;
         font-weight: bolder;
         font-style: italic;
