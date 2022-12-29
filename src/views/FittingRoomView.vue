@@ -69,6 +69,31 @@ export default {
       }
     },
 
+    drag(obj) {
+      obj.addEventListener("dblclick", () => {
+        const currentWidth = obj.offsetWidth;
+        const currentHeight = obj.offsetHeight;
+        const desiredWidth = currentWidth * 1.2;
+        const desiredHeight = currentHeight * 1.2;
+
+        const maxWidth = 500;
+        const maxHeight = 500;
+
+        if (desiredWidth > maxWidth) {
+          obj.style.width = maxWidth + "px";
+        } else {
+          obj.style.width = desiredWidth + "px";
+        }
+        if (desiredHeight > maxHeight) {
+          obj.style.height = maxHeight + "px";
+        } else {
+          obj.style.height = desiredHeight + "px";
+        }
+      });
+      this.dragM(obj);
+      this.dragD(obj);
+    },
+
     //圖片拖曳(touch)
     dragM(obj) {
       obj.addEventListener("touchstart", function (event) {
@@ -91,8 +116,6 @@ export default {
           obj.removeEventListener("touchmove");
           obj.removeEventListener("touchend");
         });
-
-        event.preventDefault();
       });
     },
 
@@ -187,7 +210,7 @@ export default {
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  resize: both;
+  // resize: both;
   width: 120px;
   min-width: 120px;
   min-height: 100px;
