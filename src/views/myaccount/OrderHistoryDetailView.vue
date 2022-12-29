@@ -15,7 +15,7 @@
             <p>訂單狀態：</p>
             <p v-if="orders[orders.length - 1].order_con == 1">訂單取消</p>
             <p v-else-if="orders[orders.length - 1].order_con == 2">
-              商品配送中
+              商品備貨中
             </p>
             <p v-else>商品已送達</p>
           </div>
