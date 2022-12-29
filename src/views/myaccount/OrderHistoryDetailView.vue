@@ -236,22 +236,26 @@ export default {
 
 .ord_detail_container {
   width: 100%;
-  background-color: $second_color;
-  border: 1px solid rgb(162, 162, 162);
+  background-color: white;
+  //   border: 1px solid rgb(162, 162, 162);
+  padding: 20px;
   p {
     text-align: left;
     font-size: 16px;
   }
-
   @include b() {
+    padding: 15px;
+
     display: block;
     border: 0;
+    padding: 0px;
   }
 }
 
 .ord_title {
   color: #444;
   font-weight: bold;
+  padding: 20px;
 }
 
 .ord_detail {
@@ -266,7 +270,7 @@ export default {
 .ord_detail_second_row {
   display: flex;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: space-around;
 
   @include b() {
     display: block;
@@ -287,10 +291,13 @@ p {
 .ord_recipt {
   width: 100%;
   margin-top: 50px;
-  background-color: $second_color;
-  border: 1px solid rgb(162, 162, 162);
+  background-color: white;
+  //   border: 1px solid rgb(162, 162, 162);
+  padding: 20px;
   @include b() {
     border: 0;
+    padding: 0px;
+
     p {
       font-size: 12px;
     }
@@ -328,14 +335,14 @@ p {
   margin: 20px;
   color: #444;
   @include b() {
-    margin: 3px;
+    margin: 0px;
   }
 }
 
 .prod_item_row {
   // display: flex;
   align-items: center;
-  background-color: $second_color;
+  background-color: white;
 }
 .sum_money {
   width: 100%;
@@ -355,8 +362,8 @@ li {
 /* 訂單留言 */
 .ord_msg {
   width: 100%;
-  background-color: $second_color;
-  border: 1px solid rgb(162, 162, 162);
+  background-color: white;
+  //   border: 1px solid rgb(162, 162, 162);
   margin-top: 50px;
   display: flex;
   justify-content: space-around;
@@ -379,7 +386,6 @@ li {
   width: 90%;
   margin: auto;
   height: 200px;
-  margin-bottom: 30px;
 
   .text_box:last-child {
     height: 100px;
@@ -406,6 +412,9 @@ h3 {
   justify-content: right;
   margin: 20px;
   padding-right: 30px;
+  @include b() {
+    padding-right: 5px;
+  }
 }
 
 .sm-b {
@@ -420,7 +429,11 @@ h3 {
 .order_back {
   display: flex;
   width: 100%;
-  margin-top: 3vh;
+  margin-top: 30px;
   justify-content: right;
+  @include b() {
+    margin-right: 5px;
+    margin-top: 0;
+  }
 }
 </style>
