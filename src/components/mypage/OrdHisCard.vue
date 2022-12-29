@@ -1,6 +1,6 @@
 <template>
   <li class="item" v-for="order in orders" :key="order.order_id">
-    <router-link to="/OrderHistoryDetail">
+    <router-link to="MyPage/OrderHistory">
       <!-- 訂單記錄列 -->
       <div class="row">
         <div class="title">訂單編號： {{ order.order_id }}</div>
