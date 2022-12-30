@@ -299,7 +299,7 @@ export default {
       }
     },
     insert() {
-      fetch(`http://localhost/cgd103_g2_frontend/phpfile/clientInsert.php`, {
+      fetch(`${BASE_URL}/clientInsert.php`, {
         method: "post",
         body: new FormData(document.querySelector(".inputBox")),
       })
@@ -393,9 +393,9 @@ video {
 }
 
 .landing_page_photo {
-  overflow: hidden;
   ::-webkit-scrollbar {
     display: none;
+    overflow-y: hidden;
   }
 
   .box {
@@ -404,10 +404,10 @@ video {
     align-content: center;
     height: 1200px;
     position: relative;
-
     .intro_container {
       width: 90%;
       display: flex;
+      overflow-y: hidden;
 
       @include b() {
         display: block;

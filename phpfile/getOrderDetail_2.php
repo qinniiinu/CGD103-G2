@@ -21,7 +21,7 @@ try {
     // ;";
     $msg="success";
     $errMsg = "";
-    // $sql = "SELECT member*
+    // $sql = "SELECT order_items*
     //             FROM (
     //                 (orders
     //                 INNER JOIN order_qa
@@ -34,8 +34,6 @@ try {
     // ON order_item.product_id=product.product_id        
     // where orders.mem_id=:mem_id 
     // order by order_qa.meg_time DESC";
-
-
     // $sql = "SELECT o.*
     //         FROM orders o
     //         JOIN order_qa q ON o.mem_id=q.mem_id
@@ -45,33 +43,28 @@ try {
     //         order by q.meg_time DESC";
 
 
-    $sql = " SELECT * from member m 
-            join orders o on m.mem_id = o.mem_id 
-            join order_item i on o.order_id = i.order_id 
-            where m.mem_id = :mem_id ";
+    $sql = " SELECT * from order_item i 
+            where order_id =:order_id ";
 
-    $member_id = $_SESSION['member']['mem_id']; // 抓出 SESSION 中已登入者的 mem_id
-    $member = $pdo->prepare($sql); //先編譯好
-    $member->bindValue(":mem_id", $member_id); //代入資料
-    $member->execute(); //執行之
-    $memberRow = $member->fetchAll(PDO::FETCH_ASSOC);
-
-    // ==================
-
+    $order_id = $_POST['order_id']; // 抓出 SESSION 中已登入者的 mem_id
+    $order_items = $pdo->prepare($sql); //先編譯好
+    $order_items->bindValue(":order_id", $order_id); //代入資料
+    $order_items->execute(); //執行之
+    
+    $order_itemsRows = $member->fetchAll(PDO::FETCH_ASSOC);
+    //----------------------------------
     $sql = " SELECT * from order_qa
-    where qa_order_id = :order_id ";
+            where qa_order_id = :order_id ";
 
 
-$order_qa = $pdo->prepare($sql); //先編譯好
-$order_qa->bindValue(":order_id", $order_id); //代入資料
-$order_qa->execute(); //執行之
+    $order_qa = $pdo->prepare($sql); //先編譯好
+    $order_qa->bindValue(":order_id", $order_id); //代入資料
+    $order_qa->execute(); //執行之
+    
+    $order_qaRowss = $member->fetchAll(PDO::FETCH_ASSOC);
+    
 
-$order_qaRowss = $member->fetchAll(PDO::FETCH_ASSOC);
-
-
-$result=["order_items"=>$order_itemsRows, "order_qaRow" => $order_qaRows]
-
-echo json_encode($memberRow);
+    $result=["order_items"=>$order_itemsRows, "order_qaRow" => $order_qaRows]
 
     echo json_encode($memberRow);
 
