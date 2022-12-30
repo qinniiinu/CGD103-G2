@@ -75,20 +75,14 @@
         style_id: "",
       };
     },
-    created() {},
-    mounted() {
-      this.getResource();
-      this.getRecommend();
-      this.getComboRecommend();
-    },
-    computed: {},
     methods: {
       cut(x) {
         if (x) return x.split(",")[0];
       },
       getResource() {
         this.axios.get(`${BASE_URL}/mem_style.php`).then((response) => {
-          this.info = response.data;
+          this.info = response.data[0];
+          // console.log(response.data[0]);
           if (this.info.style_id !== null && this.info.style_id !== undefined) {
             this.style_id = this.info.style_id;
             this.getRecommend();
@@ -119,6 +113,11 @@
           .then((res) => res.json())
           .then((json) => (this.combo_product = json));
       },
+    },
+    mounted() {
+      this.getResource();
+      this.getRecommend();
+      this.getComboRecommend();
     },
   };
   </script>

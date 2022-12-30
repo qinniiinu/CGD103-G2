@@ -12,7 +12,7 @@ $errMsg = "";
 try {
   
         require_once("../connectBooks.php");
-        $sql = "SELECT m.mem_id, s.style_name,s.style_id,s.style_descrip,s.style_pic from member m
+        $sql = "SELECT s.style_name,s.style_id,s.style_descrip,s.style_pic from member m
         JOIN style s on(m.style_id=s.style_id)
         where m.mem_id=:mem_id;";
 
@@ -21,7 +21,9 @@ try {
         $member->bindValue(":mem_id", $member_id); //代入資料
         $member->execute(); //執行之
         $memberRow = $member->fetch(PDO::FETCH_ASSOC);
-        echo json_encode($memberRow);
+        $id = (["mem_id"=>$member_id]);
+        $data = array($memberRow, $id);
+        echo json_encode($data);
     
   
 } catch (PDOException $e) {

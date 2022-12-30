@@ -10,7 +10,7 @@ $errMsg = "";
     $products = $pdo->prepare($sql);	
     $products->execute();
 
-// echo json_encode("ok");
+echo $member_id;
 ?>
    
 

@@ -59,7 +59,7 @@ export default {
     //會員的資料
     getResourse() {
       this.axios.get(`${BASE_URL}/mem_style.php`).then((response) => { 
-        this.mem_id = response.data.mem_id;
+        this.mem_id = response.data[1].mem_id;
       });
     },
     // 單品推薦

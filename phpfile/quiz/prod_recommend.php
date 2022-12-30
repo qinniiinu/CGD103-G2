@@ -4,7 +4,6 @@ header('Access-Control-Allow-Origin:*');
 header("Content-Type:application/json;charset=utf-8");
 require_once("../../connectBooks.php");
 $style_id = (int)$_POST['style_id'];
-// echo $style_id;
 if($style_id === 101){
     $sql = "select * from product where style_type LIKE ('%運動風%') limit 3; ";
     $book = $pdo->query($sql);
@@ -44,5 +43,4 @@ if($style_id === 101){
 }else{
     echo '';
 }
-
 ?>
