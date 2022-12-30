@@ -47,6 +47,7 @@ export default {
       product:[],
       combo_product: [],
       style_id: 101,
+      mem_id:"",
       record:false,
 			not_record:false,
     }
@@ -55,7 +56,13 @@ export default {
      cut(x) {
       if (x) return x.split(",")[0];
     },
-      // 單品推薦
+    //會員的資料
+    getResourse() {
+      this.axios.get(`${BASE_URL}/mem_style.php`).then((response) => { 
+        this.mem_id = response.data.mem_id;
+      });
+    },
+    // 單品推薦
     getRecommend() {
       const data = {
         style_id: this.style_id,
@@ -66,24 +73,6 @@ export default {
       })
         .then((res) => res.json())
         .then((json) => (this.product = json));
-    },
-    // 記錄風格
-    record_style() {
-      if (this.$store.state.user != null) {
-        const data = {
-          style_id: this.style_id,
-          mem_id: this.$store.state.user.mem_id,
-        };
-        fetch(`${BASE_URL}/mem_styleUPD.php`, {
-          method: "post",
-          body: new URLSearchParams(data),
-        })
-          .then((res) => res.json())
-          .then((json) => console.log(json));
-        this.record = true;
-      } else {
-        this.not_record = true;
-      }
     },
     // 組合商品推薦
     getComboRecommend() {
@@ -97,10 +86,29 @@ export default {
         .then((res) => res.json())
         .then((json) => (this.combo_product = json));
     },
+    // 記錄風格
+    record_style() {
+      if (this.mem_id != "") {
+        const data = {
+          style_id: this.style_id,
+          mem_id: this.mem_id,
+        };
+        fetch(`${BASE_URL}/mem_styleUPD.php`, {
+          method: "post",
+          body: new URLSearchParams(data),
+        })
+          .then((res) => res.json())
+        this.record = true;
+      } else {
+        this.not_record = true;
+      }
+    }
+    
   },
    mounted() {
     this.getRecommend();
     this.getComboRecommend();
+    this.getResourse();
   }
 
 

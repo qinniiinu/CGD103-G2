@@ -300,11 +300,8 @@ export default {
       this.x -= 100; 
       let y = this.x + "vw";
       e.currentTarget.parentElement.parentElement.parentElement.style.transform = `translateX(${y})`; //抓上上上層 slider_box
-      // console.log("y:", y);
-      // console.log("count:", this.count);
     },
     processForm() {
-      console.log("send");
       var sport = 0; //運動風
       var hipster = 0; //文青風
       var fashion = 0; //時尚風

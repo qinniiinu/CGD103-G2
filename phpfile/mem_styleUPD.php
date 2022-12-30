@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 header('Access-Control-Allow-Origin:*');
 header("Content-Type:application/json;charset=UTF-8");
 $errMsg = "";
@@ -10,7 +10,7 @@ $errMsg = "";
     $products = $pdo->prepare($sql);	
     $products->execute();
 
-echo json_encode("ok");
+// echo json_encode("ok");
 ?>
    
 

@@ -47,6 +47,7 @@ export default {
       product: [],
       combo_product: [],
       style_id: 102,
+      mem_id:"",
       record:false,
 			not_record:false,
     };
@@ -54,6 +55,11 @@ export default {
   methods: {
     cut(x) {
       if (x) return x.split(",")[0];
+    },
+    getResourse() {
+      this.axios.get(`${BASE_URL}/mem_style.php`).then((response) => { //會員的資料
+        this.mem_id = response.data.mem_id;
+      });
     },
     // 單品推薦
     getRecommend() {
@@ -81,17 +87,16 @@ export default {
     },
     // 記錄風格
     record_style() {
-      if (this.$store.state.user != null) {
+      if (this.mem_id != "") {
         const data = {
           style_id: this.style_id,
-          mem_id: this.$store.state.user.mem_id,
+          mem_id: this.mem_id,
         };
         fetch(`${BASE_URL}/mem_styleUPD.php`, {
           method: "post",
           body: new URLSearchParams(data),
         })
           .then((res) => res.json())
-          .then((json) => console.log(json));
         this.record = true;
       } else {
         this.not_record = true;
@@ -101,6 +106,7 @@ export default {
   mounted() {
     this.getRecommend();
     this.getComboRecommend();
+    this.getResourse();
   },
 };
 </script>
