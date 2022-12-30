@@ -47,7 +47,7 @@ export default {
       product: [],
       combo_product: [],
       style_id: 102,
-      mem_id:"",
+      mem_id:null,
       record:false,
 			not_record:false,
     };
@@ -58,6 +58,7 @@ export default {
     },
     getResourse() {
       this.axios.get(`${BASE_URL}/mem_style.php`).then((response) => { //會員的資料
+        console.log("notLogin:",response.data[1].mem_id);
         this.mem_id = response.data[1].mem_id;
       });
     },
@@ -87,7 +88,7 @@ export default {
     },
     // 記錄風格
     record_style() {
-      if (this.mem_id != "") {
+      if (this.mem_id !== null && this.mem_id !== undefined) {
         const data = {
           style_id: this.style_id,
           mem_id: this.mem_id,

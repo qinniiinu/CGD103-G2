@@ -47,7 +47,7 @@ export default {
       product:[],
       combo_product: [],
       style_id: 101,
-      mem_id:"",
+      mem_id:null,
       record:false,
 			not_record:false,
     }
@@ -88,7 +88,7 @@ export default {
     },
     // 記錄風格
     record_style() {
-      if (this.mem_id != "") {
+      if (this.mem_id !== null && this.mem_id !== undefined) {
         const data = {
           style_id: this.style_id,
           mem_id: this.mem_id,

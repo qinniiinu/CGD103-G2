@@ -43,7 +43,7 @@ export default {
       product: [],
       combo_product: [],
       style_id: 103,
-      mem_id: "",
+      mem_id: null,
       record: false,
       not_record: false,
     };
@@ -83,7 +83,7 @@ export default {
         .then((json) => (this.combo_product = json));
     },
     record_style() {
-      if (this.mem_id != "") {
+      if (this.mem_id !== null && this.mem_id !== undefined) {
         const data = {
           style_id: this.style_id,
           mem_id: this.mem_id,
