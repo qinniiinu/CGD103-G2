@@ -3,7 +3,15 @@
     <div class="data">
         <div class="decoration">#Favorite</div>
 
-        <div class="card">
+        <div class="card" v-if="product.length < 1">
+            <div class="btnbox">您目前沒有收藏</div>
+            <div class="btnbox">
+                <router-link to="/ProductList">
+                    <button class="btn_s">去逛逛</button>
+                </router-link>
+            </div>
+        </div>
+        <div class="card" v-else>
             <ProductCard
                 :id="e.product_id"
                 :title="e.product_name"
@@ -75,6 +83,7 @@ export default {
     position: relative;
     .card {
         width: 100%;
+        min-height: 200px;
         background-color: #fff;
         border: 1px solid $text_color;
         display: flex;
