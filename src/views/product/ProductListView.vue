@@ -18,6 +18,8 @@ export default {
     },
     data() {
         return {
+            loading: 0,
+            haveProduct: true,
             searchVal: "",
             sortVal: "",
 
@@ -25,6 +27,7 @@ export default {
             product: [],
             result: [],
             favorite: [],
+
             value: [1, 5000],
             format: {
                 prefix: "$",
@@ -141,6 +144,8 @@ export default {
                     }
                 });
             }
+            if (this.product.length < 1) this.haveProduct = false;
+            else this.haveProduct = true;
         },
         scrollBlock() {
             window.scrollTo({
@@ -164,6 +169,9 @@ export default {
                 this.product = this.tmp;
                 this.resultproduct();
                 this.price_filter();
+
+                if (this.product.length < 1) this.haveProduct = false;
+                else this.haveProduct = true;
             });
         },
         getFavorite() {
@@ -183,6 +191,9 @@ export default {
     created() {
         this.getFavorite();
         this.getResource();
+    },
+    mounted() {
+        this.loading = 1;
     },
 };
 </script>
@@ -215,12 +226,20 @@ export default {
                         @update:sort="sort"
                     />
                 </div>
-                <div v-if="product.length === 0" class="productCard_box">
-                    <p class="center">
-                        <!-- {{ product.length }}很抱歉，商品類別已售完。 -->
-                    </p>
+
+                <div
+                    v-show="loading == 1 && haveProduct == false"
+                    class="productCard_box"
+                >
+                    <p class="center">很抱歉，商品類別已售完。</p>
                 </div>
-                <div class="productCard_box">
+                <div class="productCard_box" v-show="loading == 0">
+                    <p class="center">用力更新中</p>
+                </div>
+                <div
+                    class="productCard_box"
+                    v-if="loading == 1 && haveProduct == true"
+                >
                     <ProductCard
                         :id="e.product_id"
                         :title="e.product_name"
@@ -247,7 +266,7 @@ export default {
     --slider-connect-bg: #495bff;
     --slider-tooltip-bg: #495bff;
     --slider-handle-ring-color: #3b82f630;
-    margin: 50px 20px 0;
+    margin: 50px 20px 10px;
 }
 @import url(@vueform/slider/themes/default.scss);
 .Sidebar {
@@ -288,6 +307,11 @@ export default {
             display: flex;
             flex-wrap: wrap;
             align-items: flex-start;
+            .center {
+                padding: 10px;
+                text-align: center;
+                width: 100%;
+            }
             & > * {
                 @include s() {
                     width: 33.333333%;
@@ -301,10 +325,6 @@ export default {
                 }
                 @include xl() {
                     width: 25%;
-                }
-                .center {
-                    text-align: center;
-                    width: 100%;
                 }
             }
         }

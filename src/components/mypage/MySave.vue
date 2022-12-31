@@ -1,45 +1,18 @@
 <template>
     <section class="my_save">
         <h3 class="title">我的收藏</h3>
+        <div class="content" v-show="!showMore">
+            <div class="item">
+                <h3 class="txt_box">您目前沒有收藏</h3>
+                <div class="btn_box" v-show="!showMore">
+                    <router-link to="/MyPage/Favorites" class="more">
+                        <button class="btn_s">去逛逛</button>
+                    </router-link>
+                </div>
+            </div>
+        </div>
+
         <div class="data">
-            <!-- 收藏穿搭 -->
-            <!-- <div class="save_card">
-                <h4 class="tit">收藏穿搭</h4>
-                <router-link to="/MyPage/Favorites">
-                    <ul class="save_item">
-                        <li
-                            v-for="(
-                                combo_main_pic, index
-                            ) in collect_combo.combo_main_pic"
-                            :key="collect_combo.combo_id[index]"
-                        >
-                            <img
-                                :src="collect_combo.combo_main_pic[index]"
-                                :alt="collect_combo.combo_id[index]"
-                            />
-                        </li>
-                    </ul>
-                </router-link>
-            </div> -->
-            <!-- 單品商品 -->
-            <!-- <div class="save_card"> -->
-            <!-- <h4 class="tit">收藏商品</h4> -->
-            <!-- <router-link to="/MyPage/Favorites">
-                <ul class="save_item">
-                    <li
-                        v-for="(
-                            product_pic, index
-                        ) in collect_product.product_pic"
-                        :key="collect_product.product_id[index]"
-                    >
-                        <img
-                            :src="collect_product.product_pic[index]"
-                            :alt="collect_product.product_id[index]"
-                        />
-                    </li>
-                </ul>
-            </router-link> -->
-            <!-- </div> -->
             <ProductCard
                 :id="e.product_id"
                 :title="e.product_name"
@@ -70,23 +43,6 @@ export default {
         return {
             product: [],
             showMore: false,
-            // collect_combo: {
-            //     combo_id: [901, 902, 903],
-            //     combo_main_pic: [
-            //         "look/look-1.jpg",
-            //         "look/look-2.jpg",
-            //         "look/look-3.jpg",
-            //     ],
-            // },
-
-            // collect_product: {
-            //     product_id: [101, 102, 103],
-            //     product_pic: [
-            //         "pic/F1_01_1.jpg",
-            //         "pic/F1_02_1.jpg",
-            //         "pic/F1_03_1.jpg",
-            //     ],
-            // },
         };
     },
     methods: {
@@ -98,6 +54,8 @@ export default {
                     if (this.product.length >= 3) {
                         const long = window.innerWidth < 550 ? 2 : 3;
                         this.product = this.product.slice(0, long);
+                        this.showMore = true;
+                    } else if (this.product.length > 0) {
                         this.showMore = true;
                     }
                     this.product.forEach((e) => {
