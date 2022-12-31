@@ -238,7 +238,15 @@ const routes = [
 		name: "Wearing",
 		component: () => import("../views/style/WearingView.vue"),
 	},
-
+	{
+		path: '/404-error',
+		component: () => import('@/components/Error.vue'),
+		hidden: true
+	},
+	{
+		path: "/:catchAll(.*)", // 不识别的path自动匹配404
+		redirect: '/404-error',
+	},
 ];
 
 

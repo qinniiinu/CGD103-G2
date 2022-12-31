@@ -84,12 +84,13 @@ export default {
     },
     watch: {
         $route: function () {
+            this.getResource();
+
             this.pickedColor = "";
             this.pickedSize = "";
             this.colorClick = [];
             this.number = 1;
             this.sizeClick = [];
-            this.getResource();
             window.scrollTo({
                 top: 0,
                 behavior: "smooth",
@@ -127,10 +128,13 @@ export default {
             this.radom = randomItems;
         },
         getResource() {
+            this.temp = {};
             this.axios.get(`${BASE_URL}/list.php`).then((response) => {
                 this.temp = response.data.find((e) => {
                     if (e.product_id == this.$route.params.id) return e;
                 });
+                console.log(this.temp);
+                if (this.temp === undefined) this.$router.push("/404");
                 this.getRandomItems(response.data, this.$route.params.id);
                 this.bigPicture = this.temp?.product_pic.split(",")[0];
                 this.color_arr();
@@ -220,6 +224,14 @@ export default {
     created() {
         this.getResource();
         this.getStorage();
+    },
+    beforeCreate() {
+        this.axios.get(`${BASE_URL}/list.php`).then((response) => {
+            const temp = response.data.find((e) => {
+                if (e.product_id == this.$route.params.id) return e;
+            });
+            if (temp === undefined) this.$router.push("/404");
+        });
     },
 };
 </script>
