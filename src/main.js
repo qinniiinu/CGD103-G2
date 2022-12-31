@@ -35,6 +35,8 @@ import {
 	faArrowRight,
 	faFilter,
 	faRecycle,
+	faSpinner
+
 
 
 
@@ -63,6 +65,9 @@ library.add(
 	faArrowRight,
 	faFilter,
 	faRecycle,
+	faSpinner
+
+
 
 );
 

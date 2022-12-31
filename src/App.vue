@@ -1,5 +1,5 @@
 <template>
-	<!-- <div class="login" v-if="(isLogin==false)">
+    <!-- <div class="login" v-if="(isLogin==false)">
 		<div class="front_end longin_box" @click="(this.isLogin=true)">
 			<p>前台</p>
 		</div>
@@ -10,56 +10,48 @@
 		</a>
 		
 	</div> -->
-	<div class="home_page" >
-		<div class="all_header">
-			<Header></Header>
-		</div>
+    <div class="home_page">
+        <div class="all_header">
+            <Header></Header>
+        </div>
 
-		<router-view/>
-		<Footer></Footer>
-	</div>
+        <router-view :key="$route.path" />
+        <Footer></Footer>
+    </div>
 </template>
 <script>
 import Footer from "@/components/Footer.vue";
 import Header from "@/components/Header.vue";
 
-
-
 export default {
-	name: "App",
+    name: "App",
 
-	components: {
-		Footer,
-		Header, 
-	},
-	
-  	data() {
-    	return {
-			isLogin:false,
+    components: {
+        Footer,
+        Header,
+    },
 
-    	} 
-  	},
-	computed:{
-	
-	},
-	methods:{
-		LoginBackend(){
-			// this.isLogin=true
-			// console.log(this.isLogin)
-		}
-	},
-
+    data() {
+        return {
+            isLogin: false,
+        };
+    },
+    computed: {},
+    methods: {
+        LoginBackend() {
+            // this.isLogin=true
+            // console.log(this.isLogin)
+        },
+    },
 };
 </script>
 <style lang="scss" scoped>
-
-	.home_page{
-		position: relative;
-		.all_header{
-			position: sticky;
-			top: 0;
-			z-index: 99999;
-		}
-	}
-	
+.home_page {
+    position: relative;
+    .all_header {
+        position: sticky;
+        top: 0;
+        z-index: 99999;
+    }
+}
 </style>

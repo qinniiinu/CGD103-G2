@@ -18,13 +18,13 @@ export default {
     },
     data() {
         return {
-            loading: 0,
+            loading: null,
             haveProduct: true,
             searchVal: "",
             sortVal: "",
 
-            tmp: [],
-            product: [],
+            tmp: null,
+            product: null,
             result: [],
             favorite: [],
 
@@ -228,18 +228,30 @@ export default {
                 </div>
 
                 <div
-                    v-show="loading == 1 && haveProduct == false"
+                    v-if="loading == 1 && haveProduct == false"
                     class="productCard_box"
                 >
                     <p class="center">很抱歉，商品類別已售完。</p>
                 </div>
-                <div class="productCard_box" v-show="loading == 0">
-                    <p class="center">用力更新中</p>
+                <div class="center" v-if="!product">
+                    <svg
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="fas"
+                        data-icon="spinner"
+                        role="img"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                        data-v-21982b1c=""
+                    >
+                        <path
+                            class=""
+                            fill="currentColor"
+                            d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"
+                        ></path>
+                    </svg>
                 </div>
-                <div
-                    class="productCard_box"
-                    v-if="loading == 1 && haveProduct == true"
-                >
+                <div class="productCard_box" v-if="product">
                     <ProductCard
                         :id="e.product_id"
                         :title="e.product_name"
@@ -308,10 +320,10 @@ export default {
             flex-wrap: wrap;
             align-items: flex-start;
             .center {
-                padding: 10px;
-                text-align: center;
                 width: 100%;
+                text-align: center;
             }
+
             & > * {
                 @include s() {
                     width: 33.333333%;
@@ -325,6 +337,23 @@ export default {
                 }
                 @include xl() {
                     width: 25%;
+                }
+            }
+        }
+        .center {
+            width: 100px;
+            margin: auto;
+            svg {
+                width: 100px;
+                animation: loading 1.5s infinite linear;
+            }
+
+            @keyframes loading {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
                 }
             }
         }
