@@ -83,7 +83,7 @@ export default {
   .item {
     position: absolute;
     transform: translate(-50%, -50%);
-    top: 20%;
+    top: 16%;
     left: 50%;
     text-align: center;
     border: 1px solid $title_color;
@@ -128,7 +128,7 @@ export default {
 }
 
 @media screen and (min-width:768px) {
-  .loading {
+  #loading {
     background-size: cover;
 
     .item {
@@ -207,9 +207,6 @@ h3 {
 // 768 - 1023
 @media screen and (min-width:768px) {
   .quiz_result {
-    // margin-bottom: 100px;
-
-    // margin-top: 50px;
     .title_box {
       text-align: center;
       padding: 20px 0;
