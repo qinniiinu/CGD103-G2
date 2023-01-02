@@ -352,6 +352,10 @@ export default {
 
 .landing_page_photo {
   background-color: rgb(203, 209, 223);
+  overflow: hidden;
+  .scroll_container {
+    overflow: hidden;
+  }
 }
 
 button.btn_ml {
@@ -359,7 +363,7 @@ button.btn_ml {
 }
 
 video {
-  width: 110%;
+  width: 100%;
 }
 
 .btn_ml {
