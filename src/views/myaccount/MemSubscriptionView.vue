@@ -5,6 +5,17 @@
 		<p class="title">訂閱服務</p>
 		<div class="data">
 			<!-- 這裡開始寫 -->
+			<div class="lightbox1" v-show="lightbox1">
+				<span @click="lightbox1=false">x</span>
+				<p>{{mess}}</p>
+				<p>{{remind}}</p>
+				<button @click='cancelSub()'>確認取消</button>
+			</div>
+			<div class="lightbox2" v-show="lightbox2">
+				<span @click="lightbox2=false">x</span>
+				<p>{{mess}}</p>
+				<p>{{remind}}</p>
+			</div>
 			<div class="card">
 				<!-- 沒訂閱 -->
 				<div v-if="showPanel==false" class="card-wrap">
@@ -69,7 +80,7 @@
 						</div>
 					</div>
 				</div>
-				<button type="submit" class="cancel" v-if="view===2" @click="showPanel=false,cancelSub()">取消訂閱</button> <!-- showPanel=false,cancelSub() -->
+				<button type="submit" class="cancel" v-if="view===2" @click="checkCancel()">取消訂閱</button> <!-- showPanel=false,cancelSub() -->
 				<router-link to="/MyPage"><button v-if="view===1" class="back">返回</button></router-link>
 				<button v-if="view===2" class="back" @click="view=1">返回</button>
 			</div>
@@ -98,6 +109,10 @@ export default {
 			showPanel:'',
 			view:1,
 			active:true,
+			lightbox1:false,
+			lightbox2:false,
+			mess:'',
+			remind:'',
 		}
 	},
 	created(){
@@ -111,8 +126,9 @@ export default {
 		setStorage(index,sub){
             console.log(sub);
 			if(this.subscribe!=''){
-				alert('您已訂閱，如需更改訂閱方案請先取消訂閱')
-				this.$router.push({ path: "/MyPage/memSubscription"});
+				this.lightbox2=true;
+				this.mess='您已訂閱'
+				this.remind='如需更改請先取消訂閱'
 			}else{
 				this.subOrder.push({
 					id:sub.level_id,
@@ -138,7 +154,7 @@ export default {
 				console.log(response.data);
 				this.submemInfo= response.data;
 				console.log(this.submemInfo);
-				if(this.submemInfo!==false && this.submemInfo.msg!=='請先登入'){ //有登入
+				if(this.submemInfo.msg!='none'){ //有登入
 					this.axios.get(`${BASE_URL}/subscription.php`).then((response) => { //訂閱等級
 						this.subscribe= response.data;
 						console.log(this.subscribe);
@@ -161,38 +177,22 @@ export default {
 				console.log(this.vip_level);
             });
         },
+		checkCancel(){
+			this.lightbox1=true;
+			this.mess=`您的訂閱項目#${this.subscribe.level_name}`
+			this.remind='即將取消，請再次確認'
+		},
 		cancelSub(){
-			// 先寫一支vip_orders
-			// 取下orders session
-			// 在這直接fetch執行取消訂單
-
 			let xhr= new XMLHttpRequest();
 			xhr.onload=function(){
 				console.log(xhr.responseText);
 				let result=JSON.parse(xhr.responseText);
-				alert('已取消訂閱');
 				location.reload();
+				this.showPanel=false;
 			};
 			xhr.open("post",`${BASE_URL}/cancelSubOrder.php`,true);
 			xhr.send(null);
-			// this.getResource();
-			// let data={
-			// 	mem_id:''
-			// }
-			// fetch("/api_server/cancelSubOrder.php", {
-			// 	method: "POST",
-			// 	body: JSON.stringify(data)
-			// })
-			// .then((response) => {
-			// 	return response.json();
-			// })
-			// .then((data) =>{
-			// 	console.log(data);
-			// 	if (data.msg) {
-			// 		alert("data.msg");
-			// 	}
-			// })
-			// .catch((error) => console.log(error));
+			
 		}
 	}
 };
@@ -211,6 +211,49 @@ export default {
 	display: flex;
 	justify-content: center;
 	position: relative;
+	.lightbox1,.lightbox2 {
+        position: absolute;
+        display:flex;
+        flex-direction: column;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        font-weight: 700;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 300px;
+        height: 300px;
+        background-color: #ffffffe8;
+        border: 1px solid $main_color;
+        text-align: center;
+        @include s{
+            font-size: 16px;
+        }
+        span{
+            cursor: pointer;
+            position: absolute;
+            top: 3px;
+            right: 7px;
+        }
+        button{
+            cursor: pointer;
+            color: white;
+            width: 70px;
+            height: 35px;
+            background-color: $main_color;
+            border: none;
+            &:hover{
+                border: 1px solid $main_color;
+                color: $main_color;
+                background-color: white;
+            }
+        }
+    }
 	.card{
 		width: 100%;
 		min-height: 600px;

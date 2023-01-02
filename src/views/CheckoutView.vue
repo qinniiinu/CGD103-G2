@@ -1,5 +1,10 @@
 <template>
 	<div class="checkout">
+		<div class="lightbox" v-show="lightbox">
+			<span @click="lightbox=false">x</span>
+			<p>購買成功</p>
+			<button @click="go">查看訂單</button>
+		</div>
 		<form class="paydetails" @submit.prevent="orderSubmit()">
 			<h2>結帳</h2>
 			<div class="paytetails-wrap">
@@ -105,6 +110,7 @@ export default {
 			ord_mem:'',
 			ord_phone:'',
 			ord_addr:'',
+			lightbox:false,
 		}
 	},
 	created(){
@@ -188,13 +194,14 @@ export default {
 			})
 			.then((data) =>{
 				console.log(data);
-				if (data.msg) {
-					alert("已成功下單");
-				}
-				localStorage.clear();
-				this.$router.push({ path: "/MyPage/OrderHistory"});
+				this.lightbox=true;
+				localStorage.removeItem('cart')
+				
 			})
 			.catch((error) => console.log(error));
+		},
+		go(){
+			this.$router.push({ path: "/MyPage/OrderHistory"});
 		}
 	}
 };
@@ -217,15 +224,59 @@ export default {
 	.checkout{
 		flex-direction: column-reverse;
 		height: 100%;
+		display: flex;
+		justify-content: center;
+		margin-top: 25px;
+		gap: 5%;
+		position: relative;
 		@include m{
 			margin: 20px 100px 100px 100px;
 			height: 900px;
 			flex-direction: row;
 		}
-		display: flex;
-		justify-content: center;
-		margin-top: 25px;
-		gap: 5%;
+		.lightbox {
+			position: absolute;
+			display:flex;
+			flex-direction: column;
+			gap: 20px;
+			justify-content: center;
+			align-items: center;
+			font-size: 24px;
+			font-weight: 700;
+			z-index: 10;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto;
+			width: 300px;
+			height: 300px;
+			background-color: #ffffffe8;
+			border: 1px solid $main_color;
+			text-align: center;
+			@include s{
+				font-size: 16px;
+			}
+			span{
+				cursor: pointer;
+				position: absolute;
+				top: 3px;
+				right: 7px;
+			}
+			button{
+				cursor: pointer;
+				color: white;
+				width: 70px;
+				height: 35px;
+				background-color: $main_color;
+				border: none;
+				&:hover{
+					border: 1px solid $main_color;
+					color: $main_color;
+					background-color: white;
+				}
+			}
+		}
 		.paydetails{
 			display: flex;
 			flex-direction: column;

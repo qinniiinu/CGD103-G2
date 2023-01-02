@@ -36,25 +36,18 @@
 								
 							</div>
 						</li>
-						<div class="detail" v-if="subscribe !==false || subMemInfo!==false">
-							<div>共 {{cart.length}} 種商品</div>
-							<div>{{subscribe.level_name}} 訂閱等級折扣: -${{total-distotal}}</div>
-							<div>總計: ${{distotal}}元</div>
-						</div>
-						<div class="detail" v-else>
+						<div class="detail" v-if="subscribe==''|subscribe==false&subMemInfo.msg=='none'"> <!-- 沒登入或沒訂閱 -->
 							<div>共 {{cart.length}} 種商品</div>
 							<div >尚無訂閱等級折扣</div>
 							<div>總計: ${{total}}元</div>
 						</div>
-							<!-- <div>共 {{cart.length}} 種商品</div>
-							<div v-if="this.subMemInfo!==false && this.subMemInfo.msg!=='請先登入' &&this.subscribe!==false">
-								{{subscribe.level_name}}訂閱等級折扣: -${{parseInt(total*(1-subscribe.discount))}}
-							</div>
-							<div v-else>尚無訂閱等級折扣</div>
-							<div>總計: ${{total}}元</div> -->
+						<div class="detail" v-else>
+							<div>共 {{cart.length}} 種商品</div>
+							<div>{{subscribe.level_name}} 訂閱等級折扣: -${{total-distotal}}</div>
+							<div>總計: ${{distotal}}元</div>
+						</div>
 						<div class="nextbtn">
 							<router-link to="/ProductList" ><button>繼續逛逛</button></router-link>
-							<!-- <router-link to="/Checkout"><button @click="ifLogin()">去付款</button></router-link> -->
 							<button @click="isLogin()">去付款</button>
 						</div>
 					</ul>
@@ -63,8 +56,14 @@
 						<router-link to="/ProductList"><button>去逛逛</button></router-link>
 					</ul>
 				</div>
+				<div class="lightbox" v-show="lightbox">
+					<span @click="lightbox=false">x</span>
+					<p>請先登入</p>
+					<button @click="goLogin">登入去</button>
+				</div>
 			</div>
 		</div>
+		
 	</template>
 </template>
 
@@ -84,6 +83,7 @@ export default {
 			max:0,
 			subscribe:[],
 			subMemInfo:[],
+			lightbox:false,
 		}
 	},
 	created(){
@@ -170,26 +170,27 @@ export default {
 			this.setStorage()
 		},
 		getResource() {
-            this.axios.get(`${BASE_URL}/subMemInfo.php`).then((response) => {
+            this.axios.get(`${BASE_URL}/subMemInfo.php`).then((response) => { //會員是否登入?
 				console.log(response.data.state);
 				this.subMemInfo= response.data;
 				console.log(this.subMemInfo);
-				if(this.subMemInfo!==false || this.subMemInfo.msg !=='請先登入'){
-					this.axios.get(`${BASE_URL}/subscription.php`).then((response) => {
+				if(this.subMemInfo.msg!=='none'){
+					this.axios.get(`${BASE_URL}/subscription.php`).then((response) => { //確定有登入再抓取訂閱資料
 						this.subscribe= response.data;
 						console.log(this.subscribe);
 					});
 				}
             });
-			
     	},
 		isLogin(){
-			if(this.subMemInfo!==false && this.subMemInfo.msg!=='請先登入'){
+			if(this.subMemInfo.msg!=='none'){
 				this.$router.push({ path: "/checkout" });
 			}else{
-				alert('請先登入會員')
-				this.$router.push({ path: "/login" });
+				this.lightbox=true;
 			}
+		},
+		goLogin(){
+			this.$router.push({ path: "/login" })
 		}
 	}
 };
@@ -202,6 +203,7 @@ h2{
 	border: 1px solid $title_color;
 	padding: 10px 20px;
 }
+
 .productContainer{
 	width:100%;
 	margin: auto;
@@ -226,14 +228,59 @@ h2{
 }
 .cart{
 	// margin: auto;
+	position: relative;
 	h2{
 		font-size: 18px;
 		@include m{
 			font-size: 24px;
 		}
 	}
+	.lightbox {
+		position: absolute;
+		display:flex;
+		flex-direction: column;
+		gap: 20px;
+		justify-content: center;
+		align-items: center;
+		font-size: 24px;
+		font-weight: 700;
+		z-index: 10;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		margin: auto;
+		width: 300px;
+		height: 300px;
+		background-color: #ffffffe8;
+		border: 1px solid $main_color;
+		text-align: center;
+		@include s{
+			font-size: 16px;
+		}
+		span{
+			cursor: pointer;
+			position: absolute;
+			top: 3px;
+			right: 7px;
+		}
+		button{
+			cursor: pointer;
+			color: white;
+			width: 70px;
+			height: 35px;
+			background-color: $main_color;
+			border: none;
+			&:hover{
+				border: 1px solid $main_color;
+				color: $main_color;
+				background-color: white;
+			}
+		}
+	}
 	.cart-wrap{
 		margin:20px;
+		position: relative;
 		@include m{
 			margin:15%;
 			margin-top: 50px;
@@ -417,7 +464,6 @@ h2{
 			}
 		}
 	}
-// }
 
 	
 	
