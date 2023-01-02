@@ -149,10 +149,37 @@ export default {
     };
   },
   methods: {
+    getOrderQa() {
+      this.axios
+        .get(
+          `${BASE_URL}/getOrderDetailMsg.php?order_id=${this.$route.params.id}`,
+          { credentials: "include" }
+        )
+        .then((response) => {
+          console.log("-----------", response.data);
+          this.orders = response.data;
+
+          const groupBy = (array, key) =>
+            array.reduce((objectsByKeyValue, obj) => {
+              const value = obj[key];
+              objectsByKeyValue[value] = (
+                objectsByKeyValue[value] || []
+              ).concat(obj);
+              return objectsByKeyValue;
+            }, {});
+
+          this.orders = this.orders.filter((e) => {
+            return e.order_id == this.$route.params.id;
+          });
+
+          this.order_qa = groupBy(this.orders, "meg_cont");
+        });
+    },
+
     getResource() {
       this.axios
         .get(`${BASE_URL}/getOrderDetail.php`, { credentials: "include" })
-        // .get(`${BASE_URL}/getOrderDetail.php`, { credentials: "include" })
+        // .get(`${BASE_URL}/getOrderDetailMsg.php`, { credentials: "include" })
         .then((response) => {
           console.log("-----------", response.data);
           this.orders = response.data;
@@ -179,9 +206,9 @@ export default {
           });
 
           this.order_item = groupBy(this.orders, "product_id");
-          this.order_qa = groupBy(this.orders, "meg_cont");
         });
     },
+
     cut(x) {
       if (x) return x.split(",")[0];
     },
@@ -189,21 +216,25 @@ export default {
       if (!this.meg_cont) {
         alert("輸入成功！");
         let myVue = this;
-        fetch(`/api_server/msgInsert.php`, {
+        let formData = new FormData(document.getElementById("insert_msg"));
+        formData.append("order_id", this.$route.params.id);
+        fetch("/api_server/msgInsert.php", {
           method: "post",
-          body: new FormData(document.getElementById("insert_msg")),
+          body: formData,
         })
           .then((res) => res.json())
           .then((json) => {
             console.log("===========");
             console.log(json);
             myVue.getResource();
+            myVue.getOrderQa();
           });
       }
     },
   },
   mounted() {
     this.getResource();
+    this.getOrderQa();
   },
 };
 </script>
