@@ -45,6 +45,7 @@ export default {
     right: 0;
     bottom: 0;
     margin: auto;
+    z-index: 1000;
 
     border: 5px solid $main_color;
     background-color: $bg_white;

@@ -18,6 +18,7 @@
             <p class="title">{{ title }}</p>
             <p class="price">NT${{ price }}</p>
         </router-link>
+        <Alert :msg="msg" @closeAlert="alert = false" v-show="alert"></Alert>
     </div>
 </template>
 <style lang="scss" scoped>
@@ -72,6 +73,8 @@ export default {
     data() {
         return {
             iconChange: true,
+            alert: false,
+            msg: "",
         };
     },
     props: {
@@ -92,7 +95,8 @@ export default {
                 .then((response) => response.json())
                 .then((data) => {
                     // 在這裡處理服務器返回的數據
-                    alert(data.msg);
+                    this.msg = data.msg;
+                    this.alert = true;
                 });
         },
     },

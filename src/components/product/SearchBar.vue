@@ -12,6 +12,8 @@
             <option value="">排序</option>
             <option value="StoB">價格小到大</option>
             <option value="BtoS">價格大到小</option>
+            <option value="OtoN">上架時間舊到新</option>
+            <option value="NtoO">上架時間新到舊</option>
         </select>
     </div>
 </template>

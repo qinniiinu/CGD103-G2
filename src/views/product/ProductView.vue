@@ -84,6 +84,7 @@
                 :clloect="e.coll"
                 @clloectchange="collchange(e)"
                 :key="e.product_id"
+                
             />
         </div>
     </div>
