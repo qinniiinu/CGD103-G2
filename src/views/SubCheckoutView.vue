@@ -1,5 +1,10 @@
 <template>
 	<div class="checkout">
+		<div class="lightbox" v-show="lightbox">
+			<span @click="lightbox=false">x</span>
+			<p>訂閱成功</p>
+			<button @click="go">查看訂閱</button>
+		</div>
 		<form class="paydetails" action="" @submit.prevent="subOrdersubmit()">
 			<h2>結帳</h2>
 			<div class="paytetails-wrap">
@@ -17,23 +22,9 @@
 					<input class="memName" type="text" v-model="subMemInfo.mem_name">
 					<p>連絡電話</p>
 					<input class="phone" type="text" v-model="subMemInfo.phone">
-					<!-- <p>電子信箱</p>
-					<input class="email" type="text" v-model="subMemInfo.mem_mail" disabled> -->
 					<p>收件地址</p>
 					<input class="address" type="text" v-model="subMemInfo.address">
 				</div>
-				<!-- <div class="receiver">
-					<h4>收件人資訊</h4>
-					<p>姓名</p>
-					<input class="mem_name" type="text" v-model="inner[0]">
-					<p>連絡電話</p>
-					<input class="phone" type="text" v-model="inner[1]">
-					<p>電子信箱</p>
-					<input class="email" type="text" v-model="inner[2]">
-					<p>配送地址</p>
-					<input class="receive-address" v-model="inner[3]">
-					<label class="same" for="same"><input type="checkbox" id="same" @click="check()" >同購買人資訊</label>
-				</div> -->
 				<div class="payment">
 					<h4>付款方式</h4>
 					<select name="" id="">
@@ -96,7 +87,8 @@ export default {
 			vip_level:[],
             subscribe:[],
 			subMemInfo:[],
-			subOrder:[]
+			subOrder:[],
+			lightbox:false
 		}
 	},
 	created(){
@@ -125,12 +117,8 @@ export default {
 			})
 			.then((data) =>{
 				console.log(data);
-				alert("訂閱成功");
-				localStorage.clear();
-				this.$router.push({ path: "/MyPage/memSubscription"});
-				// if (data.msg) {
-				// 	alert("data.msg");
-				// }
+				this.lightbox=true;
+				localStorage.removeItem('subOrder')
 			})
 			.catch((error) => console.log(error));
 		},
@@ -162,7 +150,10 @@ export default {
                 this.vip_level= response.data;
 				console.log(this.vip_level);
             });
-    	}
+    	},
+		go(){
+		this.$router.push({ path: "/MyPage/memSubscription"});
+		}
 	}
 }
 
@@ -191,17 +182,61 @@ export default {
 		height: 15px;
 	}
 	.checkout{
+		position: relative;
 		flex-direction: column-reverse;
 		height: 100%;
-		@include m{
-			margin: 20px 100px 100px 100px;
-			height: 900px;
-			flex-direction: row;
-		}
 		display: flex;
 		justify-content: center;
 		margin-top: 25px;
 		gap: 5%;
+		@include m{
+			margin: 20px 100px 100px 100px;
+			// height: 900px;
+			flex-direction: row;
+		}
+		.lightbox {
+			position: absolute;
+			display:flex;
+			flex-direction: column;
+			gap: 20px;
+			justify-content: center;
+			align-items: center;
+			font-size: 24px;
+			font-weight: 700;
+			z-index: 10;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto;
+			width: 300px;
+			height: 300px;
+			background-color: #ffffffe8;
+			border: 1px solid $main_color;
+			text-align: center;
+			@include s{
+				font-size: 16px;
+			}
+			span{
+				cursor: pointer;
+				position: absolute;
+				top: 3px;
+				right: 7px;
+			}
+			button{
+				cursor: pointer;
+				color: white;
+				width: 70px;
+				height: 35px;
+				background-color: $main_color;
+				border: none;
+				&:hover{
+					border: 1px solid $main_color;
+					color: $main_color;
+					background-color: white;
+				}
+			}
+		}
 		.paydetails{
 			display: flex;
 			flex-direction: column;
