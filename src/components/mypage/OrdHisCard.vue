@@ -108,7 +108,7 @@ export default {
             }, {});
 
           this.orders = groupBy(this.orders, "order_id");
-          console.log(this.orders);
+          // console.log(this.orders);
         });
     },
   },

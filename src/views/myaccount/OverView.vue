@@ -18,7 +18,11 @@
             <h3 class="title">我的身型</h3>
             <!-- hashtag -->
             <type-tag :TypeTag="member.body_shape" class="type_tag"></type-tag>
-            <bg-tag :Bgtag="member.body_shape" class="bgtag"></bg-tag>
+            <bg-tag v-if="member.body_id == 101" Bgtag="TRIANGLE" class="bgtag"></bg-tag>
+            <bg-tag v-if="member.body_id == 102" Bgtag="RECTANGLE" class="bgtag"></bg-tag>
+            <bg-tag v-if="member.body_id == 103" Bgtag="APPLE" class="bgtag"></bg-tag>
+            <bg-tag v-if="member.body_id == 104" Bgtag="PEAR" class="bgtag"></bg-tag>
+            <bg-tag v-if="member.body_id == 105" Bgtag="HOURGLASS" class="bgtag"></bg-tag>
             <router-link to="/MyPage/BodyType" class="more">
               <span class="text">查看更多</span>
               <font-awesome-icon icon="fa-solid fa-angle-right" />
@@ -50,7 +54,10 @@
           <div class="text">
             <h3 class="title">我的風格</h3>
             <type-tag :TypeTag="style.style_name" class="type_tag"></type-tag>
-            <bg-tag :Bgtag="style.style_name" class="bgtag"></bg-tag>
+            <bg-tag v-if="style.style_id == 101" Bgtag="SPORT" class="bgtag"></bg-tag>
+            <bg-tag v-if="style.style_id == 102" Bgtag="HIPSTER" class="bgtag"></bg-tag>
+            <bg-tag v-if="style.style_id == 103" Bgtag="FASHION" class="bgtag"></bg-tag>
+            <bg-tag v-if="style.style_id == 104" Bgtag="MINIMALIST" class="bgtag"></bg-tag>
             <router-link to="/MyPage/memQuiz" class="more">
               <span class="text">查看更多</span>
               <font-awesome-icon icon="fa-solid fa-angle-right" />

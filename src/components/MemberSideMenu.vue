@@ -123,7 +123,7 @@ export default {
               })
               .then((response) => (this.levelInfo = response.data))
               .catch((error) => console.log(error));
-            if (res.data.level_id === '103') {//最高等級就隱藏 "立即升級"
+            if (res.data.level_id == '103') {//最高等級就隱藏 "立即升級"
               this.level_top = true;
             }
           } else {// 無訂閱，不顯示帳號等級

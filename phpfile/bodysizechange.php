@@ -1,13 +1,13 @@
 <?php
-session_start();
-$Origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : "*";
-// 如果$origin为*号时,则跨域访问不支持cookie的发送
-header("Access-Control-Allow-Origin:{$Origin}");
-// 允许请求的类型
-header("Access-Control-Allow-Methods:POST,GET,OPTIONS");
-// 跨域访问是否允许带cookie的发送
-header("Access-Control-Allow-Credentials:true");
-header("Content-Type:application/json;charset=UTF-8");
+    session_start();
+    $Origin = isset($_SERVER['HTTP_ORIGIN'])?$_SERVER['HTTP_ORIGIN']:"*"; 
+    // 如果 $origin 為 * 號時，則跨域訪問不支持 cookie 的發送
+    header("Access-Control-Allow-Origin: {$Origin}");           
+    // 允許請求的類型
+    header("Access-Control-Allow-Methods:POST,GET,OPTIONS");    
+    // 跨域訪問是否允許帶 cookie 的發送
+    header("Access-Control-Allow-Credentials:true");
+    header("Content-Type:application/json;charset=UTF-8");
 try {
     // 註冊帳號資料
     if ($_SESSION['member']) { //送出註冊

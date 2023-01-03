@@ -20,14 +20,14 @@
                         <button
                             class="btn_l"
                             @click="member.sex = '1'"
-                            :class="{ active: member.sex === '1' }"
+                            :class="{ active: member.sex == '1' }"
                         >
                         男
                         </button>
                         <button
                             class="btn_l"
                             @click="member.sex = '0'"
-                            :class="{active: member.sex === '0' }"
+                            :class="{active: member.sex == '0' }"
                         >
                         女
                         </button>
@@ -140,6 +140,7 @@
                     </router-link>
                     <button class="btn_s save" @click="savechange">儲存</button>
                 </div>
+                <div class="decoration">#ACCOUNT</div>
             </section>
         </div>
     </div>
@@ -435,6 +436,20 @@ export default {
         @include m() {
             grid-area: 5/3/6/5;
         }
+    }
+    .decoration {
+        display: none;
+        @include m() {
+             grid-area: 5/1/6/2;
+            display: inline-block;
+            font-size: 72px;
+            font-weight: bolder;
+            font-style: italic;
+            color: $secondary;
+            order: -1;
+
+        }
+        
     }
 }
 
