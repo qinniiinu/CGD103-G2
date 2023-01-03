@@ -83,7 +83,7 @@
         </h2>
         <div v-for="q in order_qa" :key="q[0].meg_id" class="ord_msg_box">
           <div class="msg_title">
-            <h4 v-if="q[0].meg_status == 1">您的留言紀錄</h4>
+            <h4 v-if="q[0].meg_status === 1">您的留言紀錄</h4>
             <h4 v-else>客服回應說明</h4>
             <div class="msg_time">留言時間：{{ q[0].meg_time }}</div>
           </div>
