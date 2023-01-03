@@ -19,15 +19,15 @@
                     <div class="sex">
                         <button
                             class="btn_l"
-                            @click="member.sex = 1"
-                            :class="{ active: member.sex === 1 }"
+                            @click="member.sex = '1'"
+                            :class="{ active: member.sex === '1' }"
                         >
                         男
                         </button>
                         <button
                             class="btn_l"
-                            @click="member.sex = 0"
-                            :class="{active: member.sex === 0 }"
+                            @click="member.sex = '0'"
+                            :class="{active: member.sex === '0' }"
                         >
                         女
                         </button>
