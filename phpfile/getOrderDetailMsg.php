@@ -1,5 +1,4 @@
 <?php
-// //跨域(正式開發不能這樣)
 session_start();
 $Origin=isset($_SERVER['HTTP_ORIGIN'])?$_SERVER['HTTP_ORIGIN']:"*";
     // 如果$Origin為*號時，跨域訪問不支持cookie的發送
