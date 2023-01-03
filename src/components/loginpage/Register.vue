@@ -709,9 +709,6 @@ body {
                         }
                         .btn_nl {
                             padding: 15px 50px;
-                            @include xl() {
-                                padding: 15px 70px;
-                            }
                         }
                     }
                     .my_body {
