@@ -189,11 +189,6 @@ const routes = [
 		component: () => import("../views/style/ChatView.vue"),
 	},
 	{
-		path: "/List",
-		name: "List",
-		component: () => import("../views/style/ListView.vue"),
-	},
-	{
 		path: "/MulStyles",
 		name: "MulStyles",
 		component: () => import("../views/style/MulStylesView.vue"),

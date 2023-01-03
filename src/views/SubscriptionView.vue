@@ -1,4 +1,12 @@
 <template>
+<div class="sub">
+    <div class="lightbox" v-show="lightbox">
+        <span @click="lightbox=false">x</span>
+        <p>{{mess}}</p>
+        <p>{{remind}}</p>
+        <button v-if="submemInfo.msg!=='none'" @click="go">會員專區</button>
+        <button v-else @click="go">登入去</button>
+    </div>
     <div class="subscription">
         <div class="wrap">
             <div class="left"></div>
@@ -39,6 +47,7 @@
             </div>
         </div>
     </div>
+</div>
 </template>
 
 <script>
@@ -55,7 +64,11 @@ export default {
             subscribe:[],
             submemInfo:[],
             subOrder:[],
-            sub:[]
+            sub:[],
+            lightbox:false,
+            mess:'',
+            remind:'',
+            button:''
 		}
 	},
 	created(){
@@ -92,7 +105,7 @@ export default {
 				console.log(response.data);
 				this.submemInfo= response.data;
 				// console.log(this.submemInfo);
-				if(this.submemInfo!==false && this.submemInfo.msg!=='請先登入'){ //確定有登入
+				if(this.submemInfo.msg!='none'){ //確定有登入
 					this.axios.get(`${BASE_URL}/subscription.php`).then((response) => { //確認訂閱等級
 						this.subscribe= response.data;
 						// console.log(this.subscribe);
@@ -101,16 +114,25 @@ export default {
             });
         },
         isSub(){
-            if(this.submemInfo!==false && this.submemInfo.msg!=='請先登入'){ //有登入
-                if(this.subscribe!=''){
-                    alert('您已訂閱，如需更改訂閱方案請先至會員專區取消訂閱')
-                    this.$router.push({ path: "/MyPage/memSubscription"});
+            if(this.submemInfo.msg!=='none'){ //有登入
+                if(this.subscribe.msg!=='none'&&this.subscribe!=false){ //有訂閱
+                    this.mess='您已訂閱'
+                    this.remind='如需更改請先至會員專區'
+                    this.lightbox=true;
                 }else{
                     this.$router.push({ path: "/SubCheckout"});
                 }
             }else{ //沒登入
-                alert('請先登入')
-                this.$router.push({ path: "/login" });
+                this.mess='請先登入'
+                this.lightbox=true;
+            }
+        },
+        go(){
+            if(this.submemInfo.msg!=='none'){ //有登入
+                this.button='會員專區'
+                this.$router.push({ path: "/MyPage/memSubscription" });
+            }else{
+                this.$router.push({ path: "/login" })
             }
             
         }
@@ -118,6 +140,52 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.sub{
+    position: relative;
+    .lightbox {
+        position: absolute;
+        display:flex;
+        flex-direction: column;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        font-weight: 700;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        width: 300px;
+        height: 300px;
+        background-color: #ffffffe8;
+        border: 1px solid $main_color;
+        text-align: center;
+        @include s{
+            font-size: 16px;
+        }
+        span{
+            cursor: pointer;
+            position: absolute;
+            top: 3px;
+            right: 7px;
+        }
+        button{
+            cursor: pointer;
+            color: white;
+            width: 70px;
+            height: 35px;
+            background-color: $main_color;
+            border: none;
+            &:hover{
+                border: 1px solid $main_color;
+                color: $main_color;
+                background-color: white;
+            }
+        }
+    }
+}
 .subscription {
     width: 100%;
     .wrap {
@@ -266,10 +334,6 @@ export default {
             }
             
             .card-wrap {
-                @include l{
-                    // width: 230px;
-                }
-                // width: 230px;
                 background: white;
                 padding: 30px 15px;
                 color: $main_color;

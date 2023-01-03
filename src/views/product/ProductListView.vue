@@ -117,8 +117,15 @@ export default {
             } else if (val == "BtoS") {
                 this.result = this.result.sort(function (a, b) {
                     return b.unit_price - a.unit_price;
-                });
-            }
+                })           }
+                else if(val == "NtoO"){
+                this.result = this.result.sort(function (a, b) {
+                    return b.product_id - a.product_id;
+                })}
+                else if(val == "OtoN"){
+                this.result = this.result.sort(function (a, b) {
+                    return b.product_id - a.product_id;
+                })}
         },
         resultproduct() {
             let result = this.tmp;

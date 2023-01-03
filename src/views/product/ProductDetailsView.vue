@@ -3,13 +3,11 @@ import { BASE_URL } from "@/assets/js/common.js";
 
 import Breadcrumb from "@/components/product/Breadcrumb.vue";
 import HashTag from "@/components/product/HashTag.vue";
-import Alert from "@/components/Alert.vue";
 export default {
     name: "Product",
     components: {
         Breadcrumb,
         HashTag,
-        Alert,
     },
     data() {
         return {

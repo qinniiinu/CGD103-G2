@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 /* 商品組件 */
 import ProductCard from "@/components/product/ProductCard.vue";
 import ProductMenu from "@/components/product/ProductMenu.vue";
+import Alert from "@/components/Alert.vue";
 
 
 /* import specific icons */
@@ -82,4 +83,5 @@ createApp(App)
 	.component("font-awesome-icon", FontAwesomeIcon)
 	.component("ProductCard", ProductCard)
 	.component("ProductMenu", ProductMenu)
+	.component("Alert", Alert)
 	.mount("#app");
