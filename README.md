@@ -1,25 +1,16 @@
 
 # cgd103_g2
 
-## Project setup
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
+RE:OUTFIT 大型服飾電商平台網站
+本網站為緯育TibaMe_前端設計工程師班第79期學員專題成果作品,本平台僅供學習、展示之用。
 ```
 
-### Compiles and minifies for production
+## demo https://tibamef2e.com/cgd103/g2/
 ```
-npm run build
+會員帳號 / qw4898@gmail.com  密碼 / ser123
+員工帳號 / 101  密碼 / 101
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
-未處理webpack<br>
-axios  <br>
-未處理  jquery <br>
-?? Docker <br>
+```
+基於vue-cli 開發，搭配 後端php mySQL 指令 連線資料庫
