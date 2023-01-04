@@ -1,0 +1,151 @@
+* {
+  box-sizing: border-box;
+}
+.btn_ns{
+  margin: 0px auto 30px;
+  display: block;
+}
+.recommend_box {
+  display: flex;
+  flex-wrap: wrap;
+  // flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px;
+  .item {
+    width: 30%;
+    margin-bottom: 20px;
+    padding: 10px;
+    // border: 1px solid #000;
+
+    img {
+      width: 100%;
+      border: 1px solid $title_color;
+    }
+
+    h4 {
+      text-align: left;
+      color: $text_color;
+      padding: 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+  }
+}
+
+@media screen and (min-width:768px) {
+  .recommend_box {
+    display: flex;
+    flex-wrap: wrap;
+    // flex-wrap: wrap;
+    justify-content: space-between;
+    // justify-content: space-evenly;
+    padding: 10px;
+
+    // border: 1px solid red;
+    .item {
+      width: 28%;
+      margin-bottom: 20px;
+      padding: 10px;
+      // border: 1px solid $title_color;
+
+      img {
+        width: 100%;
+      }
+
+      h4 {
+        color: $text_color;
+        padding: 10px;
+        font-size: 22px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width:1024px) {
+  .recommend_box {
+    max-width: 1200px;
+    margin: 0 auto 80px;
+    // border: 1px solid red;
+  }
+}
+
+.recommend {
+  color: $title_color;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  // padding: 10px;
+  margin-bottom: 20px;
+  margin-top: 100px;
+}
+
+@media screen and (min-width:768px) {
+  .recommend {
+    font-size: 24px;
+  }
+}
+.check_complete{
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border: 1px solid $main_color;
+  background-color:rgb(255,255,255,.9) ;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  gap: 50px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  h3{
+    font-weight: 700;
+    font-size:32px ;
+    // margin: auto;
+  }
+  .close{
+    color:$second_color;
+    font-weight:500;
+    width: fit-content;
+    height: fit-content;
+    background-color: $main_color;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+}
+// ====燈箱===
+.check_login{
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border: 1px solid $main_color;
+  background-color:rgb(255,255,255,.9) ;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  gap: 50px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  h3{
+    font-weight: 700;
+    font-size:32px ;
+    // margin: auto;
+  }
+  .close{
+    color:$second_color;
+    font-weight:500;
+    width: fit-content;
+    height: fit-content;
+    background-color: $main_color;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+}

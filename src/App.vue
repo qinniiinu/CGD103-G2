@@ -1,30 +1,57 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+    <!-- <div class="login" v-if="(isLogin==false)">
+		<div class="front_end longin_box" @click="(this.isLogin=true)">
+			<p>前台</p>
+		</div>
+		<a href="https://tibamef2e.com/cgd103/g2/back/">
+			<div class="back_end longin_box" >
+				<p>後台</p>
+			</div>
+		</a>
+		
+	</div> -->
+    <div class="home_page">
+        <div class="all_header">
+            <Header></Header>
+        </div>
+
+        <router-view :key="$route.path" />
+        <Footer></Footer>
+    </div>
 </template>
+<script>
+import Footer from "@/components/Footer.vue";
+import Header from "@/components/Header.vue";
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+export default {
+    name: "App",
 
-nav {
-  padding: 30px;
+    components: {
+        Footer,
+        Header,
+    },
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+    data() {
+        return {
+            isLogin: false,
+        };
+    },
+    computed: {},
+    methods: {
+        LoginBackend() {
+            // this.isLogin=true
+            // console.log(this.isLogin)
+        },
+    },
+};
+</script>
+<style lang="scss" scoped>
+.home_page {
+    position: relative;
+    .all_header {
+        position: sticky;
+        top: 0;
+        z-index: 99999;
     }
-  }
 }
 </style>

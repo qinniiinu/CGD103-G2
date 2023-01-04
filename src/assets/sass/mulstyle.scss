@@ -1,0 +1,67 @@
+a {
+	text-decoration: none;
+}
+
+.outfit-title {
+	color: #000;
+
+	h2 {
+		margin-bottom: 10px;
+	}
+
+	padding: 15px 0px;
+	border: 1px solid #000;
+	width: 80%;
+	max-width: 390px;
+
+	@include m {
+		max-width: 960px;
+	}
+
+	margin: auto;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 600;
+
+	.outfit-item {
+		position: relative;
+		display: inline-block;
+		font-size: 14px;
+		font-weight: 400;
+		padding: 5px 20px;
+		cursor: pointer;
+
+		a {
+			color: #000;
+		}
+	}
+
+	.outfit-item::after {
+		content: '';
+		position: absolute;
+		width: 70px;
+		transform: scaleX(0);
+		height: 5px;
+		bottom: 0;
+		left: 17.5px;
+		background-color: $main_color;
+		transform-origin: bottom right;
+		transition: transform 0.2s ease-out;
+
+	}
+
+	// 	  .active{
+	// 		position: absolute;
+	// 		width: 70px;
+	// 
+	// 		height: 5px;
+	// 
+	// 
+	// 		background-color: $main_color;
+	// 	  }
+
+	.outfit-item.active::after {
+		transform: scaleX(1);
+		transform-origin: bottom left;
+	}
+}
