@@ -6,8 +6,13 @@
 			<section class="maintain">
 				<div class="img_box">
 					<div class="mempic">
-						<img :src="member.mem_pic" :alt="member.mem_name">
-						<button v-if="update" class="btn_s">更換頭貼</button>
+						<!-- 預覽 -->
+						<img :src="`../pic/${member.mem_pic}`" :alt="member.mem_name" id="mem_pic">
+						<input type="file" name="upFile" @change="onFilePicked" style="display:none" id="upFile">
+						<label for="upFile">	
+							<div v-if="update" id="myImage" class="btn_s">更換頭貼</div>
+						</label>
+						
 					</div>
 				</div>
 				<div class="form_box">
@@ -85,13 +90,24 @@ export default {
 				mem_pwd:"",
 				mem_pic:"",				
 			},
+			mem_pic:"https://tibamef2e.com/cgd103/g2/front/pic/default_mempic.jpg",	
 			update:false,
 		}
 	},
-	mounted(){
+	created(){
 		this.getResource();
 	},
 	methods: {
+		// 預覽大頭貼
+		onFilePicked(e) {
+			const file = e.target.files[0];
+			const fileReader = new FileReader();
+			fileReader.addEventListener("onload", () => {
+			document.getElementById("mem_pic").src = fileReader.result;
+			fileReader.readAsDataURL(file);
+			});
+		},
+
 		combineDate() {
 			const year = this.member.bday_y;
 			const month = this.member.bday_m;
@@ -104,6 +120,7 @@ export default {
 		},
        
 		save(){ //確定更改資訊
+			this.onFilePicked=false;
 			this.update=!this.update;
             let formData = new FormData();
             formData.append("mem_name", this.member.mem_name);
@@ -113,13 +130,20 @@ export default {
             formData.append("bday", this.combineDate());
 
 			// 會員照片
-            // formData.append("mem_pic", this.member.mem_pic);
+            formData.append("mem_pic", this.member.mem_pic);
+            formData.append("upFile", document.getElementById("upFile").files[0]);
 			// 更改密碼
 			// formData.append("mem_pwd", this.member.mem_pwd);
 
 			this.axios.post(`${BASE_URL}/update_member.php`,formData,{credentials: 'include'})
 			.then(res => {
-				res.data;
+				if (res.data.msg) {
+					alert("更新成功")
+				} else {
+					alert(res.data.errMsg)
+				}
+
+
 				this.getResource();
 			})
 			.catch(error =>console.log(error));
@@ -133,15 +157,13 @@ export default {
 				this.member.bday_d = date.getDate();
 				this.member.bday_y = date.getFullYear();
 				// 會員圖片
-				if (res.data.mem_pic !== null) { // 有大頭照
+				if (res.data.mem_pic == null) { // 無大頭照
+					this.member.mem_pic = 'default_mempic.jpg';;
+				} else { // 有大頭照
 					this.member.mem_pic = res.data.mem_pic;
-				} else { // 無大頭照
-					this.member.mem_pic =
-					'https://tibamef2e.com/cgd103/g2/front/pic/default_mempic.jpg';
 				}
 			})
 			.catch(error =>console.log(error));
-			console.log(this.member);
 		}
 	}
 }
@@ -170,11 +192,13 @@ export default {
 			}
 			.btn_s{
 				position: absolute;
-				height: 35px;
+				height: 34px;
 				width: 100%;
 				bottom: -20px;
 				left: 50%;
 				transform: translateX(-50%);
+				background-color: $main_color;
+				padding: 5px 0;
 			}
 		}
 
