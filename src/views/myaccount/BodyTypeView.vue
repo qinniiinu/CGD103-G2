@@ -162,38 +162,16 @@ export default {
     data() {
         return {
             tmp: {},
-            member: {
-                sex: { 0: "女" },
-                height: 170, //身高
-                weight: 60, //體重
-                shoesize: 40, //鞋碼
-                shoulder: 37, //肩寬
-                chest: 40, // 胸圍
-                waistline: 70, // 腰圍
-                hip: 90, //臀圍
-                clothes: 65, // 衣長
-                pants: 90, //褲長
-            },
-            body: {
-                body_id: "1",
-                body_shape: "沙漏型",
-                body_pic: "/body_hourglass.png",
-                body_descrip:
-                    "沙漏型身材是俗稱的完美身材，所以在穿搭上可以選擇可以凸顯自己凹凸有致的身材的單品。直筒寬鬆款都是雷區哦，上身後曲線全無。擁有彈性的針織背心連衣裙就是很好的選擇，完美凸顯身材",
-            },
-
+            member: {},
+            body: {},
             isActive: false,
         };
     },
     methods: {
         getResource() {
-            this.axios
-                .get(`${BASE_URL}/memberInfo.php`,
-                {credentials: 'include'})
-                // .get("/api_server/memberInfo.php")
+            this.axios.get(`${BASE_URL}/memberInfo.php`,{credentials:'include'})
                 .then((res) => {
                     this.tmp = res.data;
-
                     this.member = {
                         sex: this.tmp.sex,
                         height: this.tmp.height,
