@@ -9,7 +9,6 @@
 				
 			</div>
 		</div>
-		<!-- <Button content="查看更多"></Button> -->
 	
 		<div class="textLoop_animate">
 			<div class="logo_texts" >
@@ -198,15 +197,7 @@ export default {
 				{src:'./look/look-3.jpg'},
 				{src:'./look/look-2.jpg'}],
 			],
-			// showimgs:[{src:'./look-1.jpg'},
-			// 	{src:'./look-1.jpg'},
-			// 	{src:'./look-1.jpg'},
-			// 	{src:'./look-1.jpg'},
-			// 	{src:'./look-1.jpg'},
-			// 	{src:'./look-1.jpg'},
-			// 	{src:'./look-1.jpg'},
-			// 	{src:'./look-1.jpg'},]
-			// ,
+	
 			tags:[
 				'#上班穿搭',
 				'#開會穿搭',
@@ -239,7 +230,6 @@ export default {
 				return this.imgs[index];
 			}
 			return this.imgs[0];
-			// return this.imgs.filter(item => item.cat === this.currentTag)
 		},
 		
 	},
@@ -291,7 +281,6 @@ export default {
 			flex-grow: 1;
 			position: relative;
 			
-			// box-shadow: 1px 1px 0px $title_color;
 			&::before{
 				content: '';
 				width: 100%;
@@ -300,15 +289,11 @@ export default {
 				position: absolute;
 				top: 0px;
 				transition:background-color .8s 0s ;
-				// z-index: -1;
 			}
 			transition:flex-grow .8s 0s,opacity .8s 0s ;
 			opacity: 1;
 			img{
-				// width: 80%;
-				// @include m{
-				// 	width: 100%;
-				// }
+			
 				width: 100%;
 				height: 100%;
 				object-fit: cover;
@@ -320,7 +305,6 @@ export default {
 				left: 0;
 				right: 0;
 				margin: auto;
-				// display:none;
 				font-weight: 700;
 				font-size: 36px;
 				color: $second_color;
@@ -329,9 +313,7 @@ export default {
 			}
 			
 		}
-		// .cover_pic:first-child{
-		// 	flex-grow: 6;	
-		// }
+
 	
 		.main{
 			flex-grow: 6;
@@ -341,7 +323,6 @@ export default {
 			cursor:auto;
 			&::before{
 				background-color:rgba(0,0,0,0);
-				// z-index: -1;
 				transition:background-color .8s 0s ;
 			}
 			.cover_btn{
@@ -488,15 +469,6 @@ export default {
 		transition: transform 0.2s ease-out;
 		
 	  }
-// 	  .active{
-// 		position: absolute;
-// 		width: 70px;
-// 
-// 		height: 5px;
-// 
-// 
-// 		background-color: $main_color;
-// 	  }
 	  
 	  .outfit_item.active::after {
 		transform: scaleX(1);
@@ -574,14 +546,11 @@ export default {
 			font-size: 32px;
 			font-weight: 700;
 			text-align: center;
-			// padding: 50px 0px 20px;
 		}
 		
 			margin: 50px auto 20px;
-			// margin-bottom:20px ;
 			width: 100%;;
 			max-width: 1200px;
-    		// margin-top: 50px;
 			
 	}
 	.stylistLook{

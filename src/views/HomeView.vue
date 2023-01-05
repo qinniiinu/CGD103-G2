@@ -215,37 +215,7 @@ export default {
     components: {
         StyleCard,
     },
-    // 		setup(){
-    // 			const marquee = document.querySelectorAll('.img_marquee_item');
-    //
-    //
-    // 			addEventListener("load", function () {
-    // 				marquee.forEach(el => {
-    // 					// set a default rate, the higher the value, the faster it is
-    // 					const rate = 200;
-    // 					// get the width of the element
-    // 					const distance = el.clientWidth;
-    // 					// get the margin-right of the element
-    // 					const style = window.getComputedStyle(el);
-    // 					const marginRight = parseInt(style.marginRight) || 0;
-    // 					// get the total width of the element
-    // 					const totalDistance = distance + marginRight;
-    // 					// get the duration of the animation
-    // 					// for a better explanation, see the quoted codepen in the first comment
-    // 					const time = totalDistance / rate;
-    // 					// get the parent of the element
-    // 					const container = el.parentElement;
-    //
-    // 					gsap.to(container, time, {
-    // 						repeat: -1,
-    // 						x: '-'+totalDistance,
-    // 						ease: Linear.easeNone,
-    // 					});
-    // 				});
-    // 			});
-    // 			return{marquee,}
-    // 		},
-
+  
     data() {
         return {
             mainImgs: [
@@ -395,7 +365,6 @@ export default {
         width: 50%;
         background-color: $main_color;
         padding: 3.5%;
-        // height: 50%;
         z-index: 5;
         @include m {
             width: 25%;
@@ -440,7 +409,6 @@ export default {
                 width: 18%;
             }
             z-index: -2;
-            // vertical-align: middle;
             img {
                 width: 100%;
                 vertical-align: middle;
@@ -511,9 +479,6 @@ export default {
             font-size: 4rem;
             font-family: "Poppins", sans-serif;
             font-weight: 900;
-            // @include m{
-            // 	font-size:56px ;
-            // }
             font-weight: 700;
             font-style: italic;
         }
@@ -523,7 +488,6 @@ export default {
             left: 5%;
             font-size: 3.5rem;
             @include m {
-                // position: absolute;
                 top: 15%;
                 left: 55%;
                 font-size: 4rem;
@@ -565,7 +529,6 @@ export default {
             z-index: -5;
             width: 100%;
             overflow: hidden;
-            // white-space:nowrap;
             p {
                 display: inline-block;
                 white-space: nowrap;
@@ -604,12 +567,7 @@ export default {
     }
     .container {
         margin-bottom: 80px;
-        .row {
-            // gap: 5px;
-        }
-        // width:100% ;
         max-width: 1200px;
-        // margin: auto;
         .item {
             width: 80%;
             margin: auto;
@@ -788,7 +746,6 @@ export default {
         display: block;
     }
 }
-// 平板以上
 @media screen and (min-width: 768px) {
     .quiz_idx {
         margin: 0 auto 50px;

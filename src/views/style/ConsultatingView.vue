@@ -133,7 +133,6 @@
 
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/src/VueDatePicker/style/main.scss';
-import { scrollTop } from 'dom7';
 import { ref } from 'vue';
 import { BASE_URL } from "../../assets/js/common.js";
 
@@ -242,7 +241,6 @@ export default {
 
 		changeStep2(){
 			
-			// alert(this.date)
 			if(this.qatime!=''&& this.date!=''){
 				
 				this.step3=true
@@ -261,15 +259,7 @@ export default {
 			
 		},
 		hascheck2(){
-			// if(this.qatime==''||this.date==''){
-			// 	// this.canprompt=true
-			// 	// this.cantprompt=false
-			// }else{
-			// 	this.canprompt=false
-			// 	this.cantprompt=true
-			// }
-			// 	
-			
+
 		},
 
 		backStep1(){
@@ -439,11 +429,9 @@ export default {
 			.consultqa-textarea{
 				display: inline-block;
 				width: 100%;
-				// max-width: 312px;
 				height: 300px;
 				margin: auto;
 				&:focus{
-					// border: red;
 					outline:0px;
 				}
 				box-sizing: border-box;
@@ -452,7 +440,6 @@ export default {
 				letter-spacing: 1px;
 				line-height: 24px;
 				@include m{
-					// max-width: 1200px;
 					font-size:16px ;
 					letter-spacing: 1.5px;
 					
@@ -530,12 +517,8 @@ export default {
 				border: 0px;
 			}
 			p:nth-child(3){
-				// padding: 20px;
-				// border-radius: 50%;
 				background-color:$main_color;
 				color: $second_color;
-				// font-weight: 700;
-				// font-size: 24px;
 			}
 			p:first-child{
 				background-color:$second_color;
@@ -594,14 +577,6 @@ export default {
 					margin-top:50px ;
 				}
 				
-				
-				
-				// margin: auto;
-				// padding: auto;
-				// flex-grow: 4;
-				// .dp__cell_inner {
-				// 	padding: 250px ;
-				// }
 			}
 			.consultqa-time{
 				@include m{
@@ -652,8 +627,6 @@ export default {
 
 				
 				}
-				// border:2px solid $main-color ;
-				// flex-grow:2 ;
 
 			}
 
@@ -661,7 +634,6 @@ export default {
 
 		}
 		.btn_stp{
-			// margin: auto;
 			text-align: center;
 			button{
 				cursor: pointer;
@@ -721,12 +693,8 @@ export default {
 				border: 0px;
 			}
 			p:last-child{
-				// padding: 20px;
-				// border-radius: 50%;
 				background-color:$main_color;
 				color: $second_color;
-				// font-weight: 700;
-				// font-size: 24px;
 			}
 			p:first-child{
 				background-color:$second_color;
@@ -742,7 +710,6 @@ export default {
 
 	
 		.consultqa-check{
-			// margin: auto;
 			width: 80%;
 			max-width: 1200px;
 			background-color: $second_color;
@@ -793,7 +760,6 @@ export default {
 				
 				button{
 					cursor: pointer;
-					// display: inline-block;
 					@include m{
 						width: 120px;
 						height: 50px;

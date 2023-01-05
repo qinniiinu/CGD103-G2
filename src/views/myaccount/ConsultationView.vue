@@ -214,29 +214,6 @@ export default {
 
 	}
 			
-	
-// 	.card-info-pic{
-// 		width:100px;
-// 		height:100px;
-// 		
-// 		@include l{
-// 			width:80px;
-// 			height:80px;
-// 			
-// 		}
-// 		@include xl{
-// 			width:120px;
-// 			height:120px;
-// 			
-// 		}
-// 
-// 		img{
-// 			border-radius: 500px;
-// 			width: 100%;
-// 			height: 100%;
-// 			object-fit: top;
-// 		}
-//    }
    
 
 			.deco{

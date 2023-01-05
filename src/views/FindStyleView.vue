@@ -153,7 +153,6 @@ export default {
 	@import "@/assets/sass/main";
 .cover_Pic{
 	width: 100%;
-	// margin-top:60px ;
 	height: 100vh;
 	background-image:url("../../public/pic/cover-photo.jpg");
 	background-size: cover;
@@ -168,7 +167,6 @@ export default {
 	}
 	h2{
 		display: block;
-		// text-shadow: 3.5px 1px $third_color;
 		text-align: center;
 		font-weight: 900;
 		color: $third_color;
@@ -178,7 +176,6 @@ export default {
 
 	}
 	p{
-		// text-shadow: 3.5px 1px $third_color;
 		display: block;
 		font-size: 28px;
 		@include m{
@@ -193,8 +190,6 @@ export default {
 	Button{
 		display: block;
 		margin: auto;
-		// width: 120px;
-    	// line-height: 50px;
 		margin-top:50px ;
 	}
 }

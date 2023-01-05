@@ -78,8 +78,7 @@
 	</div>
 
 </template>
-<script>
-	// import Button from '@/components/Button.vue';            
+<script>     
 	import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 	import { Swiper, SwiperSlide } from 'swiper/vue';
 	import 'swiper/css';
@@ -149,7 +148,6 @@
 							} 
 						}   
 				},
-				// cartempty:0,
 			}
 		},
 		computed: {
@@ -200,7 +198,6 @@
 			getResourceswiper() {
 				this.axios.get(`${BASE_URL}/look_list.php`).then((response) => {
                 this.looks = response.data;
-                // this.resultproduct();
             });
 			},
 			getResourceproduct() {
@@ -219,23 +216,11 @@
 			},
 			add(){
 
-			/* 	this.cart.push({	// id: 
-                        title:this.productCombo[0].product_name,
-                        image:this.productCombo[0].product_pic,
-                        price:this.productCombo[0].unit_price,
-                        color: this.productCombo[0].color,
-                        size: this.productCombo[0].size,
-                        count: 1,
-                    }
-					
-				); */
-				
 				this.productCombo.forEach((item)=>{
-					// 假設購物車為空時，才可以加入商品
+				
 					let getProdIndex=this.cart.findIndex((Qitem)=>{
 						return Qitem.title===item.product_name 
 							&& Qitem.color===item.product_color_name
-							// && Qitem.id===item.product_id 
 					})
 					console.log(getProdIndex);
 					if(getProdIndex<0){
@@ -451,16 +436,7 @@
 							margin-top: 65px;
 						}
 					}
-					// p:last-child{
-					// 	padding: 0px 10px;
-					// 	background: $main_color;
-					// 	width: fit-content;
-					// 	color: $third_color;
-					// 	display: flex;
-					// 	line-height: 28px;
-					// 	
-					//
-					// }
+			
 				}
 			}
 		}
@@ -528,9 +504,7 @@
 							display: block;
 							margin:auto;
 						}
-						// justify-content: space-between;
-						// align-content: stretch;
-						// margin-bottom:20px ;
+					
 						@include l{
 							width: 70%;
 							padding: 20px;

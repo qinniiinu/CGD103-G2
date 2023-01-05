@@ -12,7 +12,6 @@
 		
 
 		<div class="look-product">
-			<!-- <SearchBar class="searchbar" /> -->
 			  <div class="container">
 					<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
 						<div class="col" v-for="(look,index) of looks" :key="index" >
@@ -55,20 +54,7 @@ export default {
 		}
 	},
 	computed: {
-//         bread() {
-//             let arr = [{ name: "穿搭總覽", link: "/Wearing" }];
-//             // if (JSON.stringify(this.$route.query) == "{}") {
-//             //     return arr;
-//             // }
-//             if (this.$route.query.S) {
-//                 arr.push({
-//                     name: `搜尋關鍵字：` + this.$route.query.S,
-//                     link: `/Wearing?S=${this.$route.query.S}`,
-//                 });
-//             }
-// 
-//             return arr;
-//         },
+
     },
     watch: {
         $route: function () {
@@ -76,67 +62,11 @@ export default {
         },
     },
     methods: {
-//         search(val) {
-//             const query_current = location.search;
-// 
-//             if (val != "") {
-//                 this.looks = this.looks.filter((look) => {
-//                     if (JSON.stringify(look).indexOf(val) !== -1) {
-//                         return look;
-//                     }
-//                 });
-//                 this.$router.push(`/Wearing?${query_current}&S=${val}`);
-//             } else {
-//                 this.$router.push(`/Wearing?${query_current}`);
-//             }
-//         },
-        // sort(val) {
-        //     if (val == "StoB") {
-        //         this.product = this.product.sort(function (a, b) {
-        //             return a.unit_price - b.unit_price;
-        //         });
-        //     } else {
-        //         this.product = this.product.sort(function (a, b) {
-        //             return b.unit_price - a.unit_price;
-        //         });
-        //     }
-        // },
-        // resultproduct() {
-        //     if (location.search !== "") {
-        //         this.scrollBlock();
-        //         let result = this.tmp;
-        //         // if (this.$route.query.G) {
-        //         //     this.looks = this.looks.filter((e) => {
-        //         //         return e.product_gender == this.$route.query.G;
-        //         //     });
-        //         // }
-        //         // if (this.$route.query.M) {
-        //         //     this.looks = this.looks.filter((e) => {
-        //         //         return e.looks_maintype == this.$route.query.M;
-        //         //     });
-        //         // }
-        //         if (this.$route.query.T) {
-        //             this.looks = this.looks.filter((look) => {
-        //                 return look.looks_type == this.$route.query.T;
-        //             });
-        //         }
-        //     } else {
-        //         this.looks = this.tmp;
-        //     }
-        // },
-        // scrollBlock() {
-        //     console.log(window.innerWidth);
-        //     const height =
-        //         window.innerWidth >= 500 ? 650 : window.innerWidth * 0.85;
-        //     window.scrollTo({
-        //         top: height,
-        //         behavior: "smooth",
-        //     });
-        // },
+
         getResource() {
             this.axios.get(`${BASE_URL}/look_list.php`).then((response) => {
                 this.looks = this.tmp = response.data;
-                // this.resultproduct();
+        
             });
         },
 		cut1(x) {

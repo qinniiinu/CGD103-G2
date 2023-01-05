@@ -275,19 +275,6 @@ export default {
 	.cover{
 		position: relative;
 
-		// h2{
-		// 	text-align: center;
-		// 	color: $second_color;
-		// 	font-size:72px ;
-		// 	font-weight: 700;
-		// 	position: absolute;
-		// 	top: 0;
-		// 	bottom: 0;
-		// 	left:0; 
-		// 	right: 0;
-		// 	margin: auto;
-		// 	line-height: 100vh;
-		// }
 	}
 
 	.chat_cover{
@@ -315,7 +302,6 @@ export default {
 		.trouble_item{
 			
 				transform: scale(0);
-				// color: $text_color ;
 				font-size: 16px;
 				padding: 20px;
 				border-radius:50% ;
@@ -450,9 +436,6 @@ export default {
 				}
 				
 				.consult_tag{
-					// color:transparent;
-					// -webkit-text-stroke: 2px $main_color;;
-					// font-size: 48px;
 					font-weight: 900;
 					text-align: center;
 				}
@@ -528,7 +511,6 @@ export default {
 						margin: auto;
 						text-shadow: 5px 4px #fff;
 					}
-					// line-height: 96px;
 				}
 			}
 		}
@@ -561,7 +543,6 @@ export default {
 			top: 12%;
 			left: 0;
 			right: 0;
-			// bottom: 0;
 			margin: auto;
 			font-weight: 900;
 			font-size: 48px;
@@ -592,7 +573,6 @@ export default {
 			flex-wrap:wrap;
 			@include m{
 				width: 100%;
-				// gap: 10px;
 			}
 			
 			
