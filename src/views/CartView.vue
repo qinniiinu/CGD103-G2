@@ -15,7 +15,7 @@
 						<div>總價</div>
 					</ul>
 					<ul v-if="cart.length>0" class="order-list">
-						<li class="item" v-for="(item,index) of cart" :key="index">
+						<li class="item" v-for="(item,index) in cart" :key="index">
 							<div class="item-left"><img :src="`./pic/${item.image}`" v-bind:alt="item.title"></div>
 							<div class="item-right">
 								<div class="item-des">
@@ -25,13 +25,13 @@
 								</div>
 								<div class="item-p">
 									<div class="count">
-										<button @click="reduceCount(index,item)">-</button>
+										<button @click="reduceCount(item)">-</button>
 										<span>{{item.count}}</span>
-										<button @click="addCount(index,item)">+</button>
+										<button @click="addCount(item,index)">+</button>
 									</div>
 									<div>${{item.price}}元</div>
 									<div>${{item.price*item.count}}元</div>
-									<div><button @click="dele(index,item)">x</button></div>
+									<div><button @click="dele(index)">x</button></div>
 								</div>
 								
 							</div>
@@ -154,17 +154,16 @@ export default {
 			item.count+=1;
 			this.setStorage()
 		},
-		reduceCount(item,index){
+		reduceCount(item){
 			console.log(item.count);
-			if(item.count<0) return;
+			// if(item.count<=0) return;/
 			if(item.count>1){
 				item.count-=1
-			}else{
-				this.cart.splice(item,1)
 			}
+			
 			this.setStorage()
 		},
-		dele(item,index){
+		dele(item){
 			if(item.count<0) return;
 			this.cart.splice(item,1)
 			this.setStorage()
