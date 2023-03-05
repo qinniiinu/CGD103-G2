@@ -25,13 +25,13 @@
 								</div>
 								<div class="item-p">
 									<div class="count">
-										<button @click="reduceCount(item,index)">-</button>
+										<button @click="reduceCount(index,item)">-</button>
 										<span>{{item.count}}</span>
-										<button @click="addCount(item,index)">+</button>
+										<button @click="addCount(index,item)">+</button>
 									</div>
 									<div>${{item.price}}元</div>
 									<div>${{item.price*item.count}}元</div>
-									<div><button @click="dele(index)">x</button></div>
+									<div><button @click="dele(index,item)">x</button></div>
 								</div>
 								
 							</div>
@@ -76,7 +76,7 @@ export default {
 	data(){
 		return{
 			load: false,
-			// count:1,
+			count:[],
 			order:[],
 			cart:[],
 			min:0,
@@ -154,17 +154,19 @@ export default {
 			item.count+=1;
 			this.setStorage()
 		},
-		reduceCount(item){
+		reduceCount(item,index){
 			console.log(item.count);
+			if(item.count<0) return;
 			if(item.count>1){
-				item.count--
+				item.count-=1
 			}else{
-				return;
+				this.cart.splice(item,1)
 			}
 			this.setStorage()
 		},
-		dele(index){
-			this.cart.splice(index,1)
+		dele(item,index){
+			if(item.count<0) return;
+			this.cart.splice(item,1)
 			this.setStorage()
 		},
 		getResource() {
