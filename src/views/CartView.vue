@@ -25,7 +25,7 @@
 								</div>
 								<div class="item-p">
 									<div class="count">
-										<button @click="reduceCount(item)">-</button>
+										<button @click="reduceCount(item,index)">-</button>
 										<span>{{item.count}}</span>
 										<button @click="addCount(item,index)">+</button>
 									</div>
@@ -76,7 +76,7 @@ export default {
 	data(){
 		return{
 			load: false,
-			count:[],
+			// count:1,
 			order:[],
 			cart:[],
 			min:0,
@@ -156,16 +156,16 @@ export default {
 		},
 		reduceCount(item){
 			console.log(item.count);
-			// if(item.count<=0) return;/
 			if(item.count>1){
-				item.count-=1
+				item.count--
+			}else{
+				return;
 			}
 			
 			this.setStorage()
 		},
-		dele(item){
-			if(item.count<0) return;
-			this.cart.splice(item,1)
+		dele(index){
+			this.cart.splice(index,1)
 			this.setStorage()
 		},
 		getResource() {
